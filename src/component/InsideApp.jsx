@@ -9,6 +9,7 @@ import PageCalendar from "./PageCalendar";
 import PageArticle from "./PageArticle";
 import PageCompany from "./PageCompany";
 import PageEvent from "./PageEvent";
+import PageMap from "./PageMap";
 import { Route, Switch } from "react-router-dom";
 import Particles from 'react-particles-js';
 

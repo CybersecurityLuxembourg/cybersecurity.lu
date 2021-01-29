@@ -16,7 +16,7 @@ export default class Company extends Component {
 
     render() {
         return (
-            <Link to={"/company/" + this.props.info.handle} className="Company-link">
+            <Link to={"/company/" + this.props.info.id} className="Company-link">
                 <div class="Company card">
                     <div class="card-horizontal">
                         <div class="img-square-wrapper">

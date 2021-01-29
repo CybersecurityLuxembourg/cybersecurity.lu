@@ -17,22 +17,29 @@ export default class Event extends Component {
     render() {
         return (
             <Link to={"/calendar/" + this.props.info.handle} className="Event-link">
-                <div className="card">
-                    {this.props.info.image !== null && this.props.info.image !== undefined ?
-                        <img 
-                            className="card-img-top" 
-                            src={getApiURL() + "public/get_image/" + this.props.info.image} 
-                            alt="Card image cap"/>
-                        
-                    :
-                        <NoImage
-                            height={200}
-                        />
-                    }
+                <div className="Event card">
+                    <div className="card-img-wrapper">
+                        {this.props.info.image !== null && this.props.info.image !== undefined ?
+                            <img 
+                                className="card-img-top" 
+                                src={getApiURL() + "public/get_image/" + this.props.info.image} 
+                                alt="Card image cap"/> 
+                        :
+                            <NoImage
+                                height={200}
+                            />
+                        }
+                        <div class="card-date">{this.props.info.start_date + " - " + this.props.info.end_date}</div>
+                        <div class="card-type">{this.props.info.type}</div>
+                    </div>
                     <div className="card-body">
                         <h5 className="card-title">{this.props.info.title}</h5>
-                        <p className="card-text"> the card t</p>
-                        <a href="#" className="btn btn-primary">More info</a>
+                        <p className="card-text">{this.props.info.abstract}</p>
+                        <button
+                            className={"blue-background"}
+                        >
+                            <i class="fas fa-arrow-alt-circle-right"/> More info
+                        </button>
                     </div>
                 </div>
             </Link>

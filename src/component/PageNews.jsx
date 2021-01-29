@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Message from "./box/Message";
 import { dictToURI } from "../utils/url";
 import ArticleSearch from './form/ArticleSearch';
+import SimpleTable from './table/SimpleTable';
 
 
 export default class PageNews extends React.Component {
@@ -21,6 +22,7 @@ export default class PageNews extends React.Component {
         this.modifyFilters = this.modifyFilters.bind(this);
 
 		this.state = {
+            page: 1,
             articles: null,
             loading: false,
             filters: {
@@ -85,34 +87,51 @@ export default class PageNews extends React.Component {
                     onSearch={this.getArticles}
                 />
 
-                <div className="row row-spaced">
+                <div className="row">
                     <div className="col-md-12">
                         <h1>Articles</h1>
                     </div>
+                </div>
 
-                    {this.state.articles !== null && !this.state.loading ? 
-                        (this.state.articles.length === 0 ?
+
+
+
+                {this.state.articles !== null && !this.state.loading ? 
+                    (this.state.articles.length === 0 ?
+                        <div className="row row-spaced">
                             <div className="col-md-12">
                                 <Message
                                     text={"No article found"}
                                     height={200}
                                 />
                             </div>
-                        : 
-                            this.state.articles.map(a => { return (
-                                <div className="col-md-4">
-                                    <Article
-                                        info={a}
-                                    />
-                                </div>
-                            )})
-                        )
+                        </div>
                     : 
-                        <Loading
-                            height={200}
+                        <SimpleTable
+                            className={""}
+                            elements={this.state.articles.map((a, i) => {
+                                return [a, i]
+                            })}
+                            buildElement={(a, i) => {
+                                return (
+                                    <div className="col-md-4">
+                                        <Article
+                                            info={a}
+                                        />
+                                    </div>
+                                )
+                            }} 
                         />
-                    }
-                </div>
+                    )
+                : 
+                    <div className="row row-spaced">
+                        <div className="col-md-12">
+                            <Loading
+                                height={200}
+                            />
+                        </div>
+                    </div>
+                }
 			</div>
 		);
 	}

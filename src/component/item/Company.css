@@ -3,6 +3,10 @@
     margin: 5px 0px !important;
 }
 
+.Company-link {
+    color: inherit;
+}
+
 .Company-link:hover {
     text-decoration: none;
 }
@@ -18,4 +22,12 @@
 
 .Company .img-square-wrapper {
     min-width: 180px;
+}
+
+.Company .card-body h5 {
+	display: inline-block;
+	width: 100%;
+	height: 45px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

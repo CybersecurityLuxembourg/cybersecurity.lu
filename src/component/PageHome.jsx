@@ -107,7 +107,7 @@ export default class PageHome extends React.Component {
 
                 <div className="row row-spaced">
                     <div className="col-md-12">
-                        <h1>Ecosystem</h1>
+                        <h1>Ecosystem overview</h1>
                     </div>
 
                     <div className="col-md-12">
@@ -151,7 +151,7 @@ export default class PageHome extends React.Component {
                     </div>
                 </div>
 
-                <div className="row row-spaced justify-content-md-center">
+                <div className="row row-spaced">
                     <div className="col-md-12">
                         <h1>Latest news</h1>
                     </div>
@@ -182,7 +182,7 @@ export default class PageHome extends React.Component {
                     </div>
                 </div>
 
-                <div className="row row-spaced justify-content-md-center">
+                <div className="row row-spaced">
                     <div className="col-md-12">
                         <h1>Coming events</h1>
                     </div>

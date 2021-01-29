@@ -1,6 +1,6 @@
 import React from 'react';
 import './GlobalMap.css';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Company from '../item/Company';
 import {getRequest} from '../../utils/request';
 import {NotificationManager as nm} from 'react-notifications';
@@ -14,7 +14,7 @@ export default class GlobalMap extends React.Component {
         this.state = {
            lat: 49.8116,
            lng: 6.1319,
-           zoom: 10,
+           zoom: 9,
            selectedCompanyId: null,
            selectedCompanyName: null
         }
@@ -45,8 +45,8 @@ export default class GlobalMap extends React.Component {
 
     render() {
         return (
-            <div className={"full-page"}>
-                <Map
+            <div className={"GlobalMap"}>
+                <MapContainer
                     center={[this.state.lat, this.state.lng]}
                     zoom={this.state.zoom}
                     style={{ width: '100%', height: '100%' }}
@@ -85,7 +85,7 @@ export default class GlobalMap extends React.Component {
                         attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                </Map>
+                </MapContainer>
                 {this.state.selectedCompanyId !== null ?
                     <div className="GlobalMap-company">
                         <div>

@@ -14,7 +14,7 @@
 .NoImage-logo {
     font-size: 50px;
     position: absolute;
-    top: calc(50% - 40px);
+    top: calc(50% - 25px);
     left: calc(50% - 25px);
 }
 

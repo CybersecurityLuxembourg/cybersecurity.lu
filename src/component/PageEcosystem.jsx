@@ -10,6 +10,7 @@ import Loading from "./box/Loading";
 import Company from "./item/Company";
 import SimpleTable from "./table/SimpleTable";
 import CompanySearch from "./form/CompanySearch";
+import GlobalMap from "./map/GlobalMap";
 
 
 export default class PageEcosystem extends React.Component {
@@ -51,7 +52,7 @@ export default class PageEcosystem extends React.Component {
 
 	render() {
 		return(
-			<div className={"page max-sized-page"}>
+			<div className={"PageEcosystem page max-sized-page"}>
                 <div className="row">
                     <div className="col-md-12">
                         <Breadcrumb>
@@ -67,32 +68,37 @@ export default class PageEcosystem extends React.Component {
                     onSearch={this.getArticles}
                 />
 
-                <div className="row row-spaced justify-content-md-center">
+                <div className="row">
                     <div className="col-md-12">
                         <h1>Companies</h1>
                     </div>
-                    {this.state.actors !== null ?
-                        <SimpleTable
-                            className={"PageEcosystem-actor-table"}
-                            elements={Object.keys(this.state.actors).map((a, i) => {
-                                return [a, i]
-                            })}
-                            buildElement={(a, i) => {
-                                return (
-                                    <div className="col-md-6">
-                                        <Company
-                                            info={a}
-                                        />
-                                    </div>
-                                )
-                            }} 
-                        />
-                    :
-                        <Loading
-                            height={200}
-                        />
-                    }
                 </div>
+
+                {this.state.actors !== null ?
+                    <SimpleTable
+                        numberDisplayed={6}
+                        elements={this.state.actors.map((a, i) => {
+                            return [a, i]
+                        })}
+                        buildElement={(a, i) => {
+                            return (
+                                <div className="col-md-6">
+                                    <Company
+                                        info={a}
+                                    />
+                                </div>
+                            )
+                        }} 
+                    />
+                :
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Loading
+                                height={400}
+                            />
+                        </div>
+                    </div>
+                }
                 
                 <div className="row row-spaced">
                     <div className="col-md-12">
@@ -122,8 +128,37 @@ export default class PageEcosystem extends React.Component {
                             </div>
                         :
                             <Loading
-                                height={200}
+                                height={400}
                             />
+                        }
+                    </div>
+                </div>
+
+                <div className="row row-spaced">
+                    <div className="col-md-12">
+                        <h1>Map</h1>
+                    </div>
+                    <div className="col-md-12">
+                        {this.state.actors !== null ?
+                            <GlobalMap />
+                        :
+                            <Loading
+                                height={400}
+                            />
+                        }
+                    </div>
+                    <div className="col-md-12">
+                        {this.state.actors !== null ?
+                            <div className={"right-buttons"}>
+                            <button
+                                className={"blue-background"}
+                                onClick={() => this.props.history.push("/map")}
+                            >
+                                <i class="fas fa-arrow-alt-circle-right"/> View the map on full page
+                            </button>
+                        </div>
+                        :
+                            ""
                         }
                     </div>
                 </div>

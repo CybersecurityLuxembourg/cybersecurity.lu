@@ -72,6 +72,10 @@ a {
 	color: #009fe3;
 }
 
+a:hover {
+	color: #e40613;
+}
+
 .showFulltext {
 	white-space: initial !important;
     overflow: visible !important;

@@ -10,7 +10,8 @@ import Message from "./box/Message";
 import { dictToURI } from "../utils/url";
 import ArticleSearch from './form/ArticleSearch';
 import { Calendar, momentLocalizer  } from 'react-big-calendar';
-import BigCalendar from 'react-big-calendar'
+import BigCalendar from 'react-big-calendar';
+import SimpleTable from "./table/SimpleTable";
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 const localizer = momentLocalizer(moment)
@@ -90,7 +91,7 @@ export default class PageCalendar extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <Breadcrumb>
-                            <Breadcrumb.Item><Link to="/">SECURITYMADEIN.LU</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
                             <Breadcrumb.Item><Link to="/calendar">CALENDAR</Link></Breadcrumb.Item>
                         </Breadcrumb>
                     </div>
@@ -120,8 +121,8 @@ export default class PageCalendar extends React.Component {
                                     events={this.state.articles.map(e => { return (
                                         {
                                             title: e.title,
-                                            start: new Date(e.publication_date),
-                                            end: new Date(e.publication_date),
+                                            start: new Date(e.start_date),
+                                            end: new Date(e.end_date),
                                             handle: e.handle
                                         }
                                     )})}
@@ -146,33 +147,99 @@ export default class PageCalendar extends React.Component {
                     }
                 </div>
 
-                <div className="row row-spaced">
+                <div className="row">
                     <div className="col-md-12">
-                        <h1>Events</h1>
+                        <h1>Coming events</h1>
                     </div>
-                    {this.state.articles !== null && !this.state.loading ? 
-                        (this.state.articles.length === 0 ?
+                </div>
+
+                {this.state.articles !== null && !this.state.loading ? 
+                    (this.state.articles.filter(a => new Date(a.end_date) < new Date()).length === 0 ?
+                        <div className="row">
                             <div className="col-md-12">
                                 <Message
-                                    text={"No article found"}
-                                    height={200}
+                                    text={"No coming event found"}
+                                    height={400}
                                 />
                             </div>
-                        : 
-                            this.state.articles.map(a => { return (
-                                <div className="col-md-4">
-                                    <Event
-                                        info={a}
-                                    />
-                                </div>
-                            )})
-                        )
+                        </div>
                     : 
-                        <Loading
-                            height={200}
+                        <SimpleTable
+                            numberDisplayed={6}
+                            elements={this.state.articles
+                                .filter(a => new Date(a.end_date) > new Date())
+                                .sort((a, b) => a.start_date - b.start_date)
+                                .map((a, i) => {
+                                    return [a, i]
+                                })
+                            }
+                            buildElement={(a, i) => {
+                                return (
+                                    <div className="col-md-4">
+                                        <Event
+                                            info={a}
+                                        />
+                                    </div>
+                                )
+                            }} 
                         />
-                    }
+                    )
+                :
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Loading
+                                height={400}
+                            />
+                        </div>
+                    </div>
+                }
+
+                <div className="row">
+                    <div className="col-md-12">
+                        <h1>Past events</h1>
+                    </div>
                 </div>
+
+                {this.state.articles !== null && !this.state.loading ? 
+                    (this.state.articles.filter(a => new Date(a.end_date) > new Date()).length === 0 ?
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Message
+                                    text={"No past event found"}
+                                    height={400}
+                                />
+                            </div>
+                        </div>
+                    : 
+                        <SimpleTable
+                            numberDisplayed={6}
+                            elements={this.state.articles
+                                .filter(a => new Date(a.end_date) < new Date())
+                                .sort((a, b) => a.start_date - b.start_date)
+                                .map((a, i) => {
+                                    return [a, i]
+                                })
+                            }
+                            buildElement={(a, i) => {
+                                return (
+                                    <div className="col-md-4">
+                                        <Event
+                                            info={a}
+                                        />
+                                    </div>
+                                )
+                            }} 
+                        />
+                    )
+                :
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Loading
+                                height={400}
+                            />
+                        </div>
+                    </div>
+                }
 			</div>
 		);
 	}

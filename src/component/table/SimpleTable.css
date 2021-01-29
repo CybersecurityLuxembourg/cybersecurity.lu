@@ -13,28 +13,41 @@
 }
 
 .simpleTable-pagination {
-    position: relative;
     margin-bottom: 5px;
+    height: 50px;
 }
 
 .simpleTable-info {
-    position: absolute;
-    font-size: 14px;
+    font-size: 20px;
     bottom: 0px;
     width: 100%;
+    height: 60px;
     text-align: center;
+    padding-top: 20px;
 }
 
 .simpleTable-arrowLeft {
+    color: #009fe3;
+    font-size: 20px;
     position: absolute;
-    bottom: -1px;
+    top: 20px;
     left: 30px;
 }
 
 .simpleTable-arrowRight {
+    color: #009fe3;
+    font-size: 20px;
     position: absolute;
-    bottom: -1px;
+    top: 20px;
     right: 30px;
+}
+
+.simpleTable-arrowLeft .iconDisabled {
+    color: grey !important;
+}
+
+.simpleTable-arrowRight .iconDisabled {
+    color: grey !important;
 }
 
 .simpleTable .row div p {

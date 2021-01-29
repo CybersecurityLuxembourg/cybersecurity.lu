@@ -24,7 +24,7 @@ export default class Menu extends React.Component {
 		    <Navbar.Brand>
 		    	<Link to="/">
 		    		<img 
-	                	src="img/ecosystem-logo.jpg"
+	                	src="/img/ecosystem-logo.jpg"
 	                	alt="SECURITYMADEIN.LU Logo"
 	                	style={{height: 60}}
 	                />

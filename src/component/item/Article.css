@@ -3,12 +3,20 @@
     margin: 5px 0px !important;
 }
 
-.Article-link:hover{
+.Article-link {
+    color: inherit;
+}
+
+.Article-link:hover {
     text-decoration: none;
 }
 
 .Article:hover {
     background-color: rgba(0, 159, 227, 0.05);
+}
+
+.Article .card-img-wrapper {
+    position: relative;
 }
 
 .Article .card-date {
@@ -18,7 +26,19 @@
     font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 10px;
     color: #fff;
+    bottom: 0;
+    right: 10px;
+    text-transform: uppercase;
+}
+
+.Article .card-type {
+    position: absolute;
+    background: #e40613;
+    text-align: center;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    color: #fff;
     top: 0;
-    left: 0;
+    left: 10px;
     text-transform: uppercase;
 }

@@ -32,6 +32,10 @@
 	background-color: #009fe3;
 }
 
+.nav-item .dropdown-item {
+    background-color: #009fe3;
+}
+
 .nav-item .dropdown-menu .dropdown-item:hover {
     background-color: unset;
 }
