@@ -1,6 +1,6 @@
 {
-  "name": "securitymadein.lu",
-  "version": "1.1.0",
+  "name": "fo-front",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@trendmicro/react-sidenav": "^0.5.0",
