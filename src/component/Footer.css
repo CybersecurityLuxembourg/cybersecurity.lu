@@ -1,0 +1,29 @@
+
+.Footer {
+  position: absolute;
+  width: 100%;
+  background-color: black;
+}
+
+.Footer h3 {
+  color: white;
+}
+
+.Footer-content {
+  margin: 30px auto 40px auto;
+  padding: 0px 40px;
+  max-width: 1240px;
+}
+
+.Footer-network {
+	font-size: 30px;
+	padding: 5px 8px;
+}
+
+.Footer-contact {
+	font-size: 12px;
+}
+
+.Footer-network {
+	text-align: center;
+}

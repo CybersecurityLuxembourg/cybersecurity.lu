@@ -1,0 +1,21 @@
+.Analytic {
+    font-size: 13px;
+    margin: 10px 5px;
+    padding: 10px 20px 25px 20px;
+    border-radius: 0.4rem;
+    text-align: center;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.Analytic-value {
+  font-size: 45px;
+  position: relative;
+  color: #009fe3;
+  line-height: 1.2;
+}
+
+.Analytic-desc {
+  font-size: 25px;
+  position: relative;
+  line-height: 1.2;
+}

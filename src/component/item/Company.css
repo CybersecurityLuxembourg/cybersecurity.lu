@@ -1,0 +1,21 @@
+
+.Company {
+    margin: 5px 0px !important;
+}
+
+.Company-link:hover {
+    text-decoration: none;
+}
+
+.Company:hover {
+    background-color: rgba(0, 159, 227, 0.05);
+}
+
+.Company .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.Company .img-square-wrapper {
+    min-width: 180px;
+}

@@ -1,0 +1,46 @@
+
+.PageHome-cybersecurity-luxembourg {
+	background-color: #f8f9fa;
+}
+
+.PageHome-cybersecurity-luxembourg-logo {
+	position: absolute;
+	opacity: 0.2;
+	height: 60px;
+	top: 18px;
+	right: 17px;
+}
+
+.carousel {
+	height: 500px;
+}
+
+.slider-wrapper {
+	height: 500px;
+}
+
+.carousel .slider {
+	height: 100%;
+}
+
+
+.carousel .slide {
+	width: 100%;
+  	height: auto;
+  	object-fit: cover;
+  	max-height: 100vh;
+
+}
+
+.carousel .slide .legend {
+	border-radius: calc(.25rem - 1px);
+	background-color: #e40613 !important;
+	opacity: 1 !important;
+	position: absolute;
+	bottom: 50px !important;
+	right: 50px !important;
+	margin: 0 !important;
+	padding: 20px 30px !important;
+	width: auto !important;
+	max-width: calc(50% - 50px) !important;
+}

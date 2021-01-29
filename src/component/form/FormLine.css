@@ -1,0 +1,28 @@
+
+.FormLine {
+    margin: 4px 0px;
+}
+
+.FormLine-label {
+    padding: 8px;
+}
+
+.FormLine-wrong-format {
+	border: 2px solid #e40613 !important;
+}
+
+.FormLine-wrong-format:focus {
+	border: 3px solid #e40613 !important;
+}
+
+.FormLine-right-format {
+	border: 2px solid #bcebff !important;
+}
+
+.FormLine-right-format:focus {
+	border: 3px solid #bcebff !important;
+}
+
+.FormLine-chips {
+	width: 100%;
+}
