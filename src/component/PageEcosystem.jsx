@@ -11,6 +11,9 @@ import Company from "./item/Company";
 import SimpleTable from "./table/SimpleTable";
 import CompanySearch from "./form/CompanySearch";
 import GlobalMap from "./map/GlobalMap";
+import BarWorkforceRange from "./chart/BarWorkforceRange";
+import BarActorAge from "./chart/BarActorAge";
+import CountUp from 'react-countup';
 
 
 export default class PageEcosystem extends React.Component {
@@ -19,15 +22,19 @@ export default class PageEcosystem extends React.Component {
 		super(props);
 
         this.getActors = this.getActors.bind(this);
+        this.getAnalytics = this.getAnalytics.bind(this);
+        this.getTotalEmployees = this.getTotalEmployees.bind(this);
 
 		this.state = {
             actors: null,
+            analytics: null,
             filters: {}
 		}
 	}
 
     componentDidMount() {
         this.getActors();
+        this.getAnalytics();
     }
 
     getActors() {
@@ -36,18 +43,44 @@ export default class PageEcosystem extends React.Component {
                 actors: data,
             });
         }, response => {
-            this.setState({ loading: false });
             nm.warning(response.statusText);
         }, error => {
-            this.setState({ loading: false });
             nm.error(error.message);
         });
+    }
+
+    getAnalytics() {
+        getRequest.call(this, "public/get_public_analytics", data => {
+                this.setState({
+                    analytics: data,
+                });
+            }, response => {
+                nm.warning(response.statusText);
+            }, error => {
+                nm.error(error.message);
+            })
     }
 
     modifyFilters(field, value) {
         let filters = {...this.state.filters};
         filters[field] = value
         this.setState({ filters: filters });
+    }
+
+    getTotalEmployees() {
+        if (this.state.actors === null)
+            return 0;
+
+        let total = 0;
+        let acceptedIDs = this.state.actors.map(a => { return a.id });
+
+        for (let i in this.state.analytics.workforces) {
+            if (acceptedIDs.indexOf(this.state.analytics.workforces[i].company) >= 0) {
+                total += this.state.analytics.workforces[i].workforce;
+            }
+        }
+
+        return total;
     }
 
 	render() {
@@ -129,6 +162,66 @@ export default class PageEcosystem extends React.Component {
                         :
                             <Loading
                                 height={400}
+                            />
+                        }
+                    </div>
+                    <div className="col-md-6">
+                        <h3>Total employees</h3>
+                        <div>
+                            {this.state.actors !== null && this.state.analytics !== null ?
+                                <Analytic
+                                    value={this.getTotalEmployees()}
+                                    desc={"Total employees"}
+                                />
+                                :
+                                <Loading
+                                    height={300}
+                                />
+                            }
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <h3>Employees per company size ranges</h3>
+                        {this.state.actors !== null && this.state.analytics !== null ?
+                            <BarWorkforceRange
+                                actors={this.state.actors}
+                                workforces={this.state.analytics.workforces}
+                                addRangeFilter={(v) => this.manageFilter("size_range", v, "true")}
+                                selected={this.state.filters.size_range}
+                            />
+                            :
+                            <Loading
+                                height={300}
+                            />
+                        }
+                    </div>
+                    <div className="col-md-6">
+                        <h3>Age of companies</h3>
+                        {this.state.actors !== null && this.state.analytics !== null ?
+                            <BarActorAge
+                                actors={this.state.actors}
+                                addRangeFilter={(v) => this.manageFilter("age_range", v, "true")}
+                                selected={this.state.filters.age_range}
+                            />
+                            :
+                            <Loading
+                                height={300}
+                            />
+                        }
+                    </div>
+                    <div className="col-md-6">
+                        <h3>Companies per size ranges</h3>
+                        {this.state.actors !== null && this.state.analytics !== null ?
+                            <BarWorkforceRange
+                                actors={this.state.actors}
+                                workforces={this.state.analytics.workforces}
+                                companiesAsGranularity={true}
+                                addRangeFilter={(v) => this.manageFilter("size_range", v, "true")}
+                                selected={this.state.filters.size_range}
+                            />
+                            :
+                            <Loading
+                                height={300}
                             />
                         }
                     </div>
