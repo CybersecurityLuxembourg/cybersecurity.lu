@@ -4,6 +4,7 @@
 }
 
 .Event:hover {
+    color: initial !important;
     background-color: rgba(0, 159, 227, 0.05);
 }
 

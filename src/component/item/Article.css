@@ -8,6 +8,7 @@
 }
 
 .Article-link:hover {
+    color: initial !important;
     text-decoration: none;
 }
 

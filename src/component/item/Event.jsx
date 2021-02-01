@@ -29,7 +29,19 @@ export default class Event extends Component {
                                 height={200}
                             />
                         }
-                        <div class="card-date">{this.props.info.start_date + " - " + this.props.info.end_date}</div>
+                        <div class="card-date">
+                            {this.props.info.start_date !== null && this.props.info.end_date !== null ?
+                                this.props.info.start_date.substring(0, 10) 
+                                + " "
+                                + this.props.info.start_date.substring(11, 16)
+                                + " - " 
+                                + this.props.info.end_date.substring(0, 10) 
+                                + " "
+                                + this.props.info.end_date.substring(11, 16)
+                            :
+                                "No info"
+                            }
+                        </div>
                         <div class="card-type">{this.props.info.type}</div>
                     </div>
                     <div className="card-body">
