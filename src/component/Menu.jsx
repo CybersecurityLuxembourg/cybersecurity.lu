@@ -64,11 +64,6 @@ export default class Menu extends React.Component {
 			            </Link>
 			        </NavDropdown.Item>
 			        <NavDropdown.Item eventKey="4.1">
-			            <Link to="/job">
-			                <div className="Menu-title">Bug bounty</div>
-			            </Link>
-			        </NavDropdown.Item>
-			        <NavDropdown.Item eventKey="4.1">
 			            <Link to="/about">
 			                <div className="Menu-title">About CYBERLUX</div>
 			            </Link>

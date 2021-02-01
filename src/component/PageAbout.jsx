@@ -21,7 +21,7 @@ export default class PageAbout extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <Breadcrumb>
-                            <Breadcrumb.Item><Link to="/">SECURITYMADEIN.LU</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
                             <Breadcrumb.Item><Link to="/about">About</Link></Breadcrumb.Item>
                         </Breadcrumb>
                     </div>

@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import Footer from "./Footer";
 import PageHome from "./PageHome";
 import PageNews from "./PageNews";
+import PageAbout from "./PageAbout";
 import PageEcosystem from "./PageEcosystem";
 import PageCalendar from "./PageCalendar";
 import PageArticle from "./PageArticle";
@@ -90,6 +91,7 @@ export default class InsideApp extends React.Component {
                         <Route path="/news" render={(props) => <PageNews {...props} />}/>
                         <Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
                         <Route path="/calendar" render={(props) => <PageCalendar {...props} />}/>
+                        <Route path="/about" render={(props) => <PageAbout {...props} />}/>
                         <Route path="/login" render={(props) => <PageLogin {...props} />}/>
 
                         <Route path="/map" render={(props) => <PageMap {...props} />}/>

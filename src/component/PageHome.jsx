@@ -95,7 +95,7 @@ export default class PageHome extends React.Component {
                             <p className="legend">Legend 1</p>
                         </div>
                         <div>
-                            <img src="/img/2.png" />
+                            <img src="/img/2.jpg" />
                             <p className="legend">Legend 2</p>
                         </div>
                         <div>
