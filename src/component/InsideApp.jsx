@@ -85,7 +85,7 @@ export default class InsideApp extends React.Component {
                     />
                     <Switch>
                         <Route path="/news/:handle" render={(props) => <PageArticle {...props} />}/>
-                        <Route path="/company/:handle" render={(props) => <PageCompany {...props} />}/>
+                        <Route path="/company/:id" render={(props) => <PageCompany {...props} />}/>
                         <Route path="/calendar/:handle" render={(props) => <PageEvent {...props} />}/>
 
                         <Route path="/news" render={(props) => <PageNews {...props} />}/>

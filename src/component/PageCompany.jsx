@@ -11,6 +11,8 @@ import Chip from './form/Chip';
 import Collapsible from 'react-collapsible';
 import Message from "./box/Message";
 import Article from './item/Article';
+import Company from "./item/Company";
+import FormLine from "./form/FormLine";
 
 
 export default class PageCompany extends React.Component {
@@ -29,11 +31,10 @@ export default class PageCompany extends React.Component {
         this.getCompanyContent()
 	}
 
-    getCompanyContent(){
-        getRequest.call(this, "public/get_related_articles/" + this.props.match.params.handle, data => {
+    getCompanyContent() {
+        getRequest.call(this, "public/get_public_company/" + this.props.match.params.id, data => {
             this.setState({
-                relatedArticles: data,
-                relatedArticleLoading: false
+                company: data,
             });
         }, response => {
             this.setState({ loading: false });
@@ -55,16 +56,63 @@ export default class PageCompany extends React.Component {
                     <div className="col-md-12">
                         <Breadcrumb>
                             <Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-                            <Breadcrumb.Item><Link to="/ecosystem">ECOSYSTEM</Link></Breadcrumb.Item>
-                            {this.state.article !== null && !this.state.loading ?
-                            <Breadcrumb.Item><Link to={"/company/" + this.state.article.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to="/ecosystem">COMPANY</Link></Breadcrumb.Item>
+                            {this.state.company !== null && !this.state.loading ?
+                            <Breadcrumb.Item><Link to={"/company/" + this.state.company.id}>{this.state.company.name}</Link></Breadcrumb.Item>
                                 : ""}
                         </Breadcrumb>
                     </div>
                 </div>
 
-                {this.state.article !== null && this.state.article.content !== undefined && !this.state.articleLoading ? 
-                    <div>
+                {this.state.company !== null ? 
+                    <div className="row row-spaced">
+                        <div className="col-md-12">
+                            <Company
+                                info={this.state.company}
+                            />
+                        </div>
+                        <div className="col-md-12">
+                            <FormLine
+                                label={"Name"}
+                                value={this.state.company.name}
+                                disabled={true}
+                                onBlur={v => this.saveCompanyValue("name", v)}
+                            />
+                            <FormLine
+                                label={"Description"}
+                                type={"textarea"}
+                                value={this.state.company.description}
+                                disabled={true}
+                            />
+                            <FormLine
+                                label={"RCSL number"}
+                                value={this.state.company.rscl_number}
+                                disabled={true}
+                            />
+                            <FormLine
+                                label={"Website"}
+                                value={this.state.company.website}
+                                disabled={true}
+                            />
+                            <FormLine
+                                label={"Creation date"}
+                                type={"date"}
+                                value={this.state.company.creation_date}
+                                disabled={true}
+                            />
+                            <FormLine
+                                label={"Is cybersecurity core business"}
+                                type={"checkbox"}
+                                value={this.state.company.is_cybersecurity_core_business}
+                                disabled={true}
+                            />
+                            <FormLine
+                                label={"Is startup"}
+                                type={"checkbox"}
+                                value={this.state.company.is_startup}
+                                disabled={true}
+                            />
+                        </div>
                     </div>
                 : 
                     <Loading

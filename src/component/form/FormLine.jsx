@@ -120,7 +120,6 @@ export default class FormLine extends React.Component {
                             <CheckBox 
                                 value={this.state.value}
                                 onClick={v => this.onChange(v)}
-                                background={false}
                                 disabled={this.props.disabled}
                             />
                         : this.props.type === "select" ?

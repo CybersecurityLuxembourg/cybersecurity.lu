@@ -30,7 +30,7 @@ export default class PageCalendar extends React.Component {
             loading: false,
             filters: {
                 "media": "CYBERLUX",
-                "type": "Event",
+                "type": "EVENT",
                 "taxonomy_values": [],
                 "title": null
             }
@@ -75,16 +75,6 @@ export default class PageCalendar extends React.Component {
                     backgroundColor: 'lightblue',
                 },
             })
-
-        if (this.state.articles !== null)
-            console.log(this.state.articles.map(e => { return (
-                                            {
-                                                title: e.title,
-                                                start: new Date(e.publication_date),
-                                                end: new Date(e.publication_date)
-                                            }
-                                        )}))
-        
 
 		return(
 			<div className={"page max-sized-page"}>
@@ -159,7 +149,7 @@ export default class PageCalendar extends React.Component {
                             numberDisplayed={6}
                             elements={this.state.articles
                                 .filter(a => new Date(a.end_date) > new Date())
-                                .sort((a, b) => a.start_date - b.start_date)
+                                .sort((a, b) => a.start_date > b.start_date ? 1 : -1)
                                 .map((a, i) => {
                                     return [a, i]
                                 })

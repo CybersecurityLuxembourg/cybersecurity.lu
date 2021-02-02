@@ -42,10 +42,10 @@
 }
 
 .CheckBox-disabled {
-    background-color: #666 !important;
+    opacity: .5 !important;
     cursor: default;
 }
 
 .CheckBox-disabled:hover {
-    opacity: 1 !important;
+    opacity: .5 !important;
 }
