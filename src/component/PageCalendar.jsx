@@ -118,7 +118,7 @@ export default class PageCalendar extends React.Component {
                                 style={{ 
                                     height: 700 
                                 }}
-                                onSelectEvent={event => this.props.history.push("/event/" + event.handle)}
+                                onSelectEvent={event => this.props.history.push("/calendar/" + event.handle)}
                             />
                         </div>
                     :

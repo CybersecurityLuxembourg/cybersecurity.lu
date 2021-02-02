@@ -59,7 +59,7 @@ export default class Menu extends React.Component {
 			      </Nav.Link>
 			      <NavDropdown title="Other" id="nav-dropdown">
 			        <NavDropdown.Item eventKey="4.1">
-			            <Link to="/job">
+			            <Link to="/jobs">
 			                <div className="Menu-title">Job market</div>
 			            </Link>
 			        </NavDropdown.Item>

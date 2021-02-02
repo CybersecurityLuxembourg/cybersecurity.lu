@@ -116,7 +116,7 @@ export default class PageCompany extends React.Component {
                     </div>
                 : 
                     <Loading
-                        height={200}
+                        height={400}
                     />
                 }
 			</div>

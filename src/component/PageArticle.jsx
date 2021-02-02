@@ -11,6 +11,7 @@ import Chip from './form/Chip';
 import Collapsible from 'react-collapsible';
 import Message from "./box/Message";
 import Article from './item/Article';
+import {getContentFromBlock, getNextTitle1Position} from '../utils/article';
 
 
 export default class PageArticle extends React.Component {
@@ -19,8 +20,6 @@ export default class PageArticle extends React.Component {
 		super(props);
 
         this.getArticleContent = this.getArticleContent.bind(this);
-        this.getContentFromBlock = this.getContentFromBlock.bind(this);
-        this.getNextTitle1Position = this.getNextTitle1Position.bind(this);
 
 		this.state = {
             article: null,
@@ -72,44 +71,6 @@ export default class PageArticle extends React.Component {
         });
     }
 
-    getContentFromBlock(b) {
-        let el = null;
-
-        if (b.type === "TITLE1")
-            el = <h2 className="showFulltext clickable">{b.content}</h2>
-        else if (b.type === "TITLE2")
-            el = <h3>{b.content}</h3>
-        else if (b.type === "TITLE3")
-            el = <h4>{b.content}</h4>
-        else if (b.type === "PARAGRAPH")
-            el = <div dangerouslySetInnerHTML={{ __html: b.content }} />
-        else if (b.type === "IMAGE") {
-            if (b.content !== null) {
-                el = <div class='PageArticle-content-media'>
-                        <img src={getApiURL() + 'public/get_image/' + b.content}/>
-                    </div>
-            }
-        } else if (b.type === "FRAME") {
-            if (b.content !== null) {
-                el = <div class='PageArticle-content-media'>
-                        <div dangerouslySetInnerHTML={{ __html: b.content.replace("&lt;", "<").replace("&gt;", ">") }} />
-                    </div>
-            }
-        }
-
-        return el;
-    }
-
-    getNextTitle1Position(pos) {
-        for (let i = pos + 1; i < this.state.article.content.length; i++) {
-            if (this.state.article.content[i].type === "TITLE1") {
-                return i + 1
-            }
-        }
-
-        return this.state.article.content.length + 1
-    }
-
 	changeState(field, value) {
         this.setState({[field]: value});
     }
@@ -132,7 +93,7 @@ export default class PageArticle extends React.Component {
                 </div>
 
                 {this.state.article !== null && this.state.article.content !== undefined && !this.state.articleLoading ? 
-                    <div className="row">
+                    <div className="row row-spaced">
                         <div className={this.state.article.type === "NEWS" ? "col-md-8" : "col-md-12"}>
                             <article>
                                 <div class='PageArticle-content-cover'>
@@ -159,14 +120,14 @@ export default class PageArticle extends React.Component {
                                 {this.state.article.content.map((b, i) => { 
                                     if (positionToTreat <= i) {
                                         if (b.type === "TITLE1") {
-                                            let nextTitle1Position = this.getNextTitle1Position(i + 1);
+                                            let nextTitle1Position = getNextTitle1Position(i + 1, this.state.article.content);
 
                                             let el =  
-                                                <Collapsible trigger={this.getContentFromBlock(b)}>
+                                                <Collapsible trigger={getContentFromBlock(b)}>
                                                     {this.state.article.content
                                                         .slice(positionToTreat + 1, nextTitle1Position - 1)
                                                         .map(b2 => {
-                                                        return this.getContentFromBlock(b2)
+                                                        return getContentFromBlock(b2)
                                                     })}
                                                 </Collapsible>
 
@@ -175,7 +136,7 @@ export default class PageArticle extends React.Component {
                                             return el
                                         } else {
                                             positionToTreat += 1
-                                            return this.getContentFromBlock(b);
+                                            return getContentFromBlock(b);
                                         }
                                     }
                                 })}

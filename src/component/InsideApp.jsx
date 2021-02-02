@@ -6,6 +6,8 @@ import PageHome from "./PageHome";
 import PageNews from "./PageNews";
 import PageAbout from "./PageAbout";
 import PageEcosystem from "./PageEcosystem";
+import PageJobs from "./PageJobs";
+import PageJob from "./PageJob";
 import PageCalendar from "./PageCalendar";
 import PageArticle from "./PageArticle";
 import PageCompany from "./PageCompany";
@@ -87,11 +89,13 @@ export default class InsideApp extends React.Component {
                         <Route path="/news/:handle" render={(props) => <PageArticle {...props} />}/>
                         <Route path="/company/:id" render={(props) => <PageCompany {...props} />}/>
                         <Route path="/calendar/:handle" render={(props) => <PageEvent {...props} />}/>
+                        <Route path="/jobs/:id" render={(props) => <PageJob {...props} />}/>
 
                         <Route path="/news" render={(props) => <PageNews {...props} />}/>
                         <Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
                         <Route path="/calendar" render={(props) => <PageCalendar {...props} />}/>
-                        <Route path="/about" render={(props) => <PageAbout {...props} />}/>
+                        <Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
+                        <Route path="/jobs" render={(props) => <PageJobs {...props} />}/>
                         <Route path="/login" render={(props) => <PageLogin {...props} />}/>
 
                         <Route path="/map" render={(props) => <PageMap {...props} />}/>

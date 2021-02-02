@@ -1,8 +1,9 @@
 import React from 'react';
-import './PageEvent.css';
+import './PageJob.css';
 import Lock from "./box/Lock";
 import {getRequest} from '../utils/request';
 import {getApiURL} from '../utils/env';
+import {getContentFromBlock, getNextTitle1Position} from '../utils/article';
 import {NotificationManager as nm} from 'react-notifications';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Link } from "react-router-dom";
@@ -11,10 +12,9 @@ import Chip from './form/Chip';
 import Collapsible from 'react-collapsible';
 import Message from "./box/Message";
 import Article from './item/Article';
-import {getContentFromBlock, getNextTitle1Position} from '../utils/article';
 
 
-export default class PageEvent extends React.Component {
+export default class PageJob extends React.Component {
 
 	constructor(props){
 		super(props);
@@ -23,7 +23,6 @@ export default class PageEvent extends React.Component {
 
 		this.state = {
             article: null,
-            articleLoading: false,
 		}
 	}
 
@@ -34,13 +33,11 @@ export default class PageEvent extends React.Component {
     getArticleContent(){
         this.setState({
             article: null,
-            articleLoading: false,
         });
 
         getRequest.call(this, "public/get_article_content/" + this.props.match.params.handle, data => {
             this.setState({
                 article: data,
-                articleLoading: false
             });
         }, response => {
             this.setState({ loading: false });
@@ -64,28 +61,28 @@ export default class PageEvent extends React.Component {
                     <div className="col-md-12">
                         <Breadcrumb>
                             <Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-                            <Breadcrumb.Item><Link to="/calendar">CALENDAR</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to="/jobs">JOBS</Link></Breadcrumb.Item>
                             {this.state.article !== null && !this.state.loading ?
-                            <Breadcrumb.Item><Link to={"/calendar/" + this.state.article.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to={"/jobs/" + this.state.article.id}>{this.state.article.title}</Link></Breadcrumb.Item>
                                 : ""}
                         </Breadcrumb>
                     </div>
                 </div>
 
-                {this.state.article !== null && this.state.article.content !== undefined && !this.state.articleLoading ? 
+                {this.state.article !== null && this.state.article.content !== undefined ? 
                     <div className="row row-spaced">
                         <div className="col-md-12">
                             <article>
-                                <div class='PageEvent-content-cover'>
+                                <div class='PageJob-content-cover'>
                                     {this.state.article.image !== null ?
                                         <img src={getApiURL() + 'public/get_image/' + this.state.article.image}/>
                                     : ""}
-                                    <div class='PageEvent-publication-date'>
+                                    <div class='PageJob-publication-date'>
                                         {this.state.article.publication_date}
                                     </div>
                                 </div>
 
-                                <div className="PageEvent-tags">
+                                <div className="PageJob-tags">
                                     {this.state.article.tags.map(t => { return (
                                         <Chip
                                             label={t.name}
@@ -100,14 +97,14 @@ export default class PageEvent extends React.Component {
                                 {this.state.article.content.map((b, i) => { 
                                     if (positionToTreat <= i) {
                                         if (b.type === "TITLE1") {
-                                            let nextTitle1Position = getNextTitle1Position(i + 1, this.state.article.content);
+                                            let nextTitle1Position = getNextTitle1Position(i + 1, this.state.articleC.content);
 
                                             let el =  
-                                                <Collapsible trigger={getContentFromBlock(b)}>
+                                                <Collapsible trigger={this.getContentFromBlock(b)}>
                                                     {this.state.article.content
                                                         .slice(positionToTreat + 1, nextTitle1Position - 1)
                                                         .map(b2 => {
-                                                        return getContentFromBlock(b2)
+                                                        return this.getContentFromBlock(b2)
                                                     })}
                                                 </Collapsible>
 
@@ -116,12 +113,12 @@ export default class PageEvent extends React.Component {
                                             return el
                                         } else {
                                             positionToTreat += 1
-                                            return getContentFromBlock(b);
+                                            return this.getContentFromBlock(b);
                                         }
                                     }
                                 })}
 
-                                <div className="PageEvent-tags">
+                                <div className="PageJob-tags">
                                     {this.state.article.tags.map(t => { return (
                                         <Chip
                                             label={t.name}
