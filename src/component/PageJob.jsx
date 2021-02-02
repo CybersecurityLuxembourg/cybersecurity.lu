@@ -35,7 +35,7 @@ export default class PageJob extends React.Component {
             article: null,
         });
 
-        getRequest.call(this, "public/get_article_content/" + this.props.match.params.handle, data => {
+        getRequest.call(this, "public/get_article_content/" + this.props.match.params.id, data => {
             this.setState({
                 article: data,
             });
@@ -56,7 +56,7 @@ export default class PageJob extends React.Component {
         let positionToTreat = 0;
 
 		return(
-			<div className={"PageEvent page max-sized-page"}>
+			<div className={"PageJob page max-sized-page"}>
                 <div className="row">
                     <div className="col-md-12">
                         <Breadcrumb>
@@ -124,6 +124,14 @@ export default class PageJob extends React.Component {
                                             label={t.name}
                                         />
                                     )})}
+                                </div>
+
+                                <div className="right-buttons">
+                                    <button
+                                        className={"blue-background"}
+                                    >
+                                        <i class="fas fa-arrow-alt-circle-right"/> View original webpage
+                                    </button>
                                 </div>
                             </article>
                         </div>

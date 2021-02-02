@@ -13,6 +13,7 @@ import PageArticle from "./PageArticle";
 import PageCompany from "./PageCompany";
 import PageEvent from "./PageEvent";
 import PageMap from "./PageMap";
+import PageLogin from "./PageLogin";
 import { Route, Switch } from "react-router-dom";
 import Particles from 'react-particles-js';
 
@@ -96,6 +97,7 @@ export default class InsideApp extends React.Component {
                         <Route path="/calendar" render={(props) => <PageCalendar {...props} />}/>
                         <Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
                         <Route path="/jobs" render={(props) => <PageJobs {...props} />}/>
+                        <Route path="/about" render={(props) => <PageAbout {...props} />}/>
                         <Route path="/login" render={(props) => <PageLogin {...props} />}/>
 
                         <Route path="/map" render={(props) => <PageMap {...props} />}/>

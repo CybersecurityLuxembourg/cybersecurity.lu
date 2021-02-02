@@ -23,7 +23,7 @@ export default class JobOffer extends Component {
                             <div class="card-date">{this.props.info.publication_date}</div>
                             <div class="card-type">{this.props.info.type}</div>
                             <h5 class="card-title">{this.props.info.title}</h5>
-                            <p className="card-text">Luxembourg</p>
+                            <p className="card-text">Luxembourg <i>- Published by MooviJob</i></p>
                             <button
                                 className={"blue-background"}
                             >
@@ -32,7 +32,7 @@ export default class JobOffer extends Component {
                             <button
                                 className={"blue-background"}
                             >
-                                <i class="fas fa-arrow-alt-circle-right"/> View original source
+                                <i class="fas fa-arrow-alt-circle-right"/> View original webpage
                             </button>
                         </div>
                     </div>
