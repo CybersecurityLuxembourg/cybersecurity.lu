@@ -14,6 +14,7 @@ import GlobalMap from "./map/GlobalMap";
 import BarWorkforceRange from "./chart/BarWorkforceRange";
 import BarActorAge from "./chart/BarActorAge";
 import CountUp from 'react-countup';
+import {getUrlParameter, dictToURI} from '../utils/url';
 
 
 export default class PageEcosystem extends React.Component {
@@ -24,11 +25,16 @@ export default class PageEcosystem extends React.Component {
         this.getActors = this.getActors.bind(this);
         this.getAnalytics = this.getAnalytics.bind(this);
         this.getTotalEmployees = this.getTotalEmployees.bind(this);
+        this.onSearch = this.onSearch.bind(this);
+        this.modifyFilters = this.modifyFilters.bind(this);
 
 		this.state = {
             actors: null,
             analytics: null,
-            filters: {}
+            filters: {
+                name: getUrlParameter("name"),
+                taxonomy_value: getUrlParameter("taxonomy_values"),
+            }
 		}
 	}
 
@@ -38,7 +44,7 @@ export default class PageEcosystem extends React.Component {
     }
 
     getActors() {
-        getRequest.call(this, "public/get_public_actors", data => {
+        getRequest.call(this, "public/get_public_actors?" + dictToURI(this.state.filters), data => {
             this.setState({
                 actors: data,
             });
@@ -51,14 +57,21 @@ export default class PageEcosystem extends React.Component {
 
     getAnalytics() {
         getRequest.call(this, "public/get_public_analytics", data => {
-                this.setState({
-                    analytics: data,
-                });
-            }, response => {
-                nm.warning(response.statusText);
-            }, error => {
-                nm.error(error.message);
-            })
+            this.setState({
+                analytics: data,
+            });
+        }, response => {
+            nm.warning(response.statusText);
+        }, error => {
+            nm.error(error.message);
+        })
+    }
+
+    onSearch() {
+        history.replaceState(null, null, "?" + dictToURI(this.state.filters));
+
+        this.getActors();
+        this.getAnalytics();
     }
 
     modifyFilters(field, value) {
@@ -98,12 +111,12 @@ export default class PageEcosystem extends React.Component {
                 <CompanySearch
                     filters={this.state.filters}
                     onChange={this.modifyFilters}
-                    onSearch={this.getArticles}
+                    onSearch={this.onSearch}
                 />
 
                 <div className="row">
                     <div className="col-md-12">
-                        <h1>Companies</h1>
+                        <h1>{this.state.actors !== null ? this.state.actors.length + " ": ""}actors</h1>
                     </div>
                 </div>
 

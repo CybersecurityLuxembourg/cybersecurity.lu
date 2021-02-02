@@ -51,7 +51,9 @@ export default class PageHome extends React.Component {
     getNews() {
         getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=NEWS", data => {
             this.setState({
-                news: data,
+                news: data
+                    .sort((a, b) => b.publication_date > a.publication_date ? -1 : 1)
+                    .slice(0, 3),
             });
         }, response => {
             this.setState({ loading: false });
@@ -65,7 +67,11 @@ export default class PageHome extends React.Component {
     getEvents() {
         getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=EVENT", data => {
             this.setState({
-                events: data,
+                events: data
+                    .filter(d => d.end_date !== null && d.start_date !== null)
+                    .filter(d => d.end_date > new Date().toISOString())
+                    .sort((a, b) => b.start_date > a.start_date ? -1 : 1)
+                    .slice(0, 3),
             });
         }, response => {
             this.setState({ loading: false });
@@ -157,16 +163,25 @@ export default class PageHome extends React.Component {
                     </div>
 
                     {this.state.news !== null ?
-                        this.state.news.map(e => { return (
-                            <div className="col-md-4">
-                                <Article
-                                    info={e}
+                        (this.state.news.length === 0 ?
+                            <div className="col-md-12">
+                                <Message
+                                    text={"No news found"}
+                                    height={400}
                                 />
                             </div>
-                        )})
+                        :
+                            this.state.news.map(e => { return (
+                                <div className="col-md-4">
+                                    <Article
+                                        info={e}
+                                    />
+                                </div>
+                            )})
+                        )
                     :
                         <Loading
-                            height={200}
+                            height={400}
                         />
                     }
 
@@ -188,16 +203,25 @@ export default class PageHome extends React.Component {
                     </div>
 
                     {this.state.events !== null ?
-                        this.state.events.map(e => { return (
-                            <div className="col-md-4">
-                                <Event
-                                    info={e}
+                        (this.state.events.length === 0 ?
+                            <div className="col-md-12">
+                                <Message
+                                    text={"No coming event found"}
+                                    height={400}
                                 />
                             </div>
-                        )})
+                        :
+                            this.state.events.map(e => { return (
+                                <div className="col-md-4">
+                                    <Event
+                                        info={e}
+                                    />
+                                </div>
+                            )})
+                        )
                     :
                         <Loading
-                            height={200}
+                            height={400}
                         />
                     }
 

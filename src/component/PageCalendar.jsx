@@ -108,38 +108,29 @@ export default class PageCalendar extends React.Component {
                         <h1>Calendar</h1>
                     </div>
                     {this.state.articles !== null && !this.state.loading ? 
-                        (this.state.articles.length === 0 ?
-                            <div className="col-md-12">
-                                <Message
-                                    text={"No event found"}
-                                    height={200}
-                                />
-                            </div>
-                        : 
-                            <div className="col-md-12">
-                                <Calendar
-                                    events={this.state.articles.map(e => { return (
-                                        {
-                                            title: e.title,
-                                            start: new Date(e.start_date),
-                                            end: new Date(e.end_date),
-                                            handle: e.handle
-                                        }
-                                    )})}
-                                    step={60}
-                                    showMultiDayTimes
-                                    defaultDate={new Date()}
-                                    components={{
-                                        timeSlotWrapper: ColoredDateCellWrapper,
-                                    }}
-                                    localizer={localizer}
-                                    style={{ 
-                                        height: 700 
-                                    }}
-                                    onSelectEvent={event => this.props.history.push("/event/" + event.handle)}
-                                />
-                            </div>
-                        )
+                        <div className="col-md-12">
+                            <Calendar
+                                events={this.state.articles.map(e => { return (
+                                    {
+                                        title: e.title,
+                                        start: new Date(e.start_date),
+                                        end: new Date(e.end_date),
+                                        handle: e.handle
+                                    }
+                                )})}
+                                step={60}
+                                showMultiDayTimes
+                                defaultDate={new Date()}
+                                components={{
+                                    timeSlotWrapper: ColoredDateCellWrapper,
+                                }}
+                                localizer={localizer}
+                                style={{ 
+                                    height: 700 
+                                }}
+                                onSelectEvent={event => this.props.history.push("/event/" + event.handle)}
+                            />
+                        </div>
                     :
                         <Loading
                             height={200}

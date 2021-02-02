@@ -42,9 +42,10 @@ export default class CompanySearch extends React.Component {
 
                     <div className={"col-md-6"}>
                         <FormLine
-                            label={"Titre"}
-                            value={this.props.filters.title}
-                            onChange={v => this.props.onChange("title", v)}
+                            label={"Company name"}
+                            value={this.props.filters.name === undefined ?
+                                []: this.props.filters.name}
+                            onChange={v => this.props.onChange("name", v)}
                             labelWidth={4}
                         />
                     </div>
@@ -53,7 +54,8 @@ export default class CompanySearch extends React.Component {
                         <FormLine
                             label={"Tags"}
                             type={"multiselect"}
-                            value={this.props.filters.taxonomy_values}
+                            value={this.props.filters.taxonomy_values === undefined ? 
+                                [] : this.props.filters.taxonomy_values}
                             options={this.state.tags !== null ? this.state.tags
                                 .map(v => { return {label: v.category + " - " + v.name, value: v.id}})
                                 : []}
