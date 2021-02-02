@@ -27,9 +27,7 @@ export default class Company extends Component {
                                     alt="Card image cap"/>
                                 
                             :
-                                <NoImage
-                                    height={100}
-                                />
+                                <NoImage/>
                             }
                         </div>
                         <div class="card-body">

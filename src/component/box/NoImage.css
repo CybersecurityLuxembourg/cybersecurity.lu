@@ -16,6 +16,7 @@
     position: absolute;
     top: calc(50% - 25px);
     left: calc(50% - 25px);
+    line-height: 1 !important;
 }
 
 .NoImage-logo i {
