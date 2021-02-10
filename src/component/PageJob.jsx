@@ -100,11 +100,11 @@ export default class PageJob extends React.Component {
                                             let nextTitle1Position = getNextTitle1Position(i + 1, this.state.articleC.content);
 
                                             let el =  
-                                                <Collapsible trigger={this.getContentFromBlock(b)}>
+                                                <Collapsible trigger={getContentFromBlock(b)}>
                                                     {this.state.article.content
                                                         .slice(positionToTreat + 1, nextTitle1Position - 1)
                                                         .map(b2 => {
-                                                        return this.getContentFromBlock(b2)
+                                                        return getContentFromBlock(b2)
                                                     })}
                                                 </Collapsible>
 
@@ -113,7 +113,7 @@ export default class PageJob extends React.Component {
                                             return el
                                         } else {
                                             positionToTreat += 1
-                                            return this.getContentFromBlock(b);
+                                            return getContentFromBlock(b);
                                         }
                                     }
                                 })}
