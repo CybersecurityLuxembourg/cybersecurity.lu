@@ -87,7 +87,7 @@ export default class PageEcosystem extends React.Component {
     onSearch() {
         history.replaceState(null, null, "?" + dictToURI(this.state.filters));
 
-        this.getActors();
+        this.getCompanies();
         this.getAnalytics();
     }
 
