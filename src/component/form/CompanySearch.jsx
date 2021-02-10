@@ -54,7 +54,7 @@ export default class CompanySearch extends React.Component {
                         <FormLine
                             label={"Tags"}
                             type={"multiselect"}
-                            value={this.props.filters.taxonomy_values === undefined ? 
+                            value={this.props.filters.taxonomy_values === undefined || this.state.tags === null ? 
                                 [] : this.props.filters.taxonomy_values}
                             options={this.state.tags !== null ? this.state.tags
                                 .map(v => { return {label: v.category + " - " + v.name, value: v.id}})

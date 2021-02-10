@@ -37,9 +37,12 @@ export default class PageEcosystem extends React.Component {
             geolocations: null,
             filters: {
                 name: getUrlParameter("name"),
-                taxonomy_value: getUrlParameter("taxonomy_values"),
+                taxonomy_values: getUrlParameter("taxonomy_values") !== null ? 
+                    getUrlParameter("taxonomy_values").split(",").map(v => { return parseInt(v) }): [],
             }
 		}
+
+        
 	}
 
     componentDidMount() {
