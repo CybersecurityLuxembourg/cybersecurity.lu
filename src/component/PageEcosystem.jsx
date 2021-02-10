@@ -22,7 +22,7 @@ export default class PageEcosystem extends React.Component {
 	constructor(props){
 		super(props);
 
-        this.getActors = this.getActors.bind(this);
+        this.getCompanies = this.getCompanies.bind(this);
         this.getAnalytics = this.getAnalytics.bind(this);
         this.getTotalEmployees = this.getTotalEmployees.bind(this);
         this.onSearch = this.onSearch.bind(this);
@@ -30,7 +30,11 @@ export default class PageEcosystem extends React.Component {
 
 		this.state = {
             actors: null,
+            publicEntities: null,
+            civilSociety: null,
+            jobPlatforms: null,
             analytics: null,
+            geolocations: null,
             filters: {
                 name: getUrlParameter("name"),
                 taxonomy_value: getUrlParameter("taxonomy_values"),
@@ -39,14 +43,27 @@ export default class PageEcosystem extends React.Component {
 	}
 
     componentDidMount() {
-        this.getActors();
+        this.getCompanies();
         this.getAnalytics();
     }
 
-    getActors() {
-        getRequest.call(this, "public/get_public_actors?" + dictToURI(this.state.filters), data => {
+    getCompanies() {
+        getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.filters), data => {
             this.setState({
-                actors: data,
+                actors: data.filter(c => c.type === "ACTOR"),
+                publicEntities: data.filter(c => c.type === "PUBLIC SECTOR"),
+                civilSociety: data.filter(c => c.type === "CIVIL SOCIETY"),
+                jobPlatforms: data.filter(c => c.type === "JOB PLATFORM"),
+            }, () => {
+                getRequest.call(this, "public/get_public_company_geolocations?" + dictToURI(this.state.filters), data => {
+                    this.setState({
+                        geolocations: data,
+                    });
+                }, response => {
+                    nm.warning(response.statusText);
+                }, error => {
+                    nm.error(error.message);
+                })
             });
         }, response => {
             nm.warning(response.statusText);
@@ -246,7 +263,14 @@ export default class PageEcosystem extends React.Component {
                     </div>
                     <div className="col-md-12">
                         {this.state.actors !== null ?
-                            <GlobalMap />
+                            <GlobalMap 
+                                addresses={this.state.geolocations}
+                                companies={this.state.actors.concat(
+                                    this.state.publicEntities, 
+                                    this.state.civilSociety, 
+                                    this.state.jobPlatforms
+                                )}
+                            />
                         :
                             <Loading
                                 height={400}
@@ -256,13 +280,13 @@ export default class PageEcosystem extends React.Component {
                     <div className="col-md-12">
                         {this.state.actors !== null ?
                             <div className={"right-buttons"}>
-                            <button
-                                className={"blue-background"}
-                                onClick={() => this.props.history.push("/map")}
-                            >
-                                <i class="fas fa-arrow-alt-circle-right"/> View the map on full page
-                            </button>
-                        </div>
+                                <button
+                                    className={"blue-background"}
+                                    onClick={() => this.props.history.push("/map")}
+                                >
+                                    <i class="fas fa-arrow-alt-circle-right"/> View the map on full page
+                                </button>
+                            </div>
                         :
                             ""
                         }

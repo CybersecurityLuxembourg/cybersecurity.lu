@@ -35,7 +35,7 @@ export default class PageHome extends React.Component {
 	}
 
     getActors() {
-        getRequest.call(this, "public/get_public_actors", data => {
+        getRequest.call(this, "public/get_public_companies?type=ACTOR", data => {
             this.setState({
                 actors: data,
             });

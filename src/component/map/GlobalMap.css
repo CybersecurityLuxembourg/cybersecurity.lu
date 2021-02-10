@@ -1,4 +1,8 @@
 
+.GlobalMap-fullpage {
+	position: fixed;
+}
+
 .GlobalMap-company {
 	position: absolute;
 	left: 0;
@@ -16,4 +20,11 @@
 
 .GlobalMap-company .Company {
 	z-index: 995;
+}
+
+.GlobalMap-filters {
+	position: absolute;
+	top: 10px;
+	right: 26px;
+	z-index: 1000;
 }
