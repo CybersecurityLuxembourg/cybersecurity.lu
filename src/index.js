@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { unregister } from './registerServiceWorker';
+import { CookiesProvider } from 'react-cookie';
 
-unregister();
+//unregister();
 
 ReactDOM.render(
-    <App />,
+	<CookiesProvider>
+    	<App />
+    </CookiesProvider>,
     document.getElementById('root')
 );

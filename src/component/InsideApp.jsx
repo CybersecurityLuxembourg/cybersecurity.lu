@@ -1,5 +1,6 @@
 import React from "react";
 import "./InsideApp.css";
+import {NotificationManager as nm} from 'react-notifications';
 import Menu from "./Menu";
 import Footer from "./Footer";
 import PageHome from "./PageHome";
@@ -14,8 +15,12 @@ import PageCompany from "./PageCompany";
 import PageEvent from "./PageEvent";
 import PageMap from "./PageMap";
 import PageLogin from "./PageLogin";
+import PagePrivateSpace from "./PagePrivateSpace";
 import { Route, Switch } from "react-router-dom";
 import Particles from 'react-particles-js';
+import { getRequest } from '../utils/request';
+import { getApiURL } from "../utils/env";
+import { withCookies } from 'react-cookie';
 
 
 export default class InsideApp extends React.Component {
@@ -24,9 +29,46 @@ export default class InsideApp extends React.Component {
         super(props);
 
         this.changeState = this.changeState.bind(this);
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
 
         this.state = {
+            logged: false,
+            email: null
         }
+    }
+
+    componentWillMount() {
+        getRequest.call(this, "privatespace/is_logged", data => {
+            this.setState({
+                logged: data.is_logged,
+                email: data.email
+            });
+        }, response => {
+        }, error => {
+        });
+    }
+
+    login(token, email) {
+        //TODO
+        //this.props.cookies.set('access_token_cookie', token/*, { httpOnly: true }*/);
+        window.token = token
+
+        this.setState({ 
+            logged: true,
+            email: email
+        })
+    }
+
+    logout() {
+        //TODO
+        //this.props.cookies.remove('access_token_cookie');
+        window.token = undefined
+
+        this.setState({ 
+            logged: false,
+            email: null
+        })
     }
 
     changeState(field, value) {
@@ -36,7 +78,10 @@ export default class InsideApp extends React.Component {
     render() {
         return (
             <div id="InsideApp">
-                <Menu/>
+                <Menu
+                    logged={this.state.logged}
+                    email={this.state.email}
+                />
                 <div id="InsideApp-content">
                     <Particles 
                         params={{
@@ -98,7 +143,18 @@ export default class InsideApp extends React.Component {
                         <Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
                         <Route path="/jobs" render={(props) => <PageJobs {...props} />}/>
                         <Route path="/about" render={(props) => <PageAbout {...props} />}/>
-                        <Route path="/login" render={(props) => <PageLogin {...props} />}/>
+                        <Route path="/login" render={(props) => 
+                            <PageLogin 
+                                login={this.login}
+                                {...props} 
+                            />}
+                        />
+                        <Route path="/privatespace" render={(props) => 
+                            <PagePrivateSpace 
+                                logout={this.logout}
+                                {...props} 
+                            />}
+                        />
 
                         <Route path="/map" render={(props) => <PageMap {...props} />}/>
 

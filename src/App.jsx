@@ -4,9 +4,10 @@ import {NotificationContainer} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import InsideApp from "./component/InsideApp";
 import { BrowserRouter } from "react-router-dom";
+import { withCookies } from 'react-cookie';
 
 
-export default class App extends React.Component {
+class App extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,10 +26,12 @@ export default class App extends React.Component {
         return (
             <div id="App">
                 <BrowserRouter>
-                    <InsideApp/>
+                    <InsideApp {...this.props}/>
                     <NotificationContainer/>
                 </BrowserRouter>
             </div>
         );
     }
 }
+
+export default withCookies(App);

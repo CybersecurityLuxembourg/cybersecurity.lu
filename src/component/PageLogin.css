@@ -1,1 +1,17 @@
 
+.PageLogin .link-button {
+    margin-top: 8px;
+}
+
+.PageLogin-or {
+	font-size: 26px;
+	text-align: center;
+	color: #010101;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    padding: 20px 10px;
+    margin: 25px 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

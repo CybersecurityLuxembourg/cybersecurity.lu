@@ -41,8 +41,6 @@ export default class PageEcosystem extends React.Component {
                     getUrlParameter("taxonomy_values").split(",").map(v => { return parseInt(v) }): [],
             }
 		}
-
-        
 	}
 
     componentDidMount() {
