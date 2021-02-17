@@ -2,7 +2,7 @@ import React from 'react';
 import './PrivateSpaceAccount.css';
 import FormLine from '../form/FormLine';
 import Loading from "../box/Loading";
-import {getRequest} from '../../utils/request';
+import {getRequest, postRequest} from '../../utils/request';
 import {NotificationManager as nm} from 'react-notifications';
 
 
@@ -12,6 +12,7 @@ export default class PrivateSpaceAccount extends React.Component {
 		super(props);
 
 		this.refresh = this.refresh.bind(this);
+		this.save = this.save.bind(this);
 
 		this.state = {
 			user: null
@@ -38,6 +39,20 @@ export default class PrivateSpaceAccount extends React.Component {
         });
 	}
 
+	save() {
+        let params = {
+            telephone: this.state.user.telephone
+        }
+
+        postRequest.call(this, "privatespace/update_my_user", params, response => {
+        	this.refresh();
+        }, response => {
+            nm.warning(response.statusText);
+        }, error => {
+            nm.error(error.message);
+        });
+	}
+
 	render() {
 		return (
 			<div className="PrivateSpaceAccount">
@@ -56,7 +71,7 @@ export default class PrivateSpaceAccount extends React.Component {
 		                    <FormLine
 		                        label={"Phone"}
 		                        type={"phone"}
-		                        value={this.state.user.phone}
+		                        value={this.state.user.telephone}
 		                        disabled={true}
 		                    />
 		                    <div className="right-buttons">
