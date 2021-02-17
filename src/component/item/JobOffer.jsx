@@ -31,6 +31,8 @@ export default class JobOffer extends Component {
                             </button>
                             <button
                                 className={"blue-background"}
+                                onClick={() => window.open(this.props.info.link, "_blank")}
+                                disabled={this.props.info.link === null}
                             >
                                 <i class="fas fa-arrow-alt-circle-right"/> View original webpage
                             </button>
