@@ -168,7 +168,6 @@ export default class FormLine extends React.Component {
                             />
                         : this.props.type === "phone" ? 
                             <PhoneInput
-                                defaultCountry="LU"
                                 value={this.state.value}
                                 onChange={value => this.onChange(value)}
                             />

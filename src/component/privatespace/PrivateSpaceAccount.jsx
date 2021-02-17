@@ -13,9 +13,11 @@ export default class PrivateSpaceAccount extends React.Component {
 
 		this.refresh = this.refresh.bind(this);
 		this.save = this.save.bind(this);
+		this.changeUser = this.changeUser.bind(this);
 
 		this.state = {
-			user: null
+			user: null,
+			hasModification: false,
 		}
 	}
 
@@ -45,11 +47,23 @@ export default class PrivateSpaceAccount extends React.Component {
         }
 
         postRequest.call(this, "privatespace/update_my_user", params, response => {
-        	this.refresh();
+        	this.setState({ 
+	        	hasModification: false 
+	        });
+        	nm.info("The information has been saved");
         }, response => {
             nm.warning(response.statusText);
         }, error => {
             nm.error(error.message);
+        });
+	}
+
+	changeUser(field, value) {
+		let user = _.cloneDeep(this.state.user);
+        user[field] = value;
+        this.setState({ 
+        	user: user, 
+        	hasModification: true 
         });
 	}
 
@@ -72,11 +86,12 @@ export default class PrivateSpaceAccount extends React.Component {
 		                        label={"Phone"}
 		                        type={"phone"}
 		                        value={this.state.user.telephone}
-		                        disabled={true}
+		                        onChange={v => this.changeUser("telephone", v)}
 		                    />
 		                    <div className="right-buttons">
 			                    <button
-			                        onClick={() => this.save()}>
+			                        onClick={() => this.save()}
+			                        disabled={!this.state.hasModification}>
 			                        <i class="far fa-save"/> Save
 			                    </button>
 			                </div>

@@ -9,6 +9,7 @@ import Tab from './tab/Tab';
 import PrivateSpaceAccount from './privatespace/PrivateSpaceAccount';
 import PrivateSpaceCompany from './privatespace/PrivateSpaceCompany';
 import PrivateSpaceRequest from './privatespace/PrivateSpaceRequest';
+import PrivateSpacePassword from './privatespace/PrivateSpacePassword';
 
 
 export default class PagePrivateSpace extends React.Component {
@@ -59,7 +60,7 @@ export default class PagePrivateSpace extends React.Component {
                 </div>
 
                 <Tab
-                    menu={["Account", "Company", "Request"]}
+                    menu={["Account", "Company", "Request", "Password"]}
                     content={[
                         <PrivateSpaceAccount
                             id={this.props.id}
@@ -68,6 +69,9 @@ export default class PagePrivateSpace extends React.Component {
                             id={this.props.id}
                         />, 
                         <PrivateSpaceRequest
+                            id={this.props.id}
+                        />,
+                        <PrivateSpacePassword
                             id={this.props.id}
                         />
                     ]}

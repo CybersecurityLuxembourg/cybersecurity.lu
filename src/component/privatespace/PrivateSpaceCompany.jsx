@@ -62,7 +62,7 @@ export default class PrivateSpaceCompany extends React.Component {
 			<div className="PrivateSpaceCompany">
 				<div className={"row row-spaced"}>
 					<div className="col-md-12">
-						<h2>Company</h2>
+						<h2>My companies</h2>
 					</div>
 
 					{this.state.companies !== null ?
@@ -128,9 +128,11 @@ export default class PrivateSpaceCompany extends React.Component {
                         	height={300}
                         />
                     }
+                </div>
 
+                <div className={"row row-spaced"}>
                     <div className="col-md-12">
-						<h2>Claim access to your entity</h2>
+						<h2>Claim access to a company</h2>
 					</div>
 
 					<div className="col-md-12">
