@@ -1,0 +1,58 @@
+.navbar {
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    display: block;
+}
+
+.navbar a {
+    color: #000 !important;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background: #e30613;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.navbar i {
+    padding-top: 12px !important;
+}
+
+.navbar-brand {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.nav-link {
+    min-width: 120px;
+}
+
+.nav-item .dropdown-toggle {
+    font-size: 20px;
+}
+
+.nav-item .dropdown-menu {
+    border: solid 1px black;
+}
+
+.nav-item .dropdown-item {
+}
+
+.nav-item .dropdown-menu .dropdown-item:hover {
+    color: #000;
+}
+
+.Menu-logo {
+    max-width: 100%;
+    width: 400px;
+}
+
+.Menu-title {
+    font-size: 20px;
+}
+
+.Menu-description {
+    font-size: 12px;
+}

@@ -25,6 +25,8 @@ html, body, #root {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    color: #58595b;
+    font-family: 'source-sans-pro',Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 #App {
@@ -267,7 +269,7 @@ p {
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
-	color: #e40613;
+	color: #000;
 }
 
 /* INPUT */

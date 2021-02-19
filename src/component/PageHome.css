@@ -23,7 +23,6 @@
 	height: 100%;
 }
 
-
 .carousel .slide {
 	width: 100%;
   	height: auto;
@@ -32,7 +31,7 @@
 }
 
 .carousel .slide .legend {
-	border-radius: calc(.25rem - 1px);
+	border-radius:0.25em;
 	background-color: #e40613 !important;
 	opacity: 1 !important;
 	position: absolute;
@@ -42,4 +41,8 @@
 	padding: 20px 30px !important;
 	width: auto !important;
 	max-width: calc(50% - 50px) !important;
+}
+
+.carousel.carousel-slider .control-arrow {
+    border-radius:0em;
 }

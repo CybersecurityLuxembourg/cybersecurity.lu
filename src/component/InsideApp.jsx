@@ -1,8 +1,9 @@
 import React from "react";
 import "./InsideApp.css";
 import {NotificationManager as nm} from 'react-notifications';
-import Menu from "./Menu";
-import Footer from "./Footer";
+import GovBar from "./bar/GovBar";
+import Menu from "./bar/Menu";
+import Footer from "./bar/Footer";
 import PageHome from "./PageHome";
 import PageNews from "./PageNews";
 import PageAbout from "./PageAbout";
@@ -78,6 +79,7 @@ export default class InsideApp extends React.Component {
     render() {
         return (
             <div id="InsideApp">
+                <GovBar/>
                 <Menu
                     logged={this.state.logged}
                     email={this.state.email}

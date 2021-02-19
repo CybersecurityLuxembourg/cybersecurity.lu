@@ -31,6 +31,7 @@ export default class PageEcosystem extends React.Component {
 		this.state = {
             actors: null,
             publicEntities: null,
+            privateEntities: null,
             civilSociety: null,
             jobPlatforms: null,
             analytics: null,
@@ -53,6 +54,7 @@ export default class PageEcosystem extends React.Component {
             this.setState({
                 actors: data.filter(c => c.type === "ACTOR"),
                 publicEntities: data.filter(c => c.type === "PUBLIC SECTOR"),
+                privateEntities: data.filter(c => c.type === "PRIVATE SECTOR"),
                 civilSociety: data.filter(c => c.type === "CIVIL SOCIETY"),
                 jobPlatforms: data.filter(c => c.type === "JOB PLATFORM"),
             }, () => {
@@ -258,6 +260,38 @@ export default class PageEcosystem extends React.Component {
                     </div>
                 </div>
 
+                <div className="row">
+                    <div className="col-md-12">
+                        <h1>Public sector</h1>
+                    </div>
+                </div>
+
+                {this.state.publicEntities !== null ?
+                    <SimpleTable
+                        numberDisplayed={6}
+                        elements={this.state.publicEntities.map((a, i) => {
+                            return [a, i]
+                        })}
+                        buildElement={(a, i) => {
+                            return (
+                                <div className="col-md-6">
+                                    <Company
+                                        info={a}
+                                    />
+                                </div>
+                            )
+                        }} 
+                    />
+                :
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Loading
+                                height={400}
+                            />
+                        </div>
+                    </div>
+                }
+
                 <div className="row row-spaced">
                     <div className="col-md-12">
                         <h1>Map</h1>
@@ -268,6 +302,7 @@ export default class PageEcosystem extends React.Component {
                                 addresses={this.state.geolocations}
                                 companies={this.state.actors.concat(
                                     this.state.publicEntities, 
+                                    this.state.privateEntities, 
                                     this.state.civilSociety, 
                                     this.state.jobPlatforms
                                 )}
