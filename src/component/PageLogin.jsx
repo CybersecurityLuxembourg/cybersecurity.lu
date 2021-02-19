@@ -6,6 +6,8 @@ import {postRequest} from '../utils/request';
 import {validatePassword, validateEmail} from '../utils/re';
 import Info from './box/Info';
 import {getUrlParameter} from '../utils/url';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { Link } from "react-router-dom";
 
 
 export default class PageLogin extends React.Component {
@@ -111,6 +113,15 @@ export default class PageLogin extends React.Component {
 		return(
 			<div className={"PageLogin page max-sized-page"}>
                 <div id="Login-inner-box" className={"fade-in"}>
+                	<div className="row">
+	                    <div className="col-md-12">
+	                        <Breadcrumb>
+	                            <Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
+	                            <Breadcrumb.Item><Link to="/login">LOGIN</Link></Breadcrumb.Item>
+	                        </Breadcrumb>
+	                    </div>
+	                </div>
+
                 	<div className="row row-spaced">
                 		<div className="col-md-3 col-sm-12"/>
 		        		{this.state.view === "login" ?
