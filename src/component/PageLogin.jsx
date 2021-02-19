@@ -95,6 +95,23 @@ export default class PageLogin extends React.Component {
         });
 	}
 
+	createAccount() {
+		let params = {
+            email: this.state.email
+        }
+
+        postRequest.call(this, "account/create_account", params, response => {
+        	nm.info("An email has been sent to your mailbox with a generated password");
+        	this.setState({
+        		view: "login"
+        	})
+        }, response => {
+            nm.warning(response.statusText);
+        }, error => {
+            nm.error(error.message);
+        });
+	}
+
 	onKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
 	    if (event.key === 'Enter' || event.code === "NumpadEnter") {
 	        if (this.state.view === "login")
@@ -112,7 +129,7 @@ export default class PageLogin extends React.Component {
 	render() {
 		return(
 			<div className={"PageLogin page max-sized-page"}>
-                <div id="Login-inner-box" className={"fade-in"}>
+                <div id="Login-inner-box">
                 	<div className="row">
 	                    <div className="col-md-12">
 	                        <Breadcrumb>
@@ -174,7 +191,7 @@ export default class PageLogin extends React.Component {
 					        			className="blue-button"
 					        			onClick={() => this.changeState("view", "create")}
 					        		>
-					        			Create a new one
+					        			Create a new account
 					        		</button>
 					        	</div>
 					       	</div>
@@ -285,32 +302,11 @@ export default class PageLogin extends React.Component {
 				        			format={validateEmail}
 				        			onKeyDown={this.onKeyDown}
 				        		/>
-				        		<FormLine
-				        			label="Password"
-				        			type={"password"}
-				        			fullWidth={true}
-				        			value={this.state.password}
-				        			onChange={v => this.changeState("password", v)}
-				        			format={validatePassword}
-				        			onKeyDown={this.onKeyDown}
-				        		/>
-				        		<FormLine
-					        			label="Password confirmation"
-					        			type={"password"}
-					        			fullWidth={true}
-					        			value={this.state.passwordConfirmation}
-					        			onChange={v => this.changeState("passwordConfirmation", v)}
-					        			format={validatePassword}
-					        			onKeyDown={this.onKeyDown}
-					        		/>
 				        		<div className="right-buttons">
 					        		<button
 					        			className="blue-button"
-					        			onClick={this.login}
-					        			disabled={!validatePassword(this.state.password) ||
-		                        			!validatePassword(this.state.newPassword) ||
-		                        			!validatePassword(this.state.newPasswordConfirmation) ||
-		                        			this.state.newPassword !== this.state.newPasswordConfirmation}>
+					        			onClick={this.createAccount}
+					        			disabled={!validateEmail(this.state.email)}
 					        		>
 					        			Create account
 					        		</button>
