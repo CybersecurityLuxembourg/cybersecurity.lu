@@ -25,27 +25,27 @@ export default class Footer extends React.Component {
 					  		<h3>Partenaires</h3>
 					  		<div>
 								<a 
-									href="https://www.c-3.lu/" 
+									href="https://hcpn.gouvernement.lu/fr.html" 
 									target="_blank" 
-									title="C3" 
+									title="HCPN" 
 									class="text-capitalize">
 									HCPN
 								</a>
 							</div>
 					  		<div>
 								<a 
-									href="https://www.circl.lu/" 
+									href="https://securitymadein.lu/" 
 									target="_blank"  
-									title="CIRCL" 
+									title="SECURITYMADEIN.LU GIE" 
 									class="text-capitalize">
 									SECURITYMADEIN.LU GIE
 								</a>
 							</div>
 							<div>
 								<a 
-									href="https://www.cases.lu/" 
+									href="https://www.luxinnovation.lu/" 
 									target="_blank" 
-									title="CASES" 
+									title="LUXINNOVATION GIE" 
 									class="text-capitalize">
 									LUXINNOVATION GIE
 								</a>
@@ -109,23 +109,23 @@ export default class Footer extends React.Component {
 					  		<h3>Network</h3>
 					  		<div className="Footer-network">
 						  		<a 
-									href="https://twitter.com/secin_lu" 
+									href="https://twitter.com/CybersecLux" 
 									target="_blank" 
-									title="C3" 
+									title="Twitter CYBERLUX" 
 									class="text-capitalize">
 									<i class="fab fa-twitter Footer-network"/>
 								</a>
 								<a 
-									href="https://www.linkedin.com/company/secinlu/" 
+									href="https://www.linkedin.com/company/cybersecurity-luxembourg/" 
 									target="_blank" 
-									title="C3" 
+									title="LinkedIn CYBERLUX" 
 									class="text-capitalize">
 									<i class="fab fa-linkedin-in Footer-network"/>
 								</a>
 						  		<a 
-									href="https://github.com/SECURITYMADEINLU/" 
+									href="https://github.com/CybersecLux/" 
 									target="_blank" 
-									title="C3" 
+									title="GitHub CyberLux" 
 									class="text-capitalize">
 									<i class="fab fa-github-alt Footer-network"/>
 								</a>

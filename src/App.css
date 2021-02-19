@@ -267,7 +267,7 @@ p {
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
-	color: #e40613;
+	color: #000;
 }
 
 /* INPUT */
