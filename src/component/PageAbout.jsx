@@ -137,7 +137,7 @@ export default class PageAbout extends React.Component {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row row-spaced">
                     <div className="col-md-12">
                         <h1>WHY SHOULD YOU JOIN THE ECOSYSTEM?</h1>
                     </div>
