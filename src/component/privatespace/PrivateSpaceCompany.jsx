@@ -2,7 +2,7 @@ import React from 'react';
 import './PrivateSpaceCompany.css';
 import FormLine from '../form/FormLine';
 import Loading from "../box/Loading";
-import {getRequest} from '../../utils/request';
+import {getRequest, postRequest} from '../../utils/request';
 import {NotificationManager as nm} from 'react-notifications';
 import Company from "../item/Company";
 import Info from "../box/Info";
@@ -59,15 +59,29 @@ export default class PrivateSpaceCompany extends React.Component {
         });
 	}
 
-	submitModificationRequests() {
+	submitModificationRequests(c1, c2) {
+		let modifications = "";
+		let modifiedFields = this.getModifiedFields(c1, c2, false);
+
+		if (modifiedFields.length === 0) {
+			nm.info("No modification has been detected")
+			return
+		}
+
+		for (let i = 0; i < modifiedFields.length; i++) {
+			modifications += this.state.fields[modifiedFields[i]] + " : " 
+				+ c2[modifiedFields[i]] + " -> " + c1[modifiedFields[i]] + "\n";
+		}
+
 		let params = {
-            request: "The user requests the access to this company: " + this.state.entity
+            request: 
+            	"The user requests modifications on the following company: " + 
+            	c1.name + "\n\n" +
+            	modifications
         }
 
         postRequest.call(this, "privatespace/add_request", params, response => {
-        	this.setState({
-                entity: null,
-            });
+            nm.info("The request has been sent and will be reviewed");
         }, response => {
             nm.warning(response.statusText);
         }, error => {
@@ -84,6 +98,7 @@ export default class PrivateSpaceCompany extends React.Component {
         	this.setState({
                 entity: null,
             });
+            nm.info("The request has been sent and will be reviewed");
         }, response => {
             nm.warning(response.statusText);
         }, error => {
@@ -91,18 +106,15 @@ export default class PrivateSpaceCompany extends React.Component {
         });
 	}
 
-	getModifiedFields(c1, c2) {
-		let fields = "";
+	getModifiedFields(c1, c2, returnDisplayName=true) {
+		let fields = [];
 
 		Object.entries(c1).forEach(([key, value]) => {
 			if (c1[key] !== c2[key])
-		   		fields += this.state.fields[key] + ", "
+		   		fields.push(returnDisplayName ? this.state.fields[key] : key)
 		});
 
-		if (fields.length > 2)
-			fields = fields.slice(0, -2)
-
-		return fields
+		return returnDisplayName ? fields.join(", ") : fields
 	}
 
 	updateCompanies(index, field, value) {
@@ -190,7 +202,9 @@ export default class PrivateSpaceCompany extends React.Component {
 				                                    <i className="fas fa-save"/> Request modifications
 				                                </button>
 				                            }
-				                            afterConfirmation={this.submitModificationRequests}
+				                            afterConfirmation={() => 
+				                            	this.submitModificationRequests(c, this.state.originalCompanies[i])
+				                            }
 				                        />
 		                            </div>
                                 </Collapsible>
@@ -226,7 +240,7 @@ export default class PrivateSpaceCompany extends React.Component {
 	                    />
 	                    <div className="right-buttons">
 		                    <button
-		                        onClick={() => this.save()}
+		                        onClick={this.submitCompanyRequest}
 		                        disabled={this.state.entity === null || this.state.entity.length === 0}>
 		                        <i class="fas fa-paper-plane"/> Send
 		                    </button>
