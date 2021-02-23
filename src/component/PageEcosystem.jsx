@@ -40,8 +40,8 @@ export default class PageEcosystem extends React.Component {
                 name: getUrlParameter("name"),
                 taxonomy_values: getUrlParameter("taxonomy_values") !== null ? 
                     getUrlParameter("taxonomy_values").split(",").map(v => { return parseInt(v) }): [],
-                startup_only: getUrlParameter("startup_only") === "true" ? true : false,
-                corebusiness_only: getUrlParameter("corebusiness_only") === "true" ? true : false,
+                startup_only: getUrlParameter("startup_only") === "true",
+                corebusiness_only: getUrlParameter("corebusiness_only") === "true",
             }
 		}
 	}
