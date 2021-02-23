@@ -169,7 +169,6 @@ export default class PageArticle extends React.Component {
                                                             tags={a.tags}
                                                         />
                                                     )})
-                                                    
                                                 :
                                                     <Message
                                                         text={"No related article found"}

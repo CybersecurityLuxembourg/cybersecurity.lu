@@ -3,7 +3,7 @@ import './PrivateSpaceRequest.css';
 import FormLine from '../form/FormLine';
 import Loading from "../box/Loading";
 import Info from "../box/Info";
-import {getRequest} from '../../utils/request';
+import {getRequest, postRequest} from '../../utils/request';
 import {NotificationManager as nm} from 'react-notifications';
 import Company from "../item/Company";
 
@@ -35,6 +35,7 @@ export default class PrivateSpaceRequest extends React.Component {
         	this.setState({
         		text: null,
         	})
+        	nm.info("The request has been submitted");
         }, response => {
             nm.warning(response.statusText);
         }, error => {

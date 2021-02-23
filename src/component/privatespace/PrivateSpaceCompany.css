@@ -1,0 +1,12 @@
+
+.PrivateSpaceCompany-show-detail {
+	width: 100%;
+	text-align: right;
+	margin: 15px 0px;
+	cursor: pointer;
+	color: #009fe3;
+}
+
+.PrivateSpaceCompany-show-detail:hover {
+	color: #e40613;
+}
