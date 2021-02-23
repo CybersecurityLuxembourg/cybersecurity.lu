@@ -35,7 +35,7 @@ export default class CompanySearch extends React.Component {
 
     render() {
         return (
-                <div className={"row"}>
+                <div className={"CompanySearch row"}>
                     <div className={"col-md-12"}>
                         <h1>Filter</h1>
                     </div>
@@ -52,6 +52,16 @@ export default class CompanySearch extends React.Component {
 
                     <div className={"col-md-6"}>
                         <FormLine
+                            type={"checkbox"}
+                            label={"Startup only"}
+                            value={this.props.filters.startup_only !== undefined && this.props.filters.startup_only}
+                            onChange={v => this.props.onChange("startup_only", v)}
+                            labelWidth={8}
+                        />
+                    </div>
+
+                    <div className={"col-md-6"}>
+                        <FormLine
                             label={"Tags"}
                             type={"multiselect"}
                             value={this.props.filters.taxonomy_values === undefined || this.state.tags === null ? 
@@ -62,6 +72,17 @@ export default class CompanySearch extends React.Component {
                             onChange={v => this.props.onChange("taxonomy_values", v)}
                             disabled={this.state.tags === null}
                             labelWidth={4}
+                        />
+                    </div>
+
+                    <div className={"col-md-6"}>
+                        <FormLine
+                            type={"checkbox"}
+                            label={"Cybersecurity core business only"}
+                            value={this.props.filters.corebusiness_only !== undefined && 
+                                this.props.filters.corebusiness_only}
+                            onChange={v => this.props.onChange("corebusiness_only", v)}
+                            labelWidth={8}
                         />
                     </div>
 
