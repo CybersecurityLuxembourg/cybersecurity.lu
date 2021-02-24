@@ -43,7 +43,9 @@ export default class PrivateSpaceAccount extends React.Component {
 
 	save() {
         let params = {
-            telephone: this.state.user.telephone
+            telephone: this.state.user.telephone,
+            first_name: this.state.user.first_name,
+            last_name: this.state.user.last_name
         }
 
         postRequest.call(this, "privatespace/update_my_user", params, response => {
@@ -81,6 +83,16 @@ export default class PrivateSpaceAccount extends React.Component {
 		                        label={"Email"}
 		                        value={this.state.user.email}
 		                        disabled={true}
+		                    />
+		                    <FormLine
+		                        label={"First name"}
+		                        value={this.state.user.first_name}
+		                        onChange={v => this.changeUser("first_name", v)}
+		                    />
+		                    <FormLine
+		                        label={"Last name"}
+		                        value={this.state.user.last_name}
+		                        onChange={v => this.changeUser("last_name", v)}
 		                    />
 		                    <FormLine
 		                        label={"Phone"}
