@@ -2,6 +2,7 @@ import React from 'react';
 import './PrivateSpaceCompany.css';
 import FormLine from '../form/FormLine';
 import Loading from "../box/Loading";
+import Message from "../box/Message";
 import {getRequest, postRequest} from '../../utils/request';
 import {NotificationManager as nm} from 'react-notifications';
 import Company from "../item/Company";
@@ -132,88 +133,98 @@ export default class PrivateSpaceCompany extends React.Component {
 					</div>
 
 					{this.state.companies !== null ?
-						this.state.companies.map((c, i) => { return (
-							<div className="col-md-12">
-								<Company
-                                    info={c}
-                                />
-                                <Collapsible 
-                                	trigger={<div className={"PrivateSpaceCompany-show-detail"}>Show details</div>}
-                                >
-                                    <FormLine
-				                        label={this.state.fields["name"]}
-				                        value={c.name}
-				                        onChange={v => this.updateCompanies(i, "name", v)}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["type"]}
-				                        value={c.type}
-				                        disabled={true}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["description"]}
-				                        type={"textarea"}
-				                        value={c.description}
-				                        onChange={v => this.updateCompanies(i, "description", v)}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["rscl_number"]}
-				                        value={c.rscl_number}
-				                        onChange={v => this.updateCompanies(i, "rscl_number", v)}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["website"]}
-				                        value={c.website}
-				                        onChange={v => this.updateCompanies(i, "website", v)}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["creation_date"]}
-				                        type={"date"}
-				                        value={c.creation_date}
-				                        onChange={v => this.updateCompanies(i, "creation_date", v)}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["is_cybersecurity_core_business"]}
-				                        type={"checkbox"}
-				                        value={c.is_cybersecurity_core_business}
-				                        onChange={v => this.updateCompanies(i, "is_cybersecurity_core_business", v)}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["is_startup"]}
-				                        type={"checkbox"}
-				                        value={c.is_startup}
-				                        onChange={v => this.updateCompanies(i, "is_startup", v)}
-				                    />
-				                    <FormLine
-				                        label={this.state.fields["is_targeting_sme"]}
-				                        type={"checkbox"}
-				                        value={c.is_targeting_sme}
-				                        onChange={v => this.updateCompanies(i, "is_targeting_sme", v)}
-				                    />
-				                    <div className={"right-buttons"}>
-		                                <DialogConfirmation
-				                            text={"Do you want to request modifications for those fields : " +
-				                        		this.getModifiedFields(c, this.state.originalCompanies[i]) + " ?"}
-				                            trigger={
-				                                <button
-				                                    className={"blue-background"}
-				                                    disabled={_.isEqual(c, this.state.originalCompanies[i])}
-				                                >
-				                                    <i className="fas fa-save"/> Request modifications
-				                                </button>
-				                            }
-				                            afterConfirmation={() => 
-				                            	this.submitModificationRequests(c, this.state.originalCompanies[i])
-				                            }
-				                        />
-		                            </div>
-                                </Collapsible>
-		           			</div>
-		           		)})
+						this.state.companies.length > 0 ?
+							this.state.companies.map((c, i) => { return (
+								<div className="col-md-12">
+									<Company
+	                                    info={c}
+	                                />
+	                                <Collapsible 
+	                                	trigger={<div className={"PrivateSpaceCompany-show-detail"}>Show details</div>}
+	                                >
+	                                    <FormLine
+					                        label={this.state.fields["name"]}
+					                        value={c.name}
+					                        onChange={v => this.updateCompanies(i, "name", v)}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["type"]}
+					                        value={c.type}
+					                        disabled={true}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["description"]}
+					                        type={"textarea"}
+					                        value={c.description}
+					                        onChange={v => this.updateCompanies(i, "description", v)}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["rscl_number"]}
+					                        value={c.rscl_number}
+					                        onChange={v => this.updateCompanies(i, "rscl_number", v)}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["website"]}
+					                        value={c.website}
+					                        onChange={v => this.updateCompanies(i, "website", v)}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["creation_date"]}
+					                        type={"date"}
+					                        value={c.creation_date}
+					                        onChange={v => this.updateCompanies(i, "creation_date", v)}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["is_cybersecurity_core_business"]}
+					                        type={"checkbox"}
+					                        value={c.is_cybersecurity_core_business}
+					                        onChange={v => this.updateCompanies(i, "is_cybersecurity_core_business", v)}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["is_startup"]}
+					                        type={"checkbox"}
+					                        value={c.is_startup}
+					                        onChange={v => this.updateCompanies(i, "is_startup", v)}
+					                    />
+					                    <FormLine
+					                        label={this.state.fields["is_targeting_sme"]}
+					                        type={"checkbox"}
+					                        value={c.is_targeting_sme}
+					                        onChange={v => this.updateCompanies(i, "is_targeting_sme", v)}
+					                    />
+					                    <div className={"right-buttons"}>
+			                                <DialogConfirmation
+					                            text={"Do you want to request modifications for those fields : " +
+					                        		this.getModifiedFields(c, this.state.originalCompanies[i]) + " ?"}
+					                            trigger={
+					                                <button
+					                                    className={"blue-background"}
+					                                    disabled={_.isEqual(c, this.state.originalCompanies[i])}
+					                                >
+					                                    <i className="fas fa-save"/> Request modifications
+					                                </button>
+					                            }
+					                            afterConfirmation={() => 
+					                            	this.submitModificationRequests(c, this.state.originalCompanies[i])
+					                            }
+					                        />
+			                            </div>
+	                                </Collapsible>
+			           			</div>
+			           		)})
+						:
+						<div className="col-md-12">
+                            <Message
+                                text={"No company found"}
+                                height={150}
+                            />
+                        </div>
            			: 
-           				<Loading
-                        	height={300}
-                        />
+           				<div className="col-md-12">
+	           				<Loading
+	                        	height={150}
+	                        />
+	                    </div>
                     }
                 </div>
 
