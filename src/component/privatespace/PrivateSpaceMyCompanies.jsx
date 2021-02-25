@@ -67,27 +67,18 @@ export default class PrivateSpaceMyCompanies extends React.Component {
         });
 	}
 
-	submitModificationRequests(c1, c2) {
-		let modifications = "";
-		let modifiedFields = this.getModifiedFields(c1, c2, false);
-
-		if (modifiedFields.length === 0) {
-			nm.info("No modification has been detected")
-			return
-		}
-
-		for (let i = 0; i < modifiedFields.length; i++) {
-			modifications += this.state.fields[modifiedFields[i]] + " : " 
-				+ c2[modifiedFields[i]] + " -> " + c1[modifiedFields[i]] + "\n";
+	submitModificationRequests(company) {
+		let info = {
+			"company": company,
+			"addresses": this.state.addresses.filter(a => a.company_id === company.id)
 		}
 
 		let params = {
             request: 
             	"[COMPANY MODIFICATION]\n\n" + 
-            	"The user requests modifications on the following company: " + 
-            	c1.name + 
+            	"The user requests modifications on the following company: " + company.name + 
             	"\n\n" +
-            	modifications
+            	JSON.stringify(info, null, 4)
         }
 
         postRequest.call(this, "privatespace/add_request", params, response => {
@@ -118,21 +109,49 @@ export default class PrivateSpaceMyCompanies extends React.Component {
         });
 	}
 
-	getModifiedFields(c1, c2, returnDisplayName=true) {
+	getModifiedFields(c1, c2) {
 		let fields = [];
+
+		// Compare global information
 
 		Object.entries(c1).forEach(([key, value]) => {
 			if (c1[key] !== c2[key])
-		   		fields.push(returnDisplayName ? this.state.fields[key] : key)
+		   		fields.push(this.state.fields[key])
 		});
 
-		return returnDisplayName ? fields.join(", ") : fields
+		// Compare addresses
+
+		let originalAddresses = this.state.originalAddresses.filter(a => a.company_id === c1.id)
+		let addresses = this.state.addresses.filter(a => a.company_id === c1.id)
+
+		let minLength = Math.min(originalAddresses.length, addresses.length)
+
+		for (let i = 0; i < minLength; i++) {
+			if (JSON.stringify(originalAddresses) !== JSON.stringify(addresses))
+				fields.push("Address " + (i + 1))
+		}
+
+		for (let i = minLength; i < originalAddresses.length; i++) {
+			fields.push("Address " + (minLength + i + 1))
+		}
+
+		for (let i = minLength; i < addresses.length; i++) {
+			fields.push("Address " + (minLength + i + 1))
+		}
+
+		return fields.join(", ")
 	}
 
 	updateCompanies(index, field, value) {
         let c = JSON.parse(JSON.stringify(this.state.companies));
         c[index][field] = value;
         this.setState({ companies : c })
+    }
+
+    updateAddresses(index, field, value) {
+        let c = JSON.parse(JSON.stringify(this.state.addresses));
+        c[index][field] = value;
+        this.setState({ addresses : c })
     }
 
     isFieldCompleted(v) {
@@ -157,6 +176,7 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 	                                <Collapsible 
 	                                	trigger={<div className={"PrivateSpaceMyCompanies-show-detail"}>Show details</div>}
 	                                >
+	                                	<h3>Global information</h3>
 	                                    <FormLine
 					                        label={this.state.fields["name"]}
 					                        value={c.name}
@@ -194,19 +214,38 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 					                        type={"checkbox"}
 					                        value={c.is_cybersecurity_core_business}
 					                        onChange={v => this.updateCompanies(i, "is_cybersecurity_core_business", v)}
+					                    	background={false}
 					                    />
 					                    <FormLine
 					                        label={this.state.fields["is_startup"]}
 					                        type={"checkbox"}
 					                        value={c.is_startup}
 					                        onChange={v => this.updateCompanies(i, "is_startup", v)}
+					                        background={false}
 					                    />
 					                    <FormLine
 					                        label={this.state.fields["is_targeting_sme"]}
 					                        type={"checkbox"}
 					                        value={c.is_targeting_sme}
 					                        onChange={v => this.updateCompanies(i, "is_targeting_sme", v)}
+					                        background={false}
 					                    />
+
+					                    {this.state.addresses.map((a, i) => { 
+				                    		if (a.company_id === c.id)
+					                    		return (
+							                    	<div>
+								                    	<h3>Address</h3>
+								                    	<Address
+								                    		info={a}
+								                    		onChange={(f, v) => this.updateAddresses(i, f, v)}
+								                    	/>
+								                    </div>
+								                )
+								            else
+								            	""
+					                    })}
+
 					                    <div className={"right-buttons"}>
 			                                <DialogConfirmation
 					                            text={"Do you want to request modifications for those fields : " +
@@ -214,7 +253,12 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 					                            trigger={
 					                                <button
 					                                    className={"blue-background"}
-					                                    disabled={_.isEqual(c, this.state.originalCompanies[i])}
+					                                    disabled={_.isEqual(c, this.state.originalCompanies[i]) &&
+					                                    	_.isEqual(
+					                                    		this.state.addresses.filter(a => a.company_id === c.id), 
+					                                    		this.state.originalAddresses.filter(a => a.company_id === c.id)
+					                                    	)
+					                                    }
 					                                >
 					                                    <i className="fas fa-save"/> Request modifications
 					                                </button>

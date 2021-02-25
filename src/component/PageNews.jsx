@@ -93,9 +93,6 @@ export default class PageNews extends React.Component {
                     </div>
                 </div>
 
-
-
-
                 {this.state.articles !== null && !this.state.loading ? 
                     (this.state.articles.length === 0 ?
                         <div className="row row-spaced">

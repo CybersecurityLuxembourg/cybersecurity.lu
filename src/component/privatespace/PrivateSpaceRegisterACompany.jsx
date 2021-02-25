@@ -21,6 +21,7 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 
 		this.state = {
 			newCompanyForm: {},
+			addresses: [{}],
 
 			fields: {
 				name: "Name",
@@ -40,10 +41,15 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 	}
 
 	submitCreationRequest() {
+		let info = {
+        	company: this.state.newCompanyForm,
+        	addresses: this.state.addresses
+        }
+
 		let params = {
             request: "[COMPANY INSERTION]\n\n" + 
             	"The user requests the insertion of this company: \n\n" + 
-            	JSON.stringify(this.state.newCompanyForm, null, 4)
+            	JSON.stringify(info, null, 4)
         }
 
         postRequest.call(this, "privatespace/add_request", params, response => {
@@ -62,6 +68,12 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
         let c = JSON.parse(JSON.stringify(this.state.newCompanyForm));
         c[field] = value;
         this.setState({ newCompanyForm : c })
+    }
+
+    updateAddresses(index, field, value) {
+        let c = JSON.parse(JSON.stringify(this.state.addresses));
+        c[index][field] = value;
+        this.setState({ addresses : c })
     }
 
     isFieldCompleted(v) {
@@ -141,8 +153,8 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 
 	                <div className="col-md-12">
 	                    <Address
-	                    	info={this.state.newCompanyForm}
-	                    	onChange={(f, v) => this.updateNewCompany(f, v)}
+	                    	info={this.state.addresses[0]}
+	                    	onChange={(f, v) => this.updateAddresses(0, f, v)}
 	                    />
 	                </div>
 
