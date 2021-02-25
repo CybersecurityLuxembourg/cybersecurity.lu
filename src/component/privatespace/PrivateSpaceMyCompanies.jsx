@@ -20,7 +20,6 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 		this.refresh = this.refresh.bind(this);
 		this.submitModificationRequests = this.submitModificationRequests.bind(this);
 		this.submitCompanyRequest = this.submitCompanyRequest.bind(this);
-		this.submitCreationRequest = this.submitCreationRequest.bind(this);
 		this.updateCompanies = this.updateCompanies.bind(this);
 
 		this.state = {
@@ -28,8 +27,6 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 			originalCompanies: null,
 			addresses: null,
             originalAddresses: null,
-
-			newCompanyForm: {},
 
 			entity: null,
 
@@ -121,25 +118,6 @@ export default class PrivateSpaceMyCompanies extends React.Component {
         });
 	}
 
-	submitCreationRequest() {
-		let params = {
-            request: "[COMPANY INSERTION]\n\n" + 
-            	"The user requests the insertion of this company: \n\n" + 
-            	JSON.stringify(this.state.newCompanyForm, null, 4)
-        }
-
-        postRequest.call(this, "privatespace/add_request", params, response => {
-        	this.setState({
-                entity: null,
-            });
-            nm.info("The request has been sent and will be reviewed");
-        }, response => {
-            nm.warning(response.statusText);
-        }, error => {
-            nm.error(error.message);
-        });
-	}
-
 	getModifiedFields(c1, c2, returnDisplayName=true) {
 		let fields = [];
 
@@ -155,12 +133,6 @@ export default class PrivateSpaceMyCompanies extends React.Component {
         let c = JSON.parse(JSON.stringify(this.state.companies));
         c[index][field] = value;
         this.setState({ companies : c })
-    }
-
-    updateNewCompany(field, value) {
-        let c = JSON.parse(JSON.stringify(this.state.newCompanyForm));
-        c[field] = value;
-        this.setState({ newCompanyForm : c })
     }
 
     isFieldCompleted(v) {
@@ -299,106 +271,6 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 		                        <i class="fas fa-paper-plane"/> Send
 		                    </button>
 		                </div>
-           			</div>
-				</div>
-
-				<div className={"row row-spaced"}>
-                    <div className="col-md-12">
-						<h2>Register your company into the database</h2>
-					</div>
-
-					<div className="col-md-12">
-	                    <h3>Global information</h3>
-	                </div>
-
-					<div className="col-md-12">
-						<FormLine
-	                        label={this.state.fields["name"]}
-	                        value={this.state.newCompanyForm.name}
-	                        onChange={v => this.updateNewCompany("name", v)}
-	                        format={v => this.isFieldCompleted(v)}
-	                    />
-	                    <FormLine
-	                        label={this.state.fields["description"]}
-	                        type={"textarea"}
-	                        value={this.state.newCompanyForm.description}
-	                        onChange={v => this.updateNewCompany("description", v)}
-	                    />
-	                    <FormLine
-	                        label={this.state.fields["rscl_number"]}
-	                        value={this.state.newCompanyForm.rscl_number}
-	                        onChange={v => this.updateNewCompany("rscl_number", v)}
-	                    />
-	                    <FormLine
-	                        label={this.state.fields["website"]}
-	                        value={this.state.newCompanyForm.website}
-	                        onChange={v => this.updateNewCompany("website", v)}
-	                        format={v => this.isFieldCompleted(v)}
-	                    />
-	                    <FormLine
-	                        label={this.state.fields["creation_date"]}
-	                        type={"date"}
-	                        value={this.state.newCompanyForm.creation_date}
-	                        onChange={v => this.updateNewCompany("creation_date", v)}
-	                        format={v => this.isFieldCompleted(v)}
-	                    />
-	                    <FormLine
-	                        label={this.state.fields["is_cybersecurity_core_business"]}
-	                        type={"checkbox"}
-	                        value={this.state.newCompanyForm.is_cybersecurity_core_business}
-	                        onChange={v => this.updateNewCompany("is_cybersecurity_core_business", v)}
-	                        background={false}
-	                    />
-	                    <FormLine
-	                        label={this.state.fields["is_startup"]}
-	                        type={"checkbox"}
-	                        value={this.state.newCompanyForm.is_startup}
-	                        onChange={v => this.updateNewCompany("is_startup", v)}
-	                        background={false}
-	                    />
-	                    <FormLine
-	                        label={this.state.fields["is_targeting_sme"]}
-	                        type={"checkbox"}
-	                        value={this.state.newCompanyForm.is_targeting_sme}
-	                        onChange={v => this.updateNewCompany("is_targeting_sme", v)}
-	                        background={false}
-	                    />
-	                    <br/>
-	                </div>
-
-	                <div className="col-md-12">
-	                    <h3>Address</h3>
-	                </div>
-
-	                <div className="col-md-12">
-	                    <Address
-	                    	info={this.state.newCompanyForm}
-	                    	onChange={(f, v) => this.updateNewCompany(f, v)}
-	                    />
-	                </div>
-
-					<div className="col-md-12">
-	                    <div className={"right-buttons"}>
-                            <DialogConfirmation
-	                            text={"Do you want to submit the company creation as a request?"}
-	                            trigger={
-	                                <button
-	                                    className={"blue-background"}
-	                                    disabled={
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.name) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.website) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.creation_date) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.address_1) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.city) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.country)
-	                                    }
-	                                >
-	                                    <i className="fas fa-save"/> Request company creation
-	                                </button>
-	                            }
-	                            afterConfirmation={this.submitCreationRequest}
-	                        />
-                        </div>
            			</div>
 				</div>
 			</div>
