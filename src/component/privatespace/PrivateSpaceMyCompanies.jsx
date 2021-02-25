@@ -1,6 +1,7 @@
 import React from 'react';
-import './PrivateSpaceCompany.css';
+import './PrivateSpaceMyCompanies.css';
 import FormLine from '../form/FormLine';
+import Address from '../form/Address';
 import Loading from "../box/Loading";
 import Message from "../box/Message";
 import {getRequest, postRequest} from '../../utils/request';
@@ -11,7 +12,7 @@ import DialogConfirmation from "../dialog/DialogConfirmation";
 import Collapsible from 'react-collapsible';
 
 
-export default class PrivateSpaceCompany extends React.Component {
+export default class PrivateSpaceMyCompanies extends React.Component {
 
 	constructor(props){
 		super(props);
@@ -19,12 +20,19 @@ export default class PrivateSpaceCompany extends React.Component {
 		this.refresh = this.refresh.bind(this);
 		this.submitModificationRequests = this.submitModificationRequests.bind(this);
 		this.submitCompanyRequest = this.submitCompanyRequest.bind(this);
+		this.submitCreationRequest = this.submitCreationRequest.bind(this);
 		this.updateCompanies = this.updateCompanies.bind(this);
 
 		this.state = {
-			originalCompanies: null,
 			companies: null,
+			originalCompanies: null,
+			addresses: null,
+            originalAddresses: null,
+
+			newCompanyForm: {},
+
 			entity: null,
+
 			fields: {
 				name: "Name",
 				type: "Type",
@@ -50,8 +58,10 @@ export default class PrivateSpaceCompany extends React.Component {
 
 		getRequest.call(this, "privatespace/get_my_companies", data => {
             this.setState({
-                companies: data,
-                originalCompanies: data,
+                companies: data["companies"],
+                originalCompanies: data["companies"],
+                addresses: data["addresses"],
+                originalAddresses: data["addresses"],
             });
         }, response => {
             nm.warning(response.statusText);
@@ -76,8 +86,10 @@ export default class PrivateSpaceCompany extends React.Component {
 
 		let params = {
             request: 
+            	"[COMPANY MODIFICATION]\n\n" + 
             	"The user requests modifications on the following company: " + 
-            	c1.name + "\n\n" +
+            	c1.name + 
+            	"\n\n" +
             	modifications
         }
 
@@ -92,7 +104,28 @@ export default class PrivateSpaceCompany extends React.Component {
 
 	submitCompanyRequest() {
 		let params = {
-            request: "The user requests the access to this company: " + this.state.entity
+            request: "[COMPANY ACCESS]\n\n" + 
+            	"The user requests the access to this company: " + 
+            	this.state.entity
+        }
+
+        postRequest.call(this, "privatespace/add_request", params, response => {
+        	this.setState({
+                entity: null,
+            });
+            nm.info("The request has been sent and will be reviewed");
+        }, response => {
+            nm.warning(response.statusText);
+        }, error => {
+            nm.error(error.message);
+        });
+	}
+
+	submitCreationRequest() {
+		let params = {
+            request: "[COMPANY INSERTION]\n\n" + 
+            	"The user requests the insertion of this company: \n\n" + 
+            	JSON.stringify(this.state.newCompanyForm, null, 4)
         }
 
         postRequest.call(this, "privatespace/add_request", params, response => {
@@ -124,9 +157,19 @@ export default class PrivateSpaceCompany extends React.Component {
         this.setState({ companies : c })
     }
 
+    updateNewCompany(field, value) {
+        let c = JSON.parse(JSON.stringify(this.state.newCompanyForm));
+        c[field] = value;
+        this.setState({ newCompanyForm : c })
+    }
+
+    isFieldCompleted(v) {
+    	return v !== undefined && v.length > 0
+    }
+
 	render() {
 		return (
-			<div className="PrivateSpaceCompany">
+			<div className="PrivateSpaceMyCompanies">
 				<div className={"row row-spaced"}>
 					<div className="col-md-12">
 						<h2>My companies</h2>
@@ -140,7 +183,7 @@ export default class PrivateSpaceCompany extends React.Component {
 	                                    info={c}
 	                                />
 	                                <Collapsible 
-	                                	trigger={<div className={"PrivateSpaceCompany-show-detail"}>Show details</div>}
+	                                	trigger={<div className={"PrivateSpaceMyCompanies-show-detail"}>Show details</div>}
 	                                >
 	                                    <FormLine
 					                        label={this.state.fields["name"]}
@@ -230,14 +273,14 @@ export default class PrivateSpaceCompany extends React.Component {
 
                 <div className={"row row-spaced"}>
                     <div className="col-md-12">
-						<h2>Claim access to a company</h2>
+						<h2>Claim access to a company already in our database</h2>
 					</div>
 
 					<div className="col-md-12">
 						<Info
                             content={
                             	<div>
-                            		You can request to have control of the data of the entity you are part of.<br/><br/>
+                            		You can request the control of the data of the entity you are part of.<br/><br/>
                             		To confirm the access granting, one of out operator will get contact with you in the shortest delay.<br/>
                             		Make sure you have filled your personal information in the <b>Account</b> section.
                             	</div>
@@ -256,6 +299,106 @@ export default class PrivateSpaceCompany extends React.Component {
 		                        <i class="fas fa-paper-plane"/> Send
 		                    </button>
 		                </div>
+           			</div>
+				</div>
+
+				<div className={"row row-spaced"}>
+                    <div className="col-md-12">
+						<h2>Register your company into the database</h2>
+					</div>
+
+					<div className="col-md-12">
+	                    <h3>Global information</h3>
+	                </div>
+
+					<div className="col-md-12">
+						<FormLine
+	                        label={this.state.fields["name"]}
+	                        value={this.state.newCompanyForm.name}
+	                        onChange={v => this.updateNewCompany("name", v)}
+	                        format={v => this.isFieldCompleted(v)}
+	                    />
+	                    <FormLine
+	                        label={this.state.fields["description"]}
+	                        type={"textarea"}
+	                        value={this.state.newCompanyForm.description}
+	                        onChange={v => this.updateNewCompany("description", v)}
+	                    />
+	                    <FormLine
+	                        label={this.state.fields["rscl_number"]}
+	                        value={this.state.newCompanyForm.rscl_number}
+	                        onChange={v => this.updateNewCompany("rscl_number", v)}
+	                    />
+	                    <FormLine
+	                        label={this.state.fields["website"]}
+	                        value={this.state.newCompanyForm.website}
+	                        onChange={v => this.updateNewCompany("website", v)}
+	                        format={v => this.isFieldCompleted(v)}
+	                    />
+	                    <FormLine
+	                        label={this.state.fields["creation_date"]}
+	                        type={"date"}
+	                        value={this.state.newCompanyForm.creation_date}
+	                        onChange={v => this.updateNewCompany("creation_date", v)}
+	                        format={v => this.isFieldCompleted(v)}
+	                    />
+	                    <FormLine
+	                        label={this.state.fields["is_cybersecurity_core_business"]}
+	                        type={"checkbox"}
+	                        value={this.state.newCompanyForm.is_cybersecurity_core_business}
+	                        onChange={v => this.updateNewCompany("is_cybersecurity_core_business", v)}
+	                        background={false}
+	                    />
+	                    <FormLine
+	                        label={this.state.fields["is_startup"]}
+	                        type={"checkbox"}
+	                        value={this.state.newCompanyForm.is_startup}
+	                        onChange={v => this.updateNewCompany("is_startup", v)}
+	                        background={false}
+	                    />
+	                    <FormLine
+	                        label={this.state.fields["is_targeting_sme"]}
+	                        type={"checkbox"}
+	                        value={this.state.newCompanyForm.is_targeting_sme}
+	                        onChange={v => this.updateNewCompany("is_targeting_sme", v)}
+	                        background={false}
+	                    />
+	                    <br/>
+	                </div>
+
+	                <div className="col-md-12">
+	                    <h3>Address</h3>
+	                </div>
+
+	                <div className="col-md-12">
+	                    <Address
+	                    	info={this.state.newCompanyForm}
+	                    	onChange={(f, v) => this.updateNewCompany(f, v)}
+	                    />
+	                </div>
+
+					<div className="col-md-12">
+	                    <div className={"right-buttons"}>
+                            <DialogConfirmation
+	                            text={"Do you want to submit the company creation as a request?"}
+	                            trigger={
+	                                <button
+	                                    className={"blue-background"}
+	                                    disabled={
+	                                    	!this.isFieldCompleted(this.state.newCompanyForm.name) ||
+	                                    	!this.isFieldCompleted(this.state.newCompanyForm.website) ||
+	                                    	!this.isFieldCompleted(this.state.newCompanyForm.creation_date) ||
+	                                    	!this.isFieldCompleted(this.state.newCompanyForm.address_1) ||
+	                                    	!this.isFieldCompleted(this.state.newCompanyForm.city) ||
+	                                    	!this.isFieldCompleted(this.state.newCompanyForm.country)
+	                                    }
+	                                >
+	                                    <i className="fas fa-save"/> Request company creation
+	                                </button>
+	                            }
+	                            afterConfirmation={this.submitCreationRequest}
+	                        />
+                        </div>
            			</div>
 				</div>
 			</div>

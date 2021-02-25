@@ -66,9 +66,7 @@ export default class FormLine extends React.Component {
     }
 
     getFormatClassName() {
-        if (typeof this.props.format === "undefined" ||
-            this.state.value === null ||
-            this.state.value.length === 0) {
+        if (this.props.format === undefined) {
             return "";
         } else {
             if (this.props.format(this.state.value))
@@ -122,6 +120,7 @@ export default class FormLine extends React.Component {
                                 value={this.state.value}
                                 onClick={v => this.onChange(v)}
                                 disabled={this.props.disabled}
+                                background={this.props.background}
                             />
                         : this.props.type === "select" ?
                             <Select 

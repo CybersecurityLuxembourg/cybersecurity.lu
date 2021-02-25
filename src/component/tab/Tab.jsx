@@ -22,14 +22,18 @@ export default class Tab extends React.Component {
 							<div className="col-md-2">
 								<div className="Tab-menu">
 									{this.props.menu.map(m => {
-										return (
-											<div 
-												className={"Tab-menu-el " 
-													+ (this.state.selectedMenu === m ? "Tab-menu-el-selected" : "")}
-												onClick={() => this.setState({selectedMenu: m})}>
-												{m}
-											</div>
-										)
+										if (m === null) {
+											return <div className={"Tab-menu-el-empty"}/>
+										} else {
+											return (
+												<div 
+													className={"Tab-menu-el " 
+														+ (this.state.selectedMenu === m ? "Tab-menu-el-selected" : "")}
+													onClick={() => this.setState({selectedMenu: m})}>
+													{m}
+												</div>
+											)
+										}
 									})}
 								</div>
 							</div>

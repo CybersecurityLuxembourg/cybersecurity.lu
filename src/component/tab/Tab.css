@@ -39,3 +39,7 @@
 .Tab-menu-el-selected {
     border-left: 4px solid #e40613;
 }
+
+.Tab-menu-el-empty {
+    height: 15px;
+}

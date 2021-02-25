@@ -39,7 +39,11 @@ export default class Request extends Component {
                     <div class="card-body">
                         <div class="card-date">{this.props.info.submission_date}</div>
                         <div class="card-type">STATUS: {this.props.info.status}</div>
-                        <p className="card-text">{this.props.info.request}</p>
+                        <p className="card-text">
+                            <div dangerouslySetInnerHTML={
+                                { __html: this.props.info.request.replaceAll("\n", "<br />","g") }
+                            }/>
+                        </p>
                         <button
                             className={"red-background"}
                             onClick={this.delete}

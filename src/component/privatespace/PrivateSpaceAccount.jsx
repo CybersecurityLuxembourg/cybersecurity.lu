@@ -74,7 +74,7 @@ export default class PrivateSpaceAccount extends React.Component {
 			<div className="PrivateSpaceAccount">
 				<div className={"row row-spaced"}>
 					<div className="col-md-12">
-						<h2>Account</h2>
+						<h2>My account</h2>
 					</div>
 
 					{this.state.user !== null ?

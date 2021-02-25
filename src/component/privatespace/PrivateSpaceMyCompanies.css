@@ -1,5 +1,5 @@
 
-.PrivateSpaceCompany-show-detail {
+.PrivateSpaceMyCompanies-show-detail {
 	width: 100%;
 	text-align: right;
 	margin: 15px 0px;
@@ -7,6 +7,6 @@
 	color: #009fe3;
 }
 
-.PrivateSpaceCompany-show-detail:hover {
+.PrivateSpaceMyCompanies-show-detail:hover {
 	color: #e40613;
 }

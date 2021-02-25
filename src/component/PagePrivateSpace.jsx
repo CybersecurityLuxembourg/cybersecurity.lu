@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { getRequest } from '../utils/request';
 import Tab from './tab/Tab';
 import PrivateSpaceAccount from './privatespace/PrivateSpaceAccount';
-import PrivateSpaceCompany from './privatespace/PrivateSpaceCompany';
+import PrivateSpaceMyCompanies from './privatespace/PrivateSpaceMyCompanies';
+import PrivateSpaceRegisterACompany from './privatespace/PrivateSpaceRegisterACompany';
 import PrivateSpaceRequest from './privatespace/PrivateSpaceRequest';
 import PrivateSpacePassword from './privatespace/PrivateSpacePassword';
 
@@ -60,17 +61,22 @@ export default class PagePrivateSpace extends React.Component {
                 </div>
 
                 <Tab
-                    menu={["Account", "Company", "Request", "Password"]}
+                    menu={["My account", "My companies", null, "Register a company", "Request", null, "Password"]}
                     content={[
                         <PrivateSpaceAccount
                             id={this.props.id}
                         />,
-                        <PrivateSpaceCompany
+                        <PrivateSpaceMyCompanies
+                            id={this.props.id}
+                        />, 
+                        null,
+                        <PrivateSpaceRegisterACompany
                             id={this.props.id}
                         />, 
                         <PrivateSpaceRequest
                             id={this.props.id}
                         />,
+                        null,
                         <PrivateSpacePassword
                             id={this.props.id}
                         />
