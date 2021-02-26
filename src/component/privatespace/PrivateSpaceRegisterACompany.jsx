@@ -169,9 +169,9 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 	                                    	!this.isFieldCompleted(this.state.newCompanyForm.name) ||
 	                                    	!this.isFieldCompleted(this.state.newCompanyForm.website) ||
 	                                    	!this.isFieldCompleted(this.state.newCompanyForm.creation_date) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.address_1) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.city) ||
-	                                    	!this.isFieldCompleted(this.state.newCompanyForm.country)
+	                                    	!this.isFieldCompleted(this.state.addresses[0].address_1) ||
+	                                    	!this.isFieldCompleted(this.state.addresses[0].city) ||
+	                                    	!this.isFieldCompleted(this.state.addresses[0].country)
 	                                    }
 	                                >
 	                                    <i className="fas fa-save"/> Request registration
