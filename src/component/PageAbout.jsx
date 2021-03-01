@@ -17,7 +17,7 @@ export default class PageAbout extends React.Component {
 
 	render() {
 		return(
-			<div className={"page max-sized-page"}>
+			<div className={"PageAbout page max-sized-page"}>
                 <div className="row">
                     <div className="col-md-12">
                         <Breadcrumb>

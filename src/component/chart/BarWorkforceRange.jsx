@@ -1,4 +1,5 @@
 import React from "react";
+import './BarWorkforceRange.css';
 import {Bar} from 'react-chartjs-2';
 
 
@@ -45,37 +46,39 @@ export default class BarWorkforceRange extends React.Component {
 
     render() {
         return (
-            <Bar 
-				data={{
-				  labels: this.state.labels,
-				  datasets: [{
-				      data: this.getData(),
-				      borderWidth: 1,
-				       borderColor: this.state.ranges.map(o  => { 
-				      	return typeof this.props.selected !== "undefined" 
-				      		&& this.props.selected[1] === o ? '#e40613' : '#009fe3'
-				       }),
-			          backgroundColor: this.state.ranges.map(o  => { 
-				      	return typeof this.props.selected !== "undefined" 
-				      		&& this.props.selected[1] === o ? '#fed7da' : "#bcebff" 
-				       }),
-				  }],
-				}} 
-				options={{
-					legend: {
-				        display: false
-				    },
-					scales: {
-					    yAxes: [
-					      {
-					        ticks: {
-					          beginAtZero: true,
-					        },
-					      },
-					    ],
-					  },
-				}}
-			/>
+        	<div className="BarWorkforceRange">
+	            <Bar 
+					data={{
+					  labels: this.state.labels,
+					  datasets: [{
+					      data: this.getData(),
+					      borderWidth: 1,
+					       borderColor: this.state.ranges.map(o  => { 
+					      	return typeof this.props.selected !== "undefined" 
+					      		&& this.props.selected[1] === o ? '#e40613' : '#009fe3'
+					       }),
+				          backgroundColor: this.state.ranges.map(o  => { 
+					      	return typeof this.props.selected !== "undefined" 
+					      		&& this.props.selected[1] === o ? '#fed7da' : "#bcebff" 
+					       }),
+					  }],
+					}} 
+					options={{
+						legend: {
+					        display: false
+					    },
+						scales: {
+						    yAxes: [
+						      {
+						        ticks: {
+						          beginAtZero: true,
+						        },
+						      },
+						    ],
+						  },
+					}}
+				/>
+			</div>
         );
     }
 }

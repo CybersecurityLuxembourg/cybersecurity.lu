@@ -1,4 +1,5 @@
 import React from "react";
+import './BarActorAge.css';
 import {Bar} from 'react-chartjs-2';
 import {getPastDate} from '../../utils/date';
 
@@ -36,37 +37,41 @@ export default class BarActorAge extends React.Component {
 
     render() {
         return (
-            <Bar 
-				data={{
-				  labels: this.state.labels,
-				  datasets: [{
-				      data: this.getData(),
-				      borderWidth: 1,
-				      borderColor: this.state.ranges.map(o  => { 
-				      	return typeof this.props.selected !== "undefined" 
-				      		&& this.props.selected[0] === o ? '#e40613' : '#009fe3'
-				       }),
-			          backgroundColor: this.state.ranges.map(o  => { 
-				      	return typeof this.props.selected !== "undefined" 
-				      		&& this.props.selected[0] === o ? '#fed7da' : "#bcebff" 
-				       }),
-				  }],
-				}} 
-				options={{
-					legend: {
-				        display: false
-				    },
-					scales: {
-					    yAxes: [
-					      {
-					        ticks: {
-					          beginAtZero: true,
-					        },
-					      },
-					    ],
-					},
-				}}
-			/>
+        	<div className="BarActorAge">
+	            <Bar 
+					data={{
+					  labels: this.state.labels,
+					  datasets: [{
+					      data: this.getData(),
+					      borderWidth: 1,
+					      borderColor: this.state.ranges.map(o  => { 
+					      	return typeof this.props.selected !== "undefined" 
+					      		&& this.props.selected[0] === o ? '#e40613' : '#009fe3'
+					       }),
+				          backgroundColor: this.state.ranges.map(o  => { 
+					      	return typeof this.props.selected !== "undefined" 
+					      		&& this.props.selected[0] === o ? '#fed7da' : "#bcebff" 
+					       }),
+					  }],
+					}} 
+					options={{
+						legend: {
+					        display: false
+					    },
+						scales: {
+						    yAxes: [
+						      {
+						        ticks: {
+						          beginAtZero: true,
+						        },
+						      },
+						    ],
+						},
+						fillColor: "#F5DEB3",
+						opacity: 1
+					}}
+				/>
+			</div>
         );
     }
 }

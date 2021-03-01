@@ -10,6 +10,8 @@ import Article from './item/Article';
 import Event from './item/Event';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link } from "react-router-dom";
+import VennActorDistribution from "./chart/VennActorDistribution";
 
 
 export default class PageHome extends React.Component {
@@ -96,18 +98,12 @@ export default class PageHome extends React.Component {
                         showThumbs={false}
                         infiniteLoop={true}
                     >
-                        <div>
-                            <img src="/img/1.jpg" />
-                            <p className="legend">Legend 1</p>
-                        </div>
-                        <div>
-                            <img src="/img/2.jpg" />
-                            <p className="legend">Legend 2</p>
-                        </div>
-                        <div>
-                            <img src="/img/3.jpg" />
-                            <p className="legend">Legend 3</p>
-                        </div>
+                        <Link to="/about">
+                            <div>
+                                <img src="/img/1.png" />
+                                <p className="legend">Legend 1</p>
+                            </div>
+                        </Link>
                     </Carousel>
                 </div>
 
@@ -117,32 +113,9 @@ export default class PageHome extends React.Component {
                     </div>
 
                     <div className="col-md-12">
-                        {this.state.actors !== null ?
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <Analytic
-                                        value={this.state.actors.length}
-                                        desc={"Total actors"}
-                                    />
-                                </div>
-                                <div className="col-md-4">
-                                    <Analytic
-                                        value={this.state.actors.filter(a => a.is_cybersecurity_core_business).length}
-                                        desc={"With CS as a core business"}
-                                    />
-                                </div>
-                                <div className="col-md-4">
-                                    <Analytic
-                                        value={this.state.actors.filter(a => a.is_startup).length}
-                                        desc={"Startups"}
-                                    />
-                                </div>
-                            </div>
-                        :
-                            <Loading
-                                height={200}
-                            />
-                        }
+                        <VennActorDistribution
+                            actors={this.state.actors !== null ? this.state.actors : []}
+                        />
                     </div>
 
                     <div className={"col-md-12"}>

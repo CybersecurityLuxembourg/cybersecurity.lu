@@ -9,6 +9,7 @@
 #8fddff : hovered light blue;
 #ffa8b0 : hovered light red
 rgba(0, 159, 227, 0.05) : transparent light blue (usually for background)
+rgba(0, 159, 227, 0.05) : transparent light red (usually for background)
 grey
 lightgrey
 
@@ -405,4 +406,10 @@ textarea {
 	border:solid 1px #e40613;
 	border-radius: 25px;
 	padding: 0px 7px;
+}
+
+/* CANVA */ 
+
+canvas {
+   	background: "#fff" !important;
 }

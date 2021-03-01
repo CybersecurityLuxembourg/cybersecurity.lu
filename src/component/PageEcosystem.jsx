@@ -15,6 +15,7 @@ import BarWorkforceRange from "./chart/BarWorkforceRange";
 import BarActorAge from "./chart/BarActorAge";
 import CountUp from 'react-countup';
 import {getUrlParameter, dictToURI} from '../utils/url';
+import VennActorDistribution from "./chart/VennActorDistribution";
 
 
 export default class PageEcosystem extends React.Component {
@@ -172,28 +173,11 @@ export default class PageEcosystem extends React.Component {
                     <div className="col-md-12">
                         <h1>Dashboard</h1>
                     </div>
-                    <div className="col-md-12">
+                    <div className="col-md-12 row-spaced">
                         {this.state.actors !== null ?
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <Analytic
-                                        value={this.state.actors.length}
-                                        desc={"Total actors"}
-                                    />
-                                </div>
-                                <div className="col-md-4">
-                                    <Analytic
-                                        value={this.state.actors.filter(a => a.is_cybersecurity_core_business).length}
-                                        desc={"With CS as a core business"}
-                                    />
-                                </div>
-                                <div className="col-md-4">
-                                    <Analytic
-                                        value={this.state.actors.filter(a => a.is_startup).length}
-                                        desc={"Startups"}
-                                    />
-                                </div>
-                            </div>
+                            <VennActorDistribution
+                                actors={this.state.actors !== null ? this.state.actors : []}
+                            />
                         :
                             <Loading
                                 height={400}

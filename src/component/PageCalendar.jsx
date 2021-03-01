@@ -116,7 +116,8 @@ export default class PageCalendar extends React.Component {
                                 }}
                                 localizer={localizer}
                                 style={{ 
-                                    height: 700 
+                                    height: 700,
+                                    backgroundColor: "white"
                                 }}
                                 onSelectEvent={event => this.props.history.push("/calendar/" + event.handle)}
                             />

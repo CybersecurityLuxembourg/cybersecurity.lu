@@ -58,18 +58,18 @@ export default class Menu extends React.Component {
 				                <div className="Menu-description">Cybersecurity events</div>
 				          </Link>
 				      </Nav.Link>
-				      <NavDropdown title="Other" id="nav-dropdown">
-				        <NavDropdown.Item eventKey="4.1">
+				      <Nav.Link eventKey="4.1">
 				            <Link to="/jobs">
 				                <div className="Menu-title">Job market</div>
+				                <div className="Menu-description">Find your next Adventure</div>
 				            </Link>
-				        </NavDropdown.Item>
-				        <NavDropdown.Item eventKey="4.1">
+				        </Nav.Link>
+				        <Nav.Link eventKey="4.1">
 				            <Link to="/about">
-				                <div className="Menu-title">About CYBERLUX</div>
+				                <div className="Menu-title">About</div>
+				                <div className="Menu-description">What is CYBERLUX</div>
 				            </Link>
-				        </NavDropdown.Item>
-				      </NavDropdown>
+				        </Nav.Link>
 				      {!this.props.logged || this.props.email === null ?
 						    <Nav.Link>
 						        <Link to="/login">
