@@ -113,9 +113,15 @@ export default class PageHome extends React.Component {
                     </div>
 
                     <div className="col-md-12">
-                        <VennActorDistribution
-                            actors={this.state.actors !== null ? this.state.actors : []}
-                        />
+                        {this.state.news !== null ?
+                            <VennActorDistribution
+                                actors={this.state.actors !== null ? this.state.actors : []}
+                            />
+                        :
+                            <Loading
+                                height={400}
+                            />
+                        }
                     </div>
 
                     <div className={"col-md-12"}>

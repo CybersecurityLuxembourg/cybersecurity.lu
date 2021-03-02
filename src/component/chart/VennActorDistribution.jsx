@@ -46,42 +46,41 @@ export default class VennActorDistribution extends React.Component {
 			},
         ];
 
-        const width = 600;
-		const height = 600;
-
     	var div = d3.select("#venn")
-		div.datum(sets).call(venn.VennDiagram().styled(false).height(height).width(width));
-		div.select("svg").attr("width", 600 + 'px')
-  		div.select("svg").attr("height", 600 + 'px');
-		div.attr("viewBox", "0 0 600 600");
+
+    	var targetWidth = div.node().getBoundingClientRect().width;
+		targetWidth = targetWidth < 600 ? 600 : targetWidth;
+
+		div.datum(sets).call(venn.VennDiagram().styled(false).height(targetWidth).width(targetWidth));
 
 		var tooltip = d3.select("body").append("div")
 		    .attr("class", "venntooltip");
 
 		const vennDiv = document.getElementById("venn");
 		const vennSvg = vennDiv.children[0];
-		vennSvg.setAttribute("preserveAspectRatio", "xMaxYMin meet");
-		vennSvg.setAttribute("class", "svg-content-responsive");
+
+		vennDiv.setAttribute("class", "svg-container oneten-height");
 		vennSvg.removeAttribute("height");
 		vennSvg.removeAttribute("width");
-		vennSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+		vennSvg.setAttribute("viewBox", `0 0 ${targetWidth} ${targetWidth}`);
 		vennSvg.setAttribute("preserveAspectRatio", "xMaxYMin meet");
-		vennSvg.setAttribute("class", "svg-content-responsive");
 
 		div.selectAll("g");
 
 		d3.select(window)
 			.on("resize", function() {
 			    var targetWidth = div.node().getBoundingClientRect().width;
-			    div.attr("width", targetWidth);
-			    div.attr("height", targetWidth);
+			    targetWidth = targetWidth < 600 ? 600 : targetWidth;
+				vennSvg.setAttribute("viewBox", `0 0 ${targetWidth} ${targetWidth}`);
 			});;
 	}
 
     render() {
         return (
         	<div className="VennActorDistribution">
-		        <div id="venn"/>
+        		<div className="VennActorDistribution-wrapped">
+		        	<div id="venn"/>
+		        </div>
 			</div>
         );
     }

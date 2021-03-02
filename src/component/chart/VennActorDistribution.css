@@ -1,9 +1,11 @@
 
-.VennActorDistribution #venn {
+.VennActorDistribution {
 	text-align: center;
 }
 
-.VennActorDistribution #venn {
+.VennActorDistribution .VennActorDistribution-wrapped {
+	margin: 0 auto;
+	max-width: 600px;
 }
 
 [data-venn-sets="Actors"] { 
@@ -64,8 +66,6 @@
 }
 
 .VennActorDistribution #venn svg {
-    width: 600px;
-    height: 600px;
 }
 
 .VennActorDistribution #venn svg text {
