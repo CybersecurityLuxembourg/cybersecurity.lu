@@ -1,15 +1,13 @@
-import React, { useRef } from 'react';
-import './DialogConfirmation.css'
+import React, { useRef } from "react";
+import "./DialogConfirmation.css";
 import Popup from "reactjs-popup";
 
-
 export default class DialogConfirmation extends React.Component {
-
 	constructor(props) {
 		super(props);
-		
+
 		this.afterConfirmation = this.afterConfirmation.bind(this);
-		this.cancel = this.cancel.bind(this)
+		this.cancel = this.cancel.bind(this);
 
 		this.state = {
 			open: false,
@@ -30,7 +28,7 @@ export default class DialogConfirmation extends React.Component {
 	}
 
 	render() {
-		return(
+		return (
 			<Popup
 				ref
 				trigger={this.props.trigger}
@@ -61,5 +59,3 @@ export default class DialogConfirmation extends React.Component {
 		);
 	}
 }
-
-

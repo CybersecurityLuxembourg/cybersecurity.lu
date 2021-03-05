@@ -1,71 +1,69 @@
-import React from 'react';
-import './PageCompany.css';
-import Lock from "./box/Lock";
-import {getRequest} from '../utils/request';
-import {getApiURL} from '../utils/env';
-import {NotificationManager as nm} from 'react-notifications';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import React from "react";
+import "./PageCompany.css";
+import { NotificationManager as nm } from "react-notifications";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import Loading from "./box/Loading";
-import Chip from './form/Chip';
-import Collapsible from 'react-collapsible';
-import Message from "./box/Message";
-import Article from './item/Article';
-import Company from "./item/Company";
-import FormLine from "./form/FormLine";
-
+import Collapsible from "react-collapsible";
+import Lock from "./box/Lock.jsx";
+import { getRequest } from "../utils/request.jsx";
+import { getApiURL } from "../utils/env.jsx";
+import Loading from "./box/Loading.jsx";
+import Chip from "./form/Chip.jsx";
+import Message from "./box/Message.jsx";
+import Article from "./item/Article.jsx";
+import Company from "./item/Company.jsx";
+import FormLine from "./form/FormLine.jsx";
 
 export default class PageCompany extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.getCompanyContent = this.getCompanyContent.bind(this);
 
 		this.state = {
 			company: null,
-		}
+		};
 	}
 
 	componentDidMount() {
-		this.getCompanyContent()
+		this.getCompanyContent();
 	}
 
 	getCompanyContent() {
-		getRequest.call(this, "public/get_public_company/" + this.props.match.params.id, data => {
+		getRequest.call(this, "public/get_public_company/" + this.props.match.params.id, (data) => {
 			this.setState({
 				company: data,
 			});
-		}, response => {
+		}, (response) => {
 			this.setState({ loading: false });
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
 
 	changeState(field, value) {
-		this.setState({[field]: value});
+		this.setState({ [field]: value });
 	}
 
 	render() {
-		return(
+		return (
 			<div className={"PageCompany page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
 							<Breadcrumb.Item><Link to="/ecosystem">COMPANY</Link></Breadcrumb.Item>
-							{this.state.company !== null && !this.state.loading ?
-							<Breadcrumb.Item><Link to={"/company/" + this.state.company.id}>{this.state.company.name}</Link></Breadcrumb.Item>
+							{this.state.company !== null && !this.state.loading
+								? <Breadcrumb.Item><Link to={"/company/" + this.state.company.id}>{this.state.company.name}</Link></Breadcrumb.Item>
 								: ""}
 						</Breadcrumb>
 					</div>
 				</div>
 
-				{this.state.company !== null ? 
-					<div className="row row-spaced">
+				{this.state.company !== null
+					? <div className="row row-spaced">
 						<div className="col-md-12">
 							<Company
 								info={this.state.company}
@@ -76,7 +74,7 @@ export default class PageCompany extends React.Component {
 								label={"Name"}
 								value={this.state.company.name}
 								disabled={true}
-								onBlur={v => this.saveCompanyValue("name", v)}
+								onBlur={(v) => this.saveCompanyValue("name", v)}
 							/>
 							<FormLine
 								label={"Description"}
@@ -114,8 +112,7 @@ export default class PageCompany extends React.Component {
 							/>
 						</div>
 					</div>
-				: 
-					<Loading
+					: 					<Loading
 						height={400}
 					/>
 				}

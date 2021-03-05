@@ -1,14 +1,12 @@
-import React from 'react';
-import './PrivateSpaceAccount.css';
-import FormLine from '../form/FormLine';
-import Loading from "../box/Loading";
-import {getRequest, postRequest} from '../../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-
+import React from "react";
+import "./PrivateSpaceAccount.css";
+import { NotificationManager as nm } from "react-notifications";
+import FormLine from "../form/FormLine.jsx";
+import Loading from "../box/Loading.jsx";
+import { getRequest, postRequest } from "../../utils/request.jsx";
 
 export default class PrivateSpaceAccount extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.refresh = this.refresh.bind(this);
@@ -18,7 +16,7 @@ export default class PrivateSpaceAccount extends React.Component {
 		this.state = {
 			user: null,
 			hasModification: false,
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -27,45 +25,45 @@ export default class PrivateSpaceAccount extends React.Component {
 
 	refresh() {
 		this.setState({
-			user: null
+			user: null,
 		});
 
-		getRequest.call(this, "privatespace/get_my_user", data => {
+		getRequest.call(this, "privatespace/get_my_user", (data) => {
 			this.setState({
 				user: data,
 			});
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
 
 	save() {
-		let params = {
+		const params = {
 			telephone: this.state.user.telephone,
 			first_name: this.state.user.first_name,
-			last_name: this.state.user.last_name
-		}
+			last_name: this.state.user.last_name,
+		};
 
-		postRequest.call(this, "privatespace/update_my_user", params, response => {
-			this.setState({ 
-				hasModification: false 
+		postRequest.call(this, "privatespace/update_my_user", params, (response) => {
+			this.setState({
+				hasModification: false,
 			});
 			nm.info("The information has been saved");
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
 
 	changeUser(field, value) {
-		let user = _.cloneDeep(this.state.user);
+		const user = _.cloneDeep(this.state.user);
 		user[field] = value;
-		this.setState({ 
-			user: user, 
-			hasModification: true 
+		this.setState({
+			user,
+			hasModification: true,
 		});
 	}
 
@@ -77,8 +75,8 @@ export default class PrivateSpaceAccount extends React.Component {
 						<h2>My account</h2>
 					</div>
 
-					{this.state.user !== null ?
-						<div className="col-md-12">
+					{this.state.user !== null
+						? <div className="col-md-12">
 							<FormLine
 								label={"Email"}
 								value={this.state.user.email}
@@ -87,29 +85,28 @@ export default class PrivateSpaceAccount extends React.Component {
 							<FormLine
 								label={"First name"}
 								value={this.state.user.first_name}
-								onChange={v => this.changeUser("first_name", v)}
+								onChange={(v) => this.changeUser("first_name", v)}
 							/>
 							<FormLine
 								label={"Last name"}
 								value={this.state.user.last_name}
-								onChange={v => this.changeUser("last_name", v)}
+								onChange={(v) => this.changeUser("last_name", v)}
 							/>
 							<FormLine
 								label={"Phone"}
 								type={"phone"}
 								value={this.state.user.telephone}
-								onChange={v => this.changeUser("telephone", v)}
+								onChange={(v) => this.changeUser("telephone", v)}
 							/>
 							<div className="right-buttons">
 								<button
 									onClick={() => this.save()}
 									disabled={!this.state.hasModification}>
-									<i class="far fa-save"/> Save
+									<i className="far fa-save"/> Save
 								</button>
 							</div>
 						</div>
-					: 
-						<Loading
+						: 						<Loading
 							height={300}
 						/>
 					}

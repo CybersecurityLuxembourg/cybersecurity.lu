@@ -1,14 +1,12 @@
-import React from 'react';
-import './PageMap.css';
-import GlobalMap from './map/GlobalMap';
-import {getRequest} from '../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Loading from "./box/Loading";
-
+import React from "react";
+import "./PageMap.css";
+import { NotificationManager as nm } from "react-notifications";
+import GlobalMap from "./map/GlobalMap.jsx";
+import { getRequest } from "../utils/request.jsx";
+import Loading from "./box/Loading.jsx";
 
 export default class PageMap extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.state = {
@@ -17,7 +15,7 @@ export default class PageMap extends React.Component {
 			civilSociety: null,
 			jobPlatforms: null,
 			geolocations: null,
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -25,26 +23,26 @@ export default class PageMap extends React.Component {
 	}
 
 	getCompanies() {
-		getRequest.call(this, "public/get_public_companies", data => {
+		getRequest.call(this, "public/get_public_companies", (data) => {
 			this.setState({
-				actors: data.filter(c => c.type === "ACTOR"),
-				publicEntities: data.filter(c => c.type === "PUBLIC SECTOR"),
-				civilSociety: data.filter(c => c.type === "CIVIL SOCIETY"),
-				jobPlatforms: data.filter(c => c.type === "JOB PLATFORM"),
+				actors: data.filter((c) => c.type === "ACTOR"),
+				publicEntities: data.filter((c) => c.type === "PUBLIC SECTOR"),
+				civilSociety: data.filter((c) => c.type === "CIVIL SOCIETY"),
+				jobPlatforms: data.filter((c) => c.type === "JOB PLATFORM"),
 			}, () => {
-				getRequest.call(this, "public/get_public_company_geolocations", data => {
+				getRequest.call(this, "public/get_public_company_geolocations", (data) => {
 					this.setState({
 						geolocations: data,
 					});
-				}, response => {
+				}, (response) => {
 					nm.warning(response.statusText);
-				}, error => {
+				}, (error) => {
 					nm.error(error.message);
-				})
+				});
 			});
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
@@ -55,9 +53,9 @@ export default class PageMap extends React.Component {
 				<GlobalMap
 					addresses={this.state.geolocations}
 					companies={this.state.actors !== null ? this.state.actors.concat(
-						this.state.publicEntities, 
-						this.state.civilSociety, 
-						this.state.jobPlatforms
+						this.state.publicEntities,
+						this.state.civilSociety,
+						this.state.jobPlatforms,
 					) : []}
 					fullpage={true}
 				/>

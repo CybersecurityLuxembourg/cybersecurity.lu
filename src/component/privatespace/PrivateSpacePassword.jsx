@@ -1,17 +1,15 @@
-import React from 'react';
-import './PrivateSpacePassword.css';
-import FormLine from '../form/FormLine';
-import Loading from "../box/Loading";
-import Info from "../box/Info";
-import {postRequest} from '../../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Company from "../item/Company";
-import {validatePassword} from '../../utils/re';
-
+import React from "react";
+import "./PrivateSpacePassword.css";
+import { NotificationManager as nm } from "react-notifications";
+import FormLine from "../form/FormLine.jsx";
+import Loading from "../box/Loading.jsx";
+import Info from "../box/Info.jsx";
+import { postRequest } from "../../utils/request.jsx";
+import Company from "../item/Company.jsx";
+import { validatePassword } from "../../utils/re.jsx";
 
 export default class PrivateSpacePassword extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.changePassword = this.changePassword.bind(this);
@@ -20,7 +18,7 @@ export default class PrivateSpacePassword extends React.Component {
 			password: null,
 			newPassword: null,
 			newPasswordConfirmation: null,
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -30,21 +28,21 @@ export default class PrivateSpacePassword extends React.Component {
 	}
 
 	changePassword() {
-		let params = {
+		const params = {
 			password: this.state.password,
-			new_password: this.state.newPassword
-		}
+			new_password: this.state.newPassword,
+		};
 
-		postRequest.call(this, "account/change_password", params, data => {
+		postRequest.call(this, "account/change_password", params, (data) => {
 			this.setState({
 				password: null,
 				newPassword: null,
 				newPasswordConfirmation: null,
 			});
 			nm.info("The password has been changed");
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
@@ -57,12 +55,12 @@ export default class PrivateSpacePassword extends React.Component {
 						<h2>Change password</h2>
 					</div>
 
-					{this.props.id !== null ?
-						<div className="col-md-12">
+					{this.props.id !== null
+						? <div className="col-md-12">
 							<FormLine
 								label={"Current password"}
 								value={this.state.password}
-								onChange={v => this.setState({ "password": v })}
+								onChange={(v) => this.setState({ password: v })}
 								format={validatePassword}
 								type={"password"}
 							/>
@@ -81,30 +79,29 @@ export default class PrivateSpacePassword extends React.Component {
 							<FormLine
 								label={"New password"}
 								value={this.state.newPassword}
-								onChange={v => this.setState({ "newPassword": v })}
+								onChange={(v) => this.setState({ newPassword: v })}
 								format={validatePassword}
 								type={"password"}
 							/>
 							<FormLine
 								label={"New password confirmation"}
 								value={this.state.newPasswordConfirmation}
-								onChange={v => this.setState({ "newPasswordConfirmation": v })}
+								onChange={(v) => this.setState({ newPasswordConfirmation: v })}
 								format={validatePassword}
 								type={"password"}
 							/>
 							<div className="right-buttons">
 								<button
 									onClick={() => this.changePassword()}
-									disabled={!validatePassword(this.state.password) ||
-										!validatePassword(this.state.newPassword) ||
-										!validatePassword(this.state.newPasswordConfirmation) ||
-										this.state.newPassword !== this.state.newPasswordConfirmation}>
+									disabled={!validatePassword(this.state.password)
+										|| !validatePassword(this.state.newPassword)
+										|| !validatePassword(this.state.newPasswordConfirmation)
+										|| this.state.newPassword !== this.state.newPasswordConfirmation}>
 									Change password
 								</button>
 							</div>
 						</div>
-					:
-						<Loading
+						:						<Loading
 							height={150}
 						/>
 					}

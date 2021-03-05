@@ -1,20 +1,18 @@
-import React from 'react';
-import './PrivateSpaceRegisterACompany.css';
-import FormLine from '../form/FormLine';
-import Address from '../form/Address';
-import Loading from "../box/Loading";
-import Message from "../box/Message";
-import {getRequest, postRequest} from '../../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Company from "../item/Company";
-import Info from "../box/Info";
-import DialogConfirmation from "../dialog/DialogConfirmation";
-import Collapsible from 'react-collapsible';
-
+import React from "react";
+import "./PrivateSpaceRegisterACompany.css";
+import { NotificationManager as nm } from "react-notifications";
+import Collapsible from "react-collapsible";
+import FormLine from "../form/FormLine.jsx";
+import Address from "../form/Address.jsx";
+import Loading from "../box/Loading.jsx";
+import Message from "../box/Message.jsx";
+import { getRequest, postRequest } from "../../utils/request.jsx";
+import Company from "../item/Company.jsx";
+import Info from "../box/Info.jsx";
+import DialogConfirmation from "../dialog/DialogConfirmation.jsx";
 
 export default class PrivateSpaceRegisterACompany extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.submitCreationRequest = this.submitCreationRequest.bind(this);
@@ -33,51 +31,51 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 				is_cybersecurity_core_business: "Is cybersecurity core business",
 				is_startup: "Is startup",
 				is_targeting_sme: "Is targeting SMEs",
-			}
-		}
+			},
+		};
 	}
 
 	componentDidMount() {
 	}
 
 	submitCreationRequest() {
-		let info = {
+		const info = {
 			company: this.state.newCompanyForm,
-			addresses: this.state.addresses
-		}
+			addresses: this.state.addresses,
+		};
 
-		let params = {
-			request: "[COMPANY INSERTION]\n\n" + 
-				"The user requests the insertion of this company: \n\n" + 
-				JSON.stringify(info, null, 4)
-		}
+		const params = {
+			request: "[COMPANY INSERTION]\n\n"
+				+ "The user requests the insertion of this company: \n\n"
+				+ JSON.stringify(info, null, 4),
+		};
 
-		postRequest.call(this, "privatespace/add_request", params, response => {
+		postRequest.call(this, "privatespace/add_request", params, (response) => {
 			this.setState({
 				entity: null,
 			});
 			nm.info("The request has been sent and will be reviewed");
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
 
 	updateNewCompany(field, value) {
-		let c = JSON.parse(JSON.stringify(this.state.newCompanyForm));
+		const c = JSON.parse(JSON.stringify(this.state.newCompanyForm));
 		c[field] = value;
-		this.setState({ newCompanyForm : c })
+		this.setState({ newCompanyForm: c });
 	}
 
 	updateAddresses(index, field, value) {
-		let c = JSON.parse(JSON.stringify(this.state.addresses));
+		const c = JSON.parse(JSON.stringify(this.state.addresses));
 		c[index][field] = value;
-		this.setState({ addresses : c })
+		this.setState({ addresses: c });
 	}
 
 	isFieldCompleted(v) {
-		return v !== undefined && v.length > 0
+		return v !== undefined && v.length > 0;
 	}
 
 	render() {
@@ -94,54 +92,54 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 
 					<div className="col-md-12">
 						<FormLine
-							label={this.state.fields["name"]}
+							label={this.state.fields.name}
 							value={this.state.newCompanyForm.name}
-							onChange={v => this.updateNewCompany("name", v)}
-							format={v => this.isFieldCompleted(v)}
+							onChange={(v) => this.updateNewCompany("name", v)}
+							format={(v) => this.isFieldCompleted(v)}
 						/>
 						<FormLine
-							label={this.state.fields["description"]}
+							label={this.state.fields.description}
 							type={"textarea"}
 							value={this.state.newCompanyForm.description}
-							onChange={v => this.updateNewCompany("description", v)}
+							onChange={(v) => this.updateNewCompany("description", v)}
 						/>
 						<FormLine
-							label={this.state.fields["rscl_number"]}
+							label={this.state.fields.rscl_number}
 							value={this.state.newCompanyForm.rscl_number}
-							onChange={v => this.updateNewCompany("rscl_number", v)}
+							onChange={(v) => this.updateNewCompany("rscl_number", v)}
 						/>
 						<FormLine
-							label={this.state.fields["website"]}
+							label={this.state.fields.website}
 							value={this.state.newCompanyForm.website}
-							onChange={v => this.updateNewCompany("website", v)}
-							format={v => this.isFieldCompleted(v)}
+							onChange={(v) => this.updateNewCompany("website", v)}
+							format={(v) => this.isFieldCompleted(v)}
 						/>
 						<FormLine
-							label={this.state.fields["creation_date"]}
+							label={this.state.fields.creation_date}
 							type={"date"}
 							value={this.state.newCompanyForm.creation_date}
-							onChange={v => this.updateNewCompany("creation_date", v)}
-							format={v => this.isFieldCompleted(v)}
+							onChange={(v) => this.updateNewCompany("creation_date", v)}
+							format={(v) => this.isFieldCompleted(v)}
 						/>
 						<FormLine
-							label={this.state.fields["is_cybersecurity_core_business"]}
+							label={this.state.fields.is_cybersecurity_core_business}
 							type={"checkbox"}
 							value={this.state.newCompanyForm.is_cybersecurity_core_business}
-							onChange={v => this.updateNewCompany("is_cybersecurity_core_business", v)}
+							onChange={(v) => this.updateNewCompany("is_cybersecurity_core_business", v)}
 							background={false}
 						/>
 						<FormLine
-							label={this.state.fields["is_startup"]}
+							label={this.state.fields.is_startup}
 							type={"checkbox"}
 							value={this.state.newCompanyForm.is_startup}
-							onChange={v => this.updateNewCompany("is_startup", v)}
+							onChange={(v) => this.updateNewCompany("is_startup", v)}
 							background={false}
 						/>
 						<FormLine
-							label={this.state.fields["is_targeting_sme"]}
+							label={this.state.fields.is_targeting_sme}
 							type={"checkbox"}
 							value={this.state.newCompanyForm.is_targeting_sme}
-							onChange={v => this.updateNewCompany("is_targeting_sme", v)}
+							onChange={(v) => this.updateNewCompany("is_targeting_sme", v)}
 							background={false}
 						/>
 						<br/>
@@ -166,12 +164,12 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 									<button
 										className={"blue-background"}
 										disabled={
-											!this.isFieldCompleted(this.state.newCompanyForm.name) ||
-											!this.isFieldCompleted(this.state.newCompanyForm.website) ||
-											!this.isFieldCompleted(this.state.newCompanyForm.creation_date) ||
-											!this.isFieldCompleted(this.state.addresses[0].address_1) ||
-											!this.isFieldCompleted(this.state.addresses[0].city) ||
-											!this.isFieldCompleted(this.state.addresses[0].country)
+											!this.isFieldCompleted(this.state.newCompanyForm.name)
+											|| !this.isFieldCompleted(this.state.newCompanyForm.website)
+											|| !this.isFieldCompleted(this.state.newCompanyForm.creation_date)
+											|| !this.isFieldCompleted(this.state.addresses[0].address_1)
+											|| !this.isFieldCompleted(this.state.addresses[0].city)
+											|| !this.isFieldCompleted(this.state.addresses[0].country)
 										}
 									>
 										<i className="fas fa-save"/> Request registration

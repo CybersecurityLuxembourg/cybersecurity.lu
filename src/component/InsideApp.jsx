@@ -1,31 +1,29 @@
 import React from "react";
 import "./InsideApp.css";
-import {NotificationManager as nm} from 'react-notifications';
-import GovBar from "./bar/GovBar";
-import Menu from "./bar/Menu";
-import Footer from "./bar/Footer";
-import PageHome from "./PageHome";
-import PageNews from "./PageNews";
-import PageAbout from "./PageAbout";
-import PageEcosystem from "./PageEcosystem";
-import PageJobs from "./PageJobs";
-import PageJob from "./PageJob";
-import PageCalendar from "./PageCalendar";
-import PageArticle from "./PageArticle";
-import PageCompany from "./PageCompany";
-import PageEvent from "./PageEvent";
-import PageMap from "./PageMap";
-import PageLogin from "./PageLogin";
-import PagePrivateSpace from "./PagePrivateSpace";
+import { NotificationManager as nm } from "react-notifications";
 import { Route, Switch } from "react-router-dom";
-import Particles from 'react-particles-js';
-import { getRequest } from '../utils/request';
-import { getApiURL } from "../utils/env";
-import { withCookies } from 'react-cookie';
-
+import Particles from "react-particles-js";
+import { withCookies } from "react-cookie";
+import GovBar from "./bar/GovBar.jsx";
+import Menu from "./bar/Menu.jsx";
+import Footer from "./bar/Footer.jsx";
+import PageHome from "./PageHome.jsx";
+import PageNews from "./PageNews.jsx";
+import PageAbout from "./PageAbout.jsx";
+import PageEcosystem from "./PageEcosystem.jsx";
+import PageJobs from "./PageJobs.jsx";
+import PageJob from "./PageJob.jsx";
+import PageCalendar from "./PageCalendar.jsx";
+import PageArticle from "./PageArticle.jsx";
+import PageCompany from "./PageCompany.jsx";
+import PageEvent from "./PageEvent.jsx";
+import PageMap from "./PageMap.jsx";
+import PageLogin from "./PageLogin.jsx";
+import PagePrivateSpace from "./PagePrivateSpace.jsx";
+import { getRequest } from "../utils/request.jsx";
+import { getApiURL } from "../utils/env.jsx";
 
 export default class InsideApp extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -35,45 +33,45 @@ export default class InsideApp extends React.Component {
 
 		this.state = {
 			logged: false,
-			email: null
-		}
+			email: null,
+		};
 	}
 
 	componentWillMount() {
-		getRequest.call(this, "privatespace/is_logged", data => {
+		getRequest.call(this, "privatespace/is_logged", (data) => {
 			this.setState({
 				logged: data.is_logged,
-				email: data.email
+				email: data.email,
 			});
-		}, response => {
-		}, error => {
+		}, (response) => {
+		}, (error) => {
 		});
 	}
 
 	login(token, email) {
-		//TODO
-		//this.props.cookies.set('access_token_cookie', token/*, { httpOnly: true }*/);
-		window.token = token
+		// TODO
+		// this.props.cookies.set('access_token_cookie', token/*, { httpOnly: true }*/);
+		window.token = token;
 
-		this.setState({ 
+		this.setState({
 			logged: true,
-			email: email
-		})
+			email,
+		});
 	}
 
 	logout() {
-		//TODO
-		//this.props.cookies.remove('access_token_cookie');
-		window.token = undefined
+		// TODO
+		// this.props.cookies.remove('access_token_cookie');
+		window.token = undefined;
 
-		this.setState({ 
+		this.setState({
 			logged: false,
-			email: null
-		})
+			email: null,
+		});
 	}
 
 	changeState(field, value) {
-		this.setState({[field]: value});
+		this.setState({ [field]: value });
 	}
 
 	render() {
@@ -85,50 +83,50 @@ export default class InsideApp extends React.Component {
 					email={this.state.email}
 				/>
 				<div id="InsideApp-content">
-					<Particles 
+					<Particles
 						params={{
-							"particles": {
-								"number": {
-									"value": 50
+							particles: {
+								number: {
+									value: 50,
 								},
-								"size": {
-									"value": 4
+								size: {
+									value: 4,
 								},
-								"color": {
-									"value": ["#009fe3", "#e40613"]
+								color: {
+									value: ["#009fe3", "#e40613"],
 								},
-								"shape": {
-								  "type": "images",
-								  "stroke": {
-									"width": 0,
-									"color": "black"
+								shape: {
+								  type: "images",
+								  stroke: {
+										width: 0,
+										color: "black",
 								  },
-								  "images": [
-									{
-									  "src": "/favicon.ico",
-									  "width": 1000,
-									  "height": 1000
-									},
-								  ]
+								  images: [
+										{
+									  src: "/favicon.ico",
+									  width: 1000,
+									  height: 1000,
+										},
+								  ],
 								},
-								"move": {
-								  "enable": true,
-								  "speed": 0.2,
+								move: {
+								  enable: true,
+								  speed: 0.2,
 								},
-								"opacity": {
+								opacity: {
 									value: 0.1,
 									anim: {
-										enable: false
-									}
+										enable: false,
+									},
 								},
-								"line_linked": {
-								  "enable": true,
-								  "distance": 150,
-								  "color": {
-									"value": "#000000"
+								line_linked: {
+								  enable: true,
+								  distance: 150,
+								  color: {
+										value: "#000000",
 								  },
-								  "opacity": 0.1,
-								  "width": 1
+								  opacity: 0.1,
+								  width: 1,
 								},
 							},
 						}}
@@ -145,17 +143,15 @@ export default class InsideApp extends React.Component {
 						<Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
 						<Route path="/jobs" render={(props) => <PageJobs {...props} />}/>
 						<Route path="/about" render={(props) => <PageAbout {...props} />}/>
-						<Route path="/login" render={(props) => 
-							<PageLogin 
-								login={this.login}
-								{...props} 
-							/>}
+						<Route path="/login" render={(props) => <PageLogin
+							login={this.login}
+							{...props}
+						/>}
 						/>
-						<Route path="/privatespace" render={(props) => 
-							<PagePrivateSpace 
-								logout={this.logout}
-								{...props} 
-							/>}
+						<Route path="/privatespace" render={(props) => <PagePrivateSpace
+							logout={this.logout}
+							{...props}
+						/>}
 						/>
 
 						<Route path="/map" render={(props) => <PageMap {...props} />}/>

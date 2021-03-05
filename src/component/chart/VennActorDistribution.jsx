@@ -1,59 +1,57 @@
 import React from "react";
-import './VennActorDistribution.css';
+import "./VennActorDistribution.css";
 import * as d3 from "d3";
-import * as venn from 'venn.js';
-
+import * as venn from "venn.js";
 
 export default class VennActorDistribution extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.state = {
-		}
+		};
 	}
 
 	componentDidUpdate() {
-		var sets = [ 
+		const sets = [
 			{
-				sets: ['Actors'], 
+				sets: ["Actors"],
 				size: this.props.actors.length,
-				label: this.props.actors.length + " Actors"
-			}, 
-			{
-				sets: ['Startup'], 
-				size: this.props.actors.filter(a => a.is_startup).length,
-				label: this.props.actors.filter(a => a.is_startup).length + " Startups"
+				label: this.props.actors.length + " Actors",
 			},
 			{
-				sets: ['Actors', 'Startup'], 
-				size: this.props.actors.filter(a => a.is_startup).length
+				sets: ["Startup"],
+				size: this.props.actors.filter((a) => a.is_startup).length,
+				label: this.props.actors.filter((a) => a.is_startup).length + " Startups",
 			},
 			{
-				sets: ['Has cybersecurity as a core business'], 
-				size: this.props.actors.filter(a => a.is_cybersecurity_core_business).length,
-				label: this.props.actors.filter(a => a.is_cybersecurity_core_business).length
-					+ " with cybersecurity as a core business"
+				sets: ["Actors", "Startup"],
+				size: this.props.actors.filter((a) => a.is_startup).length,
 			},
 			{
-				sets: ['Actors', 'Has cybersecurity as a core business'], 
-				size: this.props.actors.filter(a => a.is_cybersecurity_core_business).length
+				sets: ["Has cybersecurity as a core business"],
+				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length,
+				label: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length
+					+ " with cybersecurity as a core business",
 			},
 			{
-				sets: ['Actors', 'Has cybersecurity as a core business', 'Startup'], 
-				size: this.props.actors.filter(a => a.is_cybersecurity_core_business && a.is_startup).length,
-				label: "" + this.props.actors.filter(a => a.is_cybersecurity_core_business && a.is_startup).length
+				sets: ["Actors", "Has cybersecurity as a core business"],
+				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length,
+			},
+			{
+				sets: ["Actors", "Has cybersecurity as a core business", "Startup"],
+				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
+				label: "" + this.props.actors.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
 			},
 		];
 
-		var div = d3.select("#venn")
+		const div = d3.select("#venn");
 
-		var targetWidth = div.node().getBoundingClientRect().width;
+		let targetWidth = div.node().getBoundingClientRect().width;
 		targetWidth = targetWidth < 600 ? 600 : targetWidth;
 
 		div.datum(sets).call(venn.VennDiagram().styled(false).height(targetWidth).width(targetWidth));
 
-		var tooltip = d3.select("body").append("div")
+		const tooltip = d3.select("body").append("div")
 			.attr("class", "venntooltip");
 
 		const vennDiv = document.getElementById("venn");
@@ -68,11 +66,11 @@ export default class VennActorDistribution extends React.Component {
 		div.selectAll("g");
 
 		d3.select(window)
-			.on("resize", function() {
-				var targetWidth = div.node().getBoundingClientRect().width;
+			.on("resize", () => {
+				let targetWidth = div.node().getBoundingClientRect().width;
 				targetWidth = targetWidth < 600 ? 600 : targetWidth;
 				vennSvg.setAttribute("viewBox", "0 0 " + targetWidth + " " + targetWidth);
-			});;
+			});
 	}
 
 	render() {

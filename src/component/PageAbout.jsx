@@ -1,22 +1,19 @@
-import React from 'react';
-import './PageAbout.css';
-import Lock from "./box/Lock";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import React from "react";
+import "./PageAbout.css";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-
+import Lock from "./box/Lock.jsx";
 
 export default class PageAbout extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
-
 		this.state = {
-		}
+		};
 	}
 
 	render() {
-		return(
+		return (
 			<div className={"PageAbout page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
@@ -65,11 +62,11 @@ export default class PageAbout extends React.Component {
 					<div className="col-md-3">
 						<h2>HCPN</h2>
 						<div className={"centered"}>
-							<a 
-								href="https://hcpn.gouvernement.lu/fr.html" 
-								target="_blank" 
-								title="About" 
-								class="text-capitalize">
+							<a
+								href="https://hcpn.gouvernement.lu/fr.html"
+								target="_blank"
+								title="About"
+								className="text-capitalize">
 								<img
 									src="img/hcpn-logo.png"
 								/>
@@ -78,22 +75,22 @@ export default class PageAbout extends React.Component {
 						<div>
 							<p>As coordinator of the national cybersecurity strategy, HCPN drives the initiative by integrating it into the national cybersecurity strategy.</p>
 						</div>
-						<a 
-							href="https://hcpn.gouvernement.lu/fr.html" 
-							target="_blank" 
-							title="HCPN" 
-							class="text-capitalize">
+						<a
+							href="https://hcpn.gouvernement.lu/fr.html"
+							target="_blank"
+							title="HCPN"
+							className="text-capitalize">
 							Visit website
 						</a>
 					</div>
 					<div className="col-md-3">
 						<h2>LUXINNOVATION</h2>
 						<div className={"centered"}>
-							<a 
-								href="https://www.luxinnovation.lu/" 
-								target="_blank" 
-								title="HCPN" 
-								class="text-capitalize">
+							<a
+								href="https://www.luxinnovation.lu/"
+								target="_blank"
+								title="HCPN"
+								className="text-capitalize">
 								<img
 									src="img/luxinnovation-logo.jpg"
 								/>
@@ -102,22 +99,22 @@ export default class PageAbout extends React.Component {
 						<div>
 							<p>Luxinnovation brings into the project its expertise in terms of market intelligence and ecosystem promotion.</p>
 						</div>
-						<a 
-							href="https://www.luxinnovation.lu/" 
-							target="_blank" 
-							title="About" 
-							class="text-capitalize">
+						<a
+							href="https://www.luxinnovation.lu/"
+							target="_blank"
+							title="About"
+							className="text-capitalize">
 							Visit website
 						</a>
 					</div>
 					<div className="col-md-3">
 						<h2>SECURITYMADEIN.LU</h2>
 						<div className={"centered"}>
-							<a 
-								href="https://securitymadein.lu/" 
-								target="_blank" 
-								title="LUXXINOVATION" 
-								class="text-capitalize">
+							<a
+								href="https://securitymadein.lu/"
+								target="_blank"
+								title="LUXXINOVATION"
+								className="text-capitalize">
 								<img
 									src="img/secin-logo.png"
 								/>
@@ -126,12 +123,12 @@ export default class PageAbout extends React.Component {
 						<div>
 							<p>The cybersecurity agency for the Luxembourg economy and municipalities will be in charge of the overall coordination of the initiative.</p>
 						</div>
-						<a 
+						<a
 							className="right-button"
-							href="https://securitymadein.lu/" 
-							target="_blank" 
-							title="SECURITYMADEIN.LU" 
-							class="text-capitalize">
+							href="https://securitymadein.lu/"
+							target="_blank"
+							title="SECURITYMADEIN.LU"
+							className="text-capitalize">
 							Visit website
 						</a>
 					</div>

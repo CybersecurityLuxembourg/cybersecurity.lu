@@ -1,37 +1,34 @@
-import React from 'react';
-import './PagePrivateSpace.css';
-import {NotificationManager as nm} from 'react-notifications';
-import Lock from "./box/Lock";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import React from "react";
+import "./PagePrivateSpace.css";
+import { NotificationManager as nm } from "react-notifications";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import { getRequest } from '../utils/request';
-import Tab from './tab/Tab';
-import PrivateSpaceAccount from './privatespace/PrivateSpaceAccount';
-import PrivateSpaceMyCompanies from './privatespace/PrivateSpaceMyCompanies';
-import PrivateSpaceRegisterACompany from './privatespace/PrivateSpaceRegisterACompany';
-import PrivateSpaceRequest from './privatespace/PrivateSpaceRequest';
-import PrivateSpacePassword from './privatespace/PrivateSpacePassword';
-
+import Lock from "./box/Lock.jsx";
+import { getRequest } from "../utils/request.jsx";
+import Tab from "./tab/Tab.jsx";
+import PrivateSpaceAccount from "./privatespace/PrivateSpaceAccount.jsx";
+import PrivateSpaceMyCompanies from "./privatespace/PrivateSpaceMyCompanies.jsx";
+import PrivateSpaceRegisterACompany from "./privatespace/PrivateSpaceRegisterACompany.jsx";
+import PrivateSpaceRequest from "./privatespace/PrivateSpaceRequest.jsx";
+import PrivateSpacePassword from "./privatespace/PrivateSpacePassword.jsx";
 
 export default class PagePrivateSpace extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.logout = this.logout.bind(this);
 
 		this.state = {
-		}
+		};
 	}
 
 	componentDidMount() {
-		getRequest.call(this, "privatespace/is_logged", data => {
-			if (data["is_logged"] !== true)
-				this.props.history.push("/login");
-		}, response => {
+		getRequest.call(this, "privatespace/is_logged", (data) => {
+			if (data.is_logged !== true) this.props.history.push("/login");
+		}, (response) => {
 			nm.warning(response.statusText);
 			this.props.history.push("/login");
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
@@ -56,7 +53,7 @@ export default class PagePrivateSpace extends React.Component {
 				<div className="PagePrivateSpace-buttons right-buttons">
 					<button
 						onClick={() => this.logout()}>
-						<i class="fas fa-sign-out-alt"/> Log out
+						<i className="fas fa-sign-out-alt"/> Log out
 					</button>
 				</div>
 
@@ -68,21 +65,20 @@ export default class PagePrivateSpace extends React.Component {
 						/>,
 						<PrivateSpaceMyCompanies
 							id={this.props.id}
-						/>, 
+						/>,
 						null,
 						<PrivateSpaceRegisterACompany
 							id={this.props.id}
-						/>, 
+						/>,
 						<PrivateSpaceRequest
 							id={this.props.id}
 						/>,
 						null,
 						<PrivateSpacePassword
 							id={this.props.id}
-						/>
+						/>,
 					]}
 				/>
-
 			</div>
 		);
 	}

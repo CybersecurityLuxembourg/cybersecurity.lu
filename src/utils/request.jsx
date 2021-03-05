@@ -1,4 +1,4 @@
-import { getApiURL } from "./env";
+import { getApiURL } from "./env.jsx";
 
 export async function getRequest(url, callback, catchBadResponse, catchError) {
 	fetch(getApiURL() + url, {
@@ -9,25 +9,25 @@ export async function getRequest(url, callback, catchBadResponse, catchError) {
 			credentials: "include",
 			pragma: "no-cache",
 			"cache-control": "no-cache",
-		})
-	}).then(response => {
+		}),
+	}).then((response) => {
 		if (response.status === 200) {
 			return response.json();
-		} else if (response.status === 403) {
+		} if (response.status === 403) {
 			window.location.replace("/?status=expiredSession");
+		} else if (catchBadResponse != null) {
+			catchBadResponse(response);
 		} else {
-			if (catchBadResponse != null) {
-				catchBadResponse(response);
-			} else {
-				this.props.alert.error(response.statusText);
-			}
+			this.props.alert.error(response.statusText);
 		}
-	}).then(jsonBody => {
-		if (typeof jsonBody !== "undefined")
+		return null;
+	}).then((jsonBody) => {
+		if (typeof jsonBody !== "undefined") {
 			callback(jsonBody);
-	}).catch(error => {
+		}
+	}).catch((error) => {
 		catchError(error);
-	})
+	});
 }
 
 export async function getBlobRequest(url, callback, catchBadResponse, catchError) {
@@ -39,26 +39,25 @@ export async function getBlobRequest(url, callback, catchBadResponse, catchError
 			credentials: "include",
 			pragma: "no-cache",
 			"cache-control": "no-cache",
-		})
-	}).then(response => {
+		}),
+	}).then((response) => {
 		if (response.status === 200) {
 			return response.blob();
-		} else if (response.status === 403) {
+		} if (response.status === 403) {
 			window.location.replace("/?status=expiredSession");
+		} else if (catchBadResponse != null) {
+			catchBadResponse(response);
 		} else {
-			if (catchBadResponse != null) {
-				catchBadResponse(response);
-			} else {
-				this.props.alert.error(response.statusText);
-			}
+			this.props.alert.error(response.statusText);
 		}
-	}).then(blob => {
+		return null;
+	}).then((blob) => {
 		if (typeof blob !== "undefined") {
 			callback(blob);
 		}
-	}).catch(error => {
+	}).catch((error) => {
 		catchError(error);
-	})
+	});
 }
 
 export async function postRequest(url, params, callback, catchBadResponse, catchError) {
@@ -69,27 +68,26 @@ export async function postRequest(url, params, callback, catchBadResponse, catch
 			Authorization: "Bearer " + window.token,
 			Accept: "application/json, text/html",
 			"Content-Type": "application/json",
-			credentials: "include"
-		})
-	}).then(response => {
+			credentials: "include",
+		}),
+	}).then((response) => {
 		if (response.status === 200) {
 			return response.json();
-		} else if (response.status === 403 && !url.includes("analytics")) {
+		} if (response.status === 403 && !url.includes("analytics")) {
 			window.location.replace("/?status=expiredSession");
+		} else if (catchBadResponse !== null) {
+			catchBadResponse(response);
 		} else {
-			if (catchBadResponse != null) {
-				catchBadResponse(response);
-			} else {
-				this.props.alert.error(response.statusText);
-			}
+			this.props.alert.error(response.statusText);
 		}
-	}).then(jsonBody => {
+		return null;
+	}).then((jsonBody) => {
 		if (typeof jsonBody !== "undefined") {
 			callback(jsonBody);
 		}
-	}).catch(error => {
+	}).catch((error) => {
 		catchError(error);
-	})
+	});
 }
 
 export async function getForeignRequest(url, callback, catchBadResponse, catchError) {
@@ -111,22 +109,22 @@ export async function getForeignRequest(url, callback, catchBadResponse, catchEr
 			"Access-Control-Allow-Credentials": "true",
 			pragma: "no-cache",
 			"cache-control": "no-cache",
-		}
-	}).then(response => {
+		},
+	}).then((response) => {
 		if (response.status === 200) {
 			return response.json();
-		} else {
-			if (catchBadResponse != null) {
-				catchBadResponse(response);
-			} else {
-				this.props.alert.error(response.statusText);
-			}
 		}
-	}).then(jsonBody => {
+		if (catchBadResponse !== null) {
+			catchBadResponse(response);
+		} else {
+			this.props.alert.error(response.statusText);
+		}
+		return null;
+	}).then((jsonBody) => {
 		if (typeof jsonBody !== "undefined") {
 			callback(jsonBody);
 		}
-	}).catch(error => {
+	}).catch((error) => {
 		catchError(error);
-	})
+	});
 }

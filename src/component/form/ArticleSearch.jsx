@@ -1,34 +1,32 @@
-import React from 'react';
-import './ArticleSearch.css';
-import CheckBox from './CheckBox';
+import React from "react";
+import "./ArticleSearch.css";
+import { NotificationManager as nm } from "react-notifications";
+import CheckBox from "./CheckBox";
 import Chip from "./Chip";
-import FormLine from './FormLine';
-import {getRequest} from '../../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-
+import FormLine from "./FormLine";
+import { getRequest } from "../../utils/request";
 
 export default class ArticleSearch extends React.Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			tags: null
-		}
+			tags: null,
+		};
 	}
 
 	componentDidMount() {
-		this.getTags()
+		this.getTags();
 	}
 
 	getTags() {
-		getRequest.call(this, "public/get_public_taxonomy_values", data => {
+		getRequest.call(this, "public/get_public_taxonomy_values", (data) => {
 			this.setState({
 				tags: data,
 			});
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
@@ -44,7 +42,7 @@ export default class ArticleSearch extends React.Component {
 					<FormLine
 						label={"Titre"}
 						value={this.props.filters.title}
-						onChange={v => this.props.onChange("title", v)}
+						onChange={(v) => this.props.onChange("title", v)}
 						labelWidth={4}
 					/>
 				</div>
@@ -55,9 +53,9 @@ export default class ArticleSearch extends React.Component {
 						type={"multiselect"}
 						value={this.props.filters.taxonomy_values}
 						options={this.state.tags !== null ? this.state.tags
-							.map(v => { return {label: v.category + " - " + v.name, value: v.id}})
+							.map((v) => ({ label: v.category + " - " + v.name, value: v.id }))
 							: []}
-						onChange={v => this.props.onChange("taxonomy_values", v)}
+						onChange={(v) => this.props.onChange("taxonomy_values", v)}
 						disabled={this.state.tags === null}
 						labelWidth={4}
 					/>
@@ -69,7 +67,7 @@ export default class ArticleSearch extends React.Component {
 							className={"blue-background"}
 							onClick={this.props.onSearch !== undefined ? this.props.onSearch : null}
 						>
-							<i class="fas fa-search"/> Filter
+							<i className="fas fa-search"/> Filter
 						</button>
 					</div>
 				</div>
@@ -77,4 +75,3 @@ export default class ArticleSearch extends React.Component {
 		);
 	}
 }
-  

@@ -1,16 +1,13 @@
-import React from 'react';
-import './Tab.css';
-
+import React from "react";
+import "./Tab.css";
 
 export default class Tab extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
-
 		this.state = {
-			selectedMenu: this.props.menu[0]
-		}
+			selectedMenu: this.props.menu[0],
+		};
 	}
 
 	render() {
@@ -21,28 +18,26 @@ export default class Tab extends React.Component {
 						<div className={"row"}>
 							<div className="col-md-2">
 								<div className="Tab-menu">
-									{this.props.menu.map(m => {
+									{this.props.menu.map((m) => {
 										if (m === null) {
-											return <div className={"Tab-menu-el-empty"}/>
-										} else {
-											return (
-												<div 
-													className={"Tab-menu-el " 
-														+ (this.state.selectedMenu === m ? "Tab-menu-el-selected" : "")}
-													onClick={() => this.setState({selectedMenu: m})}>
-													{m}
-												</div>
-											)
+											return <div className={"Tab-menu-el-empty"}/>;
 										}
+										return (
+											<div
+												className={this.state.selectedMenu === m ? "Tab-menu-el Tab-menu-el-selected" : "Tab-menu-el"}
+												onClick={() => this.setState({ selectedMenu: m })}>
+												{ m }
+											</div>
+										);
 									})}
 								</div>
 							</div>
 						</div>
 					</div>
 					<div className="col-md-10 Tab-content">
-						{this.props.menu.indexOf(this.state.selectedMenu) >= 0 ? 
-							this.props.content[this.props.menu.indexOf(this.state.selectedMenu)]
-						: ""}
+						{this.props.menu.indexOf(this.state.selectedMenu) >= 0
+							? this.props.content[this.props.menu.indexOf(this.state.selectedMenu)]
+							: ""}
 					</div>
 				</div>
 			</div>

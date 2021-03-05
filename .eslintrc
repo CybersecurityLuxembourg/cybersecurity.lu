@@ -1,6 +1,6 @@
 {
 	"parser": "babel-eslint",
-	"extends": ["airbnb-base"],
+	"extends": ["airbnb-base", "plugin:react/recommended"],
   	"env": {
     	"node": true,
     	"es6": true,
@@ -12,7 +12,8 @@
     	"indent": [2, "tab"],
       "quotes": [2, "double", { "avoidEscape": true }],
       "no-tabs": 0,
-      "no-plusplus": 0
+      "no-plusplus": 0,
+      "prefer-template": 0
   	},
   	"ignorePatterns": ["/node_modules/*", "/build/*", "/public/*"],
 }

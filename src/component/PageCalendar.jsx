@@ -1,25 +1,24 @@
-import React from 'react';
-import './PageCalendar.css';
-import Loading from "./box/Loading";
-import {getRequest} from '../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Event from './item/Event';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import React from "react";
+import "./PageCalendar.css";
+import { NotificationManager as nm } from "react-notifications";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import Message from "./box/Message";
-import { dictToURI } from "../utils/url";
-import ArticleSearch from './form/ArticleSearch';
-import { Calendar, momentLocalizer  } from 'react-big-calendar';
-import BigCalendar from 'react-big-calendar';
-import SimpleTable from "./table/SimpleTable";
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-const localizer = momentLocalizer(moment)
+import BigCalendar, { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import Loading from "./box/Loading.jsx";
+import { getRequest } from "../utils/request.jsx";
+import Event from "./item/Event.jsx";
+import Message from "./box/Message.jsx";
+import { dictToURI } from "../utils/url.jsx";
+import ArticleSearch from "./form/ArticleSearch.jsx";
 
+import SimpleTable from "./table/SimpleTable";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
+const localizer = momentLocalizer(moment);
 
 export default class PageCalendar extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.getArticles = this.getArticles.bind(this);
@@ -29,54 +28,53 @@ export default class PageCalendar extends React.Component {
 			articles: null,
 			loading: false,
 			filters: {
-				"media": "CYBERLUX",
-				"type": "EVENT",
-				"taxonomy_values": [],
-				"title": null
-			}
-		}
+				media: "CYBERLUX",
+				type: "EVENT",
+				taxonomy_values: [],
+				title: null,
+			},
+		};
 	}
 
 	componentDidMount() {
-		this.getArticles()
+		this.getArticles();
 	}
 
 	getArticles() {
 		this.setState({
-			loading: true
+			loading: true,
 		});
 
-		let params = dictToURI(this.state.filters)
+		const params = dictToURI(this.state.filters);
 
-		getRequest.call(this, "public/get_public_articles?" + params, data => {
+		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
 			this.setState({
 				articles: data,
-				loading: false
+				loading: false,
 			});
-		}, response => {
+		}, (response) => {
 			this.setState({ loading: false });
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
 
 	modifyFilters(field, value) {
-		let filters = {...this.state.filters};
-		filters[field] = value
-		this.setState({ filters: filters });
+		const filters = { ...this.state.filters };
+		filters[field] = value;
+		this.setState({ filters });
 	}
 
 	render() {
-		const ColoredDateCellWrapper = ({ children }) =>
-			React.cloneElement(React.Children.only(children), {
-				style: {
-					backgroundColor: 'lightblue',
-				},
-			})
+		const ColoredDateCellWrapper = ({ children }) => React.cloneElement(React.Children.only(children), {
+			style: {
+				backgroundColor: "lightblue",
+			},
+		});
 
-		return(
+		return (
 			<div className={"page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
@@ -97,17 +95,17 @@ export default class PageCalendar extends React.Component {
 					<div className="col-md-12">
 						<h1>Calendar</h1>
 					</div>
-					{this.state.articles !== null && !this.state.loading ? 
-						<div className="col-md-12">
+					{this.state.articles !== null && !this.state.loading
+						? <div className="col-md-12">
 							<Calendar
-								events={this.state.articles.map(e => { return (
+								events={this.state.articles.map((e) => (
 									{
 										title: e.title,
 										start: new Date(e.start_date),
 										end: new Date(e.end_date),
-										handle: e.handle
+										handle: e.handle,
 									}
-								)})}
+								))}
 								step={60}
 								showMultiDayTimes
 								defaultDate={new Date()}
@@ -115,15 +113,14 @@ export default class PageCalendar extends React.Component {
 									timeSlotWrapper: ColoredDateCellWrapper,
 								}}
 								localizer={localizer}
-								style={{ 
+								style={{
 									height: 700,
-									backgroundColor: "white"
+									backgroundColor: "white",
 								}}
-								onSelectEvent={event => this.props.history.push("/calendar/" + event.handle)}
+								onSelectEvent={(event) => this.props.history.push("/calendar/" + event.handle)}
 							/>
 						</div>
-					:
-						<Loading
+						:						<Loading
 							height={200}
 						/>
 					}
@@ -135,9 +132,9 @@ export default class PageCalendar extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && !this.state.loading ? 
-					(this.state.articles.filter(a => new Date(a.end_date) > new Date()).length === 0 ?
-						<div className="row">
+				{this.state.articles !== null && !this.state.loading
+					? (this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length === 0
+						? <div className="row">
 							<div className="col-md-12">
 								<Message
 									text={"No coming event found"}
@@ -145,29 +142,23 @@ export default class PageCalendar extends React.Component {
 								/>
 							</div>
 						</div>
-					: 
-						<SimpleTable
+						: 						<SimpleTable
 							numberDisplayed={6}
 							elements={this.state.articles
-								.filter(a => new Date(a.end_date) > new Date())
-								.sort((a, b) => a.start_date > b.start_date ? 1 : -1)
-								.map((a, i) => {
-									return [a, i]
-								})
+								.filter((a) => new Date(a.end_date) > new Date())
+								.sort((a, b) => (a.start_date > b.start_date ? 1 : -1))
+								.map((a, i) => [a, i])
 							}
-							buildElement={(a, i) => {
-								return (
-									<div className="col-md-4">
-										<Event
-											info={a}
-										/>
-									</div>
-								)
-							}} 
+							buildElement={(a, i) => (
+								<div className="col-md-4">
+									<Event
+										info={a}
+									/>
+								</div>
+							)}
 						/>
 					)
-				:
-					<div className="row">
+					:					<div className="row">
 						<div className="col-md-12">
 							<Loading
 								height={400}
@@ -182,9 +173,9 @@ export default class PageCalendar extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && !this.state.loading ? 
-					(this.state.articles.filter(a => new Date(a.end_date) < new Date()).length === 0 ?
-						<div className="row">
+				{this.state.articles !== null && !this.state.loading
+					? (this.state.articles.filter((a) => new Date(a.end_date) < new Date()).length === 0
+						? <div className="row">
 							<div className="col-md-12">
 								<Message
 									text={"No past event found"}
@@ -192,29 +183,23 @@ export default class PageCalendar extends React.Component {
 								/>
 							</div>
 						</div>
-					: 
-						<SimpleTable
+						: 						<SimpleTable
 							numberDisplayed={6}
 							elements={this.state.articles
-								.filter(a => new Date(a.end_date) < new Date())
+								.filter((a) => new Date(a.end_date) < new Date())
 								.sort((a, b) => a.start_date - b.start_date)
-								.map((a, i) => {
-									return [a, i]
-								})
+								.map((a, i) => [a, i])
 							}
-							buildElement={(a, i) => {
-								return (
-									<div className="col-md-4">
-										<Event
-											info={a}
-										/>
-									</div>
-								)
-							}} 
+							buildElement={(a, i) => (
+								<div className="col-md-4">
+									<Event
+										info={a}
+									/>
+								</div>
+							)}
 						/>
 					)
-				:
-					<div className="row">
+					:					<div className="row">
 						<div className="col-md-12">
 							<Loading
 								height={400}

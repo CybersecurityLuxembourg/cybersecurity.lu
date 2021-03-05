@@ -1,4 +1,5 @@
-import { getApiURL } from "./env";
+import React from "react";
+import { getApiURL } from "./env.jsx";
 
 export function getContentFromBlock(b) {
 	let el = null;
@@ -13,13 +14,13 @@ export function getContentFromBlock(b) {
 		el = <div dangerouslySetInnerHTML={{ __html: b.content }} />;
 	} else if (b.type === "IMAGE") {
 		if (b.content !== null) {
-			el = <div class='PageEvent-content-media'>
+			el = <div className='PageEvent-content-media'>
 				<img src={`${getApiURL()}public/get_image/${b.content}`}/>
 			</div>;
 		}
 	} else if (b.type === "FRAME") {
 		if (b.content !== null) {
-			el = <div class='PageEvent-content-media'>
+			el = <div className='PageEvent-content-media'>
 				<div dangerouslySetInnerHTML={{ __html: b.content.replace("&lt;", "<").replace("&gt;", ">") }} />
 			</div>;
 		}

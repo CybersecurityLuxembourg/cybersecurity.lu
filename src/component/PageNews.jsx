@@ -1,21 +1,19 @@
-import React from 'react';
-import './PageNews.css';
-import Lock from "./box/Lock";
-import Loading from "./box/Loading";
-import {getRequest} from '../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Article from './item/Article';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import React from "react";
+import "./PageNews.css";
+import { NotificationManager as nm } from "react-notifications";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import Message from "./box/Message";
-import { dictToURI } from "../utils/url";
-import ArticleSearch from './form/ArticleSearch';
-import SimpleTable from './table/SimpleTable';
-
+import Lock from "./box/Lock.jsx";
+import Loading from "./box/Loading.jsx";
+import { getRequest } from "../utils/request.jsx";
+import Article from "./item/Article.jsx";
+import Message from "./box/Message.jsx";
+import { dictToURI } from "../utils/url.jsx";
+import ArticleSearch from "./form/ArticleSearch.jsx";
+import SimpleTable from "./table/SimpleTable.jsx";
 
 export default class PageNews extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.getArticles = this.getArticles.bind(this);
@@ -26,47 +24,47 @@ export default class PageNews extends React.Component {
 			articles: null,
 			loading: false,
 			filters: {
-				"media": "CYBERLUX",
-				"type": "NEWS",
-				"taxonomy_values": [],
-				"title": null
-			}
-		}
+				media: "CYBERLUX",
+				type: "NEWS",
+				taxonomy_values: [],
+				title: null,
+			},
+		};
 	}
 
 	componentDidMount() {
-		this.getArticles()
+		this.getArticles();
 	}
 
 	getArticles() {
 		this.setState({
-			loading: true
+			loading: true,
 		});
 
-		let params = dictToURI(this.state.filters)
+		const params = dictToURI(this.state.filters);
 
-		getRequest.call(this, "public/get_public_articles?" + params, data => {
+		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
 			this.setState({
 				articles: data,
-				loading: false
+				loading: false,
 			});
-		}, response => {
+		}, (response) => {
 			this.setState({ loading: false });
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
 
 	modifyFilters(field, value) {
-		let filters = {...this.state.filters};
-		filters[field] = value
-		this.setState({ filters: filters });
+		const filters = { ...this.state.filters };
+		filters[field] = value;
+		this.setState({ filters });
 	}
 
 	changeState(field, value) {
-		this.setState({[field]: value});
+		this.setState({ [field]: value });
 	}
 
 	render() {
@@ -93,9 +91,9 @@ export default class PageNews extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && !this.state.loading ? 
-					(this.state.articles.length === 0 ?
-						<div className="row row-spaced">
+				{this.state.articles !== null && !this.state.loading
+					? (this.state.articles.length === 0
+						? <div className="row row-spaced">
 							<div className="col-md-12">
 								<Message
 									text={"No article found"}
@@ -103,25 +101,19 @@ export default class PageNews extends React.Component {
 								/>
 							</div>
 						</div>
-					: 
-						<SimpleTable
+						: 						<SimpleTable
 							className={""}
-							elements={this.state.articles.map((a, i) => {
-								return [a, i]
-							})}
-							buildElement={(a, i) => {
-								return (
-									<div className="col-md-4">
-										<Article
-											info={a}
-										/>
-									</div>
-								)
-							}} 
+							elements={this.state.articles.map((a, i) => [a, i])}
+							buildElement={(a, i) => (
+								<div className="col-md-4">
+									<Article
+										info={a}
+									/>
+								</div>
+							)}
 						/>
 					)
-				: 
-					<div className="row row-spaced">
+					: 					<div className="row row-spaced">
 						<div className="col-md-12">
 							<Loading
 								height={200}

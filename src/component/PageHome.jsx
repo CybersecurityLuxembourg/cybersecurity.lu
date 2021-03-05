@@ -1,22 +1,20 @@
-import React from 'react';
-import './PageHome.css';
-import Lock from "./box/Lock";
-import Loading from "./box/Loading";
-import Message from "./box/Message";
-import Analytic from "./box/Analytic";
-import {getRequest} from '../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Article from './item/Article';
-import Event from './item/Event';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React from "react";
+import "./PageHome.css";
+import { NotificationManager as nm } from "react-notifications";
+import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import VennActorDistribution from "./chart/VennActorDistribution";
-
+import Lock from "./box/Lock.jsx";
+import Loading from "./box/Loading.jsx";
+import Message from "./box/Message.jsx";
+import Analytic from "./box/Analytic.jsx";
+import { getRequest } from "../utils/request.jsx";
+import Article from "./item/Article.jsx";
+import Event from "./item/Event.jsx";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import VennActorDistribution from "./chart/VennActorDistribution.jsx";
 
 export default class PageHome extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.getActors = this.getActors.bind(this);
@@ -27,7 +25,7 @@ export default class PageHome extends React.Component {
 			actors: null,
 			news: null,
 			events: null,
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -37,55 +35,55 @@ export default class PageHome extends React.Component {
 	}
 
 	getActors() {
-		getRequest.call(this, "public/get_public_companies?type=ACTOR", data => {
+		getRequest.call(this, "public/get_public_companies?type=ACTOR", (data) => {
 			this.setState({
 				actors: data,
 			});
-		}, response => {
+		}, (response) => {
 			this.setState({ loading: false });
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
 
 	getNews() {
-		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=NEWS", data => {
+		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=NEWS", (data) => {
 			this.setState({
 				news: data
-					.sort((a, b) => b.publication_date > a.publication_date ? -1 : 1)
+					.sort((a, b) => (b.publication_date > a.publication_date ? -1 : 1))
 					.slice(0, 3),
 			});
-		}, response => {
+		}, (response) => {
 			this.setState({ loading: false });
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
 
 	getEvents() {
-		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=EVENT", data => {
+		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=EVENT", (data) => {
 			this.setState({
 				events: data
-					.filter(d => d.end_date !== null && d.start_date !== null)
-					.filter(d => d.end_date > new Date().toISOString())
-					.sort((a, b) => b.start_date > a.start_date ? -1 : 1)
+					.filter((d) => d.end_date !== null && d.start_date !== null)
+					.filter((d) => d.end_date > new Date().toISOString())
+					.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
 					.slice(0, 3),
 			});
-		}, response => {
+		}, (response) => {
 			this.setState({ loading: false });
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
 
 	changeState(field, value) {
-		this.setState({[field]: value});
+		this.setState({ [field]: value });
 	}
 
 	render() {
@@ -113,12 +111,11 @@ export default class PageHome extends React.Component {
 					</div>
 
 					<div className="col-md-12">
-						{this.state.news !== null ?
-							<VennActorDistribution
+						{this.state.news !== null
+							? <VennActorDistribution
 								actors={this.state.actors !== null ? this.state.actors : []}
 							/>
-						:
-							<Loading
+							:							<Loading
 								height={400}
 							/>
 						}
@@ -130,7 +127,7 @@ export default class PageHome extends React.Component {
 								className={"blue-background"}
 								onClick={() => this.props.history.push("/ecosystem")}
 							>
-								<i class="fas fa-arrow-alt-circle-right"/> Consult the ecosystem
+								<i className="fas fa-arrow-alt-circle-right"/> Consult the ecosystem
 							</button>
 						</div>
 					</div>
@@ -141,25 +138,23 @@ export default class PageHome extends React.Component {
 						<h1>Latest news</h1>
 					</div>
 
-					{this.state.news !== null ?
-						(this.state.news.length === 0 ?
-							<div className="col-md-12">
+					{this.state.news !== null
+						? (this.state.news.length === 0
+							? <div className="col-md-12">
 								<Message
 									text={"No news found"}
 									height={400}
 								/>
 							</div>
-						:
-							this.state.news.map(e => { return (
+							:							this.state.news.map((e) => (
 								<div className="col-md-4">
 									<Article
 										info={e}
 									/>
 								</div>
-							)})
+							))
 						)
-					:
-						<Loading
+						:						<Loading
 							height={400}
 						/>
 					}
@@ -170,7 +165,7 @@ export default class PageHome extends React.Component {
 								className={"blue-background"}
 								onClick={() => this.props.history.push("/news")}
 							>
-								<i class="fas fa-arrow-alt-circle-right"/> Consult all news
+								<i className="fas fa-arrow-alt-circle-right"/> Consult all news
 							</button>
 						</div>
 					</div>
@@ -181,25 +176,23 @@ export default class PageHome extends React.Component {
 						<h1>Coming events</h1>
 					</div>
 
-					{this.state.events !== null ?
-						(this.state.events.length === 0 ?
-							<div className="col-md-12">
+					{this.state.events !== null
+						? (this.state.events.length === 0
+							? <div className="col-md-12">
 								<Message
 									text={"No coming event found"}
 									height={400}
 								/>
 							</div>
-						:
-							this.state.events.map(e => { return (
+							:							this.state.events.map((e) => (
 								<div className="col-md-4">
 									<Event
 										info={e}
 									/>
 								</div>
-							)})
+							))
 						)
-					:
-						<Loading
+						:						<Loading
 							height={400}
 						/>
 					}
@@ -210,7 +203,7 @@ export default class PageHome extends React.Component {
 								className={"blue-background"}
 								onClick={() => this.props.history.push("/calendar")}
 							>
-								<i class="fas fa-arrow-alt-circle-right"/> Consult the calendar
+								<i className="fas fa-arrow-alt-circle-right"/> Consult the calendar
 							</button>
 						</div>
 					</div>

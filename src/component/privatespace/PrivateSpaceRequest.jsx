@@ -1,17 +1,15 @@
-import React from 'react';
-import './PrivateSpaceRequest.css';
-import FormLine from '../form/FormLine';
-import Loading from "../box/Loading";
-import Message from "../box/Message";
-import Info from "../box/Info";
-import {getRequest, postRequest} from '../../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Request from "../item/Request";
-
+import React from "react";
+import "./PrivateSpaceRequest.css";
+import { NotificationManager as nm } from "react-notifications";
+import FormLine from "../form/FormLine.jsx";
+import Loading from "../box/Loading.jsx";
+import Message from "../box/Message.jsx";
+import Info from "../box/Info.jsx";
+import { getRequest, postRequest } from "../../utils/request.jsx";
+import Request from "../item/Request.jsx";
 
 export default class PrivateSpaceRequest extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.refresh = this.refresh.bind(this);
@@ -20,7 +18,7 @@ export default class PrivateSpaceRequest extends React.Component {
 		this.state = {
 			text: null,
 			requests: null,
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -30,33 +28,33 @@ export default class PrivateSpaceRequest extends React.Component {
 	refresh() {
 		this.setState({
 			requests: null,
-		})
+		});
 
-		getRequest.call(this, "privatespace/get_my_requests", data => {
+		getRequest.call(this, "privatespace/get_my_requests", (data) => {
 			this.setState({
 				requests: data,
-			})
-		}, response => {
+			});
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
 
 	submitRequest() {
-		let params = {
-			request: this.state.text
-		}
+		const params = {
+			request: this.state.text,
+		};
 
-		postRequest.call(this, "privatespace/add_request", params, response => {
+		postRequest.call(this, "privatespace/add_request", params, () => {
 			this.refresh();
 			this.setState({
 				text: null,
-			})
+			});
 			nm.info("The request has been submitted");
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
@@ -75,26 +73,24 @@ export default class PrivateSpaceRequest extends React.Component {
 						</div>
 					</div>
 
-					{this.state.requests !== null ? 
-						(this.state.requests.length === 0 ?
-							<div className="col-md-12">
+					{this.state.requests !== null
+						? (this.state.requests.length === 0
+							? <div className="col-md-12">
 								<Message
 									text={"No request found"}
 									height={150}
 								/>
 							</div>
-						: 
-							this.state.requests.map(r => { return (
+							: this.state.requests.map((r) => (
 								<div className="col-md-12">
 									<Request
 										info={r}
 										afterDelete={this.refresh}
 									/>
 								</div>
-							)})
+							))
 						)
-					:
-						<div className="col-md-12">
+						: <div className="col-md-12">
 							<Loading
 								height={150}
 							/>
@@ -120,13 +116,13 @@ export default class PrivateSpaceRequest extends React.Component {
 							type={"textarea"}
 							fullWidth={true}
 							value={this.state.text}
-							onChange={v => this.setState({ "text": v })}
+							onChange={(v) => this.setState({ text: v })}
 						/>
 						<div className="right-buttons">
 							<button
 								onClick={this.submitRequest}
 								disabled={this.state.text === null || this.state.text.length === 0}>
-								<i class="fas fa-paper-plane"/> Submit request
+								<i className="fas fa-paper-plane"/> Submit request
 							</button>
 						</div>
 					</div>

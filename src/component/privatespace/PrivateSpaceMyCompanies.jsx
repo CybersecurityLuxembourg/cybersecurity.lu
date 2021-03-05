@@ -1,20 +1,18 @@
-import React from 'react';
-import './PrivateSpaceMyCompanies.css';
-import FormLine from '../form/FormLine';
-import Address from '../form/Address';
-import Loading from "../box/Loading";
-import Message from "../box/Message";
-import {getRequest, postRequest} from '../../utils/request';
-import {NotificationManager as nm} from 'react-notifications';
-import Company from "../item/Company";
-import Info from "../box/Info";
-import DialogConfirmation from "../dialog/DialogConfirmation";
-import Collapsible from 'react-collapsible';
-
+import React from "react";
+import "./PrivateSpaceMyCompanies.css";
+import { NotificationManager as nm } from "react-notifications";
+import Collapsible from "react-collapsible";
+import FormLine from "../form/FormLine.jsx";
+import Address from "../form/Address.jsx";
+import Loading from "../box/Loading.jsx";
+import Message from "../box/Message.jsx";
+import { getRequest, postRequest } from "../../utils/request.jsx";
+import Company from "../item/Company.jsx";
+import Info from "../box/Info.jsx";
+import DialogConfirmation from "../dialog/DialogConfirmation.jsx";
 
 export default class PrivateSpaceMyCompanies extends React.Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.refresh = this.refresh.bind(this);
@@ -40,8 +38,8 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 				is_cybersecurity_core_business: "Is cybersecurity core business",
 				is_startup: "Is startup",
 				is_targeting_sme: "Is targeting SMEs",
-			}
-		}
+			},
+		};
 	}
 
 	componentDidMount() {
@@ -50,112 +48,110 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 
 	refresh() {
 		this.setState({
-			companies: null
+			companies: null,
 		});
 
-		getRequest.call(this, "privatespace/get_my_companies", data => {
+		getRequest.call(this, "privatespace/get_my_companies", (data) => {
 			this.setState({
-				companies: data["companies"],
-				originalCompanies: data["companies"],
-				addresses: data["addresses"],
-				originalAddresses: data["addresses"],
+				companies: data.companies,
+				originalCompanies: data.companies,
+				addresses: data.addresses,
+				originalAddresses: data.addresses,
 			});
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
 
 	submitModificationRequests(company) {
-		let info = {
-			"company": company,
-			"addresses": this.state.addresses.filter(a => a.company_id === company.id)
-		}
+		const info = {
+			company,
+			addresses: this.state.addresses.filter((a) => a.company_id === company.id),
+		};
 
-		let params = {
-			request: 
-				"[COMPANY MODIFICATION]\n\n" + 
-				"The user requests modifications on the following company: " + company.name + 
-				"\n\n" +
-				JSON.stringify(info, null, 4)
-		}
+		const params = {
+			request:
+				"[COMPANY MODIFICATION]\n\n"
+				+ "The user requests modifications on the following company: " + company.name
+				+ "\n\n"
+				+ JSON.stringify(info, null, 4),
+		};
 
-		postRequest.call(this, "privatespace/add_request", params, response => {
+		postRequest.call(this, "privatespace/add_request", params, (response) => {
 			nm.info("The request has been sent and will be reviewed");
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
 
 	submitCompanyRequest() {
-		let params = {
-			request: "[COMPANY ACCESS]\n\n" + 
-				"The user requests the access to this company: " + 
-				this.state.entity
-		}
+		const params = {
+			request: "[COMPANY ACCESS]\n\n"
+				+ "The user requests the access to this company: "
+				+ this.state.entity,
+		};
 
-		postRequest.call(this, "privatespace/add_request", params, response => {
+		postRequest.call(this, "privatespace/add_request", params, (response) => {
 			this.setState({
 				entity: null,
 			});
 			nm.info("The request has been sent and will be reviewed");
-		}, response => {
+		}, (response) => {
 			nm.warning(response.statusText);
-		}, error => {
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
 
 	getModifiedFields(c1, c2) {
-		let fields = [];
+		const fields = [];
 
 		// Compare global information
 
 		Object.entries(c1).forEach(([key, value]) => {
-			if (c1[key] !== c2[key])
-				fields.push(this.state.fields[key])
+			if (c1[key] !== c2[key]) fields.push(this.state.fields[key]);
 		});
 
 		// Compare addresses
 
-		let originalAddresses = this.state.originalAddresses.filter(a => a.company_id === c1.id)
-		let addresses = this.state.addresses.filter(a => a.company_id === c1.id)
+		const originalAddresses = this.state.originalAddresses.filter((a) => a.company_id === c1.id);
+		const addresses = this.state.addresses.filter((a) => a.company_id === c1.id);
 
-		let minLength = Math.min(originalAddresses.length, addresses.length)
+		const minLength = Math.min(originalAddresses.length, addresses.length);
 
 		for (let i = 0; i < minLength; i++) {
-			if (JSON.stringify(originalAddresses) !== JSON.stringify(addresses))
-				fields.push("Address " + (i + 1))
+			if (JSON.stringify(originalAddresses) !== JSON.stringify(addresses)) fields.push("Address " + (i + 1));
 		}
 
 		for (let i = minLength; i < originalAddresses.length; i++) {
-			fields.push("Address " + (minLength + i + 1))
+			fields.push("Address " + (minLength + i + 1));
 		}
 
 		for (let i = minLength; i < addresses.length; i++) {
-			fields.push("Address " + (minLength + i + 1))
+			fields.push("Address " + (minLength + i + 1));
 		}
 
-		return fields.join(", ")
+		return fields.join(", ");
 	}
 
 	updateCompanies(index, field, value) {
-		let c = JSON.parse(JSON.stringify(this.state.companies));
+		const c = JSON.parse(JSON.stringify(this.state.companies));
 		c[index][field] = value;
-		this.setState({ companies : c })
+		this.setState({ companies: c });
 	}
 
 	updateAddresses(index, field, value) {
-		let c = JSON.parse(JSON.stringify(this.state.addresses));
+		const c = JSON.parse(JSON.stringify(this.state.addresses));
 		c[index][field] = value;
-		this.setState({ addresses : c })
+		this.setState({ addresses: c });
 	}
 
 	isFieldCompleted(v) {
-		return v !== undefined && v.length > 0
+		return v !== undefined && v.length > 0;
 	}
 
 	render() {
@@ -166,73 +162,73 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 						<h2>My companies</h2>
 					</div>
 
-					{this.state.companies !== null ?
-						this.state.companies.length > 0 ?
-							this.state.companies.map((c, i) => { return (
+					{this.state.companies !== null
+						? this.state.companies.length > 0
+							? this.state.companies.map((c, i) => (
 								<div className="col-md-12">
 									<Company
 										info={c}
 									/>
-									<Collapsible 
+									<Collapsible
 										trigger={<div className={"PrivateSpaceMyCompanies-show-detail"}>Show details</div>}
 									>
 										<h3>Global information</h3>
 										<FormLine
-											label={this.state.fields["name"]}
+											label={this.state.fields.name}
 											value={c.name}
-											onChange={v => this.updateCompanies(i, "name", v)}
+											onChange={(v) => this.updateCompanies(i, "name", v)}
 										/>
 										<FormLine
-											label={this.state.fields["type"]}
+											label={this.state.fields.type}
 											value={c.type}
 											disabled={true}
 										/>
 										<FormLine
-											label={this.state.fields["description"]}
+											label={this.state.fields.description}
 											type={"textarea"}
 											value={c.description}
-											onChange={v => this.updateCompanies(i, "description", v)}
+											onChange={(v) => this.updateCompanies(i, "description", v)}
 										/>
 										<FormLine
-											label={this.state.fields["rscl_number"]}
+											label={this.state.fields.rscl_number}
 											value={c.rscl_number}
-											onChange={v => this.updateCompanies(i, "rscl_number", v)}
+											onChange={(v) => this.updateCompanies(i, "rscl_number", v)}
 										/>
 										<FormLine
-											label={this.state.fields["website"]}
+											label={this.state.fields.website}
 											value={c.website}
-											onChange={v => this.updateCompanies(i, "website", v)}
+											onChange={(v) => this.updateCompanies(i, "website", v)}
 										/>
 										<FormLine
-											label={this.state.fields["creation_date"]}
+											label={this.state.fields.creation_date}
 											type={"date"}
 											value={c.creation_date}
-											onChange={v => this.updateCompanies(i, "creation_date", v)}
+											onChange={(v) => this.updateCompanies(i, "creation_date", v)}
 										/>
 										<FormLine
-											label={this.state.fields["is_cybersecurity_core_business"]}
+											label={this.state.fields.is_cybersecurity_core_business}
 											type={"checkbox"}
 											value={c.is_cybersecurity_core_business}
-											onChange={v => this.updateCompanies(i, "is_cybersecurity_core_business", v)}
+											onChange={(v) => this.updateCompanies(i, "is_cybersecurity_core_business", v)}
 											background={false}
 										/>
 										<FormLine
-											label={this.state.fields["is_startup"]}
+											label={this.state.fields.is_startup}
 											type={"checkbox"}
 											value={c.is_startup}
-											onChange={v => this.updateCompanies(i, "is_startup", v)}
+											onChange={(v) => this.updateCompanies(i, "is_startup", v)}
 											background={false}
 										/>
 										<FormLine
-											label={this.state.fields["is_targeting_sme"]}
+											label={this.state.fields.is_targeting_sme}
 											type={"checkbox"}
 											value={c.is_targeting_sme}
-											onChange={v => this.updateCompanies(i, "is_targeting_sme", v)}
+											onChange={(v) => this.updateCompanies(i, "is_targeting_sme", v)}
 											background={false}
 										/>
 
-										{this.state.addresses.map((a, i) => { 
-											if (a.company_id === c.id)
+										{this.state.addresses.map((a, i) => {
+											if (a.company_id === c.id) {
 												return (
 													<div>
 														<h3>Address</h3>
@@ -241,45 +237,42 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 															onChange={(f, v) => this.updateAddresses(i, f, v)}
 														/>
 													</div>
-												)
-											else
-												""
+												);
+											}
+											"";
 										})}
 
 										<div className={"right-buttons"}>
 											<DialogConfirmation
-												text={"Do you want to request modifications for those fields : " +
-													this.getModifiedFields(c, this.state.originalCompanies[i]) + " ?"}
+												text={"Do you want to request modifications for those fields : "
+													+ this.getModifiedFields(c, this.state.originalCompanies[i]) + " ?"}
 												trigger={
 													<button
 														className={"blue-background"}
-														disabled={_.isEqual(c, this.state.originalCompanies[i]) &&
-															_.isEqual(
-																this.state.addresses.filter(a => a.company_id === c.id), 
-																this.state.originalAddresses.filter(a => a.company_id === c.id)
+														disabled={_.isEqual(c, this.state.originalCompanies[i])
+															&& _.isEqual(
+																this.state.addresses.filter((a) => a.company_id === c.id),
+																this.state.originalAddresses.filter((a) => a.company_id === c.id),
 															)
 														}
 													>
 														<i className="fas fa-save"/> Request modifications
 													</button>
 												}
-												afterConfirmation={() => 
-													this.submitModificationRequests(c, this.state.originalCompanies[i])
+												afterConfirmation={() => this.submitModificationRequests(c, this.state.originalCompanies[i])
 												}
 											/>
 										</div>
 									</Collapsible>
 								</div>
-							)})
-						:
-						<div className="col-md-12">
-							<Message
-								text={"No company found"}
-								height={150}
-							/>
-						</div>
-					: 
-						<div className="col-md-12">
+							))
+							:						<div className="col-md-12">
+								<Message
+									text={"No company found"}
+									height={150}
+								/>
+							</div>
+						: 						<div className="col-md-12">
 							<Loading
 								height={150}
 							/>
@@ -306,13 +299,13 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 							label={"Name of the entity"}
 							fullWidth={true}
 							value={this.state.entity}
-							onChange={v => this.setState({ "entity": v })}
+							onChange={(v) => this.setState({ entity: v })}
 						/>
 						<div className="right-buttons">
 							<button
 								onClick={this.submitCompanyRequest}
 								disabled={this.state.entity === null || this.state.entity.length === 0}>
-								<i class="fas fa-paper-plane"/> Send
+								<i className="fas fa-paper-plane"/> Send
 							</button>
 						</div>
 					</div>

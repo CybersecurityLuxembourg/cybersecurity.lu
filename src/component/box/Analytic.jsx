@@ -1,9 +1,8 @@
-import React from 'react';
-import './Analytic.css';
+import React from "react";
+import "./Analytic.css";
 import CountUp from "react-countup";
 
 export default class Analytic extends React.Component {
-
 	render() {
 		return (
 			<div className="Analytic">
@@ -19,6 +18,6 @@ export default class Analytic extends React.Component {
 					{this.props.desc}
 				</div>
 			</div>
-		)
+		);
 	}
 }

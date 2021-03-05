@@ -1,15 +1,13 @@
-import React from 'react';
-import './GovBar.css';
+import React from "react";
+import "./GovBar.css";
 import { Link } from "react-router-dom";
 
-
 export default class GovBar extends React.Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -31,10 +29,10 @@ export default class GovBar extends React.Component {
 					<li><a href="https://gouvernement.lu" target="_blank" rel="noopener" title="gouvernement.lu - Nouvelle fenêtre" className="govbar-link">gouvernement.lu</a></li>
 					<li><a href="https://crossgov.public.lu" target="_blank" rel="noopener" title="crossgov.lu - Nouvelle fenêtre" className="govbar-link">crossgov.lu</a>
 					</li>
-				  
+
 					<li><a href="https://etat.public.lu" target="_blank" rel="noopener" title="Autres sites - Nouvelle fenêtre" className="govbar-link govbar-more">Autres sites</a></li>
 				</ul>
 			</div>
-		)
+		);
 	}
 }
