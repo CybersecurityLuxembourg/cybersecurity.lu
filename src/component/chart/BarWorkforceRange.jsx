@@ -44,41 +44,41 @@ export default class BarWorkforceRange extends React.Component {
 		return date.toISOString().split('T')[0]
 	}
 
-    render() {
-        return (
-        	<div className="BarWorkforceRange">
-	            <Bar 
+	render() {
+		return (
+			<div className="BarWorkforceRange">
+				<Bar 
 					data={{
 					  labels: this.state.labels,
 					  datasets: [{
-					      data: this.getData(),
-					      borderWidth: 1,
-					       borderColor: this.state.ranges.map(o  => { 
-					      	return typeof this.props.selected !== "undefined" 
-					      		&& this.props.selected[1] === o ? '#e40613' : '#009fe3'
-					       }),
-				          backgroundColor: this.state.ranges.map(o  => { 
-					      	return typeof this.props.selected !== "undefined" 
-					      		&& this.props.selected[1] === o ? '#fed7da' : "#bcebff" 
-					       }),
+						  data: this.getData(),
+						  borderWidth: 1,
+						   borderColor: this.state.ranges.map(o  => { 
+							return typeof this.props.selected !== "undefined" 
+								&& this.props.selected[1] === o ? '#e40613' : '#009fe3'
+						   }),
+						  backgroundColor: this.state.ranges.map(o  => { 
+							return typeof this.props.selected !== "undefined" 
+								&& this.props.selected[1] === o ? '#fed7da' : "#bcebff" 
+						   }),
 					  }],
 					}} 
 					options={{
 						legend: {
-					        display: false
-					    },
+							display: false
+						},
 						scales: {
-						    yAxes: [
-						      {
-						        ticks: {
-						          beginAtZero: true,
-						        },
-						      },
-						    ],
+							yAxes: [
+							  {
+								ticks: {
+								  beginAtZero: true,
+								},
+							  },
+							],
 						  },
 					}}
 				/>
 			</div>
-        );
-    }
+		);
+	}
 }

@@ -35,43 +35,43 @@ export default class BarActorAge extends React.Component {
 		return data;
 	}
 
-    render() {
-        return (
-        	<div className="BarActorAge">
-	            <Bar 
+	render() {
+		return (
+			<div className="BarActorAge">
+				<Bar 
 					data={{
 					  labels: this.state.labels,
 					  datasets: [{
-					      data: this.getData(),
-					      borderWidth: 1,
-					      borderColor: this.state.ranges.map(o  => { 
-					      	return typeof this.props.selected !== "undefined" 
-					      		&& this.props.selected[0] === o ? '#e40613' : '#009fe3'
-					       }),
-				          backgroundColor: this.state.ranges.map(o  => { 
-					      	return typeof this.props.selected !== "undefined" 
-					      		&& this.props.selected[0] === o ? '#fed7da' : "#bcebff" 
-					       }),
+						  data: this.getData(),
+						  borderWidth: 1,
+						  borderColor: this.state.ranges.map(o  => { 
+							return typeof this.props.selected !== "undefined" 
+								&& this.props.selected[0] === o ? '#e40613' : '#009fe3'
+						   }),
+						  backgroundColor: this.state.ranges.map(o  => { 
+							return typeof this.props.selected !== "undefined" 
+								&& this.props.selected[0] === o ? '#fed7da' : "#bcebff" 
+						   }),
 					  }],
 					}} 
 					options={{
 						legend: {
-					        display: false
-					    },
+							display: false
+						},
 						scales: {
-						    yAxes: [
-						      {
-						        ticks: {
-						          beginAtZero: true,
-						        },
-						      },
-						    ],
+							yAxes: [
+							  {
+								ticks: {
+								  beginAtZero: true,
+								},
+							  },
+							],
 						},
 						fillColor: "#F5DEB3",
 						opacity: 1
 					}}
 				/>
 			</div>
-        );
-    }
+		);
+	}
 }

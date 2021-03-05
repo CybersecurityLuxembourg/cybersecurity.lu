@@ -18,12 +18,12 @@ export default class Footer extends React.Component {
 
 	render() {
 		return (
-		  	<div className="Footer">
-		  		<div className="Footer-content">
-			  		<div className="row">
-					  	<div className="col-md-3">
-					  		<h3>Partenaires</h3>
-					  		<div>
+			<div className="Footer">
+				<div className="Footer-content">
+					<div className="row">
+						<div className="col-md-3">
+							<h3>Partenaires</h3>
+							<div>
 								<a 
 									href="https://hcpn.gouvernement.lu/fr.html" 
 									target="_blank" 
@@ -32,7 +32,7 @@ export default class Footer extends React.Component {
 									HCPN
 								</a>
 							</div>
-					  		<div>
+							<div>
 								<a 
 									href="https://securitymadein.lu/" 
 									target="_blank"  
@@ -50,16 +50,16 @@ export default class Footer extends React.Component {
 									LUXINNOVATION GIE
 								</a>
 							</div>
-					  	</div>
-					  	<div className="col-md-3 Footer-contact">
-					  		<h3>Contact</h3>
-					  		<div>SECURITY MADE IN LËTZEBUERG G.I.E.</div>
+						</div>
+						<div className="col-md-3 Footer-contact">
+							<h3>Contact</h3>
+							<div>SECURITY MADE IN LËTZEBUERG G.I.E.</div>
 							<div>16, BOULEVARD D’AVRANCHES L-1160 LUXEMBOURG</div>
 							<div>(+352) 274 00 98 601 - CYBERLUX@SECURITYMADEIN.LU</div>
-					  	</div>
-					  	<div className="col-md-3">
-					  		<h3>Menu</h3>
-					  		<div>
+						</div>
+						<div className="col-md-3">
+							<h3>Menu</h3>
+							<div>
 								<a 
 									href="https://www.circl.lu/" 
 									target="_blank" 
@@ -104,11 +104,11 @@ export default class Footer extends React.Component {
 									<Link to="/about">About</Link>
 								</a>
 							</div>
-					  	</div>
-					  	<div className="col-md-3">
-					  		<h3>Network</h3>
-					  		<div className="Footer-network">
-						  		<a 
+						</div>
+						<div className="col-md-3">
+							<h3>Network</h3>
+							<div className="Footer-network">
+								<a 
 									href="https://twitter.com/CybersecLux" 
 									target="_blank" 
 									title="Twitter CYBERLUX" 
@@ -122,7 +122,7 @@ export default class Footer extends React.Component {
 									class="text-capitalize">
 									<i class="fab fa-linkedin-in Footer-network"/>
 								</a>
-						  		<a 
+								<a 
 									href="https://github.com/CybersecLux/" 
 									target="_blank" 
 									title="GitHub CyberLux" 
@@ -130,7 +130,7 @@ export default class Footer extends React.Component {
 									<i class="fab fa-github-alt Footer-network"/>
 								</a>
 							</div>
-					  	</div>
+						</div>
 					</div>
 				</div>
 			</div>

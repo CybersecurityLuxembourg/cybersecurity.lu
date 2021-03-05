@@ -31,42 +31,42 @@ export default class PrivateSpaceAccount extends React.Component {
 		});
 
 		getRequest.call(this, "privatespace/get_my_user", data => {
-            this.setState({
-                user: data,
-            });
-        }, response => {
-            nm.warning(response.statusText);
-        }, error => {
-            nm.error(error.message);
-        });
+			this.setState({
+				user: data,
+			});
+		}, response => {
+			nm.warning(response.statusText);
+		}, error => {
+			nm.error(error.message);
+		});
 	}
 
 	save() {
-        let params = {
-            telephone: this.state.user.telephone,
-            first_name: this.state.user.first_name,
-            last_name: this.state.user.last_name
-        }
+		let params = {
+			telephone: this.state.user.telephone,
+			first_name: this.state.user.first_name,
+			last_name: this.state.user.last_name
+		}
 
-        postRequest.call(this, "privatespace/update_my_user", params, response => {
-        	this.setState({ 
-	        	hasModification: false 
-	        });
-        	nm.info("The information has been saved");
-        }, response => {
-            nm.warning(response.statusText);
-        }, error => {
-            nm.error(error.message);
-        });
+		postRequest.call(this, "privatespace/update_my_user", params, response => {
+			this.setState({ 
+				hasModification: false 
+			});
+			nm.info("The information has been saved");
+		}, response => {
+			nm.warning(response.statusText);
+		}, error => {
+			nm.error(error.message);
+		});
 	}
 
 	changeUser(field, value) {
 		let user = _.cloneDeep(this.state.user);
-        user[field] = value;
-        this.setState({ 
-        	user: user, 
-        	hasModification: true 
-        });
+		user[field] = value;
+		this.setState({ 
+			user: user, 
+			hasModification: true 
+		});
 	}
 
 	render() {
@@ -80,39 +80,39 @@ export default class PrivateSpaceAccount extends React.Component {
 					{this.state.user !== null ?
 						<div className="col-md-12">
 							<FormLine
-		                        label={"Email"}
-		                        value={this.state.user.email}
-		                        disabled={true}
-		                    />
-		                    <FormLine
-		                        label={"First name"}
-		                        value={this.state.user.first_name}
-		                        onChange={v => this.changeUser("first_name", v)}
-		                    />
-		                    <FormLine
-		                        label={"Last name"}
-		                        value={this.state.user.last_name}
-		                        onChange={v => this.changeUser("last_name", v)}
-		                    />
-		                    <FormLine
-		                        label={"Phone"}
-		                        type={"phone"}
-		                        value={this.state.user.telephone}
-		                        onChange={v => this.changeUser("telephone", v)}
-		                    />
-		                    <div className="right-buttons">
-			                    <button
-			                        onClick={() => this.save()}
-			                        disabled={!this.state.hasModification}>
-			                        <i class="far fa-save"/> Save
-			                    </button>
-			                </div>
-	           			</div>
-           			: 
-           				<Loading
-                        	height={300}
-                        />
-                    }
+								label={"Email"}
+								value={this.state.user.email}
+								disabled={true}
+							/>
+							<FormLine
+								label={"First name"}
+								value={this.state.user.first_name}
+								onChange={v => this.changeUser("first_name", v)}
+							/>
+							<FormLine
+								label={"Last name"}
+								value={this.state.user.last_name}
+								onChange={v => this.changeUser("last_name", v)}
+							/>
+							<FormLine
+								label={"Phone"}
+								type={"phone"}
+								value={this.state.user.telephone}
+								onChange={v => this.changeUser("telephone", v)}
+							/>
+							<div className="right-buttons">
+								<button
+									onClick={() => this.save()}
+									disabled={!this.state.hasModification}>
+									<i class="far fa-save"/> Save
+								</button>
+							</div>
+						</div>
+					: 
+						<Loading
+							height={300}
+						/>
+					}
 				</div>
 			</div>
 		);
