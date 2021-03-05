@@ -4,14 +4,11 @@ import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
-import Lock from "./box/Lock.jsx";
 import { getRequest } from "../utils/request.jsx";
 import { getApiURL } from "../utils/env.jsx";
 import { getContentFromBlock, getNextTitle1Position } from "../utils/article.jsx";
 import Loading from "./box/Loading.jsx";
 import Chip from "./form/Chip.jsx";
-import Message from "./box/Message.jsx";
-import Article from "./item/Article.jsx";
 
 export default class PageJob extends React.Component {
 	constructor(props) {

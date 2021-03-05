@@ -14,12 +14,6 @@ class App extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-	}
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
-	}
-
 	render() {
 		return (
 			<div id="App">

@@ -1,6 +1,7 @@
 import React from "react";
 import "./PrivateSpaceAccount.css";
 import { NotificationManager as nm } from "react-notifications";
+import _ from "lodash";
 import FormLine from "../form/FormLine.jsx";
 import Loading from "../box/Loading.jsx";
 import { getRequest, postRequest } from "../../utils/request.jsx";
@@ -46,7 +47,7 @@ export default class PrivateSpaceAccount extends React.Component {
 			last_name: this.state.user.last_name,
 		};
 
-		postRequest.call(this, "privatespace/update_my_user", params, (response) => {
+		postRequest.call(this, "privatespace/update_my_user", params, () => {
 			this.setState({
 				hasModification: false,
 			});

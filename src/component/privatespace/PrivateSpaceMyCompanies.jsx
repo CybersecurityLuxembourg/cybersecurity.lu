@@ -1,6 +1,7 @@
 import React from "react";
 import "./PrivateSpaceMyCompanies.css";
 import { NotificationManager as nm } from "react-notifications";
+import _ from "lodash";
 import Collapsible from "react-collapsible";
 import FormLine from "../form/FormLine.jsx";
 import Address from "../form/Address.jsx";
@@ -79,7 +80,7 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 				+ JSON.stringify(info, null, 4),
 		};
 
-		postRequest.call(this, "privatespace/add_request", params, (response) => {
+		postRequest.call(this, "privatespace/add_request", params, () => {
 			nm.info("The request has been sent and will be reviewed");
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -95,7 +96,7 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 				+ this.state.entity,
 		};
 
-		postRequest.call(this, "privatespace/add_request", params, (response) => {
+		postRequest.call(this, "privatespace/add_request", params, () => {
 			this.setState({
 				entity: null,
 			});
@@ -112,7 +113,7 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 
 		// Compare global information
 
-		Object.entries(c1).forEach(([key, value]) => {
+		Object.entries(c1).forEach(([key]) => {
 			if (c1[key] !== c2[key]) fields.push(this.state.fields[key]);
 		});
 
@@ -227,19 +228,19 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 											background={false}
 										/>
 
-										{this.state.addresses.map((a, i) => {
+										{this.state.addresses.map((a, y) => {
 											if (a.company_id === c.id) {
 												return (
 													<div>
 														<h3>Address</h3>
 														<Address
 															info={a}
-															onChange={(f, v) => this.updateAddresses(i, f, v)}
+															onChange={(f, v) => this.updateAddresses(y, f, v)}
 														/>
 													</div>
 												);
 											}
-											"";
+											return null;
 										})}
 
 										<div className={"right-buttons"}>
@@ -290,7 +291,8 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 							content={
 								<div>
 									You can request the control of the data of the entity you are part of.<br/><br/>
-									To confirm the access granting, one of out operator will get contact with you in the shortest delay.<br/>
+									To confirm the access granting,
+									one of out operator will get contact with you in the shortest delay.<br/>
 									Make sure you have filled your personal information in the <b>Account</b> section.
 								</div>
 							}

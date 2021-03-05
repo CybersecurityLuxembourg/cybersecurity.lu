@@ -3,14 +3,8 @@ import "./PageCompany.css";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import Collapsible from "react-collapsible";
-import Lock from "./box/Lock.jsx";
 import { getRequest } from "../utils/request.jsx";
-import { getApiURL } from "../utils/env.jsx";
 import Loading from "./box/Loading.jsx";
-import Chip from "./form/Chip.jsx";
-import Message from "./box/Message.jsx";
-import Article from "./item/Article.jsx";
 import Company from "./item/Company.jsx";
 import FormLine from "./form/FormLine.jsx";
 

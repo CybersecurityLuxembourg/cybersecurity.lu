@@ -96,22 +96,22 @@ export default class InsideApp extends React.Component {
 									value: ["#009fe3", "#e40613"],
 								},
 								shape: {
-								  type: "images",
-								  stroke: {
+									type: "images",
+									stroke: {
 										width: 0,
 										color: "black",
-								  },
-								  images: [
+									},
+									images: [
 										{
-									  src: "/favicon.ico",
-									  width: 1000,
-									  height: 1000,
+											src: "/favicon.ico",
+											width: 1000,
+											height: 1000,
 										},
-								  ],
+									],
 								},
 								move: {
-								  enable: true,
-								  speed: 0.2,
+									enable: true,
+									speed: 0.2,
 								},
 								opacity: {
 									value: 0.1,
@@ -120,13 +120,13 @@ export default class InsideApp extends React.Component {
 									},
 								},
 								line_linked: {
-								  enable: true,
-								  distance: 150,
-								  color: {
+									enable: true,
+									distance: 150,
+									color: {
 										value: "#000000",
-								  },
-								  opacity: 0.1,
-								  width: 1,
+									},
+									opacity: 0.1,
+									width: 1,
 								},
 							},
 						}}

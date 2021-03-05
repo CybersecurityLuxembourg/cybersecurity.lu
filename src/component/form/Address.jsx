@@ -1,11 +1,7 @@
 import React from "react";
 import "./Address.css";
-import _ from "lodash";
-import { NotificationManager as nm } from "react-notifications";
-import FormLine from "./FormLine";
-import { getRequest } from "../../utils/request";
-import { validateNotNull } from "../../utils/re";
-import Loading from "../box/Loading";
+import FormLine from "./FormLine.jsx";
+import { validateNotNull } from "../../utils/re.jsx";
 
 export default class Address extends React.Component {
 	constructor(props) {
@@ -16,9 +12,6 @@ export default class Address extends React.Component {
 		this.state = {
 			showAddress2: false,
 		};
-	}
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
 	}
 
 	onChange(field, value) {

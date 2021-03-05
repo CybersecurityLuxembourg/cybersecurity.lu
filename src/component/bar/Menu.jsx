@@ -2,10 +2,6 @@ import React from "react";
 import "./Menu.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 export default class Menu extends React.Component {
@@ -19,7 +15,7 @@ export default class Menu extends React.Component {
 	render() {
 		return (
 			<div className={"page max-sized-page"}>
-			  <Navbar expand="lg">
+				<Navbar expand="lg">
 					<Navbar.Brand>
 						<Link to="/">
 							<img
@@ -32,31 +28,31 @@ export default class Menu extends React.Component {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-sm-2 ml-auto">
-					  <Nav.Link>
-						  <Link to="/">
+							<Nav.Link>
+								<Link to="/">
 									<div className="Menu-title">Home</div>
 									<div className="Menu-description">Our main lines</div>
-						  </Link>
-					  </Nav.Link>
-					  <Nav.Link>
-						  <Link to="/ecosystem">
+								</Link>
+							</Nav.Link>
+							<Nav.Link>
+								<Link to="/ecosystem">
 									<div className="Menu-title">Ecosystem</div>
 									<div className="Menu-description">View on the community</div>
-						  </Link>
-					  </Nav.Link>
-					  <Nav.Link>
-						  <Link to="/news">
+								</Link>
+							</Nav.Link>
+							<Nav.Link>
+								<Link to="/news">
 									<div className="Menu-title">News</div>
 									<div className="Menu-description">Keep an eye out</div>
-						  </Link>
-					  </Nav.Link>
-					  <Nav.Link>
-						  <Link to="/calendar">
+								</Link>
+							</Nav.Link>
+							<Nav.Link>
+								<Link to="/calendar">
 									<div className="Menu-title">Calendar</div>
 									<div className="Menu-description">Cybersecurity events</div>
-						  </Link>
-					  </Nav.Link>
-					  <Nav.Link eventKey="4.1">
+								</Link>
+							</Nav.Link>
+							<Nav.Link eventKey="4.1">
 								<Link to="/jobs">
 									<div className="Menu-title">Job market</div>
 									<div className="Menu-description">Find your next Adventure</div>
@@ -68,7 +64,7 @@ export default class Menu extends React.Component {
 									<div className="Menu-description">What is CYBERLUX</div>
 								</Link>
 							</Nav.Link>
-					  {!this.props.logged || this.props.email === null
+							{!this.props.logged || this.props.email === null
 								? <Nav.Link>
 									<Link to="/login">
 										<div className="Menu-title">Login</div>
@@ -84,7 +80,7 @@ export default class Menu extends React.Component {
 							}
 						</Nav>
 					</Navbar.Collapse>
-			  </Navbar>
+				</Navbar>
 			</div>
 		);
 	}

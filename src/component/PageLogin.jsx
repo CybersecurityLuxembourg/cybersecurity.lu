@@ -31,7 +31,6 @@ export default class PageLogin extends React.Component {
 
 		if (getUrlParameter("action") === "reset_password") {
 			window.token = getUrlParameter("token");
-			const splitedElements = window.location.pathname.split("?");
 		}
 
 		// This function to notify if the password has been reset correctly
@@ -69,7 +68,7 @@ export default class PageLogin extends React.Component {
 			email: this.state.email,
 		};
 
-		postRequest.call(this, "account/forgot_password", params, (response) => {
+		postRequest.call(this, "account/forgot_password", params, () => {
 			nm.info("An email has been sent with a link to reset your password");
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -83,7 +82,7 @@ export default class PageLogin extends React.Component {
 			new_password: this.state.password,
 		};
 
-		postRequest.call(this, "account/reset_password", params, (response) => {
+		postRequest.call(this, "account/reset_password", params, () => {
 			document.location.href = "/?reset_password=true";
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -97,7 +96,7 @@ export default class PageLogin extends React.Component {
 			email: this.state.email,
 		};
 
-		postRequest.call(this, "account/create_account", params, (response) => {
+		postRequest.call(this, "account/create_account", params, () => {
 			nm.info("An email has been sent to your mailbox with a generated password");
 			this.setState({
 				view: "login",

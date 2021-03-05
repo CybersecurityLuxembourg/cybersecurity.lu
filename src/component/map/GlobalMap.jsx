@@ -3,9 +3,6 @@ import "./GlobalMap.css";
 import {
 	MapContainer, TileLayer, Marker, Popup,
 } from "react-leaflet";
-import { NotificationManager as nm } from "react-notifications";
-import Company from "../item/Company.jsx";
-import { getRequest } from "../../utils/reques.jsx";
 import CheckBox from "../form/CheckBox.jsx";
 
 export default class GlobalMap extends React.Component {
@@ -52,15 +49,17 @@ export default class GlobalMap extends React.Component {
 							.filter((a) => a.latitude !== null && a.longitude !== null)
 							.filter((a) => this.getIDsToDisplay().indexOf(a.company_id) >= 0)
 							.map((a) => (
-								<div>
+								<div key={a.company_id}>
 									<Marker
 										position={[a.latitude, a.longitude]}
-										eventHandlers={{ click: (e) => { this.handlePopupOpen(a.company_id); } }}>
+										eventHandlers={{ click: () => { this.handlePopupOpen(a.company_id); } }}>
 										<Popup
 											companyId={a.company_id}
 										>
-											{this.props.companies.filter((c) => c.id === this.state.selectedCompanyId).length > 0
-												? this.props.companies.filter((c) => c.id === this.state.selectedCompanyId)[0].name
+											{this.props.companies
+												.filter((c) => c.id === this.state.selectedCompanyId).length > 0
+												? this.props.companies
+													.filter((c) => c.id === this.state.selectedCompanyId)[0].name
 												: "Unfound company"}
 											<br/><a href={"/company/" + a.company_id}>More info</a>
 										</Popup>

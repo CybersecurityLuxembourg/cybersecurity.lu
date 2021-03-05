@@ -1,7 +1,7 @@
 import React from "react";
 import "./BarActorAge.css";
 import { Bar } from "react-chartjs-2";
-import { getPastDate } from "../../utils/date";
+import { getPastDate } from "../../utils/date.jsx";
 
 export default class BarActorAge extends React.Component {
 	constructor(props) {
@@ -36,15 +36,15 @@ export default class BarActorAge extends React.Component {
 			<div className="BarActorAge">
 				<Bar
 					data={{
-					  labels: this.state.labels,
-					  datasets: [{
-						  data: this.getData(),
-						  borderWidth: 1,
-						  borderColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
+						labels: this.state.labels,
+						datasets: [{
+							data: this.getData(),
+							borderWidth: 1,
+							borderColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
 								&& this.props.selected[0] === o ? "#e40613" : "#009fe3")),
-						  backgroundColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
+							backgroundColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
 								&& this.props.selected[0] === o ? "#fed7da" : "#bcebff")),
-					  }],
+						}],
 					}}
 					options={{
 						legend: {
@@ -52,11 +52,11 @@ export default class BarActorAge extends React.Component {
 						},
 						scales: {
 							yAxes: [
-							  {
+								{
 									ticks: {
-								  beginAtZero: true,
+										beginAtZero: true,
 									},
-							  },
+								},
 							],
 						},
 						fillColor: "#F5DEB3",

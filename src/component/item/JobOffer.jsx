@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./JobOffer.css";
 import { Link } from "react-router-dom";
-import NoImage from "../box/NoImage";
-import { getApiURL } from "../../utils/env";
 
 export default class JobOffer extends Component {
 	constructor(props) {

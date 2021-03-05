@@ -3,11 +3,9 @@ import "./PageNews.css";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import Lock from "./box/Lock.jsx";
 import Loading from "./box/Loading.jsx";
 import { getRequest } from "../utils/request.jsx";
 import JobOffer from "./item/JobOffer.jsx";
-import Message from "./box/Message.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import ArticleSearch from "./form/ArticleSearch.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
@@ -104,7 +102,7 @@ export default class PageJobs extends React.Component {
 						: 						<SimpleTable
 							className={""}
 							elements={this.state.articles.map((a, i) => [a, i])}
-							buildElement={(a, i) => (
+							buildElement={(a) => (
 								<div className="col-md-12">
 									<JobOffer
 										info={a}

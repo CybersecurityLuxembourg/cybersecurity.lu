@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Request.css";
 import { NotificationManager as nm } from "react-notifications";
-import { postRequest } from "../../utils/request";
+import { postRequest } from "../../utils/request.jsx";
 
 export default class Request extends Component {
 	constructor(props) {

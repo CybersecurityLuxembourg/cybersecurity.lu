@@ -13,7 +13,8 @@
       "quotes": [2, "double", { "avoidEscape": true }],
       "no-tabs": 0,
       "no-plusplus": 0,
-      "prefer-template": 0
+      "prefer-template": 0,
+      "react/prop-types": 0
   	},
   	"ignorePatterns": ["/node_modules/*", "/build/*", "/public/*"],
 }

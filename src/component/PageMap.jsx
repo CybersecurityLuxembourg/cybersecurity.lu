@@ -3,7 +3,6 @@ import "./PageMap.css";
 import { NotificationManager as nm } from "react-notifications";
 import GlobalMap from "./map/GlobalMap.jsx";
 import { getRequest } from "../utils/request.jsx";
-import Loading from "./box/Loading.jsx";
 
 export default class PageMap extends React.Component {
 	constructor(props) {
@@ -30,9 +29,9 @@ export default class PageMap extends React.Component {
 				civilSociety: data.filter((c) => c.type === "CIVIL SOCIETY"),
 				jobPlatforms: data.filter((c) => c.type === "JOB PLATFORM"),
 			}, () => {
-				getRequest.call(this, "public/get_public_company_geolocations", (data) => {
+				getRequest.call(this, "public/get_public_company_geolocations", (data2) => {
 					this.setState({
-						geolocations: data,
+						geolocations: data2,
 					});
 				}, (response) => {
 					nm.warning(response.statusText);

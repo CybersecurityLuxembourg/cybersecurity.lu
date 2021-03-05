@@ -1,14 +1,9 @@
 import React from "react";
 import "./PrivateSpaceRegisterACompany.css";
 import { NotificationManager as nm } from "react-notifications";
-import Collapsible from "react-collapsible";
 import FormLine from "../form/FormLine.jsx";
 import Address from "../form/Address.jsx";
-import Loading from "../box/Loading.jsx";
-import Message from "../box/Message.jsx";
-import { getRequest, postRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
-import Info from "../box/Info.jsx";
+import { postRequest } from "../../utils/request.jsx";
 import DialogConfirmation from "../dialog/DialogConfirmation.jsx";
 
 export default class PrivateSpaceRegisterACompany extends React.Component {
@@ -50,7 +45,7 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 				+ JSON.stringify(info, null, 4),
 		};
 
-		postRequest.call(this, "privatespace/add_request", params, (response) => {
+		postRequest.call(this, "privatespace/add_request", params, () => {
 			this.setState({
 				entity: null,
 			});

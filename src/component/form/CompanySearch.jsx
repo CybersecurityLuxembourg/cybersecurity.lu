@@ -1,10 +1,8 @@
 import React from "react";
 import "./CompanySearch.css";
 import { NotificationManager as nm } from "react-notifications";
-import CheckBox from "./CheckBox";
-import Chip from "./Chip";
-import FormLine from "./FormLine";
-import { getRequest } from "../../utils/request";
+import FormLine from "./FormLine.jsx";
+import { getRequest } from "../../utils/request.jsx";
 
 export default class CompanySearch extends React.Component {
 	constructor(props) {

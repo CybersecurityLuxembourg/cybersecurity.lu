@@ -3,7 +3,6 @@ import "./PagePrivateSpace.css";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import Lock from "./box/Lock.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Tab from "./tab/Tab.jsx";
 import PrivateSpaceAccount from "./privatespace/PrivateSpaceAccount.jsx";
@@ -61,20 +60,25 @@ export default class PagePrivateSpace extends React.Component {
 					menu={["My account", "My companies", null, "Register a company", "Request", null, "Password"]}
 					content={[
 						<PrivateSpaceAccount
+							key={1}
 							id={this.props.id}
 						/>,
 						<PrivateSpaceMyCompanies
+							key={2}
 							id={this.props.id}
 						/>,
 						null,
 						<PrivateSpaceRegisterACompany
+							key={3}
 							id={this.props.id}
 						/>,
 						<PrivateSpaceRequest
+							key={4}
 							id={this.props.id}
 						/>,
 						null,
 						<PrivateSpacePassword
+							key={5}
 							id={this.props.id}
 						/>,
 					]}

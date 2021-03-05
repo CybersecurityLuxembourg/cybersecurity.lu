@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Article.css";
 import { Link } from "react-router-dom";
-import NoImage from "../box/NoImage";
-import { getApiURL } from "../../utils/env";
+import NoImage from "../box/NoImage.jsx";
+import { getApiURL } from "../../utils/env.jsx";
 
 export default class Article extends Component {
 	constructor(props) {

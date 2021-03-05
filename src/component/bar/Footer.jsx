@@ -24,6 +24,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://hcpn.gouvernement.lu/fr.html"
+									rel="noreferrer"
 									target="_blank"
 									title="HCPN"
 									className="text-capitalize">
@@ -33,6 +34,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://securitymadein.lu/"
+									rel="noreferrer"
 									target="_blank"
 									title="SECURITYMADEIN.LU GIE"
 									className="text-capitalize">
@@ -42,6 +44,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://www.luxinnovation.lu/"
+									rel="noreferrer"
 									target="_blank"
 									title="LUXINNOVATION GIE"
 									className="text-capitalize">
@@ -60,6 +63,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://www.circl.lu/"
+									rel="noreferrer"
 									target="_blank"
 									title="About"
 									className="text-capitalize">
@@ -69,6 +73,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://www.cases.lu/"
+									rel="noreferrer"
 									target="_blank"
 									title="Jobs"
 									className="text-capitalize">
@@ -78,6 +83,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://www.c-3.lu/"
+									rel="noreferrer"
 									target="_blank"
 									title="Legal"
 									className="text-capitalize">
@@ -87,6 +93,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://www.c-3.lu/"
+									rel="noreferrer"
 									target="_blank"
 									title="Legal"
 									className="text-capitalize">
@@ -96,6 +103,7 @@ export default class Footer extends React.Component {
 							<div>
 								<a
 									href="https://www.c-3.lu/"
+									rel="noreferrer"
 									target="_blank"
 									title="Legal"
 									className="text-capitalize">
@@ -108,6 +116,7 @@ export default class Footer extends React.Component {
 							<div className="Footer-network">
 								<a
 									href="https://twitter.com/CybersecLux"
+									rel="noreferrer"
 									target="_blank"
 									title="Twitter CYBERLUX"
 									className="text-capitalize">
@@ -115,6 +124,7 @@ export default class Footer extends React.Component {
 								</a>
 								<a
 									href="https://www.linkedin.com/company/cybersecurity-luxembourg/"
+									rel="noreferrer"
 									target="_blank"
 									title="LinkedIn CYBERLUX"
 									className="text-capitalize">
@@ -122,6 +132,7 @@ export default class Footer extends React.Component {
 								</a>
 								<a
 									href="https://github.com/CybersecLux/"
+									rel="noreferrer"
 									target="_blank"
 									title="GitHub CyberLux"
 									className="text-capitalize">

@@ -15,7 +15,7 @@ export default class BarWorkforceRange extends React.Component {
 	}
 
 	getData() {
-		const data = this.state.ranges.map((o) => 0);
+		const data = this.state.ranges.map(() => 0);
 		const acceptedIDs = this.props.actors.map((a) => a.id);
 
 		for (const i in this.props.workforces) {
@@ -47,15 +47,15 @@ export default class BarWorkforceRange extends React.Component {
 			<div className="BarWorkforceRange">
 				<Bar
 					data={{
-					  labels: this.state.labels,
-					  datasets: [{
-						  data: this.getData(),
-						  borderWidth: 1,
-						   borderColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
+						labels: this.state.labels,
+						datasets: [{
+							data: this.getData(),
+							borderWidth: 1,
+							borderColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
 								&& this.props.selected[1] === o ? "#e40613" : "#009fe3")),
-						  backgroundColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
+							backgroundColor: this.state.ranges.map((o) => (typeof this.props.selected !== "undefined"
 								&& this.props.selected[1] === o ? "#fed7da" : "#bcebff")),
-					  }],
+						}],
 					}}
 					options={{
 						legend: {
@@ -63,13 +63,13 @@ export default class BarWorkforceRange extends React.Component {
 						},
 						scales: {
 							yAxes: [
-							  {
+								{
 									ticks: {
-								  beginAtZero: true,
+										beginAtZero: true,
 									},
-							  },
+								},
 							],
-						  },
+						},
 					}}
 				/>
 			</div>

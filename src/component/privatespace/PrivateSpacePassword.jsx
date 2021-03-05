@@ -5,7 +5,6 @@ import FormLine from "../form/FormLine.jsx";
 import Loading from "../box/Loading.jsx";
 import Info from "../box/Info.jsx";
 import { postRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
 import { validatePassword } from "../../utils/re.jsx";
 
 export default class PrivateSpacePassword extends React.Component {
@@ -33,7 +32,7 @@ export default class PrivateSpacePassword extends React.Component {
 			new_password: this.state.newPassword,
 		};
 
-		postRequest.call(this, "account/change_password", params, (data) => {
+		postRequest.call(this, "account/change_password", params, () => {
 			this.setState({
 				password: null,
 				newPassword: null,
