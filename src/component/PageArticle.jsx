@@ -4,7 +4,6 @@ import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
-import Lock from "./box/Lock.jsx";
 import { getRequest } from "../utils/request.jsx";
 import { getApiURL } from "../utils/env.jsx";
 import Loading from "./box/Loading.jsx";
@@ -46,9 +45,9 @@ export default class PageArticle extends React.Component {
 			});
 
 			if (data.type === "NEWS") {
-				getRequest.call(this, "public/get_related_articles/" + this.props.match.params.handle, (data) => {
+				getRequest.call(this, "public/get_related_articles/" + this.props.match.params.handle, (data2) => {
 					this.setState({
-						relatedArticles: data,
+						relatedArticles: data2,
 						relatedArticleLoading: false,
 					});
 				}, (response) => {
@@ -89,7 +88,8 @@ export default class PageArticle extends React.Component {
 					</div>
 				</div>
 
-				{this.state.article !== null && this.state.article.content !== undefined && !this.state.articleLoading
+				{this.state.article !== null && this.state.article.content !== undefined
+					&& !this.state.articleLoading
 					? <div className="row row-spaced">
 						<div className={this.state.article.type === "NEWS" ? "col-md-8" : "col-md-12"}>
 							<article>
@@ -105,6 +105,7 @@ export default class PageArticle extends React.Component {
 								<div className="PageArticle-tags">
 									{this.state.article.tags.map((t) => (
 										<Chip
+											key={t.name}
 											label={t.name}
 										/>
 									))}
@@ -117,7 +118,10 @@ export default class PageArticle extends React.Component {
 								{this.state.article.content.map((b, i) => {
 									if (positionToTreat <= i) {
 										if (b.type === "TITLE1") {
-											const nextTitle1Position = getNextTitle1Position(i + 1, this.state.article.content);
+											const nextTitle1Position = getNextTitle1Position(
+												i + 1,
+												this.state.article.content,
+											);
 
 											const el = <Collapsible trigger={getContentFromBlock(b)}>
 												{this.state.article.content
@@ -132,11 +136,13 @@ export default class PageArticle extends React.Component {
 										positionToTreat += 1;
 										return getContentFromBlock(b);
 									}
+									return null;
 								})}
 
 								<div className="PageArticle-tags">
 									{this.state.article.tags.map((t) => (
 										<Chip
+											key={t.name}
 											label={t.name}
 										/>
 									))}
@@ -151,26 +157,34 @@ export default class PageArticle extends React.Component {
 											<h2>Related articles</h2>
 
 											{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
-												? (this.state.relatedArticles.length > 0
-													? this.state.relatedArticles.map((a) => (
-														<Article
-															title={a.title}
-															handle={a.handle}
-															date={a.publication_date}
-															abstract={a.abstract}
-															image={a.image}
-															tags={a.tags}
-														/>
-													))
-													:													<Message
-														text={"No related article found"}
-														height={150}
+												&& this.state.relatedArticles.length > 0
+												&& this.state.relatedArticles.map((a) => (
+													<Article
+														key={a.id}
+														title={a.title}
+														handle={a.handle}
+														date={a.publication_date}
+														abstract={a.abstract}
+														image={a.image}
+														tags={a.tags}
 													/>
-												)
-												: 												<Loading
+												))
+											}
+
+											{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
+												&& this.state.relatedArticles.length === 0
+												&& <Message
+													text={"No related article found"}
 													height={150}
 												/>
 											}
+
+											{(this.state.relatedArticles === null || this.state.relatedArticleLoading)
+												&& <Loading
+													height={150}
+												/>
+											}
+
 										</div>
 									</div>
 								</div>

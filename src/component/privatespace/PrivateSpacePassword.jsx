@@ -20,12 +20,6 @@ export default class PrivateSpacePassword extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-	}
-
-	refresh() {
-	}
-
 	changePassword() {
 		const params = {
 			password: this.state.password,

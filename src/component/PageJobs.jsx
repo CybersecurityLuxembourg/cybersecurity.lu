@@ -4,6 +4,7 @@ import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Loading from "./box/Loading.jsx";
+import Message from "./box/Message.jsx";
 import { getRequest } from "../utils/request.jsx";
 import JobOffer from "./item/JobOffer.jsx";
 import { dictToURI } from "../utils/url.jsx";
@@ -89,29 +90,33 @@ export default class PageJobs extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && !this.state.loading
-					? (this.state.articles.length === 0
-						? <div className="row row-spaced">
+				{this.state.articles !== null && !this.state.loading && this.state.articles.length === 0
+					&& <div className="row row-spaced">
+						<div className="col-md-12">
+							<Message
+								text={"No job offer found"}
+								height={200}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.articles !== null && !this.state.loading && this.state.articles.length > 0
+					&& <SimpleTable
+						className={""}
+						elements={this.state.articles.map((a, i) => [a, i])}
+						buildElement={(a) => (
 							<div className="col-md-12">
-								<Message
-									text={"No job offer found"}
-									height={200}
+								<JobOffer
+									info={a}
 								/>
 							</div>
-						</div>
-						: 						<SimpleTable
-							className={""}
-							elements={this.state.articles.map((a, i) => [a, i])}
-							buildElement={(a) => (
-								<div className="col-md-12">
-									<JobOffer
-										info={a}
-									/>
-								</div>
-							)}
-						/>
-					)
-					: 					<div className="row row-spaced">
+						)}
+					/>
+				}
+
+				{(this.state.articles === null || this.state.loading)
+					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Loading
 								height={200}

@@ -1,9 +1,7 @@
 import React from "react";
 import "./InsideApp.css";
-import { NotificationManager as nm } from "react-notifications";
 import { Route, Switch } from "react-router-dom";
 import Particles from "react-particles-js";
-import { withCookies } from "react-cookie";
 import GovBar from "./bar/GovBar.jsx";
 import Menu from "./bar/Menu.jsx";
 import Footer from "./bar/Footer.jsx";
@@ -21,7 +19,6 @@ import PageMap from "./PageMap.jsx";
 import PageLogin from "./PageLogin.jsx";
 import PagePrivateSpace from "./PagePrivateSpace.jsx";
 import { getRequest } from "../utils/request.jsx";
-import { getApiURL } from "../utils/env.jsx";
 
 export default class InsideApp extends React.Component {
 	constructor(props) {
@@ -37,18 +34,21 @@ export default class InsideApp extends React.Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		getRequest.call(this, "privatespace/is_logged", (data) => {
-			this.setState({
-				logged: data.is_logged,
-				email: data.email,
-			});
-		}, (response) => {
-		}, (error) => {
+			if (data !== null) {
+				this.setState({
+					logged: data.is_logged,
+					email: data.email,
+				});
+			}
+		}, () => {
+		}, () => {
 		});
 	}
 
 	login(token, email) {
+		// import { withCookies } from "react-cookie";
 		// TODO
 		// this.props.cookies.set('access_token_cookie', token/*, { httpOnly: true }*/);
 		window.token = token;

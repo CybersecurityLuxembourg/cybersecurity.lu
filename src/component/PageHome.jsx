@@ -136,23 +136,27 @@ export default class PageHome extends React.Component {
 						<h1>Latest news</h1>
 					</div>
 
-					{this.state.news !== null
-						? (this.state.news.length === 0
-							? <div className="col-md-12">
-								<Message
-									text={"No news found"}
-									height={400}
+					{this.state.news !== null && this.state.news.length === 0
+						&& <div className="col-md-12">
+							<Message
+								text={"No news found"}
+								height={400}
+							/>
+						</div>
+					}
+
+					{this.state.news !== null && this.state.news.length > 0
+						&& this.state.news.map((e) => (
+							<div className="col-md-4" key={e.id}>
+								<Article
+									info={e}
 								/>
 							</div>
-							:							this.state.news.map((e) => (
-								<div className="col-md-4">
-									<Article
-										info={e}
-									/>
-								</div>
-							))
-						)
-						:						<Loading
+						))
+					}
+
+					{this.state.news === null
+						&& <Loading
 							height={400}
 						/>
 					}
@@ -174,23 +178,27 @@ export default class PageHome extends React.Component {
 						<h1>Coming events</h1>
 					</div>
 
-					{this.state.events !== null
-						? (this.state.events.length === 0
-							? <div className="col-md-12">
-								<Message
-									text={"No coming event found"}
-									height={400}
+					{this.state.events !== null && this.state.events.length === 0
+						&& <div className="col-md-12">
+							<Message
+								text={"No coming event found"}
+								height={400}
+							/>
+						</div>
+					}
+
+					{this.state.events !== null && this.state.events.length > 0
+						&& this.state.events.map((e) => (
+							<div className="col-md-4" key={e.id}>
+								<Event
+									info={e}
 								/>
 							</div>
-							:							this.state.events.map((e) => (
-								<div className="col-md-4">
-									<Event
-										info={e}
-									/>
-								</div>
-							))
-						)
-						:						<Loading
+						))
+					}
+
+					{this.state.events === null
+						&& <Loading
 							height={400}
 						/>
 					}

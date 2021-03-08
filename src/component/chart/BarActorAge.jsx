@@ -16,11 +16,11 @@ export default class BarActorAge extends React.Component {
 	}
 
 	getData() {
-		const data = this.state.ranges.map((o) => 0);
+		const data = this.state.ranges.map(() => 0);
 		const dates = this.state.ranges.map((o) => getPastDate(o));
 
-		for (const i in this.props.actors) {
-			for (const y in dates) {
+		for (let i = 0; i < this.props.actors.length; i++) {
+			for (let y = 0; y < dates.length; y++) {
 				if (this.props.actors[i].creation_date < dates[y]) {
 					data[y] += 1;
 					break;

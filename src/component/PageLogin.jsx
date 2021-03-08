@@ -38,6 +38,7 @@ export default class PageLogin extends React.Component {
 		this.notifyForPasswordReset();
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	async notifyForPasswordReset() {
 		if (getUrlParameter("reset_password") === "true") {
 			await new Promise((r) => setTimeout(r, 500));
@@ -136,7 +137,7 @@ export default class PageLogin extends React.Component {
 					<div className="row row-spaced">
 						<div className="col-md-3 col-sm-12"/>
 						{this.state.view === "login"
-							? <div className="col-md-6 col-sm-12">
+							&& <div className="col-md-6 col-sm-12">
 								<div className="Login-title">
 									<h1>
 										Login to your account
@@ -189,132 +190,138 @@ export default class PageLogin extends React.Component {
 									</button>
 								</div>
 							</div>
-							: this.state.view === "forgot"
-								? <div className="col-md-6 col-sm-12">
-									<div className="Login-title">
-										<h1>
-										Forgot password
-										</h1>
-									</div>
-									<FormLine
-										label="Email"
-										fullWidth={true}
-										value={this.state.email}
-										onChange={(v) => this.changeState("email", v)}
-										autofocus={true}
-										onKeyDown={this.onKeyDown}
-									/>
-									<div className="right-buttons">
-										<button
-											className="blue-button"
-											onClick={this.requestReset}
-										>
-										Reset password
-										</button>
-									</div>
-									<div className="left-buttons">
-										<button
-											className="link-button"
-											onClick={() => this.changeState("view", "login")}
-										>
-										Back to login
-										</button>
-									</div>
+						}
+
+						{this.state.view === "forgot"
+							&& <div className="col-md-6 col-sm-12">
+								<div className="Login-title">
+									<h1>
+									Forgot password
+									</h1>
 								</div>
-								: this.state.view === "reset"
-									? <div className="col-md-6 col-sm-12">
-										<div className="Login-title">
-											<h1>
+								<FormLine
+									label="Email"
+									fullWidth={true}
+									value={this.state.email}
+									onChange={(v) => this.changeState("email", v)}
+									autofocus={true}
+									onKeyDown={this.onKeyDown}
+								/>
+								<div className="right-buttons">
+									<button
+										className="blue-button"
+										onClick={this.requestReset}
+									>
 										Reset password
-											</h1>
-										</div>
-										<Info
-											content={
-												<div>
+									</button>
+								</div>
+								<div className="left-buttons">
+									<button
+										className="link-button"
+										onClick={() => this.changeState("view", "login")}
+									>
+										Back to login
+									</button>
+								</div>
+							</div>
+						}
+
+						{this.state.view === "reset"
+							&& <div className="col-md-6 col-sm-12">
+								<div className="Login-title">
+									<h1>
+										Reset password
+									</h1>
+								</div>
+								<Info
+									content={
+										<div>
 											The password must:<br/>
-													<li>contain at least 1 lowercase alphabetical character</li>
-													<li>contain at least 1 uppercase alphabetical character</li>
-													<li>contain at least 1 numeric character</li>
-													<li>contain at least 1 special character such as !@#$%^&*</li>
-													<li>be between 8 and 30 characters long</li>
-												</div>
-											}
-										/>
-										<FormLine
-											label="New password"
-											type={"password"}
-											fullWidth={true}
-											value={this.state.password}
-											onChange={(v) => this.changeState("password", v)}
-											format={validatePassword}
-											onKeyDown={this.onKeyDown}
-											autofocus={true}
-										/>
-										<FormLine
-											label="New password confirmation"
-											type={"password"}
-											fullWidth={true}
-											value={this.state.passwordConfirmation}
-											onChange={(v) => this.changeState("passwordConfirmation", v)}
-											format={validatePassword}
-											onKeyDown={this.onKeyDown}
-										/>
-										<div className="right-buttons">
-											<button
-												className="blue-button"
-												onClick={this.resetPassword}
-												disabled={!validatePassword(this.state.password)
-											|| !validatePassword(this.state.passwordConfirmation)
-											|| this.state.password !== this.state.passwordConfirmation
-												}
-											>
+											<li>contain at least 1 lowercase alphabetical character</li>
+											<li>contain at least 1 uppercase alphabetical character</li>
+											<li>contain at least 1 numeric character</li>
+											<li>contain at least 1 special character such as !@#$%^&*</li>
+											<li>be between 8 and 30 characters long</li>
+										</div>
+									}
+								/>
+								<FormLine
+									label="New password"
+									type={"password"}
+									fullWidth={true}
+									value={this.state.password}
+									onChange={(v) => this.changeState("password", v)}
+									format={validatePassword}
+									onKeyDown={this.onKeyDown}
+									autofocus={true}
+								/>
+								<FormLine
+									label="New password confirmation"
+									type={"password"}
+									fullWidth={true}
+									value={this.state.passwordConfirmation}
+									onChange={(v) => this.changeState("passwordConfirmation", v)}
+									format={validatePassword}
+									onKeyDown={this.onKeyDown}
+								/>
+								<div className="right-buttons">
+									<button
+										className="blue-button"
+										onClick={this.resetPassword}
+										disabled={!validatePassword(this.state.password)
+									|| !validatePassword(this.state.passwordConfirmation)
+									|| this.state.password !== this.state.passwordConfirmation
+										}
+									>
 										Change password
-											</button>
-										</div>
-										<div className="left-buttons">
-											<button
-												className="link-button"
-												onClick={() => this.changeState("view", "login")}
-											>
+									</button>
+								</div>
+								<div className="left-buttons">
+									<button
+										className="link-button"
+										onClick={() => this.changeState("view", "login")}
+									>
 										Back to login
-											</button>
-										</div>
-									</div>
-									: this.state.view === "create"
-										? <div className="col-md-6 col-sm-12">
-											<div className="Login-title">
-												<h1>
+									</button>
+								</div>
+							</div>
+						}
+
+						{this.state.view === "create"
+							&& <div className="col-md-6 col-sm-12">
+								<div className="Login-title">
+									<h1>
 										Create an account
-												</h1>
-											</div>
-											<FormLine
-												label="Email"
-												fullWidth={true}
-												value={this.state.email}
-												onChange={(v) => this.changeState("email", v)}
-												autofocus={true}
-												format={validateEmail}
-												onKeyDown={this.onKeyDown}
-											/>
-											<div className="right-buttons">
-												<button
-													className="blue-button"
-													onClick={this.createAccount}
-													disabled={!validateEmail(this.state.email)}
-												>
+									</h1>
+								</div>
+								<FormLine
+									label="Email"
+									fullWidth={true}
+									value={this.state.email}
+									onChange={(v) => this.changeState("email", v)}
+									autofocus={true}
+									format={validateEmail}
+									onKeyDown={this.onKeyDown}
+								/>
+								<div className="right-buttons">
+									<button
+										className="blue-button"
+										onClick={this.createAccount}
+										disabled={!validateEmail(this.state.email)}
+									>
 										Create account
-												</button>
-											</div>
-											<div className="left-buttons">
-												<button
-													className="link-button"
-													onClick={() => this.changeState("view", "login")}
-												>
+									</button>
+								</div>
+								<div className="left-buttons">
+									<button
+										className="link-button"
+										onClick={() => this.changeState("view", "login")}
+									>
 										Back to login
-												</button>
-											</div>
-										</div>
-										: ""}
+									</button>
+								</div>
+							</div>
+						}
 
 					</div>
 				</div>

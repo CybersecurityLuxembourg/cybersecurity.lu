@@ -80,6 +80,7 @@ export default class PageJob extends React.Component {
 								<div className="PageJob-tags">
 									{this.state.article.tags.map((t) => (
 										<Chip
+											key={t.name}
 											label={t.name}
 										/>
 									))}
@@ -92,9 +93,12 @@ export default class PageJob extends React.Component {
 								{this.state.article.content.map((b, i) => {
 									if (positionToTreat <= i) {
 										if (b.type === "TITLE1") {
-											const nextTitle1Position = getNextTitle1Position(i + 1, this.state.articleC.content);
+											const nextTitle1Position = getNextTitle1Position(
+												i + 1, this.state.articleC.content,
+											);
 
-											const el = <Collapsible trigger={getContentFromBlock(b)}>
+											const el = <Collapsible
+												trigger={getContentFromBlock(b)}>
 												{this.state.article.content
 													.slice(positionToTreat + 1, nextTitle1Position - 1)
 													.map((b2) => getContentFromBlock(b2))}
@@ -107,11 +111,13 @@ export default class PageJob extends React.Component {
 										positionToTreat += 1;
 										return getContentFromBlock(b);
 									}
+									return null;
 								})}
 
 								<div className="PageJob-tags">
 									{this.state.article.tags.map((t) => (
 										<Chip
+											key={t.name}
 											label={t.name}
 										/>
 									))}
@@ -127,7 +133,7 @@ export default class PageJob extends React.Component {
 							</article>
 						</div>
 					</div>
-					: 					<Loading
+					: <Loading
 						height={400}
 					/>
 				}

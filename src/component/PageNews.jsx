@@ -90,29 +90,33 @@ export default class PageNews extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && !this.state.loading
-					? (this.state.articles.length === 0
-						? <div className="row row-spaced">
-							<div className="col-md-12">
-								<Message
-									text={"No article found"}
-									height={200}
+				{this.state.articles !== null && !this.state.loading && this.state.articles.length === 0
+					&& <div className="row row-spaced">
+						<div className="col-md-12">
+							<Message
+								text={"No article found"}
+								height={200}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.articles !== null && !this.state.loading && this.state.articles.length > 0
+					&& <SimpleTable
+						className={""}
+						elements={this.state.articles.map((a, i) => [a, i])}
+						buildElement={(a) => (
+							<div className="col-md-4">
+								<Article
+									info={a}
 								/>
 							</div>
-						</div>
-						: 						<SimpleTable
-							className={""}
-							elements={this.state.articles.map((a, i) => [a, i])}
-							buildElement={(a) => (
-								<div className="col-md-4">
-									<Article
-										info={a}
-									/>
-								</div>
-							)}
-						/>
-					)
-					: 					<div className="row row-spaced">
+						)}
+					/>
+				}
+
+				{(this.state.articles === null || this.state.loading)
+					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Loading
 								height={200}
@@ -120,6 +124,7 @@ export default class PageNews extends React.Component {
 						</div>
 					</div>
 				}
+
 			</div>
 		);
 	}

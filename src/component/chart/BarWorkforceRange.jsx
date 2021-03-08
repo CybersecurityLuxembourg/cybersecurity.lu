@@ -18,9 +18,9 @@ export default class BarWorkforceRange extends React.Component {
 		const data = this.state.ranges.map(() => 0);
 		const acceptedIDs = this.props.actors.map((a) => a.id);
 
-		for (const i in this.props.workforces) {
+		for (let i = 0; i < this.props.workforces.length; i++) {
 			if (acceptedIDs.indexOf(this.props.workforces[i].company) >= 0) {
-				for (const y in this.state.ranges) {
+				for (let y = 0; y < this.state.ranges.length; y++) {
 					if (this.props.workforces[i].workforce <= this.state.ranges[y]) {
 						if (this.props.companiesAsGranularity) {
 							data[y] += 1;
@@ -36,7 +36,7 @@ export default class BarWorkforceRange extends React.Component {
 		return data;
 	}
 
-	getPastDate(years) {
+	static getPastDate(years) {
 		const date = new Date();
 		date.setFullYear(date.getFullYear() - years);
 		return date.toISOString().split("T")[0];

@@ -23,7 +23,9 @@ export default class PagePrivateSpace extends React.Component {
 
 	componentDidMount() {
 		getRequest.call(this, "privatespace/is_logged", (data) => {
-			if (data.is_logged !== true) this.props.history.push("/login");
+			if (data !== null && data.is_logged !== true) {
+				this.props.history.push("/login");
+			}
 		}, (response) => {
 			nm.warning(response.statusText);
 			this.props.history.push("/login");

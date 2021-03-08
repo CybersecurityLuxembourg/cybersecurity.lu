@@ -73,24 +73,26 @@ export default class PrivateSpaceRequest extends React.Component {
 						</div>
 					</div>
 
-					{this.state.requests !== null
-						? (this.state.requests.length === 0
-							? <div className="col-md-12">
-								<Message
-									text={"No request found"}
-									height={150}
+					{this.state.requests !== null && this.state.requests.length === 0
+						&& <div className="col-md-12">
+							<Message
+								text={"No request found"}
+								height={150}
+							/>
+						</div>
+					}
+					{this.state.requests !== null && this.state.requests.length > 0
+						&& this.state.requests.map((r) => (
+							<div className="col-md-12" key={r.id}>
+								<Request
+									info={r}
+									afterDelete={this.refresh}
 								/>
 							</div>
-							: this.state.requests.map((r) => (
-								<div className="col-md-12">
-									<Request
-										info={r}
-										afterDelete={this.refresh}
-									/>
-								</div>
-							))
-						)
-						: <div className="col-md-12">
+						))
+					}
+					{this.state.requests !== null
+						&& <div className="col-md-12">
 							<Loading
 								height={150}
 							/>

@@ -39,8 +39,10 @@ export default class VennActorDistribution extends React.Component {
 			},
 			{
 				sets: ["Actors", "Has cybersecurity as a core business", "Startup"],
-				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
-				label: "" + this.props.actors.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
+				size: this.props.actors
+					.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
+				label: "" + this.props.actors
+					.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
 			},
 		];
 
@@ -50,9 +52,6 @@ export default class VennActorDistribution extends React.Component {
 		targetWidth = targetWidth < 600 ? 600 : targetWidth;
 
 		div.datum(sets).call(venn.VennDiagram().styled(false).height(targetWidth).width(targetWidth));
-
-		const tooltip = d3.select("body").append("div")
-			.attr("class", "venntooltip");
 
 		const vennDiv = document.getElementById("venn");
 		const vennSvg = vennDiv.children[0];
@@ -67,12 +66,13 @@ export default class VennActorDistribution extends React.Component {
 
 		d3.select(window)
 			.on("resize", () => {
-				let targetWidth = div.node().getBoundingClientRect().width;
-				targetWidth = targetWidth < 600 ? 600 : targetWidth;
-				vennSvg.setAttribute("viewBox", "0 0 " + targetWidth + " " + targetWidth);
+				let changedTargetWidth = div.node().getBoundingClientRect().width;
+				changedTargetWidth = changedTargetWidth < 600 ? 600 : changedTargetWidth;
+				vennSvg.setAttribute("viewBox", "0 0 " + changedTargetWidth + " " + changedTargetWidth);
 			});
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
 			<div className="VennActorDistribution">

@@ -18,8 +18,10 @@ export default class Request extends Component {
 			id: this.props.info.id,
 		};
 
-		postRequest.call(this, "privatespace/delete_my_request", params, (response) => {
-			if (this.props.afterDelete !== undefined) this.props.afterDelete();
+		postRequest.call(this, "privatespace/delete_my_request", params, () => {
+			if (this.props.afterDelete !== undefined) {
+				this.props.afterDelete();
+			}
 
 			nm.info("The request has been deleted");
 		}, (response) => {

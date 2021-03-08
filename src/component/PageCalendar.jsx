@@ -3,7 +3,7 @@ import "./PageCalendar.css";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import BigCalendar, { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Loading from "./box/Loading.jsx";
 import { getRequest } from "../utils/request.jsx";
@@ -11,8 +11,7 @@ import Event from "./item/Event.jsx";
 import Message from "./box/Message.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import ArticleSearch from "./form/ArticleSearch.jsx";
-
-import SimpleTable from "./table/SimpleTable";
+import SimpleTable from "./table/SimpleTable.jsx";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = momentLocalizer(moment);
@@ -68,11 +67,14 @@ export default class PageCalendar extends React.Component {
 	}
 
 	render() {
-		const ColoredDateCellWrapper = ({ children }) => React.cloneElement(React.Children.only(children), {
-			style: {
-				backgroundColor: "lightblue",
+		const ColoredDateCellWrapper = ({ children }) => React.cloneElement(
+			React.Children.only(children),
+			{
+				style: {
+					backgroundColor: "lightblue",
+				},
 			},
-		});
+		);
 
 		return (
 			<div className={"page max-sized-page"}>
@@ -133,32 +135,38 @@ export default class PageCalendar extends React.Component {
 				</div>
 
 				{this.state.articles !== null && !this.state.loading
-					? (this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length === 0
-						? <div className="row">
-							<div className="col-md-12">
-								<Message
-									text={"No coming event found"}
-									height={400}
+					&& this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length === 0
+					&& <div className="row">
+						<div className="col-md-12">
+							<Message
+								text={"No coming event found"}
+								height={400}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.articles !== null && !this.state.loading
+					&& this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length > 0
+					&& <SimpleTable
+						numberDisplayed={6}
+						elements={this.state.articles
+							.filter((a) => new Date(a.end_date) > new Date())
+							.sort((a, b) => (a.start_date > b.start_date ? 1 : -1))
+							.map((a, i) => [a, i])
+						}
+						buildElement={(a) => (
+							<div className="col-md-4">
+								<Event
+									info={a}
 								/>
 							</div>
-						</div>
-						: 						<SimpleTable
-							numberDisplayed={6}
-							elements={this.state.articles
-								.filter((a) => new Date(a.end_date) > new Date())
-								.sort((a, b) => (a.start_date > b.start_date ? 1 : -1))
-								.map((a, i) => [a, i])
-							}
-							buildElement={(a, i) => (
-								<div className="col-md-4">
-									<Event
-										info={a}
-									/>
-								</div>
-							)}
-						/>
-					)
-					:					<div className="row">
+						)}
+					/>
+				}
+
+				{(this.state.articles === null || this.state.loading)
+					&& <div className="row">
 						<div className="col-md-12">
 							<Loading
 								height={400}
@@ -174,32 +182,38 @@ export default class PageCalendar extends React.Component {
 				</div>
 
 				{this.state.articles !== null && !this.state.loading
-					? (this.state.articles.filter((a) => new Date(a.end_date) < new Date()).length === 0
-						? <div className="row">
-							<div className="col-md-12">
-								<Message
-									text={"No past event found"}
-									height={400}
+					&& this.state.articles.filter((a) => new Date(a.end_date) < new Date()).length === 0
+					&& <div className="row">
+						<div className="col-md-12">
+							<Message
+								text={"No past event found"}
+								height={400}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.articles !== null && !this.state.loading
+					&& this.state.articles.filter((a) => new Date(a.end_date) < new Date()).length > 0
+					&& <SimpleTable
+						numberDisplayed={6}
+						elements={this.state.articles
+							.filter((a) => new Date(a.end_date) < new Date())
+							.sort((a, b) => a.start_date - b.start_date)
+							.map((a, i) => [a, i])
+						}
+						buildElement={(a) => (
+							<div className="col-md-4">
+								<Event
+									info={a}
 								/>
 							</div>
-						</div>
-						: 						<SimpleTable
-							numberDisplayed={6}
-							elements={this.state.articles
-								.filter((a) => new Date(a.end_date) < new Date())
-								.sort((a, b) => a.start_date - b.start_date)
-								.map((a, i) => [a, i])
-							}
-							buildElement={(a, i) => (
-								<div className="col-md-4">
-									<Event
-										info={a}
-									/>
-								</div>
-							)}
-						/>
-					)
-					:					<div className="row">
+						)}
+					/>
+				}
+
+				{(this.state.articles === null || this.state.loading)
+					&& <div className="row">
 						<div className="col-md-12">
 							<Loading
 								height={400}

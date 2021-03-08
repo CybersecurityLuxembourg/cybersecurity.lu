@@ -30,9 +30,6 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-	}
-
 	submitCreationRequest() {
 		const info = {
 			company: this.state.newCompanyForm,
@@ -69,7 +66,7 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 		this.setState({ addresses: c });
 	}
 
-	isFieldCompleted(v) {
+	static isFieldCompleted(v) {
 		return v !== undefined && v.length > 0;
 	}
 

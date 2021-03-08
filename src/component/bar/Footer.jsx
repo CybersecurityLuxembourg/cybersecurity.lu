@@ -10,10 +10,7 @@ export default class Footer extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-
-	}
-
+	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
 			<div className="Footer">

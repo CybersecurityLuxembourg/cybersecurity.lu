@@ -36,7 +36,7 @@ export default class PageEcosystem extends React.Component {
 			filters: {
 				name: getUrlParameter("name"),
 				taxonomy_values: getUrlParameter("taxonomy_values") !== null
-					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v)) : [],
+					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],
 				startup_only: getUrlParameter("startup_only") === "true",
 				corebusiness_only: getUrlParameter("corebusiness_only") === "true",
 			},
@@ -57,9 +57,9 @@ export default class PageEcosystem extends React.Component {
 				civilSociety: data.filter((c) => c.type === "CIVIL SOCIETY"),
 				jobPlatforms: data.filter((c) => c.type === "JOB PLATFORM"),
 			}, () => {
-				getRequest.call(this, "public/get_public_company_geolocations?" + dictToURI(this.state.filters), (data) => {
+				getRequest.call(this, "public/get_public_company_geolocations?" + dictToURI(this.state.filters), (data2) => {
 					this.setState({
-						geolocations: data,
+						geolocations: data2,
 					});
 				}, (response) => {
 					nm.warning(response.statusText);
@@ -87,6 +87,7 @@ export default class PageEcosystem extends React.Component {
 	}
 
 	onSearch() {
+		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + dictToURI(this.state.filters));
 
 		this.getCompanies();
@@ -105,7 +106,7 @@ export default class PageEcosystem extends React.Component {
 		let total = 0;
 		const acceptedIDs = this.state.actors.map((a) => a.id);
 
-		for (const i in this.state.analytics.workforces) {
+		for (let i = 0; i < this.state.analytics.workforces.length; i++) {
 			if (acceptedIDs.indexOf(this.state.analytics.workforces[i].company) >= 0) {
 				total += this.state.analytics.workforces[i].workforce;
 			}
@@ -142,7 +143,7 @@ export default class PageEcosystem extends React.Component {
 					? <SimpleTable
 						numberDisplayed={6}
 						elements={this.state.actors.map((a, i) => [a, i])}
-						buildElement={(a, i) => (
+						buildElement={(a) => (
 							<div className="col-md-6">
 								<Company
 									info={a}
@@ -241,7 +242,7 @@ export default class PageEcosystem extends React.Component {
 					? <SimpleTable
 						numberDisplayed={6}
 						elements={this.state.publicEntities.map((a, i) => [a, i])}
-						buildElement={(a, i) => (
+						buildElement={(a) => (
 							<div className="col-md-6">
 								<Company
 									info={a}

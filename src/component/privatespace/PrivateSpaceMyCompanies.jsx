@@ -151,7 +151,7 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 		this.setState({ addresses: c });
 	}
 
-	isFieldCompleted(v) {
+	static isFieldCompleted(v) {
 		return v !== undefined && v.length > 0;
 	}
 
@@ -163,117 +163,124 @@ export default class PrivateSpaceMyCompanies extends React.Component {
 						<h2>My companies</h2>
 					</div>
 
-					{this.state.companies !== null
-						? this.state.companies.length > 0
-							? this.state.companies.map((c, i) => (
-								<div className="col-md-12">
-									<Company
-										info={c}
-									/>
-									<Collapsible
-										trigger={<div className={"PrivateSpaceMyCompanies-show-detail"}>Show details</div>}
-									>
-										<h3>Global information</h3>
-										<FormLine
-											label={this.state.fields.name}
-											value={c.name}
-											onChange={(v) => this.updateCompanies(i, "name", v)}
-										/>
-										<FormLine
-											label={this.state.fields.type}
-											value={c.type}
-											disabled={true}
-										/>
-										<FormLine
-											label={this.state.fields.description}
-											type={"textarea"}
-											value={c.description}
-											onChange={(v) => this.updateCompanies(i, "description", v)}
-										/>
-										<FormLine
-											label={this.state.fields.rscl_number}
-											value={c.rscl_number}
-											onChange={(v) => this.updateCompanies(i, "rscl_number", v)}
-										/>
-										<FormLine
-											label={this.state.fields.website}
-											value={c.website}
-											onChange={(v) => this.updateCompanies(i, "website", v)}
-										/>
-										<FormLine
-											label={this.state.fields.creation_date}
-											type={"date"}
-											value={c.creation_date}
-											onChange={(v) => this.updateCompanies(i, "creation_date", v)}
-										/>
-										<FormLine
-											label={this.state.fields.is_cybersecurity_core_business}
-											type={"checkbox"}
-											value={c.is_cybersecurity_core_business}
-											onChange={(v) => this.updateCompanies(i, "is_cybersecurity_core_business", v)}
-											background={false}
-										/>
-										<FormLine
-											label={this.state.fields.is_startup}
-											type={"checkbox"}
-											value={c.is_startup}
-											onChange={(v) => this.updateCompanies(i, "is_startup", v)}
-											background={false}
-										/>
-										<FormLine
-											label={this.state.fields.is_targeting_sme}
-											type={"checkbox"}
-											value={c.is_targeting_sme}
-											onChange={(v) => this.updateCompanies(i, "is_targeting_sme", v)}
-											background={false}
-										/>
-
-										{this.state.addresses.map((a, y) => {
-											if (a.company_id === c.id) {
-												return (
-													<div>
-														<h3>Address</h3>
-														<Address
-															info={a}
-															onChange={(f, v) => this.updateAddresses(y, f, v)}
-														/>
-													</div>
-												);
-											}
-											return null;
-										})}
-
-										<div className={"right-buttons"}>
-											<DialogConfirmation
-												text={"Do you want to request modifications for those fields : "
-													+ this.getModifiedFields(c, this.state.originalCompanies[i]) + " ?"}
-												trigger={
-													<button
-														className={"blue-background"}
-														disabled={_.isEqual(c, this.state.originalCompanies[i])
-															&& _.isEqual(
-																this.state.addresses.filter((a) => a.company_id === c.id),
-																this.state.originalAddresses.filter((a) => a.company_id === c.id),
-															)
-														}
-													>
-														<i className="fas fa-save"/> Request modifications
-													</button>
-												}
-												afterConfirmation={() => this.submitModificationRequests(c, this.state.originalCompanies[i])
-												}
-											/>
-										</div>
-									</Collapsible>
-								</div>
-							))
-							:						<div className="col-md-12">
-								<Message
-									text={"No company found"}
-									height={150}
+					{this.state.companies !== null && this.state.companies.length > 0
+						&& this.state.companies.map((c, i) => (
+							<div className="col-md-12" key={c.id}>
+								<Company
+									info={c}
 								/>
+								<Collapsible
+									trigger={<div className={"PrivateSpaceMyCompanies-show-detail"}>Show details</div>}
+								>
+									<h3>Global information</h3>
+									<FormLine
+										label={this.state.fields.name}
+										value={c.name}
+										onChange={(v) => this.updateCompanies(i, "name", v)}
+									/>
+									<FormLine
+										label={this.state.fields.type}
+										value={c.type}
+										disabled={true}
+									/>
+									<FormLine
+										label={this.state.fields.description}
+										type={"textarea"}
+										value={c.description}
+										onChange={(v) => this.updateCompanies(i, "description", v)}
+									/>
+									<FormLine
+										label={this.state.fields.rscl_number}
+										value={c.rscl_number}
+										onChange={(v) => this.updateCompanies(i, "rscl_number", v)}
+									/>
+									<FormLine
+										label={this.state.fields.website}
+										value={c.website}
+										onChange={(v) => this.updateCompanies(i, "website", v)}
+									/>
+									<FormLine
+										label={this.state.fields.creation_date}
+										type={"date"}
+										value={c.creation_date}
+										onChange={(v) => this.updateCompanies(i, "creation_date", v)}
+									/>
+									<FormLine
+										label={this.state.fields.is_cybersecurity_core_business}
+										type={"checkbox"}
+										value={c.is_cybersecurity_core_business}
+										onChange={(v) => this.updateCompanies(i, "is_cybersecurity_core_business", v)}
+										background={false}
+									/>
+									<FormLine
+										label={this.state.fields.is_startup}
+										type={"checkbox"}
+										value={c.is_startup}
+										onChange={(v) => this.updateCompanies(i, "is_startup", v)}
+										background={false}
+									/>
+									<FormLine
+										label={this.state.fields.is_targeting_sme}
+										type={"checkbox"}
+										value={c.is_targeting_sme}
+										onChange={(v) => this.updateCompanies(i, "is_targeting_sme", v)}
+										background={false}
+									/>
+
+									{this.state.addresses.map((a, y) => {
+										if (a.company_id === c.id) {
+											return (
+												<div key={a.company_id}>
+													<h3>Address</h3>
+													<Address
+														info={a}
+														onChange={(f, v) => this.updateAddresses(y, f, v)}
+													/>
+												</div>
+											);
+										}
+										return null;
+									})}
+
+									<div className={"right-buttons"}>
+										<DialogConfirmation
+											text={"Do you want to request modifications for those fields : "
+												+ this.getModifiedFields(c, this.state.originalCompanies[i]) + " ?"}
+											trigger={
+												<button
+													className={"blue-background"}
+													disabled={_.isEqual(c, this.state.originalCompanies[i])
+														&& _.isEqual(
+															this.state.addresses.filter((a) => a.company_id === c.id),
+															this.state.originalAddresses.filter((a) => a.company_id === c.id),
+														)
+													}
+												>
+													<i className="fas fa-save"/> Request modifications
+												</button>
+											}
+											afterConfirmation={() => this.submitModificationRequests(
+												c,
+												this.state.originalCompanies[i],
+											)}
+										/>
+									</div>
+								</Collapsible>
 							</div>
-						: 						<div className="col-md-12">
+						))
+					}
+
+					{this.state.companies !== null && this.state.companies.length === 0
+						&& <div className="col-md-12">
+							<Message
+								text={"No company found"}
+								height={150}
+							/>
+						</div>
+					}
+
+					{this.state.companies === null
+						&& <div className="col-md-12">
 							<Loading
 								height={150}
 							/>

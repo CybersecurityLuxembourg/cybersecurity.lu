@@ -67,7 +67,7 @@ export default class PageEvent extends React.Component {
 					</div>
 				</div>
 
-				{this.state.article !== null && this.state.article.content !== undefined 
+				{this.state.article !== null && this.state.article.content !== undefined
 					&& !this.state.articleLoading
 					? <div className="row row-spaced">
 						<div className="col-md-12">
@@ -84,6 +84,7 @@ export default class PageEvent extends React.Component {
 								<div className="PageEvent-tags">
 									{this.state.article.tags.map((t) => (
 										<Chip
+											key={t.name}
 											label={t.name}
 										/>
 									))}
@@ -96,8 +97,9 @@ export default class PageEvent extends React.Component {
 								{this.state.article.content.map((b, i) => {
 									if (positionToTreat <= i) {
 										if (b.type === "TITLE1") {
-											const nextTitle1Position = 
-												getNextTitle1Position(i + 1, this.state.article.content);
+											const nextTitle1Position = getNextTitle1Position(
+												i + 1, this.state.article.content,
+											);
 
 											const el = <Collapsible trigger={getContentFromBlock(b)}>
 												{this.state.article.content
@@ -112,11 +114,13 @@ export default class PageEvent extends React.Component {
 										positionToTreat += 1;
 										return getContentFromBlock(b);
 									}
+									return null;
 								})}
 
 								<div className="PageEvent-tags">
 									{this.state.article.tags.map((t) => (
 										<Chip
+											key={t.name}
 											label={t.name}
 										/>
 									))}
