@@ -1,4 +1,5 @@
 import React from "react";
+import dompurify from "dompurify";
 import { getApiURL } from "./env.jsx";
 
 export function getContentFromBlock(b) {
@@ -11,7 +12,10 @@ export function getContentFromBlock(b) {
 	} else if (b.type === "TITLE3") {
 		el = <h4>{b.content}</h4>;
 	} else if (b.type === "PARAGRAPH") {
-		el = <div dangerouslySetInnerHTML={{ __html: b.content }} />;
+		el = <div dangerouslySetInnerHTML={{
+			__html:
+			dompurify.sanitize(b.content),
+		}} />;
 	} else if (b.type === "IMAGE") {
 		if (b.content !== null) {
 			el = <div className='PageEvent-content-media'>
@@ -21,7 +25,12 @@ export function getContentFromBlock(b) {
 	} else if (b.type === "FRAME") {
 		if (b.content !== null) {
 			el = <div className='PageEvent-content-media'>
-				<div dangerouslySetInnerHTML={{ __html: b.content.replace("&lt;", "<").replace("&gt;", ">") }} />
+				<div dangerouslySetInnerHTML={
+					{
+						__html:
+						dompurify.sanitize(b.content.replace("&lt;", "<").replace("&gt;", ">")),
+					}
+				} />
 			</div>;
 		}
 	}

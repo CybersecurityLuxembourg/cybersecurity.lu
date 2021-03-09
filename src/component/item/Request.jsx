@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Request.css";
 import { NotificationManager as nm } from "react-notifications";
+import dompurify from "dompurify";
 import { postRequest } from "../../utils/request.jsx";
 
 export default class Request extends Component {
@@ -40,7 +41,10 @@ export default class Request extends Component {
 						<div className="card-type">STATUS: {this.props.info.status}</div>
 						<p className="card-text">
 							<div dangerouslySetInnerHTML={
-								{ __html: this.props.info.request.replaceAll("\n", "<br />", "g") }
+								{
+									__html:
+									dompurify.sanitize(this.props.info.request.replaceAll("\n", "<br />", "g")),
+								}
 							}/>
 						</p>
 						<button
