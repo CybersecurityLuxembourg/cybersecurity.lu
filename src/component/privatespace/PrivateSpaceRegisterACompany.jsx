@@ -87,7 +87,7 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 							label={this.state.fields.name}
 							value={this.state.newCompanyForm.name}
 							onChange={(v) => this.updateNewCompany("name", v)}
-							format={(v) => this.isFieldCompleted(v)}
+							format={(v) => PrivateSpaceRegisterACompany.isFieldCompleted(v)}
 						/>
 						<FormLine
 							label={this.state.fields.description}
@@ -104,14 +104,14 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 							label={this.state.fields.website}
 							value={this.state.newCompanyForm.website}
 							onChange={(v) => this.updateNewCompany("website", v)}
-							format={(v) => this.isFieldCompleted(v)}
+							format={(v) => PrivateSpaceRegisterACompany.isFieldCompleted(v)}
 						/>
 						<FormLine
 							label={this.state.fields.creation_date}
 							type={"date"}
 							value={this.state.newCompanyForm.creation_date}
 							onChange={(v) => this.updateNewCompany("creation_date", v)}
-							format={(v) => this.isFieldCompleted(v)}
+							format={(v) => PrivateSpaceRegisterACompany.isFieldCompleted(v)}
 						/>
 						<FormLine
 							label={this.state.fields.is_cybersecurity_core_business}
@@ -156,12 +156,18 @@ export default class PrivateSpaceRegisterACompany extends React.Component {
 									<button
 										className={"blue-background"}
 										disabled={
-											!this.isFieldCompleted(this.state.newCompanyForm.name)
-											|| !this.isFieldCompleted(this.state.newCompanyForm.website)
-											|| !this.isFieldCompleted(this.state.newCompanyForm.creation_date)
-											|| !this.isFieldCompleted(this.state.addresses[0].address_1)
-											|| !this.isFieldCompleted(this.state.addresses[0].city)
-											|| !this.isFieldCompleted(this.state.addresses[0].country)
+											!PrivateSpaceRegisterACompany
+												.isFieldCompleted(this.state.newCompanyForm.name)
+											|| !PrivateSpaceRegisterACompany
+												.isFieldCompleted(this.state.newCompanyForm.website)
+											|| !PrivateSpaceRegisterACompany
+												.isFieldCompleted(this.state.newCompanyForm.creation_date)
+											|| !PrivateSpaceRegisterACompany
+												.isFieldCompleted(this.state.addresses[0].address_1)
+											|| !PrivateSpaceRegisterACompany
+												.isFieldCompleted(this.state.addresses[0].city)
+											|| !PrivateSpaceRegisterACompany
+												.isFieldCompleted(this.state.addresses[0].country)
 										}
 									>
 										<i className="fas fa-save"/> Request registration

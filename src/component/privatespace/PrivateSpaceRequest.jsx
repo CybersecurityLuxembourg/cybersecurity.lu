@@ -91,7 +91,7 @@ export default class PrivateSpaceRequest extends React.Component {
 							</div>
 						))
 					}
-					{this.state.requests !== null
+					{this.state.requests === null
 						&& <div className="col-md-12">
 							<Loading
 								height={150}
