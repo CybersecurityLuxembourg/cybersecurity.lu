@@ -28,11 +28,7 @@ export default class PageEcosystem extends React.Component {
 		this.state = {
 			actors: null,
 			publicEntities: null,
-			privateEntities: null,
-			civilSociety: null,
-			jobPlatforms: null,
 			analytics: null,
-			geolocations: null,
 			filters: {
 				name: getUrlParameter("name"),
 				taxonomy_values: getUrlParameter("taxonomy_values") !== null
@@ -45,27 +41,27 @@ export default class PageEcosystem extends React.Component {
 
 	componentDidMount() {
 		this.getCompanies();
+		this.getPublicSector();
 		this.getAnalytics();
 	}
 
 	getCompanies() {
-		getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.filters), (data) => {
+		getRequest.call(this, "public/get_public_companies?ecosystem_role=ACTOR&"
+			+ dictToURI(this.state.filters), (data) => {
 			this.setState({
-				actors: data.filter((c) => c.type === "ACTOR"),
-				publicEntities: data.filter((c) => c.type === "PUBLIC SECTOR"),
-				privateEntities: data.filter((c) => c.type === "PRIVATE SECTOR"),
-				civilSociety: data.filter((c) => c.type === "CIVIL SOCIETY"),
-				jobPlatforms: data.filter((c) => c.type === "JOB PLATFORM"),
-			}, () => {
-				getRequest.call(this, "public/get_public_company_geolocations?" + dictToURI(this.state.filters), (data2) => {
-					this.setState({
-						geolocations: data2,
-					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
-				});
+				actors: data,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
+	}
+
+	getPublicSector() {
+		getRequest.call(this, "public/get_public_companies?entity_type=PUBLIC SECTOR", (data) => {
+			this.setState({
+				publicEntities: data,
 			});
 		}, (response) => {
 			nm.warning(response.statusText);

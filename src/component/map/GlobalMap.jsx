@@ -3,37 +3,109 @@ import "./GlobalMap.css";
 import {
 	MapContainer, TileLayer, Marker, Popup,
 } from "react-leaflet";
+import _ from "lodash";
+import { NotificationManager as nm } from "react-notifications";
 import CheckBox from "../form/CheckBox.jsx";
+import { getRequest } from "../../utils/request.jsx";
+import { dictToURI } from "../../utils/url.jsx";
 
 export default class GlobalMap extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getIDsToDisplay = this.getIDsToDisplay.bind(this);
+		this.getTaxonomyValues = this.getTaxonomyValues.bind(this);
+		this.getCompanies = this.getCompanies.bind(this);
+		this.changeFilter = this.changeFilter.bind(this);
 
 		this.state = {
 			lat: 49.8116,
 			lng: 6.1319,
 			zoom: 9,
 			selectedCompanyId: null,
-			showActors: true,
-			showPublicSector: true,
-			showCivilSociety: true,
-			showJobPlatforms: true,
+			companies: null,
+			companyGeolocations: null,
+			filters: {
+				ecosystem_role: {},
+				entity_type: {},
+			},
 		};
+	}
+
+	componentDidMount() {
+		this.getTaxonomyValues();
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.filters !== prevState.filters) {
+			this.getCompanies();
+		}
+	}
+
+	getTaxonomyValues() {
+		getRequest.call(this, "public/get_public_taxonomy_values", (data) => {
+			const filters = _.cloneDeep(this.state.filters);
+
+			data.filter((v) => v.category === "ECOSYSTEM ROLE").forEach((v) => {
+				filters.ecosystem_role[v.name] = true;
+			});
+
+			data.filter((v) => v.category === "ENTITY TYPE").forEach((v) => {
+				filters.entity_type[v.name] = true;
+			});
+
+			this.setState({ filters });
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
+	}
+
+	getCompanies() {
+		const filters = {
+			ecosystem_role: Object.keys(this.state.filters.ecosystem_role)
+				.filter((r) => this.state.filters.ecosystem_role[r]),
+			entity_type: Object.keys(this.state.filters.entity_type)
+				.filter((r) => this.state.filters.entity_type[r]),
+		};
+
+		if (Object.keys(this.state.filters.ecosystem_role).length === filters.ecosystem_role.length) {
+			delete filters.ecosystem_role;
+		}
+
+		if (Object.keys(this.state.filters.entity_type).length === filters.entity_type.length) {
+			delete filters.entity_type;
+		}
+
+		getRequest.call(this, "public/get_public_companies?" + dictToURI(filters), (data) => {
+			this.setState({
+				companies: data,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
+
+		getRequest.call(this, "public/get_public_company_geolocations?" + dictToURI(filters), (data) => {
+			this.setState({
+				companyGeolocations: data,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
 	}
 
 	handlePopupOpen(companyId) {
 		this.setState({ selectedCompanyId: companyId });
 	}
 
-	getIDsToDisplay() {
-		return this.props.companies
-			.filter((c) => this.state.showActors || c.type !== "ACTOR")
-			.filter((c) => this.state.showPublicSector || c.type !== "PUBLIC SECTOR")
-			.filter((c) => this.state.showCivilSociety || c.type !== "CIVIL SOCIETY")
-			.filter((c) => this.state.showJobPlatforms || c.type !== "JOB PLATFORM")
-			.map((c) => c.id);
+	changeFilter(category, value, v) {
+		const filters = _.cloneDeep(this.state.filters);
+		filters[category][value] = v;
+		this.setState({ filters });
 	}
 
 	render() {
@@ -44,10 +116,10 @@ export default class GlobalMap extends React.Component {
 					zoom={this.state.zoom}
 					style={{ width: "100%", height: "100%" }}
 				>
-					{Array.isArray(this.props.addresses)
-						? this.props.addresses
+
+					{Array.isArray(this.state.companyGeolocations)
+						? this.state.companyGeolocations
 							.filter((a) => a.latitude !== null && a.longitude !== null)
-							.filter((a) => this.getIDsToDisplay().indexOf(a.company_id) >= 0)
 							.map((a) => (
 								<div key={a.company_id}>
 									<Marker
@@ -56,9 +128,9 @@ export default class GlobalMap extends React.Component {
 										<Popup
 											companyId={a.company_id}
 										>
-											{this.props.companies
+											{this.state.companies
 												.filter((c) => c.id === this.state.selectedCompanyId).length > 0
-												? this.props.companies
+												? this.state.companies
 													.filter((c) => c.id === this.state.selectedCompanyId)[0].name
 												: "Unfound company"}
 											<br/><a href={"/company/" + a.company_id}>More info</a>
@@ -67,40 +139,47 @@ export default class GlobalMap extends React.Component {
 								</div>
 							))
 						: ""}
+
 					<TileLayer
 						attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
 				</MapContainer>
-				<div className="GlobalMap-filters">
-					<div title="Show/Hide actors">
-						<CheckBox
-							label={<i className="fas fa-shield-alt"/>}
-							value={this.state.showActors}
-							onClick={(v) => this.setState({ showActors: v })}
-						/>
-					</div>
-					<div title="Show/Hide public sector">
-						<CheckBox
-							label={<i className="far fa-flag"></i>}
-							value={this.state.showPublicSector}
-							onClick={(v) => this.setState({ showPublicSector: v })}
-						/>
-					</div>
-					<div title="Show/Hide civil society">
-						<CheckBox
-							label={<i className="fas fa-people-carry"/>}
-							value={this.state.showCivilSociety}
-							onClick={(v) => this.setState({ showCivilSociety: v })}
-						/>
-					</div>
-					<div title="Show/Hide job platforms">
-						<CheckBox
-							label={<i className="fas fa-briefcase"/>}
-							value={this.state.showJobPlatforms}
-							onClick={(v) => this.setState({ showJobPlatforms: v })}
-						/>
-					</div>
+
+				<div className="GlobalMap-filters-top-right">
+					{this.state.filters !== undefined && this.state.filters.ecosystem_role !== undefined
+						&& <div>
+							{Object.keys(this.state.filters.ecosystem_role).map((r) => (
+								<div
+									key={r}
+									title="Show/Hide actors">
+									<CheckBox
+										label={r}
+										value={this.state.filters.ecosystem_role[r]}
+										onClick={(v) => this.changeFilter("ecosystem_role", r, v)}
+									/>
+								</div>
+							))}
+						</div>
+					}
+				</div>
+
+				<div className="GlobalMap-filters-bottom-right">
+					{this.state.filters !== undefined && this.state.filters.entity_type !== undefined
+						&& <div>
+							{Object.keys(this.state.filters.entity_type).map((r) => (
+								<div
+									key={r}
+									title="Show/Hide actors">
+									<CheckBox
+										label={r}
+										value={this.state.filters.entity_type[r]}
+										onClick={(v) => this.changeFilter("entity_type", r, v)}
+									/>
+								</div>
+							))}
+						</div>
+					}
 				</div>
 			</div>
 		);
