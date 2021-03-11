@@ -6,27 +6,27 @@ export async function getRequest(url, callback, catchBadResponse, catchError) {
 		headers: new Headers({
 			Authorization: "Bearer " + window.token,
 			Accept: "application/json, text/html",
-			credentials: "include",
 			pragma: "no-cache",
 			"cache-control": "no-cache",
 		}),
 	}).then((response) => {
 		if (response.status === 200) {
 			return response.json();
-		} if (response.status === 403) {
+		}
+		if (response.status === 403) {
 			window.location.replace("/?status=expiredSession");
-		} else if (catchBadResponse != null) {
+		}
+		if (catchBadResponse !== null) {
 			catchBadResponse(response);
-		} else {
-			this.props.alert.error(response.statusText);
+			throw new Error(null);
 		}
-		return null;
+		throw new Error("An error happened while requesting the server");
 	}).then((jsonBody) => {
-		if (typeof jsonBody !== "undefined") {
-			callback(jsonBody);
-		}
+		if (typeof jsonBody !== "undefined") callback(jsonBody);
 	}).catch((error) => {
-		catchError(error);
+		if (error.message !== "null") {
+			catchError(error);
+		}
 	});
 }
 
@@ -36,31 +36,32 @@ export async function getBlobRequest(url, callback, catchBadResponse, catchError
 		headers: new Headers({
 			Authorization: "Bearer " + window.token,
 			Accept: "application/json, text/html",
-			credentials: "include",
 			pragma: "no-cache",
 			"cache-control": "no-cache",
 		}),
 	}).then((response) => {
 		if (response.status === 200) {
 			return response.blob();
-		} if (response.status === 403) {
+		}
+		if (response.status === 403) {
 			window.location.replace("/?status=expiredSession");
-		} else if (catchBadResponse != null) {
+		}
+		if (catchBadResponse !== null) {
 			catchBadResponse(response);
-		} else {
-			this.props.alert.error(response.statusText);
+			throw new Error(null);
 		}
-		return null;
+		throw new Error("An error happened while requesting the server");
 	}).then((blob) => {
-		if (typeof blob !== "undefined") {
-			callback(blob);
-		}
+		if (typeof blob !== "undefined") callback(blob);
 	}).catch((error) => {
-		catchError(error);
+		if (error.message !== "null") {
+			catchError(error);
+		}
 	});
 }
 
 export async function postRequest(url, params, callback, catchBadResponse, catchError) {
+	console.log(window.token);
 	fetch(getApiURL() + url, {
 		method: "POST",
 		body: JSON.stringify(params),
@@ -73,20 +74,21 @@ export async function postRequest(url, params, callback, catchBadResponse, catch
 	}).then((response) => {
 		if (response.status === 200) {
 			return response.json();
-		} if (response.status === 403 && !url.includes("analytics")) {
+		}
+		if (response.status === 403) {
 			window.location.replace("/?status=expiredSession");
-		} else if (catchBadResponse !== null) {
+		}
+		if (catchBadResponse !== null) {
 			catchBadResponse(response);
-		} else {
-			this.props.alert.error(response.statusText);
+			throw new Error(null);
 		}
-		return null;
+		throw new Error("An error happened while requesting the server");
 	}).then((jsonBody) => {
-		if (typeof jsonBody !== "undefined") {
-			callback(jsonBody);
-		}
+		if (typeof jsonBody !== "undefined") callback(jsonBody);
 	}).catch((error) => {
-		catchError(error);
+		if (error.message !== "null") {
+			catchError(error);
+		}
 	});
 }
 
@@ -97,13 +99,13 @@ export async function getForeignRequest(url, callback, catchBadResponse, catchEr
 		headers: {
 			Accept: "application/json, text/html",
 			"Access-Control-Allow-Headers": "Access-Control-Allow-Headers, "
-				+ "Origin,Accept, "
-				+ "X-Requested-With, "
-				+ "Content-Type, "
-				+ "Access-Control-Request-Method, "
-				+ "Access-Control-Request-Headers, "
-				+ "Access-Control-Allow-Origin, "
-				+ "Access-Control-Allow-Credentials",
+                + "Origin,Accept, "
+                + "X-Requested-With, "
+                + "Content-Type, "
+                + "Access-Control-Request-Method, "
+                + "Access-Control-Request-Headers, "
+                + "Access-Control-Allow-Origin, "
+                + "Access-Control-Allow-Credentials",
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Methods": "GET,OPTIONS,HEAD",
 			"Access-Control-Allow-Credentials": "true",
@@ -114,16 +116,16 @@ export async function getForeignRequest(url, callback, catchBadResponse, catchEr
 		if (response.status === 200) {
 			return response.json();
 		}
+		if (response.status === 403) {
+			window.location.replace("/?status=expiredSession");
+		}
 		if (catchBadResponse !== null) {
 			catchBadResponse(response);
-		} else {
-			this.props.alert.error(response.statusText);
+			throw new Error(response.error);
 		}
-		return null;
+		throw new Error("An error happened while requesting the server");
 	}).then((jsonBody) => {
-		if (typeof jsonBody !== "undefined") {
-			callback(jsonBody);
-		}
+		if (typeof jsonBody !== "undefined") callback(jsonBody);
 	}).catch((error) => {
 		catchError(error);
 	});
