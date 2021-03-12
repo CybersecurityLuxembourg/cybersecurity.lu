@@ -7,20 +7,24 @@ import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Company from "./item/Company.jsx";
 import FormLine from "./form/FormLine.jsx";
+import TreeTaxonomy from "./chart/TreeTaxonomy.jsx";
 
 export default class PageCompany extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.getCompanyContent = this.getCompanyContent.bind(this);
+		this.getTaxonomy = this.getTaxonomy.bind(this);
 
 		this.state = {
 			company: null,
+			taxonomy: null,
 		};
 	}
 
 	componentDidMount() {
 		this.getCompanyContent();
+		this.getTaxonomy();
 	}
 
 	getCompanyContent() {
@@ -29,10 +33,20 @@ export default class PageCompany extends React.Component {
 				company: data,
 			});
 		}, (response) => {
-			this.setState({ loading: false });
 			nm.warning(response.statusText);
 		}, (error) => {
-			this.setState({ loading: false });
+			nm.error(error.message);
+		});
+	}
+
+	getTaxonomy() {
+		getRequest.call(this, "public/get_public_taxonomy", (data) => {
+			this.setState({
+				taxonomy: data,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
 			nm.error(error.message);
 		});
 	}
@@ -50,9 +64,17 @@ export default class PageCompany extends React.Component {
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
 							<Breadcrumb.Item><Link to="/ecosystem">COMPANY</Link></Breadcrumb.Item>
 							{this.state.company !== null && !this.state.loading
-								? <Breadcrumb.Item><Link to={"/company/" + this.state.company.id}>{this.state.company.name}</Link></Breadcrumb.Item>
+								? <Breadcrumb.Item>
+									<Link to={"/company/" + this.state.company.id}>{this.state.company.name}</Link>
+								</Breadcrumb.Item>
 								: ""}
 						</Breadcrumb>
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-md-12">
+						<h1>Global information</h1>
 					</div>
 				</div>
 
@@ -106,10 +128,43 @@ export default class PageCompany extends React.Component {
 							/>
 						</div>
 					</div>
-					: 					<Loading
+					: <Loading
 						height={400}
 					/>
 				}
+
+				<div className="row">
+					<div className="col-md-12">
+						<h1>Taxonomy</h1>
+					</div>
+				</div>
+
+				{this.state.company !== null && this.state.taxonomy !== null
+					&& this.state.taxonomy.categories !== undefined
+					? <div className="row row-spaced">
+						{this.state.taxonomy.categories
+							.filter((c) => this.state.taxonomy.category_hierarchy.map((h) => h.parent_category)
+								.indexOf(c.name) < 0)
+							.map((c) => (
+								<div
+									key={c.name}
+									className="col-md-12">
+									<h2>{c.name}</h2>
+
+									<TreeTaxonomy
+										companyAssignment={this.state.company.taxonomy_assignment}
+										taxonomy={this.state.taxonomy}
+										category={c.name}
+									/>
+								</div>
+							))
+						}
+					</div>
+					: <Loading
+						height={400}
+					/>
+				}
+
 			</div>
 		);
 	}
