@@ -126,6 +126,8 @@ export default class PageJob extends React.Component {
 								<div className="right-buttons">
 									<button
 										className={"blue-background"}
+										disabled={this.state.article.link === null}
+										onClick={() => window.open(this.state.article.link, "_blank")}
 									>
 										<i className="fas fa-arrow-alt-circle-right"/> View original webpage
 									</button>
