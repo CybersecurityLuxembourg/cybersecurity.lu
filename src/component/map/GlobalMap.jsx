@@ -128,7 +128,7 @@ export default class GlobalMap extends React.Component {
 										<Popup
 											companyId={a.company_id}
 										>
-											{this.state.companies
+											{this.state.companies !== null && this.state.companies
 												.filter((c) => c.id === this.state.selectedCompanyId).length > 0
 												? this.state.companies
 													.filter((c) => c.id === this.state.selectedCompanyId)[0].name
