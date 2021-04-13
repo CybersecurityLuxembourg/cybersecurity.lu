@@ -1,0 +1,75 @@
+
+.VennActorDistribution {
+	text-align: center;
+}
+
+.VennActorDistribution .VennActorDistribution-wrapped {
+	margin: 0 auto;
+	max-width: 600px;
+}
+
+[data-venn-sets="Actors"] { 
+	fill: rgba(150, 150, 150, .01) !important;
+	stroke: grey !important;
+	stroke-width: 1px;
+	font-size: 35px;
+}
+[data-venn-sets="Actors"] text { 
+	fill: black !important;
+	stroke: black !important;
+	stroke-width: 1px;
+	font-size: 1.2em !important;
+	font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+[data-venn-sets="Startup"]   {
+	fill: #bcebff !important; 
+	stroke: black !important;
+	stroke-width: 1px;
+}
+[data-venn-sets="Startup"] text { 
+	font-size: 1.3em !important;
+	fill: black !important; 
+	font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	stroke-width: 0.5px;
+}
+[data-venn-sets="Actors_Startup"] { 
+	fill: rgba(0, 159, 227, 0) !important;
+	stroke: #009fe3 !important;
+	stroke-width: 1px;
+}
+[data-venn-sets="Has cybersecurity as a core business"] { 
+	fill: #fed7da !important; 
+	stroke: black !important;
+	stroke-width: 1px;
+}
+[data-venn-sets="Has cybersecurity as a core business"] text { 
+	font-size: 1.3em !important;
+	fill: black !important; 
+	font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	stroke-width: 0.5px;
+}
+[data-venn-sets="Actors_Has cybersecurity as a core business"]   { 
+	fill: rgba(89, 2, 7, 0.0) !important;
+	stroke: #e40613 !important;
+	stroke-width: 1px;
+}
+[data-venn-sets="Actors_Has cybersecurity as a core business_Startup"]   { 
+	fill: rgba(0, 159, 227, 0.2) !important;
+	stroke: black !important;
+	stroke-width: 1px;
+}
+[data-venn-sets="Actors_Has cybersecurity as a core business_Startup"] text { 
+	font-size: 1.3em !important;
+	stroke: black !important;
+	font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	stroke-width: 0.5px;
+}
+
+.VennActorDistribution #venn svg {
+}
+
+.VennActorDistribution #venn svg text {
+    fill: black;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}

@@ -38,6 +38,7 @@
 }
 
 .nav-item .dropdown-item {
+    background-color: transparent;
 }
 
 .nav-item .dropdown-menu .dropdown-item:hover {

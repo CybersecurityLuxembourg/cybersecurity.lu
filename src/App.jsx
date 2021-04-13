@@ -1,34 +1,29 @@
 import React from "react";
 import "./App.css";
-import {NotificationContainer} from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import InsideApp from "./component/InsideApp";
+import { NotificationContainer } from "react-notifications";
+import "react-notifications/lib/notifications.css";
 import { BrowserRouter } from "react-router-dom";
+import { withCookies } from "react-cookie";
+import InsideApp from "./component/InsideApp.jsx";
 
+class App extends React.Component {
+	constructor(props) {
+		super(props);
 
-export default class App extends React.Component {
+		this.state = {
+		};
+	}
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-        };
-    }
-
-    componentDidMount() {
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-    }
-
-    render() {
-        return (
-            <div id="App">
-                <BrowserRouter>
-                    <InsideApp/>
-                    <NotificationContainer/>
-                </BrowserRouter>
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div id="App">
+				<BrowserRouter>
+					<InsideApp {...this.props}/>
+					<NotificationContainer/>
+				</BrowserRouter>
+			</div>
+		);
+	}
 }
+
+export default withCookies(App);

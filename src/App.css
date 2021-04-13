@@ -9,6 +9,7 @@
 #8fddff : hovered light blue;
 #ffa8b0 : hovered light red
 rgba(0, 159, 227, 0.05) : transparent light blue (usually for background)
+rgba(0, 159, 227, 0.05) : transparent light red (usually for background)
 grey
 lightgrey
 
@@ -23,6 +24,7 @@ body {
 
 html, body, #root {
     width: 100%;
+    height: 100%;
     overflow-x: hidden;
     color: #58595b;
     font-family: 'source-sans-pro',Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
@@ -30,6 +32,7 @@ html, body, #root {
 
 #App {
     width: 100%;
+    height: 100%;
 }
 
 h1 {
@@ -403,4 +406,10 @@ textarea {
 	border:solid 1px #e40613;
 	border-radius: 25px;
 	padding: 0px 7px;
+}
+
+/* CANVA */ 
+
+canvas {
+   	background: "#fff" !important;
 }
