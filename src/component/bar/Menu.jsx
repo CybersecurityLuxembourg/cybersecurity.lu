@@ -3,6 +3,7 @@ import "./Menu.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
+import { getPrivateAppURL, getEcosystemAppURL } from "../../utils/env.jsx";
 
 export default class Menu extends React.Component {
 	constructor(props) {
@@ -12,6 +13,7 @@ export default class Menu extends React.Component {
 		};
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
 			<div className={"page max-sized-page"}>
@@ -21,7 +23,7 @@ export default class Menu extends React.Component {
 							<img
 								className={"Menu-logo"}
 								src="/img/ecosystem-logo.jpg"
-								alt="SECURITYMADEIN.LU Logo"
+								alt="CYBERLUX Logo"
 							/>
 						</Link>
 					</Navbar.Brand>
@@ -32,12 +34,6 @@ export default class Menu extends React.Component {
 								<Link to="/">
 									<div className="Menu-title">Home</div>
 									<div className="Menu-description">Our main lines</div>
-								</Link>
-							</Nav.Link>
-							<Nav.Link>
-								<Link to="/ecosystem">
-									<div className="Menu-title">Ecosystem</div>
-									<div className="Menu-description">View on the community</div>
 								</Link>
 							</Nav.Link>
 							<Nav.Link>
@@ -52,32 +48,22 @@ export default class Menu extends React.Component {
 									<div className="Menu-description">Cybersecurity events</div>
 								</Link>
 							</Nav.Link>
-							<Nav.Link eventKey="4.1">
-								<Link to="/jobs">
-									<div className="Menu-title">Job market</div>
-									<div className="Menu-description">Find your next Adventure</div>
-								</Link>
-							</Nav.Link>
-							<Nav.Link eventKey="4.1">
-								<Link to="/about">
-									<div className="Menu-title">About</div>
-									<div className="Menu-description">What is CYBERLUX</div>
-								</Link>
-							</Nav.Link>
-							{!this.props.logged || this.props.email === null
-								? <Nav.Link>
-									<Link to="/login">
-										<div className="Menu-title">Login</div>
-										<div className="Menu-description">Or subscribe</div>
-									</Link>
-								</Nav.Link>
-								:							<Nav.Link>
-									<Link to="/privatespace">
-										<div className="Menu-title">My space</div>
-										<div className="Menu-description">as {this.props.email.split("@")[0]}</div>
-									</Link>
-								</Nav.Link>
-							}
+							<a
+								className="nav-link"
+								href={getEcosystemAppURL()}
+								rel="noreferrer"
+							>
+								<div className="Menu-title">Ecosystem</div>
+								<div className="Menu-description">View on the community</div>
+							</a>
+							<a
+								className="nav-link"
+								href={getPrivateAppURL()}
+								rel="noreferrer"
+							>
+								<div className="Menu-title">Login</div>
+								<div className="Menu-description">Or subscribe</div>
+							</a>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
