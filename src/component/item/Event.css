@@ -18,6 +18,7 @@
 
 .Event .card-img-wrapper {
     position: relative;
+    min-height: 150px;
 }
 
 .Event .card-date {

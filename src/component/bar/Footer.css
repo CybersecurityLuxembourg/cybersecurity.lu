@@ -1,31 +1,52 @@
 
 .Footer {
-  position: absolute;
   width: 100%;
   background-color: black;
-  bottom: 0;
-  height: 260px;
+  color: white;
+  font-size: 12px;
+  line-height: 1.2;
+  z-index: 150;
 }
 
-.Footer h3 {
+.Footer .Footer-patronage {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.Footer-content .row > div {
+  margin-bottom: 25px;
+}
+
+.Footer a {
   color: white;
 }
 
+.Footer a:hover {
+  color: white;
+}
+
+.Footer .Footer-title {
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
 .Footer-content {
-  margin: 30px auto 40px auto;
-  padding: 0px 40px;
+  margin: 0px auto 0px auto;
+  padding: 25px 40px 15px 40px;
   max-width: 1240px;
 }
 
 .Footer-network {
-	font-size: 30px;
-	padding: 5px 8px;
+  font-size: 20px;
+  padding: 5px 8px;
+  text-align: center;
+  color: #009fe3;
 }
 
-.Footer-contact {
-	font-size: 12px;
-}
-
-.Footer-network {
-	text-align: center;
+.Footer-alinea {
+  padding-left: 15px;
 }

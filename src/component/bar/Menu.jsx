@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import { getPrivateAppURL, getEcosystemAppURL } from "../../utils/env.jsx";
+import SearchField from "../form/SearchField.jsx";
 
 export default class Menu extends React.Component {
 	constructor(props) {
@@ -22,7 +23,7 @@ export default class Menu extends React.Component {
 						<Link to="/">
 							<img
 								className={"Menu-logo"}
-								src="/img/ecosystem-logo.jpg"
+								src="/img/ecosystem-logo-subtitle.jpg"
 								alt="CYBERLUX Logo"
 							/>
 						</Link>
@@ -64,6 +65,17 @@ export default class Menu extends React.Component {
 								<div className="Menu-title">Login</div>
 								<div className="Menu-description">Or subscribe</div>
 							</a>
+						</Nav>
+					</Navbar.Collapse>
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="Menu-top-right-about mr-sm-2 ml-auto">
+							<SearchField/>
+							<Nav.Link eventKey="about">
+								<Link to="/about">
+									<div className="Menu-title">About</div>
+									<div className="Menu-description">What is CYBERLUX?</div>
+								</Link>
+							</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>

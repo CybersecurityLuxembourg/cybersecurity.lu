@@ -154,7 +154,7 @@ export default class PageArticle extends React.Component {
 								<div className="container">
 									<div className="row PageArticle-related-article">
 										<div className="col-md-12">
-											<h2>Related articles</h2>
+											<h3>Related articles</h3>
 
 											{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
 												&& this.state.relatedArticles.length > 0

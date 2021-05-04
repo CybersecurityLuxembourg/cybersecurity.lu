@@ -35,9 +35,20 @@ export default class PageNews extends React.Component {
 		this.getArticles();
 	}
 
+	componentDidUpdate(_, prevState) {
+		if (prevState.filters.taxonomy_values !== this.state.filters.taxonomy_values
+			|| (prevState.filters.title !== this.state.filters.title
+				&& (this.state.filters.title.length === null
+					|| this.state.filters.title.length === undefined
+					|| this.state.filters.title.length > 2
+					|| this.state.filters.title.length === 0))) {
+			this.getArticles();
+		}
+	}
+
 	getArticles() {
 		this.setState({
-			loading: true,
+			articles: null,
 		});
 
 		const params = dictToURI(this.state.filters);
@@ -45,13 +56,10 @@ export default class PageNews extends React.Component {
 		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
 			this.setState({
 				articles: data,
-				loading: false,
 			});
 		}, (response) => {
-			this.setState({ loading: false });
 			nm.warning(response.statusText);
 		}, (error) => {
-			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
@@ -79,6 +87,7 @@ export default class PageNews extends React.Component {
 				</div>
 
 				<ArticleSearch
+					analytics={this.props.analytics}
 					filters={this.state.filters}
 					onChange={this.modifyFilters}
 					onSearch={this.getArticles}
@@ -90,7 +99,7 @@ export default class PageNews extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && !this.state.loading && this.state.articles.length === 0
+				{this.state.articles !== null && this.state.articles.length === 0
 					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Message
@@ -101,7 +110,7 @@ export default class PageNews extends React.Component {
 					</div>
 				}
 
-				{this.state.articles !== null && !this.state.loading && this.state.articles.length > 0
+				{this.state.articles !== null && this.state.articles.length > 0
 					&& <SimpleTable
 						className={""}
 						elements={this.state.articles.map((a, i) => [a, i])}
@@ -115,7 +124,7 @@ export default class PageNews extends React.Component {
 					/>
 				}
 
-				{(this.state.articles === null || this.state.loading)
+				{this.state.articles === null
 					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Loading
@@ -124,7 +133,6 @@ export default class PageNews extends React.Component {
 						</div>
 					</div>
 				}
-
 			</div>
 		);
 	}

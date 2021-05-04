@@ -1,0 +1,48 @@
+
+.PageAbout {
+	background-color: white;
+}
+
+.PageAbout-our-teams img {
+	max-height: 130px;
+	margin: 5px 0px 20px 0px;
+	max-width: 100%;
+}
+
+.PageAbout img {
+	margin: 10px 0px 20px 0px;
+	display: block;
+	margin-left: auto;
+  	margin-right: auto;
+	max-width: 100%;
+}
+
+.PageAbout .PageAbout-quote {
+	position: relative;
+	margin: 30px 20px 40px 20px;
+	padding: 30px 20px;
+	font-style: italic;
+	border-top: solid 1px;
+    border-bottom: solid 1px;
+}
+
+.PageAbout .PageAbout-quote:after {
+    position: absolute;
+    content: "”";
+    color: grey;
+    font-size: 10rem;
+    line-height: 0;
+    bottom: -43px;
+    right: 30px;
+}
+
+.PageAbout h1 {
+	white-space: initial;
+	overflow: initial;
+}
+
+.PageAbout-pm-picture {
+	padding: 0px 20px !important;
+	max-height: 500px;
+	max-width: 100% !important;
+}

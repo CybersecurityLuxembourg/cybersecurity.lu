@@ -88,6 +88,7 @@ export default class PageCalendar extends React.Component {
 				</div>
 
 				<ArticleSearch
+					analytics={this.props.analytics}
 					filters={this.state.filters}
 					onChange={this.modifyFilters}
 					onSearch={this.getArticles}
@@ -140,7 +141,7 @@ export default class PageCalendar extends React.Component {
 						<div className="col-md-12">
 							<Message
 								text={"No coming event found"}
-								height={400}
+								height={300}
 							/>
 						</div>
 					</div>
@@ -169,7 +170,7 @@ export default class PageCalendar extends React.Component {
 					&& <div className="row">
 						<div className="col-md-12">
 							<Loading
-								height={400}
+								height={300}
 							/>
 						</div>
 					</div>
@@ -187,7 +188,7 @@ export default class PageCalendar extends React.Component {
 						<div className="col-md-12">
 							<Message
 								text={"No past event found"}
-								height={400}
+								height={300}
 							/>
 						</div>
 					</div>
@@ -216,7 +217,7 @@ export default class PageCalendar extends React.Component {
 					&& <div className="row">
 						<div className="col-md-12">
 							<Loading
-								height={400}
+								height={300}
 							/>
 						</div>
 					</div>

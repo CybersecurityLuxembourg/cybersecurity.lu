@@ -5,45 +5,29 @@ import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
+import Analytic from "./box/Analytic.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import VennActorDistribution from "./chart/VennActorDistribution.jsx";
+import { getEcosystemAppURL } from "../utils/env.jsx";
 
 export default class PageHome extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getActors = this.getActors.bind(this);
 		this.getNews = this.getNews.bind(this);
 		this.getEvents = this.getEvents.bind(this);
 
 		this.state = {
-			actors: null,
 			news: null,
 			events: null,
 		};
 	}
 
 	componentDidMount() {
-		this.getActors();
 		this.getNews();
 		this.getEvents();
-	}
-
-	getActors() {
-		getRequest.call(this, "public/get_public_companies?entity_type=ACTOR", (data) => {
-			this.setState({
-				actors: data,
-			});
-		}, (response) => {
-			this.setState({ loading: false });
-			nm.warning(response.statusText);
-		}, (error) => {
-			this.setState({ loading: false });
-			nm.error(error.message);
-		});
 	}
 
 	getNews() {
@@ -80,6 +64,25 @@ export default class PageHome extends React.Component {
 		});
 	}
 
+	getEcosystemRoleCount(category, value) {
+		if (this.props.analytics === null
+			|| this.props.analytics.taxonomy_values === undefined
+			|| this.props.analytics.taxonomy_assignments === undefined) {
+			return null;
+		}
+
+		const values = this.props.analytics.taxonomy_values
+			.filter((v) => v.category === category && v.name === value);
+
+		if (values.length === 0) {
+			return null;
+		}
+
+		return this.props.analytics.taxonomy_assignments
+			.filter((a) => a.taxonomy_value === values[0].id)
+			.length;
+	}
+
 	changeState(field, value) {
 		this.setState({ [field]: value });
 	}
@@ -105,34 +108,6 @@ export default class PageHome extends React.Component {
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Ecosystem overview</h1>
-					</div>
-
-					<div className="col-md-12">
-						{this.state.news !== null
-							? <VennActorDistribution
-								actors={this.state.actors !== null ? this.state.actors : []}
-							/>
-							:							<Loading
-								height={400}
-							/>
-						}
-					</div>
-
-					<div className={"col-md-12"}>
-						<div className={"right-buttons"}>
-							<button
-								className={"blue-background"}
-								onClick={() => this.props.history.push("/ecosystem")}
-							>
-								<i className="fas fa-arrow-alt-circle-right"/> Consult the ecosystem
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<div className="row row-spaced">
-					<div className="col-md-12">
 						<h1>Latest news</h1>
 					</div>
 
@@ -140,7 +115,7 @@ export default class PageHome extends React.Component {
 						&& <div className="col-md-12">
 							<Message
 								text={"No news found"}
-								height={400}
+								height={300}
 							/>
 						</div>
 					}
@@ -157,7 +132,7 @@ export default class PageHome extends React.Component {
 
 					{this.state.news === null
 						&& <Loading
-							height={400}
+							height={300}
 						/>
 					}
 
@@ -182,7 +157,7 @@ export default class PageHome extends React.Component {
 						&& <div className="col-md-12">
 							<Message
 								text={"No coming event found"}
-								height={400}
+								height={300}
 							/>
 						</div>
 					}
@@ -199,7 +174,7 @@ export default class PageHome extends React.Component {
 
 					{this.state.events === null
 						&& <Loading
-							height={400}
+							height={300}
 						/>
 					}
 
@@ -209,7 +184,52 @@ export default class PageHome extends React.Component {
 								className={"blue-background"}
 								onClick={() => this.props.history.push("/calendar")}
 							>
-								<i className="fas fa-arrow-alt-circle-right"/> Consult the calendar
+								<i className="fas fa-arrow-alt-circle-right"/> Open the calendar
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div className="row row-spaced">
+					<div className="col-md-12 row-spaced">
+						<h1>Ecosystem overview</h1>
+					</div>
+
+					<div className="col-md-12 row-spaced">
+						{this.state.news !== null
+							? <div className={"row"}>
+								<div className="col-md-4">
+									<Analytic
+										value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
+										desc={"Private companies"}
+									/>
+								</div>
+								<div className="col-md-4">
+									<Analytic
+										value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
+										desc={"Public entities"}
+									/>
+								</div>
+								<div className="col-md-4">
+									<Analytic
+										value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
+										desc={"Civil society organisations"}
+									/>
+								</div>
+							</div>
+							: <Loading
+								height={200}
+							/>
+						}
+					</div>
+
+					<div className={"col-md-12"}>
+						<div className={"right-buttons"}>
+							<button
+								className={"blue-background"}
+								onClick={() => window.open(getEcosystemAppURL())}
+							>
+								<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem website
 							</button>
 						</div>
 					</div>

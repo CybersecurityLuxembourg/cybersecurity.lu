@@ -11,8 +11,15 @@
 
 .navbar a:hover {
     background: #e30613;
-    color: #fff !important;
     text-decoration: none;
+}
+
+.navbar a:hover .Menu-title {
+    color: #fff !important;
+}
+
+.navbar a:hover .Menu-description {
+    color: #fff !important;
 }
 
 .navbar i {
@@ -56,4 +63,22 @@
 
 .Menu-description {
     font-size: 12px;
+}
+
+@media (min-width: 0px) {
+    .Menu-top-right-about {
+    }
+}
+
+@media (min-width: 992px) {
+    .Menu-top-right-about {
+        position: absolute;
+        top: 20px;
+        right: 5px;
+    }
+
+    .Menu-top-right-about .SearchField {
+        margin-top: 10px;
+        margin-right: 20px;
+    }
 }

@@ -17,6 +17,7 @@
 }
 
 .Article .card-img-wrapper {
+    min-height: 150px;
     position: relative;
 }
 
