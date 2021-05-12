@@ -46,6 +46,11 @@
 	padding-top: 0px !important;
 }
 
+.PageArticle-abstract {
+	font-size: 18px;
+	margin: 15px 0px;
+}
+
 .PageArticle-publication-date {
 	position: absolute;
 	right: 30px;
@@ -60,4 +65,8 @@
 
 .PageArticle-tags {
 	padding: 30px 10px 5px 10px;
+}
+
+.PageArticle-companies {
+	padding: 5px 10px 5px 10px;
 }

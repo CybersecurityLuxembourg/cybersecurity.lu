@@ -111,19 +111,38 @@ export default class PageArticle extends React.Component {
 									))}
 								</div>
 
+								<div className="PageArticle-companies">
+									{this.state.article.companies.map((t) => (
+										<Chip
+											key={t.name}
+											label={t.name}
+											color={"#ffa8b0"}
+										/>
+									))}
+								</div>
+
 								<h1 className="showFulltext">
 									{this.state.article.title}
 								</h1>
+
+								{this.state.article.abstract !== null
+									&& <div
+										className="PageArticle-abstract">
+										<b>{this.state.article.abstract}</b>
+									</div>
+								}
 
 								{this.state.article.content.map((b, i) => {
 									if (positionToTreat <= i) {
 										if (b.type === "TITLE1") {
 											const nextTitle1Position = getNextTitle1Position(
-												i + 1,
 												this.state.article.content,
+												i + 1,
 											);
 
-											const el = <Collapsible trigger={getContentFromBlock(b)}>
+											const el = <Collapsible
+												trigger={getContentFromBlock(b)}
+												open={true}>
 												{this.state.article.content
 													.slice(positionToTreat + 1, nextTitle1Position - 1)
 													.map((b2) => getContentFromBlock(b2))}
@@ -144,6 +163,16 @@ export default class PageArticle extends React.Component {
 										<Chip
 											key={t.name}
 											label={t.name}
+										/>
+									))}
+								</div>
+
+								<div className="PageArticle-companies">
+									{this.state.article.companies.map((t) => (
+										<Chip
+											key={t.name}
+											label={t.name}
+											color={"#ffa8b0"}
 										/>
 									))}
 								</div>
