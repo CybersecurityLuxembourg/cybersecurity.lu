@@ -11,8 +11,15 @@
 	right: 17px;
 }
 
-.carousel {
+.PageHome-carousel-cover {
 	height: 500px;
+}
+
+.carousel-root {
+	position: absolute;
+	height: 500px;
+	width: 100%;
+	left: 0;
 }
 
 .slider-wrapper {
@@ -44,5 +51,29 @@
 }
 
 .carousel.carousel-slider .control-arrow {
-    border-radius:0em;
+    border-radius: 0em;
+}
+
+#PageHome .blue-bordered {
+	background:
+        linear-gradient(to right, #8fddff 2px, transparent 3px) 0 0,
+        linear-gradient(to left, #8fddff 2px, transparent 3px) 100% 100%,
+        linear-gradient(to bottom, #8fddff 2px, transparent 3px) 0 0,
+        linear-gradient(to top, #8fddff 2px, transparent 3px) 100% 100% !important;
+    background-color: rgba(188, 235, 255, 0.2) !important;
+    background-repeat: no-repeat !important;
+    background-size: 80px 80px !important;
+    padding: 20px 20px 30px 20px;
+}
+
+#PageHome .red-bordered {
+	background:
+        linear-gradient(to right, #ffa8b0 2px, transparent 3px) 0 0,
+        linear-gradient(to left, #ffa8b0 2px, transparent 3px) 100% 100%,
+        linear-gradient(to bottom, #ffa8b0 2px, transparent 3px) 0 0,
+        linear-gradient(to top, #ffa8b0 2px, transparent 3px) 100% 100% !important;
+    background-color: rgba(254, 215, 218, 0.2) !important;
+    background-repeat: no-repeat !important;
+    background-size: 80px 80px !important;
+    padding: 20px 20px 30px 20px;
 }

@@ -103,7 +103,7 @@ export default class PageArticle extends React.Component {
 								</div>
 
 								<div className="PageArticle-tags">
-									{this.state.article.tags.map((t) => (
+									{this.state.article.taxonomy_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
@@ -112,7 +112,7 @@ export default class PageArticle extends React.Component {
 								</div>
 
 								<div className="PageArticle-companies">
-									{this.state.article.companies.map((t) => (
+									{this.state.article.company_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
@@ -159,7 +159,7 @@ export default class PageArticle extends React.Component {
 								})}
 
 								<div className="PageArticle-tags">
-									{this.state.article.tags.map((t) => (
+									{this.state.article.taxonomy_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
@@ -168,7 +168,7 @@ export default class PageArticle extends React.Component {
 								</div>
 
 								<div className="PageArticle-companies">
-									{this.state.article.companies.map((t) => (
+									{this.state.article.company_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
@@ -190,12 +190,7 @@ export default class PageArticle extends React.Component {
 												&& this.state.relatedArticles.map((a) => (
 													<Article
 														key={a.id}
-														title={a.title}
-														handle={a.handle}
-														date={a.publication_date}
-														abstract={a.abstract}
-														image={a.image}
-														tags={a.tags}
+														info={a}
 													/>
 												))
 											}

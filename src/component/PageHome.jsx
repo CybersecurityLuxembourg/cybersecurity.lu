@@ -21,6 +21,7 @@ export default class PageHome extends React.Component {
 
 		this.state = {
 			news: null,
+			sortedNews: null,
 			events: null,
 		};
 	}
@@ -30,12 +31,32 @@ export default class PageHome extends React.Component {
 		this.getEvents();
 	}
 
+	componentDidUpdate() {
+		if (this.props.analytics !== null
+			&& this.state.news !== null
+			&& this.state.sortedNews == null) {
+			const sortedNews = {};
+
+			const articleCategoryValues = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY");
+
+			for (let i = 0; i < articleCategoryValues.length; i++) {
+				sortedNews[articleCategoryValues[i].name] = this.state.news
+					.filter((a) => a.taxonomy_tags.indexOf(articleCategoryValues[i].id) >= 0)
+					.slice(0, articleCategoryValues[i].name === "FRONT PAGE" ? 1 : 2);
+			}
+
+			this.setState({
+				sortedNews,
+			});
+		}
+	}
+
 	getNews() {
-		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=NEWS", (data) => {
+		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=NEWS&include_tags=true", (data) => {
 			this.setState({
 				news: data
-					.sort((a, b) => (b.publication_date > a.publication_date ? -1 : 1))
-					.slice(0, 3),
+					.sort((a, b) => (b.publication_date > a.publication_date ? -1 : 1)),
 			});
 		}, (response) => {
 			this.setState({ loading: false });
@@ -83,13 +104,39 @@ export default class PageHome extends React.Component {
 			.length;
 	}
 
+	getArticleCategoryContent(category, width) {
+		if (this.state.sortedNews === null
+			|| this.state.sortedNews[category] === undefined) {
+			return <Loading
+				height={50}
+			/>;
+		}
+
+		if (this.state.sortedNews[category].length === 0) {
+			return <Message
+				text={"No article found"}
+				height={50}
+			/>;
+		}
+
+		return this.state.sortedNews[category].map((a) => <div
+			className={"col-md-" + width}
+			key={a.id}>
+			<Article
+				info={a}
+			/>
+		</div>);
+	}
+
 	changeState(field, value) {
 		this.setState({ [field]: value });
 	}
 
 	render() {
 		return (
-			<div className={"page max-sized-page"}>
+			<div
+				id={"PageHome"}
+				className={"page max-sized-page"}>
 				<div className="row">
 					<Carousel
 						dynamicHeight={false}
@@ -106,36 +153,69 @@ export default class PageHome extends React.Component {
 					</Carousel>
 				</div>
 
+				<div className="row">
+					<div className="PageHome-carousel-cover"/>
+				</div>
+
 				<div className="row row-spaced">
 					<div className="col-md-12">
 						<h1>Latest news</h1>
 					</div>
 
-					{this.state.news !== null && this.state.news.length === 0
-						&& <div className="col-md-12">
-							<Message
-								text={"No news found"}
-								height={300}
-							/>
-						</div>
-					}
-
-					{this.state.news !== null && this.state.news.length > 0
-						&& this.state.news.map((e) => (
-							<div className="col-md-4" key={e.id}>
-								<Article
-									info={e}
-								/>
+					<div className="col-md-8">
+						<div className="row">
+							<div className="col-md-12">
+								<h3>TECH CORNER</h3>
 							</div>
-						))
-					}
+						</div>
+						<div className="row">
+							{this.getArticleCategoryContent("TECH CORNER", 6)}
+						</div>
 
-					{this.state.news === null
-						&& <Loading
-							height={300}
-						/>
-					}
+						<div className="row">
+							<div className="col-md-12">
+								<h3>CALL TO ACTION</h3>
+							</div>
+						</div>
+						<div className="row">
+							{this.getArticleCategoryContent("CALL TO ACTION", 6)}
+						</div>
+					</div>
 
+					<div className="col-md-4 blue-bordered">
+						<div className="row">
+							<div className="col-md-12">
+								<h3>INSTITUTIONAL NEWS</h3>
+							</div>
+						</div>
+						<div className="row">
+							{this.getArticleCategoryContent("INSTITUTIONAL NEWS", 12)}
+						</div>
+					</div>
+				</div>
+
+				<div className="row row-spaced">
+					<div className="col-md-12">
+						<div className="row">
+							{this.getArticleCategoryContent("FRONT PAGE", 12)}
+						</div>
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-md-12 red-bordered">
+						<div className="row">
+							<div className="col-md-12">
+								<h3>LËTZ TALK ABOUT CYBER</h3>
+							</div>
+						</div>
+						<div className="row">
+							{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 6)}
+						</div>
+					</div>
+				</div>
+
+				<div className="row row-spaced">
 					<div className={"col-md-12"}>
 						<div className={"right-buttons"}>
 							<button
@@ -199,22 +279,40 @@ export default class PageHome extends React.Component {
 						{this.state.news !== null
 							? <div className={"row"}>
 								<div className="col-md-4">
-									<Analytic
-										value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
-										desc={"Private companies"}
-									/>
+									<a
+										href={getEcosystemAppURL() + "privatesector"}
+										target={"_blank"}
+										rel="noreferrer"
+									>
+										<Analytic
+											value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
+											desc={"Private companies"}
+										/>
+									</a>
 								</div>
 								<div className="col-md-4">
-									<Analytic
-										value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
-										desc={"Public entities"}
-									/>
+									<a
+										href={getEcosystemAppURL() + "privatesector"}
+										target={"_blank"}
+										rel="noreferrer"
+									>
+										<Analytic
+											value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
+											desc={"Public entities"}
+										/>
+									</a>
 								</div>
 								<div className="col-md-4">
-									<Analytic
-										value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
-										desc={"Civil society organisations"}
-									/>
+									<a
+										href={getEcosystemAppURL() + "privatesector"}
+										target={"_blank"}
+										rel="noreferrer"
+									>
+										<Analytic
+											value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
+											desc={"Civil society organisations"}
+										/>
+									</a>
 								</div>
 							</div>
 							: <Loading
@@ -229,7 +327,7 @@ export default class PageHome extends React.Component {
 								className={"blue-background"}
 								onClick={() => window.open(getEcosystemAppURL())}
 							>
-								<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem website
+								<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem platform
 							</button>
 						</div>
 					</div>

@@ -175,53 +175,6 @@ export default class PageCalendar extends React.Component {
 						</div>
 					</div>
 				}
-
-				<div className="row">
-					<div className="col-md-12">
-						<h1>Past events</h1>
-					</div>
-				</div>
-
-				{this.state.articles !== null && !this.state.loading
-					&& this.state.articles.filter((a) => new Date(a.end_date) < new Date()).length === 0
-					&& <div className="row">
-						<div className="col-md-12">
-							<Message
-								text={"No past event found"}
-								height={300}
-							/>
-						</div>
-					</div>
-				}
-
-				{this.state.articles !== null && !this.state.loading
-					&& this.state.articles.filter((a) => new Date(a.end_date) < new Date()).length > 0
-					&& <SimpleTable
-						numberDisplayed={6}
-						elements={this.state.articles
-							.filter((a) => new Date(a.end_date) < new Date())
-							.sort((a, b) => a.start_date - b.start_date)
-							.map((a, i) => [a, i])
-						}
-						buildElement={(a) => (
-							<div className="col-md-4">
-								<Event
-									info={a}
-								/>
-							</div>
-						)}
-					/>
-				}
-
-				{(this.state.articles === null || this.state.loading)
-					&& <div className="row">
-						<div className="col-md-12">
-							<Loading
-								height={300}
-							/>
-						</div>
-					</div>
-				}
 			</div>
 		);
 	}
