@@ -38,8 +38,12 @@
 }
 
 .carousel .slide .legend {
-	border-radius:0.25em;
-	background-color: #e40613 !important;
+	background: 
+        linear-gradient( 135deg,transparent 10px,#e40613 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#e40613 0) right /50.5% 100% !important;
+    background-repeat:no-repeat !important;
+	color: white !important;
+	border-radius: 0 !important;
 	opacity: 1 !important;
 	position: absolute;
 	bottom: 50px !important;
@@ -76,4 +80,13 @@
     background-repeat: no-repeat !important;
     background-size: 80px 80px !important;
     padding: 20px 20px 30px 20px;
+}
+
+#PageHome .Analytic:hover {
+	background-color: rgba(0, 159, 227, 0.05);
+	cursor: pointer;
+}
+
+.PageHome-link {
+	text-decoration: none !important;
 }

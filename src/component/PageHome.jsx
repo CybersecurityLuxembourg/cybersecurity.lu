@@ -43,7 +43,7 @@ export default class PageHome extends React.Component {
 			for (let i = 0; i < articleCategoryValues.length; i++) {
 				sortedNews[articleCategoryValues[i].name] = this.state.news
 					.filter((a) => a.taxonomy_tags.indexOf(articleCategoryValues[i].id) >= 0)
-					.slice(0, articleCategoryValues[i].name === "FRONT PAGE" ? 1 : 2);
+					.slice(0, PageHome.getNumberOfArticlePerCategory(articleCategoryValues[i].name));
 			}
 
 			this.setState({
@@ -52,17 +52,25 @@ export default class PageHome extends React.Component {
 		}
 	}
 
+	static getNumberOfArticlePerCategory(category) {
+		if (category === "FRONT PAGE") {
+			return 1;
+		}
+		if (category === "LËTZ TALK ABOUT CYBER") {
+			return 3;
+		}
+		return 2;
+	}
+
 	getNews() {
 		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=NEWS&include_tags=true", (data) => {
 			this.setState({
 				news: data
-					.sort((a, b) => (b.publication_date > a.publication_date ? -1 : 1)),
+					.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1)),
 			});
 		}, (response) => {
-			this.setState({ loading: false });
 			nm.warning(response.statusText);
 		}, (error) => {
-			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
@@ -77,10 +85,8 @@ export default class PageHome extends React.Component {
 					.slice(0, 3),
 			});
 		}, (response) => {
-			this.setState({ loading: false });
 			nm.warning(response.statusText);
 		}, (error) => {
-			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
@@ -108,14 +114,14 @@ export default class PageHome extends React.Component {
 		if (this.state.sortedNews === null
 			|| this.state.sortedNews[category] === undefined) {
 			return <Loading
-				height={50}
+				height={150}
 			/>;
 		}
 
 		if (this.state.sortedNews[category].length === 0) {
 			return <Message
 				text={"No article found"}
-				height={50}
+				height={150}
 			/>;
 		}
 
@@ -150,6 +156,12 @@ export default class PageHome extends React.Component {
 								<p className="legend">Legend 1</p>
 							</div>
 						</Link>
+						<Link to="/about">
+							<div>
+								<img src="/img/1.png" />
+								<p className="legend"><h3>Lorem</h3></p>
+							</div>
+						</Link>
 					</Carousel>
 				</div>
 
@@ -159,7 +171,7 @@ export default class PageHome extends React.Component {
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Latest news</h1>
+						<h1>What&apos;s up?</h1>
 					</div>
 
 					<div className="col-md-8">
@@ -210,7 +222,7 @@ export default class PageHome extends React.Component {
 							</div>
 						</div>
 						<div className="row">
-							{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 6)}
+							{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 4)}
 						</div>
 					</div>
 				</div>
@@ -230,7 +242,7 @@ export default class PageHome extends React.Component {
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Coming events</h1>
+						<h1>Where to meet?</h1>
 					</div>
 
 					{this.state.events !== null && this.state.events.length === 0
@@ -280,6 +292,7 @@ export default class PageHome extends React.Component {
 							? <div className={"row"}>
 								<div className="col-md-4">
 									<a
+										className={"PageHome-link"}
 										href={getEcosystemAppURL() + "privatesector"}
 										target={"_blank"}
 										rel="noreferrer"
@@ -292,7 +305,8 @@ export default class PageHome extends React.Component {
 								</div>
 								<div className="col-md-4">
 									<a
-										href={getEcosystemAppURL() + "privatesector"}
+										className={"PageHome-link"}
+										href={getEcosystemAppURL() + "publicsector"}
 										target={"_blank"}
 										rel="noreferrer"
 									>
@@ -304,7 +318,8 @@ export default class PageHome extends React.Component {
 								</div>
 								<div className="col-md-4">
 									<a
-										href={getEcosystemAppURL() + "privatesector"}
+										className={"PageHome-link"}
+										href={getEcosystemAppURL() + "civilsociety"}
 										target={"_blank"}
 										rel="noreferrer"
 									>
