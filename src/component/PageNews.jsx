@@ -7,7 +7,7 @@ import Loading from "./box/Loading.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
 import Message from "./box/Message.jsx";
-import { dictToURI } from "../utils/url.jsx";
+import { getUrlParameter, dictToURI } from "../utils/url.jsx";
 import ArticleSearch from "./form/ArticleSearch.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 
@@ -25,7 +25,8 @@ export default class PageNews extends React.Component {
 			filters: {
 				media: "CYBERLUX",
 				type: "NEWS",
-				taxonomy_values: [],
+				taxonomy_values: getUrlParameter("taxonomy_values") !== null
+					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],
 				title: null,
 			},
 		};
@@ -52,6 +53,10 @@ export default class PageNews extends React.Component {
 		});
 
 		const params = dictToURI(this.state.filters);
+		const urlParams = dictToURI({ taxonomy_values: this.state.filters.taxonomy_values });
+
+		// eslint-disable-next-line no-restricted-globals
+		history.replaceState(null, null, "?" + urlParams);
 
 		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
 			this.setState({
@@ -86,16 +91,14 @@ export default class PageNews extends React.Component {
 					</div>
 				</div>
 
-				<ArticleSearch
-					analytics={this.props.analytics}
-					filters={this.state.filters}
-					onChange={this.modifyFilters}
-					onSearch={this.getArticles}
-				/>
-
-				<div className="row">
+				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Articles</h1>
+						<ArticleSearch
+							analytics={this.props.analytics}
+							filters={this.state.filters}
+							onChange={this.modifyFilters}
+							onSearch={this.getArticles}
+						/>
 					</div>
 				</div>
 
