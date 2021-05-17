@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import { getEcosystemAppURL, getPrivateAppURL } from "../../utils/env.jsx";
 
 export default class Footer extends React.Component {
 	constructor(props) {
@@ -59,62 +60,60 @@ export default class Footer extends React.Component {
 							<div className="Footer-title">MENU</div>
 							<div>
 								<a
-									href="https://www.c-3.lu/"
+									href=""
 									rel="noreferrer"
 									target="_blank"
-									title="Legal"
+									title="Home"
+									className="text-capitalize">
+									<Link to="/"><b>Home</b></Link>
+								</a>
+							</div>
+							<div>
+								<a
+									href=""
+									rel="noreferrer"
+									target="_blank"
+									title="About"
 									className="text-capitalize">
 									<Link to="/about"><b>About</b></Link>
 								</a>
 							</div>
 							<br/>
-							<div><b>Ecosystem</b></div>
-							<div className="Footer-alinea">
+							<div>
 								<a
-									href="https://www.circl.lu/"
+									href=""
 									rel="noreferrer"
 									target="_blank"
-									title="About">
-									<Link to="/privatesector">Private sector</Link>
+									title="News">
+									<Link to="/news">News</Link>
 								</a>
 							</div>
-							<div className="Footer-alinea">
+							<div>
 								<a
-									href="https://www.c-3.lu/"
+									href=""
 									rel="noreferrer"
 									target="_blank"
-									title="Legal">
-									<Link to="/publicsector">Public sector</Link>
+									title="Calendar">
+									<Link to="/calendar">Calendar</Link>
 								</a>
 							</div>
-							<div className="Footer-alinea">
+							<div>
 								<a
-									href="https://www.c-3.lu/"
+									href={getEcosystemAppURL()}
 									rel="noreferrer"
 									target="_blank"
-									title="Legal">
-									<Link to="/civilsociety">Civil society</Link>
+									title="Ecosystem">
+									Ecosystem
 								</a>
 							</div>
 							<br/>
-							<div className="Footer-alinea">
+							<div>
 								<a
-									href="https://www.c-3.lu/"
+									href={getPrivateAppURL()}
 									rel="noreferrer"
 									target="_blank"
-									title="Legal"
-									className="text-capitalize">
-									<Link to="/dashboard">Dashboard</Link>
-								</a>
-							</div>
-							<div className="Footer-alinea">
-								<a
-									href="https://www.c-3.lu/"
-									rel="noreferrer"
-									target="_blank"
-									title="Legal"
-									className="text-capitalize">
-									<Link to="/map">Map</Link>
+									title="My CYBERLUX">
+									My CYBERLUX
 								</a>
 							</div>
 						</div>
