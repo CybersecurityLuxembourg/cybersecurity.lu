@@ -87,17 +87,18 @@ export default class PageCalendar extends React.Component {
 					</div>
 				</div>
 
-				<ArticleSearch
-					analytics={this.props.analytics}
-					filters={this.state.filters}
-					onChange={this.modifyFilters}
-					onSearch={this.getArticles}
-				/>
-
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Calendar</h1>
+						<ArticleSearch
+							analytics={this.props.analytics}
+							filters={this.state.filters}
+							onChange={this.modifyFilters}
+							onSearch={this.getArticles}
+						/>
 					</div>
+				</div>
+
+				<div className="row row-spaced">
 					{this.state.articles !== null && !this.state.loading
 						? <div className="col-md-12">
 							<Calendar
