@@ -1,6 +1,5 @@
 import React from "react";
 import "./ArticleSearch.css";
-import Popup from "reactjs-popup";
 import FormLine from "./FormLine.jsx";
 import getLeavesOfNode from "../../utils/taxonomy.jsx";
 
@@ -11,6 +10,7 @@ export default class ArticleSearch extends React.Component {
 		this.state = {
 			isTaxonomyDetailOpen: false,
 			valueChainOrder: ["IDENTIFY", "PROTECT", "DETECT", "RESPOND", "RECOVER"],
+			showFullFilters: props.filters.taxonomy_values.length > 0,
 		};
 	}
 
@@ -41,6 +41,38 @@ export default class ArticleSearch extends React.Component {
 		return options;
 	}
 
+	getCategorySelectOptions() {
+		const options = [];
+		this.props.analytics.taxonomy_values
+			.filter((v) => v.category === "ARTICLE CATEGORY")
+			.forEach((l) => {
+				options.push({
+					label: l.name,
+					value: l.id,
+				});
+			});
+
+		return options;
+	}
+
+	getSelectedECSO() {
+		const ids = this.props.analytics.taxonomy_values
+			.filter((v) => ["VALUE CHAIN", "SERVICE GROUP"].indexOf(v.category) >= 0)
+			.map((v) => v.id);
+
+		return this.props.filters.taxonomy_values
+			.filter((v) => ids.indexOf(v) >= 0);
+	}
+
+	getSelectedCategories() {
+		const ids = this.props.analytics.taxonomy_values
+			.filter((v) => v.category === "ARTICLE CATEGORY")
+			.map((v) => v.id);
+
+		return this.props.filters.taxonomy_values
+			.filter((v) => ids.indexOf(v) >= 0);
+	}
+
 	render() {
 		return (
 			<div className={"ArticleSearch row"}>
@@ -53,71 +85,49 @@ export default class ArticleSearch extends React.Component {
 					/>
 				</div>
 
-				<div className={"col-md-12"}>
-					<FormLine
-						label={"Classification"}
-						type={"multiselect"}
-						value={this.props.filters.taxonomy_values === undefined || this.props.analytics === null
-							? [] : this.props.filters.taxonomy_values}
-						options={this.props.analytics !== null
-							&& this.props.analytics.taxonomy_values !== undefined
-							? this.getTaxonomySelectOptions()
-							: []}
-						onChange={(v) => this.props.onChange("taxonomy_values", v)}
-					/>
-				</div>
+				{this.state.showFullFilters
+					&& <div className={"col-md-12"}>
+						<FormLine
+							label={"Classification"}
+							type={"multiselect"}
+							value={this.props.filters.taxonomy_values === undefined
+								|| this.props.analytics === null
+								? [] : this.getSelectedECSO()}
+							options={this.props.analytics !== null
+								&& this.props.analytics.taxonomy_values !== undefined
+								? this.getTaxonomySelectOptions()
+								: []}
+							onChange={(v) => this.props.onChange("taxonomy_values",
+								v.concat(this.getSelectedCategories()))}
+						/>
+						<FormLine
+							label={"Category"}
+							type={"multiselect"}
+							value={this.props.filters.taxonomy_values === undefined
+								|| this.props.analytics === null
+								? [] : this.getSelectedCategories()}
+							options={this.props.analytics !== null
+								&& this.props.analytics.taxonomy_values !== undefined
+								? this.getCategorySelectOptions()
+								: []}
+							onChange={(v) => this.props.onChange("taxonomy_values",
+								v.concat(this.getSelectedECSO()))}
+						/>
+					</div>
+				}
 
 				<div className={"col-md-6"}>
 				</div>
 
 				<div className={"col-md-6 ArticleSearch-taxonomy-link-container"}>
-					<Popup
-						className={"Popup-full-size"}
-						trigger={
-							<a className={"ArticleSearch-taxonomy-link"}>
-								Learn more about the classification
-							</a>
+					<a
+						className={"ArticleSearch-taxonomy-link"}
+						onClick={() => this.setState({ showFullFilters: !this.state.showFullFilters })}>
+						{this.state.showFullFilters
+							? "Hide filters"
+							: "Show all filters"
 						}
-						modal
-						open={this.state.isTaxonomyDetailOpen}
-					>
-						{(close) => (
-							<div className={"row"}>
-								<div className={"col-md-12"}>
-									<h2>Learn more about the classification</h2>
-									<div className="top-right-buttons">
-										<button
-											className={"red-background"}
-											onClick={close}>
-											<i className="fas fa-times"/>
-										</button>
-									</div>
-								</div>
-
-								<div className={"col-md-12"}>
-									{// eslint-disable-next-line
-									}<p>Private companies are classified according to the <a target="_blank" rel="noreferrer" href="http://www.ecs-org.eu/documents/uploads/ecso-cybersecurity-market-radar-brochure.pdf">ECSO Cybersecurity Market Radar</a>, which is based on the <a target="_blank" rel="noreferrer" href="https://www.nist.gov/cyberframework">NIST Cybersecurity Framework.</a></p>
-									{// eslint-disable-next-line
-									}<p>The ECSO Cybersecurity Market Radar serves as a comprehensive visualisation tool of the European cybersecurity market.</p>
-									{// eslint-disable-next-line
-									}<p>The ECSO Radar indicates 5 capabilities that make the cybersecurity value chain:</p>
-									<ul>
-										<li>identify,</li>
-										<li>protect,</li>
-										<li>detect,</li>
-										<li>respond,</li>
-										<li>recover.</li>
-									</ul>
-									{// eslint-disable-next-line
-									}<p>Each link in the value chain is then divided into groups of services and products that are respectively offered by the member companies of the ecosystem.</p>
-									<img
-										className="ArticleSearch-img"
-										src="img/cybersecurity-ecso-taxonomy.png"
-									/>
-								</div>
-							</div>
-						)}
-					</Popup>
+					</a>
 				</div>
 			</div>
 		);
