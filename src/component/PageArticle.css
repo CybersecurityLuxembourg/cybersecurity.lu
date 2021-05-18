@@ -1,5 +1,4 @@
 
-
 .PageArticle article .PageArticle-content-cover {
 	position: relative;
 	margin: auto;
@@ -69,4 +68,30 @@
 
 .PageArticle-companies {
 	padding: 5px 10px 5px 10px;
+}
+
+/* Collapsible */ 
+
+.PageArticle .Collapsible {
+	margin: 30px 0px 0px 0px !important;
+	border-top: solid 0px !important;
+    border-bottom: solid 0px !important;
+}
+
+.PageArticle .Collapsible__trigger p {
+	position: relative;
+	padding: 8px 70px 8px 20px;
+	font-style: italic;
+	cursor: pointer;
+	margin-bottom: 0px;
+}
+
+.PageArticle .Collapsible .is-closed:after {
+    top: 45px !important;
+    right: 10px;
+}
+
+.PageArticle .Collapsible .is-open:after {
+    top: 45px !important;
+    right: 10px;
 }

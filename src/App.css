@@ -427,6 +427,9 @@ canvas {
 
 .Collapsible {
 	position: relative;
+	margin: 30px 20px 0px 20px;
+	border-top: solid 1px;
+    border-bottom: solid 1px;
 }
 
 .Collapsible__trigger p {
@@ -443,8 +446,8 @@ canvas {
     color: grey;
     font-size: 20px;
     line-height: 0;
-    top: 45px;
-    right: 10px;
+    top: 22px;
+    right: 30px;
 }
 
 .Collapsible .is-open:after {
@@ -453,6 +456,6 @@ canvas {
     color: grey;
     font-size: 20px;
     line-height: 0;
-    top: 45px;
-    right: 10px;
+    top: 22px;
+    right: 30px;
 }

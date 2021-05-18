@@ -61,3 +61,29 @@
 .PageEvent-tags {
 	padding: 30px 10px 5px 10px;
 }
+
+/* Collapsible */ 
+
+.PageEvent .Collapsible {
+	margin: 30px 0px 0px 0px !important;
+	border-top: solid 0px !important;
+    border-bottom: solid 0px !important;
+}
+
+.PageEvent .Collapsible__trigger p {
+	position: relative;
+	padding: 8px 70px 8px 20px;
+	font-style: italic;
+	cursor: pointer;
+	margin-bottom: 0px;
+}
+
+.PageEvent .Collapsible .is-closed:after {
+    top: 45px !important;
+    right: 10px;
+}
+
+.PageEvent .Collapsible .is-open:after {
+    top: 45px !important;
+    right: 10px;
+}
