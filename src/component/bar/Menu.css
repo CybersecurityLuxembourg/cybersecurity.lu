@@ -2,6 +2,7 @@
     font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
     display: block;
+    z-index: 10;
 }
 
 .navbar a {
@@ -33,7 +34,22 @@
 }
 
 .nav-link {
-    min-width: 120px;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+
+#basic-navbar-nav .navbar-nav {
+    z-index: 10;
+    padding: 0px 15px;
+    background: 
+        linear-gradient( 135deg,transparent 10px,white 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,white 0) right /50.5% 100%;
+    background-repeat:no-repeat;
+}
+
+.navbar-toggler {
+    background-color: white;
+    opacity: 1;
 }
 
 .nav-item .dropdown-toggle {
@@ -67,6 +83,12 @@
 
 @media (min-width: 0px) {
     .Menu-top-right-about {
+        margin-top: 10px;
+        padding: 20px 0px;
+    }
+
+    .Menu-top-right-about .SearchField {
+        margin-top: 10px;
     }
 }
 

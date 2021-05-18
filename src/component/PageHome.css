@@ -12,18 +12,24 @@
 }
 
 .PageHome-carousel-cover {
-	height: 500px;
+	z-index: 0;
+	height: 60vh !important;
+	max-height: 1080px !important;
 }
 
 .carousel-root {
+	z-index: 0;
 	position: absolute;
-	height: 500px;
+	top: 0;
+	height: 100vh;
+	max-height: 1080px;
 	width: 100%;
 	left: 0;
 }
 
 .slider-wrapper {
-	height: 500px;
+	height: 100vh;
+	max-height: 1080px;
 }
 
 .carousel .slider {
@@ -32,26 +38,49 @@
 
 .carousel .slide {
 	width: 100%;
-  	height: auto;
+  	height: 100%;
   	object-fit: cover;
-  	max-height: 100vh;
+}
+
+.carousel .slide div {
+  	height: 100% !important;
+}
+
+.carousel .slide div img {
+	height: 100% !important;
+  	object-fit: cover !important;
 }
 
 .carousel .slide .legend {
+	animation-name: legend-appearance;
+    animation-duration: 1s;
 	background: 
-        linear-gradient( 135deg,transparent 10px,#e40613 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,#e40613 0) right /50.5% 100% !important;
+        linear-gradient( 135deg,transparent 10px,#009fe3 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#009fe3 0) right /50.5% 100% !important;
     background-repeat:no-repeat !important;
 	color: white !important;
 	border-radius: 0 !important;
 	opacity: 1 !important;
 	position: absolute;
-	bottom: 50px !important;
-	right: 50px !important;
+	bottom: 100px !important;
+	right: 100px !important;
 	margin: 0 !important;
 	padding: 20px 30px !important;
 	width: auto !important;
 	max-width: calc(50% - 50px) !important;
+	font-size: 25px !important;
+	line-height: 1 !important;
+}
+
+@keyframes legend-appearance {
+    from {
+    	transform : translate(-3em, 3em);
+    	opacity: 0;
+   	}
+    to   {
+    	transform : translateY(0em);
+    	opacity: 1;
+    }
 }
 
 .carousel.carousel-slider .control-arrow {
@@ -70,6 +99,10 @@
     padding: 20px 20px 30px 20px;
 }
 
+#PageHome .blue-bordered h1 {
+    background-image: url("../img/polygon-blue-bold.svg") !important;
+}
+
 #PageHome .red-bordered {
 	background:
         linear-gradient(to right, #ffa8b0 2px, transparent 3px) 0 0,
@@ -82,11 +115,23 @@
     padding: 20px 20px 30px 20px;
 }
 
+#PageHome .blue-background-section {
+    background-color: #8fddff !important;
+}
+
+#PageHome .red-background-section {
+    background-color: #ffa8b0 !important;
+}
+
 #PageHome .Analytic:hover {
-	background-color: rgba(0, 159, 227, 0.05);
+	background-color: #f2fbff;
 	cursor: pointer;
 }
 
 .PageHome-link {
 	text-decoration: none !important;
+}
+
+#PageHome h3 {
+	font-size: 25px;
 }

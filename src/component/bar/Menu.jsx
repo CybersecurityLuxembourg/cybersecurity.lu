@@ -39,13 +39,13 @@ export default class Menu extends React.Component {
 							</Nav.Link>
 							<Nav.Link>
 								<Link to="/news">
-									<div className="Menu-title">News</div>
+									<div className="Menu-title">What&apos;s up?</div>
 									<div className="Menu-description">Keep an eye out</div>
 								</Link>
 							</Nav.Link>
 							<Nav.Link>
 								<Link to="/calendar">
-									<div className="Menu-title">Calendar</div>
+									<div className="Menu-title">Where to meet?</div>
 									<div className="Menu-description">Cybersecurity events</div>
 								</Link>
 							</Nav.Link>
@@ -62,8 +62,16 @@ export default class Menu extends React.Component {
 								href={getPrivateAppURL()}
 								rel="noreferrer"
 							>
-								<div className="Menu-title">Login</div>
-								<div className="Menu-description">Or subscribe</div>
+								<div className="Menu-title">Newsletter</div>
+								<div className="Menu-description">Our monthly selection</div>
+							</a>
+							<a
+								className="nav-link"
+								href={getPrivateAppURL()}
+								rel="noreferrer"
+							>
+								<div className="Menu-title">My CYBERLUX</div>
+								<div className="Menu-description">Login or subscribe</div>
 							</a>
 						</Nav>
 					</Navbar.Collapse>

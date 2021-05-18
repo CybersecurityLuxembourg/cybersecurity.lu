@@ -142,7 +142,7 @@ export default class PageHome extends React.Component {
 		return (
 			<div
 				id={"PageHome"}
-				className={"page max-sized-page"}>
+				className={""}>
 				<div className="row">
 					<Carousel
 						dynamicHeight={false}
@@ -150,18 +150,26 @@ export default class PageHome extends React.Component {
 						showThumbs={false}
 						infiniteLoop={true}
 					>
-						<Link to="/about">
-							<div>
-								<img src="/img/1.png" />
-								<p className="legend">Legend 1</p>
-							</div>
-						</Link>
-						<Link to="/about">
-							<div>
-								<img src="/img/1.png" />
-								<p className="legend"><h3>Lorem</h3></p>
-							</div>
-						</Link>
+						<div>
+							<img src="/img/1.jpg" />
+							<Link to="/about">
+								<p className="legend">Lorem Ipsum is simply dummy text of the
+								printing and typesetting industry. Lorem Ipsum has been the
+								industry s standard dummy text ever since the 1500s,
+								when an unknown printer took a galley of
+								type and scrambled it to make a type specimen book.</p>
+							</Link>
+						</div>
+						<div>
+							<img src="/img/2.jpg" />
+							<Link to="/about">
+								<p className="legend">Lorem Ipsum is simply dummy text of the
+								printing and typesetting industry. Lorem Ipsum has been the
+								industry s standard dummy text ever since the 1500s,
+								when an unknown printer took a galley of
+								type and scrambled it to make a type specimen book.</p>
+							</Link>
+						</div>
 					</Carousel>
 				</div>
 
@@ -169,181 +177,193 @@ export default class PageHome extends React.Component {
 					<div className="PageHome-carousel-cover"/>
 				</div>
 
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h1>What&apos;s up?</h1>
-					</div>
-
-					<div className="col-md-8">
+				<div className="blue-bordered">
+					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h3>TECH CORNER</h3>
+								<h1>What&apos;s up?</h1>
 							</div>
-						</div>
-						<div className="row">
-							{this.getArticleCategoryContent("TECH CORNER", 6)}
+
+							<div className="col-md-8">
+								<div className="row">
+									<div className="col-md-12">
+										<h3>TECH CORNER</h3>
+									</div>
+								</div>
+								<div className="row">
+									{this.getArticleCategoryContent("TECH CORNER", 6)}
+								</div>
+
+								<div className="row">
+									<div className="col-md-12">
+										<h3>CALL TO ACTION</h3>
+									</div>
+								</div>
+								<div className="row">
+									{this.getArticleCategoryContent("CALL TO ACTION", 6)}
+								</div>
+							</div>
+
+							<div className="col-md-4 blue-background-section">
+								<div className="row">
+									<div className="col-md-12">
+										<h3>INSTITUTIONAL NEWS</h3>
+									</div>
+								</div>
+								<div className="row">
+									{this.getArticleCategoryContent("INSTITUTIONAL NEWS", 12)}
+								</div>
+							</div>
 						</div>
 
 						<div className="row">
 							<div className="col-md-12">
-								<h3>CALL TO ACTION</h3>
+								<div className="row">
+									{this.getArticleCategoryContent("FRONT PAGE", 12)}
+								</div>
 							</div>
 						</div>
-						<div className="row">
-							{this.getArticleCategoryContent("CALL TO ACTION", 6)}
-						</div>
-					</div>
 
-					<div className="col-md-4 blue-bordered">
 						<div className="row">
 							<div className="col-md-12">
-								<h3>INSTITUTIONAL NEWS</h3>
+								<div className="row">
+									<div className="col-md-12">
+										<h3>LËTZ TALK ABOUT CYBER</h3>
+									</div>
+								</div>
+								<div className="row">
+									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 4)}
+								</div>
 							</div>
 						</div>
+
 						<div className="row">
-							{this.getArticleCategoryContent("INSTITUTIONAL NEWS", 12)}
+							<div className={"col-md-12"}>
+								<div className={"right-buttons"}>
+									<button
+										className={"blue-background"}
+										onClick={() => this.props.history.push("/news")}
+									>
+										<i className="fas fa-arrow-alt-circle-right"/> Consult all news
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<div className="row">
-							{this.getArticleCategoryContent("FRONT PAGE", 12)}
-						</div>
-					</div>
-				</div>
-
-				<div className="row">
-					<div className="col-md-12 red-bordered">
+				<div className="red-bordered">
+					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h3>LËTZ TALK ABOUT CYBER</h3>
+								<h1>Where to meet?</h1>
 							</div>
-						</div>
-						<div className="row">
-							{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 4)}
-						</div>
-					</div>
-				</div>
 
-				<div className="row row-spaced">
-					<div className={"col-md-12"}>
-						<div className={"right-buttons"}>
-							<button
-								className={"blue-background"}
-								onClick={() => this.props.history.push("/news")}
-							>
-								<i className="fas fa-arrow-alt-circle-right"/> Consult all news
-							</button>
-						</div>
-					</div>
-				</div>
+							{this.state.events !== null && this.state.events.length === 0
+								&& <div className="col-md-12">
+									<Message
+										text={"No coming event found"}
+										height={300}
+									/>
+								</div>
+							}
 
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h1>Where to meet?</h1>
-					</div>
+							{this.state.events !== null && this.state.events.length > 0
+								&& this.state.events.map((e) => (
+									<div className="col-md-4" key={e.id}>
+										<Event
+											info={e}
+										/>
+									</div>
+								))
+							}
 
-					{this.state.events !== null && this.state.events.length === 0
-						&& <div className="col-md-12">
-							<Message
-								text={"No coming event found"}
-								height={300}
-							/>
-						</div>
-					}
-
-					{this.state.events !== null && this.state.events.length > 0
-						&& this.state.events.map((e) => (
-							<div className="col-md-4" key={e.id}>
-								<Event
-									info={e}
+							{this.state.events === null
+								&& <Loading
+									height={300}
 								/>
+							}
+
+							<div className={"col-md-12"}>
+								<div className={"right-buttons"}>
+									<button
+										className={"blue-background"}
+										onClick={() => this.props.history.push("/calendar")}
+									>
+										<i className="fas fa-arrow-alt-circle-right"/> Open the calendar
+									</button>
+								</div>
 							</div>
-						))
-					}
-
-					{this.state.events === null
-						&& <Loading
-							height={300}
-						/>
-					}
-
-					<div className={"col-md-12"}>
-						<div className={"right-buttons"}>
-							<button
-								className={"blue-background"}
-								onClick={() => this.props.history.push("/calendar")}
-							>
-								<i className="fas fa-arrow-alt-circle-right"/> Open the calendar
-							</button>
 						</div>
 					</div>
 				</div>
 
-				<div className="row row-spaced">
-					<div className="col-md-12 row-spaced">
-						<h1>Ecosystem overview</h1>
-					</div>
+				<div className="no-bordered">
+					<div className="max-sized-page">
+						<div className="row row-spaced">
+							<div className="col-md-12 row-spaced">
+								<h1>Ecosystem overview</h1>
+							</div>
 
-					<div className="col-md-12 row-spaced">
-						{this.state.news !== null
-							? <div className={"row"}>
-								<div className="col-md-4">
-									<a
-										className={"PageHome-link"}
-										href={getEcosystemAppURL() + "privatesector"}
-										target={"_blank"}
-										rel="noreferrer"
+							<div className="col-md-12 row-spaced">
+								{this.state.news !== null
+									? <div className={"row"}>
+										<div className="col-md-4">
+											<a
+												className={"PageHome-link"}
+												href={getEcosystemAppURL() + "privatesector"}
+												target={"_blank"}
+												rel="noreferrer"
+											>
+												<Analytic
+													value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
+													desc={"Private companies"}
+												/>
+											</a>
+										</div>
+										<div className="col-md-4">
+											<a
+												className={"PageHome-link"}
+												href={getEcosystemAppURL() + "publicsector"}
+												target={"_blank"}
+												rel="noreferrer"
+											>
+												<Analytic
+													value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
+													desc={"Public entities"}
+												/>
+											</a>
+										</div>
+										<div className="col-md-4">
+											<a
+												className={"PageHome-link"}
+												href={getEcosystemAppURL() + "civilsociety"}
+												target={"_blank"}
+												rel="noreferrer"
+											>
+												<Analytic
+													value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
+													desc={"Civil society organisations"}
+												/>
+											</a>
+										</div>
+									</div>
+									: <Loading
+										height={200}
+									/>
+								}
+							</div>
+
+							<div className={"col-md-12"}>
+								<div className={"right-buttons"}>
+									<button
+										className={"blue-background"}
+										onClick={() => window.open(getEcosystemAppURL())}
 									>
-										<Analytic
-											value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
-											desc={"Private companies"}
-										/>
-									</a>
-								</div>
-								<div className="col-md-4">
-									<a
-										className={"PageHome-link"}
-										href={getEcosystemAppURL() + "publicsector"}
-										target={"_blank"}
-										rel="noreferrer"
-									>
-										<Analytic
-											value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
-											desc={"Public entities"}
-										/>
-									</a>
-								</div>
-								<div className="col-md-4">
-									<a
-										className={"PageHome-link"}
-										href={getEcosystemAppURL() + "civilsociety"}
-										target={"_blank"}
-										rel="noreferrer"
-									>
-										<Analytic
-											value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
-											desc={"Civil society organisations"}
-										/>
-									</a>
+										<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem platform
+									</button>
 								</div>
 							</div>
-							: <Loading
-								height={200}
-							/>
-						}
-					</div>
-
-					<div className={"col-md-12"}>
-						<div className={"right-buttons"}>
-							<button
-								className={"blue-background"}
-								onClick={() => window.open(getEcosystemAppURL())}
-							>
-								<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem platform
-							</button>
 						</div>
 					</div>
 				</div>
