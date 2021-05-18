@@ -47,12 +47,12 @@ export default class Event extends Component {
 					? <button
 						className={"blue-background"}
 					>
-						<i className="fas fa-arrow-alt-circle-right"/> Open website
+						Open website
 					</button>
 					: <button
 						className={"blue-background"}
 					>
-						<i className="fas fa-arrow-alt-circle-right"/> Read article
+						Read more
 					</button>
 				}
 			</div>
