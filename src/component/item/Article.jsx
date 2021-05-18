@@ -32,6 +32,7 @@ export default class Article extends Component {
 				<p className="card-text">{this.props.info.abstract}</p>
 				{this.props.info.link !== null
 					&& this.props.info.link !== undefined
+					&& this.props.info.link.length > 0
 					? <button
 						className={"blue-background"}
 					>
@@ -41,7 +42,8 @@ export default class Article extends Component {
 						className={"blue-background"}
 					>
 						<i className="fas fa-arrow-alt-circle-right"/> Read article
-					</button>}
+					</button>
+				}
 			</div>
 		</div>;
 	}
@@ -49,6 +51,7 @@ export default class Article extends Component {
 	render() {
 		return this.props.info.link !== null
 			&& this.props.info.link !== undefined
+			&& this.props.info.link.length > 0
 			? <a
 				href={this.props.info.link}
 				target={"_blank"}
