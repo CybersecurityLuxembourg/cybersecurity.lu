@@ -62,29 +62,36 @@
 
 /* ANALYTICS */
 
-#PageHome .Analytic .Analytic-value {
-	color: black !important;
-}
-
-#PageHome .Analytic .Analytic-desc {
-	color: black !important;
-}
-
 #PageHome .Analytic:hover {
 	background: 
         linear-gradient( 135deg,transparent 10px,#000 0) left /50.5% 100%,
         linear-gradient( 315deg,transparent 10px,#000 0) right /50.5% 100% !important;
     background-repeat: no-repeat !important;
-    padding-left: 20px !important;
 	cursor: pointer;
 	border-radius: 0;
 }
 
+#PageHome .Analytic .Analytic-value {
+	-webkit-transition: margin-left .5s;
+    transition: margin-left .5s;
+	margin-left: 0px;
+	color: black !important;
+}
+
+#PageHome .Analytic .Analytic-desc {
+	-webkit-transition: margin-left .5s;
+    transition: margin-left .5s;
+	margin-left: 0px;
+	color: black !important;
+}
+
 #PageHome .Analytic:hover .Analytic-value {
+	margin-left: -20px;
     color: white !important;
 }
 
 #PageHome .Analytic:hover .Analytic-desc {
+	margin-left: 20px;
     color: white !important;
 }
 

@@ -113,19 +113,24 @@
 
 /* FLYING MENU */
 
-.Menu-flying-menu {
-    animation-name: menu-appearance;
-    animation-duration: .5s;
+.Menu-flying-menu-wrapper {
     position: fixed;
     float: right;
     top: 10px;
     z-index: 100;
+    padding: 0px 20px 0px 20px;
+    width: 100%;
+}
+
+.Menu-flying-menu {
+    float: right;
+    animation-name: menu-appearance;
+    animation-duration: .5s;
     width: 100%;
     background: 
         linear-gradient( 135deg,transparent 10px,white 0) left /50.5% 100%,
         linear-gradient( 315deg,transparent 10px,white 0) right /50.5% 100%;
     background-repeat:no-repeat;
-    margin: 0px 20px;
 }
 
 .Menu-flying-menu .navbar {
@@ -135,8 +140,8 @@
 
 .Menu-flying-menu img {
     position: absolute;
-    top: 8px;
-    left: 20px;
+    top: 10px;
+    left: 35px;
     height: 45px;
 }
 
