@@ -1,11 +1,13 @@
 
 .Event {
     margin: 5px 0px !important;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
 }
 
 .Event:hover {
     color: initial !important;
-    background-color: #f2fbff;
+    background-color: #fff7f8;
 }
 
 .Event-link {

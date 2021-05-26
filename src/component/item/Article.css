@@ -1,6 +1,8 @@
 
 .Article {
     margin: 5px 0px 15px 0px !important;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
 }
 
 .Article-link {
