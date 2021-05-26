@@ -1,5 +1,16 @@
 
-
 .rbc-event {
 	background-color: #009fe3 !important;
+}
+
+.rbc-time-slot {
+	background-color: white !important;
+}
+
+.rbc-current-time-indicator {
+	background-color: #e40613 !important;
+}
+
+.rbc-off-range-bg {
+    background: #eee !important;
 }

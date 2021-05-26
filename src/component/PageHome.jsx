@@ -1,8 +1,6 @@
 import React from "react";
 import "./PageHome.css";
 import { NotificationManager as nm } from "react-notifications";
-import { Carousel } from "react-responsive-carousel";
-import { Link } from "react-router-dom";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import Analytic from "./box/Analytic.jsx";
@@ -82,7 +80,7 @@ export default class PageHome extends React.Component {
 					.filter((d) => d.end_date !== null && d.start_date !== null)
 					.filter((d) => d.end_date > new Date().toISOString())
 					.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
-					.slice(0, 3),
+					.slice(0, 2),
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -134,6 +132,22 @@ export default class PageHome extends React.Component {
 		</div>);
 	}
 
+	getArticleCategoryURL(category, value) {
+		if (this.props.analytics === null
+			|| this.props.analytics.taxonomy_values === undefined) {
+			return null;
+		}
+
+		const values = this.props.analytics.taxonomy_values
+			.filter((v) => v.category === category && v.name === value);
+
+		if (values.length === 0) {
+			return null;
+		}
+
+		return "/news?taxonomy_values=" + values[0].id;
+	}
+
 	changeState(field, value) {
 		this.setState({ [field]: value });
 	}
@@ -143,39 +157,6 @@ export default class PageHome extends React.Component {
 			<div
 				id={"PageHome"}
 				className={""}>
-				<div className="row">
-					<Carousel
-						dynamicHeight={false}
-						showStatus={false}
-						showThumbs={false}
-						infiniteLoop={true}
-					>
-						<div>
-							<img src="/img/1.jpg" />
-							<Link to="/about">
-								<p className="legend">Lorem Ipsum is simply dummy text of the
-								printing and typesetting industry. Lorem Ipsum has been the
-								industry s standard dummy text ever since the 1500s,
-								when an unknown printer took a galley of
-								type and scrambled it to make a type specimen book.</p>
-							</Link>
-						</div>
-						<div>
-							<img src="/img/2.jpg" />
-							<Link to="/about">
-								<p className="legend">Lorem Ipsum is simply dummy text of the
-								printing and typesetting industry. Lorem Ipsum has been the
-								industry s standard dummy text ever since the 1500s,
-								when an unknown printer took a galley of
-								type and scrambled it to make a type specimen book.</p>
-							</Link>
-						</div>
-					</Carousel>
-				</div>
-
-				<div className="row">
-					<div className="PageHome-carousel-cover"/>
-				</div>
 
 				<div className="blue-bordered">
 					<div className="max-sized-page">
@@ -184,42 +165,43 @@ export default class PageHome extends React.Component {
 								<h1>What&apos;s up?</h1>
 							</div>
 
-							<div className="col-md-8">
+							<div className="col-md-12">
 								<div className="row">
-									<div className="col-md-12">
-										<h3>TECH CORNER</h3>
-									</div>
-								</div>
-								<div className="row">
-									{this.getArticleCategoryContent("TECH CORNER", 6)}
-								</div>
-
-								<div className="row">
-									<div className="col-md-12">
-										<h3>CALL TO ACTION</h3>
-									</div>
-								</div>
-								<div className="row">
-									{this.getArticleCategoryContent("CALL TO ACTION", 6)}
+									{this.getArticleCategoryContent("FRONT PAGE", 12)}
 								</div>
 							</div>
 
-							<div className="col-md-4 blue-background-section">
+							<div className="col-md-8">
 								<div className="row">
 									<div className="col-md-12">
-										<h3>INSTITUTIONAL NEWS</h3>
+										<a
+											className="PageHome-title-link"
+											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "INSTITUTIONAL NEWS")}>
+											<div className="PageHome-title">
+												<h3>INSTITUTIONAL NEWS <span>more</span></h3>
+											</div>
+										</a>
 									</div>
 								</div>
 								<div className="row">
 									{this.getArticleCategoryContent("INSTITUTIONAL NEWS", 12)}
 								</div>
 							</div>
-						</div>
 
-						<div className="row">
-							<div className="col-md-12">
+							<div className="col-md-4 shadow-section">
 								<div className="row">
-									{this.getArticleCategoryContent("FRONT PAGE", 12)}
+									<div className="col-md-12">
+										<a
+											className="PageHome-title-link"
+											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "CALL TO ACTION")}>
+											<div className="PageHome-title">
+												<h3>CALL TO ACTION <span>more</span></h3>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div className="row">
+									{this.getArticleCategoryContent("CALL TO ACTION", 12)}
 								</div>
 							</div>
 						</div>
@@ -228,11 +210,49 @@ export default class PageHome extends React.Component {
 							<div className="col-md-12">
 								<div className="row">
 									<div className="col-md-12">
-										<h3>LËTZ TALK ABOUT CYBER</h3>
+										<a
+											className="PageHome-title-link"
+											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "LËTZ TALK ABOUT CYBER")}>
+											<div className="PageHome-title">
+												<h3>LËTZ TALK ABOUT CYBER <span>more</span></h3>
+											</div>
+										</a>
 									</div>
 								</div>
 								<div className="row">
 									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 4)}
+								</div>
+							</div>
+						</div>
+
+						<div className="row">
+							<div className="col-md-4 shadow-section PageHome-newsletter">
+								{/* eslint-disable no-script-url */}
+								<a href="javascript:;" onClick="ml_account('webforms', '3328240', 'r1e0z6', 'show');">
+									<div className="PageHome-newsletter-content">
+										<h3>NEWSLETTER</h3>
+										<i className="far fa-newspaper"/>
+										<div className="PageHome-newsletter-content-desc">
+											Subscribe to the newsletter to received the monthly news!
+										</div>
+									</div>
+								</a>
+							</div>
+
+							<div className="col-md-8">
+								<div className="row">
+									<div className="col-md-12">
+										<a
+											className="PageHome-title-link"
+											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "TECH CORNER")}>
+											<div className="PageHome-title">
+												<h3>TECH CORNER <span>more</span></h3>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div className="row">
+									{this.getArticleCategoryContent("TECH CORNER", 6)}
 								</div>
 							</div>
 						</div>
@@ -260,7 +280,7 @@ export default class PageHome extends React.Component {
 							</div>
 
 							{this.state.events !== null && this.state.events.length === 0
-								&& <div className="col-md-12">
+								&& <div className="col-md-8">
 									<Message
 										text={"No coming event found"}
 										height={300}
@@ -279,15 +299,33 @@ export default class PageHome extends React.Component {
 							}
 
 							{this.state.events === null
-								&& <Loading
-									height={300}
-								/>
+								&& <div className="col-md-8">
+									<Loading
+										height={300}
+									/>
+								</div>
 							}
+
+							<div className="col-md-4 shadow-section PageHome-cswl">
+								{/* eslint-disable no-script-url */}
+								<a href="https://www.cybersecurityweek.lu/">
+									<div className="PageHome-cswl-content">
+										<h3>CYBERSECURITY WEEK LUXEMBOURG</h3>
+										<div className="PageHome-cswl-content-desc">
+											18-28 October 2021
+										</div>
+										<i className="fas fa-shield-alt"/>
+										<div className="PageHome-cswl-content-desc">
+											Visit the official website!
+										</div>
+									</div>
+								</a>
+							</div>
 
 							<div className={"col-md-12"}>
 								<div className={"right-buttons"}>
 									<button
-										className={"blue-background"}
+										className={"red-button"}
 										onClick={() => this.props.history.push("/calendar")}
 									>
 										<i className="fas fa-arrow-alt-circle-right"/> Open the calendar
@@ -298,7 +336,7 @@ export default class PageHome extends React.Component {
 					</div>
 				</div>
 
-				<div className="no-bordered">
+				<div className="black-bordered">
 					<div className="max-sized-page">
 						<div className="row row-spaced">
 							<div className="col-md-12 row-spaced">
@@ -357,7 +395,7 @@ export default class PageHome extends React.Component {
 							<div className={"col-md-12"}>
 								<div className={"right-buttons"}>
 									<button
-										className={"blue-background"}
+										className={"black-button"}
 										onClick={() => window.open(getEcosystemAppURL())}
 									>
 										<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem platform

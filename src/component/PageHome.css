@@ -11,82 +11,6 @@
 	right: 17px;
 }
 
-.PageHome-carousel-cover {
-	z-index: 0;
-	height: 60vh !important;
-	max-height: 1080px !important;
-}
-
-.carousel-root {
-	z-index: 0;
-	position: absolute;
-	top: 0;
-	height: 100vh;
-	max-height: 1080px;
-	width: 100%;
-	left: 0;
-}
-
-.slider-wrapper {
-	height: 100vh;
-	max-height: 1080px;
-}
-
-.carousel .slider {
-	height: 100%;
-}
-
-.carousel .slide {
-	width: 100%;
-  	height: 100%;
-  	object-fit: cover;
-}
-
-.carousel .slide div {
-  	height: 100% !important;
-}
-
-.carousel .slide div img {
-	height: 100% !important;
-  	object-fit: cover !important;
-}
-
-.carousel .slide .legend {
-	animation-name: legend-appearance;
-    animation-duration: 1s;
-	background: 
-        linear-gradient( 135deg,transparent 10px,#009fe3 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,#009fe3 0) right /50.5% 100% !important;
-    background-repeat:no-repeat !important;
-	color: white !important;
-	border-radius: 0 !important;
-	opacity: 1 !important;
-	position: absolute;
-	bottom: 100px !important;
-	right: 100px !important;
-	margin: 0 !important;
-	padding: 20px 30px !important;
-	width: auto !important;
-	max-width: calc(50% - 50px) !important;
-	font-size: 25px !important;
-	line-height: 1 !important;
-}
-
-@keyframes legend-appearance {
-    from {
-    	transform : translate(-3em, 3em);
-    	opacity: 0;
-   	}
-    to   {
-    	transform : translateY(0em);
-    	opacity: 1;
-    }
-}
-
-.carousel.carousel-slider .control-arrow {
-    border-radius: 0em;
-}
-
 #PageHome .blue-bordered {
 	background:
         linear-gradient(to right, #8fddff 2px, transparent 3px) 0 0,
@@ -115,23 +39,210 @@
     padding: 20px 20px 30px 20px;
 }
 
-#PageHome .blue-background-section {
-    background-color: #8fddff !important;
+#PageHome .black-bordered {
+	background:
+        linear-gradient(to right, #000 2px, transparent 3px) 0 0,
+        linear-gradient(to left, #000 2px, transparent 3px) 100% 100%,
+        linear-gradient(to bottom, #000 2px, transparent 3px) 0 0,
+        linear-gradient(to top, #000 2px, transparent 3px) 100% 100% !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    background-repeat: no-repeat !important;
+    background-size: 80px 80px !important;
+    padding: 20px 20px 30px 20px;
 }
 
-#PageHome .red-background-section {
-    background-color: #ffa8b0 !important;
+#PageHome .black-bordered h1 {
+    background-image: url("../img/polygon-black-bold.svg") !important;
+}
+
+#PageHome .shadow-section {
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	border-radius: .25rem;
+}
+
+/* ANALYTICS */
+
+#PageHome .Analytic .Analytic-value {
+	color: black !important;
+}
+
+#PageHome .Analytic .Analytic-desc {
+	color: black !important;
 }
 
 #PageHome .Analytic:hover {
-	background-color: #f2fbff;
+	background: 
+        linear-gradient( 135deg,transparent 10px,#000 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#000 0) right /50.5% 100% !important;
+    background-repeat: no-repeat !important;
+    padding-left: 20px !important;
 	cursor: pointer;
+	border-radius: 0;
 }
+
+#PageHome .Analytic:hover .Analytic-value {
+    color: white !important;
+}
+
+#PageHome .Analytic:hover .Analytic-desc {
+    color: white !important;
+}
+
+/* TITLE */
 
 .PageHome-link {
 	text-decoration: none !important;
 }
 
+.PageHome-title-link {
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+.PageHome-title {
+    padding: 5px;
+    -webkit-transition: padding-left .5s;
+    transition: padding-left .5s;
+}
+
+.PageHome-title:hover {
+	background: 
+        linear-gradient( 135deg,transparent 10px,#009fe3 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#009fe3 0) right /50.5% 100% !important;
+    background-repeat: no-repeat !important;
+    color: white !important;
+    padding-left: 20px !important;
+}
+
+.PageHome-title:hover h3 {
+    color: white !important;
+}
+
+.PageHome-title:hover span {
+    display: none
+}
+
+.PageHome-title-link span {
+	font-size: 12px;
+}
+
 #PageHome h3 {
 	font-size: 25px;
+}
+
+/* NEWSLETTER BLOCK */
+
+.PageHome-newsletter {
+	background-color: #009fe3;
+	color: white !important;
+	text-align: center;
+	cursor: pointer;
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+
+
+.PageHome-newsletter-content {
+	display: inline-block;
+	padding: 20px;
+	margin: auto;
+	color: white;
+}
+
+.PageHome-newsletter h3 {
+	color: white;
+	font-size: 35px !important;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.PageHome-newsletter:hover h3 {
+	font-size: 40px !important;
+	margin-bottom: 0px !important;
+}
+
+
+.PageHome-newsletter-content i {
+	font-size: 100px;
+	-webkit-transition: font-size .5s ease;
+	-moz-transition: font-size .5s ease;
+	-o-transition: font-size .5s ease;
+	transition: font-size .5s ease;
+}
+
+.PageHome-newsletter:hover i {
+	font-size: 140px;
+}
+
+.PageHome-newsletter-content .PageHome-newsletter-content-desc {
+	-webkit-transition: opacity .5s ease;
+	-moz-transition: opacity .5s ease;
+	-o-transition: opacity .5s ease;
+	transition: opacity .5s ease;
+}
+
+.PageHome-newsletter:hover .PageHome-newsletter-content-desc {
+	opacity: 0;
+}
+
+/* NEWSLETTER BLOCK */
+
+.PageHome-cswl {
+	background-color: #e40613;
+	color: white !important;
+	text-align: center;
+	cursor: pointer;
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+
+
+.PageHome-cswl-content {
+	display: inline-block;
+	padding: 20px;
+	margin: auto;
+	color: white;
+}
+
+.PageHome-cswl h3 {
+	color: white;
+	font-size: 35px !important;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.PageHome-cswl:hover h3 {
+	font-size: 40px !important;
+	margin-bottom: 0px !important;
+}
+
+
+.PageHome-cswl-content i {
+	font-size: 100px;
+	-webkit-transition: font-size .5s ease;
+	-moz-transition: font-size .5s ease;
+	-o-transition: font-size .5s ease;
+	transition: font-size .5s ease;
+	margin: 10px 0px;
+}
+
+.PageHome-cswl:hover i {
+	font-size: 140px;
+}
+
+.PageHome-cswl-content .PageHome-cswl-content-desc {
+	-webkit-transition: opacity .5s ease;
+	-moz-transition: opacity .5s ease;
+	-o-transition: opacity .5s ease;
+	transition: opacity .5s ease;
+}
+
+.PageHome-cswl:hover .PageHome-cswl-content-desc {
+	opacity: 0;
 }

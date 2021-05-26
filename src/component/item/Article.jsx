@@ -25,7 +25,7 @@ export default class Article extends Component {
 					/>
 				}
 				<div className="card-date">{this.props.info.publication_date}</div>
-				<div className="card-type">{this.props.info.type}</div>
+				{/* <div className="card-type">{this.props.info.type}</div> */}
 			</div>
 			<div className="card-body">
 				<h5 className="card-title">{this.props.info.title}</h5>

@@ -234,6 +234,10 @@ button:disabled {
 	background-color: #e40613;
 }
 
+.black-button {
+	background-color: #000;
+}
+
 .link-button {
 	background-color: transparent;
 	color: #009fe3;

@@ -184,32 +184,39 @@ export default class PageArticle extends React.Component {
 									<div className="row PageArticle-related-article">
 										<div className="col-md-12">
 											<h3>Related articles</h3>
+										</div>
 
-											{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
-												&& this.state.relatedArticles.length > 0
-												&& this.state.relatedArticles.map((a) => (
+										{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
+											&& this.state.relatedArticles.length > 0
+											&& this.state.relatedArticles.map((a) => (
+												<div
+													className="col-md-12"
+													key={a.id}>
 													<Article
 														key={a.id}
 														info={a}
 													/>
-												))
-											}
+												</div>
+											))
+										}
 
-											{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
-												&& this.state.relatedArticles.length === 0
-												&& <Message
+										{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
+											&& this.state.relatedArticles.length === 0
+											&& <div className="col-md-12">
+												<Message
 													text={"No related article found"}
 													height={150}
 												/>
-											}
+											</div>
+										}
 
-											{(this.state.relatedArticles === null || this.state.relatedArticleLoading)
-												&& <Loading
+										{(this.state.relatedArticles === null || this.state.relatedArticleLoading)
+											&& <div className="col-md-12">
+												<Loading
 													height={150}
 												/>
-											}
-
-										</div>
+											</div>
+										}
 									</div>
 								</div>
 							</div>
