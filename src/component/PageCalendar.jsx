@@ -9,8 +9,8 @@ import Loading from "./box/Loading.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Event from "./item/Event.jsx";
 import Message from "./box/Message.jsx";
-import { dictToURI } from "../utils/url.jsx";
-import ArticleSearch from "./form/ArticleSearch.jsx";
+import { getUrlParameter, dictToURI } from "../utils/url.jsx";
+import EventSearch from "./form/EventSearch.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
@@ -29,7 +29,8 @@ export default class PageCalendar extends React.Component {
 			filters: {
 				media: "CYBERLUX",
 				type: "EVENT",
-				taxonomy_values: [],
+				taxonomy_values: getUrlParameter("taxonomy_values") !== null
+					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],
 				title: null,
 			},
 		};
@@ -37,6 +38,17 @@ export default class PageCalendar extends React.Component {
 
 	componentDidMount() {
 		this.getArticles();
+	}
+
+	componentDidUpdate(_, prevState) {
+		if (prevState.filters.taxonomy_values !== this.state.filters.taxonomy_values
+			|| (prevState.filters.title !== this.state.filters.title
+				&& (this.state.filters.title.length === null
+					|| this.state.filters.title.length === undefined
+					|| this.state.filters.title.length > 2
+					|| this.state.filters.title.length === 0))) {
+			this.getArticles();
+		}
 	}
 
 	getArticles() {
@@ -89,7 +101,7 @@ export default class PageCalendar extends React.Component {
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<ArticleSearch
+						<EventSearch
 							analytics={this.props.analytics}
 							filters={this.state.filters}
 							onChange={this.modifyFilters}
