@@ -35,10 +35,31 @@ export default class PageSearch extends React.Component {
 		this.getArticles();
 	}
 
-	componentDidUpdate() {
-		if (this.state.searchValue !== null
-			&& this.state.searchValue !== decodeURI(getUrlParameter("r"))) {
-			this.setState({ searchValue: getUrlParameter("r") }, () => {
+	componentDidUpdate(_, prevState) {
+		if (decodeURI(this.state.searchValue) !== decodeURI(getUrlParameter("r"))) {
+			this.setState({
+				searchValue: getUrlParameter("r") === null ? null : decodeURI(getUrlParameter("r")),
+			}, () => {
+				this.getEntities();
+				this.getArticles();
+			});
+		}
+
+		if (this.state.taxonomyValue !== prevState.taxonomyValue) {
+			if (this.state.taxonomyValue === null) {
+				this.props.history.push("/search");
+				this.getEntities();
+				this.getArticles();
+			} else {
+				this.props.history.push("/search?taxonomy_value=" + this.state.taxonomyValue);
+			}
+		}
+
+		if (decodeURI(this.state.taxonomyValue) !== decodeURI(getUrlParameter("taxonomy_value"))) {
+			this.setState({
+				taxonomyValue: getUrlParameter("taxonomy_value") === null
+					? null : decodeURI(getUrlParameter("taxonomy_value")),
+			}, () => {
 				this.getEntities();
 				this.getArticles();
 			});
@@ -125,6 +146,29 @@ export default class PageSearch extends React.Component {
 		return null;
 	}
 
+	getTaxonomyValueChip(id) {
+		if (this.props.analytics !== null) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.id === parseInt(id, 10));
+
+			if (values.length > 0) {
+				return <Chip
+					key={values[0].id}
+					label={values[0].name}
+					url={"/search?taxonomy_value=" + id}
+					onClick={() => this.setState({ taxonomyValue: null })}
+				/>;
+			}
+		}
+
+		return <Chip
+			key={"Unfound"}
+			label={"Unfound"}
+			url={"/search?taxonomy_value=" + id}
+			onClick={() => this.setState({ taxonomyValue: null })}
+		/>;
+	}
+
 	render() {
 		return (
 			<div className={"PageSearch page max-sized-page"}>
@@ -150,12 +194,7 @@ export default class PageSearch extends React.Component {
 							<h3>Selected tag</h3>
 						</div>
 						<div className="col-md-12">
-							<Chip
-								key={this.state.taxonomyValue}
-								label={this.state.taxonomyValue}
-								url={"/search?taxonomy_value=" + this.state.taxonomyValue}
-								onClick={() => this.setState({ taxonomyValue: null })}
-							/>
+							{this.getTaxonomyValueChip(this.state.taxonomyValue)}
 						</div>
 					</div>
 				}

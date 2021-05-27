@@ -69,8 +69,8 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/search"
 							render={(props) => <PageSearch
-								{...props}
 								analytics={this.state.analytics}
+								{...props}
 							/>}
 						/>
 						<Route

@@ -27,6 +27,7 @@
 }
 
 .simpleTable-arrowLeft {
+    cursor: pointer;
     color: #009fe3;
     font-size: 20px;
     position: absolute;
@@ -35,6 +36,7 @@
 }
 
 .simpleTable-arrowRight {
+    cursor: pointer;
     color: #009fe3;
     font-size: 20px;
     position: absolute;
@@ -44,10 +46,12 @@
 
 .simpleTable-arrowLeft .iconDisabled {
     color: grey !important;
+    cursor: default !important;
 }
 
 .simpleTable-arrowRight .iconDisabled {
     color: grey !important;
+    cursor: default !important;
 }
 
 .simpleTable .row div p {

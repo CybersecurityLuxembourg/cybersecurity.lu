@@ -114,7 +114,7 @@
 /* FLYING MENU */
 
 .Menu-flying-menu-wrapper {
-    background-color: #009fe3 !important;
+    background-color: #000 !important;
     padding: 3px 5px;
     position: fixed;
     float: right;
@@ -214,13 +214,15 @@
     border-radius: 0 !important;
     opacity: 1 !important;
     position: absolute;
-    bottom: 100px !important;
-    right: 100px !important;
+    bottom: 10% !important;
+    right: 15% !important;
+    left: unset !important;
     margin: 0 !important;
-    padding: 20px 30px !important;
-    width: auto !important;
-    max-width: calc(50% - 50px) !important;
-    font-size: 25px !important;
+    padding: 10px 15px !important;
+    width: 500px !important;
+    max-width: 60% !important;
+    height: auto !important;
+    font-size: 1.5vw !important;
     line-height: 1 !important;
 }
 
