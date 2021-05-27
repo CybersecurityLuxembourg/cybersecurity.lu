@@ -114,11 +114,12 @@
 /* FLYING MENU */
 
 .Menu-flying-menu-wrapper {
+    background-color: #009fe3 !important;
+    padding: 3px 5px;
     position: fixed;
     float: right;
-    top: 10px;
-    z-index: 100;
-    padding: 0px 20px 0px 20px;
+    top: 0px;
+    z-index: 10;
     width: 100%;
 }
 
@@ -135,24 +136,24 @@
 
 .Menu-flying-menu .navbar {
     float: right;
-    padding: 0px 15px !important;
+    padding: 0px 15px 0px 100px !important;
 }
 
 .Menu-flying-menu img {
     position: absolute;
-    top: 10px;
-    left: 35px;
+    top: 12px;
+    left: 30px;
     height: 45px;
 }
 
 @media (min-width: 0px) {
-    .Menu-flying-menu {
+    .Menu-flying-menu-wrapper {
         display: none;
     }
 }
 
 @media (min-width: 768px) {
-    .Menu-flying-menu {
+    .Menu-flying-menu-wrapper {
         display: block;
     }
 }
