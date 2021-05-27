@@ -2,7 +2,6 @@ import React from "react";
 import "./FormLine.css";
 import Select from "react-select";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import PhoneInput from "react-phone-number-input";
 import _ from "lodash";
 import Chip from "./Chip.jsx";
 import CheckBox from "./CheckBox.jsx";
@@ -146,11 +145,6 @@ export default class FormLine extends React.Component {
 			return <RegionDropdown
 				className={this.getFormatClassName()}
 				country={this.props.country}
-				value={this.state.value}
-				onChange={(value) => this.onChange(value)}
-			/>;
-		case "phone":
-			return <PhoneInput
 				value={this.state.value}
 				onChange={(value) => this.onChange(value)}
 			/>;
