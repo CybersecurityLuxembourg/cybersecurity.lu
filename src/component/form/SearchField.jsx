@@ -8,6 +8,7 @@ class SearchField extends Component {
 
 		this.onValidation = this.onValidation.bind(this);
 		this.onChange = this.onChange.bind(this);
+		this.onKeyDown = this.onKeyDown.bind(this);
 
 		this.state = {
 			originalValue: props.value === undefined ? null : props.value,
@@ -25,11 +26,18 @@ class SearchField extends Component {
 	}
 
 	onValidation() {
-		this.props.history.push("/search?r=" + this.state.value);
+		this.props.history.push("/search?r="
+			+ (this.state.value === undefined || this.state.value === null ? "" : this.state.value));
 	}
 
 	onChange(value) {
 		this.setState({ value });
+	}
+
+	onKeyDown(event) {
+		if (event.keyCode === 13) {
+			this.onValidation();
+		}
 	}
 
 	render() {
@@ -38,8 +46,7 @@ class SearchField extends Component {
 				<input
 					value={this.state.value}
 					onChange={(v) => this.onChange(v.target.value)}
-					autoFocus={this.props.autofocus}
-					onKeyDown={this.props.onKeyDown}
+					onKeyDown={this.onKeyDown}
 				/>
 				<button
 					className={"small-button"}

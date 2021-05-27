@@ -3,6 +3,7 @@ import "./PageSearch.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import { NotificationManager as nm } from "react-notifications";
+import Chip from "./form/Chip.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
@@ -20,8 +21,10 @@ export default class PageSearch extends React.Component {
 		this.getEntities = this.getEntities.bind(this);
 
 		this.state = {
-			searchValue: getUrlParameter("r"),
-			taxonomyValue: getUrlParameter("taxonomy_value"),
+			searchValue: getUrlParameter("r") === undefined || getUrlParameter("r") === null
+				? null : decodeURI(getUrlParameter("r")),
+			taxonomyValue: getUrlParameter("taxonomy_value") === undefined
+				? null : getUrlParameter("taxonomy_value"),
 			entities: null,
 			articles: null,
 		};
@@ -33,7 +36,8 @@ export default class PageSearch extends React.Component {
 	}
 
 	componentDidUpdate() {
-		if (this.state.searchValue !== getUrlParameter("r")) {
+		if (this.state.searchValue !== null
+			&& this.state.searchValue !== decodeURI(getUrlParameter("r"))) {
 			this.setState({ searchValue: getUrlParameter("r") }, () => {
 				this.getEntities();
 				this.getArticles();
@@ -42,11 +46,11 @@ export default class PageSearch extends React.Component {
 	}
 
 	getEntities() {
-		if (this.state.searchValue !== null && this.state.searchValue.length > 2) {
-			const filters = {
-				name: this.state.searchValue,
-				taxonomy_values: this.state.taxonomyValue,
-			};
+		if ((this.state.searchValue !== null && this.state.searchValue.length > 2)
+			|| this.state.taxonomyValue !== null) {
+			const filters = this.state.taxonomyValue === null
+				? { name: this.state.searchValue }
+				: { taxonomy_values: this.state.taxonomyValue };
 
 			getRequest.call(this, "public/get_public_companies?"
 				+ dictToURI(filters), (data) => {
@@ -66,13 +70,19 @@ export default class PageSearch extends React.Component {
 	}
 
 	getArticles() {
-		if (this.state.searchValue !== null && this.state.searchValue.length > 2) {
-			const filters = {
-				title: this.state.searchValue,
-				taxonomy_values: this.state.taxonomyValue,
-				include_tags: "true",
-				type: ["NEWS", "EVENT"],
-			};
+		if ((this.state.searchValue !== null && this.state.searchValue.length > 2)
+			|| this.state.taxonomyValue !== null) {
+			const filters = this.state.taxonomyValue === null
+				? {
+					title: this.state.searchValue,
+					include_tags: "true",
+					type: ["NEWS", "EVENT"],
+				}
+				: {
+					taxonomy_values: this.state.taxonomyValue,
+					include_tags: "true",
+					type: ["NEWS", "EVENT"],
+				};
 
 			getRequest.call(this, "public/get_public_articles?"
 				+ dictToURI(filters), (data) => {
@@ -91,6 +101,30 @@ export default class PageSearch extends React.Component {
 		}
 	}
 
+	getTaxonomyValues() {
+		if (this.props.analytics !== null
+			&& this.state.searchValue !== null
+			&& this.state.searchValue.length > 2) {
+			const words = this.state.searchValue.toLowerCase().split(" ");
+			const values = [];
+
+			for (let i = 0; i < this.props.analytics.taxonomy_values.length; i++) {
+				const name = this.props.analytics.taxonomy_values[i].name.toLowerCase();
+				for (let y = 0; y < words.length; y++) {
+					const appearingWords = words.filter((w) => name.includes(w));
+
+					if (words.length === appearingWords.length) {
+						values.push(this.props.analytics.taxonomy_values[i]);
+					}
+				}
+			}
+
+			return values;
+		}
+
+		return null;
+	}
+
 	render() {
 		return (
 			<div className={"PageSearch page max-sized-page"}>
@@ -103,9 +137,45 @@ export default class PageSearch extends React.Component {
 					</div>
 				</div>
 
-				<SearchField
-					value={this.state.searchValue}
-				/>
+				{this.state.taxonomyValue === null
+					? <div className="row row-spaced">
+						<div className="col-md-12">
+							<SearchField
+								value={this.state.searchValue}
+							/>
+						</div>
+					</div>
+					: <div className="row row-spaced">
+						<div className="col-md-12">
+							<h3>Selected tag</h3>
+						</div>
+						<div className="col-md-12">
+							<Chip
+								key={this.state.taxonomyValue}
+								label={this.state.taxonomyValue}
+								url={"/search?taxonomy_value=" + this.state.taxonomyValue}
+								onClick={() => this.setState({ taxonomyValue: null })}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.taxonomyValue === null
+					&& this.getTaxonomyValues() !== null
+					&& this.getTaxonomyValues().length > 0
+					&& <div className="row row-spaced">
+						<div className="col-md-12">
+							<h3>Suggested tags</h3>
+						</div>
+						<div className="col-md-12">
+							{this.getTaxonomyValues().map((v) => <Chip
+								key={v.name}
+								label={v.name}
+								url={"/search?taxonomy_value=" + v.id}
+							/>)}
+						</div>
+					</div>
+				}
 
 				{(this.state.entities === null
 					|| this.state.articles === null)
@@ -163,8 +233,8 @@ export default class PageSearch extends React.Component {
 					&& <div className="row">
 						{this.state.articles.filter((a) => a.type === "NEWS").length > 0
 							&& <div className="col-md-12">
-								<h1>{this.state.articles !== null
-									? this.state.articles.filter((a) => a.type === "NEWS").length + " " : ""}news</h1>
+								<h3>{this.state.articles !== null
+									? this.state.articles.filter((a) => a.type === "NEWS").length + " " : ""}news</h3>
 								<SimpleTable
 									numberDisplayed={3}
 									elements={this.state.articles
@@ -183,8 +253,8 @@ export default class PageSearch extends React.Component {
 
 						{this.state.articles.filter((a) => a.type === "EVENT").length > 0
 							&& <div className="col-md-12">
-								<h1>{this.state.articles !== null
-									? this.state.articles.filter((a) => a.type === "EVENT").length + " " : ""}event{this.state.articles !== null && this.state.articles.filter((a) => a.type === "EVENT").length > 1 ? "s" : ""}</h1>
+								<h3>{this.state.articles !== null
+									? this.state.articles.filter((a) => a.type === "EVENT").length + " " : ""}event{this.state.articles !== null && this.state.articles.filter((a) => a.type === "EVENT").length > 1 ? "s" : ""}</h3>
 								<SimpleTable
 									numberDisplayed={3}
 									elements={this.state.articles
@@ -206,7 +276,7 @@ export default class PageSearch extends React.Component {
 				{this.state.entities !== null && this.state.entities.length > 0
 					&& <div className="row">
 						<div className="col-md-12">
-							<h1>{this.state.entities !== null ? this.state.entities.length + " " : ""}entit{this.state.entities !== null && this.state.entities.length > 1 ? "ies" : "y"}</h1>
+							<h3>{this.state.entities !== null ? this.state.entities.length + " " : ""}entit{this.state.entities !== null && this.state.entities.length > 1 ? "ies" : "y"}</h3>
 						</div>
 						<div className="col-md-12">
 							<SimpleTable
