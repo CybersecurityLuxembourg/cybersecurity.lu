@@ -308,7 +308,10 @@ export default class PageHome extends React.Component {
 
 							<div className="col-md-4 shadow-section PageHome-cswl">
 								{/* eslint-disable no-script-url */}
-								<a href="https://www.cybersecurityweek.lu/">
+								<a
+									href="https://www.cybersecurityweek.lu/"
+									target="_blank"
+									rel="noreferrer">
 									<div className="PageHome-cswl-content">
 										<h3>CYBERSECURITY WEEK LUXEMBOURG</h3>
 										<div className="PageHome-cswl-content-desc">
