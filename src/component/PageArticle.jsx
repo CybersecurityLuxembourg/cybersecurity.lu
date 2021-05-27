@@ -107,6 +107,7 @@ export default class PageArticle extends React.Component {
 										<Chip
 											key={t.name}
 											label={t.name}
+											url={"/search?taxonomy_value=" + t.id}
 										/>
 									))}
 								</div>
@@ -163,6 +164,7 @@ export default class PageArticle extends React.Component {
 										<Chip
 											key={t.name}
 											label={t.name}
+											url={"/search?taxonomy_value=" + t.id}
 										/>
 									))}
 								</div>

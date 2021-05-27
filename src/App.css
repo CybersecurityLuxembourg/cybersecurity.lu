@@ -86,6 +86,25 @@ a:hover {
 	color: #e40613;
 }
 
+blockquote {
+	position: relative;
+	margin: 30px 20px 40px 20px;
+	padding: 30px 20px;
+	font-style: italic;
+	border-top: solid 1px;
+    border-bottom: solid 1px;
+}
+
+blockquote:after {
+    position: absolute;
+    content: "”";
+    color: grey;
+    font-size: 5rem;
+    line-height: 0;
+    bottom: -15px;
+    right: 30px;
+}
+
 .showFulltext {
 	white-space: initial !important;
     overflow: visible !important;

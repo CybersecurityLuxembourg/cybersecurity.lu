@@ -2,6 +2,8 @@
 .Company {
     margin: 5px 0px !important;
     height: 100px;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
 }
 
 .Company-link {

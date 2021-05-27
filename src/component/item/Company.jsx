@@ -24,7 +24,7 @@ export default class Company extends Component {
 									src={getApiURL() + "public/get_image/" + this.props.info.image}
 									alt="Card image cap"/>
 
-								:								<NoImage/>
+								: <NoImage/>
 							}
 						</div>
 						<div className="card-body">
