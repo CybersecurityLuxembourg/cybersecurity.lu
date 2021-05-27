@@ -2,8 +2,6 @@
 .Company {
     margin: 5px 0px !important;
     height: 100px;
-    -webkit-transition: background-color .3s;
-    transition: background-color .3s;
 }
 
 .Company-link {
@@ -11,12 +9,12 @@
 }
 
 .Company-link:hover {
-	color: initial !important;
+    color: initial !important;
     text-decoration: none;
 }
 
 .Company:hover {
-    background-color: #f2fbff;
+    background-color: rgba(0, 159, 227, 0.05);
 }
 
 .Company .card-horizontal {
@@ -26,20 +24,31 @@
 }
 
 .Company .img-square-wrapper {
+    display: flex;
+    margin: auto;
     height: 100%;
-    min-width: 180px;
-    max-width: 180px;
+    flex: 0 0 140px;
 }
 
 .Company .img-square-wrapper img {
-    height: 100%;
-    width: 180px;
+    object-fit: contain;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.Company .card-body {
+    padding: .9rem 1.25rem !important;
+    border-left: 1px solid rgba(0,0,0,.125);
 }
 
 .Company .card-body h5 {
-	display: inline-block;
-	width: 100%;
-	height: 45px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
