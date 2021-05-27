@@ -59,7 +59,7 @@ export default class PageEvent extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/calendar">CALENDAR</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/calendar">WHERE TO MEET?</Link></Breadcrumb.Item>
 							{this.state.article !== null && !this.state.loading
 								? <Breadcrumb.Item><Link to={"/calendar/" + this.state.article.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
 								: ""}

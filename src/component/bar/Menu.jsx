@@ -51,6 +51,13 @@ export default class Menu extends React.Component {
 					<div className="Menu-description">Cybersecurity events</div>
 				</Link>
 			</Nav.Link>
+			{/* eslint-disable no-script-url */}
+			<a href="javascript:;"
+				className="nav-link"
+				onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
+				<div className="Menu-title">Newsletter</div>
+				<div className="Menu-description">Our monthly selection</div>
+			</a>
 			<a
 				className="nav-link"
 				href={getEcosystemAppURL()}
@@ -58,13 +65,6 @@ export default class Menu extends React.Component {
 			>
 				<div className="Menu-title">Ecosystem</div>
 				<div className="Menu-description">View on the community</div>
-			</a>
-			{/* eslint-disable no-script-url */}
-			<a href="javascript:;"
-				className="nav-link"
-				onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
-				<div className="Menu-title">Newsletter</div>
-				<div className="Menu-description">Our monthly selection</div>
 			</a>
 			<a
 				className="nav-link"

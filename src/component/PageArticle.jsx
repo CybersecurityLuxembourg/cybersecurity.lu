@@ -80,7 +80,7 @@ export default class PageArticle extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/news">NEWS</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/news">WHAT&apos;S UP?</Link></Breadcrumb.Item>
 							{this.state.article !== null && !this.state.loading
 								? <Breadcrumb.Item><Link to={"/article/" + this.state.article.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
 								: ""}

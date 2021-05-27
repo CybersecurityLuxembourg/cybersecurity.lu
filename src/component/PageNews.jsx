@@ -86,7 +86,7 @@ export default class PageNews extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/news">NEWS</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/news">WHAT&apos;S UP?</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
