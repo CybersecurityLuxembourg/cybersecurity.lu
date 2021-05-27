@@ -59,11 +59,10 @@ export default class Menu extends React.Component {
 				<div className="Menu-title">Ecosystem</div>
 				<div className="Menu-description">View on the community</div>
 			</a>
-			<a
+			{/* eslint-disable no-script-url */}
+			<a href="javascript:;"
 				className="nav-link"
-				href={getPrivateAppURL()}
-				rel="noreferrer"
-			>
+				onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
 				<div className="Menu-title">Newsletter</div>
 				<div className="Menu-description">Our monthly selection</div>
 			</a>

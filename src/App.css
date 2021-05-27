@@ -463,3 +463,13 @@ canvas {
     top: 22px;
     right: 30px;
 }
+
+/* NEWSLETTER FORM */
+
+.mailerlite-popup {
+	background-color: #009fe3 !important;
+}
+
+.mailerlite-popup button {
+	background-color: #e40613 !important;
+}

@@ -228,7 +228,7 @@ export default class PageHome extends React.Component {
 						<div className="row">
 							<div className="col-md-4 shadow-section PageHome-newsletter">
 								{/* eslint-disable no-script-url */}
-								<a href="javascript:;" onClick="ml_account('webforms', '3328240', 'r1e0z6', 'show');">
+								<a href="javascript:;" onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
 									<div className="PageHome-newsletter-content">
 										<h3>NEWSLETTER</h3>
 										<i className="far fa-newspaper"/>
