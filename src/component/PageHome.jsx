@@ -21,15 +21,17 @@ export default class PageHome extends React.Component {
 			news: null,
 			sortedNews: null,
 			events: null,
+			breakfastArticles: null,
 		};
 	}
 
 	componentDidMount() {
 		this.getNews();
 		this.getEvents();
+		this.getBreakfastArticles();
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps) {
 		if (this.props.analytics !== null
 			&& this.state.news !== null
 			&& this.state.sortedNews == null) {
@@ -48,14 +50,21 @@ export default class PageHome extends React.Component {
 				sortedNews,
 			});
 		}
+
+		if (prevProps.analytics === null && this.props.analytics !== null) {
+			this.getBreakfastArticles();
+		}
 	}
 
 	static getNumberOfArticlePerCategory(category) {
+		if (category === "INSTITUTIONAL NEWS") {
+			return 1;
+		}
 		if (category === "FRONT PAGE") {
 			return 1;
 		}
 		if (category === "LËTZ TALK ABOUT CYBER") {
-			return 3;
+			return 1;
 		}
 		return 2;
 	}
@@ -71,6 +80,29 @@ export default class PageHome extends React.Component {
 		}, (error) => {
 			nm.error(error.message);
 		});
+	}
+
+	getBreakfastArticles() {
+		if (this.props.analytics !== null
+			&& this.props.analytics.taxonomy_values !== undefined) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY" && v.name === "CYBERSECURITY BREAKFAST");
+
+			if (values.length > 0) {
+				getRequest.call(this, "public/get_public_articles?media=CYBERLUX&include_tags=true&taxonomy_values="
+					+ values[0].id, (data) => {
+					this.setState({
+						breakfastArticles: data
+							.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1))
+							.slice(0, 2),
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
+			}
+		}
 	}
 
 	getEvents() {
@@ -124,6 +156,29 @@ export default class PageHome extends React.Component {
 		}
 
 		return this.state.sortedNews[category].map((a) => <div
+			className={"col-md-" + width}
+			key={a.id}>
+			<Article
+				info={a}
+			/>
+		</div>);
+	}
+
+	getBreakfastContent(category, width) {
+		if (this.state.breakfastArticles === null) {
+			return <Loading
+				height={150}
+			/>;
+		}
+
+		if (this.state.breakfastArticles.length === 0) {
+			return <Message
+				text={"No article found"}
+				height={150}
+			/>;
+		}
+
+		return this.state.breakfastArticles.map((a) => <div
 			className={"col-md-" + width}
 			key={a.id}>
 			<Article
@@ -207,7 +262,7 @@ export default class PageHome extends React.Component {
 						</div>
 
 						<div className="row">
-							<div className="col-md-12">
+							<div className="col-md-4">
 								<div className="row">
 									<div className="col-md-12">
 										<a
@@ -220,12 +275,29 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 4)}
+									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 12)}
+								</div>
+							</div>
+
+							<div className="col-md-8">
+								<div className="row">
+									<div className="col-md-12">
+										<a
+											className="PageHome-title-link"
+											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "CYBERSECURITY BREAKFAST")}>
+											<div className="PageHome-title">
+												<h3>CYBERSECURITY BREAKFAST <span>more</span></h3>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div className="row">
+									{this.getBreakfastContent("CYBERSECURITY BREAKFAST", 6)}
 								</div>
 							</div>
 						</div>
 
-						<div className="row">
+						<div className="row row-spaced">
 							<div className="col-md-4 shadow-section PageHome-newsletter">
 								{/* eslint-disable no-script-url */}
 								<a href="javascript:;" onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
@@ -274,7 +346,7 @@ export default class PageHome extends React.Component {
 
 				<div className="red-bordered">
 					<div className="max-sized-page">
-						<div className="row">
+						<div className="row row-spaced">
 							<div className="col-md-12">
 								<h1>Where to meet?</h1>
 							</div>
@@ -325,6 +397,8 @@ export default class PageHome extends React.Component {
 								</a>
 							</div>
 
+						</div>
+						<div className="row row-spaced">
 							<div className={"col-md-12"}>
 								<div className={"right-buttons"}>
 									<button
