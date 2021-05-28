@@ -7,7 +7,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Loading from "./box/Loading.jsx";
 import { getRequest } from "../utils/request.jsx";
-import Event from "./item/Event.jsx";
+import EventHorizontal from "./item/EventHorizontal.jsx";
 import Message from "./box/Message.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
 import EventSearch from "./form/EventSearch.jsx";
@@ -32,6 +32,7 @@ export default class PageCalendar extends React.Component {
 				taxonomy_values: getUrlParameter("taxonomy_values") !== null
 					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],
 				title: null,
+				include_tags: "true",
 			},
 		};
 	}
@@ -136,7 +137,7 @@ export default class PageCalendar extends React.Component {
 								onSelectEvent={(event) => this.props.history.push("/calendar/" + event.handle)}
 							/>
 						</div>
-						:						<Loading
+						: <Loading
 							height={200}
 						/>
 					}
@@ -163,16 +164,17 @@ export default class PageCalendar extends React.Component {
 				{this.state.articles !== null && !this.state.loading
 					&& this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length > 0
 					&& <SimpleTable
-						numberDisplayed={6}
+						numberDisplayed={5}
 						elements={this.state.articles
 							.filter((a) => new Date(a.end_date) > new Date())
 							.sort((a, b) => (a.start_date > b.start_date ? 1 : -1))
 							.map((a, i) => [a, i])
 						}
 						buildElement={(a) => (
-							<div className="col-md-4">
-								<Event
+							<div className="col-md-12">
+								<EventHorizontal
 									info={a}
+									analytics={this.props.analytics}
 								/>
 							</div>
 						)}

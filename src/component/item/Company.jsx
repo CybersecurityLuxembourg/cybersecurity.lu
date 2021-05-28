@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./Company.css";
-import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
-import { getApiURL } from "../../utils/env.jsx";
+import { getApiURL, getEcosystemAppURL } from "../../utils/env.jsx";
 
 export default class Company extends Component {
 	constructor(props) {
@@ -14,7 +13,11 @@ export default class Company extends Component {
 
 	render() {
 		return (
-			<Link to={"/company/" + this.props.info.id} className="Company-link">
+			<a
+				href={getEcosystemAppURL() + "company/" + this.props.info.id}
+				target={"_blank"}
+				rel="noreferrer"
+				className="Company-link">
 				<div className="Company card">
 					<div className="card-horizontal">
 						<div className="img-square-wrapper">
@@ -32,7 +35,7 @@ export default class Company extends Component {
 						</div>
 					</div>
 				</div>
-			</Link>
+			</a>
 		);
 	}
 }

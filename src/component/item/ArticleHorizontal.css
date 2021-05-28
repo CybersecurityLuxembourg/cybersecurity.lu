@@ -1,0 +1,80 @@
+
+.ArticleHorizontal {
+    margin: 5px 0px !important;
+    height: 120px;
+}
+
+.ArticleHorizontal-link {
+    color: inherit;
+}
+
+.ArticleHorizontal-link:hover {
+    color: initial !important;
+    text-decoration: none;
+}
+
+.ArticleHorizontal:hover {
+    background-color: #f2fbff;
+}
+
+.ArticleHorizontal .card-horizontal {
+    height: 100%;
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.ArticleHorizontal .img-square-wrapper {
+    object-fit: cover;
+    display: flex;
+    margin: auto;
+    height: 100%;
+    flex: 0 0 180px;
+}
+
+.ArticleHorizontal .img-square-wrapper img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.ArticleHorizontal .card-body {
+    padding: .9rem 1.25rem !important;
+    border-left: 1px solid rgba(0,0,0,.125);
+}
+
+.ArticleHorizontal .card-body button {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
+.ArticleHorizontal .card-body h5 {
+    font-weight: bold !important;
+    margin-bottom: 3px !important;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ArticleHorizontal .card-body .card-abstract {
+    font-size: 14px;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ArticleHorizontal .card-tags {
+    position: absolute;
+    bottom: 12px;
+    left: 200px;
+    height: 30px;
+    width: calc(100% - 400px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

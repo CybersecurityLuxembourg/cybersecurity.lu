@@ -8,8 +8,8 @@ import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import Company from "./item/Company.jsx";
-import Article from "./item/Article.jsx";
-import Event from "./item/Event.jsx";
+import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
+import EventHorizontal from "./item/EventHorizontal.jsx";
 import SearchField from "./form/SearchField.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
@@ -280,9 +280,10 @@ export default class PageSearch extends React.Component {
 										.filter((a) => a.type === "NEWS")
 										.map((a, i) => [a, i])}
 									buildElement={(a) => (
-										<div className="col-md-4">
-											<Article
+										<div className="col-md-12">
+											<ArticleHorizontal
 												info={a}
+												analytics={this.props.analytics}
 											/>
 										</div>
 									)}
@@ -300,9 +301,10 @@ export default class PageSearch extends React.Component {
 										.filter((a) => a.type === "EVENT")
 										.map((a, i) => [a, i])}
 									buildElement={(a) => (
-										<div className="col-md-4">
-											<Event
+										<div className="col-md-12">
+											<EventHorizontal
 												info={a}
+												analytics={this.props.analytics}
 											/>
 										</div>
 									)}

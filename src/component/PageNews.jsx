@@ -5,7 +5,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Loading from "./box/Loading.jsx";
 import { getRequest } from "../utils/request.jsx";
-import Article from "./item/Article.jsx";
+import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
 import Message from "./box/Message.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
 import ArticleSearch from "./form/ArticleSearch.jsx";
@@ -28,6 +28,7 @@ export default class PageNews extends React.Component {
 				taxonomy_values: getUrlParameter("taxonomy_values") !== null
 					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],
 				title: null,
+				include_tags: "true",
 			},
 		};
 	}
@@ -53,7 +54,9 @@ export default class PageNews extends React.Component {
 		});
 
 		const params = dictToURI(this.state.filters);
-		const urlParams = dictToURI({ taxonomy_values: this.state.filters.taxonomy_values });
+		const urlParams = dictToURI({
+			taxonomy_values: this.state.filters.taxonomy_values,
+		});
 
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + urlParams);
@@ -117,10 +120,12 @@ export default class PageNews extends React.Component {
 					&& <SimpleTable
 						className={""}
 						elements={this.state.articles.map((a, i) => [a, i])}
+						numberDisplayed={10}
 						buildElement={(a) => (
-							<div className="col-md-4">
-								<Article
+							<div className="col-md-12">
+								<ArticleHorizontal
 									info={a}
+									analytics={this.props.analytics}
 								/>
 							</div>
 						)}
