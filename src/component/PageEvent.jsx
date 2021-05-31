@@ -81,11 +81,22 @@ export default class PageEvent extends React.Component {
 									</div>
 								</div>
 
-								<div className="PageEvent-tags">
-									{this.state.article.tags.map((t) => (
+								<div className="PageArticle-tags">
+									{this.state.article.taxonomy_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
+											url={"/search?taxonomy_value=" + t.id}
+										/>
+									))}
+								</div>
+
+								<div className="PageArticle-companies">
+									{this.state.article.company_tags.map((t) => (
+										<Chip
+											key={t.name}
+											label={t.name}
+											color={"#ffa8b0"}
 										/>
 									))}
 								</div>
@@ -117,18 +128,29 @@ export default class PageEvent extends React.Component {
 									return null;
 								})}
 
-								<div className="PageEvent-tags">
-									{this.state.article.tags.map((t) => (
+								<div className="PageArticle-tags">
+									{this.state.article.taxonomy_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
+											url={"/search?taxonomy_value=" + t.id}
+										/>
+									))}
+								</div>
+
+								<div className="PageArticle-companies">
+									{this.state.article.company_tags.map((t) => (
+										<Chip
+											key={t.name}
+											label={t.name}
+											color={"#ffa8b0"}
 										/>
 									))}
 								</div>
 							</article>
 						</div>
 					</div>
-					: 					<Loading
+					: <Loading
 						height={400}
 					/>
 				}

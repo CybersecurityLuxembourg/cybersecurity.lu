@@ -20,24 +20,23 @@
 	max-height: 300px;
 }
 
-.PageEvent article .PageEvent-content-media {
+.PageEvent article .content-media {
 	margin: 15px auto;
-	background-color: #f8f9fa;
 	text-align: center;
 	display: flex;
   	justify-content: center;
 }
 
-.PageEvent article .PageEvent-content-media img {
+.PageEvent article .content-media img {
 	max-width: 100%;
 	max-height: 300px;
 }
 
-.PageEvent article .PageEvent-content-media iframe {
+.PageEvent article .content-media iframe {
 	max-width: 100%;
 }
 
-.PageEvent article .PageEvent-content-media p {
+.PageEvent article .content-media p {
 	margin: 0 !important;
 }
 

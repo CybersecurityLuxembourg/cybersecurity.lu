@@ -19,24 +19,23 @@
 	max-height: 300px;
 }
 
-.PageArticle article .PageArticle-content-media {
+.PageArticle article .content-media {
 	margin: 15px auto;
-	background-color: #f8f9fa;
 	text-align: center;
 	display: flex;
   	justify-content: center;
 }
 
-.PageArticle article .PageArticle-content-media img {
+.PageArticle article .content-media img {
 	max-width: 100%;
 	max-height: 300px;
 }
 
-.PageArticle article .PageArticle-content-media iframe {
+.PageArticle article .content-media iframe {
 	max-width: 100%;
 }
 
-.PageArticle article .PageArticle-content-media p {
+.PageArticle article .content-media p {
 	margin: 0 !important;
 }
 
