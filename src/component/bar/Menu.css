@@ -285,9 +285,13 @@
     border-radius: 0em;
 }
 
+.carousel-slider .dot {
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .carousel-slider .dot:nth-child(1) {
     color: white;
-    padding: 0px 10px;
+    padding: 2px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
@@ -311,7 +315,7 @@
 
 .carousel-slider .dot:nth-child(2) {
     color: white;
-    padding: 0px 10px;
+    padding: 2px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
@@ -335,7 +339,7 @@
 
 .carousel-slider .dot:nth-child(3) {
     color: white;
-    padding: 0px 10px;
+    padding: 2px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
@@ -359,7 +363,7 @@
 
 .carousel-slider .dot:nth-child(4) {
     color: white;
-    padding: 0px 10px;
+    padding: 2px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
