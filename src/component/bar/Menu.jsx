@@ -165,9 +165,8 @@ export default class Menu extends React.Component {
 											<img src="/img/logo_ltac_white.png"/>
 										</div>
 										<div>
-											There are many Cybersecurity Professionals.
-											Yet they all stand out, through their personal stories and backgrounds.
-											Discover them.
+											Learn about Cybersecurity Professionals who stand out
+											with their personal stories and journeys.
 										</div>
 									</div>
 								</Link>
