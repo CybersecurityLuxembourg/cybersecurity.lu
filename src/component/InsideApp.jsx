@@ -49,6 +49,7 @@ export default class InsideApp extends React.Component {
 				<GovBar/>
 
 				<Route path="/:path?" render={(props) => <Menu
+					analytics={this.state.analytics}
 					ml_account={this.state.ml_account}
 					{...props}
 				/>}/>

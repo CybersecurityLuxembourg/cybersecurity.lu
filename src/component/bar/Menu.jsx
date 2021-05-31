@@ -77,6 +77,24 @@ export default class Menu extends React.Component {
 		</Nav>;
 	}
 
+	getArticleCategoryId(value) {
+		if (this.props.analytics !== null
+			&& this.props.analytics !== undefined
+			&& this.props.analytics.taxonomy_values !== undefined) {
+			const taxonomyValues = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY")
+				.filter((v) => v.name === value);
+
+			if (taxonomyValues.length === 0) {
+				return "";
+			}
+
+			return taxonomyValues[0].id;
+		}
+
+		return "";
+	}
+
 	render() {
 		return (
 			<div className={"max-sized-page "
@@ -92,23 +110,66 @@ export default class Menu extends React.Component {
 							interval={5000}
 						>
 							<div>
-								<img src="/img/1.jpg" />
-								<Link to="/about">
-									<div className="legend">Lorem Ipsum is simply dummy text of the
-									printing and typesetting industry. Lorem Ipsum has been the
-									industry s standard dummy text ever since the 1500s,
-									when an unknown printer took a galley of
-									type and scrambled it to make a type specimen book.</div>
+								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
+								<div className="legend blue-legend">
+									<div>
+										<img src="/img/logo_cyberlux_white.png"/>
+									</div>
+									<div>
+										300+ private & public entities share
+										outstanding skills, knowledge and offer an extensive expertise
+										in cybersecurity. Discover this community, keep up with the
+										latest news & upcoming events.
+									</div>
+								</div>
+							</div>
+							<div>
+								<img src="/img/2.jpg"/>
+								<a
+									href="https://www.cybersecurityweek.lu/"
+									target="_blank"
+									rel="noreferrer">
+									<div className="legend red-legend">
+										<div>
+											<img src="/img/logo_cswl_white.png"/>
+										</div>
+										<div>
+											CYBERSECURITY Week Luxembourg is the
+											unmissable Digital Security & Trust Advocacy Campaign bringing
+											together Cybersecurity Experts, IT players & Tech Enthusiasts.
+											Find out more.
+										</div>
+									</div>
+								</a>
+							</div>
+							<div>
+								<img src="/img/Slide_CSB_1920x1080.jpg" />
+								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("CYBERSECURITY BREAKFAST")}>
+									<div className="legend black-legend">
+										<div>
+											<img src="/img/logo_cyberbreakfast_white.png"/>
+										</div>
+										<div>
+											CYBERSECURITY Breakfast is a monthly
+											series that addresses a new trendy topic each time.
+											Join the next one!
+										</div>
+									</div>
 								</Link>
 							</div>
 							<div>
-								<img src="/img/2.jpg" />
-								<Link to="/about">
-									<div className="legend">Lorem Ipsum is simply dummy text of the
-									printing and typesetting industry. Lorem Ipsum has been the
-									industry s standard dummy text ever since the 1500s,
-									when an unknown printer took a galley of
-									type and scrambled it to make a type specimen book.</div>
+								<img src="/img/Slide_ITV_1920x1080.jpg" />
+								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("LËTZ TALK ABOUT CYBER")}>
+									<div className="legend black-legend">
+										<div>
+											<img src="/img/logo_ltac_white.png"/>
+										</div>
+										<div>
+											There are many Cybersecurity Professionals.
+											Yet they all stand out, through their personal stories and backgrounds.
+											Discover them.
+										</div>
+									</div>
 								</Link>
 							</div>
 						</Carousel>

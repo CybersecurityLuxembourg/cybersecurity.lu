@@ -55,8 +55,6 @@ export default class ArticleHorizontal extends Component {
 	}
 
 	getTagsContent() {
-		console.log(this.props.info);
-		console.log(this.props.analytics);
 		if (this.props.analytics !== null
 			&& this.props.analytics !== undefined
 			&& this.props.analytics.taxonomy_values !== undefined
@@ -65,8 +63,6 @@ export default class ArticleHorizontal extends Component {
 				.filter((v) => ["ARTICLE CATEGORY", "SERVICE GROUP"].indexOf(v.category) >= 0)
 				.filter((v) => this.props.info.taxonomy_tags.indexOf(v.id) >= 0)
 				.sort((a, b) => (b.category < a.category ? 1 : -1));
-
-			console.log(taxonomyValues);
 
 			return <div className="card-tags">
 				{taxonomyValues.map((v) => <Chip
