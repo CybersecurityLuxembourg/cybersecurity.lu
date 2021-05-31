@@ -2,6 +2,19 @@
 .ArticleHorizontal {
     margin: 5px 0px !important;
     height: 120px;
+    overflow: hidden;
+}
+
+@media (min-width: 0px) {
+    .ArticleHorizontal {
+        height: auto;
+    }
+}
+
+@media (min-width: 500px) {
+    .ArticleHorizontal {
+        height: 120px;
+    }
 }
 
 .ArticleHorizontal-link {
@@ -17,18 +30,35 @@
     background-color: #f2fbff;
 }
 
-.ArticleHorizontal .card-horizontal {
-    height: 100%;
-    display: flex;
-    flex: 1 1 auto;
+@media (min-width: 0px) {
+    .ArticleHorizontal .card-horizontal {
+        padding-bottom: 50px;
+    }
 }
 
-.ArticleHorizontal .img-square-wrapper {
-    object-fit: cover;
-    display: flex;
-    margin: auto;
-    height: 100%;
-    flex: 0 0 180px;
+@media (min-width: 500px) {
+    .ArticleHorizontal .card-horizontal {
+        height: 100%;
+        display: flex;
+        flex: 1 1 auto;
+    }
+}
+
+@media (min-width: 0px) {
+    .ArticleHorizontal .img-square-wrapper {
+        width: 100%;
+        height: 120px;
+        border-right: 1px solid rgba(0,0,0,.125);
+    }
+}
+
+@media (min-width: 500px) {
+    .ArticleHorizontal .img-square-wrapper {
+        object-fit: cover;
+        display: flex;
+        margin: auto;
+        flex: 0 0 180px;
+    }
 }
 
 .ArticleHorizontal .img-square-wrapper img {
@@ -37,15 +67,35 @@
     height: 100%;
 }
 
-.ArticleHorizontal .card-body {
-    padding: .9rem 1.25rem !important;
-    border-left: 1px solid rgba(0,0,0,.125);
+.ArticleHorizontal .card-date {
+    position: absolute;
+    background: #009fe3;
+    text-align: center;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    color: #fff;
+    bottom: 0px;
+    left: 10px;
+    text-transform: uppercase;
 }
 
-.ArticleHorizontal .card-body button {
-    position: absolute;
-    bottom: 10px;
-    right: 15px;
+.ArticleHorizontal .card-body {
+    padding: .9rem 1.25rem !important;
+}
+
+@media (min-width: 0px) {
+    .ArticleHorizontal .card-body button {
+        display: none;
+    }
+}
+
+@media (min-width: 500px) {
+    .ArticleHorizontal .card-body button {
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+    }
 }
 
 .ArticleHorizontal .card-body h5 {

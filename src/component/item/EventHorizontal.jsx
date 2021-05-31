@@ -28,6 +28,18 @@ export default class ArticleHorizontal extends Component {
 								alt="Card image cap"/>
 							: <NoImage/>
 						}
+						<div className="card-date">
+							{this.props.info.start_date !== null && this.props.info.end_date !== null
+								? <div>
+									{this.props.info.start_date.substring(0, 10) + " "}
+									{this.props.info.start_date.substring(11, 16)}
+									<br/>
+									{this.props.info.end_date.substring(0, 10) + " "}
+									{this.props.info.end_date.substring(11, 16)}
+								</div>
+								:								"No info"
+							}
+						</div>
 					</div>
 					<div className="card-body">
 						<h5 className="card-title">{this.props.info.title}</h5>

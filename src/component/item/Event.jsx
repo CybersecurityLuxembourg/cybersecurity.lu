@@ -26,17 +26,17 @@ export default class Event extends Component {
 				}
 				<div className="card-date">
 					{this.props.info.start_date !== null && this.props.info.end_date !== null
-						? this.props.info.start_date.substring(0, 10)
-						+ " "
-						+ this.props.info.start_date.substring(11, 16)
-						+ " - "
-						+ this.props.info.end_date.substring(0, 10)
-						+ " "
-						+ this.props.info.end_date.substring(11, 16)
+						? <div>
+							{this.props.info.start_date.substring(0, 10) + " "}
+							{this.props.info.start_date.substring(11, 16)}
+							<br/>
+							{this.props.info.end_date.substring(0, 10) + " "}
+							{this.props.info.end_date.substring(11, 16)}
+						</div>
 						:								"No info"
 					}
 				</div>
-				<div className="card-type">{this.props.info.type}</div>
+				{/* <div className="card-type">{this.props.info.type}</div> */}
 			</div>
 			<div className="card-body">
 				<h5 className="card-title">{this.props.info.title}</h5>
