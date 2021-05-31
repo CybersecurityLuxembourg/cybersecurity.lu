@@ -23,7 +23,8 @@
 }
 
 .Footer a:hover {
-  color: white;
+  color: #e40613;
+  text-decoration: none;
 }
 
 .Footer .Footer-title {

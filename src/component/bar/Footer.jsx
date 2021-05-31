@@ -85,7 +85,7 @@ export default class Footer extends React.Component {
 									rel="noreferrer"
 									target="_blank"
 									title="News">
-									<Link to="/news">News</Link>
+									<Link to="/news">What&apos;s up?</Link>
 								</a>
 							</div>
 							<div>
@@ -94,7 +94,7 @@ export default class Footer extends React.Component {
 									rel="noreferrer"
 									target="_blank"
 									title="Calendar">
-									<Link to="/calendar">Calendar</Link>
+									<Link to="/calendar">Where to meet?</Link>
 								</a>
 							</div>
 							<div>
