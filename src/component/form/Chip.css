@@ -20,7 +20,6 @@
     position: absolute;
     overflow: hidden;
     background-color: #8fddff;
-    font-size: 1.25rem;
     flex-shrink: 0;
     align-items: center;
     user-select: none;
@@ -29,10 +28,10 @@
     width: 26px;
     color: #fff;
     height: 26px;
-    font-size: 20px;
+    font-size: 16px;
     margin-right: -4px;
     text-align: center;
-    padding-top: 3px;
+    padding-top: 5px;
 }
 
 .Chip-content {
@@ -43,7 +42,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-top: 6px;
+    padding-top: 7px;
     padding-left: 32px;
     padding-right: 25px;
     width: 100%;

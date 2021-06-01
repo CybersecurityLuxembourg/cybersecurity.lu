@@ -15,7 +15,7 @@ export default class Chip extends Component {
 			<div
 				className="Chip-head"
 				style={{ backgroundColor: this.props.color !== undefined ? this.props.color : null }}>
-				{this.props.label[0]}
+				<i className="fas fa-hashtag"/>
 			</div>
 			<div className="Chip-content">
 				{this.props.label}
