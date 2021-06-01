@@ -113,10 +113,13 @@ export default class PageEvent extends React.Component {
 									if (positionToTreat <= i) {
 										if (b.type === "TITLE1") {
 											const nextTitle1Position = getNextTitle1Position(
-												i + 1, this.state.article.content,
+												this.state.article.content,
+												i,
 											);
 
-											const el = <Collapsible trigger={getContentFromBlock(b)}>
+											const el = <Collapsible
+												trigger={getContentFromBlock(b)}
+												open={true}>
 												{this.state.article.content
 													.slice(positionToTreat + 1, nextTitle1Position - 1)
 													.map((b2) => getContentFromBlock(b2))}

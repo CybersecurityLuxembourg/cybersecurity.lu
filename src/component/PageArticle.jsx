@@ -138,7 +138,7 @@ export default class PageArticle extends React.Component {
 										if (b.type === "TITLE1") {
 											const nextTitle1Position = getNextTitle1Position(
 												this.state.article.content,
-												i + 1,
+												i,
 											);
 
 											const el = <Collapsible

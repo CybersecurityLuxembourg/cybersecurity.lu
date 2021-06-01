@@ -45,5 +45,5 @@ export function getNextTitle1Position(content, pos) {
 		}
 	}
 
-	return content.length + 1;
+	return content.length;
 }
