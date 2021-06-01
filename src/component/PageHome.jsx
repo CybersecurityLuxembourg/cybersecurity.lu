@@ -60,9 +60,6 @@ export default class PageHome extends React.Component {
 		if (category === "INSTITUTIONAL NEWS") {
 			return 1;
 		}
-		if (category === "FRONT PAGE") {
-			return 1;
-		}
 		if (category === "LËTZ TALK ABOUT CYBER") {
 			return 1;
 		}
@@ -218,12 +215,6 @@ export default class PageHome extends React.Component {
 						<div className="row">
 							<div className="col-md-12">
 								<h1>What&apos;s up?</h1>
-							</div>
-
-							<div className="col-md-12">
-								<div className="row">
-									{this.getArticleCategoryContent("FRONT PAGE", 12)}
-								</div>
 							</div>
 
 							<div className="col-md-8">
