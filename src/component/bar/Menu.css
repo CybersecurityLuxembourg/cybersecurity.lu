@@ -52,6 +52,10 @@
     padding-left: 1rem !important;
 }
 
+.nav-link-blue .Menu-title i {
+    padding: 0px !important;
+}
+
 #basic-navbar-nav .navbar-nav {
     z-index: 10;
     padding: 0px 15px;
@@ -223,17 +227,23 @@
     border-radius: 0 !important;
     opacity: 1 !important;
     position: absolute;
-    bottom: 10% !important;
+    bottom: 15% !important;
     right: 15% !important;
     left: unset !important;
     margin: 0 !important;
-    padding: 2vh 2vw !important;
+    padding: 15px 5px !important;
     width: 500px !important;
-    max-width: 60% !important;
+    max-width: 70% !important;
     height: auto !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
     line-height: 1.2 !important;
     text-align: left !important;
+}
+
+.carousel .slide .legend .legend-date {
+    text-align: right;
+    margin: 0px 0px 8px 0px;
+    font-size: 17px;
 }
 
 .carousel .slide a .legend:hover {
@@ -282,10 +292,10 @@
 }
 
 .carousel .slide .legend img {
-    max-height: 40px;
     object-fit: all !important;
     text-align: left !important;
     margin-bottom: 8px;
+    max-height: 40px;
     width: auto;
 }
 
@@ -295,11 +305,12 @@
 
 .carousel-slider .dot {
     font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
 }
 
 .carousel-slider .dot:nth-child(1) {
     color: white;
-    padding: 2px 14px 0px 12px;
+    padding: 1px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
@@ -311,7 +322,7 @@
     background-repeat:no-repeat !important;
     border-radius: 0% !important;
     width: auto !important;
-    height: 25px !important;
+    height: 26px !important;
     cursor: pointer;
     display: inline-block;
     margin: 0 3px !important;
@@ -323,7 +334,7 @@
 
 .carousel-slider .dot:nth-child(2) {
     color: white;
-    padding: 2px 14px 0px 12px;
+    padding: 1px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
@@ -335,7 +346,7 @@
     background-repeat:no-repeat !important;
     border-radius: 0% !important;
     width: auto !important;
-    height: 25px !important;
+    height: 26px !important;
     cursor: pointer;
     display: inline-block;
     margin: 0 3px !important;
@@ -347,7 +358,7 @@
 
 .carousel-slider .dot:nth-child(3) {
     color: white;
-    padding: 2px 14px 0px 12px;
+    padding: 1px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
@@ -359,7 +370,7 @@
     background-repeat:no-repeat !important;
     border-radius: 0% !important;
     width: auto !important;
-    height: 25px !important;
+    height: 26px !important;
     cursor: pointer;
     display: inline-block;
     margin: 0 3px !important;
@@ -371,7 +382,7 @@
 
 .carousel-slider .dot:nth-child(4) {
     color: white;
-    padding: 2px 14px 0px 12px;
+    padding: 1px 14px 0px 12px;
     background: red !important;
     transition: opacity .25s ease-in;
     opacity: .3;
@@ -383,7 +394,7 @@
     background-repeat:no-repeat !important;
     border-radius: 0% !important;
     width: auto !important;
-    height: 25px !important;
+    height: 26px !important;
     cursor: pointer;
     display: inline-block;
     margin: 0 3px !important;

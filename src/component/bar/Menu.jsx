@@ -51,13 +51,6 @@ export default class Menu extends React.Component {
 					<div className="Menu-description">Cybersecurity events</div>
 				</Link>
 			</Nav.Link>
-			{/* eslint-disable no-script-url */}
-			<a href="javascript:;"
-				className="nav-link"
-				onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
-				<div className="Menu-title">Newsletter</div>
-				<div className="Menu-description">Our monthly selection</div>
-			</a>
 			<a
 				className="nav-link"
 				href={getEcosystemAppURL()}
@@ -66,13 +59,12 @@ export default class Menu extends React.Component {
 				<div className="Menu-title">Ecosystem</div>
 				<div className="Menu-description">View on the community</div>
 			</a>
-			<a
-				className="nav-link"
-				href={getPrivateAppURL()}
-				rel="noreferrer"
-			>
-				<div className="Menu-title">My CYBERLUX</div>
-				<div className="Menu-description">Login or subscribe</div>
+			{/* eslint-disable no-script-url */}
+			<a href="javascript:;"
+				className="nav-link nav-link-blue"
+				onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
+				<div className="Menu-title"><i className="fas fa-envelope-open-text"/> Newsletter</div>
+				<div className="Menu-description">Our monthly selection</div>
 			</a>
 		</Nav>;
 	}
@@ -111,11 +103,11 @@ export default class Menu extends React.Component {
 						>
 							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
-								<div className="legend blue-legend">
-									<div>
+								<div className="row legend blue-legend">
+									<div className="col-md-6">
 										<img src="/img/logo_cyberlux_white.png"/>
 									</div>
-									<div>
+									<div className="col-md-12">
 										300+ private & public entities share
 										outstanding skills, knowledge and offer an extensive expertise
 										in cybersecurity. Discover this community, keep up with the
@@ -124,16 +116,21 @@ export default class Menu extends React.Component {
 								</div>
 							</div>
 							<div>
-								<img src="/img/2.jpg"/>
+								<img src="/img/Slide_CSWL_1920x1080.jpg"/>
 								<a
 									href="https://www.cybersecurityweek.lu/"
 									target="_blank"
 									rel="noreferrer">
-									<div className="legend red-legend">
-										<div>
+									<div className="row legend red-legend">
+										<div className="col-md-6">
 											<img src="/img/logo_cswl_white.png"/>
 										</div>
-										<div>
+										<div className="col-md-6 legend-date">
+											18 OCT 2021
+											<br/>
+											28 OCT 2021
+										</div>
+										<div className="col-md-12">
 											CYBERSECURITY Week Luxembourg is the
 											unmissable Digital Security & Trust Advocacy Campaign bringing
 											together Cybersecurity Experts, IT players & Tech Enthusiasts.
@@ -145,11 +142,11 @@ export default class Menu extends React.Component {
 							<div>
 								<img src="/img/Slide_CSB_1920x1080.jpg" />
 								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("CYBERSECURITY BREAKFAST")}>
-									<div className="legend black-legend">
-										<div>
+									<div className="row legend black-legend">
+										<div className="col-md-6">
 											<img src="/img/logo_cyberbreakfast_white.png"/>
 										</div>
-										<div>
+										<div className="col-md-12">
 											CYBERSECURITY Breakfast is a monthly
 											series that addresses a new trendy topic each time.
 											Join the next one!
@@ -160,11 +157,11 @@ export default class Menu extends React.Component {
 							<div>
 								<img src="/img/Slide_ITV_1920x1080.jpg" />
 								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("LËTZ TALK ABOUT CYBER")}>
-									<div className="legend black-legend">
-										<div>
+									<div className="row legend black-legend">
+										<div className="col-md-6">
 											<img src="/img/logo_ltac_white.png"/>
 										</div>
-										<div>
+										<div className="col-md-12">
 											Learn about Cybersecurity Professionals who stand out
 											with their personal stories and journeys.
 										</div>
@@ -199,6 +196,14 @@ export default class Menu extends React.Component {
 									<div className="Menu-description">What is CYBERLUX?</div>
 								</Link>
 							</Nav.Link>
+							<a
+								className="nav-link"
+								href={getPrivateAppURL()}
+								rel="noreferrer"
+							>
+								<div className="Menu-title">My CYBERLUX</div>
+								<div className="Menu-description">Login or subscribe</div>
+							</a>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
