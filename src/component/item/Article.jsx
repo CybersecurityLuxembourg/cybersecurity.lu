@@ -41,7 +41,7 @@ export default class Article extends Component {
 					: <button
 						className={"blue-background"}
 					>
-						Read more
+						Know more
 					</button>
 				}
 			</div>

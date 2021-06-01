@@ -52,7 +52,7 @@ export default class Event extends Component {
 					: <button
 						className={"blue-background"}
 					>
-						Read more
+						Know more
 					</button>
 				}
 			</div>

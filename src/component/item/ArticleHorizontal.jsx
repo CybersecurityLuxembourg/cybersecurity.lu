@@ -46,7 +46,7 @@ export default class ArticleHorizontal extends Component {
 							: <button
 								className={"blue-background"}
 							>
-								Read more
+								Know more
 							</button>
 						}
 					</div>
