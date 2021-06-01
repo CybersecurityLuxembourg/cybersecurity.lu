@@ -77,7 +77,11 @@ export default class PageEvent extends React.Component {
 										? <img src={getApiURL() + "public/get_image/" + this.state.article.image}/>
 										: ""}
 									<div className='PageEvent-publication-date'>
-										{this.state.article.publication_date}
+										{this.state.article.start_date.substring(0, 10) + " "}
+										{this.state.article.start_date.substring(11, 16)}
+										<br/>
+										{this.state.article.end_date.substring(0, 10) + " "}
+										{this.state.article.end_date.substring(11, 16)}
 									</div>
 								</div>
 
