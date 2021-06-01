@@ -19,7 +19,6 @@ export default class PageHome extends React.Component {
 
 		this.state = {
 			news: null,
-			sortedNews: null,
 			events: null,
 			breakfastArticles: null,
 		};
@@ -32,32 +31,13 @@ export default class PageHome extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.analytics !== null
-			&& this.state.news !== null
-			&& this.state.sortedNews == null) {
-			const sortedNews = {};
-
-			const articleCategoryValues = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ARTICLE CATEGORY");
-
-			for (let i = 0; i < articleCategoryValues.length; i++) {
-				sortedNews[articleCategoryValues[i].name] = this.state.news
-					.filter((a) => a.taxonomy_tags.indexOf(articleCategoryValues[i].id) >= 0)
-					.slice(0, PageHome.getNumberOfArticlePerCategory(articleCategoryValues[i].name));
-			}
-
-			this.setState({
-				sortedNews,
-			});
-		}
-
 		if (prevProps.analytics === null && this.props.analytics !== null) {
 			this.getBreakfastArticles();
 		}
 	}
 
 	static getNumberOfArticlePerCategory(category) {
-		if (category === "INSTITUTIONAL NEWS") {
+		if (category.startsWith("INSTITUTIONAL NEWS")) {
 			return 1;
 		}
 		if (category === "LËTZ TALK ABOUT CYBER") {
@@ -138,27 +118,46 @@ export default class PageHome extends React.Component {
 	}
 
 	getArticleCategoryContent(category, width) {
-		if (this.state.sortedNews === null
-			|| this.state.sortedNews[category] === undefined) {
+		if (this.state.news === null
+			|| this.state.news === undefined) {
 			return <Loading
 				height={150}
 			/>;
 		}
 
-		if (this.state.sortedNews[category].length === 0) {
-			return <Message
-				text={"No article found"}
-				height={150}
-			/>;
+		if (this.props.analytics !== null) {
+			let sortedNews = [];
+
+			const articleCategoryValues = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY")
+				.filter((v) => v.name.startsWith(category));
+
+			for (let i = 0; i < articleCategoryValues.length; i++) {
+				sortedNews = sortedNews.concat(this.state.news
+					.filter((a) => a.taxonomy_tags.indexOf(articleCategoryValues[i].id) >= 0));
+			}
+
+			sortedNews = sortedNews
+				.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1))
+				.slice(0, PageHome.getNumberOfArticlePerCategory(category));
+
+			if (sortedNews.length === 0) {
+				return <Message
+					text={"No article found"}
+					height={150}
+				/>;
+			}
+
+			return sortedNews.map((a) => <div
+				className={"col-md-" + width}
+				key={a.id}>
+				<Article
+					info={a}
+				/>
+			</div>);
 		}
 
-		return this.state.sortedNews[category].map((a) => <div
-			className={"col-md-" + width}
-			key={a.id}>
-			<Article
-				info={a}
-			/>
-		</div>);
+		return "";
 	}
 
 	getBreakfastContent(category, width) {
@@ -184,20 +183,20 @@ export default class PageHome extends React.Component {
 		</div>);
 	}
 
-	getArticleCategoryURL(category, value) {
+	getArticleCategoryURL(values) {
 		if (this.props.analytics === null
 			|| this.props.analytics.taxonomy_values === undefined) {
 			return null;
 		}
 
-		const values = this.props.analytics.taxonomy_values
-			.filter((v) => v.category === category && v.name === value);
+		const filteredValues = this.props.analytics.taxonomy_values
+			.filter((v) => v.category === "ARTICLE CATEGORY" && values.indexOf(v.name) >= 0);
 
-		if (values.length === 0) {
+		if (filteredValues.length === 0) {
 			return null;
 		}
 
-		return "/news?taxonomy_values=" + values[0].id;
+		return "/news?taxonomy_values=" + filteredValues.map((v) => v.id).join(",");
 	}
 
 	changeState(field, value) {
@@ -222,7 +221,9 @@ export default class PageHome extends React.Component {
 									<div className="col-md-12">
 										<a
 											className="PageHome-title-link"
-											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "INSTITUTIONAL NEWS")}>
+											href={this.getArticleCategoryURL(
+												["INSTITUTIONAL NEWS - EUROPE", "INSTITUTIONAL NEWS - LUXEMBOURG"],
+											)}>
 											<div className="PageHome-title">
 												<h3>INSTITUTIONAL NEWS <span>more</span></h3>
 											</div>
@@ -239,7 +240,7 @@ export default class PageHome extends React.Component {
 									<div className="col-md-12">
 										<a
 											className="PageHome-title-link"
-											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "CALL TO ACTION")}>
+											href={this.getArticleCategoryURL(["CALL TO ACTION"])}>
 											<div className="PageHome-title">
 												<h3>CALL TO ACTION <span>more</span></h3>
 											</div>
@@ -258,7 +259,7 @@ export default class PageHome extends React.Component {
 									<div className="col-md-12">
 										<a
 											className="PageHome-title-link"
-											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "LËTZ TALK ABOUT CYBER")}>
+											href={this.getArticleCategoryURL(["LËTZ TALK ABOUT CYBER"])}>
 											<div className="PageHome-title">
 												<h3>LËTZ TALK ABOUT CYBER <span>more</span></h3>
 											</div>
@@ -275,7 +276,7 @@ export default class PageHome extends React.Component {
 									<div className="col-md-12">
 										<a
 											className="PageHome-title-link"
-											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "CYBERSECURITY BREAKFAST")}>
+											href={this.getArticleCategoryURL(["CYBERSECURITY BREAKFAST"])}>
 											<div className="PageHome-title">
 												<h3>CYBERSECURITY BREAKFAST <span>more</span></h3>
 											</div>
@@ -307,7 +308,7 @@ export default class PageHome extends React.Component {
 									<div className="col-md-12">
 										<a
 											className="PageHome-title-link"
-											href={this.getArticleCategoryURL("ARTICLE CATEGORY", "TECH CORNER")}>
+											href={this.getArticleCategoryURL(["TECH CORNER"])}>
 											<div className="PageHome-title">
 												<h3>TECH CORNER <span>more</span></h3>
 											</div>
