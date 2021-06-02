@@ -211,10 +211,12 @@ export default class Menu extends React.Component {
 				{this.state.showFlyingMenu
 					&& <div className={"Menu-flying-menu-wrapper"}>
 						<div className="Menu-flying-menu max-sized-page">
-							<img
-								src="/img/ecosystem-logo.jpg"
-								alt="CYBERLUX Logo"
-							/>
+							<Link to="/">
+								<img
+									src="/img/ecosystem-logo.jpg"
+									alt="CYBERLUX Logo"
+								/>
+							</Link>
 							<div className="navbar navbar-nav">
 								{this.getNavBar()}
 							</div>
