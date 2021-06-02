@@ -12,11 +12,7 @@
 }
 
 #PageHome .blue-bordered {
-	background:
-        linear-gradient(to right, #8fddff 2px, transparent 3px) 0 0,
-        linear-gradient(to left, #8fddff 2px, transparent 3px) 100% 100%,
-        linear-gradient(to bottom, #8fddff 2px, transparent 3px) 0 0,
-        linear-gradient(to top, #8fddff 2px, transparent 3px) 100% 100% !important;
+	position: relative;
     background-color: rgba(188, 235, 255, 0.2) !important;
     background-repeat: no-repeat !important;
     background-size: 80px 80px !important;
@@ -28,11 +24,7 @@
 }
 
 #PageHome .red-bordered {
-	background:
-        linear-gradient(to right, #ffa8b0 2px, transparent 3px) 0 0,
-        linear-gradient(to left, #ffa8b0 2px, transparent 3px) 100% 100%,
-        linear-gradient(to bottom, #ffa8b0 2px, transparent 3px) 0 0,
-        linear-gradient(to top, #ffa8b0 2px, transparent 3px) 100% 100% !important;
+	position: relative;
     background-color: rgba(254, 215, 218, 0.2) !important;
     background-repeat: no-repeat !important;
     background-size: 80px 80px !important;
@@ -40,11 +32,7 @@
 }
 
 #PageHome .black-bordered {
-	background:
-        linear-gradient(to right, #000 2px, transparent 3px) 0 0,
-        linear-gradient(to left, #000 2px, transparent 3px) 100% 100%,
-        linear-gradient(to bottom, #000 2px, transparent 3px) 0 0,
-        linear-gradient(to top, #000 2px, transparent 3px) 100% 100% !important;
+	position: relative;
     background-color: rgba(0, 0, 0, 0.05) !important;
     background-repeat: no-repeat !important;
     background-size: 80px 80px !important;
@@ -252,4 +240,142 @@
 
 .PageHome-cswl:hover .PageHome-cswl-content-desc {
 	opacity: 0;
+}
+
+/* BACKGROUND PETALS */
+
+@media (min-width: 0px) {
+    .Background-petals, .Background-petals-bottom {
+        display: none;
+    }
+}
+
+@media (min-width: 1400px) {
+    .Background-petals, .Background-petals-bottom {
+        display: block;
+    }
+}
+
+.Background-petals, .Background-petals-bottom {
+    position: absolute;
+}
+
+.Background-petals-bottom {
+    right: 0;
+    bottom: 0;
+}
+
+.Background-petals li, .Background-petals-bottom li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    opacity: 0.4;
+}
+
+.Background-petals li:nth-child(1){
+    left: 10px;
+    top: 10px;
+    opacity: 0.35;
+}
+
+
+.Background-petals li:nth-child(2){
+    left: 50px;
+    top: 30px;
+    opacity: 0.3;
+}
+
+.Background-petals li:nth-child(3){
+    left: 80px;
+    top: 10px;
+    opacity: 0.25;
+}
+
+.Background-petals li:nth-child(4){
+    left: 50px;
+    top: 80px;
+    opacity: 0.17;
+}
+
+.Background-petals li:nth-child(5){
+    left: 120px;
+    top: 40px;
+    opacity: 0.15;
+}
+
+.Background-petals li:nth-child(6){
+    left: 20px;
+    top: 120px;
+    opacity: 0.14;
+}
+
+.Background-petals li:nth-child(7){
+    left: 100px;
+    top: 90px;
+    opacity: 0.12;
+}
+
+.Background-petals-bottom li:nth-child(1){
+    right: 10px;
+    bottom: 10px;
+    opacity: 0.35;
+}
+
+.Background-petals-bottom li:nth-child(2){
+    right: 50px;
+    bottom: 30px;
+    opacity: 0.3;
+}
+
+.Background-petals-bottom li:nth-child(3){
+    right: 80px;
+    bottom: 10px;
+    opacity: 0.25;
+}
+
+.Background-petals-bottom li:nth-child(4){
+    right: 50px;
+    bottom: 80px;
+    opacity: 0.17;
+}
+
+.Background-petals-bottom li:nth-child(5){
+    right: 120px;
+    bottom: 40px;
+    opacity: 0.15;
+}
+
+.Background-petals-bottom li:nth-child(6){
+    right: 20px;
+    bottom: 120px;
+    opacity: 0.14;
+}
+
+.Background-petals-bottom li:nth-child(7){
+    right: 100px;
+    bottom: 90px;
+    opacity: 0.12;
+}
+
+.blue-bordered .Background-petals li, .blue-bordered .Background-petals-bottom li {
+	background: 
+		linear-gradient( 45deg,transparent 7px,#009fe3 0) left /50.5% 100%,
+		linear-gradient( 225deg,transparent 7px,#009fe3 0) right/50.5% 100%;
+    background-repeat:no-repeat !important;
+}
+
+.red-bordered .Background-petals li, .red-bordered .Background-petals-bottom li {
+	background: 
+		linear-gradient( 45deg,transparent 7px,#e40613 0) left /50.5% 100%,
+		linear-gradient( 225deg,transparent 7px,#e40613 0) right/50.5% 100%;
+    background-repeat:no-repeat !important;
+}
+
+.black-bordered .Background-petals li, .black-bordered .Background-petals-bottom li {
+	background: 
+		linear-gradient( 45deg,transparent 7px,black 0) left /50.5% 100%,
+		linear-gradient( 225deg,transparent 7px,black 0) right/50.5% 100%;
+    background-repeat:no-repeat !important;
 }

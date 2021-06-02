@@ -210,6 +210,26 @@ export default class PageHome extends React.Component {
 				className={""}>
 
 				<div className="blue-bordered">
+					<ul className="Background-petals">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+
+					<ul className="Background-petals-bottom">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
@@ -337,6 +357,26 @@ export default class PageHome extends React.Component {
 				</div>
 
 				<div className="red-bordered">
+					<ul className="Background-petals">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+
+					<ul className="Background-petals-bottom">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+
 					<div className="max-sized-page">
 						<div className="row row-spaced">
 							<div className="col-md-12">
@@ -406,6 +446,26 @@ export default class PageHome extends React.Component {
 				</div>
 
 				<div className="black-bordered">
+					<ul className="Background-petals">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+
+					<ul className="Background-petals-bottom">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+
 					<div className="max-sized-page">
 						<div className="row row-spaced">
 							<div className="col-md-12 row-spaced">
