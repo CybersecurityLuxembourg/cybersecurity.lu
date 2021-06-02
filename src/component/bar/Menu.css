@@ -126,29 +126,26 @@
 /* FLYING MENU */
 
 .Menu-flying-menu-wrapper {
-    background-color: #000 !important;
+    background-color: #FFF !important;
+    border-bottom: 1px solid #cccaca;
+    box-shadow: 0 1px 10px;
     padding: 3px 5px;
     position: fixed;
-    float: right;
     top: 0px;
-    z-index: 10;
+    left: 0px;
+    z-index: 1;
     width: 100%;
 }
 
 .Menu-flying-menu {
-    float: right;
+    position: relative;
     animation-name: menu-appearance;
     animation-duration: .5s;
-    width: 100%;
-    background: 
-        linear-gradient( 135deg,transparent 10px,white 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,white 0) right /50.5% 100%;
-    background-repeat:no-repeat;
 }
 
 .Menu-flying-menu .navbar {
     float: right;
-    padding: 0px 15px 0px 100px !important;
+    padding: 0px 15px 0px 200px !important;
 }
 
 .Menu-flying-menu img {
