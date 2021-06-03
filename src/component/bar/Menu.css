@@ -99,6 +99,32 @@
     font-size: 12px;
 }
 
+.Menu .Analytic {
+    padding: 0px !important;
+}
+
+@media (min-width: 0px) {
+    .Menu .Analytic-value {
+        color: white !important;
+        font-size: 15px;
+    }
+
+    .Menu .Analytic-desc {
+        color: white !important;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .Menu .Analytic-value {
+        font-size: 40px;
+    }
+
+    .Menu .Analytic-desc {
+        font-size: 18px;
+    }
+}
+
 @media (min-width: 0px) {
     .Menu-top-right-about {
         margin-top: 10px;
@@ -328,7 +354,7 @@
 }
 
 .carousel-slider .dot:nth-child(1)::before {
-    content: 'CYBERLUX' !important;
+    content: 'ECOSYSTEM' !important;
 }
 
 .carousel-slider .dot:nth-child(2) {

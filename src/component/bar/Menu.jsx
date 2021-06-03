@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import { getPrivateAppURL, getEcosystemAppURL } from "../../utils/env.jsx";
 import SearchField from "../form/SearchField.jsx";
+import Analytic from "../box/Analytic.jsx";
 
 export default class Menu extends React.Component {
 	constructor(props) {
@@ -81,9 +82,28 @@ export default class Menu extends React.Component {
 		return "";
 	}
 
+	getEcosystemRoleCount(category, value) {
+		if (this.props.analytics === null
+			|| this.props.analytics.taxonomy_values === undefined
+			|| this.props.analytics.taxonomy_assignments === undefined) {
+			return null;
+		}
+
+		const values = this.props.analytics.taxonomy_values
+			.filter((v) => v.category === category && v.name === value);
+
+		if (values.length === 0) {
+			return null;
+		}
+
+		return this.props.analytics.taxonomy_assignments
+			.filter((a) => a.taxonomy_value === values[0].id)
+			.length;
+	}
+
 	render() {
 		return (
-			<div className={"max-sized-page "
+			<div className={"Menu max-sized-page "
 				+ (this.props.match.params.path === undefined ? "Menu-big" : "")}>
 				{this.props.match.params.path === undefined
 					? <div className="row">
@@ -97,17 +117,36 @@ export default class Menu extends React.Component {
 						>
 							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
-								<div className="row legend blue-legend">
-									<div className="col-md-12">
-										<img src="/img/logo_cyberlux_white.png"/>
+								<a
+									href={getEcosystemAppURL()}
+									target="_blank"
+									rel="noreferrer">
+									<div className="row legend blue-legend">
+										<div className="col-md-4">
+											<Analytic
+												value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
+												desc={"Private companies"}
+											/>
+										</div>
+										<div className="col-md-4">
+											<Analytic
+												value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
+												desc={"Public entities"}
+											/>
+										</div>
+										<div className="col-md-4">
+											<Analytic
+												value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
+												desc={"Civil society organisations"}
+											/>
+										</div>
+										<div className="col-md-12">
+											Discover this community with outstanding skills and
+											knowledge offering an extensive expertise
+											in cybersecurity.
+										</div>
 									</div>
-									<div className="col-md-12">
-										300+ private & public entities share
-										outstanding skills, knowledge and offer an extensive expertise
-										in cybersecurity. Discover this community, keep up with the
-										latest news & upcoming events.
-									</div>
-								</div>
+								</a>
 							</div>
 							<div>
 								<img src="/img/Slide_CSWL_1920x1080.jpg"/>
