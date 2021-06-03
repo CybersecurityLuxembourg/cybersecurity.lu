@@ -34,12 +34,6 @@ export default class Menu extends React.Component {
 	getNavBar() {
 		return <Nav className="mr-sm-2 ml-auto">
 			<Nav.Link>
-				<Link to="/">
-					<div className="Menu-title">Home</div>
-					<div className="Menu-description">Our main lines</div>
-				</Link>
-			</Nav.Link>
-			<Nav.Link>
 				<Link to="/news">
 					<div className="Menu-title">What&apos;s up?</div>
 					<div className="Menu-description">Keep an eye out</div>
@@ -104,7 +98,7 @@ export default class Menu extends React.Component {
 							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
 								<div className="row legend blue-legend">
-									<div className="col-md-6">
+									<div className="col-md-12">
 										<img src="/img/logo_cyberlux_white.png"/>
 									</div>
 									<div className="col-md-12">
@@ -122,13 +116,11 @@ export default class Menu extends React.Component {
 									target="_blank"
 									rel="noreferrer">
 									<div className="row legend red-legend">
-										<div className="col-md-6">
+										<div className="col-md-9">
 											<img src="/img/logo_cswl_white.png"/>
 										</div>
-										<div className="col-md-6 legend-date">
-											18 OCT 2021
-											<br/>
-											28 OCT 2021
+										<div className="col-md-3 legend-date">
+											18-28<br/>OCT 21
 										</div>
 										<div className="col-md-12">
 											CYBERSECURITY Week Luxembourg is the
@@ -143,7 +135,7 @@ export default class Menu extends React.Component {
 								<img src="/img/Slide_CSB_1920x1080.jpg" />
 								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("CYBERSECURITY BREAKFAST")}>
 									<div className="row legend black-legend">
-										<div className="col-md-6">
+										<div className="col-md-12">
 											<img src="/img/logo_cyberbreakfast_white.png"/>
 										</div>
 										<div className="col-md-12">
@@ -158,7 +150,7 @@ export default class Menu extends React.Component {
 								<img src="/img/Slide_ITV_1920x1080.jpg" />
 								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("LËTZ TALK ABOUT CYBER")}>
 									<div className="row legend black-legend">
-										<div className="col-md-6">
+										<div className="col-md-12">
 											<img src="/img/logo_ltac_white.png"/>
 										</div>
 										<div className="col-md-12">
