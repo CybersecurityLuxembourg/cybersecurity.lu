@@ -117,7 +117,7 @@ export default class PageHome extends React.Component {
 			.length;
 	}
 
-	getArticleCategoryContent(category, width) {
+	getArticleCategoryContent(category, width, hidePublicationDate) {
 		if (this.state.news === null
 			|| this.state.news === undefined) {
 			return <Loading
@@ -153,6 +153,7 @@ export default class PageHome extends React.Component {
 				key={a.id}>
 				<Article
 					info={a}
+					hidePublicationDate={hidePublicationDate}
 				/>
 			</div>);
 		}
@@ -268,7 +269,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("CALL TO ACTION", 12)}
+									{this.getArticleCategoryContent("CALL TO ACTION", 12, true)}
 								</div>
 							</div>
 						</div>
