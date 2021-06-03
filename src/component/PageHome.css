@@ -183,7 +183,7 @@
 	opacity: 0;
 }
 
-/* NEWSLETTER BLOCK */
+/* CSWL BLOCK */
 
 .PageHome-cswl {
 	background-color: #e40613;
@@ -203,13 +203,8 @@
 	color: white;
 }
 
-.PageHome-cswl h3 {
-	color: white;
-	font-size: 35px !important;
-	-webkit-transition: .3s ease;
-	-moz-transition: .3s ease;
-	-o-transition: .3s ease;
-	transition: .3s ease;
+.PageHome-cswl img {
+	width: 100%;
 }
 
 .PageHome-cswl:hover h3 {
@@ -217,18 +212,30 @@
 	margin-bottom: 0px !important;
 }
 
-
-.PageHome-cswl-content i {
-	font-size: 100px;
-	-webkit-transition: font-size .5s ease;
-	-moz-transition: font-size .5s ease;
-	-o-transition: font-size .5s ease;
-	transition: font-size .5s ease;
-	margin: 10px 0px;
+.PageHome-cswl-content img {
+    width: 80% !important;
+    -webkit-transition: width .3s ease;
+    -moz-transition: width .3s ease;
+    -o-transition: width .3s ease;
+    transition: width .3s ease;
+    margin: 10px 0px;
 }
 
-.PageHome-cswl:hover i {
-	font-size: 140px;
+.PageHome-cswl:hover img {
+    width: 100% !important;
+}
+
+.PageHome-cswl-content .PageHome-cswl-content-date {
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 25px;
+    -webkit-transition: font-size .5s ease;
+    -moz-transition: font-size .5s ease;
+    -o-transition: font-size .5s ease;
+    transition: font-size .5s ease;
+}
+
+.PageHome-cswl:hover .PageHome-cswl-content-date {
+    font-size: 35px !important;
 }
 
 .PageHome-cswl-content .PageHome-cswl-content-desc {

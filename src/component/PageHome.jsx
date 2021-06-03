@@ -423,18 +423,16 @@ export default class PageHome extends React.Component {
 									target="_blank"
 									rel="noreferrer">
 									<div className="PageHome-cswl-content">
-										<h3>CYBERSECURITY WEEK LUXEMBOURG</h3>
-										<div className="PageHome-cswl-content-desc">
-											18-28 October 2021
+										<img src="/img/logo_cswl_white.png"/>
+										<div className="PageHome-cswl-content-date">
+											18-28 OCT 2021
 										</div>
-										<i className="fas fa-shield-alt"/>
 										<div className="PageHome-cswl-content-desc">
 											Visit the official website!
 										</div>
 									</div>
 								</a>
 							</div>
-
 						</div>
 						<div className="row row-spaced">
 							<div className={"col-md-12"}>
