@@ -10,7 +10,6 @@ export default class ArticleSearch extends React.Component {
 		this.state = {
 			isTaxonomyDetailOpen: false,
 			valueChainOrder: ["IDENTIFY", "PROTECT", "DETECT", "RESPOND", "RECOVER"],
-			showFullFilters: props.filters.taxonomy_values.length > 0,
 		};
 	}
 
@@ -78,56 +77,37 @@ export default class ArticleSearch extends React.Component {
 			<div className={"ArticleSearch row"}>
 				<div className={"col-md-12"}>
 					<FormLine
-						label={"Title (at least 3 characters)"}
+						label={"Topic (at least 3 characters)"}
 						value={this.props.filters.title === undefined
 							? [] : this.props.filters.title}
 						onChange={(v) => this.props.onChange("title", v)}
 					/>
-				</div>
-
-				{this.state.showFullFilters
-					&& <div className={"col-md-12"}>
-						<FormLine
-							label={"Classification"}
-							type={"multiselect"}
-							value={this.props.filters.taxonomy_values === undefined
-								|| this.props.analytics === null
-								? [] : this.getSelectedECSO()}
-							options={this.props.analytics !== null
-								&& this.props.analytics.taxonomy_values !== undefined
-								? this.getTaxonomySelectOptions()
-								: []}
-							onChange={(v) => this.props.onChange("taxonomy_values",
-								v.concat(this.getSelectedCategories()))}
-						/>
-						<FormLine
-							label={"Category"}
-							type={"multiselect"}
-							value={this.props.filters.taxonomy_values === undefined
-								|| this.props.analytics === null
-								? [] : this.getSelectedCategories()}
-							options={this.props.analytics !== null
-								&& this.props.analytics.taxonomy_values !== undefined
-								? this.getCategorySelectOptions()
-								: []}
-							onChange={(v) => this.props.onChange("taxonomy_values",
-								v.concat(this.getSelectedECSO()))}
-						/>
-					</div>
-				}
-
-				<div className={"col-md-6"}>
-				</div>
-
-				<div className={"col-md-6 ArticleSearch-taxonomy-link-container"}>
-					<a
-						className={"ArticleSearch-taxonomy-link"}
-						onClick={() => this.setState({ showFullFilters: !this.state.showFullFilters })}>
-						{this.state.showFullFilters
-							? "Hide filters"
-							: "Show all filters"
-						}
-					</a>
+					<FormLine
+						label={"Service classification"}
+						type={"multiselect"}
+						value={this.props.filters.taxonomy_values === undefined
+							|| this.props.analytics === null
+							? [] : this.getSelectedECSO()}
+						options={this.props.analytics !== null
+							&& this.props.analytics.taxonomy_values !== undefined
+							? this.getTaxonomySelectOptions()
+							: []}
+						onChange={(v) => this.props.onChange("taxonomy_values",
+							v.concat(this.getSelectedCategories()))}
+					/>
+					<FormLine
+						label={"Article category"}
+						type={"multiselect"}
+						value={this.props.filters.taxonomy_values === undefined
+							|| this.props.analytics === null
+							? [] : this.getSelectedCategories()}
+						options={this.props.analytics !== null
+							&& this.props.analytics.taxonomy_values !== undefined
+							? this.getCategorySelectOptions()
+							: []}
+						onChange={(v) => this.props.onChange("taxonomy_values",
+							v.concat(this.getSelectedECSO()))}
+					/>
 				</div>
 			</div>
 		);

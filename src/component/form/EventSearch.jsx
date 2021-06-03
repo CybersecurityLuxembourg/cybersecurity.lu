@@ -69,42 +69,23 @@ export default class EventSearch extends React.Component {
 			<div className={"EventSearch row"}>
 				<div className={"col-md-12"}>
 					<FormLine
-						label={"Title (at least 3 characters)"}
+						label={"Topic (at least 3 characters)"}
 						value={this.props.filters.title === undefined
 							? [] : this.props.filters.title}
 						onChange={(v) => this.props.onChange("title", v)}
 					/>
-				</div>
-
-				{this.state.showFullFilters
-					&& <div className={"col-md-12"}>
-						<FormLine
-							label={"Classification"}
-							type={"multiselect"}
-							value={this.props.filters.taxonomy_values === undefined
-								|| this.props.analytics === null
-								? [] : this.getSelectedECSO()}
-							options={this.props.analytics !== null
-								&& this.props.analytics.taxonomy_values !== undefined
-								? this.getTaxonomySelectOptions()
-								: []}
-							onChange={(v) => this.props.onChange("taxonomy_values", v)}
-						/>
-					</div>
-				}
-
-				<div className={"col-md-6"}>
-				</div>
-
-				<div className={"col-md-6 ArticleSearch-taxonomy-link-container"}>
-					<a
-						className={"ArticleSearch-taxonomy-link"}
-						onClick={() => this.setState({ showFullFilters: !this.state.showFullFilters })}>
-						{this.state.showFullFilters
-							? "Hide filters"
-							: "Show all filters"
-						}
-					</a>
+					<FormLine
+						label={"Service classification"}
+						type={"multiselect"}
+						value={this.props.filters.taxonomy_values === undefined
+							|| this.props.analytics === null
+							? [] : this.getSelectedECSO()}
+						options={this.props.analytics !== null
+							&& this.props.analytics.taxonomy_values !== undefined
+							? this.getTaxonomySelectOptions()
+							: []}
+						onChange={(v) => this.props.onChange("taxonomy_values", v)}
+					/>
 				</div>
 			</div>
 		);
