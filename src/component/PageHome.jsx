@@ -40,7 +40,7 @@ export default class PageHome extends React.Component {
 		if (category.startsWith("INSTITUTIONAL NEWS")) {
 			return 1;
 		}
-		if (category === "LËTZ TALK ABOUT CYBER") {
+		if (category === "TECH CORNER") {
 			return 1;
 		}
 		return 2;
@@ -274,21 +274,22 @@ export default class PageHome extends React.Component {
 						</div>
 
 						<div className="row">
-							<div className="col-md-4">
-								<div className="row">
-									<div className="col-md-12">
-										<a
-											className="PageHome-title-link"
-											href={this.getArticleCategoryURL(["LËTZ TALK ABOUT CYBER"])}>
-											<div className="PageHome-title">
-												<h3>LËTZ TALK ABOUT CYBER <span>more</span></h3>
-											</div>
-										</a>
+							<div className="col-md-4 shadow-section PageHome-newsletter">
+								{/* eslint-disable no-script-url */}
+								<a
+									href="mailto:info@cybersecurity-luxembourg.com"
+									subject="Organisation of a Cybersecurity Breakfast">
+									<div className="PageHome-newsletter-content">
+										<h3>Become a partner</h3>
+										<i className="fas fa-handshake"/>
+										<div className="PageHome-newsletter-content-desc">
+											Cybersecurity Breakfast is a monthly series.
+											If you are interested in organising an edition
+											or becoming partner of the month,
+											please contact us.
+										</div>
 									</div>
-								</div>
-								<div className="row">
-									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 12)}
-								</div>
+								</a>
 							</div>
 
 							<div className="col-md-8">
@@ -310,20 +311,24 @@ export default class PageHome extends React.Component {
 						</div>
 
 						<div className="row row-spaced">
-							<div className="col-md-4 shadow-section PageHome-newsletter">
-								{/* eslint-disable no-script-url */}
-								<a href="javascript:;" onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
-									<div className="PageHome-newsletter-content">
-										<h3>NEWSLETTER</h3>
-										<i className="far fa-newspaper"/>
-										<div className="PageHome-newsletter-content-desc">
-											Subscribe to the newsletter to received the monthly news!
-										</div>
+							<div className="col-md-8">
+								<div className="row">
+									<div className="col-md-12">
+										<a
+											className="PageHome-title-link"
+											href={this.getArticleCategoryURL(["LËTZ TALK ABOUT CYBER"])}>
+											<div className="PageHome-title">
+												<h3>LËTZ TALK ABOUT CYBER <span>more</span></h3>
+											</div>
+										</a>
 									</div>
-								</a>
+								</div>
+								<div className="row">
+									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 6)}
+								</div>
 							</div>
 
-							<div className="col-md-8">
+							<div className="col-md-4">
 								<div className="row">
 									<div className="col-md-12">
 										<a
@@ -336,7 +341,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("TECH CORNER", 6)}
+									{this.getArticleCategoryContent("TECH CORNER", 12)}
 								</div>
 							</div>
 						</div>

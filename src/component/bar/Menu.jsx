@@ -36,7 +36,7 @@ export default class Menu extends React.Component {
 			<Nav.Link>
 				<Link to="/news">
 					<div className="Menu-title">What&apos;s up?</div>
-					<div className="Menu-description">Keep an eye out</div>
+					<div className="Menu-description">Latest news</div>
 				</Link>
 			</Nav.Link>
 			<Nav.Link>
@@ -194,7 +194,7 @@ export default class Menu extends React.Component {
 								rel="noreferrer"
 							>
 								<div className="Menu-title">My CYBERLUX</div>
-								<div className="Menu-description">Login or subscribe</div>
+								<div className="Menu-description">Login or register</div>
 							</a>
 						</Nav>
 					</Navbar.Collapse>
