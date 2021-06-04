@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./EventHorizontal.css";
+import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
@@ -43,7 +44,14 @@ export default class ArticleHorizontal extends Component {
 					</div>
 					<div className="card-body">
 						<h5 className="card-title">{this.props.info.title}</h5>
-						<div className="card-abstract">{this.props.info.abstract}</div>
+
+						<p className="card-text">
+							<div dangerouslySetInnerHTML={{
+								__html:
+								dompurify.sanitize(this.props.info.abstract),
+							}} />
+						</p>
+
 						{this.getTagsContent()}
 
 						{this.props.info.link !== null

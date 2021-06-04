@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Event.css";
+import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
@@ -40,7 +41,14 @@ export default class Event extends Component {
 			</div>
 			<div className="card-body">
 				<h5 className="card-title">{this.props.info.title}</h5>
-				<p className="card-text">{this.props.info.abstract}</p>
+
+				<p className="card-text">
+					<div dangerouslySetInnerHTML={{
+						__html:
+						dompurify.sanitize(this.props.info.abstract),
+					}} />
+				</p>
+
 				{this.props.info.link !== null
 					&& this.props.info.link !== undefined
 					&& this.props.info.link.length > 0

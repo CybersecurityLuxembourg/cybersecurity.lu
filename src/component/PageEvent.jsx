@@ -1,5 +1,6 @@
 import React from "react";
 import "./PageEvent.css";
+import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
@@ -108,6 +109,16 @@ export default class PageEvent extends React.Component {
 								<h1 className="showFulltext">
 									{this.state.article.title}
 								</h1>
+
+								{this.state.article.abstract !== null
+									&& <div
+										className="PageArticle-abstract"
+										dangerouslySetInnerHTML={{
+											__html:
+											dompurify.sanitize(this.state.article.abstract),
+										}}>
+									</div>
+								}
 
 								{this.state.article.content.map((b, i) => {
 									if (positionToTreat <= i) {

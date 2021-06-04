@@ -1,5 +1,6 @@
 import React from "react";
 import "./PageArticle.css";
+import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
@@ -128,8 +129,11 @@ export default class PageArticle extends React.Component {
 
 								{this.state.article.abstract !== null
 									&& <div
-										className="PageArticle-abstract">
-										<b>{this.state.article.abstract}</b>
+										className="PageArticle-abstract"
+										dangerouslySetInnerHTML={{
+											__html:
+											dompurify.sanitize(this.state.article.abstract),
+										}}>
 									</div>
 								}
 
