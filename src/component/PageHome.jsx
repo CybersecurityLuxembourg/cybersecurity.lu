@@ -32,6 +32,7 @@ export default class PageHome extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.analytics === null && this.props.analytics !== null) {
+			this.getEvents();
 			this.getBreakfastArticles();
 		}
 	}
@@ -83,19 +84,28 @@ export default class PageHome extends React.Component {
 	}
 
 	getEvents() {
-		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=EVENT", (data) => {
-			this.setState({
-				events: data
-					.filter((d) => d.end_date !== null && d.start_date !== null)
-					.filter((d) => d.end_date > new Date().toISOString())
-					.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
-					.slice(0, 2),
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+		if (this.props.analytics !== null
+			&& this.props.analytics.taxonomy_values !== undefined) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY" && v.name === "CYBERSECURITY BREAKFAST");
+
+			if (values.length > 0) {
+				getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=EVENT&include_tags=true", (data) => {
+					this.setState({
+						events: data
+							.filter((d) => d.end_date !== null && d.start_date !== null)
+							.filter((d) => d.end_date > new Date().toISOString())
+							.filter((d) => d.taxonomy_tags.indexOf(values[0].id))
+							.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
+							.slice(0, 2),
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
+			}
+		}
 	}
 
 	getEcosystemRoleCount(category, value) {
@@ -225,9 +235,14 @@ export default class PageHome extends React.Component {
 		return this.state.breakfastArticles.map((a) => <div
 			className={"col-md-" + width}
 			key={a.id}>
-			<Article
-				info={a}
-			/>
+			{a.type === "EVENT"
+				? <Event
+					info={a}
+				/>
+				: <Article
+					info={a}
+				/>
+			}
 		</div>);
 	}
 
