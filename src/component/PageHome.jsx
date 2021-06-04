@@ -161,6 +161,53 @@ export default class PageHome extends React.Component {
 		return "";
 	}
 
+	getInstitutionalNewsContent(width) {
+		/* This one is specific to get the latest "INSTITUTIONAL NEWS - LUXEMBOURG"
+		 * and the lastest "INSTITUTIONAL NEWS - EUROPE"
+		 */
+		if (this.state.news === null
+			|| this.state.news === undefined) {
+			return <Loading
+				height={150}
+			/>;
+		}
+
+		if (this.props.analytics !== null) {
+			let sortedNews = [];
+
+			const articleCategoryValues = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY")
+				.filter((v) => v.name.startsWith("INSTITUTIONAL NEWS"));
+
+			for (let i = 0; i < articleCategoryValues.length; i++) {
+				sortedNews = sortedNews.concat(this.state.news
+					.filter((a) => a.taxonomy_tags.indexOf(articleCategoryValues[i].id) >= 0)
+					.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1))
+					.slice(0, 1));
+			}
+
+			sortedNews = sortedNews
+				.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1));
+
+			if (sortedNews.length === 0) {
+				return <Message
+					text={"No article found"}
+					height={150}
+				/>;
+			}
+
+			return sortedNews.map((a) => <div
+				className={"col-md-" + width}
+				key={a.id}>
+				<Article
+					info={a}
+				/>
+			</div>);
+		}
+
+		return "";
+	}
+
 	getBreakfastContent(category, width) {
 		if (this.state.breakfastArticles === null) {
 			return <Loading
@@ -252,7 +299,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("INSTITUTIONAL NEWS", 12)}
+									{this.getInstitutionalNewsContent(12)}
 								</div>
 							</div>
 
