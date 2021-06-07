@@ -1,20 +1,27 @@
+import * as moment from "moment";
+
 export function getDateFormat(date) {
 	return `${date.getFullYear()}-
 		${((date.getMonth() + 1).toString().length === 1 ? "0" : "")}${date.getMonth() + 1}-
 		${(date.getDate().toString().length === 1 ? "0" : "")}${date.getDate()}`;
 }
 
-export function dateToString(date) {
+export function dateToString(date, format) {
+	let dateObject = null;
+
 	if (typeof date === "string") {
-		return date.substring(10, 0);
-	}
-	if (date instanceof Date) {
-		return `${date.getFullYear()}
-			-${String(date.getMonth() + 1).padStart(2, "0")}
-			-${String(date.getDate()).padStart(2, "0")}`;
+		dateObject = Date.parse(date.substring(10, 0));
+	} else {
+		dateObject = date;
 	}
 
-	return date.format("YYYY-MM-DD");
+	console.log(format);
+
+	if (format !== undefined) {
+		return moment(dateObject).format(format);
+	}
+
+	return moment(dateObject).format("YYYY-MM-DD");
 }
 
 export function stringToDate(date) {

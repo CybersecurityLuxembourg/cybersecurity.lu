@@ -10,6 +10,7 @@ import { getApiURL } from "../utils/env.jsx";
 import Loading from "./box/Loading.jsx";
 import Chip from "./form/Chip.jsx";
 import { getContentFromBlock, getNextTitle1Position } from "../utils/article.jsx";
+import { dateToString } from "../utils/date.jsx";
 
 export default class PageEvent extends React.Component {
 	constructor(props) {
@@ -78,11 +79,9 @@ export default class PageEvent extends React.Component {
 										? <img src={getApiURL() + "public/get_image/" + this.state.article.image}/>
 										: ""}
 									<div className='PageEvent-publication-date'>
-										{this.state.article.start_date.substring(0, 10) + " "}
-										{this.state.article.start_date.substring(11, 16)}
+										{dateToString(this.state.article.start_date, "DD MMM YYYY HH:mm")}
 										<br/>
-										{this.state.article.end_date.substring(0, 10) + " "}
-										{this.state.article.end_date.substring(11, 16)}
+										{dateToString(this.state.article.end_date, "DD MMM YYYY HH:mm")}
 									</div>
 								</div>
 

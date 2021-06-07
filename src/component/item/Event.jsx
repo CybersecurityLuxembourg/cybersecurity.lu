@@ -4,6 +4,7 @@ import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
+import { dateToString } from "../../utils/date.jsx";
 
 export default class Event extends Component {
 	constructor(props) {
@@ -28,16 +29,17 @@ export default class Event extends Component {
 				<div className="card-date">
 					{this.props.info.start_date !== null && this.props.info.end_date !== null
 						? <div>
-							{this.props.info.start_date.substring(0, 10) + " "}
-							{this.props.info.start_date.substring(11, 16)}
-							<br/>
-							{this.props.info.end_date.substring(0, 10) + " "}
-							{this.props.info.end_date.substring(11, 16)}
+							{dateToString(this.props.info.start_date, "DD MMM YYYY")}
+							{dateToString(this.props.info.start_date, "DD MMM YYYY")
+								!== dateToString(this.props.info.end_date, "DD MMM YYYY")
+								&& <div>
+									{dateToString(this.props.info.end_date, "DD MMM YYYY")}
+								</div>
+							}
 						</div>
-						:								"No info"
+						: "No info"
 					}
 				</div>
-				{/* <div className="card-type">{this.props.info.type}</div> */}
 			</div>
 			<div className="card-body">
 				<h5 className="card-title">{this.props.info.title}</h5>

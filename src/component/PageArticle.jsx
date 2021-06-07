@@ -12,6 +12,7 @@ import Chip from "./form/Chip.jsx";
 import Message from "./box/Message.jsx";
 import Article from "./item/Article.jsx";
 import { getContentFromBlock, getNextTitle1Position } from "../utils/article.jsx";
+import { dateToString } from "../utils/date.jsx";
 
 export default class PageArticle extends React.Component {
 	constructor(props) {
@@ -99,7 +100,7 @@ export default class PageArticle extends React.Component {
 										? <img src={getApiURL() + "public/get_image/" + this.state.article.image}/>
 										: ""}
 									<div className='PageArticle-publication-date'>
-										{this.state.article.publication_date}
+										{dateToString(this.state.article.publication_date, "DD MMM YYYY")}
 									</div>
 								</div>
 

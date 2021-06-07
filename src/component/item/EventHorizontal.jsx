@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 import Chip from "../form/Chip.jsx";
+import { dateToString } from "../../utils/date.jsx";
 
 export default class ArticleHorizontal extends Component {
 	constructor(props) {
@@ -32,13 +33,11 @@ export default class ArticleHorizontal extends Component {
 						<div className="card-date">
 							{this.props.info.start_date !== null && this.props.info.end_date !== null
 								? <div>
-									{this.props.info.start_date.substring(0, 10) + " "}
-									{this.props.info.start_date.substring(11, 16)}
+									{dateToString(this.props.info.start_date, "DD MMM YYYY HH:mm")}
 									<br/>
-									{this.props.info.end_date.substring(0, 10) + " "}
-									{this.props.info.end_date.substring(11, 16)}
+									{dateToString(this.props.info.end_date, "DD MMM YYYY HH:mm")}
 								</div>
-								:								"No info"
+								: "No info"
 							}
 						</div>
 					</div>

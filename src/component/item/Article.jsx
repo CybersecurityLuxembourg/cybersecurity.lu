@@ -4,6 +4,7 @@ import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
+import { dateToString } from "../../utils/date.jsx";
 
 export default class Article extends Component {
 	constructor(props) {
@@ -27,7 +28,9 @@ export default class Article extends Component {
 				}
 				{this.props.hidePublicationDate === undefined
 					|| this.props.hidePublicationDate === false
-					? <div className="card-date">{this.props.info.publication_date}</div>
+					? <div className="card-date">
+						{dateToString(this.props.info.publication_date, "DD MMM YYYY")}
+					</div>
 					: ""}
 			</div>
 			<div className="card-body">
