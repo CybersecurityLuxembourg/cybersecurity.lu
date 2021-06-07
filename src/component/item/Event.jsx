@@ -29,10 +29,29 @@ export default class Event extends Component {
 				<div className="card-date">
 					{this.props.info.start_date !== null && this.props.info.end_date !== null
 						? <div>
-							{dateToString(this.props.info.start_date, "DD MMM YYYY")}
+							{dateToString(this.props.info.start_date, "DD MMM YYYY")
+								=== dateToString(this.props.info.end_date, "DD MMM YYYY")
+								&& dateToString(this.props.info.start_date, "DD MMM YYYY")
+							}
+
 							{dateToString(this.props.info.start_date, "DD MMM YYYY")
 								!== dateToString(this.props.info.end_date, "DD MMM YYYY")
+								&& dateToString(this.props.info.start_date, "MMM")
+								=== dateToString(this.props.info.end_date, "MMM")
 								&& <div>
+									{dateToString(this.props.info.start_date, "DD")}
+									-
+									{dateToString(this.props.info.end_date, "DD MMM YYYY")}
+								</div>
+							}
+
+							{dateToString(this.props.info.start_date, "DD MMM YYYY")
+								!== dateToString(this.props.info.end_date, "DD MMM YYYY")
+								&& dateToString(this.props.info.start_date, "MMM")
+								!== dateToString(this.props.info.end_date, "MMM")
+								&& <div>
+									{dateToString(this.props.info.start_date, "DD MMM YYYY")}
+									<br/>
 									{dateToString(this.props.info.end_date, "DD MMM YYYY")}
 								</div>
 							}
