@@ -47,6 +47,9 @@ export default class PageHome extends React.Component {
 		if (category === "LËTZ TALK ABOUT CYBER") {
 			return 1;
 		}
+		if (category === "CALL TO ACTION") {
+			return 1;
+		}
 		return 2;
 	}
 
