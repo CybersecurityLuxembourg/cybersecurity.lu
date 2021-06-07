@@ -7,21 +7,11 @@ export function getDateFormat(date) {
 }
 
 export function dateToString(date, format) {
-	let dateObject = null;
-
-	if (typeof date === "string") {
-		dateObject = Date.parse(date.substring(10, 0));
-	} else {
-		dateObject = date;
-	}
-
-	console.log(format);
-
 	if (format !== undefined) {
-		return moment(dateObject).format(format);
+		return moment(date).format(format);
 	}
 
-	return moment(dateObject).format("YYYY-MM-DD");
+	return moment(date).format("YYYY-MM-DD");
 }
 
 export function stringToDate(date) {
