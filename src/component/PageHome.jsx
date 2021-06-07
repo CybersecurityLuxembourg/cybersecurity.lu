@@ -44,6 +44,9 @@ export default class PageHome extends React.Component {
 		if (category === "TECH CORNER") {
 			return 1;
 		}
+		if (category === "LËTZ TALK ABOUT CYBER") {
+			return 1;
+		}
 		return 2;
 	}
 
@@ -314,7 +317,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getInstitutionalNewsContent(12)}
+									{this.getInstitutionalNewsContent(6)}
 								</div>
 							</div>
 
@@ -387,7 +390,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 6)}
+									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 12)}
 								</div>
 							</div>
 
