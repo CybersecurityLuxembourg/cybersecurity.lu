@@ -1,4 +1,10 @@
 
+@media (max-width: 480px) {
+    .Menu .Menu-hide-on-mobile {
+        display: none;
+    }
+}
+
 .Menu-big {
     height: calc(100vh - 46px);
     max-height: 1034px;
@@ -104,18 +110,26 @@
 }
 
 @media (min-width: 0px) {
+    .Menu .Analytic {
+        margin: 4px 0px;
+    }
+
     .Menu .Analytic-value {
         color: white !important;
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .Menu .Analytic-desc {
         color: white !important;
-        font-size: 12px;
+        font-size: 15px;
     }
 }
 
 @media (min-width: 768px) {
+    .Menu .Analytic {
+        margin: 10px 5px;
+    }
+
     .Menu .Analytic-value {
         font-size: 40px;
     }

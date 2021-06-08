@@ -122,19 +122,19 @@ export default class Menu extends React.Component {
 									target="_blank"
 									rel="noreferrer">
 									<div className="row legend blue-legend">
-										<div className="col-md-4">
+										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
 											<Analytic
 												value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
 												desc={"Private companies"}
 											/>
 										</div>
-										<div className="col-md-4">
+										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
 											<Analytic
 												value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
 												desc={"Public entities"}
 											/>
 										</div>
-										<div className="col-md-4">
+										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
 											<Analytic
 												value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
 												desc={"Civil society organisations"}
@@ -155,10 +155,10 @@ export default class Menu extends React.Component {
 									target="_blank"
 									rel="noreferrer">
 									<div className="row legend red-legend">
-										<div className="col-md-9">
+										<div className="col-md-9 Menu-hide-on-mobile">
 											<img src="/img/logo_cswl_white.png"/>
 										</div>
-										<div className="col-md-3 legend-date">
+										<div className="col-md-3 legend-date Menu-hide-on-mobile">
 											18-28<br/>OCT 21
 										</div>
 										<div className="col-md-12">
@@ -174,7 +174,7 @@ export default class Menu extends React.Component {
 								<img src="/img/Slide_CSB_1920x1080.jpg" />
 								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("CYBERSECURITY BREAKFAST")}>
 									<div className="row legend black-legend">
-										<div className="col-md-12">
+										<div className="col-md-12 Menu-hide-on-mobile">
 											<img src="/img/logo_cyberbreakfast_white.png"/>
 										</div>
 										<div className="col-md-12">
@@ -189,7 +189,7 @@ export default class Menu extends React.Component {
 								<img src="/img/Slide_ITV_1920x1080.jpg" />
 								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("LËTZ TALK ABOUT CYBER")}>
 									<div className="row legend black-legend">
-										<div className="col-md-12">
+										<div className="col-md-12 Menu-hide-on-mobile">
 											<img src="/img/logo_ltac_white.png"/>
 										</div>
 										<div className="col-md-12">
