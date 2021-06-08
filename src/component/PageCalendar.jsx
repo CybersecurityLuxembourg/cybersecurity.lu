@@ -121,6 +121,7 @@ export default class PageCalendar extends React.Component {
 										start: new Date(e.start_date),
 										end: new Date(e.end_date),
 										handle: e.handle,
+										link: e.link,
 									}
 								))}
 								step={60}
@@ -134,7 +135,14 @@ export default class PageCalendar extends React.Component {
 									height: 700,
 									backgroundColor: "white",
 								}}
-								onSelectEvent={(event) => this.props.history.push("/calendar/" + event.handle)}
+								onSelectEvent={(event) => {
+									if (event.link !== undefined && event.link !== null
+										&& event.link.length > 0) {
+										window.open(event.link);
+									} else {
+										this.props.history.push("/calendar/" + event.handle);
+									}
+								}}
 							/>
 						</div>
 						: <Loading
