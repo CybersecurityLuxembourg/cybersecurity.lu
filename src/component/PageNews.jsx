@@ -9,7 +9,7 @@ import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
 import Message from "./box/Message.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
 import ArticleSearch from "./form/ArticleSearch.jsx";
-import SimpleTable from "./table/SimpleTable.jsx";
+import DynamicTable from "./table/DynamicTable.jsx";
 
 export default class PageNews extends React.Component {
 	constructor(props) {
@@ -19,7 +19,6 @@ export default class PageNews extends React.Component {
 		this.modifyFilters = this.modifyFilters.bind(this);
 
 		this.state = {
-			page: 1,
 			articles: null,
 			loading: false,
 			filters: {
@@ -29,6 +28,8 @@ export default class PageNews extends React.Component {
 					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],
 				title: null,
 				include_tags: "true",
+				per_page: 20,
+				page: getUrlParameter("page") !== null ? parseInt(getUrlParameter("page"), 10) : 1,
 			},
 		};
 	}
@@ -48,14 +49,20 @@ export default class PageNews extends React.Component {
 		}
 	}
 
-	getArticles() {
+	getArticles(page) {
 		this.setState({
 			articles: null,
+			page: Number.isInteger(page) ? page : this.state.filters.page,
 		});
 
-		const params = dictToURI(this.state.filters);
+		const params = dictToURI({
+			...this.state.filters,
+			page: Number.isInteger(page) ? page : this.state.filters.page,
+		});
+
 		const urlParams = dictToURI({
 			taxonomy_values: this.state.filters.taxonomy_values,
+			page: Number.isInteger(page) ? page : this.state.filters.page,
 		});
 
 		// eslint-disable-next-line no-restricted-globals
@@ -75,6 +82,7 @@ export default class PageNews extends React.Component {
 	modifyFilters(field, value) {
 		const filters = { ...this.state.filters };
 		filters[field] = value;
+		filters.page = 1;
 		this.setState({ filters });
 	}
 
@@ -105,7 +113,8 @@ export default class PageNews extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && this.state.articles.length === 0
+				{this.state.articles !== null && this.state.articles.pagination
+					&& this.state.articles.pagination.total === 0
 					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Message
@@ -116,23 +125,26 @@ export default class PageNews extends React.Component {
 					</div>
 				}
 
-				{this.state.articles !== null && this.state.articles.length > 0
-					&& <SimpleTable
+				{this.state.articles !== null && this.state.articles.pagination
+					&& this.state.articles.pagination.total > 0
+					&& <DynamicTable
 						className={""}
-						elements={this.state.articles.map((a, i) => [a, i])}
-						numberDisplayed={10}
-						buildElement={(a) => (
-							<div className="col-md-12">
-								<ArticleHorizontal
-									info={a}
-									analytics={this.props.analytics}
-								/>
-							</div>
-						)}
+						items={this.state.articles.items}
+						pagination={this.state.articles.pagination}
+						changePage={(page) => this.getArticles(page)}
+						buildElement={(a) => <div className="col-md-12">
+							<ArticleHorizontal
+								info={a}
+								analytics={this.props.analytics}
+							/>
+						</div>
+						}
 					/>
 				}
 
-				{this.state.articles === null
+				{(this.state.articles === null
+					|| this.state.articles.pagination === undefined
+					|| this.state.articles.items === undefined)
 					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Loading
