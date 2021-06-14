@@ -20,7 +20,6 @@ export default class PageNews extends React.Component {
 
 		this.state = {
 			articles: null,
-			loading: false,
 			filters: {
 				media: "CYBERLUX",
 				type: "NEWS",
@@ -128,7 +127,6 @@ export default class PageNews extends React.Component {
 				{this.state.articles !== null && this.state.articles.pagination
 					&& this.state.articles.pagination.total > 0
 					&& <DynamicTable
-						className={""}
 						items={this.state.articles.items}
 						pagination={this.state.articles.pagination}
 						changePage={(page) => this.getArticles(page)}
