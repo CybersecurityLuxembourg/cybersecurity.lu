@@ -22,7 +22,10 @@ export async function getRequest(url, callback, catchBadResponse, catchError) {
 		}
 		throw new Error("An error happened while requesting the server");
 	}).then((jsonBody) => {
-		if (typeof jsonBody !== "undefined") callback(jsonBody);
+		if (typeof jsonBody !== "undefined") {
+			return callback(jsonBody);
+		}
+		return null;
 	}).catch((error) => {
 		if (error.message !== "null") {
 			catchError(error);

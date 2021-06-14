@@ -14,3 +14,7 @@
 .rbc-off-range-bg {
     background: #eee !important;
 }
+
+.rbc-row-content {
+	z-index: 1 !important;
+}

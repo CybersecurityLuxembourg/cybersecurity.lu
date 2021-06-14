@@ -25,7 +25,6 @@ export default class PageCalendar extends React.Component {
 
 		this.state = {
 			articles: null,
-			loading: false,
 			filters: {
 				media: "CYBERLUX",
 				type: "EVENT",
@@ -54,21 +53,49 @@ export default class PageCalendar extends React.Component {
 
 	getArticles() {
 		this.setState({
-			loading: true,
+			articles: null,
 		});
 
-		const params = dictToURI(this.state.filters);
+		const urlParams = dictToURI({
+			taxonomy_values: this.state.filters.taxonomy_values,
+		});
+
+		// eslint-disable-next-line no-restricted-globals
+		history.replaceState(null, null, "?" + urlParams);
+
+		this.requestArticles(1);
+	}
+
+	requestArticles(p) {
+		const page = Number.isInteger(p) ? p : 1;
+
+		const params = dictToURI({
+			...this.state.filters,
+			page,
+		});
 
 		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
-			this.setState({
-				articles: data,
-				loading: false,
-			});
+			const pagesToQuery = [...Array(data.pagination.pages + 1).keys()]
+				.filter((i) => i > 1);
+
+			if (pagesToQuery.length > 0) {
+				this.setState({
+					articles: (this.state.articles === null ? [] : this.state.articles).concat(data.items),
+				}, () => {
+					if (data.pagination.page < data.pagination.pages) {
+						this.requestArticles(page + 1);
+					}
+				});
+			}
+
+			if (pagesToQuery.length === 0 && page === 1) {
+				this.setState({
+					articles: data.items,
+				});
+			}
 		}, (response) => {
-			this.setState({ loading: false });
 			nm.warning(response.statusText);
 		}, (error) => {
-			this.setState({ loading: false });
 			nm.error(error.message);
 		});
 	}
@@ -76,6 +103,7 @@ export default class PageCalendar extends React.Component {
 	modifyFilters(field, value) {
 		const filters = { ...this.state.filters };
 		filters[field] = value;
+		filters.page = 1;
 		this.setState({ filters });
 	}
 
@@ -112,7 +140,7 @@ export default class PageCalendar extends React.Component {
 				</div>
 
 				<div className="row row-spaced">
-					{this.state.articles !== null && !this.state.loading
+					{this.state.articles !== null && this.state.articles !== undefined
 						? <div className="col-md-12">
 							<Calendar
 								events={this.state.articles.map((e) => (
@@ -157,7 +185,7 @@ export default class PageCalendar extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && !this.state.loading
+				{this.state.articles !== null && this.state.articles !== undefined
 					&& this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length === 0
 					&& <div className="row">
 						<div className="col-md-12">
@@ -169,27 +197,25 @@ export default class PageCalendar extends React.Component {
 					</div>
 				}
 
-				{this.state.articles !== null && !this.state.loading
+				{this.state.articles !== null && this.state.articles !== undefined
 					&& this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length > 0
 					&& <SimpleTable
 						numberDisplayed={5}
 						elements={this.state.articles
 							.filter((a) => new Date(a.end_date) > new Date())
 							.sort((a, b) => (a.start_date > b.start_date ? 1 : -1))
-							.map((a, i) => [a, i])
+							.map((a, i) => [a, i])}
+						buildElement={(a) => <div className="col-md-12">
+							<EventHorizontal
+								info={a}
+								analytics={this.props.analytics}
+							/>
+						</div>
 						}
-						buildElement={(a) => (
-							<div className="col-md-12">
-								<EventHorizontal
-									info={a}
-									analytics={this.props.analytics}
-								/>
-							</div>
-						)}
 					/>
 				}
 
-				{(this.state.articles === null || this.state.loading)
+				{(this.state.articles === null || this.state.articles === undefined)
 					&& <div className="row">
 						<div className="col-md-12">
 							<Loading
