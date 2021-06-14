@@ -9,6 +9,7 @@ import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getEcosystemAppURL } from "../utils/env.jsx";
+import { dictToURI } from "../utils/url.jsx";
 
 export default class PageHome extends React.Component {
 	constructor(props) {
@@ -32,6 +33,7 @@ export default class PageHome extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.analytics === null && this.props.analytics !== null) {
+			this.getNews();
 			this.getEvents();
 			this.getBreakfastArticles();
 		}
@@ -54,16 +56,30 @@ export default class PageHome extends React.Component {
 	}
 
 	getNews() {
-		getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=NEWS&include_tags=true", (data) => {
-			this.setState({
-				news: data
-					.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1)),
+		if (this.props.analytics !== null
+			&& this.props.analytics.taxonomy_values !== undefined) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY")
+				.filter((v) => ["TECH CORNER", "INSTITUTIONAL NEWS", "LËTZ TALK ABOUT CYBER",
+					"CALL TO ACTION"].indexOf(v.name) >= 0);
+
+			const params = {
+				media: "CYBERLUX",
+				type: "NEWS",
+				include_tags: "true",
+				taxonomy_values: values.filter((v) => v.id).join(","),
+			};
+
+			getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
+				this.setState({
+					news: data.items,
+				});
+			}, (response) => {
+				nm.warning(response.statusText);
+			}, (error) => {
+				nm.error(error.message);
 			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+		}
 	}
 
 	getBreakfastArticles() {
@@ -76,7 +92,7 @@ export default class PageHome extends React.Component {
 				getRequest.call(this, "public/get_public_articles?media=CYBERLUX&include_tags=true&taxonomy_values="
 					+ values[0].id, (data) => {
 					this.setState({
-						breakfastArticles: data
+						breakfastArticles: data.items
 							.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1))
 							.slice(0, 2),
 					});
@@ -98,7 +114,7 @@ export default class PageHome extends React.Component {
 			if (values.length > 0) {
 				getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=EVENT&include_tags=true", (data) => {
 					this.setState({
-						events: data
+						events: data.items
 							.filter((d) => d.end_date !== null && d.start_date !== null)
 							.filter((d) => d.end_date > new Date().toISOString())
 							.filter((d) => d.taxonomy_tags.indexOf(values[0].id))
