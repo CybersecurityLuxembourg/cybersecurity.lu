@@ -19,23 +19,34 @@ export default class PageHome extends React.Component {
 		this.getEvents = this.getEvents.bind(this);
 
 		this.state = {
-			news: null,
+			newsLTAC: null,
+			newsTC: null,
+			newsCTA: null,
+			newsIN: null,
 			events: null,
 			breakfastArticles: null,
 		};
 	}
 
 	componentDidMount() {
-		this.getNews();
+		this.getNews("LËTZ TALK ABOUT CYBER", "newsLTAC");
+		this.getNews("TECH CORNER", "newsTC");
+		this.getNews("INSTITUTIONAL NEWS - EUROPE", "newsINE");
+		this.getNews("INSTITUTIONAL NEWS - LUXEMBOURG", "newsINL");
+		this.getNews("CALL TO ACTION", "newsCTA");
+		this.getNews("CYBERSECURITY BREAKFAST", "breakfastArticles");
 		this.getEvents();
-		this.getBreakfastArticles();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.analytics === null && this.props.analytics !== null) {
-			this.getNews();
+			this.getNews("LËTZ TALK ABOUT CYBER", "newsLTAC");
+			this.getNews("TECH CORNER", "newsTC");
+			this.getNews("INSTITUTIONAL NEWS - EUROPE", "newsINE");
+			this.getNews("INSTITUTIONAL NEWS - LUXEMBOURG", "newsINL");
+			this.getNews("CALL TO ACTION", "newsCTA");
+			this.getNews("CYBERSECURITY BREAKFAST", "breakfastArticles");
 			this.getEvents();
-			this.getBreakfastArticles();
 		}
 	}
 
@@ -55,53 +66,31 @@ export default class PageHome extends React.Component {
 		return 2;
 	}
 
-	getNews() {
+	getNews(categoryValue, stateName) {
 		if (this.props.analytics !== null
 			&& this.props.analytics.taxonomy_values !== undefined) {
 			const values = this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "ARTICLE CATEGORY")
-				.filter((v) => ["TECH CORNER", "INSTITUTIONAL NEWS", "LËTZ TALK ABOUT CYBER",
-					"CALL TO ACTION"].indexOf(v.name) >= 0);
+				.filter((v) => v.name === categoryValue);
 
 			const params = {
 				media: "CYBERLUX",
 				type: "NEWS",
 				include_tags: "true",
-				taxonomy_values: values.filter((v) => v.id).join(","),
+				taxonomy_values: values.map((v) => v.id).join(","),
+				per_page: 2,
+				page: 1,
 			};
 
 			getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
 				this.setState({
-					news: data.items,
+					[stateName]: data.items,
 				});
 			}, (response) => {
 				nm.warning(response.statusText);
 			}, (error) => {
 				nm.error(error.message);
 			});
-		}
-	}
-
-	getBreakfastArticles() {
-		if (this.props.analytics !== null
-			&& this.props.analytics.taxonomy_values !== undefined) {
-			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ARTICLE CATEGORY" && v.name === "CYBERSECURITY BREAKFAST");
-
-			if (values.length > 0) {
-				getRequest.call(this, "public/get_public_articles?media=CYBERLUX&include_tags=true&taxonomy_values="
-					+ values[0].id, (data) => {
-					this.setState({
-						breakfastArticles: data.items
-							.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1))
-							.slice(0, 2),
-					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
-				});
-			}
 		}
 	}
 
@@ -149,28 +138,16 @@ export default class PageHome extends React.Component {
 			.length;
 	}
 
-	getArticleCategoryContent(category, width, hidePublicationDate) {
-		if (this.state.news === null
-			|| this.state.news === undefined) {
+	getArticleCategoryContent(category, stateValue, width, hidePublicationDate) {
+		if (this.state[stateValue] === null
+			|| this.state[stateValue] === undefined) {
 			return <Loading
 				height={150}
 			/>;
 		}
 
 		if (this.props.analytics !== null) {
-			let sortedNews = [];
-
-			const articleCategoryValues = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ARTICLE CATEGORY")
-				.filter((v) => v.name.startsWith(category));
-
-			for (let i = 0; i < articleCategoryValues.length; i++) {
-				sortedNews = sortedNews.concat(this.state.news
-					.filter((a) => a.taxonomy_tags.indexOf(articleCategoryValues[i].id) >= 0));
-			}
-
-			sortedNews = sortedNews
-				.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1))
+			const sortedNews = this.state[stateValue]
 				.slice(0, PageHome.getNumberOfArticlePerCategory(category));
 
 			if (sortedNews.length === 0) {
@@ -197,28 +174,20 @@ export default class PageHome extends React.Component {
 		/* This one is specific to get the latest "INSTITUTIONAL NEWS - LUXEMBOURG"
 		 * and the lastest "INSTITUTIONAL NEWS - EUROPE"
 		 */
-		if (this.state.news === null
-			|| this.state.news === undefined) {
+		if (this.state.newsINL === null
+			|| this.state.newsINL === undefined
+			|| this.state.newsINE === null
+			|| this.state.newsINE === undefined) {
 			return <Loading
 				height={150}
 			/>;
 		}
 
 		if (this.props.analytics !== null) {
-			let sortedNews = [];
+			const sortedNewsINL = this.state.newsINL.slice(0, 1);
+			const sortedNewsINE = this.state.newsINE.slice(0, 1);
 
-			const articleCategoryValues = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ARTICLE CATEGORY")
-				.filter((v) => v.name.startsWith("INSTITUTIONAL NEWS"));
-
-			for (let i = 0; i < articleCategoryValues.length; i++) {
-				sortedNews = sortedNews.concat(this.state.news
-					.filter((a) => a.taxonomy_tags.indexOf(articleCategoryValues[i].id) >= 0)
-					.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1))
-					.slice(0, 1));
-			}
-
-			sortedNews = sortedNews
+			const sortedNews = sortedNewsINL.concat(sortedNewsINE)
 				.sort((a, b) => (b.publication_date < a.publication_date ? -1 : 1));
 
 			if (sortedNews.length === 0) {
@@ -353,7 +322,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("CALL TO ACTION", 12, true)}
+									{this.getArticleCategoryContent("CALL TO ACTION", "newsCTA", 12, true)}
 								</div>
 							</div>
 						</div>
@@ -409,7 +378,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", 12)}
+									{this.getArticleCategoryContent("LËTZ TALK ABOUT CYBER", "newsLTAC", 12)}
 								</div>
 							</div>
 
@@ -426,7 +395,7 @@ export default class PageHome extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									{this.getArticleCategoryContent("TECH CORNER", 12)}
+									{this.getArticleCategoryContent("TECH CORNER", "newsTC", 12)}
 								</div>
 							</div>
 						</div>
