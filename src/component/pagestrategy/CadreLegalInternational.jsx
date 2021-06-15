@@ -78,6 +78,7 @@ export default class CadreLegalInternational extends React.Component {
 					<li><a href="http://www.unesco.org/education/nfsunesco/doc/droits_homme.htm" target="_blank" rel="noreferrer" title="Déclaration universelle des droits de l’homme - Nouvelle fenêtre">Déclaration universelle des droits de l’homme</a> adoptée par l’assemblée générale des Nations Unies le 10 décembre 1948 à Paris et en particulier la protection de sa vie privée, sa famille, son domicile ou sa correspondance.</li>
 					<li><a href="http://hrlibrary.umn.edu/instree/french/Fq2grcpd.html" target="_blank" rel="noreferrer" title="Principes directeurs de l’ONU pour la réglementation des fichiers informatisés contenant des données à caractère personnel adoptée le 14 décembre 1990 par l&#39;Assemblée générale des Nations Unies dans sa résolution 45/95 du 14 décembre 1990 - Nouvelle fenêtre">Principes directeurs de l’ONU pour la réglementation des fichiers informatisés contenant des données à caractère personnel adoptée le 14 décembre 1990 par l&#39;Assemblée générale des Nations Unies dans sa résolution 45/95 du 14 décembre 1990</a>&nbsp;</li>
 				</ul>
+				<p>&nbsp;</p>
 			</div>
 		);
 	}
