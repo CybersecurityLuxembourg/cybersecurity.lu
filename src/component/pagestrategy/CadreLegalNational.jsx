@@ -106,6 +106,7 @@ export default class CadreLegalNational extends React.Component {
 							dénommé « CERT Gouvernemental ».
 					</li>
 				</ul>
+				<p>&nbsp;</p>
 			</div>
 		);
 	}
