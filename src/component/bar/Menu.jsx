@@ -122,6 +122,19 @@ export default class Menu extends React.Component {
 							interval={5000}
 						>
 							<div>
+								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
+								<a
+									href="https://www.cybersecurityweek.lu/"
+									target="_blank"
+									rel="noreferrer">
+									<div className="row legend black-legend">
+										<div className="col-md-12">
+											National strategy text here
+										</div>
+									</div>
+								</a>
+							</div>
+							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
 								<a
 									href={getEcosystemAppURL()}
