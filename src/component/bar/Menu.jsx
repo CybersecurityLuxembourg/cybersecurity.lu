@@ -46,6 +46,12 @@ export default class Menu extends React.Component {
 					<div className="Menu-description">Cybersecurity events</div>
 				</Link>
 			</Nav.Link>
+			<Nav.Link>
+				<Link to="/strategy">
+					<div className="Menu-title">National strategy</div>
+					<div className="Menu-description">For a secure environment</div>
+				</Link>
+			</Nav.Link>
 			<a
 				className="nav-link"
 				href={getEcosystemAppURL()}

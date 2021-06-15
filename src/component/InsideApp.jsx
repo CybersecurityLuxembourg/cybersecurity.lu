@@ -9,6 +9,7 @@ import Footer from "./bar/Footer.jsx";
 import PageHome from "./PageHome.jsx";
 import PageNews from "./PageNews.jsx";
 import PageCalendar from "./PageCalendar.jsx";
+import PageStrategy from "./PageStrategy.jsx";
 import PageArticle from "./PageArticle.jsx";
 import PageEvent from "./PageEvent.jsx";
 import PageAbout from "./PageAbout.jsx";
@@ -65,6 +66,9 @@ export default class InsideApp extends React.Component {
 						/>}/>
 						<Route path="/calendar" render={(props) => <PageCalendar
 							analytics={this.state.analytics}
+							{...props}
+						/>}/>
+						<Route path="/strategy" render={(props) => <PageStrategy
 							{...props}
 						/>}/>
 						<Route
