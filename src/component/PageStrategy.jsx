@@ -33,9 +33,11 @@ export default class PageStrategy extends React.Component {
 						/>,
 						<CadreLegalNational
 							key="CadreLegalNational"
+							analytics={this.props.analytics}
 						/>,
 						<CadreLegalInternational
 							key="StrategieNational"
+							analytics={this.props.analytics}
 						/>,
 					]}
 				/>
