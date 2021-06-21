@@ -9,7 +9,7 @@ export default class Analytic extends React.Component {
 				<div className="Analytic-value">
 					<CountUp
 						start={0}
-						end={this.props.value}
+						end={this.props.value === null ? 0 : this.props.value}
 						duration={1}
 						delay={0}
 					/>
