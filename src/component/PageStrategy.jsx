@@ -16,7 +16,7 @@ export default class PageStrategy extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/strategy">Strategy</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/strategy">NATIONAL STRATEGY</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>

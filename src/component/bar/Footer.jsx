@@ -66,16 +66,13 @@ export default class Footer extends React.Component {
 							</div>
 							<br/>
 							<div>
-								<a
-									href=""
-									rel="noreferrer"
-									target="_blank"
-									title="News">
-									<Link to="/news">What&apos;s up?</Link>
-								</a>
+								<Link to="/news">What&apos;s up?</Link>
 							</div>
 							<div>
 								<Link to="/calendar">Where to meet?</Link>
+							</div>
+							<div>
+								<Link to="/strategy">National strategy</Link>
 							</div>
 							<div>
 								<a
