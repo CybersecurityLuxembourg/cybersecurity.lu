@@ -1,8 +1,9 @@
 
 .ArticleHorizontal {
     margin: 5px 0px !important;
-    height: 120px;
+    height: 130px;
     overflow: hidden;
+    line-height: 1 !important;
 }
 
 @media (min-width: 0px) {
@@ -13,7 +14,7 @@
 
 @media (min-width: 500px) {
     .ArticleHorizontal {
-        height: 120px;
+        height: 130px;
     }
 }
 
@@ -47,7 +48,7 @@
 @media (min-width: 0px) {
     .ArticleHorizontal .img-square-wrapper {
         width: 100%;
-        height: 120px;
+        height: 130px;
         border-right: 1px solid rgba(0,0,0,.125);
     }
 }
@@ -109,22 +110,21 @@
     text-overflow: ellipsis;
 }
 
-.ArticleHorizontal .card-body .card-abstract {
-    font-size: 14px;
-    max-width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .ArticleHorizontal .card-tags {
     position: absolute;
     bottom: 12px;
     left: 200px;
     height: 30px;
     width: calc(100% - 400px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ArticleHorizontal .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 35px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
