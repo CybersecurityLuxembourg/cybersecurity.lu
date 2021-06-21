@@ -51,3 +51,8 @@
 .Event .card-body button {
     background-color: #e40613;
 }
+
+.Event .card-text {
+    line-height: 1.2;
+    margin-bottom: 15px;
+}

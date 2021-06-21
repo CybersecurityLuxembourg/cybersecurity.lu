@@ -36,12 +36,12 @@ export default class Article extends Component {
 			<div className="card-body">
 				<h5 className="card-title">{this.props.info.title}</h5>
 
-				<p className="card-text">
+				<div className="card-text">
 					<div dangerouslySetInnerHTML={{
 						__html:
 						dompurify.sanitize(this.props.info.abstract),
 					}} />
-				</p>
+				</div>
 
 				{this.props.info.link !== null
 					&& this.props.info.link !== undefined
