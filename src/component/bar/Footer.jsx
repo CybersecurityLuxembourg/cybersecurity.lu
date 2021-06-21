@@ -59,24 +59,10 @@ export default class Footer extends React.Component {
 						<div className="col-md-2">
 							<div className="Footer-title">MENU</div>
 							<div>
-								<a
-									href=""
-									rel="noreferrer"
-									target="_blank"
-									title="Home"
-									className="text-capitalize">
-									<Link to="/"><b>Home</b></Link>
-								</a>
+								<Link to="/"><b>Home</b></Link>
 							</div>
 							<div>
-								<a
-									href=""
-									rel="noreferrer"
-									target="_blank"
-									title="About"
-									className="text-capitalize">
-									<Link to="/about"><b>About</b></Link>
-								</a>
+								<Link to="/about"><b>About</b></Link>
 							</div>
 							<br/>
 							<div>
@@ -89,13 +75,7 @@ export default class Footer extends React.Component {
 								</a>
 							</div>
 							<div>
-								<a
-									href=""
-									rel="noreferrer"
-									target="_blank"
-									title="Calendar">
-									<Link to="/calendar">Where to meet?</Link>
-								</a>
+								<Link to="/calendar">Where to meet?</Link>
 							</div>
 							<div>
 								<a
