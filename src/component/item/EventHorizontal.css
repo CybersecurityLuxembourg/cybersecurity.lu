@@ -111,22 +111,21 @@
     text-overflow: ellipsis;
 }
 
-.EventHorizontal .card-body .card-abstract {
-    font-size: 14px;
-    max-width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .EventHorizontal .card-tags {
     position: absolute;
     bottom: 12px;
     left: 200px;
     height: 30px;
     width: calc(100% - 400px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.EventHorizontal .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 48px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
