@@ -106,7 +106,6 @@ export default class PageHome extends React.Component {
 						events: data.items
 							.filter((d) => d.end_date !== null && d.start_date !== null)
 							.filter((d) => d.end_date > new Date().toISOString())
-							.filter((d) => d.taxonomy_tags.indexOf(values[0].id))
 							.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
 							.slice(0, 2),
 					});
