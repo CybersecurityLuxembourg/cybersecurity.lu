@@ -13,6 +13,8 @@ import Message from "./box/Message.jsx";
 import Article from "./item/Article.jsx";
 import { getContentFromBlock, getNextTitle1Position } from "../utils/article.jsx";
 import { dateToString } from "../utils/date.jsx";
+import TwitterLink from "./form/TwitterLink.jsx";
+import LinkedInLink from "./form/LinkedInLink.jsx";
 
 export default class PageArticle extends React.Component {
 	constructor(props) {
@@ -84,7 +86,7 @@ export default class PageArticle extends React.Component {
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
 							<Breadcrumb.Item><Link to="/news">WHAT&apos;S UP?</Link></Breadcrumb.Item>
 							{this.state.article !== null && !this.state.loading
-								? <Breadcrumb.Item><Link to={"/article/" + this.state.article.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
+								? <Breadcrumb.Item><Link to={"/news/" + this.props.match.params.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
 								: ""}
 						</Breadcrumb>
 					</div>
@@ -187,6 +189,39 @@ export default class PageArticle extends React.Component {
 						</div>
 						{this.state.article.type === "NEWS"
 							? <div className="col-md-4">
+								<div className="container">
+									<div className="row PageArticle-social-media">
+										<div className="col-md-12">
+											<h3>Share on social media</h3>
+										</div>
+
+										<div className="col-md-12">
+											<div className="PageArticle-social-media-links">
+												<TwitterLink
+													text={this.state.article.title}
+													url={this.state.article.link !== undefined
+														&& this.state.article.link !== null
+														&& this.state.article.link.length > 0
+														? this.state.article.link
+														: window.location.origin + "/news/"
+															+ this.props.match.params.handle
+													}
+												/>
+												<LinkedInLink
+													text={this.state.article.title}
+													url={this.state.article.link !== undefined
+														&& this.state.article.link !== null
+														&& this.state.article.link.length > 0
+														? this.state.article.link
+														: window.location.origin + "/news/"
+															+ this.props.match.params.handle
+													}
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
+
 								<div className="container">
 									<div className="row PageArticle-related-article">
 										<div className="col-md-12">

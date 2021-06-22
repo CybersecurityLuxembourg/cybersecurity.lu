@@ -1,4 +1,8 @@
 
+.PageArticle article {
+	margin-bottom: 20px;
+}
+
 .PageArticle article .PageArticle-content-cover {
 	position: relative;
 	margin: auto;
@@ -41,6 +45,20 @@
 
 .PageArticle-related-article {
 	background-color: #f8f9fa;
+}
+
+.PageArticle-social-media {
+	background-color: #f8f9fa;
+	margin-bottom: 15px;
+}
+
+.PageArticle-social-media-links {
+	width: 100%;
+	text-align: center;
+}
+
+.PageArticle-social-media-links .TwitterLink, .PageArticle-social-media-links .LinkedInLink {
+	display: inline-block;
 }
 
 .PageArticle-abstract {

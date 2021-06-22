@@ -1,4 +1,7 @@
 
+.PageEvent article {
+	margin-bottom: 20px;
+}
 
 .PageEvent article .PageEvent-content-cover {
 	position: relative;
