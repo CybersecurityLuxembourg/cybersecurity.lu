@@ -108,7 +108,7 @@ export default class PageSearch extends React.Component {
 			getRequest.call(this, "public/get_public_articles?"
 				+ dictToURI(filters), (data) => {
 				this.setState({
-					articles: data,
+					articles: data.items,
 				});
 			}, (response) => {
 				nm.warning(response.statusText);

@@ -15,7 +15,6 @@ export default class Company extends Component {
 		return (
 			<a
 				href={getEcosystemAppURL() + "company/" + this.props.info.id}
-				target={"_blank"}
 				rel="noreferrer"
 				className="Company-link">
 				<div className="Company card">
