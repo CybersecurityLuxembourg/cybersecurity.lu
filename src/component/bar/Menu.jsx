@@ -146,7 +146,7 @@ export default class Menu extends React.Component {
 
 	render() {
 		return (
-			<div className={"Menu max-sized-page "
+			<div className={"Menu page max-sized-page "
 				+ (this.props.match.params.path === undefined ? "Menu-big" : "")}>
 				{this.props.match.params.path === undefined
 					? <div className="row">
