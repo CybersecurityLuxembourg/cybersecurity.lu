@@ -75,6 +75,38 @@ export default class PageArticle extends React.Component {
 		this.setState({ [field]: value });
 	}
 
+	getOriginMenu() {
+		if (this.state.article === null) {
+			return "";
+		}
+
+		if (this.state.article.type === "NEWS") {
+			return "WHAT'S UP?";
+		}
+
+		if (this.state.article.type === "TOOL") {
+			return "NATIONAL STRATEGY";
+		}
+
+		return "";
+	}
+
+	getOriginMenuUrl() {
+		if (this.state.article === null) {
+			return "";
+		}
+
+		if (this.state.article.type === "NEWS") {
+			return "/news";
+		}
+
+		if (this.state.article.type === "TOOL") {
+			return "/strategy";
+		}
+
+		return "";
+	}
+
 	render() {
 		let positionToTreat = 0;
 
@@ -84,9 +116,17 @@ export default class PageArticle extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/news">WHAT&apos;S UP?</Link></Breadcrumb.Item>
+							<Breadcrumb.Item>
+								<Link to={this.getOriginMenuUrl()}>
+									{this.getOriginMenu()}
+								</Link>
+							</Breadcrumb.Item>
 							{this.state.article !== null && !this.state.loading
-								? <Breadcrumb.Item><Link to={"/news/" + this.props.match.params.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
+								? <Breadcrumb.Item>
+									<Link to={this.getOriginMenuUrl() + "/" + this.props.match.params.handle}>
+										{this.state.article.title}
+									</Link>
+								</Breadcrumb.Item>
 								: ""}
 						</Breadcrumb>
 					</div>
@@ -97,6 +137,17 @@ export default class PageArticle extends React.Component {
 					? <div className="row row-spaced">
 						<div className={this.state.article.type === "NEWS" ? "col-md-8" : "col-md-12"}>
 							<article>
+								<meta property="og:title" content={this.state.article.title}/>
+								<meta property="og:description" content={this.state.article.abstract}/>
+								<meta property="og:image" content={getApiURL() + "public/get_image/" + this.state.article.image}/>
+								<meta property="og:url" content={this.state.article.link !== undefined
+									&& this.state.article.link !== null
+									&& this.state.article.link.length > 0
+									? this.state.article.link
+									: window.location.origin + "/news/"
+										+ this.props.match.params.handle}/>
+								<meta name="twitter:card" content="summary_large_image"/>
+
 								<div className='PageArticle-content-cover'>
 									{this.state.article.image !== null
 										? <img src={getApiURL() + "public/get_image/" + this.state.article.image}/>
