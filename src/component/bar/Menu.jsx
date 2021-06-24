@@ -3,6 +3,7 @@ import "./Menu.css";
 import { Carousel } from "react-responsive-carousel";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getPrivateAppURL, getEcosystemAppURL } from "../../utils/env.jsx";
 import SearchField from "../form/SearchField.jsx";
@@ -46,20 +47,56 @@ export default class Menu extends React.Component {
 					<div className="Menu-description">Cybersecurity events</div>
 				</Link>
 			</Nav.Link>
-			<Nav.Link>
+			{/* <Nav.Link>
 				<Link to="/strategy">
 					<div className="Menu-title">National strategy</div>
 					<div className="Menu-description">For a secure environment</div>
 				</Link>
-			</Nav.Link>
-			<a
-				className="nav-link"
-				href={getEcosystemAppURL()}
-				rel="noreferrer"
-			>
-				<div className="Menu-title">Ecosystem</div>
-				<div className="Menu-description">View on the community</div>
-			</a>
+			</Nav.Link> */}
+			<NavDropdown
+				title={
+					<div>
+						<div className="Menu-title">Ecosystem</div>
+						<div className="Menu-description">View on the community</div>
+					</div>
+				}
+				id="basic-nav-dropdown">
+				<NavDropdown.Item href={getEcosystemAppURL()}>
+					<div className="Menu-title">Ecosystem home</div>
+				</NavDropdown.Item>
+				<NavDropdown.Divider />
+				<NavDropdown.Item href={getEcosystemAppURL() + "privatesector"}>
+					<div className="Menu-title">Private sector</div>
+					<div className="Menu-description">Solution and service providers</div>
+				</NavDropdown.Item>
+				<NavDropdown.Item href={getEcosystemAppURL() + "publicsector"}>
+					<div className="Menu-title">Public sector</div>
+					<div className="Menu-description">Authorities and regulators</div>
+				</NavDropdown.Item>
+				<NavDropdown.Item href={getEcosystemAppURL() + "civilsociety"}>
+					<div className="Menu-title">Civil society</div>
+					<div className="Menu-description">Collective strengths</div>
+				</NavDropdown.Item>
+				<NavDropdown.Divider />
+				<NavDropdown.Item href={getEcosystemAppURL() + "dashboard"}>
+					<div className={"Menu-image"}>
+						<img src="/img/network.svg" viewBox="0 0 20 20"/>
+					</div>
+					<div className={"Menu-image-text"}>
+						<div className="Menu-title">Dashboard</div>
+						<div className="Menu-description">Global view</div>
+					</div>
+				</NavDropdown.Item>
+				<NavDropdown.Item href={getEcosystemAppURL() + "map"}>
+					<div className={"Menu-image"}>
+						<img src="/img/luxembourg.png"/>
+					</div>
+					<div className={"Menu-image-text"}>
+						<div className="Menu-title">Map</div>
+						<div className="Menu-description">Geographic view</div>
+					</div>
+				</NavDropdown.Item>
+			</NavDropdown>
 			{/* eslint-disable no-script-url */}
 			<a href="javascript:;"
 				className="nav-link nav-link-blue"

@@ -105,8 +105,28 @@
     font-size: 12px;
 }
 
+.Menu-image {
+    display: flex;
+    float: left;
+    height: 50px;
+    width: 37px;
+    margin-right: 5px;
+}
+
+.Menu-image img {
+    width: 35px;
+}
+
+.Menu .dropdown-item {
+    padding: 8px 25px;
+}
+
 .Menu .Analytic {
     padding: 0px !important;
+}
+
+.Menu .dropdown-toggle::after {
+    display: none !important;
 }
 
 @media (min-width: 0px) {
