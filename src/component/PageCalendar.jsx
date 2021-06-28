@@ -26,7 +26,6 @@ export default class PageCalendar extends React.Component {
 		this.state = {
 			articles: null,
 			filters: {
-				media: "CYBERLUX",
 				type: "EVENT",
 				taxonomy_values: getUrlParameter("taxonomy_values") !== null
 					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],

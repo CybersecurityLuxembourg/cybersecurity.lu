@@ -21,7 +21,6 @@ export default class PageNews extends React.Component {
 		this.state = {
 			articles: null,
 			filters: {
-				media: "CYBERLUX",
 				type: "NEWS",
 				taxonomy_values: getUrlParameter("taxonomy_values") !== null
 					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],

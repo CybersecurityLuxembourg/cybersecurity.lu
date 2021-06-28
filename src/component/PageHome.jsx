@@ -74,7 +74,6 @@ export default class PageHome extends React.Component {
 				.filter((v) => v.name === categoryValue);
 
 			const params = {
-				media: "CYBERLUX",
 				type: "NEWS",
 				include_tags: "true",
 				taxonomy_values: values.map((v) => v.id).join(","),
@@ -101,7 +100,7 @@ export default class PageHome extends React.Component {
 				.filter((v) => v.category === "ARTICLE CATEGORY" && v.name === "CYBERSECURITY BREAKFAST");
 
 			if (values.length > 0) {
-				getRequest.call(this, "public/get_public_articles?media=CYBERLUX&type=EVENT&include_tags=true", (data) => {
+				getRequest.call(this, "public/get_public_articles?type=EVENT&include_tags=true", (data) => {
 					this.setState({
 						events: data.items
 							.filter((d) => d.end_date !== null && d.start_date !== null)
