@@ -37,13 +37,6 @@ export default class ArticleHorizontal extends Component {
 					<div className="card-body">
 						<h5 className="card-title">{this.props.info.title}</h5>
 
-						<div className="card-text">
-							<div dangerouslySetInnerHTML={{
-								__html:
-								dompurify.sanitize(this.props.info.abstract),
-							}} />
-						</div>
-
 						{this.getTagsContent()}
 
 						{this.props.info.link !== null
@@ -62,6 +55,14 @@ export default class ArticleHorizontal extends Component {
 						}
 					</div>
 				</div>
+				{this.props.info.abstract !== null
+					&& <div className="card-text">
+						<div dangerouslySetInnerHTML={{
+							__html:
+							dompurify.sanitize(this.props.info.abstract),
+						}} />
+					</div>
+				}
 			</div>
 		);
 	}
@@ -76,6 +77,10 @@ export default class ArticleHorizontal extends Component {
 				.filter((v) => this.props.info.taxonomy_tags.indexOf(v.id) >= 0)
 				.sort((a, b) => (b.category < a.category ? 1 : -1));
 
+			if (taxonomyValues.length === 0) {
+				return null;
+			}
+
 			return <div className="card-tags">
 				{taxonomyValues.map((v) => <Chip
 					key={v.name}
@@ -85,7 +90,7 @@ export default class ArticleHorizontal extends Component {
 			</div>;
 		}
 
-		return "";
+		return null;
 	}
 
 	render() {
