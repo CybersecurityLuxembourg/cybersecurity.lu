@@ -55,7 +55,7 @@ export default class ArticleHorizontal extends Component {
 						}
 					</div>
 				</div>
-				{this.props.info.abstract !== null
+				{this.props.info.abstract !== null && this.props.info.abstract.length > 0
 					&& <div className="card-text">
 						<div dangerouslySetInnerHTML={{
 							__html:
