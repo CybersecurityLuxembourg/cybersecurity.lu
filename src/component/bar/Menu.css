@@ -368,7 +368,7 @@
     font-size: 20px;
 }
 
-.carousel-slider .dot:nth-child(1) {
+/* .carousel-slider .dot:nth-child(1) {
     color: white;
     padding: 1px 14px 0px 12px;
     background: red !important;
@@ -390,9 +390,9 @@
 
 .carousel-slider .dot:nth-child(1)::before {
     content: 'STRATEGY' !important;
-}
+} */
 
-.carousel-slider .dot:nth-child(2) {
+.carousel-slider .dot:nth-child(1) {
     color: white;
     padding: 1px 14px 0px 12px;
     background: red !important;
@@ -412,11 +412,11 @@
     margin: 0 3px !important;
 }
 
-.carousel-slider .dot:nth-child(2)::before {
+.carousel-slider .dot:nth-child(1)::before {
     content: 'ECOSYSTEM' !important;
 }
 
-.carousel-slider .dot:nth-child(3) {
+.carousel-slider .dot:nth-child(2) {
     color: white;
     padding: 1px 14px 0px 12px;
     background: red !important;
@@ -436,8 +436,32 @@
     margin: 0 3px !important;
 }
 
-.carousel-slider .dot:nth-child(3)::before {
+.carousel-slider .dot:nth-child(2)::before {
     content: 'CSWL' !important;
+}
+
+.carousel-slider .dot:nth-child(3) {
+    color: white;
+    padding: 1px 14px 0px 12px;
+    background: red !important;
+    transition: opacity .25s ease-in;
+    opacity: .3;
+    filter: alpha(opacity=30);
+    box-shadow: none !important;
+    background: 
+        linear-gradient( 135deg,transparent 10px,black 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,black 0) right /50.5% 100% !important;
+    background-repeat:no-repeat !important;
+    border-radius: 0% !important;
+    width: auto !important;
+    height: 28px !important;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 3px !important;
+}
+
+.carousel-slider .dot:nth-child(3)::before {
+    content: 'BREAKFAST' !important;
 }
 
 .carousel-slider .dot:nth-child(4) {
@@ -461,30 +485,6 @@
 }
 
 .carousel-slider .dot:nth-child(4)::before {
-    content: 'BREAKFAST' !important;
-}
-
-.carousel-slider .dot:nth-child(5) {
-    color: white;
-    padding: 1px 14px 0px 12px;
-    background: red !important;
-    transition: opacity .25s ease-in;
-    opacity: .3;
-    filter: alpha(opacity=30);
-    box-shadow: none !important;
-    background: 
-        linear-gradient( 135deg,transparent 10px,black 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,black 0) right /50.5% 100% !important;
-    background-repeat:no-repeat !important;
-    border-radius: 0% !important;
-    width: auto !important;
-    height: 28px !important;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0 3px !important;
-}
-
-.carousel-slider .dot:nth-child(5)::before {
     content: 'INTERVIEW' !important;
 }
 

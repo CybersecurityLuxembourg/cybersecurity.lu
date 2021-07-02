@@ -158,7 +158,7 @@ export default class Menu extends React.Component {
 							autoPlay={true}
 							interval={5000}
 						>
-							<div>
+							{/* <div>
 								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
 								<a
 									href="https://www.cybersecurityweek.lu/"
@@ -170,7 +170,7 @@ export default class Menu extends React.Component {
 										</div>
 									</div>
 								</a>
-							</div>
+							</div> */}
 							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
 								<a
