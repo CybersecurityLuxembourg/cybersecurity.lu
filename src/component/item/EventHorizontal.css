@@ -40,6 +40,8 @@
         display: flex;
         margin: auto;
         flex: 0 0 220px;
+        padding: 12px 15px !important;
+        border-radius: calc(.25rem - 1px);
     }
 }
 
@@ -47,6 +49,12 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+@media (min-width: 500px) {
+    .EventHorizontal .img-square-wrapper img {
+        border-radius: calc(.25rem - 1px);
+    }
 }
 
 .EventHorizontal .card-date {
@@ -57,12 +65,12 @@
     padding: 10px;
     color: #fff;
     bottom: 0px;
-    left: 10px;
+    left: 15px;
     text-transform: uppercase;
 }
 
 .EventHorizontal .card-body {
-    padding: .9rem 2rem !important;
+    padding: .9rem 1rem !important;
 }
 
 @media (min-width: 0px) {
@@ -117,6 +125,6 @@
 }
 
 .EventHorizontal .card-text {
-    padding: 15px 1.5rem 5px 1.5rem;
+    padding: 10px 1rem 5px 1rem;
     text-align: justify;
 }
