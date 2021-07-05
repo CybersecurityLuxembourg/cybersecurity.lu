@@ -2,6 +2,7 @@ import React from "react";
 import "./PageArticle.css";
 import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
+import { Helmet } from "react-helmet";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
@@ -137,16 +138,18 @@ export default class PageArticle extends React.Component {
 					? <div className="row row-spaced">
 						<div className={this.state.article.type === "NEWS" ? "col-md-8" : "col-md-12"}>
 							<article>
-								<meta property="og:title" content={this.state.article.title}/>
-								<meta property="og:description" content={this.state.article.abstract}/>
-								<meta property="og:image" content={getApiURL() + "public/get_image/" + this.state.article.image}/>
-								<meta property="og:url" content={this.state.article.link !== undefined
-									&& this.state.article.link !== null
-									&& this.state.article.link.length > 0
-									? this.state.article.link
-									: window.location.origin + "/news/"
-										+ this.props.match.params.handle}/>
-								<meta name="twitter:card" content="summary_large_image"/>
+								<Helmet>
+									<meta prefix="og: http://ogp.me/ns#" property="og:title" content={this.state.article.title}/>
+									<meta prefix="og: http://ogp.me/ns#" property="og:description" content={this.state.article.abstract}/>
+									<meta prefix="og: http://ogp.me/ns#" property="og:image" content={getApiURL() + "public/get_image/" + this.state.article.image}/>
+									<meta prefix="og: http://ogp.me/ns#" property="og:url" content={this.state.article.link !== undefined
+										&& this.state.article.link !== null
+										&& this.state.article.link.length > 0
+										? this.state.article.link
+										: window.location.origin + "/news/"
+											+ this.props.match.params.handle}/>
+									<meta name="twitter:card" content="summary_large_image"/>
+								</Helmet>
 
 								<div className='PageArticle-content-cover'>
 									{this.state.article.image !== null
