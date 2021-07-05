@@ -51,12 +51,6 @@
     height: 100%;
 }
 
-@media (min-width: 500px) {
-    .EventHorizontal .img-square-wrapper img {
-        border-radius: calc(.25rem - 1px);
-    }
-}
-
 .EventHorizontal .card-date {
     position: absolute;
     background: #009fe3;
