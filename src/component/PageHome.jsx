@@ -16,7 +16,8 @@ export default class PageHome extends React.Component {
 		super(props);
 
 		this.getNews = this.getNews.bind(this);
-		this.getEvents = this.getEvents.bind(this);
+		this.getEventsOutOfBreakfast = this.getEventsOutOfBreakfast.bind(this);
+		this.getCybersecurityBreakfastEvents = this.getCybersecurityBreakfastEvents.bind(this);
 
 		this.state = {
 			newsLTAC: null,
@@ -25,6 +26,7 @@ export default class PageHome extends React.Component {
 			newsIN: null,
 			events: null,
 			breakfastArticles: null,
+			breakfastEvents: null,
 		};
 	}
 
@@ -35,7 +37,8 @@ export default class PageHome extends React.Component {
 		this.getNews("INSTITUTIONAL NEWS - LUXEMBOURG", "newsINL");
 		this.getNews("CALL TO ACTION", "newsCTA");
 		this.getNews("CYBERSECURITY BREAKFAST", "breakfastArticles");
-		this.getEvents();
+		this.getEventsOutOfBreakfast();
+		this.getCybersecurityBreakfastEvents();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -46,7 +49,8 @@ export default class PageHome extends React.Component {
 			this.getNews("INSTITUTIONAL NEWS - LUXEMBOURG", "newsINL");
 			this.getNews("CALL TO ACTION", "newsCTA");
 			this.getNews("CYBERSECURITY BREAKFAST", "breakfastArticles");
-			this.getEvents();
+			this.getEventsOutOfBreakfast();
+			this.getCybersecurityBreakfastEvents();
 		}
 	}
 
@@ -93,7 +97,32 @@ export default class PageHome extends React.Component {
 		}
 	}
 
-	getEvents() {
+	getCybersecurityBreakfastEvents() {
+		if (this.props.analytics !== null
+			&& this.props.analytics.taxonomy_values !== undefined) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY" && v.name === "CYBERSECURITY BREAKFAST");
+
+			if (values.length > 0) {
+				getRequest.call(this, "public/get_public_articles?type=EVENT&include_tags=true&taxonomy_values="
+					+ values[0].id, (data) => {
+					this.setState({
+						breakfastEvents: data.items
+							.filter((d) => d.end_date !== null && d.start_date !== null)
+							.filter((d) => d.end_date > new Date().toISOString())
+							.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
+							.slice(0, 1),
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
+			}
+		}
+	}
+
+	getEventsOutOfBreakfast() {
 		if (this.props.analytics !== null
 			&& this.props.analytics.taxonomy_values !== undefined) {
 			const values = this.props.analytics.taxonomy_values
@@ -105,6 +134,7 @@ export default class PageHome extends React.Component {
 						events: data.items
 							.filter((d) => d.end_date !== null && d.start_date !== null)
 							.filter((d) => d.end_date > new Date().toISOString())
+							.filter((d) => d.taxonomy_tags.indexOf(values[0].id) < 0)
 							.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
 							.slice(0, 2),
 					});
@@ -208,31 +238,36 @@ export default class PageHome extends React.Component {
 	}
 
 	getBreakfastContent(category, width) {
-		if (this.state.breakfastArticles === null) {
+		if (this.state.breakfastArticles === null
+			|| this.state.breakfastEvents === null) {
 			return <Loading
 				height={150}
 			/>;
 		}
 
-		if (this.state.breakfastArticles.length === 0) {
+		if (this.state.breakfastArticles.length === 0
+			&& this.state.breakfastEvents.length === 0) {
 			return <Message
 				text={"No article found"}
 				height={150}
 			/>;
 		}
 
-		return this.state.breakfastArticles.map((a) => <div
-			className={"col-md-" + width}
-			key={a.id}>
-			{a.type === "EVENT"
-				? <Event
-					info={a}
-				/>
-				: <Article
-					info={a}
-				/>
-			}
-		</div>);
+		return this.state.breakfastEvents
+			.concat(this.state.breakfastArticles)
+			.slice(0, 2)
+			.map((a) => <div
+				className={"col-md-" + width}
+				key={a.id}>
+				{a.type === "EVENT"
+					? <Event
+						info={a}
+					/>
+					: <Article
+						info={a}
+					/>
+				}
+			</div>);
 	}
 
 	getArticleCategoryURL(values) {
