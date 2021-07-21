@@ -70,20 +70,11 @@ export default class Event extends Component {
 					}} />
 				</div>
 
-				{this.props.info.link !== null
-					&& this.props.info.link !== undefined
-					&& this.props.info.link.length > 0
-					? <button
-						className={"blue-background"}
-					>
-						Open website
-					</button>
-					: <button
-						className={"blue-background"}
-					>
-						Know more
-					</button>
-				}
+				<button
+					className={"blue-background"}
+				>
+					Know more
+				</button>
 			</div>
 		</div>;
 	}
