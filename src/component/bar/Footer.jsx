@@ -72,13 +72,9 @@ export default class Footer extends React.Component {
 								<Link to="/calendar">Where to meet?</Link>
 							</div>
 							<div>
-								<Link to="/strategy">National strategy</Link>
-							</div>
-							<div>
 								<a
 									href={getEcosystemAppURL()}
 									rel="noreferrer"
-									target="_blank"
 									title="Ecosystem">
 									Ecosystem
 								</a>
@@ -106,8 +102,17 @@ export default class Footer extends React.Component {
 								<a href="mailto:info@cybersecurity-luxembourg.com">info@cybersecurity-luxembourg.com</a>
 							</div>
 							<br/>
-							<br/>
 							<div>Copyright © SECURITYMADEIN.LU g.i.e 2021</div>
+							<div>
+								<a
+									href={"/pdf/2021-07-08 - Terms of Use CYBERLUX.pdf"}
+									rel="noreferrer"
+									target="_blank"
+									title="Terms of use"
+									className="text-capitalize">
+									Terms of use
+								</a>
+							</div>
 						</div>
 						<div className="col-md-2">
 							<div className="Footer-network">
