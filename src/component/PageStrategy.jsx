@@ -23,7 +23,7 @@ export default class PageStrategy extends React.Component {
 
 				<Tab
 					menu={[
-						"National strategy",
+						"National Cybersecurity Strategy IV (SNCC IV)",
 						"Cadre légal national",
 						"Cadre légal international",
 					]}
