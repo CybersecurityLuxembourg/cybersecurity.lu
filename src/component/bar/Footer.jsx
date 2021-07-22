@@ -117,7 +117,7 @@ export default class Footer extends React.Component {
 						<div className="col-md-2">
 							<div className="Footer-network">
 								<a
-									href="https://twitter.com/CybersecLux"
+									href="https://twitter.com/cyberluxembourg"
 									rel="noreferrer"
 									target="_blank"
 									title="Twitter CYBERLUX"
