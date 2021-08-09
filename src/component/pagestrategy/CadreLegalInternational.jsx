@@ -5,7 +5,7 @@ import { dictToURI } from "../../utils/url.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
-import ArticleHorizontal from "../item/ArticleHorizontal.jsx";
+import ToolHorizontal from "../item/ToolHorizontal.jsx";
 
 export default class CadreLegalInternational extends React.Component {
 	constructor(props) {
@@ -63,7 +63,7 @@ export default class CadreLegalInternational extends React.Component {
 	render() {
 		return (
 			<div className={"CadreLegalInternational page max-sized-page"}>
-				<h2>Cadre légal international</h2>
+				<h1>Cadre légal international</h1>
 
 				<p>&nbsp;</p>
 
@@ -79,7 +79,7 @@ export default class CadreLegalInternational extends React.Component {
 				{this.state.objects !== null && this.state.objects.items.length > 0
 					&& this.state.objects.items.map((e) => (
 						<div className="col-md-12" key={e.id}>
-							<ArticleHorizontal
+							<ToolHorizontal
 								info={e}
 							/>
 						</div>

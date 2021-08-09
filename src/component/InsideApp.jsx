@@ -12,6 +12,7 @@ import PageCalendar from "./PageCalendar.jsx";
 /* import PageStrategy from "./PageStrategy.jsx"; */
 import PageArticle from "./PageArticle.jsx";
 import PageEvent from "./PageEvent.jsx";
+import PageTool from "./PageTool.jsx";
 import PageAbout from "./PageAbout.jsx";
 import PageSearch from "./PageSearch.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
@@ -59,6 +60,7 @@ export default class InsideApp extends React.Component {
 					<Switch>
 						<Route path="/news/:handle" render={(props) => <PageArticle {...props} />}/>
 						<Route path="/calendar/:handle" render={(props) => <PageEvent {...props} />}/>
+						<Route path="/tool/:handle" render={(props) => <PageTool {...props} />}/>
 
 						<Route path="/news" render={(props) => <PageNews
 							analytics={this.state.analytics}
