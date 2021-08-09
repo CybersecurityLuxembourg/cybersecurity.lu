@@ -117,6 +117,7 @@ export default class PageTool extends React.Component {
 
 								{this.state.article.link !== null
 									&& this.state.article.link !== undefined
+									&& this.state.article.link.length > 0
 									&& <div className="PageTool-external-link">
 										<button
 											onClick={() => window.open(this.state.article.link)}
@@ -168,6 +169,7 @@ export default class PageTool extends React.Component {
 
 								{this.state.article.link !== null
 									&& this.state.article.link !== undefined
+									&& this.state.article.link.length > 0
 									&& <div className="PageTool-external-link">
 										<button
 											onClick={() => window.open(this.state.article.link)}
