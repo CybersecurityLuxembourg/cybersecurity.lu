@@ -209,7 +209,7 @@
     padding: 0px 15px 0px 200px !important;
 }
 
-.Menu-flying-menu img {
+.Menu-flying-menu .logo {
     position: absolute;
     top: 12px;
     left: 30px;

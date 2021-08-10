@@ -300,6 +300,7 @@ export default class Menu extends React.Component {
 						<div className="Menu-flying-menu max-sized-page">
 							<Link to="/">
 								<img
+									className="logo"
 									src="/img/ecosystem-logo.jpg"
 									alt="CYBERLUX Logo"
 								/>
