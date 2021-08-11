@@ -3,10 +3,102 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	width: 100%;
 }
 
-@media (min-width: 768px) {
-	.StrategieNational img {
-		width: 50%;
-	}
+.StrategieNational .StrategieNational-quote {
+	position: relative;
+	margin: 30px 20px 40px 20px;
+	padding: 30px 20px;
+	font-style: italic;
+	border-top: solid 1px;
+    border-bottom: solid 1px;
+}
+
+.StrategieNational-shortcut-box {
+	border: solid 5px #009fe3;
+	box-shadow: rgba(0, 0, 0, 0.19) -20px 20px 20px, rgba(0, 0, 0, 0.23) -6px 6px 6px;
+	padding: 15px 40px;
+	zoom: 45%;
+}
+
+.StrategieNational-shortcut-box h2 {
+	cursor: pointer;
+}
+
+.StrategieNational-shortcut-box h2:hover {
+	background-color: rgba(0, 159, 227, 0.05);
+}
+
+.StrategieNational-stat-box {
+	border: solid 2px #e40613;
+	box-shadow: rgba(0, 0, 0, 0.19) -20px 20px 20px, rgba(0, 0, 0, 0.23) -6px 6px 6px;
+	padding: 15px 20px;
+}
+
+.StrategieNational-stat-box div {
+	line-height: 1;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.StrategieNational-stat-box div:hover {
+	background-color: rgba(0, 159, 227, 0.05),
+}
+
+.StrategieNational .Collapsible {
+	border: 0px !important;
+	margin: 0px 0px 15px 0px !important;
+}
+
+.StrategieNational .Collapsible {
+	border: 0px !important;
+	color: white;
+	background-color: black;
+}
+
+.StrategieNational .Collapsible:has(.is-open) {
+	border: solid 3px black !important;
+	color: black;
+	background-color: white;
+}
+
+.StrategieNational .Collapsible h3 {
+	color: white;
+}
+
+.StrategieNational .Collapsible .fas {
+	color: white;
+	font-size: 40px;
+}
+
+.StrategieNational .is-closed:after {
+    content: none !important;
+}
+
+.StrategieNational .is-open:after {
+    content: none !important;
+}
+
+.StrategieNational .StrategieNational-Collapsible-header {
+	cursor: pointer;
+	padding: 20px 5px;
+	text-align: center;
+}
+
+.StrategieNational .StrategieNational-Collapsible-content {
+	cursor: default !important;
+	color: white;
+	padding: 10px 20px;
+}
+
+.StrategieNational .Collapsible__trigger p {
+    position: relative;
+    padding: 0px;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.StrategieNational-read-strategy {
+	width: 100%;
 }

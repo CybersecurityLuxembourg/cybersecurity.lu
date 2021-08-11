@@ -63,7 +63,7 @@ export default class CadreLegalInternational extends React.Component {
 	render() {
 		return (
 			<div className={"CadreLegalInternational page max-sized-page"}>
-				<h1>Cadre légal international</h1>
+				<h1>International legal framework</h1>
 
 				<p>&nbsp;</p>
 

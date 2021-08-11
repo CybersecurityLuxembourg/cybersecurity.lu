@@ -24,8 +24,8 @@ export default class PageStrategy extends React.Component {
 				<Tab
 					menu={[
 						"National Strategy",
-						"Cadre légal national",
-						"Cadre légal international",
+						"National legal framework",
+						"International legal framework",
 					]}
 					content={[
 						<StrategieNational

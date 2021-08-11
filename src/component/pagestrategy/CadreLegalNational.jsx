@@ -63,7 +63,7 @@ export default class CadreLegalNational extends React.Component {
 	render() {
 		return (
 			<div className={"CadreLegalNational page max-sized-page"}>
-				<h1>Cadre légal national</h1>
+				<h1>National legal framework</h1>
 
 				<p>&nbsp;</p>
 
