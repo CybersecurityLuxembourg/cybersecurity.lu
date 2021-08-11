@@ -9,7 +9,7 @@ import Footer from "./bar/Footer.jsx";
 import PageHome from "./PageHome.jsx";
 import PageNews from "./PageNews.jsx";
 import PageCalendar from "./PageCalendar.jsx";
-/* import PageStrategy from "./PageStrategy.jsx"; */
+import PageStrategy from "./PageStrategy.jsx";
 import PageArticle from "./PageArticle.jsx";
 import PageEvent from "./PageEvent.jsx";
 import PageTool from "./PageTool.jsx";
@@ -70,10 +70,10 @@ export default class InsideApp extends React.Component {
 							analytics={this.state.analytics}
 							{...props}
 						/>}/>
-						{/* <Route path="/strategy" render={(props) => <PageStrategy
+						<Route path="/strategy" render={(props) => <PageStrategy
 							analytics={this.state.analytics}
 							{...props}
-						/>}/> */}
+						/>}/>
 						<Route
 							path="/search"
 							render={(props) => <PageSearch
