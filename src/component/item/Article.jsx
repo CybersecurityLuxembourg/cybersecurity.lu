@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Article.css";
 import dompurify from "dompurify";
-import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 import { dateToString } from "../../utils/date.jsx";
@@ -63,8 +62,10 @@ export default class Article extends Component {
 				className="Article-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/news/" + this.props.info.handle} className="Article-link">
+			: <a
+				href={"/news/" + this.props.info.handle}
+				className="Article-link">
 				{this.getBoxContent()}
-			</Link>;
+			</a>;
 	}
 }
