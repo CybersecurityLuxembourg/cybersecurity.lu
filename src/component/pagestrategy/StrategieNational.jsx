@@ -165,15 +165,15 @@ export default class StrategieNational extends React.Component {
 								trigger={<div>Sector repartition of the incidents in 2020</div>}
 								modal
 								closeOnDocumentClick
-								className={"DialogConfirmation"}
+								className={"Popup-small-size"}
 							>
 								<div>
-									<p>
+									<h3>
 										<b>
 											Sector repartition of the incidents reported to
 											<a href="https://circl.lu/" target="_blank" rel="noreferrer"> CIRCL</a> in 2020:
 										</b>
-									</p>
+									</h3>
 
 									<img src="/img/sector_repartition_of_incidents.png"/>
 
@@ -192,16 +192,16 @@ export default class StrategieNational extends React.Component {
 								</div>}
 								modal
 								closeOnDocumentClick
-								className={"DialogConfirmation"}
+								className={"Popup-small-size"}
 							>
 								<div>
-									<p>
+									<h3>
 										<b>
 											Evolution of the yearly number of incidents reported to
 											<a href="https://circl.lu/" target="_blank" rel="noreferrer"> CIRCL </a>
 											in the past 10 years:
 										</b>
-									</p>
+									</h3>
 
 									<img src="/img/evolution_number_of_incidents.png"/>
 								</div>

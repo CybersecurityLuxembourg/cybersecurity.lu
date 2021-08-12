@@ -364,11 +364,20 @@ textarea {
 	-ms-animation: fadeIn ease .5s;
 }
 
+.Popup-small-size-content img {
+	max-width: 100%;
+}
+
 .popup-content {
 	padding: 0px 20px 30px 20px !important;
 	overflow-y: auto;
 	overflow-x: hidden;
 	background-color: #EEE !important;
+	border: 1px solid #cccaca;
+}
+
+.popup-overlay {
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* ANIMATION */
