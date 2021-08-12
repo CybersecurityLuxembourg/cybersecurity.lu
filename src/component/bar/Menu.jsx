@@ -160,9 +160,7 @@ export default class Menu extends React.Component {
 							<div>
 								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
 								<a
-									href="/strategy"
-									target="_blank"
-									rel="noreferrer">
+									href="/strategy">
 									<div className="row legend blue-legend">
 										<div className="col-md-12">
 											<div className="legend-title">
