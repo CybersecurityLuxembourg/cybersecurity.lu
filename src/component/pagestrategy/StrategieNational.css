@@ -8,18 +8,14 @@
 
 .StrategieNational .StrategieNational-quote {
 	position: relative;
-	margin: 30px 20px 40px 20px;
-	padding: 30px 20px;
 	font-style: italic;
-	border-top: solid 1px;
-    border-bottom: solid 1px;
 }
 
 .StrategieNational-shortcut-box {
 	border: solid 5px #009fe3;
 	box-shadow: rgba(0, 0, 0, 0.19) -20px 20px 20px, rgba(0, 0, 0, 0.23) -6px 6px 6px;
 	padding: 15px 40px;
-	zoom: 45%;
+	zoom: 35%;
 }
 
 .StrategieNational-shortcut-box h2 {
@@ -42,8 +38,12 @@
 	cursor: pointer;
 }
 
-.StrategieNational-stat-box div:hover {
-	background-color: rgba(0, 159, 227, 0.05),
+.StrategieNational-stat-item:hover {
+	background-color: rgba(228, 6, 19, 0.05) !important;
+}
+
+.StrategieNational-shortcut-item:hover {
+	background-color: rgba(0, 159, 227, 0.05);
 }
 
 .StrategieNational .Collapsible {
@@ -102,4 +102,15 @@
 
 .StrategieNational-read-strategy {
 	width: 100%;
+}
+
+.StrategieNational-pm-picture {
+	width: 50% !important;
+	max-width: 200px !important;
+	vertical-align: top !important;
+    display: inline !important;
+    margin-left: unset !important;
+	margin-right: unset !important;
+	float: left;
+	padding: 0px 15px 5px 0px;
 }

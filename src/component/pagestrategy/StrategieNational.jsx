@@ -23,14 +23,12 @@ export default class StrategieNational extends React.Component {
 						<h2 ref={this.part1}>Prime Minister Foreword</h2>
 					</div>
 
-					<div className="col-md-8">
+					<div className="col-md-9">
 						<div className="row">
-							<div className="col-md-3">
+							<div className="col-md-12">
 								<img className="StrategieNational-pm-picture" src="/img/luxembourg.png"/>
-							</div>
 
-							<div className="col-md-9">
-								<div className="StrategieNational-quote">
+								<span className="StrategieNational-quote">
 									<p>
 										The national cybersecurity strategy for the period up to 2025 sets
 										out the guidelines underlying the projects that the Government
@@ -82,12 +80,12 @@ export default class StrategieNational extends React.Component {
 										high-performance digital economy.
 									</p>
 									<p>- Mr Xavier Bettel, Prime Minister</p>
-								</div>
+								</span>
 							</div>
 						</div>
 					</div>
 
-					<div className="col-md-4">
+					<div className="col-md-3">
 						<div className="StrategieNational-shortcut-box">
 							<h2 onClick={() => this.part1.current.scrollIntoView({ behavior: "smooth" })}>
 								Prime Minister Foreword
@@ -108,7 +106,7 @@ export default class StrategieNational extends React.Component {
 						<h2 ref={this.part2}>Context</h2>
 					</div>
 
-					<div className="col-md-8">
+					<div className="col-md-9">
 						<p>
 							The world in 2021 is facing a multitude of international crises, ranging
 							from the health crisis due to the COVID-19 pandemic, to the climate crisis,
@@ -157,12 +155,15 @@ export default class StrategieNational extends React.Component {
 						</p>
 					</div>
 
-					<div className="col-md-4">
+					<div className="col-md-3">
 						<div className="StrategieNational-stat-box">
 							<h3>CIRCL&#39;s statistics</h3>
 
 							<Popup
-								trigger={<div>Sector repartition of the incidents in 2020</div>}
+								trigger={<div className="StrategieNational-stat-item">
+									<i className="fas fa-chart-pie"/> Sector
+									repartition of the incidents in 2020
+								</div>}
 								modal
 								closeOnDocumentClick
 								className={"Popup-small-size"}
@@ -187,8 +188,9 @@ export default class StrategieNational extends React.Component {
 							</Popup>
 
 							<Popup
-								trigger={<div>
-									Evolution of the yearly number of incidents in the past 10 years
+								trigger={<div className="StrategieNational-stat-item">
+									<i className="fas fa-chart-bar"/> Evolution
+									of the yearly number of incidents in the past 10 years
 								</div>}
 								modal
 								closeOnDocumentClick
