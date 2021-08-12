@@ -1,6 +1,8 @@
 import React from "react";
 import "./PageHome.css";
 import { NotificationManager as nm } from "react-notifications";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { Link } from "react-router-dom";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import Analytic from "./box/Analytic.jsx";
@@ -295,6 +297,34 @@ export default class PageHome extends React.Component {
 			<div
 				id={"PageHome"}
 				className={""}>
+
+				{window.location.pathname.startsWith("/newsletter")
+					&& <div className={"page max-sized-page"}>
+						<div className="row">
+							<div className="col-md-12">
+								<Breadcrumb>
+									<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
+									<Breadcrumb.Item><Link to="/newsletter">NEWSLETTER</Link></Breadcrumb.Item>
+								</Breadcrumb>
+							</div>
+
+							<div className="col-md-12">
+								Some description about the newsletter
+							</div>
+
+							<div className="col-md-12">
+								Click here so subscribe to the newsletter:
+
+								{/* eslint-disable no-script-url */}
+								<button href="javascript:;"
+									className="nav-link nav-link-blue"
+									onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
+									HERE
+								</button>
+							</div>
+						</div>
+					</div>
+				}
 
 				<div className="blue-bordered">
 					<ul className="Background-petals">

@@ -97,13 +97,12 @@ export default class Menu extends React.Component {
 					</div>
 				</NavDropdown.Item>
 			</NavDropdown>
-			{/* eslint-disable no-script-url */}
-			<a href="javascript:;"
-				className="nav-link nav-link-blue"
-				onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
-				<div className="Menu-title"><i className="fas fa-envelope-open-text"/> Newsletter</div>
-				<div className="Menu-description">Our monthly selection</div>
-			</a>
+			<Nav.Link>
+				<Link to="/newsletter">
+					<div className="Menu-title"><i className="fas fa-envelope-open-text"/> Newsletter</div>
+					<div className="Menu-description">Our monthly selection</div>
+				</Link>
+			</Nav.Link>
 		</Nav>;
 	}
 
@@ -158,19 +157,29 @@ export default class Menu extends React.Component {
 							autoPlay={true}
 							interval={5000}
 						>
-							{/* <div>
+							<div>
 								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
 								<a
-									href="https://www.cybersecurityweek.lu/"
+									href="/strategy"
 									target="_blank"
 									rel="noreferrer">
-									<div className="row legend black-legend">
+									<div className="row legend blue-legend">
 										<div className="col-md-12">
-											National strategy text here
+											<div className="legend-title">
+												National Cybersecurity Strategy IV
+											</div>
+										</div>
+										<div className="col-md-12">
+											The National Cybersecurity Strategy IV
+											outlines how an integrated and
+											comprehensive information security approach
+											enables the government, private enterprises
+											and citizens to fully seize the opportunities
+											offered by the digital revolution. Discover it.
 										</div>
 									</div>
 								</a>
-							</div> */}
+							</div>
 							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
 								<a
