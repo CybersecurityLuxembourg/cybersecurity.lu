@@ -84,6 +84,7 @@
 	cursor: pointer;
 	padding: 20px 5px;
 	text-align: center;
+	font-weight: bold;
 }
 
 .StrategieNational .StrategieNational-Collapsible-content {

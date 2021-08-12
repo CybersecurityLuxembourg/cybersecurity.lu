@@ -4,7 +4,15 @@ import Popup from "reactjs-popup";
 import Collapsible from "react-collapsible";
 
 export default class StrategieNational extends React.Component {
-	// eslint-disable-next-line class-methods-use-this
+	constructor(props) {
+		super(props);
+
+		this.part1 = React.createRef();
+		this.part2 = React.createRef();
+		this.part3 = React.createRef();
+		this.part4 = React.createRef();
+	}
+
 	render() {
 		return (
 			<div className={"StrategieNational page max-sized-page"}>
@@ -12,23 +20,66 @@ export default class StrategieNational extends React.Component {
 
 				<div className="row">
 					<div className="col-md-12">
-						<h2>Prime Minister Foreword</h2>
+						<h2 ref={this.part1}>Prime Minister Foreword</h2>
 					</div>
 
 					<div className="col-md-8">
 						<div className="row">
-							<div className="col-md-4">
+							<div className="col-md-3">
 								<img className="StrategieNational-pm-picture" src="/img/luxembourg.png"/>
 							</div>
 
-							<div className="col-md-8">
+							<div className="col-md-9">
 								<div className="StrategieNational-quote">
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-										Risus commodo viverra maecenas
-										accumsanlacus vel facilisis.
+										The national cybersecurity strategy for the period up to 2025 sets
+										out the guidelines underlying the projects that the Government
+										intends to implement in order to secure cyberspace at all levels.
+										It goes hand-in-hand with the digital transformation that
+										characterises our economy and our society.
+									</p>
+									<p>
+										We are going through exceptional times in more than one way.
+										We are witnessing the large-scale deployment of new technologies
+										such as the fifth generation of mobile networks or new applications
+										in the field of artificial intelligence. Existing digital
+										infrastructures in Luxembourg, Europe and the world have
+										been consolidated, enabling greater connectivity for more
+										people with undeniable gains in reliability and availability,
+										even though much remains to be done to ensure that no one is
+										left behind in this digital revolution. At the same time,
+										cybercriminals and other threat actors are taking advantage
+										of these changes and using the new developments to increase
+										attempts at intrusion, sabotage or online theft.
+									</p>
+									<p>
+										Building on the experience acquired in the context of the third
+										strategy adopted in April 2018 and mindful to taking into account
+										the numerous facets of cybersecurity, the new strategy was drawn
+										up by a multidisciplinary working group chaired by the High
+										Commission for National Protection and consisting of representatives
+										of the Ministry of Foreign and European Affairs, the Ministry of
+										Economy, the EIG SECURITYMADEIN.LU, the Department of Media,
+										Telecommunications and Digital Policy (SMC), the State Intelligence
+										Service, the Luxembourg Regulatory Institute (ILR), the Directorate
+										of Defence, the Government IT Centre (CTIE), the governmental
+										CERT (GOVCERT) and the National Agency for Information Systems
+										Security (ANSSI).
+									</p>
+									<p>
+										The aim of the cybersecurity strategy is to enable all actors
+										to participate fully in a digital society and to access the
+										new technologies in a secure environment. The measures that
+										will be implemented in this context are designed in the first
+										place to ensure that Internet users are aware and to strengthen
+										their trust in the digital world. Furthermore, they consist in
+										consolidating and strengthening the security and resilience of
+										digital networks and infrastructures. Lastly, the strategy
+										seeks to take account of cybersecurity as a factor of economic
+										attractiveness and to complement the strategy
+										of dynamisation that characterises the digital sector towards
+										the continued development of a
+										high-performance digital economy.
 									</p>
 									<p>- Mr Xavier Bettel, Prime Minister</p>
 								</div>
@@ -38,15 +89,23 @@ export default class StrategieNational extends React.Component {
 
 					<div className="col-md-4">
 						<div className="StrategieNational-shortcut-box">
-							<h2>Prime Minister Foreword</h2>
-							<h2>Context</h2>
-							<h2>Objectives & priorities</h2>
-							<h2>Read the full National Strategy</h2>
+							<h2 onClick={() => this.part1.current.scrollIntoView({ behavior: "smooth" })}>
+								Prime Minister Foreword
+							</h2>
+							<h2 onClick={() => this.part2.current.scrollIntoView({ behavior: "smooth" })}>
+								Context
+							</h2>
+							<h2 onClick={() => this.part3.current.scrollIntoView({ behavior: "smooth" })}>
+								Objectives and priorities
+							</h2>
+							<h2 onClick={() => this.part4.current.scrollIntoView({ behavior: "smooth" })}>
+								Read the full National Strategy
+							</h2>
 						</div>
 					</div>
 
 					<div className="col-md-12">
-						<h2>Context</h2>
+						<h2 ref={this.part2}>Context</h2>
 					</div>
 
 					<div className="col-md-8">
@@ -151,7 +210,7 @@ export default class StrategieNational extends React.Component {
 					</div>
 
 					<div className="col-md-8">
-						<h2>
+						<h2 ref={this.part3}>
 							Objectives and priorities
 						</h2>
 
@@ -381,6 +440,7 @@ export default class StrategieNational extends React.Component {
 						<p>&nbsp;</p>
 
 						<button
+							ref={this.part4}
 							className={"StrategieNational-read-strategy"}
 							onClick={() => window.open("pdf/National-Cybersecurity-Strategy-IV.pdf")}
 						>
