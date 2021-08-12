@@ -37,7 +37,7 @@ export default class CadreLegalNational extends React.Component {
 
 			const taxonomyValues = this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "TOOL CATEGORY"
-					&& v.name === "NATIONAL LEGAL FRAMEWORK")
+					&& v.name === "NATIONAL FRAMEWORK")
 				.map((v) => v.id);
 
 			if (taxonomyValues.length > 0) {
@@ -59,11 +59,10 @@ export default class CadreLegalNational extends React.Component {
 		}
 	}
 
-	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
 			<div className={"CadreLegalNational page max-sized-page"}>
-				<h1>National legal framework</h1>
+				<h1>National framework</h1>
 
 				<p>&nbsp;</p>
 
@@ -71,7 +70,7 @@ export default class CadreLegalNational extends React.Component {
 					&& <div className="col-md-12">
 						<Message
 							text={"No object found"}
-							height={300}
+							height={200}
 						/>
 					</div>
 				}
@@ -89,7 +88,7 @@ export default class CadreLegalNational extends React.Component {
 				{this.state.objects === null
 					&& <div className="col-md-12">
 						<Loading
-							height={300}
+							height={200}
 						/>
 					</div>
 				}
