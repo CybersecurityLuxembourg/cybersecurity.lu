@@ -47,12 +47,12 @@ export default class Menu extends React.Component {
 					<div className="Menu-description">Cybersecurity events</div>
 				</Link>
 			</Nav.Link>
-			{/* <Nav.Link>
+			<Nav.Link>
 				<Link to="/strategy">
-					<div className="Menu-title">National strategy</div>
-					<div className="Menu-description">For a secure environment</div>
+					<div className="Menu-title">Strategy</div>
+					<div className="Menu-description">National commitment</div>
 				</Link>
-			</Nav.Link> */}
+			</Nav.Link>
 			<NavDropdown
 				title={
 					<div>
