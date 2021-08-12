@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./ToolHorizontal.css";
 import dompurify from "dompurify";
-import { Link } from "react-router-dom";
 import Chip from "../form/Chip.jsx";
 
 export default class ToolHorizontal extends Component {
@@ -70,18 +69,10 @@ export default class ToolHorizontal extends Component {
 	}
 
 	render() {
-		return this.props.info.link !== null
-			&& this.props.info.link !== undefined
-			&& this.props.info.link.length > 0
-			? <a
-				href={this.props.info.link}
-				target={"_blank"}
-				rel="noreferrer"
-				className="ToolHorizontal-link">
-				{this.getBoxContent()}
-			</a>
-			: <Link to={"/tool/" + this.props.info.handle} className="ToolHorizontal-link">
-				{this.getBoxContent()}
-			</Link>;
+		return <a
+			href={"/tool/" + this.props.info.handle}
+			className="Article-link">
+			{this.getBoxContent()}
+		</a>;
 	}
 }
