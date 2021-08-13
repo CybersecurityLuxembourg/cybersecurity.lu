@@ -179,7 +179,7 @@ export default class Menu extends React.Component {
 								</a>
 							</div>
 							<div>
-								<img src="/img/Slide_CYBERLUX_1920x1080.jpg" />
+								<img src="/img/Slide_CYBERLUX_1920x1080.jpg"/>
 								<a
 									href={getEcosystemAppURL()}
 									target="_blank"
