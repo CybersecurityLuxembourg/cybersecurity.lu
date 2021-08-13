@@ -20,8 +20,7 @@ export default class GovBar extends React.Component {
 					rel="noreferrer"
 					title="Gouvernement du Grand-Duché de Luxembourg (Nouvelle fenêtre)">
 					<img
-						src="//cdn.public.lu/pictures/logos/gov/gov-light.png"
-						srcSet="//cdn.public.lu/pictures/logos/gov/gov-light-hdpi.png 1.5x,//cdn.public.lu/pictures/logos/gov/gov-light-xhdpi.png 2x,//cdn.public.lu/pictures/logos/gov/gov-light-xxhdpi.png 3x"
+						src="/img/gov-light.png"
 						alt="Gouvernement du Grand-Duché de Luxembourg (Nouvelle fenêtre)"
 					/>
 				</a>
