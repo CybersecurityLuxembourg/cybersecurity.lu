@@ -165,12 +165,11 @@ export default class CadreLegalInternational extends React.Component {
 
 				{this.state.internationalFrameworks !== null
 					&& this.state.internationalFrameworks.items.length > 0
-					&& this.state.objects.items.map((e) => (
-						<div className="col-md-12" key={e.id}>
-							<ToolHorizontal
-								info={e}
-							/>
-						</div>
+					&& this.state.internationalFrameworks.items.map((f) => (
+						<ToolHorizontal
+							key={f.id}
+							info={f}
+						/>
 					))
 				}
 
