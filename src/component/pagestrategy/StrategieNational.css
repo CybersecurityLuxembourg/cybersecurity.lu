@@ -74,6 +74,7 @@
 .StrategieNational .Collapsible .fas {
 	color: white;
 	font-size: 40px;
+	padding: 10px 0px 15px 0px;
 }
 
 .StrategieNational .is-closed:after {

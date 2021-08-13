@@ -211,7 +211,7 @@ export default class StrategieNational extends React.Component {
 						</div>
 					</div>
 
-					<div className="col-md-8">
+					<div className="col-md-9">
 						<h2 ref={this.part3}>
 							Objectives and priorities
 						</h2>
@@ -306,7 +306,7 @@ export default class StrategieNational extends React.Component {
 									<div className={"StrategieNational-Collapsible-header"}>
 										<h3>Objective II</h3>
 
-										<i className="fas fa-balance-scale-right"/>
+										<i className="fas fa-cloud"/>
 
 										<p>Strengthening the security and resilience of digital
 										infrastructures in Luxembourg</p>
@@ -375,7 +375,7 @@ export default class StrategieNational extends React.Component {
 									<div className={"StrategieNational-Collapsible-header"}>
 										<h3>Objective III</h3>
 
-										<i className="fas fa-balance-scale-right"/>
+										<i className="fas fa-euro-sign"/>
 
 										<p>Development of a reliable, sustainable
 										and secure digital economy</p>
