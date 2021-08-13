@@ -51,7 +51,6 @@ export default class CadreLegalInternational extends React.Component {
 				const params = {
 					type: "TOOL",
 					taxonomy_values: taxonomyValues,
-					include_tags: true,
 				};
 
 				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
@@ -91,6 +90,7 @@ export default class CadreLegalInternational extends React.Component {
 				const params = {
 					type: "TOOL",
 					taxonomy_values: taxonomyValues.map((v) => v.id).join(","),
+					include_tags: true,
 				};
 
 				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
