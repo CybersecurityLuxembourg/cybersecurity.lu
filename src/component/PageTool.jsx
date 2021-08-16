@@ -115,18 +115,6 @@ export default class PageTool extends React.Component {
 									))}
 								</div>
 
-								{this.state.article.link !== null
-									&& this.state.article.link !== undefined
-									&& this.state.article.link.length > 0
-									&& <div className="PageTool-external-link">
-										<button
-											onClick={() => window.open(this.state.article.link)}
-										>
-											<i className="fas fa-arrow-alt-circle-right"/> Go to the external source
-										</button>
-									</div>
-								}
-
 								<h1 className="showFulltext">
 									{this.state.article.title}
 								</h1>
@@ -174,7 +162,7 @@ export default class PageTool extends React.Component {
 										<button
 											onClick={() => window.open(this.state.article.link)}
 										>
-											<i className="fas fa-arrow-alt-circle-right"/> Go to the external source
+											<i className="fas fa-arrow-alt-circle-right"/> Go to the official source
 										</button>
 									</div>
 								}
