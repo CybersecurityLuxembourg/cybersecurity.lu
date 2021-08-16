@@ -16,6 +16,7 @@ export default class CadreLegalInternational extends React.Component {
 		this.getEuropeanFrameworks = this.getEuropeanFrameworks.bind(this);
 		this.getEuropeanFrameworksByTaxonomyValue = this.getEuropeanFrameworksByTaxonomyValue
 			.bind(this);
+		this.changeState = this.changeState.bind(this);
 
 		this.state = {
 			internationalFrameworks: null,
@@ -115,10 +116,40 @@ export default class CadreLegalInternational extends React.Component {
 		return [];
 	}
 
+	changeState(field, value) {
+		this.setState({ [field]: value });
+	}
+
 	render() {
 		return (
 			<div className={"CadreLegalInternational page max-sized-page"}>
 				<h1>International framework</h1>
+
+				{this.getEuropeanFrameworksByTaxonomyValue()
+					.map((f) => f.value)
+					.concat(["INTERNATIONAL FRAMEWORK"])
+					.map(v) => <CheckBox
+						value={this.state.value}
+						onClick={(v) => this.onChange(v)}
+						disabled={this.props.disabled}
+						background={this.props.background}
+					/>
+				}
+
+				<FormLine
+					label={"Representative"}
+					type={"select"}
+					value={this.state.info.representative}
+					options={this.props.analytics !== null
+						&& this.props.analytics.taxonomy_values !== undefined
+						? [{ value: "INTERNATIONAL FRAMEWORK", label: "INTERNATIONAL FRAMEWORK" }].concat(
+							this.getEuropeanFrameworksByTaxonomyValue()
+								.map((o) => ({ label: o.value, value: o.value })),
+						)
+						: []}
+					onChange={(v) => this.changeInfoState("representative", v)}
+					format={validateNotNull}
+				/>
 
 				{this.getEuropeanFrameworkTaxonomyValues().map((v) => <div
 					key={v.name}>
