@@ -6,111 +6,72 @@ import { getRequest } from "../../utils/request.jsx";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import ToolHorizontal from "../item/ToolHorizontal.jsx";
+import FormLine from "../form/FormLine.jsx";
+import DynamicTable from "../table/DynamicTable.jsx";
 
 export default class CadreLegalInternational extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getInternationalFrameworks = this.getInternationalFrameworks.bind(this);
-		this.getEuropeanFrameworkTaxonomyValues = this.getEuropeanFrameworkTaxonomyValues.bind(this);
-		this.getEuropeanFrameworks = this.getEuropeanFrameworks.bind(this);
-		this.getEuropeanFrameworksByTaxonomyValue = this.getEuropeanFrameworksByTaxonomyValue
-			.bind(this);
+		this.getFrameworks = this.getFrameworks.bind(this);
+		this.getFrameworkTaxonomyValues = this.getFrameworkTaxonomyValues.bind(this);
 		this.changeState = this.changeState.bind(this);
 
 		this.state = {
-			internationalFrameworks: null,
-			europeanFrameworks: null,
+			frameworks: null,
+			selectedTaxonomyValue: null,
 		};
 	}
 
 	componentDidMount() {
-		this.getInternationalFrameworks();
-		this.getEuropeanFrameworks();
-	}
-
-	componentDidUpdate(prevProps) {
-		if (prevProps.analytics === null && this.props.analytics !== null) {
-			this.getInternationalFrameworks();
-			this.getEuropeanFrameworks();
+		if (this.props.analytics !== null) {
+			this.setState({ selectedTaxonomyValue: this.getFrameworkTaxonomyValues()[0].id });
 		}
 	}
 
-	getInternationalFrameworks() {
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.analytics === null && this.props.analytics !== null) {
+			this.setState({ selectedTaxonomyValue: this.getFrameworkTaxonomyValues()[0].id });
+		}
+
+		if (prevState.selectedTaxonomyValue !== this.state.selectedTaxonomyValue) {
+			this.getFrameworks();
+		}
+	}
+
+	getFrameworks(page) {
 		if (this.props.analytics !== null
-			&& this.props.analytics.taxonomy_values !== undefined) {
+			&& this.props.analytics.taxonomy_values !== undefined
+			&& this.state.selectedTaxonomyValue !== null) {
 			this.setState({
-				internationalFrameworks: null,
+				frameworks: null,
 			});
 
-			const taxonomyValues = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "TOOL CATEGORY"
-					&& v.name === "INTERNATIONAL FRAMEWORK")
-				.map((v) => v.id);
+			const params = {
+				type: "TOOL",
+				taxonomy_values: this.state.selectedTaxonomyValue,
+				page: page === undefined ? 1 : page,
+			};
 
-			if (taxonomyValues.length > 0) {
-				const params = {
-					type: "TOOL",
-					taxonomy_values: taxonomyValues,
-				};
-
-				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
-					this.setState({
-						internationalFrameworks: data,
-					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
+			getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
+				this.setState({
+					frameworks: data,
 				});
-			}
+			}, (response) => {
+				nm.warning(response.statusText);
+			}, (error) => {
+				nm.error(error.message);
+			});
 		}
 	}
 
-	getEuropeanFrameworkTaxonomyValues() {
+	getFrameworkTaxonomyValues() {
 		if (this.props.analytics !== null
 			&& this.props.analytics.taxonomy_values !== undefined) {
 			return this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "TOOL CATEGORY"
-					&& v.name.startsWith("EUROPEAN FRAMEWORK"));
-		}
-
-		return [];
-	}
-
-	getEuropeanFrameworks() {
-		if (this.props.analytics !== null
-			&& this.props.analytics.taxonomy_values !== undefined) {
-			this.setState({
-				europeanFrameworks: null,
-			});
-
-			const taxonomyValues = this.getEuropeanFrameworkTaxonomyValues();
-
-			if (taxonomyValues.length > 0) {
-				const params = {
-					type: "TOOL",
-					taxonomy_values: taxonomyValues.map((v) => v.id).join(","),
-					include_tags: true,
-				};
-
-				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
-					this.setState({
-						europeanFrameworks: data,
-					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
-				});
-			}
-		}
-	}
-
-	getEuropeanFrameworksByTaxonomyValue(valueId) {
-		if (this.state.europeanFrameworks !== null) {
-			return this.state.europeanFrameworks.items
-				.filter((f) => f.taxonomy_tags.indexOf(valueId) >= 0);
+					&& (v.name.startsWith("EUROPEAN FRAMEWORK")
+						|| v.name === "INTERNATIONAL FRAMEWORK"));
 		}
 
 		return [];
@@ -125,67 +86,19 @@ export default class CadreLegalInternational extends React.Component {
 			<div className={"CadreLegalInternational page max-sized-page"}>
 				<h1>International framework</h1>
 
-				{this.getEuropeanFrameworksByTaxonomyValue()
-					.map((f) => f.value)
-					.concat(["INTERNATIONAL FRAMEWORK"])
-					.map(v) => <CheckBox
-						value={this.state.value}
-						onClick={(v) => this.onChange(v)}
-						disabled={this.props.disabled}
-						background={this.props.background}
-					/>
-				}
-
 				<FormLine
-					label={"Representative"}
+					label={"Framework type"}
 					type={"select"}
-					value={this.state.info.representative}
+					value={this.state.selectedTaxonomyValue}
 					options={this.props.analytics !== null
 						&& this.props.analytics.taxonomy_values !== undefined
-						? [{ value: "INTERNATIONAL FRAMEWORK", label: "INTERNATIONAL FRAMEWORK" }].concat(
-							this.getEuropeanFrameworksByTaxonomyValue()
-								.map((o) => ({ label: o.value, value: o.value })),
-						)
+						? this.getFrameworkTaxonomyValues().map((o) => ({ label: o.name, value: o.id }))
 						: []}
-					onChange={(v) => this.changeInfoState("representative", v)}
-					format={validateNotNull}
+					onChange={(v) => this.changeState("selectedTaxonomyValue", v)}
 				/>
 
-				{this.getEuropeanFrameworkTaxonomyValues().map((v) => <div
-					key={v.name}>
-					<h2>
-						{v.name}
-					</h2>
-
-					{this.state.europeanFrameworks !== null
-						&& this.getEuropeanFrameworksByTaxonomyValue(v.id).length === 0
-						&& <Message
-							text={"No object found"}
-							height={200}
-						/>
-					}
-
-					{this.state.europeanFrameworks !== null
-						&& this.getEuropeanFrameworksByTaxonomyValue(v.id).length > 0
-						&& this.getEuropeanFrameworksByTaxonomyValue(v.id).map((f) => <ToolHorizontal
-							key={f.id}
-							info={f}
-						/>)
-					}
-
-					{this.state.europeanFrameworks === null
-						&& <div className="col-md-12">
-							<Loading
-								height={200}
-							/>
-						</div>
-					}
-				</div>)}
-
-				<h2>INTERNATIONAL FRAMEWORK</h2>
-
-				{this.state.internationalFrameworks !== null
-					&& this.state.internationalFrameworks.items.length === 0
+				{this.state.frameworks !== null
+					&& this.state.frameworks.items.length === 0
 					&& <div className="col-md-12">
 						<Message
 							text={"No object found"}
@@ -194,17 +107,21 @@ export default class CadreLegalInternational extends React.Component {
 					</div>
 				}
 
-				{this.state.internationalFrameworks !== null
-					&& this.state.internationalFrameworks.items.length > 0
-					&& this.state.internationalFrameworks.items.map((f) => (
-						<ToolHorizontal
-							key={f.id}
-							info={f}
-						/>
-					))
+				{this.state.frameworks !== null
+					&& this.state.frameworks.items.length > 0
+					&& <DynamicTable
+						items={this.state.frameworks.items}
+						pagination={this.state.frameworks.pagination}
+						changePage={(page) => this.getFrameworks(page)}
+						buildElement={(t) => <div className="col-md-12">
+							<ToolHorizontal
+								info={t}
+							/>
+						</div>}
+					/>
 				}
 
-				{this.state.internationalFrameworks === null
+				{this.state.frameworks === null
 					&& <div className="col-md-12">
 						<Loading
 							height={200}

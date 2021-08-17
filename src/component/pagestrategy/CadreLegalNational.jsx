@@ -6,6 +6,7 @@ import { getRequest } from "../../utils/request.jsx";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import ToolHorizontal from "../item/ToolHorizontal.jsx";
+import DynamicTable from "../table/DynamicTable.jsx";
 
 export default class CadreLegalNational extends React.Component {
 	constructor(props) {
@@ -28,7 +29,7 @@ export default class CadreLegalNational extends React.Component {
 		}
 	}
 
-	getNationalLegalFrameworks() {
+	getNationalLegalFrameworks(page) {
 		if (this.props.analytics !== null
 			&& this.props.analytics.taxonomy_values !== undefined) {
 			this.setState({
@@ -44,6 +45,7 @@ export default class CadreLegalNational extends React.Component {
 				const params = {
 					type: "TOOL",
 					taxonomy_values: taxonomyValues,
+					page: page === undefined ? 1 : page,
 				};
 
 				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
@@ -64,8 +66,6 @@ export default class CadreLegalNational extends React.Component {
 			<div className={"CadreLegalNational page max-sized-page"}>
 				<h1>National framework</h1>
 
-				<p>&nbsp;</p>
-
 				{this.state.objects !== null && this.state.objects.items.length === 0
 					&& <div className="col-md-12">
 						<Message
@@ -76,13 +76,17 @@ export default class CadreLegalNational extends React.Component {
 				}
 
 				{this.state.objects !== null && this.state.objects.items.length > 0
-					&& this.state.objects.items.map((e) => (
-						<div className="col-md-12" key={e.id}>
+					&& <DynamicTable
+						items={this.state.objects.items}
+						pagination={this.state.objects.pagination}
+						changePage={(page) => this.getNationalLegalFrameworks(page)}
+						buildElement={(t) => <div className="col-md-12">
 							<ToolHorizontal
-								info={e}
+								info={t}
 							/>
 						</div>
-					))
+						}
+					/>
 				}
 
 				{this.state.objects === null
