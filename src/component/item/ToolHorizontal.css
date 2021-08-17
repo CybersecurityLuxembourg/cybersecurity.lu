@@ -52,10 +52,6 @@
     .ToolHorizontal .card-body button {
         display: none;
     }
-
-    .ToolHorizontal .card-body h5 {
-
-    }
 }
 
 @media (min-width: 500px) {

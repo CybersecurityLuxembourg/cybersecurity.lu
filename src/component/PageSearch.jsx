@@ -10,6 +10,7 @@ import Message from "./box/Message.jsx";
 import Company from "./item/Company.jsx";
 import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
 import EventHorizontal from "./item/EventHorizontal.jsx";
+import ToolHorizontal from "./item/ToolHorizontal.jsx";
 import SearchField from "./form/SearchField.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
@@ -97,12 +98,12 @@ export default class PageSearch extends React.Component {
 				? {
 					title: this.state.searchValue,
 					include_tags: "true",
-					type: ["NEWS", "EVENT"],
+					type: ["NEWS", "EVENT", "TOOL"],
 				}
 				: {
 					taxonomy_values: this.state.taxonomyValue,
 					include_tags: "true",
-					type: ["NEWS", "EVENT"],
+					type: ["NEWS", "EVENT", "TOOL"],
 				};
 
 			getRequest.call(this, "public/get_public_articles?"
@@ -303,6 +304,27 @@ export default class PageSearch extends React.Component {
 									buildElement={(a) => (
 										<div className="col-md-12">
 											<EventHorizontal
+												info={a}
+												analytics={this.props.analytics}
+											/>
+										</div>
+									)}
+								/>
+							</div>
+						}
+
+						{this.state.articles.filter((a) => a.type === "TOOL").length > 0
+							&& <div className="col-md-12">
+								<h3>{this.state.articles !== null
+									? this.state.articles.filter((a) => a.type === "TOOL").length + " " : ""}tool{this.state.articles !== null && this.state.articles.filter((a) => a.type === "TOOL").length > 1 ? "s" : ""}</h3>
+								<SimpleTable
+									numberDisplayed={3}
+									elements={this.state.articles
+										.filter((a) => a.type === "TOOL")
+										.map((a, i) => [a, i])}
+									buildElement={(a) => (
+										<div className="col-md-12">
+											<ToolHorizontal
 												info={a}
 												analytics={this.props.analytics}
 											/>
