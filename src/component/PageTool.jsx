@@ -166,16 +166,6 @@ export default class PageTool extends React.Component {
 										</button>
 									</div>
 								}
-
-								<div className="PageTool-tags">
-									{this.state.article.taxonomy_tags.map((t) => (
-										<Chip
-											key={t.name}
-											label={t.name}
-											url={"/search?taxonomy_value=" + t.id}
-										/>
-									))}
-								</div>
 							</article>
 						</div>
 					</div>
