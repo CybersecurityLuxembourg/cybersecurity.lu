@@ -1,5 +1,5 @@
 import React from "react";
-import "./CadreLegalNational.css";
+import "./FrameworkPage.css";
 import { NotificationManager as nm } from "react-notifications";
 import { dictToURI } from "../../utils/url.jsx";
 import { getRequest } from "../../utils/request.jsx";
@@ -8,11 +8,11 @@ import Message from "../box/Message.jsx";
 import ToolHorizontal from "../item/ToolHorizontal.jsx";
 import DynamicTable from "../table/DynamicTable.jsx";
 
-export default class CadreLegalNational extends React.Component {
+export default class FrameworkPage extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getNationalLegalFrameworks = this.getNationalLegalFrameworks.bind(this);
+		this.getFrameworks = this.getFrameworks.bind(this);
 
 		this.state = {
 			objects: null,
@@ -20,16 +20,16 @@ export default class CadreLegalNational extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getNationalLegalFrameworks();
+		this.getFrameworks();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.analytics === null && this.props.analytics !== null) {
-			this.getNationalLegalFrameworks();
+			this.getFrameworks();
 		}
 	}
 
-	getNationalLegalFrameworks(page) {
+	getFrameworks(page) {
 		if (this.props.analytics !== null
 			&& this.props.analytics.taxonomy_values !== undefined) {
 			this.setState({
@@ -38,7 +38,7 @@ export default class CadreLegalNational extends React.Component {
 
 			const taxonomyValues = this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "TOOL CATEGORY"
-					&& v.name === "NATIONAL FRAMEWORK")
+					&& v.name === this.props.taxonomyValueName)
 				.map((v) => v.id);
 
 			if (taxonomyValues.length > 0) {
@@ -64,8 +64,8 @@ export default class CadreLegalNational extends React.Component {
 
 	render() {
 		return (
-			<div className={"CadreLegalNational page max-sized-page"}>
-				<h1>National framework</h1>
+			<div className={"FrameworkPage page max-sized-page"}>
+				<h1>{this.props.taxonomyValueName}</h1>
 
 				{this.state.objects !== null && this.state.objects.items.length === 0
 					&& <div className="col-md-12">

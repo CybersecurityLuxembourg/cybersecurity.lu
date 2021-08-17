@@ -4,11 +4,45 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Tab from "./tab/Tab.jsx";
 import StrategieNational from "./pagestrategy/StrategieNational.jsx";
-import CadreLegalNational from "./pagestrategy/CadreLegalNational.jsx";
-import CadreLegalInternational from "./pagestrategy/CadreLegalInternational.jsx";
+import FrameworkPage from "./pagestrategy/FrameworkPage.jsx";
+import { getUrlParameter } from "../utils/url.jsx";
 
 export default class PageStrategy extends React.Component {
-	// eslint-disable-next-line class-methods-use-this
+	constructor(props) {
+		super(props);
+
+		this.onMenuClick = this.onMenuClick.bind(this);
+
+		this.state = {
+			tabs: [
+				"NationalStrategy",
+				"NationalFramework",
+				"EuropeanFramework",
+				"EuropeanFrameworkForFinancialSector",
+				"EuropeanFrameworkUnderNegociation",
+				"InternationalFramework",
+			],
+			selectedMenu: null,
+		};
+	}
+
+	componentDidMount() {
+		if (getUrlParameter("tab") !== null && this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
+			this.setState({ selectedMenu: getUrlParameter("tab") });
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.state.selectedMenu !== getUrlParameter("tab")
+			&& this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
+			this.setState({ selectedMenu: getUrlParameter("tab") });
+		}
+	}
+
+	onMenuClick(m) {
+		this.props.history.push("?tab=" + m);
+	}
+
 	render() {
 		return (
 			<div className={"PageStrategy page max-sized-page"}>
@@ -22,21 +56,44 @@ export default class PageStrategy extends React.Component {
 				</div>
 
 				<Tab
-					menu={[
+					onMenuClick={this.onMenuClick}
+					selectedMenu={this.state.selectedMenu}
+					labels={[
 						"National Strategy",
 						"National framework",
+						"European framework",
+						"<div style='font-size:12px'>&nbsp;&nbsp;- For the financial sector</div>",
+						"<div style='font-size:12px'>&nbsp;&nbsp;- Upcoming/under negotiation</div>",
 						"International framework",
 					]}
+					keys={this.state.tabs}
 					content={[
 						<StrategieNational
-							key="StrategieNational"
+							key={this.state.tabs[0]}
 						/>,
-						<CadreLegalNational
-							key="CadreLegalNational"
+						<FrameworkPage
+							taxonomyValueName={"NATIONAL FRAMEWORK"}
+							key={this.state.tabs[1]}
 							analytics={this.props.analytics}
 						/>,
-						<CadreLegalInternational
-							key="StrategieNational"
+						<FrameworkPage
+							taxonomyValueName={"EUROPEAN FRAMEWORK"}
+							key={this.state.tabs[2]}
+							analytics={this.props.analytics}
+						/>,
+						<FrameworkPage
+							taxonomyValueName={"EUROPEAN FRAMEWORK - For the financial sector"}
+							key={this.state.tabs[3]}
+							analytics={this.props.analytics}
+						/>,
+						<FrameworkPage
+							taxonomyValueName={"EUROPEAN FRAMEWORK - Upcoming/under negociation"}
+							key={this.state.tabs[4]}
+							analytics={this.props.analytics}
+						/>,
+						<FrameworkPage
+							taxonomyValueName={"INTERNATIONAL FRAMEWORK"}
+							key={this.state.tabs[5]}
 							analytics={this.props.analytics}
 						/>,
 					]}
