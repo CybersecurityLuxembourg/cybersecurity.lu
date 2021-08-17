@@ -51,6 +51,7 @@ export default class CadreLegalInternational extends React.Component {
 				type: "TOOL",
 				taxonomy_values: this.state.selectedTaxonomyValue,
 				page: page === undefined ? 1 : page,
+				include_tags: "true",
 			};
 
 			getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
@@ -116,6 +117,7 @@ export default class CadreLegalInternational extends React.Component {
 						buildElement={(t) => <div className="col-md-12">
 							<ToolHorizontal
 								info={t}
+								analytics={this.props.analytics}
 							/>
 						</div>}
 					/>

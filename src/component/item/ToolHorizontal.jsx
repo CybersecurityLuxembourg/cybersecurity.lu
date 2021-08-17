@@ -48,7 +48,6 @@ export default class ToolHorizontal extends Component {
 			&& this.props.analytics.taxonomy_values !== undefined
 			&& this.props.info.taxonomy_tags !== undefined) {
 			const taxonomyValues = this.props.analytics.taxonomy_values
-				.filter((v) => ["ARTICLE CATEGORY", "SERVICE GROUP"].indexOf(v.category) >= 0)
 				.filter((v) => this.props.info.taxonomy_tags.indexOf(v.id) >= 0)
 				.sort((a, b) => (b.category < a.category ? 1 : -1));
 
