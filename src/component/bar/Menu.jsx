@@ -161,7 +161,7 @@ export default class Menu extends React.Component {
 								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
 								<a
 									href="/strategy">
-									<div className="row legend blue-legend">
+									<div className="row legend black-legend">
 										<div className="col-md-12">
 											<div className="legend-title">
 												National Cybersecurity Strategy IV
@@ -212,23 +212,29 @@ export default class Menu extends React.Component {
 								</a>
 							</div>
 							<div>
-								<img src="/img/Slide_CSWL_1920x1080.jpg"/>
+								<img src="/img/Slide_October_1920x1080.jpg"/>
 								<a
 									href="https://www.cybersecurityweek.lu/"
 									target="_blank"
 									rel="noreferrer">
 									<div className="row legend red-legend">
-										<div className="col-md-9 Menu-hide-on-mobile">
+										<div className="col-md-12">
+											October stands for the European Cybersecurity Month, the
+											European Union’s annual campaign dedicated to promoting
+											cybersecurity among EU citizens and organisations, and to
+											providing up-to-date online security information through awareness
+											raising and sharing of good practices.
+										</div>
+
+										<div className="col-md-12 Menu-hide-on-mobile">
 											<img src="/img/logo_cswl_white.png"/>
 										</div>
-										<div className="col-md-3 legend-date Menu-hide-on-mobile">
-											18-28<br/>OCT 21
-										</div>
+
 										<div className="col-md-12">
-											CYBERSECURITY Week Luxembourg is the
-											unmissable Digital Security & Trust Advocacy Campaign bringing
-											together Cybersecurity Experts, IT players & Tech Enthusiasts.
-											Find out more.
+											In this context, Cybersecurity Week Luxembourg is the unmissable
+											Digital Security & Trust advocacy campaign bringing together
+											Cybersecurity Experts, IT players & Tech enthusiasts. 10 days,
+											10+ events.
 										</div>
 									</div>
 								</a>
