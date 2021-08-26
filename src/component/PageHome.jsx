@@ -300,7 +300,7 @@ export default class PageHome extends React.Component {
 
 				{window.location.pathname.startsWith("/newsletter")
 					&& <div className={"page max-sized-page"}>
-						<div className="row">
+						<div className="row row-spaced">
 							<div className="col-md-12">
 								<Breadcrumb>
 									<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
@@ -309,17 +309,25 @@ export default class PageHome extends React.Component {
 							</div>
 
 							<div className="col-md-12">
-								Some description about the newsletter
-							</div>
+								<h1>Monthly Newsletter of the Luxembourg Cybersecurity Ecosystem</h1>
 
-							<div className="col-md-12">
-								Click here so subscribe to the newsletter:
+								<p>
+									Keep up to date with the latest cybersecurity news in and around Luxembourg:
+									rom institutional news, to the tech corner and upcoming events, find a review
+									of all the newest developments in one place and remain a step ahead of
+									what&apos;s coming next.
+								</p>
+
+								<p>
+									Sent every first Tuesday of the month, this monthly newsletter is a great
+									opportunity to get to know the entities that make up the ecosystem.
+								</p>
 
 								{/* eslint-disable no-script-url */}
 								<button href="javascript:;"
-									className="nav-link nav-link-blue"
+									className="nav-link nav-link-blue ButtonSubscribe"
 									onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
-									HERE
+									<i className="fas fa-paper-plane"/> Subscribe now
 								</button>
 							</div>
 						</div>
@@ -478,182 +486,186 @@ export default class PageHome extends React.Component {
 					</div>
 				</div>
 
-				<div className="red-bordered">
-					<ul className="Background-petals">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
+				{!window.location.pathname.startsWith("/newsletter")
+					&& <div className="red-bordered">
+						<ul className="Background-petals">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
 
-					<ul className="Background-petals-bottom">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
+						<ul className="Background-petals-bottom">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
 
-					<div className="max-sized-page">
-						<div className="row row-spaced">
-							<div className="col-md-12">
-								<h1>Where to meet?</h1>
-							</div>
-
-							{this.state.events !== null && this.state.events.length === 0
-								&& <div className="col-md-8">
-									<Message
-										text={"No coming event found"}
-										height={300}
-									/>
+						<div className="max-sized-page">
+							<div className="row row-spaced">
+								<div className="col-md-12">
+									<h1>Where to meet?</h1>
 								</div>
-							}
 
-							{this.state.events !== null && this.state.events.length > 0
-								&& this.state.events.map((e) => (
-									<div className="col-md-4" key={e.id}>
-										<Event
-											info={e}
+								{this.state.events !== null && this.state.events.length === 0
+									&& <div className="col-md-8">
+										<Message
+											text={"No coming event found"}
+											height={300}
 										/>
 									</div>
-								))
-							}
-
-							{this.state.events === null
-								&& <div className="col-md-8">
-									<Loading
-										height={300}
-									/>
-								</div>
-							}
-
-							<div className="col-md-4 shadow-section PageHome-cswl">
-								{/* eslint-disable no-script-url */}
-								<a
-									href="https://www.cybersecurityweek.lu/"
-									target="_blank"
-									rel="noreferrer">
-									<div className="PageHome-cswl-content">
-										<img src="/img/logo_cswl_white.png"/>
-										<div className="PageHome-cswl-content-date">
-											18-28 OCT 2021
-										</div>
-										<div className="PageHome-cswl-content-desc">
-											Visit the official website!
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div className="row row-spaced">
-							<div className={"col-md-12"}>
-								<div className={"right-buttons"}>
-									<button
-										className={"red-button"}
-										onClick={() => this.props.history.push("/calendar")}
-									>
-										<i className="fas fa-arrow-alt-circle-right"/> Open the calendar
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="black-bordered">
-					<ul className="Background-petals">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-
-					<ul className="Background-petals-bottom">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-
-					<div className="max-sized-page">
-						<div className="row row-spaced">
-							<div className="col-md-12 row-spaced">
-								<h1>Ecosystem overview</h1>
-							</div>
-
-							<div className="col-md-12 row-spaced">
-								{this.state.news !== null
-									? <div className={"row"}>
-										<div className="col-md-4">
-											<a
-												className={"PageHome-link"}
-												href={getEcosystemAppURL() + "privatesector"}
-												target={"_blank"}
-												rel="noreferrer"
-											>
-												<Analytic
-													value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
-													desc={"Private companies"}
-												/>
-											</a>
-										</div>
-										<div className="col-md-4">
-											<a
-												className={"PageHome-link"}
-												href={getEcosystemAppURL() + "publicsector"}
-												target={"_blank"}
-												rel="noreferrer"
-											>
-												<Analytic
-													value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
-													desc={"Public entities"}
-												/>
-											</a>
-										</div>
-										<div className="col-md-4">
-											<a
-												className={"PageHome-link"}
-												href={getEcosystemAppURL() + "civilsociety"}
-												target={"_blank"}
-												rel="noreferrer"
-											>
-												<Analytic
-													value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
-													desc={"Civil society organisations"}
-												/>
-											</a>
-										</div>
-									</div>
-									: <Loading
-										height={200}
-									/>
 								}
-							</div>
 
-							<div className={"col-md-12"}>
-								<div className={"right-buttons"}>
-									<button
-										className={"black-button"}
-										onClick={() => window.open(getEcosystemAppURL())}
-									>
-										<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem platform
-									</button>
+								{this.state.events !== null && this.state.events.length > 0
+									&& this.state.events.map((e) => (
+										<div className="col-md-4" key={e.id}>
+											<Event
+												info={e}
+											/>
+										</div>
+									))
+								}
+
+								{this.state.events === null
+									&& <div className="col-md-8">
+										<Loading
+											height={300}
+										/>
+									</div>
+								}
+
+								<div className="col-md-4 shadow-section PageHome-cswl">
+									{/* eslint-disable no-script-url */}
+									<a
+										href="https://www.cybersecurityweek.lu/"
+										target="_blank"
+										rel="noreferrer">
+										<div className="PageHome-cswl-content">
+											<img src="/img/logo_cswl_white.png"/>
+											<div className="PageHome-cswl-content-date">
+												18-28 OCT 2021
+											</div>
+											<div className="PageHome-cswl-content-desc">
+												Visit the official website!
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div className="row row-spaced">
+								<div className={"col-md-12"}>
+									<div className={"right-buttons"}>
+										<button
+											className={"red-button"}
+											onClick={() => this.props.history.push("/calendar")}
+										>
+											<i className="fas fa-arrow-alt-circle-right"/> Open the calendar
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				}
+
+				{!window.location.pathname.startsWith("/newsletter")
+					&& <div className="black-bordered">
+						<ul className="Background-petals">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+
+						<ul className="Background-petals-bottom">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+
+						<div className="max-sized-page">
+							<div className="row row-spaced">
+								<div className="col-md-12 row-spaced">
+									<h1>Ecosystem overview</h1>
+								</div>
+
+								<div className="col-md-12 row-spaced">
+									{this.state.news !== null
+										? <div className={"row"}>
+											<div className="col-md-4">
+												<a
+													className={"PageHome-link"}
+													href={getEcosystemAppURL() + "privatesector"}
+													target={"_blank"}
+													rel="noreferrer"
+												>
+													<Analytic
+														value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
+														desc={"Private companies"}
+													/>
+												</a>
+											</div>
+											<div className="col-md-4">
+												<a
+													className={"PageHome-link"}
+													href={getEcosystemAppURL() + "publicsector"}
+													target={"_blank"}
+													rel="noreferrer"
+												>
+													<Analytic
+														value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
+														desc={"Public entities"}
+													/>
+												</a>
+											</div>
+											<div className="col-md-4">
+												<a
+													className={"PageHome-link"}
+													href={getEcosystemAppURL() + "civilsociety"}
+													target={"_blank"}
+													rel="noreferrer"
+												>
+													<Analytic
+														value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
+														desc={"Civil society organisations"}
+													/>
+												</a>
+											</div>
+										</div>
+										: <Loading
+											height={200}
+										/>
+									}
+								</div>
+
+								<div className={"col-md-12"}>
+									<div className={"right-buttons"}>
+										<button
+											className={"black-button"}
+											onClick={() => window.open(getEcosystemAppURL())}
+										>
+											<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem platform
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
 			</div>
 		);
 	}
