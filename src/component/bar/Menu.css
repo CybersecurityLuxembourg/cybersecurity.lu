@@ -304,9 +304,12 @@
 .carousel .slide .legend .legend-date {
     font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: right;
-    margin: 5px 0px 8px 0px;
+    margin: 10px 0px 8px 0px;
     font-size: 25px;
+}
 
+.carousel .slide .legend .legend-middle-logo {
+    margin-top: 10px;
 }
 
 .carousel .slide a .legend:hover {

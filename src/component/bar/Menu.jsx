@@ -162,7 +162,7 @@ export default class Menu extends React.Component {
 								<a
 									href="/strategy">
 									<div className="row legend black-legend">
-										<div className="col-md-12">
+										<div className="col-md-12 Menu-hide-on-mobile">
 											<div className="legend-title">
 												National Cybersecurity Strategy IV
 											</div>
@@ -214,27 +214,27 @@ export default class Menu extends React.Component {
 							<div>
 								<img src="/img/Slide_October_1920x1080.jpg"/>
 								<a
-									href="https://www.cybersecurityweek.lu/"
+									href="https://cybersecuritymonth.eu/"
 									target="_blank"
 									rel="noreferrer">
 									<div className="row legend red-legend">
 										<div className="col-md-12">
-											October stands for the European Cybersecurity Month, the
-											European Union’s annual campaign dedicated to promoting
-											cybersecurity among EU citizens and organisations, and to
-											providing up-to-date online security information through awareness
-											raising and sharing of good practices.
+											October stands for the European Cybersecurity Month, the EU’s
+											annual campaign dedicated to promoting cybersecurity.
 										</div>
 
-										<div className="col-md-12 Menu-hide-on-mobile">
+										<div className="col-md-9 Menu-hide-on-mobile legend-middle-logo">
 											<img src="/img/logo_cswl_white.png"/>
 										</div>
 
-										<div className="col-md-12">
-											In this context, Cybersecurity Week Luxembourg is the unmissable
-											Digital Security & Trust advocacy campaign bringing together
-											Cybersecurity Experts, IT players & Tech enthusiasts. 10 days,
-											10+ events.
+										<div className="col-md-3 legend-date Menu-hide-on-mobile">
+											18-28<br/>OCT 21
+										</div>
+
+										<div className="col-md-12 Menu-hide-on-mobile">
+											Cybersecurity Week Luxembourg is the unmissable Digital Security &
+											Trust advocacy campaign bringing together Cybersecurity Experts, IT
+											players & Tech enthusiasts.
 										</div>
 									</div>
 								</a>
