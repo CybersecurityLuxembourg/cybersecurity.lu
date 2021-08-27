@@ -443,10 +443,18 @@ export default class StrategieNational extends React.Component {
 
 						<button
 							ref={this.part4}
-							className={"StrategieNational-read-strategy"}
+							className={"full-width-button blue-button"}
 							onClick={() => window.open("pdf/National-Cybersecurity-Strategy-IV.pdf")}
 						>
-							Read the National Cybersecurity Strategy IV here
+							<i className="fas fa-file-pdf"/> Read the National Cybersecurity Strategy IV in English
+						</button>
+
+						<button
+							ref={this.part4}
+							className={"full-width-button blue-button"}
+							onClick={() => window.open("pdf/Strategie-Nationale-de-Cybersecurite-IV.pdf")}
+						>
+							<i className="fas fa-file-pdf"/> Read the National Cybersecurity Strategy IV in French
 						</button>
 
 						<p>&nbsp;</p>

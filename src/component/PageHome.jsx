@@ -322,10 +322,14 @@ export default class PageHome extends React.Component {
 									Sent every first Tuesday of the month, this monthly newsletter is a great
 									opportunity to get to know the entities that make up the ecosystem.
 								</p>
+							</div>
 
+							<p>&nbsp;</p>
+
+							<div className="col-md-12">
 								{/* eslint-disable no-script-url */}
 								<button href="javascript:;"
-									className="nav-link nav-link-blue ButtonSubscribe"
+									className="nav-link nav-link-blue full-width-button blue-button"
 									onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
 									<i className="fas fa-paper-plane"/> Subscribe now
 								</button>

@@ -227,6 +227,13 @@ button.small-button {
 	font-size: 12px;
 }
 
+button.full-width-button {
+	width: 100%;
+	opacity: 1;
+    font-variant: small-caps;
+    font-size: 20px important;
+}
+
 button:hover {
 	border-color: rgba(0,0,0,1);
 	opacity: 1;
