@@ -304,12 +304,12 @@
 .carousel .slide .legend .legend-date {
     font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: right;
-    margin: 10px 0px 8px 0px;
+    margin: 12px 0px 8px 0px;
     font-size: 25px;
 }
 
 .carousel .slide .legend .legend-middle-logo {
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .carousel .slide a .legend:hover {
@@ -415,8 +415,8 @@
     filter: alpha(opacity=30);
     box-shadow: none !important;
     background: 
-        linear-gradient( 135deg,transparent 10px,#009fe3 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,#009fe3 0) right /50.5% 100% !important;
+        linear-gradient( 135deg,transparent 10px,#e40613 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#e40613 0) right /50.5% 100% !important;
     background-repeat:no-repeat !important;
     border-radius: 0% !important;
     width: auto !important;
@@ -439,8 +439,8 @@
     filter: alpha(opacity=30);
     box-shadow: none !important;
     background: 
-        linear-gradient( 135deg,transparent 10px,#e40613 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,#e40613 0) right /50.5% 100% !important;
+        linear-gradient( 135deg,transparent 10px,#009fe3 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#009fe3 0) right /50.5% 100% !important;
     background-repeat:no-repeat !important;
     border-radius: 0% !important;
     width: auto !important;

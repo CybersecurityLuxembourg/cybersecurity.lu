@@ -184,7 +184,7 @@ export default class Menu extends React.Component {
 									href={getEcosystemAppURL()}
 									target="_blank"
 									rel="noreferrer">
-									<div className="row legend blue-legend">
+									<div className="row legend red-legend">
 										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
 											<Analytic
 												value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
@@ -217,7 +217,7 @@ export default class Menu extends React.Component {
 									href="https://cybersecuritymonth.eu/"
 									target="_blank"
 									rel="noreferrer">
-									<div className="row legend red-legend">
+									<div className="row legend blue-legend">
 										<div className="col-md-12">
 											October stands for the European Cybersecurity Month, the EU’s
 											annual campaign dedicated to promoting cybersecurity.
