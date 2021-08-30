@@ -213,31 +213,41 @@ export default class Menu extends React.Component {
 							</div>
 							<div>
 								<img src="/img/Slide_October_1920x1080.jpg"/>
-								<a
-									href="https://cybersecuritymonth.eu/"
-									target="_blank"
-									rel="noreferrer">
-									<div className="row legend blue-legend">
-										<div className="col-md-12">
-											October stands for the European Cybersecurity Month, the EU’s
-											annual campaign dedicated to promoting cybersecurity.
-										</div>
 
-										<div className="col-md-9 Menu-hide-on-mobile legend-middle-logo">
-											<img src="/img/logo_cswl_white.png"/>
+								<div className="row legend">
+									<a
+										href="https://cybersecuritymonth.eu/"
+										target="_blank"
+										rel="noreferrer">
+										<div className="blue-legend">
+											<div className="col-md-12">
+												October stands for the European Cybersecurity Month, the EU’s
+												annual campaign dedicated to promoting cybersecurity.
+											</div>
 										</div>
+									</a>
 
-										<div className="col-md-3 legend-date Menu-hide-on-mobile">
-											18-28<br/>OCT 21
-										</div>
+									<a
+										href="https://www.cybersecurityweek.lu/"
+										target="_blank"
+										rel="noreferrer">
+										<div className="row blue-legend">
+											<div className="col-md-9 Menu-hide-on-mobile">
+												<img src="/img/logo_cswl_white.png"/>
+											</div>
 
-										<div className="col-md-12 Menu-hide-on-mobile">
-											Cybersecurity Week Luxembourg is the unmissable Digital Security &
-											Trust advocacy campaign bringing together Cybersecurity Experts, IT
-											players & Tech enthusiasts.
+											<div className="col-md-3 legend-date Menu-hide-on-mobile">
+												18-28<br/>OCT 21
+											</div>
+
+											<div className="col-md-12">
+												Cybersecurity Week Luxembourg is the unmissable Digital Security &
+												Trust advocacy campaign bringing together Cybersecurity Experts, IT
+												players & Tech enthusiasts.
+											</div>
 										</div>
-									</div>
-								</a>
+									</a>
+								</div>
 							</div>
 							<div>
 								<img src="/img/Slide_CSB_1920x1080.jpg" />
