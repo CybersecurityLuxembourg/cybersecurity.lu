@@ -47,6 +47,23 @@
   padding: 5px 8px;
   text-align: center;
   color: #009fe3;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+  .Footer-network {
+    margin-bottom: 37px !important;
+  }
+}
+
+
+.Footer-network a i:hover {
+  color: #e40613 !important;
+}
+
+.Footer-documentation-and-terms a {
+  margin: 5px 8px;
+  display: block;
 }
 
 .Footer-alinea {

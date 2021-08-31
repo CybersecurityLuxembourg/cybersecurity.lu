@@ -103,16 +103,6 @@ export default class Footer extends React.Component {
 							</div>
 							<br/>
 							<div>Copyright © SECURITYMADEIN.LU g.i.e 2021</div>
-							<div>
-								<a
-									href={"/pdf/2021-07-08 - Terms of Use CYBERLUX.pdf"}
-									rel="noreferrer"
-									target="_blank"
-									title="Terms of use"
-									className="text-capitalize">
-									Terms of use
-								</a>
-							</div>
 						</div>
 						<div className="col-md-2">
 							<div className="Footer-network">
@@ -139,6 +129,24 @@ export default class Footer extends React.Component {
 									title="GitHub CyberLux"
 									className="text-capitalize">
 									<i className="fab fa-github-alt Footer-network"/>
+								</a>
+							</div>
+							<div className="Footer-documentation-and-terms">
+								<a
+									href="/pdf/Documentation of the CYBERSECURITY Luxembourg website_release_v1.4.pdf"
+									rel="noreferrer"
+									target="_blank"
+									title="Documentation"
+									className="text-capitalize">
+									<i className="fas fa-book"/> Documentation
+								</a>
+								<a
+									href={"/pdf/2021-07-08 - Terms of Use CYBERLUX.pdf"}
+									rel="noreferrer"
+									target="_blank"
+									title="Terms of use"
+									className="text-capitalize">
+									<i className="fas fa-gavel"/> Terms of use
 								</a>
 							</div>
 						</div>

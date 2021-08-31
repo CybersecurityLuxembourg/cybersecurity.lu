@@ -291,7 +291,7 @@
     font-size: 18px !important;
     line-height: 1.1 !important;
     text-align: left !important;
-    background: none;
+    background: none !important;
     margin:  0px !important;
     padding:  0px !important;
 }
