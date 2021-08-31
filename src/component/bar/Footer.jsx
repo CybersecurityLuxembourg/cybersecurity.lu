@@ -136,9 +136,9 @@ export default class Footer extends React.Component {
 									href="/pdf/Documentation of the CYBERSECURITY Luxembourg website_release_v1.4.pdf"
 									rel="noreferrer"
 									target="_blank"
-									title="Documentation"
+									title="How to use the portal?"
 									className="text-capitalize">
-									<i className="fas fa-book"/> Documentation
+									<i className="fas fa-book"/> How to use the portal?
 								</a>
 								<a
 									href={"/pdf/2021-07-08 - Terms of Use CYBERLUX.pdf"}
