@@ -47,12 +47,6 @@ export default class Menu extends React.Component {
 					<div className="Menu-description">Cybersecurity events</div>
 				</Link>
 			</Nav.Link>
-			<Nav.Link>
-				<Link to="/strategy">
-					<div className="Menu-title">Strategy</div>
-					<div className="Menu-description">National commitment</div>
-				</Link>
-			</Nav.Link>
 			<NavDropdown
 				title={
 					<div>
@@ -157,27 +151,6 @@ export default class Menu extends React.Component {
 							autoPlay={true}
 							interval={5000}
 						>
-							<div>
-								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
-								<a
-									href="/strategy">
-									<div className="row legend black-legend">
-										<div className="col-md-12 Menu-hide-on-mobile">
-											<div className="legend-title">
-												National Cybersecurity Strategy IV
-											</div>
-										</div>
-										<div className="col-md-12">
-											The National Cybersecurity Strategy IV
-											outlines how an integrated and
-											comprehensive information security approach
-											enables the government, private enterprises
-											and citizens to fully seize the opportunities
-											offered by the digital revolution. Discover it.
-										</div>
-									</div>
-								</a>
-							</div>
 							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg"/>
 								<a
@@ -288,7 +261,7 @@ export default class Menu extends React.Component {
 						<Link to="/">
 							<img
 								className={"Menu-logo"}
-								src="/img/National-platform-logo-subtitle.png"
+								src="/img/ecosystem-logo-subtitle.png"
 								alt="CYBERLUX Logo"
 							/>
 						</Link>
