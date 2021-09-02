@@ -134,7 +134,10 @@ export default class PageAbout extends React.Component {
 							cybersecurity. Cybersecurity is a key component in the
 							country’s efforts to promote all aspects of the digital
 							transformation and develop its data-driven economy. Therefore,
-							the initiative is part of the national cybersecurity strategy.
+							the initiative is part of the <a
+								href="/strategy">
+								national cybersecurity strategy
+							</a>.
 						</p>
 
 						<p>
