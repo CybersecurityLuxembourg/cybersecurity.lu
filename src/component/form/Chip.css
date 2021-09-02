@@ -60,3 +60,8 @@
 .Chip-close:hover {
     color: #ffa8b0;
 }
+
+.Chip-link-wrapper:hover {
+    cursor: pointer;
+    color: #e40613;
+}

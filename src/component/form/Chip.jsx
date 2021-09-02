@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Chip.css";
-import { Link } from "react-router-dom";
 
 export default class Chip extends Component {
 	constructor(props) {
@@ -36,9 +35,11 @@ export default class Chip extends Component {
 			return this.getChipContent();
 		}
 		return (
-			<Link to={this.props.url}>
+			<object
+				className={"Chip-link-wrapper"}
+				onClick={() => window.open(this.props.url, "_self")}>
 				{this.getChipContent()}
-			</Link>
+			</object>
 		);
 	}
 }
