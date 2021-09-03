@@ -35,6 +35,10 @@
     color: #fff !important;
 }
 
+.navbar a:hover i.fa-sort-down {
+    color: #fff !important;
+}
+
 .navbar i {
     padding-top: 12px !important;
 }
@@ -96,6 +100,10 @@
     color: #000;
 }
 
+.Menu-item {
+    position: relative;
+}
+
 .Menu-logo {
     max-width: 100%;
     width: 400px;
@@ -123,6 +131,15 @@
 
 .Menu .dropdown-item {
     padding: 8px 25px;
+}
+
+.Menu .dropdown i.fa-sort-down {
+    position: absolute;
+    display: inline-block;
+    font-size: 12px;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .Menu .Analytic {

@@ -8,11 +8,13 @@ import Menu from "./bar/Menu.jsx";
 import Footer from "./bar/Footer.jsx";
 import PageHome from "./PageHome.jsx";
 import PageNews from "./PageNews.jsx";
+import PageMarketplace from "./PageMarketplace.jsx";
 import PageCalendar from "./PageCalendar.jsx";
 import PageStrategy from "./PageStrategy.jsx";
 import PageArticle from "./PageArticle.jsx";
 import PageEvent from "./PageEvent.jsx";
 import PageTool from "./PageTool.jsx";
+import PageJobOffer from "./PageJobOffer.jsx";
 import PageAbout from "./PageAbout.jsx";
 import PageSearch from "./PageSearch.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
@@ -61,6 +63,7 @@ export default class InsideApp extends React.Component {
 						<Route path="/news/:handle" render={(props) => <PageArticle {...props} />}/>
 						<Route path="/calendar/:handle" render={(props) => <PageEvent {...props} />}/>
 						<Route path="/tool/:handle" render={(props) => <PageTool {...props} />}/>
+						<Route path="/job_offer/:handle" render={(props) => <PageJobOffer {...props} />}/>
 
 						<Route path="/news" render={(props) => <PageNews
 							analytics={this.state.analytics}
@@ -71,6 +74,10 @@ export default class InsideApp extends React.Component {
 							{...props}
 						/>}/>
 						<Route path="/strategy" render={(props) => <PageStrategy
+							analytics={this.state.analytics}
+							{...props}
+						/>}/>
+						<Route path="/marketplace" render={(props) => <PageMarketplace
 							analytics={this.state.analytics}
 							{...props}
 						/>}/>
@@ -85,6 +92,7 @@ export default class InsideApp extends React.Component {
 							path="/about"
 							render={(props) => <PageAbout {...props} />}
 						/>
+
 						<Route path="/" render={(props) => <PageHome
 							ml_account={this.state.ml_account}
 							analytics={this.state.analytics}

@@ -36,18 +36,6 @@ export default class Menu extends React.Component {
 	getNavBar() {
 		return <Nav className="mr-sm-2 ml-auto">
 			<Nav.Link>
-				<Link to="/news">
-					<div className="Menu-title">What&apos;s up?</div>
-					<div className="Menu-description">Latest news</div>
-				</Link>
-			</Nav.Link>
-			<Nav.Link>
-				<Link to="/calendar">
-					<div className="Menu-title">Where to meet?</div>
-					<div className="Menu-description">Cybersecurity events</div>
-				</Link>
-			</Nav.Link>
-			<Nav.Link>
 				<Link to="/strategy">
 					<div className="Menu-title">Strategy</div>
 					<div className="Menu-description">National commitment</div>
@@ -55,9 +43,38 @@ export default class Menu extends React.Component {
 			</Nav.Link>
 			<NavDropdown
 				title={
-					<div>
+					<div className="Menu-item">
+						<div className="Menu-title">Cyber activity</div>
+						<div className="Menu-description">Keep up to date</div>
+						<i className="fas fa-sort-down"/>
+					</div>
+				}
+				id="basic-nav-dropdown">
+				<NavDropdown.Item>
+					<Link to="/news">
+						<div className="Menu-title">What&apos;s up?</div>
+						<div className="Menu-description">Latest news</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
+					<Link to="/calendar">
+						<div className="Menu-title">Where to meet?</div>
+						<div className="Menu-description">Cybersecurity events</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
+					<Link to="/marketplace">
+						<div className="Menu-title">Job marketplace</div>
+						<div className="Menu-description">Find or suggest a position</div>
+					</Link>
+				</NavDropdown.Item>
+			</NavDropdown>
+			<NavDropdown
+				title={
+					<div className="Menu-item">
 						<div className="Menu-title">Ecosystem</div>
 						<div className="Menu-description">View on the community</div>
+						<i className="fas fa-sort-down"/>
 					</div>
 				}
 				id="basic-nav-dropdown">
