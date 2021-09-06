@@ -39,8 +39,7 @@ export default class PageMarketplace extends React.Component {
 	componentDidUpdate(_, prevState) {
 		if (prevState.filters.taxonomy_values !== this.state.filters.taxonomy_values
 			|| (prevState.filters.title !== this.state.filters.title
-				&& (this.state.filters.title.length === null
-					|| this.state.filters.title.length === undefined
+				&& (this.state.filters.title
 					|| this.state.filters.title.length > 2
 					|| this.state.filters.title.length === 0))) {
 			this.getArticles();
@@ -69,6 +68,26 @@ export default class PageMarketplace extends React.Component {
 		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
 			this.setState({
 				articles: data,
+			}, () => {
+				let companyIds = data.items
+					? data.items.map((a) => (a.company_tags ? a.company_tags : []))
+					: [];
+				companyIds = [].concat(companyIds);
+				companyIds = [...new Set(companyIds)];
+
+				const params2 = dictToURI({
+					ids: companyIds,
+				});
+
+				getRequest.call(this, "public/get_public_companies?" + params2, (data2) => {
+					this.setState({
+						companies: data2,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -133,6 +152,7 @@ export default class PageMarketplace extends React.Component {
 							<JobOfferHorizontal
 								info={a}
 								analytics={this.props.analytics}
+								companies={this.state.companies}
 							/>
 						</div>
 						}
