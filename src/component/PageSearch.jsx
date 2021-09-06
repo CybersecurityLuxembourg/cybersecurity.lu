@@ -11,8 +11,10 @@ import Company from "./item/Company.jsx";
 import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
 import EventHorizontal from "./item/EventHorizontal.jsx";
 import ToolHorizontal from "./item/ToolHorizontal.jsx";
+import JobOfferHorizontal from "./item/JobOfferHorizontal.jsx";
 import SearchField from "./form/SearchField.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
+import DynamicTable from "./table/DynamicTable.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
 
 export default class PageSearch extends React.Component {
@@ -20,14 +22,17 @@ export default class PageSearch extends React.Component {
 		super(props);
 
 		this.getEntities = this.getEntities.bind(this);
+		this.getArticles = this.getArticles.bind(this);
+		this.getArticlesByType = this.getArticlesByType.bind(this);
+		this.hasLoaded = this.hasLoaded.bind(this);
 
 		this.state = {
+			articleTypes: ["NEWS", "EVENT", "TOOL", "JOB OFFER"],
 			searchValue: getUrlParameter("r") === undefined || getUrlParameter("r") === null
 				? null : decodeURI(getUrlParameter("r")),
 			taxonomyValue: getUrlParameter("taxonomy_value") === undefined
 				? null : getUrlParameter("taxonomy_value"),
 			entities: null,
-			articles: null,
 		};
 	}
 
@@ -68,8 +73,8 @@ export default class PageSearch extends React.Component {
 	}
 
 	getEntities() {
-		if ((this.state.searchValue !== null && this.state.searchValue.length > 2)
-			|| this.state.taxonomyValue !== null) {
+		if ((this.state.searchValue && this.state.searchValue.length > 2)
+			|| this.state.taxonomyValue) {
 			const filters = this.state.taxonomyValue === null
 				? { name: this.state.searchValue }
 				: { taxonomy_values: this.state.taxonomyValue };
@@ -92,24 +97,32 @@ export default class PageSearch extends React.Component {
 	}
 
 	getArticles() {
-		if ((this.state.searchValue !== null && this.state.searchValue.length > 2)
-			|| this.state.taxonomyValue !== null) {
+		for (let i = 0; i < this.state.articleTypes.length; i++) {
+			this.getArticlesByType(this.state.articleTypes[i]);
+		}
+	}
+
+	getArticlesByType(type, page) {
+		if ((this.state.searchValue && this.state.searchValue.length > 2)
+			|| this.state.taxonomyValue) {
 			const filters = this.state.taxonomyValue === null
 				? {
 					title: this.state.searchValue,
 					include_tags: "true",
-					type: ["NEWS", "EVENT", "TOOL"],
+					type,
+					page,
 				}
 				: {
 					taxonomy_values: this.state.taxonomyValue,
 					include_tags: "true",
-					type: ["NEWS", "EVENT", "TOOL"],
+					type,
+					page,
 				};
 
 			getRequest.call(this, "public/get_public_articles?"
 				+ dictToURI(filters), (data) => {
 				this.setState({
-					articles: data.items,
+					[type.replace(" ", "_")]: data,
 				});
 			}, (response) => {
 				nm.warning(response.statusText);
@@ -118,14 +131,14 @@ export default class PageSearch extends React.Component {
 			});
 		} else {
 			this.setState({
-				articles: null,
+				[type.replace(" ", "_")]: null,
 			});
 		}
 	}
 
 	getTaxonomyValues() {
-		if (this.props.analytics !== null
-			&& this.state.searchValue !== null
+		if (this.props.analytics
+			&& this.state.searchValue
 			&& this.state.searchValue.length > 2) {
 			const words = this.state.searchValue.toLowerCase().split(" ");
 			const values = [];
@@ -166,8 +179,19 @@ export default class PageSearch extends React.Component {
 			key={"Unfound"}
 			label={"Unfound"}
 			url={"/search?taxonomy_value=" + id}
-			onClick={() => this.setState({ taxonomyValue: null })}
+			onClick={() => {
+				this.setState({ taxonomyValue: null });
+				this.props.history.push("/search");
+			}}
 		/>;
+	}
+
+	hasLoaded() {
+		return this.state.entities
+			&& this.state.NEWS
+			&& this.state.EVENT
+			&& this.state.TOOL
+			&& this.state.JOB_OFFER;
 	}
 
 	render() {
@@ -217,8 +241,7 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{(this.state.entities === null
-					|| this.state.articles === null)
+				{!this.hasLoaded()
 					&& this.state.searchValue !== null && this.state.searchValue.length >= 3
 					&& <div className="row">
 						<div className="col-md-12">
@@ -229,8 +252,7 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{(this.state.entities === null
-					|| this.state.articles === null)
+				{this.hasLoaded()
 					&& this.state.searchValue !== null && this.state.searchValue.length < 3
 					&& <div className="row">
 						<div className="col-md-12">
@@ -242,8 +264,7 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{(this.state.entities === null
-					|| this.state.articles === null)
+				{this.hasLoaded()
 					&& this.state.searchValue === null
 					&& <div className="row">
 						<div className="col-md-12">
@@ -255,10 +276,11 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{(this.state.entities !== null
-					&& this.state.articles !== null)
-					&& this.state.entities.length === 0
-					&& this.state.articles.length === 0
+				{this.state.entities && this.state.entities.items.length > 0
+					&& this.state.NEWS && this.state.NEWS.items.length > 0
+					&& this.state.EVENT && this.state.EVENT.items.length > 0
+					&& this.state.TOOL && this.state.TOOL.items.length > 0
+					&& this.state.JOB_OFFER && this.state.JOB_OFFER.items.length > 0
 					&& <div className="row">
 						<div className="col-md-12">
 							<Message
@@ -269,86 +291,107 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{this.state.articles !== null && this.state.articles.length > 0
-					&& <div className="row">
-						{this.state.articles.filter((a) => a.type === "NEWS").length > 0
-							&& <div className="col-md-12">
-								<h3>{this.state.articles !== null
-									? this.state.articles.filter((a) => a.type === "NEWS").length + " " : ""}news</h3>
-								<SimpleTable
-									numberDisplayed={3}
-									elements={this.state.articles
-										.filter((a) => a.type === "NEWS")
-										.map((a, i) => [a, i])}
-									buildElement={(a) => (
-										<div className="col-md-12">
-											<ArticleHorizontal
-												info={a}
-												analytics={this.props.analytics}
-											/>
-										</div>
-									)}
-								/>
-							</div>
-						}
-
-						{this.state.articles.filter((a) => a.type === "EVENT").length > 0
-							&& <div className="col-md-12">
-								<h3>{this.state.articles !== null
-									? this.state.articles.filter((a) => a.type === "EVENT").length + " " : ""}event{this.state.articles !== null && this.state.articles.filter((a) => a.type === "EVENT").length > 1 ? "s" : ""}</h3>
-								<SimpleTable
-									numberDisplayed={3}
-									elements={this.state.articles
-										.filter((a) => a.type === "EVENT")
-										.map((a, i) => [a, i])}
-									buildElement={(a) => (
-										<div className="col-md-12">
-											<EventHorizontal
-												info={a}
-												analytics={this.props.analytics}
-											/>
-										</div>
-									)}
-								/>
-							</div>
-						}
-
-						{this.state.articles.filter((a) => a.type === "TOOL").length > 0
-							&& <div className="col-md-12">
-								<h3>{this.state.articles !== null
-									? this.state.articles.filter((a) => a.type === "TOOL").length + " " : ""}tool{this.state.articles !== null && this.state.articles.filter((a) => a.type === "TOOL").length > 1 ? "s" : ""}</h3>
-								<SimpleTable
-									numberDisplayed={3}
-									elements={this.state.articles
-										.filter((a) => a.type === "TOOL")
-										.map((a, i) => [a, i])}
-									buildElement={(a) => (
-										<div className="col-md-12">
-											<ToolHorizontal
-												info={a}
-												analytics={this.props.analytics}
-											/>
-										</div>
-									)}
-								/>
-							</div>
-						}
-					</div>
-				}
-
-				{this.state.entities !== null && this.state.entities.length > 0
+				{this.state.entities && this.state.entities.items.length > 0
 					&& <div className="row">
 						<div className="col-md-12">
-							<h3>{this.state.entities !== null ? this.state.entities.length + " " : ""}entit{this.state.entities !== null && this.state.entities.length > 1 ? "ies" : "y"}</h3>
+							<h3>{this.state.entities !== null ? this.state.entities.items.length + " " : ""}entit{this.state.entities.items.length > 1 ? "ies" : "y"}</h3>
 						</div>
 						<div className="col-md-12">
 							<SimpleTable
 								numberDisplayed={6}
-								elements={this.state.entities.map((a, i) => [a, i])}
+								elements={this.state.entities.items.map((a, i) => [a, i])}
 								buildElement={(a) => (
 									<div className="col-md-6">
 										<Company
 											info={a}
+										/>
+									</div>
+								)}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.NEWS && this.state.NEWS.items.length > 0
+					&& <div className="row">
+						<div className="col-md-12">
+							<h3>{this.state.NEWS !== null
+								? this.state.NEWS.length + " " : ""}news</h3>
+							<DynamicTable
+								items={this.state.NEWS.items}
+								pagination={this.state.NEWS.pagination}
+								changePage={(page) => this.getArticlesByType("NEWS", page)}
+								buildElement={(a) => (
+									<div className="col-md-12">
+										<ArticleHorizontal
+											info={a}
+											analytics={this.props.analytics}
+										/>
+									</div>
+								)}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.EVENT && this.state.EVENT.items.length > 0
+					&& <div className="row">
+						<div className="col-md-12">
+							<h3>{this.state.EVENT !== null
+								? this.state.EVENT.length + " " : ""}event{this.state.EVENT.length > 1 ? "s" : ""}</h3>
+							<DynamicTable
+								items={this.state.EVENT.items}
+								pagination={this.state.EVENT.pagination}
+								changePage={(page) => this.getArticlesByType("NEWS", page)}
+								buildElement={(a) => (
+									<div className="col-md-12">
+										<EventHorizontal
+											info={a}
+											analytics={this.props.analytics}
+										/>
+									</div>
+								)}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.TOOL && this.state.TOOL.items.length > 0
+					&& <div className="row">
+						<div className="col-md-12">
+							<h3>{this.state.TOOL !== null
+								? this.state.TOOL.length + " " : ""}tool{this.state.TOOL.length > 1 ? "s" : ""}</h3>
+							<DynamicTable
+								items={this.state.TOOL.items}
+								pagination={this.state.TOOL.pagination}
+								changePage={(page) => this.getArticlesByType("TOOL", page)}
+								buildElement={(a) => (
+									<div className="col-md-12">
+										<ToolHorizontal
+											info={a}
+											analytics={this.props.analytics}
+										/>
+									</div>
+								)}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.JOB_OFFER && this.state.JOB_OFFER.items.length > 0
+					&& <div className="row">
+						<div className="col-md-12">
+							<h3>{this.state.JOB_OFFER !== null
+								? this.state.JOB_OFFER.length + " " : ""}job offer{this.state.JOB_OFFER.length > 1 ? "s" : ""}</h3>
+							<DynamicTable
+								items={this.state.JOB_OFFER.items}
+								pagination={this.state.JOB_OFFER.pagination}
+								changePage={(page) => this.getArticlesByType("JOB_OFFER", page)}
+								buildElement={(a) => (
+									<div className="col-md-12">
+										<JobOfferHorizontal
+											info={a}
+											analytics={this.props.analytics}
 										/>
 									</div>
 								)}
