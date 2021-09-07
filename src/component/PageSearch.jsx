@@ -28,10 +28,8 @@ export default class PageSearch extends React.Component {
 
 		this.state = {
 			articleTypes: ["NEWS", "EVENT", "TOOL", "JOB OFFER"],
-			searchValue: getUrlParameter("r") === undefined || getUrlParameter("r") === null
-				? null : decodeURI(getUrlParameter("r")),
-			taxonomyValue: getUrlParameter("taxonomy_value") === undefined
-				? null : getUrlParameter("taxonomy_value"),
+			searchValue: getUrlParameter("r") ? decodeURI(getUrlParameter("r")) : null,
+			taxonomyValue: getUrlParameter("taxonomy_value") ? getUrlParameter("taxonomy_value") : null,
 			entities: null,
 		};
 	}
@@ -111,12 +109,14 @@ export default class PageSearch extends React.Component {
 					include_tags: "true",
 					type,
 					page,
+					per_page: 3,
 				}
 				: {
 					taxonomy_values: this.state.taxonomyValue,
 					include_tags: "true",
 					type,
 					page,
+					per_page: 3,
 				};
 
 			getRequest.call(this, "public/get_public_articles?"
@@ -170,14 +170,17 @@ export default class PageSearch extends React.Component {
 					key={values[0].id}
 					label={values[0].name}
 					url={"/search?taxonomy_value=" + id}
-					onClick={() => this.setState({ taxonomyValue: null })}
+					onClick={() => {
+						this.setState({ taxonomyValue: null });
+						this.props.history.push("/search");
+					}}
 				/>;
 			}
 		}
 
 		return <Chip
-			key={"Unfound"}
-			label={"Unfound"}
+			key={"Loading..."}
+			label={"Loading..."}
 			url={"/search?taxonomy_value=" + id}
 			onClick={() => {
 				this.setState({ taxonomyValue: null });
@@ -187,11 +190,11 @@ export default class PageSearch extends React.Component {
 	}
 
 	hasLoaded() {
-		return this.state.entities
-			&& this.state.NEWS
-			&& this.state.EVENT
-			&& this.state.TOOL
-			&& this.state.JOB_OFFER;
+		return this.state.entities !== null
+			&& this.state.NEWS !== null
+			&& this.state.EVENT !== null
+			&& this.state.TOOL !== null
+			&& this.state.JOB_OFFER !== null;
 	}
 
 	render() {
@@ -252,8 +255,7 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{this.hasLoaded()
-					&& this.state.searchValue !== null && this.state.searchValue.length < 3
+				{this.state.searchValue && this.state.searchValue.length < 3
 					&& <div className="row">
 						<div className="col-md-12">
 							<Message
@@ -264,8 +266,8 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{this.hasLoaded()
-					&& this.state.searchValue === null
+				{!this.state.searchValue
+					&& !this.state.taxonomyValue
 					&& <div className="row">
 						<div className="col-md-12">
 							<Message
@@ -276,11 +278,11 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{this.state.entities && this.state.entities.items.length > 0
-					&& this.state.NEWS && this.state.NEWS.items.length > 0
-					&& this.state.EVENT && this.state.EVENT.items.length > 0
-					&& this.state.TOOL && this.state.TOOL.items.length > 0
-					&& this.state.JOB_OFFER && this.state.JOB_OFFER.items.length > 0
+				{this.state.entities && this.state.entities.length === 0
+					&& this.state.NEWS && this.state.NEWS.items.length === 0
+					&& this.state.EVENT && this.state.EVENT.items.length === 0
+					&& this.state.TOOL && this.state.TOOL.items.length === 0
+					&& this.state.JOB_OFFER && this.state.JOB_OFFER.items.length === 0
 					&& <div className="row">
 						<div className="col-md-12">
 							<Message
@@ -291,15 +293,15 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{this.state.entities && this.state.entities.items.length > 0
+				{this.state.entities && this.state.entities.length > 0
 					&& <div className="row">
 						<div className="col-md-12">
-							<h3>{this.state.entities !== null ? this.state.entities.items.length + " " : ""}entit{this.state.entities.items.length > 1 ? "ies" : "y"}</h3>
+							<h3>{this.state.entities.length + " "}entit{this.state.entities.length > 1 ? "ies" : "y"}</h3>
 						</div>
 						<div className="col-md-12">
 							<SimpleTable
 								numberDisplayed={6}
-								elements={this.state.entities.items.map((a, i) => [a, i])}
+								elements={this.state.entities.map((a, i) => [a, i])}
 								buildElement={(a) => (
 									<div className="col-md-6">
 										<Company
@@ -316,7 +318,7 @@ export default class PageSearch extends React.Component {
 					&& <div className="row">
 						<div className="col-md-12">
 							<h3>{this.state.NEWS !== null
-								? this.state.NEWS.length + " " : ""}news</h3>
+								? this.state.NEWS.pagination.total + " " : ""}news</h3>
 							<DynamicTable
 								items={this.state.NEWS.items}
 								pagination={this.state.NEWS.pagination}
@@ -338,11 +340,11 @@ export default class PageSearch extends React.Component {
 					&& <div className="row">
 						<div className="col-md-12">
 							<h3>{this.state.EVENT !== null
-								? this.state.EVENT.length + " " : ""}event{this.state.EVENT.length > 1 ? "s" : ""}</h3>
+								? this.state.EVENT.pagination.total + " " : ""}event{this.state.EVENT.pagination.total > 1 ? "s" : ""}</h3>
 							<DynamicTable
 								items={this.state.EVENT.items}
 								pagination={this.state.EVENT.pagination}
-								changePage={(page) => this.getArticlesByType("NEWS", page)}
+								changePage={(page) => this.getArticlesByType("EVENT", page)}
 								buildElement={(a) => (
 									<div className="col-md-12">
 										<EventHorizontal
@@ -360,7 +362,7 @@ export default class PageSearch extends React.Component {
 					&& <div className="row">
 						<div className="col-md-12">
 							<h3>{this.state.TOOL !== null
-								? this.state.TOOL.length + " " : ""}tool{this.state.TOOL.length > 1 ? "s" : ""}</h3>
+								? this.state.TOOL.pagination.total + " " : ""}tool{this.state.TOOL.pagination.total > 1 ? "s" : ""}</h3>
 							<DynamicTable
 								items={this.state.TOOL.items}
 								pagination={this.state.TOOL.pagination}
@@ -381,12 +383,11 @@ export default class PageSearch extends React.Component {
 				{this.state.JOB_OFFER && this.state.JOB_OFFER.items.length > 0
 					&& <div className="row">
 						<div className="col-md-12">
-							<h3>{this.state.JOB_OFFER !== null
-								? this.state.JOB_OFFER.length + " " : ""}job offer{this.state.JOB_OFFER.length > 1 ? "s" : ""}</h3>
+							<h3>{this.state.JOB_OFFER.pagination.total + " "}job offer{this.state.JOB_OFFER.pagination.total > 1 ? "s" : ""}</h3>
 							<DynamicTable
 								items={this.state.JOB_OFFER.items}
 								pagination={this.state.JOB_OFFER.pagination}
-								changePage={(page) => this.getArticlesByType("JOB_OFFER", page)}
+								changePage={(page) => this.getArticlesByType("JOB OFFER", page)}
 								buildElement={(a) => (
 									<div className="col-md-12">
 										<JobOfferHorizontal

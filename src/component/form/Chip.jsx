@@ -9,16 +9,26 @@ export default class Chip extends Component {
 		};
 	}
 
-	getChipContent() {
+	render() {
 		return <div className="Chip">
 			<div
 				className="Chip-head"
 				style={{ backgroundColor: this.props.color !== undefined ? this.props.color : null }}>
 				<i className="fas fa-hashtag"/>
 			</div>
-			<div className="Chip-content">
-				{this.props.label}
-			</div>
+
+			<object
+				className={"Chip-link-wrapper"}
+				onClick={() => {
+					if (this.props.url) {
+						window.open(this.props.url, "_self");
+					}
+				}}>
+				<div className="Chip-content">
+					{this.props.label}
+				</div>
+			</object>
+
 			{this.props.onClick !== undefined
 				? <div className="Chip-close">
 					<i
@@ -28,18 +38,5 @@ export default class Chip extends Component {
 				</div>
 				: ""}
 		</div>;
-	}
-
-	render() {
-		if (this.props.url === undefined) {
-			return this.getChipContent();
-		}
-		return (
-			<object
-				className={"Chip-link-wrapper"}
-				onClick={() => window.open(this.props.url, "_self")}>
-				{this.getChipContent()}
-			</object>
-		);
 	}
 }
