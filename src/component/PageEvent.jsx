@@ -76,7 +76,7 @@ export default class PageEvent extends React.Component {
 							<article>
 								<div className='PageEvent-content-cover'>
 									{this.state.article.image !== null
-										? <img src={getApiURL() + "public/get_image/" + this.state.article.image}/>
+										? <img src={getApiURL() + "public/get_public_image/" + this.state.article.image}/>
 										: ""}
 									<div className='PageEvent-publication-date'>
 										{dateToString(this.state.article.start_date, "DD MMM YYYY HH:mm")}

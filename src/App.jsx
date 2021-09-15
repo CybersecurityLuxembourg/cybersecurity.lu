@@ -16,7 +16,7 @@ export default class App extends React.Component {
 
 	// eslint-disable-next-line class-methods-use-this
 	componentDidMount() {
-		document.getElementById("favicon").href = getApiURL() + "public/get_image/favicon.ico";
+		document.getElementById("favicon").href = getApiURL() + "public/get_public_image/favicon.ico";
 	}
 
 	render() {

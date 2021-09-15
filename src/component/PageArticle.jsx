@@ -141,7 +141,7 @@ export default class PageArticle extends React.Component {
 								<Helmet>
 									<meta prefix="og: http://ogp.me/ns#" property="og:title" content={this.state.article.title}/>
 									<meta prefix="og: http://ogp.me/ns#" property="og:description" content={this.state.article.abstract}/>
-									<meta prefix="og: http://ogp.me/ns#" property="og:image" content={getApiURL() + "public/get_image/" + this.state.article.image}/>
+									<meta prefix="og: http://ogp.me/ns#" property="og:image" content={getApiURL() + "public/get_public_image/" + this.state.article.image}/>
 									<meta prefix="og: http://ogp.me/ns#" property="og:url" content={this.state.article.link !== undefined
 										&& this.state.article.link !== null
 										&& this.state.article.link.length > 0
@@ -153,7 +153,7 @@ export default class PageArticle extends React.Component {
 
 								<div className='PageArticle-content-cover'>
 									{this.state.article.image !== null
-										? <img src={getApiURL() + "public/get_image/" + this.state.article.image}/>
+										? <img src={getApiURL() + "public/get_public_image/" + this.state.article.image}/>
 										: ""}
 									<div className='PageArticle-publication-date'>
 										{dateToString(this.state.article.publication_date, "DD MMM YYYY")}

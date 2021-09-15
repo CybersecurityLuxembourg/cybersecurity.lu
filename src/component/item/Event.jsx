@@ -20,7 +20,7 @@ export default class Event extends Component {
 				{this.props.info.image !== null && this.props.info.image !== undefined
 					? <img
 						className="card-img-top"
-						src={getApiURL() + "public/get_image/" + this.props.info.image}
+						src={getApiURL() + "public/get_public_image/" + this.props.info.image}
 						alt="Card image cap"/>
 					: <NoImage
 						height={200}
