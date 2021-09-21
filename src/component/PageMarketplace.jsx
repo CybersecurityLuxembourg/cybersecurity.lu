@@ -72,7 +72,7 @@ export default class PageMarketplace extends React.Component {
 				let companyIds = data.items
 					? data.items.map((a) => (a.company_tags ? a.company_tags : []))
 					: [];
-				companyIds = [].concat(companyIds);
+				companyIds = Array.prototype.concat.apply([], companyIds);
 				companyIds = [...new Set(companyIds)];
 
 				const params2 = dictToURI({
