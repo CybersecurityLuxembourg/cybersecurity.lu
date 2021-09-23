@@ -18,3 +18,63 @@
 .rbc-row-content {
 	z-index: 1 !important;
 }
+
+#PageCalendar .shadow-section {
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	border-radius: .25rem;
+}
+
+.PageCalendar-blue-block {
+	margin-bottom:  25px;
+	padding: 25px;
+	background-color: rgba(188, 235, 255, 0.2) !important;
+	color: #009fe3 !important;
+	text-align: center;
+	cursor: pointer;
+  	justify-content: center;
+  	align-items: center;
+  	font-size: 30px;
+  	line-height:  1.2;
+  	font-variant: small-caps;
+  	-webkit-transition: font-size .5s ease;
+	-moz-transition: font-size .5s ease;
+	-o-transition: font-size .5s ease;
+	transition: font-size .5s ease;
+}
+
+.PageCalendar-blue-block img {
+	max-height: 200px;
+	margin: 25px 0px;
+	font-size: white;
+	-webkit-transition: .5s ease;
+	-moz-transition: .5s ease;
+	-o-transition: .5s ease;
+	transition: .5s ease;
+}
+
+.PageCalendar-blue-block:hover {
+	font-size: 40px !important;
+}
+
+.PageCalendar-blue-block:hover img {
+	max-height: 250px;
+	margin: 0px 0px;
+}
+
+.PageCalendar-blue-block-text-wrapper {
+	height: 100%;
+	text-align: center;
+	cursor: pointer;
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	text-decoration: none;
+}
+
+.PageCalendar-blue-block a {
+  	text-decoration: none !important;
+}
+
+.PageCalendar-blue-block a:hover {
+  	color: #009fe3 !important;
+}
