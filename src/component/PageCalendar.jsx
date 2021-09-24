@@ -142,7 +142,7 @@ export default class PageCalendar extends React.Component {
 								target="_blank"
 								rel="noreferrer">
 								<div className="PageCalendar-blue-block-text-wrapper">
-									October stands for the European Cybersecurity Month, the EU’s
+									October stands for the European Cyber Security Month, the EU’s
 									annual campaign dedicated to promoting cybersecurity.
 								</div>
 							</a>
