@@ -22,6 +22,7 @@ export default class PageHome extends React.Component {
 		this.getCybersecurityBreakfastEvents = this.getCybersecurityBreakfastEvents.bind(this);
 
 		this.state = {
+			memberNews: null,
 			newsLTAC: null,
 			newsTC: null,
 			newsCTA: null,
@@ -41,6 +42,7 @@ export default class PageHome extends React.Component {
 		this.getNews("CYBERSECURITY BREAKFAST", "breakfastArticles");
 		this.getEventsOutOfBreakfast();
 		this.getCybersecurityBreakfastEvents();
+		this.getMemberNews();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -53,6 +55,7 @@ export default class PageHome extends React.Component {
 			this.getNews("CYBERSECURITY BREAKFAST", "breakfastArticles");
 			this.getEventsOutOfBreakfast();
 			this.getCybersecurityBreakfastEvents();
+			this.getMemberNews();
 		}
 	}
 
@@ -97,6 +100,26 @@ export default class PageHome extends React.Component {
 				nm.error(error.message);
 			});
 		}
+	}
+
+	getMemberNews() {
+		const params = {
+			type: "NEWS",
+			include_tags: "true",
+			is_created_by_admin: false,
+			per_page: 3,
+			page: 1,
+		};
+
+		getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
+			this.setState({
+				memberNews: data.items,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
 	}
 
 	getCybersecurityBreakfastEvents() {
@@ -193,6 +216,33 @@ export default class PageHome extends React.Component {
 				<Article
 					info={a}
 					hidePublicationDate={hidePublicationDate}
+				/>
+			</div>);
+		}
+
+		return "";
+	}
+
+	getMemberNewsContent() {
+		if (!this.state.memberNews) {
+			return <Loading
+				height={150}
+			/>;
+		}
+
+		if (this.props.analytics) {
+			if (this.state.memberNews.length === 0) {
+				return <Message
+					text={"No article found"}
+					height={150}
+				/>;
+			}
+
+			return this.state.memberNews.map((a) => <div
+				className={"col-md-4"}
+				key={a.id}>
+				<Article
+					info={a}
 				/>
 			</div>);
 		}
@@ -363,6 +413,23 @@ export default class PageHome extends React.Component {
 						<div className="row">
 							<div className="col-md-12">
 								<h1>What&apos;s up?</h1>
+							</div>
+
+							<div className="col-md-12">
+								<div className="row">
+									<div className="col-md-12">
+										<a
+											className="PageHome-title-link"
+											href={"/news?member_news_only=true"}>
+											<div className="PageHome-title">
+												<h3>MEMBER NEWS <span>more</span></h3>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div className="row">
+									{this.getMemberNewsContent()}
+								</div>
 							</div>
 
 							<div className="col-md-8">
