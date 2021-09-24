@@ -238,7 +238,7 @@ export default class Menu extends React.Component {
 										rel="noreferrer">
 										<div className="blue-legend">
 											<div className="col-md-12">
-												October stands for the European Cybersecurity Month, the EU’s
+												October stands for the European Cyber Security Month, the EU’s
 												annual campaign dedicated to promoting cybersecurity.
 											</div>
 										</div>
