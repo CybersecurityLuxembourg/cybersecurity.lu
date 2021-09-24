@@ -108,6 +108,14 @@ export default class ArticleSearch extends React.Component {
 						onChange={(v) => this.props.onChange("taxonomy_values",
 							v.concat(this.getSelectedECSO()))}
 					/>
+					<FormLine
+						label={"Show member news only"}
+						type={"checkbox"}
+						value={this.props.filters.member_news_only}
+						onChange={() => this.props
+							.onChange("member_news_only", !this.props.filters.member_news_only)
+						}
+					/>
 				</div>
 			</div>
 		);

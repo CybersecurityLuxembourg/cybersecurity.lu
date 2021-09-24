@@ -28,6 +28,7 @@ export default class PageNews extends React.Component {
 				include_tags: "true",
 				per_page: 20,
 				page: getUrlParameter("page") !== null ? parseInt(getUrlParameter("page"), 10) : 1,
+				member_news_only: getUrlParameter("member_news_only") === "true",
 			},
 		};
 	}
@@ -38,6 +39,7 @@ export default class PageNews extends React.Component {
 
 	componentDidUpdate(_, prevState) {
 		if (prevState.filters.taxonomy_values !== this.state.filters.taxonomy_values
+			|| prevState.filters.member_news_only !== this.state.filters.member_news_only
 			|| (prevState.filters.title !== this.state.filters.title
 				&& (this.state.filters.title.length === null
 					|| this.state.filters.title.length === undefined
@@ -53,15 +55,23 @@ export default class PageNews extends React.Component {
 			page: Number.isInteger(page) ? page : this.state.filters.page,
 		});
 
-		const params = dictToURI({
+		let params = {
 			...this.state.filters,
 			page: Number.isInteger(page) ? page : this.state.filters.page,
-		});
+			is_created_by_admin: this.state.filters.member_news_only
+				? false : undefined,
+		};
+
+		delete params.member_news_only;
+		params = dictToURI(params);
 
 		const urlParams = dictToURI({
 			taxonomy_values: this.state.filters.taxonomy_values,
 			page: Number.isInteger(page) ? page : this.state.filters.page,
+			member_news_only: this.state.filters.member_news_only ? true : undefined,
 		});
+
+		console.log(params);
 
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + urlParams);
