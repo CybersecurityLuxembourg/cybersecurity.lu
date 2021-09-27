@@ -23,6 +23,7 @@ export default class PageHome extends React.Component {
 
 		this.state = {
 			memberNews: null,
+			memberNewsCompanies: null,
 			newsLTAC: null,
 			newsTC: null,
 			newsCTA: null,
@@ -114,6 +115,27 @@ export default class PageHome extends React.Component {
 		getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
 			this.setState({
 				memberNews: data.items,
+			}, () => {
+				const params2 = {
+					ids: [
+						Array.prototype.concat.apply(
+							[],
+							data.items
+								.filter((i) => i.company_tags)
+								.map((i) => i.company_tags),
+						),
+					],
+				};
+
+				getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
+					this.setState({
+						memberNewsCompanies: data2,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -243,6 +265,7 @@ export default class PageHome extends React.Component {
 				key={a.id}>
 				<Article
 					info={a}
+					companies={this.state.memberNewsCompanies}
 				/>
 			</div>);
 		}
