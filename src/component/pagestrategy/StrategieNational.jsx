@@ -444,7 +444,7 @@ export default class StrategieNational extends React.Component {
 						<button
 							ref={this.part4}
 							className={"full-width-button blue-button"}
-							onClick={() => window.open("pdf/National-Cybersecurity-Strategy-IV.pdf")}
+							onClick={() => window.open("https://hcpn.gouvernement.lu/en/publications/strategie-nationale-cybersecurite-4/strategie-nationale-cybersecurite-4.html")}
 						>
 							<i className="fas fa-file-pdf"/> Read the National Cybersecurity Strategy IV in English
 						</button>
@@ -452,7 +452,7 @@ export default class StrategieNational extends React.Component {
 						<button
 							ref={this.part4}
 							className={"full-width-button blue-button"}
-							onClick={() => window.open("pdf/Strategie-Nationale-de-Cybersecurite-IV.pdf")}
+							onClick={() => window.open("https://hcpn.gouvernement.lu/fr/publications/strategie-nationale-cybersecurite-4/strategie-nationale-cybersecurite-4.html")}
 						>
 							<i className="fas fa-file-pdf"/> Read the National Cybersecurity Strategy IV in French
 						</button>
