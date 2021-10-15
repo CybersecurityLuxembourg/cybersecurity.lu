@@ -10,7 +10,7 @@ import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { getEcosystemAppURL } from "../utils/env.jsx";
+import { getEcosystemAppURL, getPrivateAppURL } from "../utils/env.jsx";
 import { dictToURI } from "../utils/url.jsx";
 
 export default class PageHome extends React.Component {
@@ -108,7 +108,7 @@ export default class PageHome extends React.Component {
 			type: "NEWS",
 			include_tags: "true",
 			is_created_by_admin: false,
-			per_page: 3,
+			per_page: 2,
 			page: 1,
 		};
 
@@ -261,7 +261,7 @@ export default class PageHome extends React.Component {
 			}
 
 			return this.state.memberNews.map((a) => <div
-				className={"col-md-4"}
+				className={"col-md-6"}
 				key={a.id}>
 				<Article
 					info={a}
@@ -438,7 +438,27 @@ export default class PageHome extends React.Component {
 								<h1>What&apos;s up?</h1>
 							</div>
 
-							<div className="col-md-12">
+							<div className="col-md-4 shadow-section PageHome-newsletter">
+								{/* eslint-disable no-script-url */}
+								<a
+									href={getPrivateAppURL()}
+									target={"_blank"}
+									rel="noreferrer"
+								>
+									<div className="PageHome-newsletter-content">
+										<h3>Publish your own content</h3>
+
+										<i className="fas fa-feather-alt"/>
+
+										<div className="PageHome-newsletter-content-desc">
+											Sign in to My CYBERLUX and give visibility
+											to your entity by publishing content.
+										</div>
+									</div>
+								</a>
+							</div>
+
+							<div className="col-md-8">
 								<div className="row">
 									<div className="col-md-12">
 										<a
@@ -454,7 +474,9 @@ export default class PageHome extends React.Component {
 									{this.getMemberNewsContent()}
 								</div>
 							</div>
+						</div>
 
+						<div className="row">
 							<div className="col-md-8">
 								<div className="row">
 									<div className="col-md-12">
