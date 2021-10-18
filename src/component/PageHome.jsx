@@ -446,13 +446,14 @@ export default class PageHome extends React.Component {
 									rel="noreferrer"
 								>
 									<div className="PageHome-newsletter-content">
-										<h3>Publish your own content</h3>
+										<h3>Share your latest news here</h3>
 
 										<i className="fas fa-feather-alt"/>
 
 										<div className="PageHome-newsletter-content-desc">
-											Sign in to My CYBERLUX and give visibility
-											to your entity by publishing content.
+											With just a few clicks, give your organisation
+											a greater visibility.
+											Log in to My CYBERLUX now.
 										</div>
 									</div>
 								</a>
