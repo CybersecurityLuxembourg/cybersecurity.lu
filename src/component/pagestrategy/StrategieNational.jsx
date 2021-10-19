@@ -26,7 +26,7 @@ export default class StrategieNational extends React.Component {
 					<div className="col-md-9">
 						<div className="row">
 							<div className="col-md-12">
-								<img className="StrategieNational-pm-picture" src="/img/luxembourg.png"/>
+								<img className="StrategieNational-pm-picture" src="/img/portrait-pm.png"/>
 
 								<span className="StrategieNational-quote">
 									<p>
