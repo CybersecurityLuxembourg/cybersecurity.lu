@@ -87,7 +87,7 @@ export default class PageStrategy extends React.Component {
 							analytics={this.props.analytics}
 						/>,
 						<FrameworkPage
-							taxonomyValueName={"EUROPEAN FRAMEWORK - Upcoming/under negociation"}
+							taxonomyValueName={"EUROPEAN FRAMEWORK - Upcoming/under negotiation"}
 							key={this.state.tabs[4]}
 							analytics={this.props.analytics}
 						/>,
