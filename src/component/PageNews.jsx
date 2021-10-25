@@ -20,6 +20,7 @@ export default class PageNews extends React.Component {
 
 		this.state = {
 			articles: null,
+			newsCompanies: null,
 			filters: {
 				type: "NEWS",
 				taxonomy_values: getUrlParameter("taxonomy_values") !== null
@@ -52,6 +53,7 @@ export default class PageNews extends React.Component {
 	getArticles(page) {
 		this.setState({
 			articles: null,
+			newsCompanies: null,
 			page: Number.isInteger(page) ? page : this.state.filters.page,
 		});
 
@@ -71,14 +73,33 @@ export default class PageNews extends React.Component {
 			member_news_only: this.state.filters.member_news_only ? true : undefined,
 		});
 
-		console.log(params);
-
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + urlParams);
 
 		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
 			this.setState({
 				articles: data,
+			}, () => {
+				const params2 = {
+					ids: [
+						Array.prototype.concat.apply(
+							[],
+							data.items
+								.filter((i) => i.company_tags)
+								.map((i) => i.company_tags),
+						),
+					],
+				};
+
+				getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
+					this.setState({
+						newsCompanies: data2,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -143,6 +164,7 @@ export default class PageNews extends React.Component {
 							<ArticleHorizontal
 								info={a}
 								analytics={this.props.analytics}
+								companies={this.state.newsCompanies}
 							/>
 						</div>
 						}

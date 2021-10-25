@@ -18,15 +18,38 @@ export default class ArticleHorizontal extends Component {
 		};
 	}
 
+	getImage() {
+		const baseUrl = getApiURL() + "public/get_public_image/";
+
+		if (this.props.info.image) {
+			return baseUrl + this.props.info.image;
+		}
+
+		if (!this.props.info.is_created_by_admin
+			&& this.props.info.company_tags
+			&& this.props.info.company_tags.length > 0
+			&& this.props.companies) {
+			const companies = this.props.companies
+				.filter((c) => this.props.info.company_tags.indexOf(c.id) >= 0)
+				.filter((c) => c.image);
+
+			if (companies.length > 0) {
+				return baseUrl + companies[0].image;
+			}
+		}
+
+		return null;
+	}
+
 	getBoxContent() {
 		return (
 			<div className="ArticleHorizontal card">
 				<div className="card-horizontal">
 					<div className="img-square-wrapper">
-						{this.props.info.image !== null && this.props.info.image !== undefined
+						{this.getImage()
 							? <img
 								className="card-img-top"
-								src={getApiURL() + "public/get_public_image/" + this.props.info.image}
+								src={this.getImage()}
 								alt="Card image cap"/>
 							: <NoImage/>
 						}
