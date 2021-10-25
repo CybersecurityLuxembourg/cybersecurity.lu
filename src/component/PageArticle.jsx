@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
 import { getRequest } from "../utils/request.jsx";
 import { getApiURL, getEcosystemAppURL } from "../utils/env.jsx";
+import { dictToURI } from "../utils/url.jsx";
 import Loading from "./box/Loading.jsx";
 import Chip from "./form/Chip.jsx";
 import Message from "./box/Message.jsx";
@@ -25,7 +26,9 @@ export default class PageArticle extends React.Component {
 
 		this.state = {
 			article: null,
+			articleCompanies: null,
 			relatedArticles: null,
+			relatedArticleCompanies: null,
 			articleLoading: false,
 			relatedArticleLoading: false,
 		};
@@ -38,7 +41,9 @@ export default class PageArticle extends React.Component {
 	getArticleContent() {
 		this.setState({
 			article: null,
+			articleCompanies: null,
 			relatedArticles: null,
+			relatedArticleCompanies: null,
 			articleLoading: false,
 			relatedArticleLoading: false,
 		});
@@ -50,10 +55,33 @@ export default class PageArticle extends React.Component {
 			});
 
 			if (data.type === "NEWS") {
-				getRequest.call(this, "public/get_related_articles/" + this.props.match.params.handle, (data2) => {
+				getRequest.call(this, "public/get_related_articles/" + this.props.match.params.handle + "?include_tags=true", (data2) => {
 					this.setState({
 						relatedArticles: data2,
 						relatedArticleLoading: false,
+					}, () => {
+						const params2 = {
+							ids: [
+								Array.prototype.concat.apply(
+									[],
+									data2
+										.filter((i) => i.company_tags)
+										.map((i) => i.company_tags),
+								),
+							],
+						};
+
+						if (params2.ids.length > 0) {
+							getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data3) => {
+								this.setState({
+									relatedArticleCompanies: data3,
+								});
+							}, (response) => {
+								nm.warning(response.statusText);
+							}, (error) => {
+								nm.error(error.message);
+							});
+						}
 					});
 				}, (response) => {
 					this.setState({ loading: false });
@@ -293,6 +321,7 @@ export default class PageArticle extends React.Component {
 													<Article
 														key={a.id}
 														info={a}
+														companies={this.state.relatedArticleCompanies}
 													/>
 												</div>
 											))

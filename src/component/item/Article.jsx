@@ -43,7 +43,7 @@ export default class Article extends Component {
 					? <img
 						className="card-img-top"
 						src={this.getImage()}
-						alt="Card image cap"/>
+						alt="Article image"/>
 					: <NoImage
 						height={200}
 					/>

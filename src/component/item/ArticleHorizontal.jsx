@@ -50,7 +50,7 @@ export default class ArticleHorizontal extends Component {
 							? <img
 								className="card-img-top"
 								src={this.getImage()}
-								alt="Card image cap"/>
+								alt="Article image"/>
 							: <NoImage/>
 						}
 						<div className="card-date">
