@@ -81,25 +81,25 @@ export default class PageNews extends React.Component {
 				articles: data,
 			}, () => {
 				const params2 = {
-					ids: [
-						Array.prototype.concat.apply(
-							[],
-							data.items
-								.filter((i) => i.company_tags)
-								.map((i) => i.company_tags),
-						),
-					],
+					ids: Array.prototype.concat.apply(
+						[],
+						data.items
+							.filter((i) => i.company_tags)
+							.map((i) => i.company_tags),
+					),
 				};
 
-				getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
-					this.setState({
-						newsCompanies: data2,
+				if (params2.ids.length > 0) {
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
+						this.setState({
+							newsCompanies: data2,
+						});
+					}, (response) => {
+						nm.warning(response.statusText);
+					}, (error) => {
+						nm.error(error.message);
 					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
-				});
+				}
 			});
 		}, (response) => {
 			nm.warning(response.statusText);

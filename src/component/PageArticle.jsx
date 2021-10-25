@@ -61,14 +61,12 @@ export default class PageArticle extends React.Component {
 						relatedArticleLoading: false,
 					}, () => {
 						const params2 = {
-							ids: [
-								Array.prototype.concat.apply(
-									[],
-									data2
-										.filter((i) => i.company_tags)
-										.map((i) => i.company_tags),
-								),
-							],
+							ids: Array.prototype.concat.apply(
+								[],
+								data2
+									.filter((i) => i.company_tags)
+									.map((i) => i.company_tags),
+							),
 						};
 
 						if (params2.ids.length > 0) {
