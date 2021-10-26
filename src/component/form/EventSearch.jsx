@@ -69,7 +69,7 @@ export default class EventSearch extends React.Component {
 			<div className={"EventSearch row"}>
 				<div className={"col-md-12"}>
 					<FormLine
-						label={"Topic (at least 3 characters)"}
+						label={"Topic"}
 						value={this.props.filters.title === undefined
 							? [] : this.props.filters.title}
 						onChange={(v) => this.props.onChange("title", v)}
