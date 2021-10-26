@@ -87,6 +87,17 @@ export default class EventSearch extends React.Component {
 						onChange={(v) => this.props.onChange("taxonomy_values", v)}
 					/>
 				</div>
+
+				<div className={"col-md-12"}>
+					<div className="right-buttons">
+						<button
+							className={"blue-background"}
+							onClick={this.props.onSearch}
+						>
+							<i className="fas fa-arrow-alt-circle-right"/> Apply filters
+						</button>
+					</div>
+				</div>
 			</div>
 		);
 	}

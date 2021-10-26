@@ -39,17 +39,6 @@ export default class PageCalendar extends React.Component {
 		this.getArticles();
 	}
 
-	componentDidUpdate(_, prevState) {
-		if (prevState.filters.taxonomy_values !== this.state.filters.taxonomy_values
-			|| (prevState.filters.title !== this.state.filters.title
-				&& (this.state.filters.title.length === null
-					|| this.state.filters.title.length === undefined
-					|| this.state.filters.title.length > 2
-					|| this.state.filters.title.length === 0))) {
-			this.getArticles();
-		}
-	}
-
 	getArticles() {
 		this.setState({
 			articles: null,
@@ -161,46 +150,6 @@ export default class PageCalendar extends React.Component {
 					</div>
 				</div>
 
-				<div className="row row-spaced">
-					{this.state.articles !== null && this.state.articles !== undefined
-						? <div className="col-md-12">
-							<Calendar
-								events={this.state.articles.map((e) => (
-									{
-										title: e.title,
-										start: new Date(e.start_date),
-										end: new Date(e.end_date),
-										handle: e.handle,
-										link: e.link,
-									}
-								))}
-								step={60}
-								showMultiDayTimes
-								defaultDate={new Date()}
-								components={{
-									timeSlotWrapper: ColoredDateCellWrapper,
-								}}
-								localizer={localizer}
-								style={{
-									height: 700,
-									backgroundColor: "white",
-								}}
-								onSelectEvent={(event) => {
-									if (event.link !== undefined && event.link !== null
-										&& event.link.length > 0) {
-										window.open(event.link);
-									} else {
-										this.props.history.push("/calendar/" + event.handle);
-									}
-								}}
-							/>
-						</div>
-						: <Loading
-							height={200}
-						/>
-					}
-				</div>
-
 				<div className="row">
 					<div className="col-md-12">
 						<h1>Coming events</h1>
@@ -246,6 +195,50 @@ export default class PageCalendar extends React.Component {
 						</div>
 					</div>
 				}
+
+				<div className="row row-spaced">
+					<div className="col-md-12 row-spaced">
+						<h1>Calendar</h1>
+					</div>
+
+					{this.state.articles !== null && this.state.articles !== undefined
+						? <div className="col-md-12">
+							<Calendar
+								events={this.state.articles.map((e) => (
+									{
+										title: e.title,
+										start: new Date(e.start_date),
+										end: new Date(e.end_date),
+										handle: e.handle,
+										link: e.link,
+									}
+								))}
+								step={60}
+								showMultiDayTimes
+								defaultDate={new Date()}
+								components={{
+									timeSlotWrapper: ColoredDateCellWrapper,
+								}}
+								localizer={localizer}
+								style={{
+									height: 700,
+									backgroundColor: "white",
+								}}
+								onSelectEvent={(event) => {
+									if (event.link !== undefined && event.link !== null
+										&& event.link.length > 0) {
+										window.open(event.link);
+									} else {
+										this.props.history.push("/calendar/" + event.handle);
+									}
+								}}
+							/>
+						</div>
+						: <Loading
+							height={200}
+						/>
+					}
+				</div>
 			</div>
 		);
 	}

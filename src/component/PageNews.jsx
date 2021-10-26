@@ -38,18 +38,6 @@ export default class PageNews extends React.Component {
 		this.getArticles();
 	}
 
-	componentDidUpdate(_, prevState) {
-		if (prevState.filters.taxonomy_values !== this.state.filters.taxonomy_values
-			|| prevState.filters.member_news_only !== this.state.filters.member_news_only
-			|| (prevState.filters.title !== this.state.filters.title
-				&& (this.state.filters.title.length === null
-					|| this.state.filters.title.length === undefined
-					|| this.state.filters.title.length > 2
-					|| this.state.filters.title.length === 0))) {
-			this.getArticles();
-		}
-	}
-
 	getArticles(page) {
 		this.setState({
 			articles: null,
