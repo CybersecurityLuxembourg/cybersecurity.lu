@@ -116,29 +116,6 @@ export default class PageCalendar extends React.Component {
 					</div>
 				</div>
 
-				<div className="PageCalendar-blue-block shadow-section">
-					<div className="row">
-						<div className="col-md-5">
-							<img
-								className="PageAbout-pm-picture"
-								src="/img/logo-ecsm.png"
-								align="center"
-							/>
-						</div>
-						<div className="col-md-7">
-							<a
-								href="https://cybersecuritymonth.eu/"
-								target="_blank"
-								rel="noreferrer">
-								<div className="PageCalendar-blue-block-text-wrapper">
-									October stands for the European Cyber Security Month, the EU’s
-									annual campaign dedicated to promoting cybersecurity.
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-
 				<div className="row row-spaced">
 					<div className="col-md-12">
 						<EventSearch
