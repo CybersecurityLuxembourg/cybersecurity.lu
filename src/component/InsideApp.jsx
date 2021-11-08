@@ -16,6 +16,7 @@ import PageEvent from "./PageEvent.jsx";
 import PageTool from "./PageTool.jsx";
 import PageJobOffer from "./PageJobOffer.jsx";
 import PageAbout from "./PageAbout.jsx";
+import PageCyber4Growth from "./PageCyber4Growth.jsx";
 import PageSearch from "./PageSearch.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
@@ -74,6 +75,10 @@ export default class InsideApp extends React.Component {
 							{...props}
 						/>}/>
 						<Route path="/strategy" render={(props) => <PageStrategy
+							analytics={this.state.analytics}
+							{...props}
+						/>}/>
+						<Route path="/cyber4growth" render={(props) => <PageCyber4Growth
 							analytics={this.state.analytics}
 							{...props}
 						/>}/>
