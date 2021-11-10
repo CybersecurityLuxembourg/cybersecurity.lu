@@ -1,0 +1,28 @@
+
+.PageCyber4Growth-program .shadow-section {
+	margin: 10px 0px 4px 0px;
+}
+
+.PageCyber4Growth-program .PageCyber4Growth-program-focus div {
+	padding: 6px 15px;
+}
+
+.PageCyber4Growth-program .PageCyber4Growth-program-criteria {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#PageCyber4Growth .PageCyber4Growth-images div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#PageCyber4Growth .PageCyber4Growth-images img {
+	padding: 10px 0px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
