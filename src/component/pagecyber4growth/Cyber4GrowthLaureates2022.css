@@ -1,0 +1,14 @@
+
+#Cyber4GrowthLaureates2022 .Cyber4GrowthLaureates2022-images div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#Cyber4GrowthLaureates2022 .Cyber4GrowthLaureates2022-images img {
+	padding: 10px 0px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -86,7 +86,7 @@ export default class StrategieNational extends React.Component {
 					</div>
 
 					<div className="col-md-3">
-						<div className="StrategieNational-shortcut-box">
+						<div className="shortcut-box">
 							<h2 onClick={() => this.part1.current.scrollIntoView({ behavior: "smooth" })}>
 								Prime Minister Foreword
 							</h2>

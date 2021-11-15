@@ -594,3 +594,24 @@ canvas {
 .shadow-section:hover div div {
 	opacity: 0;
 }
+
+/* Shortcut box */
+
+.shortcut-box {
+	border: solid 2px #009fe3;
+	box-shadow: rgba(0, 0, 0, 0.19) -20px 20px 20px, rgba(0, 0, 0, 0.23) -6px 6px 6px;
+	padding: 10px;
+}
+
+.shortcut-box h2 {
+	cursor: pointer;
+	padding: 0px 10px 0px 25px !important;
+	margin: 15px 0px 10px 0px !important;
+	background-size: 20px 20px !important;
+	min-height: 25px;
+	font-size: 14px !important;
+}
+
+.shortcut-box h2:hover {
+	background-color: rgba(0, 159, 227, 0.05);
+}
