@@ -183,7 +183,7 @@ export default class PageHome extends React.Component {
 							.filter((d) => d.end_date > new Date().toISOString())
 							.filter((d) => d.taxonomy_tags.indexOf(values[0].id) < 0)
 							.sort((a, b) => (b.start_date > a.start_date ? -1 : 1))
-							.slice(0, 2),
+							.slice(0, 3),
 					});
 				}, (response) => {
 					nm.warning(response.statusText);
@@ -632,7 +632,7 @@ export default class PageHome extends React.Component {
 								</div>
 
 								{this.state.events !== null && this.state.events.length === 0
-									&& <div className="col-md-8">
+									&& <div className="col-md-12">
 										<Message
 											text={"No coming event found"}
 											height={300}
@@ -651,30 +651,12 @@ export default class PageHome extends React.Component {
 								}
 
 								{this.state.events === null
-									&& <div className="col-md-8">
+									&& <div className="col-md-12">
 										<Loading
 											height={300}
 										/>
 									</div>
 								}
-
-								<div className="col-md-4 shadow-section PageHome-cswl">
-									{/* eslint-disable no-script-url */}
-									<a
-										href="https://www.cybersecurityweek.lu/"
-										target="_blank"
-										rel="noreferrer">
-										<div className="PageHome-cswl-content">
-											<img src="/img/logo_cswl_white.png"/>
-											<div className="PageHome-cswl-content-date">
-												18-28 OCT 2021
-											</div>
-											<div className="PageHome-cswl-content-desc">
-												Visit the official website!
-											</div>
-										</div>
-									</a>
-								</div>
 							</div>
 							<div className="row row-spaced">
 								<div className={"col-md-12"}>
