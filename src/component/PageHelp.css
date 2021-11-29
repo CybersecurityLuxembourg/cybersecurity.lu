@@ -1,0 +1,99 @@
+
+#PageHelp {
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	background-color: white;
+	z-index: 200;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#PageHelp-wizard {
+	text-align: center;
+	margin: 50px auto;
+	width: 90% !important;
+	max-width: 500px;
+	min-height: 80%;
+	padding: 10px;
+}
+
+#PageHelp-wizard div {
+	padding: 10px;
+}
+
+#PageHelp-wizard button {
+	width: 100% !important;
+	animation: fadeInEdited ease 2s;
+	-webkit-animation: fadeInEdited ease 2s;
+	-moz-animation: fadeInEdited ease 2s;
+	-o-animation: fadeInEdited ease 2s;
+	-ms-animation: fadeInEdited ease 2s;
+	opacity: .7;
+	font-weight: bold;
+}
+
+#PageHelp-blue-petal {
+	position: fixed;
+	background-image: url("../img/polygon-blue.svg");
+	background-position: right 0px top 0px;
+	background-size: cover;
+	height: 20em;
+	width: 20em;
+	top: -10em;
+	left: -10em;
+}
+
+#PageHelp-red-petal {
+	position: fixed;
+	background-image: url("../img/polygon-red.svg");
+	background-size: cover;
+	height: 20em;
+	width: 20em;
+	bottom: -10em;
+	right: -10em;
+}
+
+.PageHelp-back-button-wrapper {
+	float: right;
+	width: fit-content;
+	padding: 10px 30px;
+    margin: 10px 30px;
+    background: linear-gradient(
+		45deg,transparent 10px,#000 0) 0/50.5% 100%,linear-gradient(
+		225deg,transparent 10px,#000 0) 100%/50.5% 100%;
+    background-repeat: no-repeat;
+}
+
+.PageHelp-back-button-wrapper a {
+	color: white;
+}
+
+.PageHelp-question-back-button {
+	background-color: unset;
+	color: #009fe3;
+    opacity: .5;
+}
+
+@keyframes fadeInEdited {
+	0% {opacity:0;}
+	100% {opacity:.7;}
+}
+@-moz-keyframes fadeInEdited {
+	0% {opacity:0;}
+	100% {opacity:.7;}
+}
+@-webkit-keyframes fadeInEdited {
+	0% {opacity:0;}
+	100% {opacity:.7;}
+}
+@-o-keyframes fadeInEdited {
+	0% {opacity:0;}
+	100% {opacity:.7;}
+}
+@-ms-keyframes fadeInEdited {
+	0% {opacity:0;}
+	100% {opacity:.7;}
+}

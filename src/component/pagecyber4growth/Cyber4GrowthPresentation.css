@@ -1,0 +1,28 @@
+
+.Cyber4GrowthPresentation-program .shadow-section {
+	margin: 10px 0px 4px 0px;
+}
+
+.Cyber4GrowthPresentation-program .Cyber4GrowthPresentation-program-focus div {
+	padding: 6px 15px;
+}
+
+.Cyber4GrowthPresentation-program .Cyber4GrowthPresentation-program-criteria {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#Cyber4GrowthPresentation .Cyber4GrowthPresentation-images div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#Cyber4GrowthPresentation .Cyber4GrowthPresentation-images img {
+	padding: 10px 0px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

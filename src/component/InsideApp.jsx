@@ -15,8 +15,11 @@ import PageArticle from "./PageArticle.jsx";
 import PageEvent from "./PageEvent.jsx";
 import PageTool from "./PageTool.jsx";
 import PageJobOffer from "./PageJobOffer.jsx";
+import PageService from "./PageService.jsx";
 import PageAbout from "./PageAbout.jsx";
+import PageCyber4Growth from "./PageCyber4Growth.jsx";
 import PageSearch from "./PageSearch.jsx";
+import PageHelp from "./PageHelp.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
 export default class InsideApp extends React.Component {
@@ -64,23 +67,45 @@ export default class InsideApp extends React.Component {
 						<Route path="/calendar/:handle" render={(props) => <PageEvent {...props} />}/>
 						<Route path="/tool/:handle" render={(props) => <PageTool {...props} />}/>
 						<Route path="/job_offer/:handle" render={(props) => <PageJobOffer {...props} />}/>
+						<Route path="/service/:handle" render={(props) => <PageService {...props} />}/>
 
-						<Route path="/news" render={(props) => <PageNews
-							analytics={this.state.analytics}
-							{...props}
-						/>}/>
-						<Route path="/calendar" render={(props) => <PageCalendar
-							analytics={this.state.analytics}
-							{...props}
-						/>}/>
-						<Route path="/strategy" render={(props) => <PageStrategy
-							analytics={this.state.analytics}
-							{...props}
-						/>}/>
-						<Route path="/marketplace" render={(props) => <PageMarketplace
-							analytics={this.state.analytics}
-							{...props}
-						/>}/>
+						<Route path="/help" render={(props) => <PageHelp {...props}/>}/>
+
+						<Route
+							path="/news"
+							render={(props) => <PageNews
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/calendar"
+							render={(props) => <PageCalendar
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/strategy"
+							render={(props) => <PageStrategy
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/cyber4growth"
+							render={(props) => <PageCyber4Growth
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/marketplace"
+							render={(props) => <PageMarketplace
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
 						<Route
 							path="/search"
 							render={(props) => <PageSearch
@@ -93,11 +118,14 @@ export default class InsideApp extends React.Component {
 							render={(props) => <PageAbout {...props} />}
 						/>
 
-						<Route path="/" render={(props) => <PageHome
-							ml_account={this.state.ml_account}
-							analytics={this.state.analytics}
-							{...props}
-						/>}/>
+						<Route
+							path="/"
+							render={(props) => <PageHome
+								ml_account={this.state.ml_account}
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
 					</Switch>
 				</div>
 				<Footer/>

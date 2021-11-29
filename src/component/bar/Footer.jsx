@@ -74,13 +74,15 @@ export default class Footer extends React.Component {
 									</div>
 									<br/>
 									<div>
-										<Link to="/news">What&apos;s up?</Link>
+										<Link to="/news">News</Link>
+										&nbsp;-&nbsp;
+										<Link to="/calendar">Events</Link>
+										&nbsp;-&nbsp;
+										<Link to="/marketplace">Jobs</Link>
 									</div>
+									<br/>
 									<div>
-										<Link to="/calendar">Where to meet?</Link>
-									</div>
-									<div>
-										<Link to="/marketplace">Job marketplace</Link>
+										<Link to="/cyber4growth">Cyber4Growth</Link>
 									</div>
 									<br/>
 									<div>
@@ -133,16 +135,16 @@ export default class Footer extends React.Component {
 						</div>
 						<div className="col-md-3 Footer-contact">
 							<div className="Footer-title">CONTACT</div>
-
+							<br/>
 							<div>SECURITYMADEIN.LU g.i.e.</div>
 							<div>16, boulevard d&#39;Avranches</div>
 							<div>L-1160 Luxembourg</div>
-							<br/>
+							<br/><br/>
 							<div>(+352) 274 00 98 601</div>
 							<div>
 								<a href="mailto:info@cybersecurity-luxembourg.com">info@cybersecurity-luxembourg.com</a>
 							</div>
-							<br/>
+							<br/><br/>
 							<div>Copyright © SECURITYMADEIN.LU g.i.e 2021</div>
 						</div>
 						<div className="col-md-2">
