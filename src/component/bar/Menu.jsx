@@ -123,6 +123,11 @@ export default class Menu extends React.Component {
 					<div className="Menu-description">Our monthly selection</div>
 				</Link>
 			</Nav.Link>
+			<Nav.Link>
+				<Link to="/help">
+					<div className="Menu-title">Help!</div>
+				</Link>
+			</Nav.Link>
 		</Nav>;
 	}
 
