@@ -44,6 +44,11 @@
 	width: 20em;
 	top: -10em;
 	left: -10em;
+	animation: from-left-appearance ease 2s;
+	-webkit-animation: from-left-appearance ease 2s;
+	-moz-animation: from-left-appearance ease 2s;
+	-o-animation: from-left-appearance ease 2s;
+	-ms-animation: from-left-appearance ease 2s;
 }
 
 #PageHelp-red-petal {
@@ -54,6 +59,11 @@
 	width: 20em;
 	bottom: -10em;
 	right: -10em;
+	animation: from-right-appearance ease 2s;
+	-webkit-animation: from-right-appearance ease 2s;
+	-moz-animation: from-right-appearance ease 2s;
+	-o-animation: from-right-appearance ease 2s;
+	-ms-animation: from-right-appearance ease 2s;
 }
 
 .PageHelp-back-button-wrapper {
@@ -96,4 +106,22 @@
 @-ms-keyframes fadeInEdited {
 	0% {opacity:0;}
 	100% {opacity:.7;}
+}
+
+@keyframes from-left-appearance {
+    from {
+        transform : translateX(-5em);
+    }
+    to   {
+        transform : translateX(0em);
+    }
+}
+
+@keyframes from-right-appearance {
+    from {
+        transform : translateX(5em);
+    }
+    to   {
+        transform : translateX(0em);
+    }
 }
