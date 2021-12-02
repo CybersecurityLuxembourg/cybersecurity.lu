@@ -541,3 +541,20 @@
 .control-arrow {
     display: none;
 }
+
+.Menu-help {
+    text-align: center;
+    min-width: 80px;
+    padding-top: 16px;
+    background: repeating-linear-gradient(
+      135deg,
+      #eee,
+      #eee 10px,
+      rgba(0, 0, 0, 0) 10px,
+      rgba(0, 0, 0, 0) 20px
+    );
+}
+
+.Menu-help .Menu-title {
+    color: #e40613;
+}

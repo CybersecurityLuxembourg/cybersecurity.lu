@@ -111,23 +111,26 @@ export default class Menu extends React.Component {
 					</div>
 				</NavDropdown.Item>
 			</NavDropdown>
-			<Nav.Link>
+			{/* <Nav.Link>
 				<Link to="/cyber4growth">
 					<div className="Menu-title">Cyber4Growth</div>
 					<div className="Menu-description">Startup accelerator</div>
 				</Link>
-			</Nav.Link>
+			</Nav.Link> */}
 			<Nav.Link>
 				<Link to="/newsletter">
 					<div className="Menu-title"><i className="fas fa-envelope-open-text"/> Newsletter</div>
 					<div className="Menu-description">Our monthly selection</div>
 				</Link>
 			</Nav.Link>
-			<Nav.Link>
-				<Link to="/help">
-					<div className="Menu-title">Help!</div>
-				</Link>
-			</Nav.Link>
+			<a
+				className="nav-link"
+				href={getPrivateAppURL()}
+				rel="noreferrer"
+			>
+				<div className="Menu-title">My CYBERLUX</div>
+				<div className="Menu-description">Login or register</div>
+			</a>
 		</Nav>;
 	}
 
@@ -331,14 +334,11 @@ export default class Menu extends React.Component {
 									<div className="Menu-description">What is CYBERLUX?</div>
 								</Link>
 							</Nav.Link>
-							<a
-								className="nav-link"
-								href={getPrivateAppURL()}
-								rel="noreferrer"
-							>
-								<div className="Menu-title">My CYBERLUX</div>
-								<div className="Menu-description">Login or register</div>
-							</a>
+							<Nav.Link className="Menu-help">
+								<Link to="/help">
+									<div className="Menu-title">Help!</div>
+								</Link>
+							</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
