@@ -11,6 +11,10 @@
 	overflow-x: hidden;
 }
 
+#PageHelp h3 {
+	padding-bottom: 10px;
+}
+
 #PageHelp-wizard {
 	text-align: center;
 	margin: 50px auto;
@@ -20,8 +24,13 @@
 	padding: 10px;
 }
 
-#PageHelp-wizard div {
-	padding: 10px;
+#PageHelp-wizard .progress {
+	padding: 0px !important;
+	margin-bottom: 80px;
+}
+
+#PageHelp-wizard .progress-bar {
+	background-color: #009fe3;
 }
 
 #PageHelp-wizard button {
@@ -81,6 +90,10 @@
 	color: white;
 }
 
+#PageHelp .Companies {
+	margin-top: 50px !important;
+}
+
 .PageHelp-question-back-button {
 	background-color: unset;
 	color: #009fe3;
@@ -110,7 +123,7 @@
 
 @keyframes from-left-appearance {
     from {
-        transform : translateX(-5em);
+        transform : translateX(-8em);
     }
     to   {
         transform : translateX(0em);
@@ -119,7 +132,7 @@
 
 @keyframes from-right-appearance {
     from {
-        transform : translateX(5em);
+        transform : translateX(8em);
     }
     to   {
         transform : translateX(0em);

@@ -1,12 +1,16 @@
 import React from "react";
 import "./PageHelp.css";
 import { Wizard, Step, Controls } from "react-decision-tree-flow";
+import { ProgressBar } from "react-bootstrap";
+import Companies from "./item/Companies.jsx";
+import Info from "./box/Info.jsx";
 
 export default class PageHelp extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			progress: 10,
 			tree: {
 				root: ["needInfo", "haveQuestion", "haveIssue"],
 
@@ -58,6 +62,21 @@ export default class PageHelp extends React.Component {
 		};
 	}
 
+	getPreviousButton(progress) {
+		return <Controls>
+			{({ back }) => (
+				<div>
+					<button
+						className="PageHelp-question-back-button"
+						onClick={() => { this.changeState("progress", progress); back(); }}
+					>
+						Back to previous question
+					</button>
+				</div>
+			)}
+		</Controls>;
+	}
+
 	changeState(field, value) {
 		this.setState({ [field]: value });
 	}
@@ -77,6 +96,8 @@ export default class PageHelp extends React.Component {
 
 					<div className="col-md-12">
 						<div id={"PageHelp-wizard"}>
+							<ProgressBar animated={this.state.progress < 100} now={this.state.progress} />
+
 							<Wizard tree={this.state.tree} first="root">
 								<Step name="root">
 									<h3>What do you need?</h3>
@@ -85,9 +106,9 @@ export default class PageHelp extends React.Component {
 											destinations: { needInfo, haveQuestion, haveIssue },
 										}) => (
 											<div>
-												<button onClick={needInfo}>I need information</button>
-												<button onClick={haveQuestion}>I have a question</button>
-												<button onClick={haveIssue}>I have an issue</button>
+												<button onClick={() => { this.changeState("progress", 60); needInfo(); }}>I need information</button>
+												<button onClick={() => { this.changeState("progress", 60); haveQuestion(); }}>I have a question</button>
+												<button onClick={() => { this.changeState("progress", 40); haveIssue(); }}>I have an issue</button>
 											</div>
 										)}
 									</Controls>
@@ -97,15 +118,16 @@ export default class PageHelp extends React.Component {
 									<h3> I am here as:</h3>
 									<Controls>
 										{({
+											back,
 											destinations: {
-												root, needInfoCitizen, needInfoCompany, needInfoTechSaavy,
+												needInfoCitizen, needInfoCompany, needInfoTechSaavy,
 											},
 										}) => (
 											<div>
-												<button onClick={needInfoCitizen}>a youth/parent/citizen</button>
-												<button onClick={needInfoCompany}>an employee or a company</button>
-												<button onClick={needInfoTechSaavy}>a tech-savvy person</button>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
+												<button onClick={() => { this.changeState("progress", 100); needInfoCitizen(); }}>a youth/parent/citizen</button>
+												<button onClick={() => { this.changeState("progress", 100); needInfoCompany(); }}>an employee or a company</button>
+												<button onClick={() => { this.changeState("progress", 100); needInfoTechSaavy(); }}>a tech-savvy person</button>
+												<button className="PageHelp-question-back-button" onClick={() => { this.changeState("progress", 10); back(); }}>Back to previous question</button>
 											</div>
 										)}
 									</Controls>
@@ -114,14 +136,15 @@ export default class PageHelp extends React.Component {
 									<h3> I am here as:</h3>
 									<Controls>
 										{({
+											back,
 											destinations: {
-												root, haveQuestionCitizen, haveQuestionCompany,
+												haveQuestionCitizen, haveQuestionCompany,
 											},
 										}) => (
 											<div>
-												<button onClick={haveQuestionCitizen}>a youth/parent/citizen</button>
-												<button onClick={haveQuestionCompany}>an employee or a company</button>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
+												<button onClick={() => { this.changeState("progress", 100); haveQuestionCitizen(); }}>a youth/parent/citizen</button>
+												<button onClick={() => { this.changeState("progress", 100); haveQuestionCompany(); }}>an employee or a company</button>
+												<button className="PageHelp-question-back-button" onClick={() => { this.changeState("progress", 10); back(); }}>Back to previous question</button>
 											</div>
 										)}
 									</Controls>
@@ -130,20 +153,22 @@ export default class PageHelp extends React.Component {
 									<h3> I am here as:</h3>
 									<Controls>
 										{({
+											back,
 											destinations: {
-												root, haveIssueCitizen, haveIssueCompany,
+												haveIssueCitizen, haveIssueCompany,
 											},
 										}) => (
 											<div>
-												<button onClick={haveIssueCitizen}>a youth/parent/citizen</button>
-												<button onClick={haveIssueCompany}>an employee or a company</button>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
+												<button onClick={() => { this.changeState("progress", 70); haveIssueCitizen(); }}>a youth/parent/citizen</button>
+												<button onClick={() => { this.changeState("progress", 70); haveIssueCompany(); }}>an employee or a company</button>
+												<button className="PageHelp-question-back-button" onClick={() => { this.changeState("progress", 10); back(); }}>Back to previous question</button>
 											</div>
 										)}
 									</Controls>
 								</Step>
 
 								<Step name="needInfoCitizen">
+
 									<h3>
 										Please visit&nbsp;
 										<a
@@ -153,17 +178,10 @@ export default class PageHelp extends React.Component {
 											BEE SECURE
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"bee secure"}
+									/>
+									{this.getPreviousButton(60)}
 								</Step>
 								<Step name="needInfoCompany">
 									<h3>
@@ -175,17 +193,10 @@ export default class PageHelp extends React.Component {
 											CASES Knowledgebase
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"cases"}
+									/>
+									{this.getPreviousButton(60)}
 								</Step>
 								<Step name="needInfoTechSaavy">
 									<h3>
@@ -197,17 +208,10 @@ export default class PageHelp extends React.Component {
 											CIRCL’s Digital First Aid Kit
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"circle"}
+									/>
+									{this.getPreviousButton(60)}
 								</Step>
 
 								<Step name="haveQuestionCitizen">
@@ -220,23 +224,23 @@ export default class PageHelp extends React.Component {
 									<h3>
 										9.00 to 17.00 from Monday to Friday
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<h3>
+										or visit&nbsp;
+										<a
+											href="https://www.bee-secure.lu/"
+											target="_blank"
+											rel="noreferrer">
+											Bee Secure
+										</a>
+									</h3>
+									<Companies
+										name={"bee secure"}
+									/>
+									{this.getPreviousButton(60)}
 								</Step>
 								<Step name="haveQuestionCompany">
 									<h3>
 										Please contact the CASES helpline:
-									</h3>
-									<h3>
 										<a
 											href="mailto:help@cases.lu"
 											target="_blank"
@@ -244,53 +248,47 @@ export default class PageHelp extends React.Component {
 											help@cases.lu
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"cases"}
+									/>
+									{this.getPreviousButton(60)}
 								</Step>
 
 								<Step name="haveIssueCitizen">
 									<h3>Can you tell me more about your issue?</h3>
 									<Controls>
 										{({
+											back,
 											destinations: {
-												root, haveIssueSuspiciousLink, haveIssuePreventPhishing,
+												haveIssueSuspiciousLink, haveIssuePreventPhishing,
 												haveIssueInfectedPc, haveIssueIllegalContent, haveIssuePrivacyIssue,
 												haveIssueTelecomProvider, haveIssueOtherIncident,
 											},
 										}) => (
 											<div>
-												<button onClick={haveIssueSuspiciousLink}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueSuspiciousLink(); }}>
 													I received a malicious or suspisious link
 												</button>
-												<button onClick={haveIssuePreventPhishing}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssuePreventPhishing(); }}>
 													I want to prevent SPAM and phishing
 												</button>
-												<button onClick={haveIssueInfectedPc}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueInfectedPc(); }}>
 													My PC is infected and I need support
 												</button>
-												<button onClick={haveIssueIllegalContent}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueIllegalContent(); }}>
 													I found illegal content on the Internet, what should I do?
 												</button>
-												<button onClick={haveIssuePrivacyIssue}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssuePrivacyIssue(); }}>
 													I have a privacy issue
 												</button>
-												<button onClick={haveIssueTelecomProvider}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueTelecomProvider(); }}>
 													I have a problem with my telecom provider
 												</button>
-												<button onClick={haveIssueOtherIncident}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueOtherIncident(); }}>
 													I have a different information security incident, which does
 													not match any of the above categories.
 												</button>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
+												<button className="PageHelp-question-back-button" onClick={() => { this.changeState("progress", 40); back(); }}>Back to previous question</button>
 											</div>
 										)}
 									</Controls>
@@ -299,29 +297,30 @@ export default class PageHelp extends React.Component {
 									<h3>Can you tell me more about your issue?</h3>
 									<Controls>
 										{({
+											back,
 											destinations: {
-												root, haveIssueSuspiciousLink, haveIssuePreventPhishing,
+												haveIssueSuspiciousLink, haveIssuePreventPhishing,
 												haveIssueInfectedPc, haveIssueCompanyIncident, haveIssueOtherIncident,
 											},
 										}) => (
 											<div>
-												<button onClick={haveIssueSuspiciousLink}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueSuspiciousLink(); }}>
 													I received a malicious or suspisious link
 												</button>
-												<button onClick={haveIssuePreventPhishing}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssuePreventPhishing(); }}>
 													I want to prevent SPAM and phishing
 												</button>
-												<button onClick={haveIssueInfectedPc}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueInfectedPc(); }}>
 													My PC is infected and I need support
 												</button>
-												<button onClick={haveIssueCompanyIncident}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueCompanyIncident(); }}>
 													I have a security incident in my company
 												</button>
-												<button onClick={haveIssueOtherIncident}>
+												<button onClick={() => { this.changeState("progress", 100); haveIssueOtherIncident(); }}>
 													I have a different information security incident, which does
 													not match any of the above categories.
 												</button>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
+												<button className="PageHelp-question-back-button" onClick={() => { this.changeState("progress", 40); back(); }}>Back to previous question</button>
 											</div>
 										)}
 									</Controls>
@@ -339,17 +338,10 @@ export default class PageHelp extends React.Component {
 											CIRCL URLabuse
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"circl"}
+									/>
+									{this.getPreviousButton(70)}
 								</Step>
 								<Step name="haveIssuePreventPhishing">
 									<h3>
@@ -361,39 +353,28 @@ export default class PageHelp extends React.Component {
 											SPAMBEE
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Info
+										content={"SPAMBEE is a tool that allows you to easily "
+											+ "handle suspicious emails and notify them to experts who will "
+											+ "make a complete diagnosis of each transmitted email"}
+									/>
+									{this.getPreviousButton(70)}
 								</Step>
 								<Step name="haveIssueInfectedPc">
 									<h3>
 										Please check the&nbsp;
 										<a
-											href="https://ecosystem.cybersecurity-luxembourg.com/"
+											href="https://ecosystem.cybersecurity-luxembourg.com/privatesector"
 											target="_blank"
 											rel="noreferrer">
 											Cybersecurity ecosystem
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<h3>
+										You will find a section called &quot;PC Doctors&quot; with companies that
+										can support you
+									</h3>
+									{this.getPreviousButton(70)}
 								</Step>
 								<Step name="haveIssueIllegalContent">
 									<h3>
@@ -405,17 +386,10 @@ export default class PageHelp extends React.Component {
 											BEE SECURE Stopline
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"bee secure"}
+									/>
+									{this.getPreviousButton(70)}
 								</Step>
 								<Step name="haveIssuePrivacyIssue">
 									<h3>
@@ -427,17 +401,10 @@ export default class PageHelp extends React.Component {
 											CNPD
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"cnpd"}
+									/>
+									{this.getPreviousButton(70)}
 								</Step>
 								<Step name="haveIssueTelecomProvider">
 									<h3>
@@ -449,17 +416,10 @@ export default class PageHelp extends React.Component {
 											ILR mediation service (FR)
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"ilr"}
+									/>
+									{this.getPreviousButton(70)}
 								</Step>
 								<Step name="haveIssueCompanyIncident">
 									<h3>
@@ -471,17 +431,10 @@ export default class PageHelp extends React.Component {
 											CIRCL
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"circl"}
+									/>
+									{this.getPreviousButton(70)}
 								</Step>
 								<Step name="haveIssueOtherIncident">
 									<h3>
@@ -493,17 +446,10 @@ export default class PageHelp extends React.Component {
 											CIRCL
 										</a>
 									</h3>
-									<Controls>
-										{({
-											destinations: {
-												root,
-											},
-										}) => (
-											<div>
-												<button className="PageHelp-question-back-button" onClick={root}>Reset</button>
-											</div>
-										)}
-									</Controls>
+									<Companies
+										name={"circl"}
+									/>
+									{this.getPreviousButton(70)}
 								</Step>
 							</Wizard>
 						</div>
