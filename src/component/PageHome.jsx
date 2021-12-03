@@ -194,25 +194,6 @@ export default class PageHome extends React.Component {
 		}
 	}
 
-	getEcosystemRoleCount(category, value) {
-		if (this.props.analytics === null
-			|| this.props.analytics.taxonomy_values === undefined
-			|| this.props.analytics.taxonomy_assignments === undefined) {
-			return null;
-		}
-
-		const values = this.props.analytics.taxonomy_values
-			.filter((v) => v.category === category && v.name === value);
-
-		if (values.length === 0) {
-			return null;
-		}
-
-		return this.props.analytics.taxonomy_assignments
-			.filter((a) => a.taxonomy_value === values[0].id)
-			.length;
-	}
-
 	getArticleCategoryContent(category, stateValue, width, hidePublicationDate) {
 		if (this.state[stateValue] === null
 			|| this.state[stateValue] === undefined) {
@@ -713,7 +694,8 @@ export default class PageHome extends React.Component {
 													rel="noreferrer"
 												>
 													<Analytic
-														value={this.getEcosystemRoleCount("ECOSYSTEM ROLE", "ACTOR")}
+														value={this.props.privateSectorCount
+															? this.props.privateSectorCount : 0}
 														desc={"Private companies"}
 													/>
 												</a>
@@ -726,7 +708,8 @@ export default class PageHome extends React.Component {
 													rel="noreferrer"
 												>
 													<Analytic
-														value={this.getEcosystemRoleCount("ENTITY TYPE", "PUBLIC SECTOR")}
+														value={this.props.publicSectorCount
+															? this.props.publicSectorCount : 0}
 														desc={"Public entities"}
 													/>
 												</a>
@@ -739,7 +722,8 @@ export default class PageHome extends React.Component {
 													rel="noreferrer"
 												>
 													<Analytic
-														value={this.getEcosystemRoleCount("ENTITY TYPE", "CIVIL SOCIETY")}
+														value={this.props.civilSocietyCount
+															? this.props.civilSocietyCount : 0}
 														desc={"Civil society organisations"}
 													/>
 												</a>

@@ -31,17 +31,56 @@ export default class InsideApp extends React.Component {
 		this.state = {
 			analytics: null,
 			ml_account: getMailerliteFunction(),
+			privateSectorCount: null,
+			publicSectorCount: null,
+			civilSocietyCount: null,
 		};
 	}
 
 	componentDidMount() {
 		this.getAnalytics();
+		this.getCounts();
 	}
 
 	getAnalytics() {
 		getRequest.call(this, "public/get_public_analytics", (data) => {
 			this.setState({
 				analytics: data,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
+	}
+
+	getCounts() {
+		getRequest.call(this, "public/get_public_companies"
+			+ "?count=true&ecosystem_role=ACTOR&entity_type=PRIVATE SECTOR", (data) => {
+			this.setState({
+				privateSectorCount: data.count,
+			});
+
+			getRequest.call(this, "public/get_public_companies"
+			+ "?count=true&entity_type=PUBLIC SECTOR", (data2) => {
+				this.setState({
+					publicSectorCount: data2.count,
+				});
+
+				getRequest.call(this, "public/get_public_companies"
+					+ "?count=true&ecosystem_role=ACTOR&entity_type=CIVIL SOCIETY", (data3) => {
+					this.setState({
+						civilSocietyCount: data3.count,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
+			}, (response) => {
+				nm.warning(response.statusText);
+			}, (error) => {
+				nm.error(error.message);
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -58,6 +97,9 @@ export default class InsideApp extends React.Component {
 				<Route path="/:path?" render={(props) => <Menu
 					analytics={this.state.analytics}
 					ml_account={this.state.ml_account}
+					privateSectorCount={this.state.privateSectorCount}
+					publicSectorCount={this.state.publicSectorCount}
+					civilSocietyCount={this.state.civilSocietyCount}
 					{...props}
 				/>}/>
 
@@ -123,6 +165,9 @@ export default class InsideApp extends React.Component {
 							render={(props) => <PageHome
 								ml_account={this.state.ml_account}
 								analytics={this.state.analytics}
+								privateSectorCount={this.state.privateSectorCount}
+								publicSectorCount={this.state.publicSectorCount}
+								civilSocietyCount={this.state.civilSocietyCount}
 								{...props}
 							/>}
 						/>
