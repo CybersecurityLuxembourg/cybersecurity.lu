@@ -246,6 +246,7 @@ export default class Menu extends React.Component {
 											</div>
 
 											<div className="col-md-3 legend-date Menu-hide-on-mobile">
+												17-21 OCT 22
 											</div>
 
 											<div className="col-md-12">
