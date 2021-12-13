@@ -39,7 +39,8 @@ export default class Cyber4GrowthServices extends React.Component {
 			});
 
 			const taxonomyValues = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "CYBER4GROWTH SERVICE CATEGORY")
+				.filter((v) => v.category === "SERVICE CATEGORY")
+				.filter((v) => v.name.includes("CYBER4GROWTH"))
 				.map((v) => v.id);
 
 			if (taxonomyValues.length > 0) {
