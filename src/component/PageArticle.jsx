@@ -165,10 +165,10 @@ export default class PageArticle extends React.Component {
 						<div className={this.state.article.type === "NEWS" ? "col-md-8" : "col-md-12"}>
 							<article>
 								<Helmet>
-									<meta prefix="og: http://ogp.me/ns#" property="og:title" content={this.state.article.title}/>
-									<meta prefix="og: http://ogp.me/ns#" property="og:description" content={this.state.article.abstract}/>
-									<meta prefix="og: http://ogp.me/ns#" property="og:image" content={getApiURL() + "public/get_public_image/" + this.state.article.image}/>
-									<meta prefix="og: http://ogp.me/ns#" property="og:url" content={this.state.article.link !== undefined
+									<meta name="title" property="og:title" content={this.state.article.title}/>
+									<meta name="description" property="og:description" content={this.state.article.abstract}/>
+									<meta name="image" property="og:image" content={getApiURL() + "public/get_public_image/" + this.state.article.image}/>
+									<meta name="url" property="og:url" content={this.state.article.link !== undefined
 										&& this.state.article.link !== null
 										&& this.state.article.link.length > 0
 										? this.state.article.link
