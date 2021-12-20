@@ -208,14 +208,10 @@ export default class Cyber4GrowthPresentation extends React.Component {
 
 							<div className="col-md-12">
 								<p>
-									A limited number of quality candidates, guided through a growth and
-									acceleration program from 6 months up to 3 years.
-								</p>
-
-								<p>
-									Not limited to the national market but with a clear outreach to the
-									European Digital Single Market or further developments to international
-									markets.
+									CYBER4Growth is a collaborative platform for entrepreneurs to have
+									access to state of the art cybersecurity services. The partners of the
+									program are experts with extensive knoweledge of start-ups needs in terms
+									of financing, innovation, access to market and growth.
 								</p>
 							</div>
 
@@ -228,86 +224,10 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							<div className="col-md-3"/>
 
 							<div className="col-md-12">
-								Position Luxembourg as THE platform to grow, accelerate and
-								scale in cybersecurity.
-								CYBERSECURITY LUXEMBOURG Start-up Pathway:
-								limited number of quality candidates, selected via partner
-								pitching events (Fit4Start, PYS, and others)
-								guided through a growth and acceleration programme:
-								from 6 months up to 3 years.
-								Not limited to the national market but with a clear outreach
-								to the European Digital Single Market or further developments
-								to international markets
-							</div>
-						</div>
-
-						<div className="row">
-							<div className="col-md-4">
-								<div className="shadow-section blue-shadow-section centered-shadow-section full-size">
-									<h4>Free services provided by SECURITYMADEIN.LU</h4>
-								</div>
-							</div>
-
-							<div className="col-md-4">
-								<div className="shadow-section blue-shadow-section centered-shadow-section full-size">
-									<h4>Premium trainings and services provided by SECURITYMADEIN.LU</h4>
-								</div>
-							</div>
-
-							<div className="col-md-4">
-								<div className="shadow-section blue-shadow-section centered-shadow-section full-size">
-									<h4>
-										Premium trainings, certifications and services provided by
-										cybersecurity players
-									</h4>
-								</div>
-							</div>
-						</div>
-
-						<div className="row">
-							<div className="col-md-12">
-								Position Luxembourg as THE platform to grow, accelerate and
-								scale in cybersecurity
-								CYBERSECURITY LUXEMBOURG Start-up Pathway:
-								limited number of quality candidates, selected via partner
-								pitching events (Fit4Start, PYS, and others)
-								guided through a growth and acceleration programme:
-								from 6 months up to 3 years
-								Not limited to the national market but with a clear outreach
-								to the European Digital Single Market or further developments
-								to international markets
-							</div>
-						</div>
-
-						<div className="row">
-							<div className="col-md-12">
-								<h2 ref={this.partWhy}>Why Cyber4Growth?</h2>
-							</div>
-
-							<div className="col-md-12">
-								The cybersecurity topic is interesting for all players
-								due to huge market growth and because it’s the backbone
-								of the digital economy
-								Innovative security and privacy solutions are key
-								for digital transformation and development of the
-								national market.
-								Experts are needed to judge the technical solutions,
-								inline with the feasibility of the business model
-								A wide range of innovation events are already available in Luxembourg
-							</div>
-
-							<div className="col-md-12">
-								Added value of the national ecosystem:
-							</div>
-
-							<div className="col-md-12">
-								Digital players (private and public) need the most innovative
-								and efficient solution to improve their security posture
-								Despite the size of its market, Luxembourg has a key role
-								in the European Digital Single Market*
-								Well known financial sector with private and institutional
-								investors looking for quality opportunities
-								Access to a wide range cybersecurity expertise
+								CYBER4Groth target both cybersecurity entrepreneurs who are looking for
+								tailor-made support and tech entrepreneurs needing to secure their
+								solution. The ambition of the platform is to position Luxembourg as THE
+								platform to grow, accelerate and scale in cybersecurity.
 							</div>
 						</div>
 					</div>
@@ -340,6 +260,9 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Assess & Protect
+									</div>
 									<h4>
 										Dedicated to all profile of start-ups
 									</h4>
@@ -347,6 +270,9 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>
 										Dedicated to cybersecurity start-ups
 									</h4>
@@ -358,6 +284,9 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Assess & Protect
+									</div>
 									<h4>
 										Approximatively 2 months
 									</h4>
@@ -365,6 +294,9 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>
 										From 6 months to a year
 									</h4>
@@ -376,11 +308,17 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Assess & Protect
+									</div>
 									<h4>Yes</h4>
 								</div>
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>Yes</h4>
 								</div>
 							</div>
@@ -390,11 +328,17 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section grey-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Assess & Protect
+									</div>
 									<h4>No</h4>
 								</div>
 							</div>
 							<div className="col-md-4">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>Yes</h4>
 								</div>
 							</div>
@@ -404,23 +348,41 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</div>
 							<div className="col-md-4 Cyber4GrowthPresentation-program-focus">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Assess & Protect
+									</div>
 									<h4>Infrastructure</h4>
 								</div>
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Assess & Protect
+									</div>
 									<h4>Legal and certifications</h4>
 								</div>
 							</div>
 							<div className="col-md-4 Cyber4GrowthPresentation-program-focus">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>Infrastructure</h4>
 								</div>
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>Legal and certifications</h4>
 								</div>
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>Technology</h4>
 								</div>
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									<div className={"Cyber4GrowthPresentation-program-mobile"}>
+										Improve & Connect
+									</div>
 									<h4>Business & internationalisation</h4>
 								</div>
 							</div>

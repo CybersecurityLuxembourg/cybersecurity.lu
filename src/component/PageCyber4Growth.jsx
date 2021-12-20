@@ -18,7 +18,7 @@ export default class PageCyber4Growth extends React.Component {
 			tabs: [
 				"presentation",
 				"services",
-				"laureates",
+				"participants",
 			],
 			selectedMenu: null,
 		};
@@ -59,7 +59,7 @@ export default class PageCyber4Growth extends React.Component {
 					labels={[
 						"Presentation",
 						"Services",
-						"Laureates 2022",
+						"Participants of 2022",
 					]}
 					keys={this.state.tabs}
 					content={[

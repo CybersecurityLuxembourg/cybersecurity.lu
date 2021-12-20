@@ -3,14 +3,11 @@
 	margin: 10px 0px 4px 0px;
 }
 
-.Cyber4GrowthPresentation-program .Cyber4GrowthPresentation-program-focus div {
-	padding: 6px 15px;
-}
-
 .Cyber4GrowthPresentation-program .Cyber4GrowthPresentation-program-criteria {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	padding: 20px 0px 0px 20px;
+	text-align: center;
 }
 
 #Cyber4GrowthPresentation .Cyber4GrowthPresentation-images div {
@@ -42,6 +39,7 @@
 }
 
 #Cyber4GrowthPresentation .shadow-section {
+	position: relative;
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 	border-radius: .25rem;
 	padding: 30px 15px;
@@ -123,4 +121,22 @@
 
 #Cyber4GrowthPresentation .shadow-section:hover div div {
 	opacity: 0;
+}
+
+#Cyber4GrowthPresentation .Cyber4GrowthPresentation-program-mobile {
+
+}
+
+@media (min-width: 768px) {
+    #Cyber4GrowthPresentation .Cyber4GrowthPresentation-program-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 0px) {
+    #Cyber4GrowthPresentation .Cyber4GrowthPresentation-program-mobile {
+        position: absolute;
+        top: 2px;
+        left: 8px;
+    }
 }
