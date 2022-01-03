@@ -1,0 +1,29 @@
+
+.PageCompany-logo {
+	min-height: 130px;
+	display: flex;
+    margin: auto;
+    height: 100%;
+}
+
+.PageCompany-logo img {
+	object-fit: contain;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.PageCompany-no-logo {
+    min-height: 130px;
+}
+
+.PageCompany-stamp {
+	font-size: 24px;
+}
+
+.PageCompany-stamp i {
+	color: #8fddff;
+	margin-right: 5px;
+}

@@ -1,5 +1,6 @@
 
 .TreeTaxonomy {
+	width: 100%;
 	position: relative;
 	border: lightgrey 2px solid;
     border-radius: 0.4rem;
@@ -30,6 +31,7 @@
 	stroke-width: 2;
 }
 
-.TreeTaxonomy__root {
-
+.TreeTaxonomy-node-text {
+	font-weight: bold;
+	font-size: 18px;
 }

@@ -1,0 +1,48 @@
+
+.JobOffer {
+    margin: 5px 0px 15px 0px !important;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+}
+
+.JobOffer-link {
+    color: inherit;
+}
+
+.JobOffer-link:hover {
+    color: initial !important;
+    text-decoration: none;
+}
+
+.JobOffer:hover {
+    background-color: #f2fbff;
+}
+
+.JobOffer .card-date {
+    position: absolute;
+    background: #009fe3;
+    text-align: center;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    color: #fff;
+    bottom: 0;
+    right: 10px;
+    text-transform: uppercase;
+}
+
+.JobOffer .card-type {
+    position: absolute;
+    background: #e40613;
+    text-align: center;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    color: #fff;
+    top: 0;
+    left: 10px;
+    text-transform: uppercase;
+}
+
+.JobOffer .card-text {
+    line-height: 1.2;
+    margin-bottom: 15px;
+}

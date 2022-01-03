@@ -1,0 +1,226 @@
+
+#PageDashboard-wrapper {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 900;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#PageDashboard {
+	width: 100%;
+	min-height: 100%;
+	background-color: white;
+
+}
+
+.PageDashboard-back-button {
+	z-index: 1000;
+	position: fixed;
+	bottom: 30px;
+	left: 26px;
+	padding: 0px !important;
+}
+
+#PageDashboard > div {
+	padding: 20px 60px;
+}
+
+.PageDashboard-back-button button {
+	opacity: 1;
+}
+
+#PageDashboard h1 {
+	background: none !important;
+	white-space: initial;
+	overflow: initial;
+	padding: 0px 5px !important;
+	min-height: 0px;
+
+}
+
+#PageDashboard h2 {
+	background: none;
+	white-space: initial;
+	overflow: initial;
+	padding: 0px 5px !important;
+	min-height: 0px;
+	text-transform: capitalize;
+}
+
+#PageDashboard h3 {
+	background: none;
+	white-space: initial;
+	overflow: initial;
+}
+
+#PageDashboard h4 {
+	background: none;
+	white-space: initial;
+	overflow: initial;
+}
+
+#PageDashboard h4 i {
+	margin-right: 10px;
+}
+
+#PageDashboard img {
+	width: 100%;
+}
+
+.PageDashboard-image-wrapper {
+	margin: 0px 0px 25px 0px !important;
+	display: flex;
+    margin: auto;
+    height: 120px;
+}
+
+.PageDashboard-image-wrapper img {
+	object-fit: contain;
+    margin: auto;
+    max-width: 100%;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+}
+
+#PageDashboard .blue-bordered {
+	background:
+        linear-gradient(to right, #8fddff 2px, transparent 3px) 0 0,
+        linear-gradient(to left, #8fddff 2px, transparent 3px) 100% 100%,
+        linear-gradient(to bottom, #8fddff 2px, transparent 3px) 0 0,
+        linear-gradient(to top, #8fddff 2px, transparent 3px) 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-size: 80px 80px !important;
+    padding: 20px 20px 80px 20px;
+}
+
+#PageDashboard .red-bordered {
+	background:
+        linear-gradient(to right, #ffa8b0 2px, transparent 3px) 0 0,
+        linear-gradient(to left, #ffa8b0 2px, transparent 3px) 100% 100%,
+        linear-gradient(to bottom, #ffa8b0 2px, transparent 3px) 0 0,
+        linear-gradient(to top, #ffa8b0 2px, transparent 3px) 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-size: 80px 80px !important;
+    padding: 20px 20px 80px 20px;
+}
+
+/* PageDashboard-national-actors */
+
+.PageDashboard-national-actors {
+	background-image: linear-gradient(to top right, white, rgba(228,6,9,.1));
+	padding-bottom: 120px !important;
+}
+
+.PageDashboard-national-actors h1 {
+	color: #e40613 !important;
+	text-align: right;
+}
+
+.PageDashboard-national-actors .PageDashboard-national-actors-legal {
+	padding: 10px 20px;
+}
+
+.PageDashboard-secin-department-logo {
+	padding: 20px 15px !important;
+}
+
+/* PageDashboard-national-strategy */
+
+.PageDashboard-national-strategy {
+	min-height: 200px;
+	background-color: #009fe3;
+	background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 15l15 15H0V15zM15 0l15 15V0H15z' fill='%23000' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.PageDashboard-national-strategy h1 {
+	color: white !important;
+	text-align: center;
+}
+
+.PageDashboard-national-strategy-actor {
+	background: 
+        linear-gradient( 45deg,transparent 10px,#fff 0) left /50.5% 100%,
+        linear-gradient( 225deg,transparent 10px,#fff 0) right/50.5% 100%;
+    background-repeat:no-repeat;
+    margin: 15px 0px;
+    padding: 5px;
+    min-height: 70px;
+    font-size: 1.5vw;
+}
+
+.PageDashboard-national-strategy-serving {
+ 	background: 
+        linear-gradient( 45deg,transparent 10px,#fff 0) left /50.5% 100%,
+        linear-gradient( 225deg,transparent 10px,#fff 0) right/50.5% 100%;
+    background-repeat:no-repeat;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.PageDashboard-national-strategy-serving .row {
+ 	text-align: center;
+}
+
+.PageDashboard-national-strategy-serving .row div {
+ 	text-align: center;
+}
+
+.PageDashboard-national-strategy-serving .row img {
+	display:block;
+	padding: 10px 0px;
+ 	max-width: 300px;
+ 	margin:auto;
+}
+
+/* PageDashboard-companies */
+
+.PageDashboard-companies {
+	background-image: linear-gradient(to top left, white, rgba(0,159,227,.05));
+}
+
+.PageDashboard-companies h1 {
+	color: #009fe3;
+}
+
+.PageDashboard-companies .Analytic-value {
+	color: #009fe3 !important;
+}
+
+.PageDashboard-companies .PageDashboard-actor-distribution {
+	height: 100%;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.PageDashboard-companies .PageDashboard-actor-distribution .VennActorDistribution {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.PageDashboard-authorities-and-regulators-bookmarks {
+	position: absolute;
+	top: -10px;
+	right: 10px;
+}
+
+.PageDashboard-legal-bookmark {
+	border-radius: 100%;
+    padding: 0px 6px;
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+    margin-right: 4px;
+    font-size: 16px;
+}

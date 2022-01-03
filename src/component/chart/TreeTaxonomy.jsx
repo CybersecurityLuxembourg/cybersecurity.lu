@@ -105,14 +105,15 @@ export default class TreeTaxonomy extends React.Component {
 				stroke="lightgrey"
 				fill={nodeDatum.active ? "#bcebff" : "#fed7da"}
 			/>
-			<text
-				fill="black"
-				strokeWidth="1"
+			<foreignObject
+				className="TreeTaxonomy-node-text"
 				x="25"
-				y="5"
+				y="-12"
+				width={nodeDatum.children === undefined ? "500px" : "220px"}
+				height="150px"
 			>
-				{nodeDatum.name}
-			</text>
+				<span xmlns="http://www.w3.org/1999/xhtml">{nodeDatum.name}</span>
+			</foreignObject>
 		</g>);
 	}
 

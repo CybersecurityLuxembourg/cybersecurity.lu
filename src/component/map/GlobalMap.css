@@ -1,0 +1,47 @@
+
+.GlobalMap-fullpage {
+	position: fixed;
+}
+
+.GlobalMap-company {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 20px;
+	width: 80%;
+	max-width: 300px;
+	z-index: 995;
+	background-color: #bcebff;
+    padding: 10px 20px 10px 20px;
+    border-radius: 0.4rem;
+    font-size: 13px;
+}
+
+.GlobalMap-company .Company {
+	z-index: 995;
+}
+
+.GlobalMap-filters-top-right {
+	padding: 10px 20px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin: 10px;
+	z-index: 1000;
+	background: 
+        linear-gradient( 45deg,transparent 10px,#000 0) left /50.5% 100%,
+        linear-gradient( 225deg,transparent 10px,#000 0) right/50.5% 100%;
+    background-repeat:no-repeat;
+}
+
+.GlobalMap-filters-top-right .row {
+	padding: 5px 0px;
+}
+
+.GlobalMap-filters-top-right h3 {
+	margin-top: 6px;
+	margin-bottom: 0px;
+	font-size: 14px;
+	color: white;
+}

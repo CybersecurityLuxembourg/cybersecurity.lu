@@ -79,36 +79,46 @@ export default class Menu extends React.Component {
 					<div className="Menu-title">Ecosystem home</div>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
-				<NavDropdown.Item href={getEcosystemAppURL() + "privatesector"}>
-					<div className="Menu-title">Private sector</div>
-					<div className="Menu-description">Solution and service providers</div>
+				<NavDropdown.Item>
+					<Link to="/privatesector">
+						<div className="Menu-title">Private sector</div>
+						<div className="Menu-description">Solution and service providers</div>
+					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Item href={getEcosystemAppURL() + "publicsector"}>
-					<div className="Menu-title">Public sector</div>
-					<div className="Menu-description">Authorities and regulators</div>
+				<NavDropdown.Item>
+					<Link to="/publicsector">
+						<div className="Menu-title">Public sector</div>
+						<div className="Menu-description">Authorities and regulators</div>
+					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Item href={getEcosystemAppURL() + "civilsociety"}>
-					<div className="Menu-title">Civil society</div>
-					<div className="Menu-description">Collective strengths</div>
+				<NavDropdown.Item>
+					<Link to="/civilsociety">
+						<div className="Menu-title">Civil society</div>
+						<div className="Menu-description">Collective strengths</div>
+					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
-				<NavDropdown.Item href={getEcosystemAppURL() + "dashboard"}>
-					<div className={"Menu-image"}>
-						<img src="/img/network.svg" viewBox="0 0 20 20"/>
-					</div>
-					<div className={"Menu-image-text"}>
-						<div className="Menu-title">Dashboard</div>
-						<div className="Menu-description">Global view</div>
-					</div>
+				<NavDropdown.Item>
+					<Link to="/dashboard">
+						<div className={"Menu-image"}>
+							<img src="/img/network.svg" viewBox="0 0 20 20"/>
+						</div>
+						<div className={"Menu-image-text"}>
+							<div className="Menu-title">Dashboard</div>
+							<div className="Menu-description">Global view</div>
+						</div>
+					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Item href={getEcosystemAppURL() + "map"}>
-					<div className={"Menu-image"}>
-						<img src="/img/luxembourg.png"/>
-					</div>
-					<div className={"Menu-image-text"}>
-						<div className="Menu-title">Map</div>
-						<div className="Menu-description">Geographic view</div>
-					</div>
+				<NavDropdown.Item>
+					<Link to="/map">
+						<div className={"Menu-image"}>
+							<img src="/img/luxembourg.png"/>
+						</div>
+						<div className={"Menu-image-text"}>
+							<div className="Menu-title">Map</div>
+							<div className="Menu-description">Geographic view</div>
+						</div>
+					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
 			<Nav.Link>

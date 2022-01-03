@@ -20,6 +20,12 @@ import PageAbout from "./PageAbout.jsx";
 import PageCyber4Growth from "./PageCyber4Growth.jsx";
 import PageSearch from "./PageSearch.jsx";
 import PageHelp from "./PageHelp.jsx";
+import PageDashboard from "./PageDashboard.jsx";
+import PagePrivateSector from "./PagePrivateSector.jsx";
+import PageMap from "./PageMap.jsx";
+import PageCompany from "./PageCompany.jsx";
+import PagePublicSector from "./PagePublicSector.jsx";
+import PageCivilSociety from "./PageCivilSociety.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
 export default class InsideApp extends React.Component {
@@ -110,6 +116,7 @@ export default class InsideApp extends React.Component {
 						<Route path="/tool/:handle" render={(props) => <PageTool {...props} />}/>
 						<Route path="/job_offer/:handle" render={(props) => <PageJobOffer {...props} />}/>
 						<Route path="/service/:handle" render={(props) => <PageService {...props} />}/>
+						<Route path="/company/:id" render={(props) => <PageCompany {...props} analytics={this.state.analytics} />}/>
 
 						<Route path="/help" render={(props) => <PageHelp {...props}/>}/>
 
@@ -149,6 +156,41 @@ export default class InsideApp extends React.Component {
 							/>}
 						/>
 						<Route
+							path="/privatesector"
+							render={(props) => <PagePrivateSector
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/publicsector"
+							render={(props) => <PagePublic
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/civilsociety"
+							render={(props) => <PageCivilSociety
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/dashboard"
+							render={(props) => <PageDashboard
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/map"
+							render={(props) => <PageMap
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
 							path="/search"
 							render={(props) => <PageSearch
 								analytics={this.state.analytics}
@@ -157,7 +199,9 @@ export default class InsideApp extends React.Component {
 						/>
 						<Route
 							path="/about"
-							render={(props) => <PageAbout {...props} />}
+							render={(props) => <PageAbout
+								{...props}
+							/>}
 						/>
 
 						<Route

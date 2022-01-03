@@ -11,7 +11,7 @@
 [data-venn-sets="Actors"] { 
 	fill: rgba(150, 150, 150, .01) !important;
 	stroke: grey !important;
-	stroke-width: 1px;
+	stroke-width: 3px;
 	font-size: 35px;
 }
 [data-venn-sets="Actors"] text { 
@@ -35,12 +35,12 @@
 [data-venn-sets="Actors_Startup"] { 
 	fill: rgba(0, 159, 227, 0) !important;
 	stroke: #009fe3 !important;
-	stroke-width: 1px;
+	stroke-width: 3px;
 }
 [data-venn-sets="Has cybersecurity as a core business"] { 
 	fill: #fed7da !important; 
-	stroke: black !important;
-	stroke-width: 1px;
+	stroke: #e40613 !important;
+	stroke-width: 3px;
 }
 [data-venn-sets="Has cybersecurity as a core business"] text { 
 	font-size: 1.3em !important;
