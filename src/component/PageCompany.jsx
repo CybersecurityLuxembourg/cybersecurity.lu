@@ -5,7 +5,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
-import TreeTaxonomy from "./chart/TreeTaxonomy.jsx";
+import Message from "./box/Message.jsx";
 import NoImage from "./box/NoImage.jsx";
 import { getApiURL } from "../utils/env.jsx";
 import { dictToURI } from "../utils/url.jsx";
@@ -15,17 +15,11 @@ import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
 import JobOffer from "./item/JobOffer.jsx";
 import ServiceHorizontal from "./item/ServiceHorizontal.jsx";
+import ToolHorizontal from "./item/ToolHorizontal.jsx";
 
 export default class PageCompany extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.getCompanyContent = this.getCompanyContent.bind(this);
-		this.getCompanyNews = this.getCompanyNews.bind(this);
-		this.getCompanyEvents = this.getCompanyEvents.bind(this);
-		this.getCompanyJobOffers = this.getCompanyJobOffers.bind(this);
-		this.getCompanyServices = this.getCompanyServices.bind(this);
-		this.getIndustryVertical = this.getIndustryVertical.bind(this);
 
 		this.state = {
 			company: null,
@@ -33,15 +27,17 @@ export default class PageCompany extends React.Component {
 			events: null,
 			jobOffers: null,
 			services: null,
+			tools: null,
 		};
 	}
 
 	componentDidMount() {
 		this.getCompanyContent();
-		this.getCompanyNews();
-		this.getCompanyEvents();
-		this.getCompanyJobOffers();
-		this.getCompanyServices();
+		this.getCompanyArticle("NEWS", "news");
+		this.getCompanyArticle("EVENT", "events");
+		this.getCompanyArticle("JOB OFFER", "jobOffers");
+		this.getCompanyArticle("SERVICE", "services");
+		this.getCompanyArticle("TOOL", "tools");
 	}
 
 	getCompanyContent() {
@@ -56,18 +52,18 @@ export default class PageCompany extends React.Component {
 		});
 	}
 
-	getCompanyNews(page) {
+	getCompanyArticle(type, variable, page) {
 		const params = {
-			type: "NEWS",
+			type,
 			companies: this.props.match.params.id,
 			page: page || 1,
-			per_page: 3,
+			per_page: 2,
 		};
 
 		getRequest.call(this, "public/get_public_articles?"
 			+ dictToURI(params), (data) => {
 			this.setState({
-				news: data,
+				[variable]: data,
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -76,91 +72,71 @@ export default class PageCompany extends React.Component {
 		});
 	}
 
-	getCompanyEvents(page) {
-		const params = {
-			type: "EVENT",
-			companies: this.props.match.params.id,
-			page: page || 1,
-			per_page: 3,
-		};
-
-		getRequest.call(this, "public/get_public_articles?"
-			+ dictToURI(params), (data) => {
-			this.setState({
-				events: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+	hasWebsite() {
+		return this.state.company
+			&& this.state.company.website
+			&& this.state.company.website.length > 0;
 	}
 
-	getCompanyJobOffers(page) {
-		const params = {
-			type: "JOB OFFER",
-			companies: this.props.match.params.id,
-			page: page || 1,
-			per_page: 3,
-		};
+	getArticleContent(type, articles, fetchFunction) {
+		if (articles) {
+			if (articles.pagination.total > 0) {
+				return <div className="col-md-12">
+					<DynamicTable
+						items={articles.items}
+						pagination={articles.pagination}
+						changePage={(page) => fetchFunction(page)}
+						buildElement={(a) => <div className="col-md-6">
+							{type === "news"
+								&& <Article
+									info={a}
+									analytics={this.props.analytics}
+								/>
+							}
+							{type === "event"
+								&& <Event
+									info={a}
+									analytics={this.props.analytics}
+								/>
+							}
+							{type === "joboffer"
+								&& <JobOffer
+									info={a}
+									analytics={this.props.analytics}
+								/>
+							}
+						</div>
+						}
+					/>
+				</div>;
+			}
 
-		getRequest.call(this, "public/get_public_articles?"
-			+ dictToURI(params), (data) => {
-			this.setState({
-				jobOffers: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
-	}
-
-	getCompanyServices(page) {
-		const params = {
-			type: "SERVICE",
-			companies: this.props.match.params.id,
-			page: page || 1,
-			per_page: 3,
-			include_tags: true,
-		};
-
-		getRequest.call(this, "public/get_public_articles?"
-			+ dictToURI(params), (data) => {
-			this.setState({
-				services: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
-	}
-
-	getIndustryVertical() {
-		if (this.props.taxonomy === null
-			|| this.props.taxonomy.values === undefined
-			|| this.state.company === null
-			|| this.state.company.taxonomy_assignment === undefined) {
-			return [];
+			return <div className="col-md-12">
+				<Message
+					text={"No item found"}
+					height={200}
+				/>
+			</div>;
 		}
 
-		return this.props.taxonomy.values
-			.filter((v) => v.category === "INDUSTRY VERTICAL")
-			.filter((v) => this.state.company.taxonomy_assignment.indexOf(v.id) >= 0);
+		return <div className="col-md-12">
+			<Loading
+				height={200}
+			/>
+		</div>;
 	}
 
-	getEntityType() {
-		if (this.props.taxonomy === null
-			|| this.props.taxonomy.values === undefined
-			|| this.state.company === null
-			|| this.state.company.taxonomy_assignment === undefined) {
-			return [];
+	getTaxonomyCategories() {
+		if (this.props.analytics
+			&& this.state.company
+			&& this.state.company.taxonomy_assignment.length > 0) {
+			console.log(this.state.company.taxonomy_assignment);
+			/* let values = this.state.company.taxonomy_assignment
+				.filter((v) => this.state.company.taxonomy_assignment.indexOf(v) >= 0); */
+			return ["ECOSYSTEM ROLE"];
 		}
 
-		return this.props.taxonomy.values
-			.filter((v) => v.category === "ENTITY TYPE")
-			.filter((v) => this.state.company.taxonomy_assignment.indexOf(v.id) >= 0);
+		return [];
 	}
 
 	changeState(field, value) {
@@ -188,11 +164,11 @@ export default class PageCompany extends React.Component {
 					? <div className="row row-spaced">
 						<div className="col-md-12">
 							<div className="row">
-								<div className={"col-md-3 "
-									+ (this.state.company.image !== null
-										&& this.state.company.image !== undefined
+								<div className={"col-md-4 "
+									+ (this.state.company.image
+										&& this.state.company.image
 										? "PageCompany-logo" : "PageCompany-no-logo")}>
-									{this.state.company.image !== null && this.state.company.image !== undefined
+									{this.state.company.image
 										? <img
 											src={getApiURL() + "public/get_public_image/" + this.state.company.image}
 											alt="Card image cap"
@@ -200,75 +176,75 @@ export default class PageCompany extends React.Component {
 										: <NoImage/>
 									}
 								</div>
-								<div className="col-md-9">
+								<div className="col-md-8 PageCompany-name">
 									<h3>{this.state.company.name}</h3>
 								</div>
 							</div>
 
 							<div className="row">
-								<div
-									className="col-md-12"
-									style={{ whiteSpace: "pre-line" }}>
-									{this.state.company.description}
+								<div className={"col-md-" + (this.hasWebsite() ? "8" : "12")}>
+									<div className="row">
+										<div className={"col-md-12"}>
+											<h3>About</h3>
+										</div>
+									</div>
+
+									<div className="row">
+										<div className={"col-md-12"} style={{ whiteSpace: "pre-line" }}>
+											{this.state.company.description}
+										</div>
+									</div>
+
+									<div className="row">
+										{this.state.company.trade_register_number
+											? <div className={"col-md-12"}>
+												<b>Trade register number:</b> {this.state.company.trade_register_number}
+											</div>
+											: ""
+										}
+
+										{this.state.company.creation_date
+											? <div className={"col-md-12"}>
+												<b>Creation date:</b> {this.state.company.creation_date}
+											</div>
+											: ""
+										}
+									</div>
+
+									<div className="row">
+										{this.state.company.is_cybersecurity_core_business
+											&& this.state.company.is_cybersecurity_core_business
+											? <div className="col-md-12 PageCompany-stamp">
+												<i className="fas fa-check-circle"/> Cybersecurity as a core business
+											</div>
+											: ""
+										}
+
+										{this.state.company.is_startup
+											? <div className="col-md-12 PageCompany-stamp">
+												<i className="fas fa-check-circle"/> Start-up
+											</div>
+											: ""
+										}
+									</div>
 								</div>
-							</div>
 
-							<div className="row">
-								{this.state.company.website !== undefined
-									&& this.state.company.website !== null
-									? <div className="col-md-12 right-buttons">
-										<button
-											className={"blue-background"}
-											onClick={() => window.open(!/^(?:f|ht)tps?:\/\//.test(this.state.company.website)
-												? "https://" + this.state.company.website
-												: this.state.company.website,
-											"_blank")}
-										>
-											<i className="fas fa-globe-europe"/> Visit website
-										</button>
-									</div>
-									: ""
-								}
-							</div>
-
-							<div className="row">
-								{this.getIndustryVertical().map((v) => <div
-									key={v.id}
-									className="col-md-12 PageCompany-stamp">
-									<i className="fas fa-briefcase"/> {v.name}
-								</div>)
-								}
-
-								{this.state.company.is_cybersecurity_core_business !== undefined
-									&& this.state.company.is_cybersecurity_core_business
-									? <div className="col-md-12 PageCompany-stamp">
-										<i className="fas fa-check-circle"/> Cybersecurity as a core business
-									</div>
-									: ""
-								}
-
-								{this.state.company.is_startup !== undefined
-									&& this.state.company.is_startup
-									? <div className="col-md-12 PageCompany-stamp">
-										<i className="fas fa-check-circle"/> Start-up
-									</div>
-									: ""
-								}
-							</div>
-
-							<div className="row">
-								{this.state.company.rscl_number !== undefined
-									&& this.state.company.rscl_number !== null
-									? <div className="col-md-12">
-										<b>Business register number:</b> {this.state.company.rscl_number}
-									</div>
-									: ""
-								}
-
-								{this.state.company.creation_date !== undefined
-									&& this.state.company.creation_date !== null
-									? <div className="col-md-12">
-										<b>Creation date:</b> {this.state.company.creation_date}
+								{this.hasWebsite()
+									? <div className="col-md-4">
+										<div className="shadow-section blue-shadow-section centered-shadow-section">
+											{/* eslint-disable no-script-url */}
+											<a
+												href={!/^(?:f|ht)tps?:\/\//.test(this.state.company.website)
+													? "https://" + this.state.company.website
+													: this.state.company.website}
+												rel="noreferrer"
+												target="_blank">
+												<div>
+													<h3>Visit website</h3>
+													<i className="fas fa-globe-europe"/>
+												</div>
+											</a>
+										</div>
 									</div>
 									: ""
 								}
@@ -280,8 +256,57 @@ export default class PageCompany extends React.Component {
 					/>
 				}
 
-				{this.state.services && this.state.services.pagination.total > 0
+				{this.props.analytics
+					&& this.state.company
+					&& this.state.company.taxonomy_assignment.length > 0
 					&& <div className="row row-spaced">
+						<div className="col-md-12">
+							<h3>Taxonomy</h3>
+						</div>
+
+						{this.getTaxonomyCategories().map((c) => (
+							<div
+								key={c}
+								className="row">
+								<div className="col-md-3  shadow-section">
+									<h4>{c}</h4>
+								</div>
+							</div>
+						))}
+					</div>
+				}
+
+				{this.state.news
+					&& this.state.events
+					&& this.state.jobOffers
+					&& this.state.news.pagination.total
+						+ this.state.events.pagination.total
+						+ this.state.jobOffers.pagination.total > 0
+					&& <div className="row row-spaced">
+						<div className="col-md-12">
+							<h3>Articles</h3>
+						</div>
+
+						<div className="col-md-12">
+							<Tab
+								keys={["NEWS", "EVENTS", "JOB OFFERS"]}
+								labels={[
+									"News (" + (this.state.news ? this.state.news.pagination.total : "?") + ")",
+									"Events (" + (this.state.events ? this.state.events.pagination.total : "?") + ")",
+									"Job offers (" + (this.state.jobOffers ? this.state.jobOffers.pagination.total : "?") + ")",
+								]}
+								content={[
+									this.getArticleContent("news", this.state.news, this.getCompanyNews),
+									this.getArticleContent("event", this.state.events, this.getCompanyEvents),
+									this.getArticleContent("joboffer", this.state.jobOffers, this.getCompanyJobOffers),
+								]}
+							/>
+						</div>
+					</div>
+				}
+
+				{this.state.services && this.state.services.pagination.total > 0
+					&& <div className="row">
 						<div className="col-md-12">
 							<h3>Services</h3>
 						</div>
@@ -290,11 +315,11 @@ export default class PageCompany extends React.Component {
 							<DynamicTable
 								items={this.state.services.items}
 								pagination={this.state.services.pagination}
-								changePage={(page) => this.getCompanyServices(page)}
+								changePage={(page) => this.getCompanyArticle(page)}
 								buildElement={(a) => <div className="col-md-12">
 									<ServiceHorizontal
 										info={a}
-										taxonomy={this.props.taxonomy}
+										analytics={this.props.analytics}
 									/>
 								</div>
 								}
@@ -303,125 +328,27 @@ export default class PageCompany extends React.Component {
 					</div>
 				}
 
-				{!this.state.services
+				{this.state.tools && this.state.tools.pagination.total > 0
 					&& <div className="row">
 						<div className="col-md-12">
-							<Loading
-								height={400}
+							<h3>Tools</h3>
+						</div>
+
+						<div className="col-md-12">
+							<DynamicTable
+								items={this.state.tools.items}
+								pagination={this.state.tools.pagination}
+								changePage={(page) => this.getCompanyArticle("TOOL", "tools", page)}
+								buildElement={(a) => <div className="col-md-12">
+									<ToolHorizontal
+										info={a}
+										analytics={this.props.analytics}
+									/>
+								</div>
+								}
 							/>
 						</div>
 					</div>
-				}
-
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h3>Articles</h3>
-					</div>
-
-					<div className="col-md-12">
-						<Tab
-							keys={["NEWS", "EVENTS", "JOB OFFERS"]}
-							labels={[
-								"News (" + (this.state.news ? this.state.news.pagination.total : "?") + ")",
-								"Events (" + (this.state.events ? this.state.events.pagination.total : "?") + ")",
-								"Job offers (" + (this.state.jobOffers ? this.state.jobOffers.pagination.total : "?") + ")",
-							]}
-							content={[
-								this.state.news !== null
-									? <div className="col-md-12">
-										<DynamicTable
-											items={this.state.news.items}
-											pagination={this.state.news.pagination}
-											changePage={(page) => this.getCompanyNews(page)}
-											buildElement={(a) => <div className="col-md-4">
-												<Article
-													info={a}
-													analytics={this.props.analytics}
-												/>
-											</div>
-											}
-										/>
-									</div>
-									: <Loading
-										height={150}
-									/>,
-								this.state.events !== null
-									? <div className="col-md-12">
-										<DynamicTable
-											items={this.state.events.items}
-											pagination={this.state.events.pagination}
-											changePage={(page) => this.getCompanyEvents(page)}
-											buildElement={(a) => <div className="col-md-4">
-												<Event
-													info={a}
-													analytics={this.props.analytics}
-												/>
-											</div>
-											}
-										/>
-									</div>
-									: <Loading
-										height={150}
-									/>,
-								this.state.jobOffers !== null
-									? <div className="col-md-12">
-										<DynamicTable
-											items={this.state.jobOffers.items}
-											pagination={this.state.jobOffers.pagination}
-											changePage={(page) => this.getCompanyJobOffers(page)}
-											buildElement={(a) => <div className="col-md-12">
-												<JobOffer
-													info={a}
-													analytics={this.props.analytics}
-												/>
-											</div>
-											}
-										/>
-									</div>
-									: <Loading
-										height={150}
-									/>,
-							]}
-						/>
-					</div>
-				</div>
-
-				{this.state.company !== null
-					&& this.props.taxonomy !== null
-					&& this.props.taxonomy.values !== undefined
-					&& this.getEntityType().filter((t) => t.name === "PRIVATE SECTOR").length > 0
-					? <div className="row row-spaced">
-						<div className="col-md-12">
-							<h3>Classification within the private actors of the ecosystem</h3>
-						</div>
-						<div className="col-md-12">
-							<TreeTaxonomy
-								companyAssignment={this.state.company.taxonomy_assignment}
-								taxonomy={this.props.taxonomy}
-								category={"SERVICE GROUP"}
-							/>
-						</div>
-					</div>
-					: ""
-				}
-
-				{this.state.company !== null
-					&& this.props.taxonomy !== null
-					&& this.props.taxonomy.values !== undefined
-					&& this.getEntityType().filter((t) => t.name === "PUBLIC SECTOR").length > 0
-					? <div className="row row-spaced">
-						<div className="col-md-12">
-							<h3>Classification within the public actors of the ecosystem</h3>
-						</div>
-						<div className="col-md-12">
-							<TreeTaxonomy
-								companyAssignment={this.state.company.taxonomy_assignment}
-								taxonomy={this.props.taxonomy}
-								category={"LEGAL FRAMEWORK"}
-							/>
-						</div>
-					</div>
-					: ""
 				}
 			</div>
 		);

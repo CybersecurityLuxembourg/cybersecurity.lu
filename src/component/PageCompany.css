@@ -1,6 +1,6 @@
 
 .PageCompany-logo {
-	min-height: 130px;
+	min-height: 160px;
 	display: flex;
     margin: auto;
     height: 100%;
@@ -16,7 +16,15 @@
 }
 
 .PageCompany-no-logo {
-    min-height: 130px;
+    min-height: 160px;
+}
+
+.PageCompany-name {
+    padding-top: 15px;
+}
+
+.PageCompany-name h3 {
+    font-size: 28px;
 }
 
 .PageCompany-stamp {

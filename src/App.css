@@ -528,3 +528,85 @@ canvas {
 .shortcut-box h2:hover {
 	background-color: rgba(0, 159, 227, 0.05);
 }
+
+/* Shadow boxes */
+
+.shadow-section {
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	border-radius: .25rem;
+	padding: 20px 12px;
+	margin: 0px 6px;
+}
+
+.shadow-section a {
+		text-decoration: none;
+}
+
+.centered-shadow-section {
+    text-align: center;
+    cursor: pointer;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.blue-shadow-section, .red-shadow-section {
+	padding: 30px 15px !important;
+}
+
+.red-shadow-section, .red-shadow-section a {
+	background-color: #e40613;
+    color: #fff !important;
+}
+
+.blue-shadow-section, .blue-shadow-section a {
+	background-color: #009fe3;
+    color: #fff !important;
+}
+
+.red-shadow-section, .red-shadow-section a {
+	background-color: #e40613;
+    color: #fff !important;
+}
+
+.red-shadow-section h3, .blue-shadow-section h3 {
+	color: white;
+	font-size: 35px !important;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.red-shadow-section:hover h3, .blue-shadow-section:hover h3 {
+	font-size: 40px !important;
+	margin-bottom: 0px !important;
+}
+
+
+.red-shadow-section div i, .blue-shadow-section div i {
+	margin: 8px 0px;
+	font-size: 100px;
+	-webkit-transition: font-size .5s ease;
+	-moz-transition: font-size .5s ease;
+	-o-transition: font-size .5s ease;
+	transition: font-size .5s ease;
+}
+
+.red-shadow-section:hover i, .blue-shadow-section:hover i {
+	font-size: 140px;
+}
+
+.red-shadow-section div div, .blue-shadow-section div div {
+	-webkit-transition: opacity .5s ease;
+	-moz-transition: opacity .5s ease;
+	-o-transition: opacity .5s ease;
+	transition: opacity .5s ease;
+}
+
+.red-shadow-section:hover div div, .blue-shadow-section:hover div div {
+	opacity: 0;
+}
