@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import { getEcosystemAppURL, getPrivateAppURL } from "../../utils/env.jsx";
+import { getPrivateAppURL } from "../../utils/env.jsx";
 
 export default class Footer extends React.Component {
 	constructor(props) {
@@ -35,7 +35,6 @@ export default class Footer extends React.Component {
 											High Commission for National Protection
 										</a>
 									</div>
-									<br/>
 									<div className="Footer-alinea">
 										<a
 											href="https://securitymadein.lu/"
@@ -46,7 +45,6 @@ export default class Footer extends React.Component {
 											SECURITYMADEIN.LU
 										</a>
 									</div>
-									<br/>
 									<div className="Footer-alinea">
 										<a
 											href="https://www.luxinnovation.lu/"
@@ -66,23 +64,32 @@ export default class Footer extends React.Component {
 							<div className="row">
 								<div className="col-md-6">
 									<div>
-										<Link to="/">Home</Link>
+										<Link to="/">
+											Home
+										</Link>
 									</div>
-									<br/>
 									<div>
-										<Link to="/strategy">Strategy</Link>
+										<Link to="/strategy">
+											Strategy
+										</Link>
 									</div>
-									<br/>
 									<div>
-										<Link to="/news">News</Link>
+										<Link to="/news">
+											News
+										</Link>
 										&nbsp;-&nbsp;
-										<Link to="/calendar">Events</Link>
+										<Link to="/calendar">
+											Events
+										</Link>
 										&nbsp;-&nbsp;
-										<Link to="/marketplace">Jobs</Link>
+										<Link to="/marketplace">
+											Jobs
+										</Link>
 									</div>
-									<br/>
 									<div>
-										<Link to="/cyber4growth">Cyber4Growth</Link>
+										<Link to="/cyber4growth">
+											Cyber4Growth
+										</Link>
 									</div>
 									<br/>
 									<div>
@@ -92,7 +99,9 @@ export default class Footer extends React.Component {
 									</div>
 									<br/>
 									<div>
-										<Link to="/about">About</Link>
+										<Link to="/about">
+											About
+										</Link>
 									</div>
 								</div>
 
@@ -100,36 +109,30 @@ export default class Footer extends React.Component {
 									<div><b>Ecosystem</b></div>
 									<br/>
 									<div className="Footer-alinea">
-										<a href={getEcosystemAppURL()}>
-											Home
-										</a>
-									</div>
-									<br/>
-									<div className="Footer-alinea">
-										<a href={getEcosystemAppURL() + "privatesector"}>
+										<Link to="/privatesector">
 											Private sector
-										</a>
+										</Link>
 									</div>
 									<div className="Footer-alinea">
-										<a href={getEcosystemAppURL() + "publicsector"}>
+										<Link to="/publicsector">
 											Public sector
-										</a>
+										</Link>
 									</div>
 									<div className="Footer-alinea">
-										<a href={getEcosystemAppURL() + "civilsociety"}>
+										<Link to="/civilsociety">
 											Civil society
-										</a>
+										</Link>
 									</div>
 									<br/>
 									<div className="Footer-alinea">
-										<a href={getEcosystemAppURL() + "dashboard"}>
+										<Link to="/dashboard">
 											Dashboard
-										</a>
+										</Link>
 									</div>
 									<div className="Footer-alinea">
-										<a href={getEcosystemAppURL() + "map"}>
+										<Link to="/map">
 											Map
-										</a>
+										</Link>
 									</div>
 								</div>
 							</div>
@@ -140,12 +143,12 @@ export default class Footer extends React.Component {
 							<div>SECURITYMADEIN.LU g.i.e.</div>
 							<div>16, boulevard d&#39;Avranches</div>
 							<div>L-1160 Luxembourg</div>
-							<br/><br/>
+							<br/>
 							<div>(+352) 274 00 98 601</div>
 							<div>
 								<a href="mailto:info@cybersecurity-luxembourg.com">info@cybersecurity-luxembourg.com</a>
 							</div>
-							<br/><br/>
+							<br/>
 							<div>Copyright © SECURITYMADEIN.LU g.i.e 2021</div>
 						</div>
 						<div className="col-md-2">

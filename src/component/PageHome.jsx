@@ -10,7 +10,7 @@ import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { getEcosystemAppURL, getPrivateAppURL } from "../utils/env.jsx";
+import { getPrivateAppURL } from "../utils/env.jsx";
 import { dictToURI } from "../utils/url.jsx";
 
 export default class PageHome extends React.Component {
@@ -689,9 +689,7 @@ export default class PageHome extends React.Component {
 											<div className="col-md-4">
 												<a
 													className={"PageHome-link"}
-													href={getEcosystemAppURL() + "privatesector"}
-													target={"_blank"}
-													rel="noreferrer"
+													href={"/privatesector"}
 												>
 													<Analytic
 														value={this.props.privateSectorCount
@@ -703,9 +701,7 @@ export default class PageHome extends React.Component {
 											<div className="col-md-4">
 												<a
 													className={"PageHome-link"}
-													href={getEcosystemAppURL() + "publicsector"}
-													target={"_blank"}
-													rel="noreferrer"
+													href={"/publicsector"}
 												>
 													<Analytic
 														value={this.props.publicSectorCount
@@ -717,9 +713,7 @@ export default class PageHome extends React.Component {
 											<div className="col-md-4">
 												<a
 													className={"PageHome-link"}
-													href={getEcosystemAppURL() + "civilsociety"}
-													target={"_blank"}
-													rel="noreferrer"
+													href={"/civilsociety"}
 												>
 													<Analytic
 														value={this.props.civilSocietyCount
@@ -739,7 +733,7 @@ export default class PageHome extends React.Component {
 									<div className={"right-buttons"}>
 										<button
 											className={"black-button"}
-											onClick={() => window.open(getEcosystemAppURL())}
+											onClick={() => window.open("/privatesector")}
 										>
 											<i className="fas fa-arrow-alt-circle-right"/> Go to the ecosystem platform
 										</button>

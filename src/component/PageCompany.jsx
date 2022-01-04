@@ -322,9 +322,9 @@ export default class PageCompany extends React.Component {
 						<Tab
 							keys={["NEWS", "EVENTS", "JOB OFFERS"]}
 							labels={[
-								`News (${ this.state.news ? this.state.news.pagination.total : "?" })`,
-								`Events (${ this.state.events ? this.state.events.pagination.total : "?" })`,
-								`Job offers (${ this.state.jobOffers ? this.state.jobOffers.pagination.total : "?" })`,
+								"News (" + (this.state.news ? this.state.news.pagination.total : "?") + ")",
+								"Events (" + (this.state.events ? this.state.events.pagination.total : "?") + ")",
+								"Job offers (" + (this.state.jobOffers ? this.state.jobOffers.pagination.total : "?") + ")",
 							]}
 							content={[
 								this.state.news !== null

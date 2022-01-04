@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Company.css";
 import NoImage from "../box/NoImage.jsx";
-import { getApiURL, getEcosystemAppURL } from "../../utils/env.jsx";
+import { getApiURL } from "../../utils/env.jsx";
 
 export default class Company extends Component {
 	constructor(props) {
@@ -14,8 +14,7 @@ export default class Company extends Component {
 	render() {
 		return (
 			<a
-				href={getEcosystemAppURL() + "company/" + this.props.info.id}
-				rel="noreferrer"
+				href={"/company/" + this.props.info.id}
 				className="Company-link">
 				<div className="Company card">
 					<div className="card-horizontal">

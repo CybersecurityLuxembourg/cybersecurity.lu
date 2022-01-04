@@ -11,7 +11,7 @@
 
 .Footer .Footer-patronage {
   color: white;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   font-size: 14px;
 }
 
@@ -51,7 +51,7 @@
 
 @media (min-width: 768px) {
   .Footer-network {
-    margin-bottom: 60px !important;
+    margin-bottom: 37px !important;
   }
 }
 

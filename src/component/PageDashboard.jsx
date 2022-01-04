@@ -57,7 +57,7 @@ export default class PageDashboard extends React.Component {
 	}
 
 	componentDidMount() {
-		if (this.props.taxonomy !== null) {
+		if (this.props.analytics) {
 			this.fetchAnalytics();
 			this.fetchActors();
 			this.fetchPublicSector();
@@ -66,7 +66,7 @@ export default class PageDashboard extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.taxonomy !== prevProps.taxonomy) {
+		if (this.props.analytics !== prevProps.analytics) {
 			this.fetchAnalytics();
 			this.fetchActors();
 			this.fetchPublicSector();
@@ -231,7 +231,7 @@ export default class PageDashboard extends React.Component {
 			.filter((w) => actors.indexOf(w.company) >= 0)
 			.map((w) => w.workforce);
 
-		return workforces.reduce((a, b) => a + b);
+		return workforces.reduce((a, b) => a + b, 0);
 	}
 
 	getStartupCount() {
@@ -245,12 +245,12 @@ export default class PageDashboard extends React.Component {
 	}
 
 	getLegalFrameworks() {
-		if (this.props.taxonomy === null
-			|| this.props.taxonomy.values === undefined) {
+		if (this.props.analytics === null
+			|| this.props.analytics.taxonomy_values === undefined) {
 			return null;
 		}
 
-		return this.props.taxonomy.values.filter((v) => v.category === "LEGAL FRAMEWORK");
+		return this.props.analytics.taxonomy_values.filter((v) => v.category === "LEGAL FRAMEWORK");
 	}
 
 	getValueChainDistribution() {

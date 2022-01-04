@@ -12,13 +12,6 @@ export function getPrivateAppURL() {
 	return "https://my." + window.location.hostname.replace("www.", "") + "/";
 }
 
-export function getEcosystemAppURL() {
-	if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "") {
-		return "http://localhost:3003/";
-	}
-	return "https://ecosystem." + window.location.hostname.replace("www.", "") + "/";
-}
-
 export function isInternetExplorer() {
 	const ua = window.navigator.userAgent;
 	const msie = ua.indexOf("MSIE ");

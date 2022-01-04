@@ -164,7 +164,7 @@ export default class InsideApp extends React.Component {
 						/>
 						<Route
 							path="/publicsector"
-							render={(props) => <PagePublic
+							render={(props) => <PagePublicSector
 								analytics={this.state.analytics}
 								{...props}
 							/>}

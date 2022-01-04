@@ -6,7 +6,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
 import { getRequest } from "../utils/request.jsx";
-import { getApiURL, getEcosystemAppURL } from "../utils/env.jsx";
+import { getApiURL } from "../utils/env.jsx";
 import Loading from "./box/Loading.jsx";
 import Chip from "./form/Chip.jsx";
 import { getContentFromBlock, getNextTitle1Position } from "../utils/article.jsx";
@@ -94,7 +94,7 @@ export default class PageService extends React.Component {
 											key={t.name}
 											label={t.name}
 											color={"#ffa8b0"}
-											url={getEcosystemAppURL() + "company/" + t.id}
+											url={"/company/" + t.id}
 										/>
 									))}
 								</div>

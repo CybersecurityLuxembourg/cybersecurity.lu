@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { getPrivateAppURL, getEcosystemAppURL } from "../../utils/env.jsx";
+import { getPrivateAppURL } from "../../utils/env.jsx";
 import SearchField from "../form/SearchField.jsx";
 import Analytic from "../box/Analytic.jsx";
 
@@ -75,10 +75,6 @@ export default class Menu extends React.Component {
 					</div>
 				}
 				id="basic-nav-dropdown">
-				<NavDropdown.Item href={getEcosystemAppURL()}>
-					<div className="Menu-title">Ecosystem home</div>
-				</NavDropdown.Item>
-				<NavDropdown.Divider />
 				<NavDropdown.Item>
 					<Link to="/privatesector">
 						<div className="Menu-title">Private sector</div>
@@ -178,8 +174,7 @@ export default class Menu extends React.Component {
 						>
 							<div>
 								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
-								<a
-									href="/strategy">
+								<Link to="/strategy">
 									<div className="row legend black-legend">
 										<div className="col-md-12 Menu-hide-on-mobile">
 											<div className="legend-title">
@@ -195,14 +190,11 @@ export default class Menu extends React.Component {
 											offered by the digital revolution. Discover it.
 										</div>
 									</div>
-								</a>
+								</Link>
 							</div>
 							<div>
 								<img src="/img/Slide_CYBERLUX_1920x1080.jpg"/>
-								<a
-									href={getEcosystemAppURL()}
-									target="_blank"
-									rel="noreferrer">
+								<Link to="/privatesector">
 									<div className="row legend red-legend">
 										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
 											<Analytic
@@ -228,7 +220,7 @@ export default class Menu extends React.Component {
 											in cybersecurity.
 										</div>
 									</div>
-								</a>
+								</Link>
 							</div>
 							<div>
 								<img src="/img/Slide_October_1920x1080.jpg"/>
