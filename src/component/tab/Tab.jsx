@@ -78,7 +78,7 @@ export default class Tab extends React.Component {
 							</div>
 						</div>
 					</div>
-					<div className={this.props.fullWidth ? "col-md-12 Tab-content-fw" : "col-md-2 Tab-content"}>
+					<div className={this.props.fullWidth ? "col-md-12 Tab-content-fw" : "col-md-10 Tab-content"}>
 						{this.props.keys.indexOf(this.state.selectedMenu) >= 0
 							? this.props.content[this.props.keys.indexOf(this.state.selectedMenu)]
 							: ""}
