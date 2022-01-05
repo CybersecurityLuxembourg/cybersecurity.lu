@@ -95,6 +95,13 @@ export default class Menu extends React.Component {
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
 				<NavDropdown.Item>
+					<Link to="/education">
+						<div className="Menu-title">Education</div>
+						<div className="Menu-description">Program and courses</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Divider />
+				<NavDropdown.Item>
 					<Link to="/dashboard">
 						<div className={"Menu-image"}>
 							<img src="/img/network.svg" viewBox="0 0 20 20"/>
@@ -117,12 +124,28 @@ export default class Menu extends React.Component {
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
-			<Nav.Link>
-				<Link to="/cyber4growth">
-					<div className="Menu-title">Cyber4Growth</div>
-					<div className="Menu-description">Startup accelerator</div>
-				</Link>
-			</Nav.Link>
+			<NavDropdown
+				title={
+					<div className="Menu-item">
+						<div className="Menu-title">Our programs</div>
+						<div className="Menu-description">Forum, startup and co</div>
+						<i className="fas fa-sort-down"/>
+					</div>
+				}
+				id="basic-nav-dropdown">
+				<NavDropdown.Item>
+					<Link to="/cyber4growth">
+						<div className="Menu-title">Cyber4Growth</div>
+						<div className="Menu-description">Startup accelerator</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
+					<Link to="/cybersecurityweek">
+						<div className="Menu-title">CSWL/ECSM</div>
+						<div className="Menu-description">Cybersecurity month and week</div>
+					</Link>
+				</NavDropdown.Item>
+			</NavDropdown>
 			<Nav.Link>
 				<Link to="/newsletter">
 					<div className="Menu-title"><i className="fas fa-envelope-open-text"/> Newsletter</div>
