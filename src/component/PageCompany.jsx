@@ -10,6 +10,7 @@ import NoImage from "./box/NoImage.jsx";
 import { getApiURL } from "../utils/env.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
+import CompanyMap from "./map/CompanyMap.jsx";
 import Tab from "./tab/Tab.jsx";
 import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
@@ -23,6 +24,7 @@ export default class PageCompany extends React.Component {
 
 		this.state = {
 			company: null,
+			geolocations: null,
 			news: null,
 			events: null,
 			jobOffers: null,
@@ -41,9 +43,22 @@ export default class PageCompany extends React.Component {
 	}
 
 	getCompanyContent() {
-		getRequest.call(this, "public/get_public_company/" + this.props.match.params.id, (data) => {
+		getRequest.call(this, "public/get_public_company/"
+			+ this.props.match.params.id, (data) => {
 			this.setState({
 				company: data,
+			}, () => {
+				getRequest.call(this, "public/get_public_company_geolocations?ids="
+					+ this.props.match.params.id, (data2) => {
+					console.log(data2);
+					this.setState({
+						geolocations: data2,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -57,7 +72,7 @@ export default class PageCompany extends React.Component {
 			type,
 			companies: this.props.match.params.id,
 			page: page || 1,
-			per_page: 2,
+			per_page: 4,
 		};
 
 		getRequest.call(this, "public/get_public_articles?"
@@ -78,29 +93,46 @@ export default class PageCompany extends React.Component {
 			&& this.state.company.website.length > 0;
 	}
 
-	getArticleContent(type, articles, fetchFunction) {
-		if (articles) {
-			if (articles.pagination.total > 0) {
+	hasGeolocation() {
+		return this.state.geolocations
+			&& this.state.geolocations.length > 0;
+	}
+
+	getArticleContent(type, variable) {
+		if (this.state[variable]) {
+			if (this.state[variable].pagination.total > 0) {
 				return <div className="col-md-12">
 					<DynamicTable
-						items={articles.items}
-						pagination={articles.pagination}
-						changePage={(page) => fetchFunction(page)}
+						items={this.state[variable].items}
+						pagination={this.state[variable].pagination}
+						changePage={(page) => this.getCompanyArticle(type, variable, page)}
 						buildElement={(a) => <div className="col-md-6">
-							{type === "news"
+							{type === "NEWS"
 								&& <Article
 									info={a}
 									analytics={this.props.analytics}
 								/>
 							}
-							{type === "event"
+							{type === "EVENT"
 								&& <Event
 									info={a}
 									analytics={this.props.analytics}
 								/>
 							}
-							{type === "joboffer"
+							{type === "JOB OFFER"
 								&& <JobOffer
+									info={a}
+									analytics={this.props.analytics}
+								/>
+							}
+							{type === "SERVICE"
+								&& <ServiceHorizontal
+									info={a}
+									analytics={this.props.analytics}
+								/>
+							}
+							{type === "TOOL"
+								&& <ToolHorizontal
 									info={a}
 									analytics={this.props.analytics}
 								/>
@@ -182,12 +214,27 @@ export default class PageCompany extends React.Component {
 							</div>
 
 							<div className="row">
-								<div className={"col-md-" + (this.hasWebsite() ? "8" : "12")}>
+								<div className={"col-md-" + (this.hasWebsite() || this.hasGeolocation() ? "8" : "12")}>
 									<div className="row">
 										<div className={"col-md-12"}>
 											<h3>About</h3>
 										</div>
 									</div>
+
+									{!this.state.company.description
+										&& !this.state.company.trade_register_number
+										&& !this.state.company.creation_date
+										&& !this.state.company.is_cybersecurity_core_business
+										&& !this.state.company.is_startup
+										&& <div className="row">
+											<div className={"col-md-12"}>
+												<Message
+													text={"No information found"}
+													height={200}
+												/>
+											</div>
+										</div>
+									}
 
 									<div className="row">
 										<div className={"col-md-12"} style={{ whiteSpace: "pre-line" }}>
@@ -229,22 +276,32 @@ export default class PageCompany extends React.Component {
 									</div>
 								</div>
 
-								{this.hasWebsite()
+								{this.hasWebsite() || this.hasGeolocation()
 									? <div className="col-md-4">
-										<div className="shadow-section blue-shadow-section centered-shadow-section">
-											{/* eslint-disable no-script-url */}
-											<a
-												href={!/^(?:f|ht)tps?:\/\//.test(this.state.company.website)
-													? "https://" + this.state.company.website
-													: this.state.company.website}
-												rel="noreferrer"
-												target="_blank">
-												<div>
-													<h3>Visit website</h3>
-													<i className="fas fa-globe-europe"/>
-												</div>
-											</a>
-										</div>
+										{this.hasWebsite()
+											&& <div className="shadow-section blue-shadow-section centered-shadow-section">
+												{/* eslint-disable no-script-url */}
+												<a
+													href={!/^(?:f|ht)tps?:\/\//.test(this.state.company.website)
+														? "https://" + this.state.company.website
+														: this.state.company.website}
+													rel="noreferrer"
+													target="_blank">
+													<div>
+														<h3>Visit website</h3>
+														<i className="fas fa-globe-europe"/>
+													</div>
+												</a>
+											</div>
+										}
+
+										{this.hasGeolocation()
+											&& <div className={"PageCompany-CompanyMap shadow-section"}>
+												<CompanyMap
+													geolocations={this.state.geolocations}
+												/>
+											</div>
+										}
 									</div>
 									: ""
 								}
@@ -276,80 +333,32 @@ export default class PageCompany extends React.Component {
 					</div>
 				}
 
-				{this.state.news
-					&& this.state.events
-					&& this.state.jobOffers
-					&& this.state.news.pagination.total
-						+ this.state.events.pagination.total
-						+ this.state.jobOffers.pagination.total > 0
-					&& <div className="row row-spaced">
-						<div className="col-md-12">
-							<h3>Articles</h3>
-						</div>
-
-						<div className="col-md-12">
-							<Tab
-								keys={["NEWS", "EVENTS", "JOB OFFERS"]}
-								labels={[
-									"News (" + (this.state.news ? this.state.news.pagination.total : "?") + ")",
-									"Events (" + (this.state.events ? this.state.events.pagination.total : "?") + ")",
-									"Job offers (" + (this.state.jobOffers ? this.state.jobOffers.pagination.total : "?") + ")",
-								]}
-								content={[
-									this.getArticleContent("news", this.state.news, this.getCompanyNews),
-									this.getArticleContent("event", this.state.events, this.getCompanyEvents),
-									this.getArticleContent("joboffer", this.state.jobOffers, this.getCompanyJobOffers),
-								]}
-							/>
-						</div>
+				<div className="row row-spaced">
+					<div className="col-md-12">
+						<h3>Articles</h3>
 					</div>
-				}
 
-				{this.state.services && this.state.services.pagination.total > 0
-					&& <div className="row">
-						<div className="col-md-12">
-							<h3>Services</h3>
-						</div>
-
-						<div className="col-md-12">
-							<DynamicTable
-								items={this.state.services.items}
-								pagination={this.state.services.pagination}
-								changePage={(page) => this.getCompanyArticle(page)}
-								buildElement={(a) => <div className="col-md-12">
-									<ServiceHorizontal
-										info={a}
-										analytics={this.props.analytics}
-									/>
-								</div>
-								}
-							/>
-						</div>
+					<div className="col-md-12">
+						<Tab
+							fullWidth={true}
+							keys={["NEWS", "EVENTS", "JOB OFFERS", "SERVICES", "TOOLS"]}
+							labels={[
+								"News (" + (this.state.news ? this.state.news.pagination.total : "?") + ")",
+								"Events (" + (this.state.events ? this.state.events.pagination.total : "?") + ")",
+								"Job offers (" + (this.state.jobOffers ? this.state.jobOffers.pagination.total : "?") + ")",
+								"Services (" + (this.state.services ? this.state.services.pagination.total : "?") + ")",
+								"Tools (" + (this.state.tools ? this.state.tools.pagination.total : "?") + ")",
+							]}
+							content={[
+								this.getArticleContent("NEWS", "news"),
+								this.getArticleContent("EVENT", "events"),
+								this.getArticleContent("JOB OFFER", "jobOffers"),
+								this.getArticleContent("SERVICE", "services"),
+								this.getArticleContent("TOOL", "tools"),
+							]}
+						/>
 					</div>
-				}
-
-				{this.state.tools && this.state.tools.pagination.total > 0
-					&& <div className="row">
-						<div className="col-md-12">
-							<h3>Tools</h3>
-						</div>
-
-						<div className="col-md-12">
-							<DynamicTable
-								items={this.state.tools.items}
-								pagination={this.state.tools.pagination}
-								changePage={(page) => this.getCompanyArticle("TOOL", "tools", page)}
-								buildElement={(a) => <div className="col-md-12">
-									<ToolHorizontal
-										info={a}
-										analytics={this.props.analytics}
-									/>
-								</div>
-								}
-							/>
-						</div>
-					</div>
-				}
+				</div>
 			</div>
 		);
 	}

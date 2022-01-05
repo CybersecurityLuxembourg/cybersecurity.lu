@@ -35,3 +35,12 @@
 	color: #8fddff;
 	margin-right: 5px;
 }
+
+.PageCompany-CompanyMap {
+    padding: 0 !important;
+    margin-top: 20px;
+}
+
+.PageCompany-CompanyMap .CompanyMap .leaflet-container {
+    min-height: 300px;
+}
