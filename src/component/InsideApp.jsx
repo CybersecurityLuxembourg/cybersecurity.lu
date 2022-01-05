@@ -26,6 +26,7 @@ import PageMap from "./PageMap.jsx";
 import PageCompany from "./PageCompany.jsx";
 import PagePublicSector from "./PagePublicSector.jsx";
 import PageCivilSociety from "./PageCivilSociety.jsx";
+import PageNewsletter from "./PageNewsletter.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
 export default class InsideApp extends React.Component {
@@ -200,6 +201,13 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/about"
 							render={(props) => <PageAbout
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/newsletter"
+							render={(props) => <PageNewsletter
+								ml_account={this.state.ml_account}
 								{...props}
 							/>}
 						/>
