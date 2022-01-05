@@ -215,7 +215,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 1000;
+    z-index: 900;
     width: 100%;
 }
 

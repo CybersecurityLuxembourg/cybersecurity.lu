@@ -11,6 +11,12 @@
 	right: 17px;
 }
 
+#PageHome .blue-bordered .max-sized-page,
+#PageHome .red-bordered .max-sized-page,
+#PageHome .black-bordered .max-sized-page {
+    padding: 40px 0px 60px 0px;
+}
+
 #PageHome .blue-bordered {
 	position: relative;
     background-color: rgba(188, 235, 255, 0.2) !important;
@@ -33,7 +39,7 @@
 
 #PageHome .black-bordered {
 	position: relative;
-    background-color: rgba(0, 0, 0, 0.05) !important;
+    background-color: rgba(0, 0, 0, 0.005) !important;
     background-repeat: no-repeat !important;
     background-size: 80px 80px !important;
     padding: 20px 20px 30px 20px;
@@ -123,139 +129,6 @@
 
 #PageHome h3 {
 	font-size: 28px;
-}
-
-/* NEWSLETTER BLOCK */
-
-
-#PageHome .ButtonSubscribe {
-    opacity: 1;
-    font-variant: small-caps;
-    text-transform: uppercase;
-    font-size: 20px important;
-}
-
-.PageHome-newsletter {
-	background-color: #009fe3;
-	color: white !important;
-	text-align: center;
-	cursor: pointer;
-	display: flex;
-  	justify-content: center;
-  	align-items: center;
-}
-
-
-.PageHome-newsletter-content {
-	display: inline-block;
-	padding: 20px;
-	margin: auto;
-	color: white;
-}
-
-.PageHome-newsletter h3 {
-	color: white;
-	font-size: 35px !important;
-	-webkit-transition: .3s ease;
-	-moz-transition: .3s ease;
-	-o-transition: .3s ease;
-	transition: .3s ease;
-}
-
-.PageHome-newsletter:hover h3 {
-	font-size: 40px !important;
-	margin-bottom: 0px !important;
-}
-
-
-.PageHome-newsletter-content i {
-    padding: 10px 0px;
-	font-size: 100px;
-	-webkit-transition: font-size .5s ease;
-	-moz-transition: font-size .5s ease;
-	-o-transition: font-size .5s ease;
-	transition: font-size .5s ease;
-}
-
-.PageHome-newsletter:hover i {
-	font-size: 140px;
-}
-
-.PageHome-newsletter-content .PageHome-newsletter-content-desc {
-	-webkit-transition: opacity .5s ease;
-	-moz-transition: opacity .5s ease;
-	-o-transition: opacity .5s ease;
-	transition: opacity .5s ease;
-}
-
-.PageHome-newsletter:hover .PageHome-newsletter-content-desc {
-	opacity: 0;
-}
-
-/* CSWL BLOCK */
-
-.PageHome-cswl {
-	background-color: #e40613;
-	color: white !important;
-	text-align: center;
-	cursor: pointer;
-	display: flex;
-  	justify-content: center;
-  	align-items: center;
-}
-
-
-.PageHome-cswl-content {
-	display: inline-block;
-	padding: 20px;
-	margin: auto;
-	color: white;
-}
-
-.PageHome-cswl img {
-	width: 100%;
-}
-
-.PageHome-cswl:hover h3 {
-	font-size: 40px !important;
-	margin-bottom: 0px !important;
-}
-
-.PageHome-cswl-content img {
-    width: 80% !important;
-    -webkit-transition: width .3s ease;
-    -moz-transition: width .3s ease;
-    -o-transition: width .3s ease;
-    transition: width .3s ease;
-    margin: 10px 0px;
-}
-
-.PageHome-cswl:hover img {
-    width: 100% !important;
-}
-
-.PageHome-cswl-content .PageHome-cswl-content-date {
-    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 25px;
-    -webkit-transition: font-size .5s ease;
-    -moz-transition: font-size .5s ease;
-    -o-transition: font-size .5s ease;
-    transition: font-size .5s ease;
-}
-
-.PageHome-cswl:hover .PageHome-cswl-content-date {
-    font-size: 35px !important;
-}
-
-.PageHome-cswl-content .PageHome-cswl-content-desc {
-	-webkit-transition: opacity .5s ease;
-	-moz-transition: opacity .5s ease;
-	-o-transition: opacity .5s ease;
-	transition: opacity .5s ease;
-}
-
-.PageHome-cswl:hover .PageHome-cswl-content-desc {
-	opacity: 0;
 }
 
 /* BACKGROUND PETALS */
