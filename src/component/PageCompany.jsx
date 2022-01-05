@@ -342,32 +342,35 @@ export default class PageCompany extends React.Component {
 					</div>
 				}
 
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h3>Articles</h3>
-					</div>
+				{this.props.analytics
+					&& this.state.company
+					&& <div className="row row-spaced">
+						<div className="col-md-12">
+							<h3>Articles</h3>
+						</div>
 
-					<div className="col-md-12">
-						<Tab
-							fullWidth={true}
-							keys={["NEWS", "EVENTS", "JOB OFFERS", "SERVICES", "TOOLS"]}
-							labels={[
-								"News (" + (this.state.news ? this.state.news.pagination.total : "?") + ")",
-								"Events (" + (this.state.events ? this.state.events.pagination.total : "?") + ")",
-								"Job offers (" + (this.state.jobOffers ? this.state.jobOffers.pagination.total : "?") + ")",
-								"Services (" + (this.state.services ? this.state.services.pagination.total : "?") + ")",
-								"Tools (" + (this.state.tools ? this.state.tools.pagination.total : "?") + ")",
-							]}
-							content={[
-								this.getArticleContent("NEWS", "news"),
-								this.getArticleContent("EVENT", "events"),
-								this.getArticleContent("JOB OFFER", "jobOffers"),
-								this.getArticleContent("SERVICE", "services"),
-								this.getArticleContent("TOOL", "tools"),
-							]}
-						/>
+						<div className="col-md-12">
+							<Tab
+								fullWidth={true}
+								keys={["NEWS", "EVENTS", "JOB OFFERS", "SERVICES", "TOOLS"]}
+								labels={[
+									"News (" + (this.state.news ? this.state.news.pagination.total : "?") + ")",
+									"Events (" + (this.state.events ? this.state.events.pagination.total : "?") + ")",
+									"Job offers (" + (this.state.jobOffers ? this.state.jobOffers.pagination.total : "?") + ")",
+									"Services (" + (this.state.services ? this.state.services.pagination.total : "?") + ")",
+									"Tools (" + (this.state.tools ? this.state.tools.pagination.total : "?") + ")",
+								]}
+								content={[
+									this.getArticleContent("NEWS", "news"),
+									this.getArticleContent("EVENT", "events"),
+									this.getArticleContent("JOB OFFER", "jobOffers"),
+									this.getArticleContent("SERVICE", "services"),
+									this.getArticleContent("TOOL", "tools"),
+								]}
+							/>
+						</div>
 					</div>
-				</div>
+				}
 			</div>
 		);
 	}
