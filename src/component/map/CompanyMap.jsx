@@ -12,7 +12,7 @@ export default class GlobalMap extends React.Component {
 		this.state = {
 			lat: 49.8116,
 			lng: 6.1319,
-			zoom: 9,
+			zoom: 8,
 		};
 	}
 

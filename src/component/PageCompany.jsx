@@ -12,6 +12,7 @@ import { dictToURI } from "../utils/url.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
 import CompanyMap from "./map/CompanyMap.jsx";
 import Tab from "./tab/Tab.jsx";
+import Chip from "./form/Chip.jsx";
 import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
 import JobOffer from "./item/JobOffer.jsx";
@@ -146,7 +147,7 @@ export default class PageCompany extends React.Component {
 			return <div className="col-md-12">
 				<Message
 					text={"No item found"}
-					height={200}
+					height={250}
 				/>
 			</div>;
 		}
@@ -162,10 +163,12 @@ export default class PageCompany extends React.Component {
 		if (this.props.analytics
 			&& this.state.company
 			&& this.state.company.taxonomy_assignment.length > 0) {
-			console.log(this.state.company.taxonomy_assignment);
-			/* let values = this.state.company.taxonomy_assignment
-				.filter((v) => this.state.company.taxonomy_assignment.indexOf(v) >= 0); */
-			return ["ECOSYSTEM ROLE"];
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => this.state.company.taxonomy_assignment.indexOf(v.id) >= 0);
+			let categories = [...new Set(values.map((v) => v.category))];
+			categories.sort((a, b) => (a < b ? 1 : -1));
+			categories = categories.map((c) => [c, values.filter((v) => v.category === c)]);
+			return categories;
 		}
 
 		return [];
@@ -230,7 +233,7 @@ export default class PageCompany extends React.Component {
 											<div className={"col-md-12"}>
 												<Message
 													text={"No information found"}
-													height={200}
+													height={150}
 												/>
 											</div>
 										</div>
@@ -317,17 +320,23 @@ export default class PageCompany extends React.Component {
 					&& this.state.company
 					&& this.state.company.taxonomy_assignment.length > 0
 					&& <div className="row row-spaced">
-						<div className="col-md-12">
+						<div className="col-md-12 row-spaced">
 							<h3>Taxonomy</h3>
 						</div>
 
-						{this.getTaxonomyCategories().map((c) => (
+						{this.getTaxonomyCategories().map(([category, values]) => (
 							<div
-								key={c}
-								className="row">
-								<div className="col-md-3  shadow-section">
-									<h4>{c}</h4>
-								</div>
+								key={category}
+								className="col-md-4 PageCompany-taxonomy-category shadow-section">
+								<h4>{category}</h4>
+
+								{values.map((v) => (
+									<Chip
+										key={v.name}
+										label={v.name}
+										url={"/search?taxonomy_value=" + v.id}
+									/>
+								))}
 							</div>
 						))}
 					</div>
