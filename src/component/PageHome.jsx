@@ -165,6 +165,10 @@ export default class PageHome extends React.Component {
 				}, (error) => {
 					nm.error(error.message);
 				});
+			} else {
+				this.setState({
+					breakfastEvents: [],
+				});
 			}
 		}
 	}
@@ -294,12 +298,16 @@ export default class PageHome extends React.Component {
 	}
 
 	getBreakfastContent(category, width) {
-		if (this.state.breakfastArticles === null
-			|| this.state.breakfastEvents === null) {
+		console.log(this.state.breakfastArticles, this.state.breakfastEvents);
+
+		if (!this.state.breakfastArticles
+			|| !this.state.breakfastEvents) {
 			return <Loading
 				height={150}
 			/>;
 		}
+
+		console.log(this.state.breakfastArticles, this.state.breakfastEvents);
 
 		if (this.state.breakfastArticles.length === 0
 			&& this.state.breakfastEvents.length === 0) {
