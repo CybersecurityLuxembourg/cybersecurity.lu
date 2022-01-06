@@ -188,6 +188,7 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/education"
 							render={(props) => <PageEducation
+								analytics={this.state.analytics}
 								{...props}
 							/>}
 						/>
