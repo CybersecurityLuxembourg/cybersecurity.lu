@@ -200,10 +200,13 @@ export default class PageHome extends React.Component {
 							<div className="col-md-4">
 								<ShadowBoxPcDoctor
 									analytics={this.props.analytics}
+									color={"red"}
 								/>
 							</div>
 							<div className="col-md-4">
-								<ShadowBoxPureStartup/>
+								<ShadowBoxPureStartup
+									color={"red"}
+								/>
 							</div>
 							<div className="col-md-4">
 								<ShadowBoxMyCyberlux/>

@@ -1,17 +1,17 @@
 import React from "react";
-import "./ShadowBoxPcDoctor.css";
+import "./ShadowBoxPureStartup.css";
 import Popup from "reactjs-popup";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Company from "../item/Company.jsx";
 import Loading from "./Loading.jsx";
 
-export default class ShadowBoxPcDoctor extends React.Component {
+export default class ShadowBoxPureStartup extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			pcDoctors: null,
+			coreStartups: null,
 		};
 	}
 
@@ -29,12 +29,20 @@ export default class ShadowBoxPcDoctor extends React.Component {
 		});
 	}
 
+	getColor() {
+		if (this.props.color) {
+			return this.props.color;
+		}
+
+		return "blue";
+	}
+
 	render() {
 		return (
 			<Popup
 				className={"Popup-full-size"}
 				trigger={
-					<div className="shadow-section blue-shadow-section centered-shadow-section">
+					<div className={"shadow-section " + this.getColor() + "-shadow-section centered-shadow-section"}>
 						{/* eslint-disable no-script-url */}
 						<a>
 							<div>

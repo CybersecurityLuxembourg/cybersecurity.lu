@@ -40,12 +40,20 @@ export default class ShadowBoxPcDoctor extends React.Component {
 		}
 	}
 
+	getColor() {
+		if (this.props.color) {
+			return this.props.color;
+		}
+
+		return "blue";
+	}
+
 	render() {
 		return (
 			<Popup
 				className={"Popup-full-size"}
 				trigger={
-					<div className="shadow-section blue-shadow-section centered-shadow-section">
+					<div className={"shadow-section " + this.getColor() + "-shadow-section centered-shadow-section"}>
 						{/* eslint-disable no-script-url */}
 						<a>
 							<div>

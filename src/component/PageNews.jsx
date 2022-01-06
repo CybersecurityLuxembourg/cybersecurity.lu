@@ -7,6 +7,7 @@ import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import ShadowBoxShareNews from "./box/ShadowBoxShareNews.jsx";
 import ShadowBoxBecomePartner from "./box/ShadowBoxBecomePartner.jsx";
+import SearchField from "./form/SearchField.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
@@ -331,6 +332,14 @@ export default class PageNews extends React.Component {
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
 							<Breadcrumb.Item><Link to="/news">NEWS</Link></Breadcrumb.Item>
 						</Breadcrumb>
+					</div>
+
+					<div className="col-md-12">
+						<h4>Search over the portal</h4>
+					</div>
+
+					<div className="col-md-12 row-spaced">
+						<SearchField/>
 					</div>
 
 					<div className="col-md-4">

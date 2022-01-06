@@ -18,6 +18,7 @@ import PageJobOffer from "./PageJobOffer.jsx";
 import PageService from "./PageService.jsx";
 import PageAbout from "./PageAbout.jsx";
 import PageCyber4Growth from "./PageCyber4Growth.jsx";
+import PageCyberWeek from "./PageCyberWeek.jsx";
 import PageSearch from "./PageSearch.jsx";
 import PageHelp from "./PageHelp.jsx";
 import PageDashboard from "./PageDashboard.jsx";
@@ -26,6 +27,7 @@ import PageMap from "./PageMap.jsx";
 import PageCompany from "./PageCompany.jsx";
 import PagePublicSector from "./PagePublicSector.jsx";
 import PageCivilSociety from "./PageCivilSociety.jsx";
+import PageEducation from "./PageEducation.jsx";
 import PageNewsletter from "./PageNewsletter.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
@@ -150,6 +152,12 @@ export default class InsideApp extends React.Component {
 							/>}
 						/>
 						<Route
+							path="/cybersecurityweek"
+							render={(props) => <PageCyberWeek
+								{...props}
+							/>}
+						/>
+						<Route
 							path="/marketplace"
 							render={(props) => <PageMarketplace
 								analytics={this.state.analytics}
@@ -174,6 +182,12 @@ export default class InsideApp extends React.Component {
 							path="/civilsociety"
 							render={(props) => <PageCivilSociety
 								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/education"
+							render={(props) => <PageEducation
 								{...props}
 							/>}
 						/>
