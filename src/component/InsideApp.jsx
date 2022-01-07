@@ -154,6 +154,7 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/cybersecurityweek"
 							render={(props) => <PageCyberWeek
+								analytics={this.state.analytics}
 								{...props}
 							/>}
 						/>
