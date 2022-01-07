@@ -28,22 +28,37 @@ export default class EducationTrainingAndCourses extends React.Component {
 	}
 
 	getEducationServices(page) {
-		const params = {
-			type: "SERVICE",
-			page: page || 1,
-			per_page: 5,
-		};
+		if (this.props.analytics) {
+			const valueIds = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "SERVICE CATEGORY"
+					&& (v.name === "TRAINING COURSE" || v.name === "EDUCATIONAL PROGRAM"))
+				.map((v) => v.id);
 
-		getRequest.call(this, "public/get_public_articles?"
-			+ dictToURI(params), (data) => {
-			this.setState({
-				educationServices: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+			if (valueIds.length > 0) {
+				const params = {
+					type: "SERVICE",
+					page: page || 1,
+					per_page: 5,
+					taxonomy_values: valueIds,
+					include_tags: true,
+				};
+
+				getRequest.call(this, "public/get_public_articles?"
+					+ dictToURI(params), (data) => {
+					this.setState({
+						educationServices: data,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
+			} else {
+				this.setState({
+					educationServices: { pagination: { total: 0 } },
+				});
+			}
+		}
 	}
 
 	render() {
