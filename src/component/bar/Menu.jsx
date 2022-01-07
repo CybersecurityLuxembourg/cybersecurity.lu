@@ -264,10 +264,7 @@ export default class Menu extends React.Component {
 										</div>
 									</a>
 
-									<a
-										href="https://www.cybersecurityweek.lu/"
-										target="_blank"
-										rel="noreferrer">
+									<Link to="/cybersecurityweek">
 										<div className="row blue-legend">
 											<div className="col-md-9 Menu-hide-on-mobile">
 												<img src="/img/logo_cswl_white.png"/>
@@ -283,7 +280,7 @@ export default class Menu extends React.Component {
 												players & Tech enthusiasts.
 											</div>
 										</div>
-									</a>
+									</Link>
 								</div>
 							</div>
 							<div>
