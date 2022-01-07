@@ -130,34 +130,6 @@ export default class Cyber4GrowthPresentation extends React.Component {
 		}
 	}
 
-	getCyber4GrowthServices() {
-		if (this.props.analytics && this.props.analytics.taxonomy_values) {
-			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "CYBER4GROWTH SERVICE CATEGORY")
-				.map((v) => v.id);
-
-			if (values.length > 0) {
-				this.setState({
-					services: null,
-				});
-
-				const params = dictToURI({
-					taxonomy_values: values,
-				});
-
-				getRequest.call(this, "public/get_public_articles?" + params, (data) => {
-					this.setState({
-						services: data,
-					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
-				});
-			}
-		}
-	}
-
 	static copyToClipboard(text) {
 		const dummy = document.createElement("input");
 		document.body.appendChild(dummy);
