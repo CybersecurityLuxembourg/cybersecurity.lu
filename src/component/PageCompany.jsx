@@ -327,16 +327,18 @@ export default class PageCompany extends React.Component {
 						{this.getTaxonomyCategories().map(([category, values]) => (
 							<div
 								key={category}
-								className="col-md-4 PageCompany-taxonomy-category shadow-section">
-								<h4>{category}</h4>
+								className="col-md-4">
+								<div className=" PageCompany-taxonomy-category shadow-section">
+									<h4>{category}</h4>
 
-								{values.map((v) => (
-									<Chip
-										key={v.name}
-										label={v.name}
-										url={"/search?taxonomy_value=" + v.id}
-									/>
-								))}
+									{values.map((v) => (
+										<Chip
+											key={v.name}
+											label={v.name}
+											url={"/search?taxonomy_value=" + v.id}
+										/>
+									))}
+								</div>
 							</div>
 						))}
 					</div>
