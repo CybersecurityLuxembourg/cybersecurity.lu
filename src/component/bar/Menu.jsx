@@ -53,16 +53,19 @@ export default class Menu extends React.Component {
 				<NavDropdown.Item>
 					<Link to="/news">
 						<div className="Menu-title">News</div>
+						<div className="Menu-description">Latest headlines</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/calendar">
 						<div className="Menu-title">Events</div>
+						<div className="Menu-description">Check out the calendar</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/marketplace">
 						<div className="Menu-title">Jobs</div>
+						<div className="Menu-description">Cybersecurity marketplace</div>
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
@@ -141,8 +144,8 @@ export default class Menu extends React.Component {
 				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/cybersecurityweek">
-						<div className="Menu-title">CSWL/ECSM</div>
-						<div className="Menu-description">Cybersecurity month and week</div>
+						<div className="Menu-title">CSWL 2022</div>
+						<div className="Menu-description">Cybersecurity Week Luxembourg</div>
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
