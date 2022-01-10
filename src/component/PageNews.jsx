@@ -267,16 +267,12 @@ export default class PageNews extends React.Component {
 	}
 
 	getBreakfastContent(category, width) {
-		console.log(this.state.breakfastArticles, this.state.breakfastEvents);
-
 		if (!this.state.breakfastArticles
 			|| !this.state.breakfastEvents) {
 			return <Loading
 				height={150}
 			/>;
 		}
-
-		console.log(this.state.breakfastArticles, this.state.breakfastEvents);
 
 		if (this.state.breakfastArticles.length === 0
 			&& this.state.breakfastEvents.length === 0) {
@@ -316,7 +312,7 @@ export default class PageNews extends React.Component {
 			return null;
 		}
 
-		return "/news?taxonomy_values=" + filteredValues.map((v) => v.id).join(",");
+		return "/search?taxonomy_values=" + filteredValues.map((v) => v.id).join(",");
 	}
 
 	changeState(field, value) {
@@ -368,15 +364,15 @@ export default class PageNews extends React.Component {
 					<div className="col-md-8">
 						<div className="row">
 							<div className="col-md-12">
-								<a
+								<Link
 									className="PageNews-title-link"
-									href={this.getArticleCategoryURL(
+									to={this.getArticleCategoryURL(
 										["INSTITUTIONAL NEWS - EUROPE", "INSTITUTIONAL NEWS - LUXEMBOURG"],
 									)}>
 									<div className="PageNews-title">
 										<h3>INSTITUTIONAL NEWS <span>more</span></h3>
 									</div>
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="row">
