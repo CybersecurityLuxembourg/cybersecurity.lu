@@ -35,6 +35,7 @@ export default class PageSearch extends React.Component {
 		this.state = {
 			articleTypes: ["NEWS", "EVENT", "TOOL", "JOB OFFER", "SERVICE"],
 			searchValue: getUrlParameter("r") ? decodeURI(getUrlParameter("r")) : null,
+			memberArticleOnly: getUrlParameter("memberArticlesOnly") === "true",
 			taxonomyValues,
 			entities: null,
 		};
