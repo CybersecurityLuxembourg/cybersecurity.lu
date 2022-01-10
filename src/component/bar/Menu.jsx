@@ -285,7 +285,7 @@ export default class Menu extends React.Component {
 							</div>
 							<div>
 								<img src="/img/Slide_CSB_1920x1080.jpg" />
-								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("CYBERSECURITY BREAKFAST")}>
+								<Link to={"/search?taxonomy_values=" + this.getArticleCategoryId("CYBERSECURITY BREAKFAST")}>
 									<div className="row legend black-legend">
 										<div className="col-md-12 Menu-hide-on-mobile">
 											<img src="/img/logo_cyberbreakfast_white.png"/>
@@ -300,7 +300,7 @@ export default class Menu extends React.Component {
 							</div>
 							<div>
 								<img src="/img/Slide_ITV_1920x1080.jpg" />
-								<Link to={"/search?taxonomy_value=" + this.getArticleCategoryId("LËTZ TALK ABOUT CYBER")}>
+								<Link to={"/search?taxonomy_values=" + this.getArticleCategoryId("LËTZ TALK ABOUT CYBER")}>
 									<div className="row legend black-legend">
 										<div className="col-md-12 Menu-hide-on-mobile">
 											<img src="/img/logo_ltac_white.png"/>

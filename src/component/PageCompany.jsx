@@ -51,7 +51,6 @@ export default class PageCompany extends React.Component {
 			}, () => {
 				getRequest.call(this, "public/get_public_company_geolocations?ids="
 					+ this.props.match.params.id, (data2) => {
-					console.log(data2);
 					this.setState({
 						geolocations: data2,
 					});
@@ -335,7 +334,7 @@ export default class PageCompany extends React.Component {
 										<Chip
 											key={v.name}
 											label={v.name}
-											url={"/search?taxonomy_value=" + v.id}
+											url={"/search?taxonomy_values=" + v.id}
 										/>
 									))}
 								</div>

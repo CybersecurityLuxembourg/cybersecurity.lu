@@ -83,7 +83,7 @@ export default class PageService extends React.Component {
 										<Chip
 											key={t.name}
 											label={t.name}
-											url={"/search?taxonomy_value=" + t.id}
+											url={"/search?taxonomy_values=" + t.id}
 										/>
 									))}
 								</div>

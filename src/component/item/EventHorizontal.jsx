@@ -79,7 +79,7 @@ export default class ArticleHorizontal extends Component {
 				{taxonomyValues.map((v) => <Chip
 					key={v.name}
 					label={v.name}
-					url={"/search?taxonomy_value=" + v.id}
+					url={"/search?taxonomy_values=" + v.id}
 				/>)}
 			</div>;
 		}
