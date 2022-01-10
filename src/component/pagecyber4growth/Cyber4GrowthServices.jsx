@@ -82,6 +82,10 @@ export default class Cyber4GrowthServices extends React.Component {
 				}, (error) => {
 					nm.error(error.message);
 				});
+			} else {
+				this.setState({
+					objects: { pagination: { total: 0 } },
+				});
 			}
 		}
 	}
@@ -91,7 +95,7 @@ export default class Cyber4GrowthServices extends React.Component {
 			<div id={"Cyber4GrowthServices"} className={"page max-sized-page"}>
 				<h2>Services from the program</h2>
 
-				{this.state.objects !== null && this.state.objects.items.length === 0
+				{this.state.objects && this.state.objects.pagination.total === 0
 					&& <div className="col-md-12">
 						<Message
 							text={"No object found"}
@@ -100,7 +104,7 @@ export default class Cyber4GrowthServices extends React.Component {
 					</div>
 				}
 
-				{this.state.objects !== null && this.state.objects.items.length > 0
+				{this.state.objects && this.state.objects.pagination.total > 0
 					&& <DynamicTable
 						items={this.state.objects.items}
 						pagination={this.state.objects.pagination}
@@ -116,7 +120,7 @@ export default class Cyber4GrowthServices extends React.Component {
 					/>
 				}
 
-				{this.state.objects === null
+				{!this.state.objects
 					&& <div className="col-md-12">
 						<Loading
 							height={200}

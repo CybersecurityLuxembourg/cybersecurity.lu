@@ -71,6 +71,10 @@ export default class Cyber4GrowthPresentation extends React.Component {
 				}, (error) => {
 					nm.error(error.message);
 				});
+			} else {
+				this.setState({
+					vcEntities: [],
+				});
 			}
 		}
 	}
@@ -97,6 +101,10 @@ export default class Cyber4GrowthPresentation extends React.Component {
 					nm.warning(response.statusText);
 				}, (error) => {
 					nm.error(error.message);
+				});
+			} else {
+				this.setState({
+					mediaEntities: [],
 				});
 			}
 		}
@@ -125,6 +133,10 @@ export default class Cyber4GrowthPresentation extends React.Component {
 					nm.warning(response.statusText);
 				}, (error) => {
 					nm.error(error.message);
+				});
+			} else {
+				this.setState({
+					partners: [],
 				});
 			}
 		}
