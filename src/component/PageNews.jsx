@@ -347,7 +347,7 @@ export default class PageNews extends React.Component {
 							<div className="col-md-12">
 								<a
 									className="PageNews-title-link"
-									href={"/news?member_news_only=true"}>
+									href={"/search?member_articles_only=true"}>
 									<div className="PageNews-title">
 										<h3>MEMBER NEWS <span>more</span></h3>
 									</div>

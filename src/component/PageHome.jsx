@@ -152,7 +152,7 @@ export default class PageHome extends React.Component {
 									<div className="col-md-12">
 										<a
 											className="PageHome-title-link"
-											href={"/news?member_news_only=true"}>
+											href={"/search?member_articles_only=true"}>
 											<div className="PageHome-title">
 												<h3>MEMBER NEWS <span>more</span></h3>
 											</div>
