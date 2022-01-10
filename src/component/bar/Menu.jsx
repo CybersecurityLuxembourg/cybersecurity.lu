@@ -315,11 +315,11 @@ export default class Menu extends React.Component {
 									<div className="Menu-description">What is CYBERLUX?</div>
 								</Link>
 							</Nav.Link>
-							<Nav.Link className="Menu-help">
+							{/* <Nav.Link className="Menu-help">
 								<Link to="/help">
 									<div className="Menu-title">Help!</div>
 								</Link>
-							</Nav.Link>
+							</Nav.Link> */}
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
