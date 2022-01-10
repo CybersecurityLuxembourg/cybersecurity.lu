@@ -29,7 +29,7 @@ export default class EducationEntities extends React.Component {
 	getEducationEntities() {
 		if (this.props.analytics) {
 			const valueId = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "INDUSTRY VERTICAL" && v.name === "EDUCATION")
+				.filter((v) => v.category === "INDUSTRY VERTICAL" && v.name === "Education")
 				.map((v) => v.id);
 
 			if (valueId.length > 0) {
