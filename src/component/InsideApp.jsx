@@ -19,7 +19,7 @@ import PageService from "./PageService.jsx";
 import PageAbout from "./PageAbout.jsx";
 /* import PageCyber4Growth from "./PageCyber4Growth.jsx"; */
 import PageSearch from "./PageSearch.jsx";
-import PageHelp from "./PageHelp.jsx";
+/* import PageHelp from "./PageHelp.jsx"; */
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
 export default class InsideApp extends React.Component {
@@ -111,7 +111,7 @@ export default class InsideApp extends React.Component {
 						<Route path="/job_offer/:handle" render={(props) => <PageJobOffer {...props} />}/>
 						<Route path="/service/:handle" render={(props) => <PageService {...props} />}/>
 
-						<Route path="/help" render={(props) => <PageHelp {...props}/>}/>
+						{/* <Route path="/help" render={(props) => <PageHelp {...props}/>}/> */}
 
 						<Route
 							path="/news"
