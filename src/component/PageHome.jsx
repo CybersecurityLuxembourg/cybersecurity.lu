@@ -8,7 +8,7 @@ import Analytic from "./box/Analytic.jsx";
 import ShadowBoxPcDoctor from "./box/ShadowBoxPcDoctor.jsx";
 import ShadowBoxPureStartup from "./box/ShadowBoxPureStartup.jsx";
 import ShadowBoxMyCyberlux from "./box/ShadowBoxMyCyberlux.jsx";
-import ShadowBoxShareNews from "./box/ShadowBoxShareNews.jsx";
+import ShadowBoxSubscribeNewsletter from "./box/ShadowBoxSubscribeNewsletter.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -19,80 +19,94 @@ export default class PageHome extends React.Component {
 		super(props);
 
 		this.state = {
-			memberNews: null,
+			callToActionNews: null,
+			callToActionNewsCompany: null,
 		};
 	}
 
 	componentDidMount() {
-		this.getMemberNews();
+		this.getCallToActionNews();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.analytics === null && this.props.analytics !== null) {
-			this.getMemberNews();
+			this.getCallToActionNews();
 		}
 	}
 
-	getMemberNews() {
-		const params = {
-			type: "NEWS",
-			include_tags: "true",
-			is_created_by_admin: false,
-			per_page: 2,
-			page: 1,
-		};
+	getCallToActionNews() {
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY")
+				.filter((v) => v.name === "CALL TO ACTION");
 
-		getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
-			this.setState({
-				memberNews: data.items,
-			}, () => {
-				const params2 = {
-					ids: Array.prototype.concat.apply(
-						[],
-						data.items
-							.filter((i) => i.company_tags)
-							.map((i) => i.company_tags),
-					),
+			if (values > 0) {
+				const params = {
+					type: "NEWS",
+					include_tags: "true",
+					taxonomy_values: values.map((v) => v.id).join(","),
+					per_page: 3,
+					page: 1,
 				};
 
-				getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
+				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
 					this.setState({
-						memberNewsCompanies: data2,
+						callToActionNews: data,
+					}, () => {
+						const params2 = {
+							ids: Array.prototype.concat.apply(
+								[],
+								data.items
+									.filter((i) => i.company_tags)
+									.map((i) => i.company_tags),
+							),
+						};
+
+						getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
+							this.setState({
+								callToActionNewsCompanies: data2,
+							});
+						}, (response) => {
+							nm.warning(response.statusText);
+						}, (error) => {
+							nm.error(error.message);
+						});
 					});
 				}, (response) => {
 					nm.warning(response.statusText);
 				}, (error) => {
 					nm.error(error.message);
 				});
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+			} else {
+				this.setState({
+					callToActionNews: { pagination: { total: 0 } },
+				});
+			}
+		}
 	}
 
-	getMemberNewsContent() {
-		if (!this.state.memberNews) {
+	getNewsContent(news) {
+		if (!news) {
 			return <Loading
 				height={150}
 			/>;
 		}
 
 		if (this.props.analytics) {
-			if (this.state.memberNews.length === 0) {
+			if (news.pagination.total === 0) {
 				return <Message
 					text={"No article found"}
 					height={150}
 				/>;
 			}
 
-			return this.state.memberNews.map((a) => <div
-				className={"col-md-6"}
+			return news.items.map((a) => <div
+				className={"col-md-4"}
 				key={a.id}>
 				<Article
 					info={a}
-					companies={this.state.memberNewsCompanies}
+					companies={this.state.callToActionNewsCompany}
 				/>
 			</div>);
 		}
@@ -140,29 +154,10 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>What&apos;s up?</h1>
+								<h1>Call to action</h1>
 							</div>
 
-							<div className="col-md-4">
-								<ShadowBoxShareNews/>
-							</div>
-
-							<div className="col-md-8">
-								<div className="row">
-									<div className="col-md-12">
-										<a
-											className="PageHome-title-link"
-											href={"/search?member_articles_only=true"}>
-											<div className="PageHome-title">
-												<h3>MEMBER NEWS <span>more</span></h3>
-											</div>
-										</a>
-									</div>
-								</div>
-								<div className="row">
-									{this.getMemberNewsContent()}
-								</div>
-							</div>
+							{this.getNewsContent(this.state.callToActionNews)}
 						</div>
 					</div>
 				</div>
@@ -215,19 +210,21 @@ export default class PageHome extends React.Component {
 					</div>
 				</div>
 
-				<div className="black-bordered">
+				<div className="blue-bordered">
 					{this.getBackgroundPetal()}
 					{this.getBackgroundPetalBottom()}
 
 					<div className="max-sized-page">
-						<div className="row row-spaced">
+						<div className="row">
 							<div className="col-md-12">
-								<h1>Search over the portal</h1>
+								<h1>Subscribe to the newsletter</h1>
 							</div>
 
-							<div className="col-md-2"/>
-							<div className="col-md-8">
-								<SearchField/>
+							<div className="col-md-3"/>
+							<div className="col-md-6">
+								<ShadowBoxSubscribeNewsletter
+									{...this.props}
+								/>
 							</div>
 						</div>
 					</div>

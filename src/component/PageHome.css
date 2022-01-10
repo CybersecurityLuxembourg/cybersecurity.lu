@@ -58,8 +58,8 @@
 
 #PageHome .Analytic:hover {
 	background: 
-        linear-gradient( 135deg,transparent 10px,#000 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,#000 0) right /50.5% 100% !important;
+        linear-gradient( 135deg,transparent 10px,#e40613 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#e40613 0) right /50.5% 100% !important;
     background-repeat: no-repeat !important;
 	cursor: pointer;
 	border-radius: 0;
