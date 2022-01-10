@@ -1,25 +1,25 @@
 
-.ArticleSearch div .FormLine .row {
+.EventSearch div .FormLine .row {
 	padding: 3px 0px !important;
 }
 
-.ArticleSearch-taxonomy-link-container {
+.EventSearch-taxonomy-link-container {
 	padding: 3px 0px 0px 0px;
 	text-align: center;
 }
 
-.ArticleSearch-taxonomy-link {
+.EventSearch-taxonomy-link {
 	cursor: pointer;
 	color: #009fe3 !important;
 	width: 100%;
 	text-align: center;
 }
 
-.ArticleSearch-tree-taxonomy {
+.EventSearch-tree-taxonomy {
 	margin: 10px 0px;
 }
 
-.ArticleSearch-img {
+.EventSearch-img {
 	display: block;
     margin-left: auto;
     margin-right: auto;
