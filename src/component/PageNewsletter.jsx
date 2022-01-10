@@ -2,8 +2,10 @@ import React from "react";
 import "./PageNewsletter.css";
 import { Link } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
+import ShadowBoxSubscribeNewsletter from "./box/ShadowBoxSubscribeNewsletter.jsx";
 
 export default class PageNewsletter extends React.Component {
+	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
 			<div className={"page max-sized-page"}>
@@ -30,14 +32,10 @@ export default class PageNewsletter extends React.Component {
 				<div className="row row-spaced">
 					<div className="col-md-4"/>
 
-					<div
-						className="col-md-4 shadow-section blue-shadow-section centered-shadow-section"
-						onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
-						<div className="PageNews-newsletter-content">
-							<h3>Subscribe now</h3>
-
-							<i className="fas fa-paper-plane"/>
-						</div>
+					<div className="col-md-4">
+						<ShadowBoxSubscribeNewsletter
+							{...this.props}
+						/>
 					</div>
 				</div>
 
