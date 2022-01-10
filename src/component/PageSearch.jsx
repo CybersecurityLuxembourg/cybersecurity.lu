@@ -27,10 +27,15 @@ export default class PageSearch extends React.Component {
 		this.getArticlesByType = this.getArticlesByType.bind(this);
 		this.hasLoaded = this.hasLoaded.bind(this);
 
+		const taxonomyValues = getUrlParameter("taxonomy_values")
+			? getUrlParameter("taxonomy_values").split(",")
+				.map((v) => parseInt(v, 10))
+			: null;
+
 		this.state = {
 			articleTypes: ["NEWS", "EVENT", "TOOL", "JOB OFFER", "SERVICE"],
 			searchValue: getUrlParameter("r") ? decodeURI(getUrlParameter("r")) : null,
-			taxonomyValue: getUrlParameter("taxonomy_value") ? getUrlParameter("taxonomy_value") : null,
+			taxonomyValues,
 			entities: null,
 		};
 	}
@@ -50,20 +55,20 @@ export default class PageSearch extends React.Component {
 			});
 		}
 
-		if (this.state.taxonomyValue !== prevState.taxonomyValue) {
-			if (this.state.taxonomyValue === null) {
+		if (this.state.taxonomyValues !== prevState.taxonomyValues) {
+			if (this.state.taxonomyValues === null) {
 				this.props.history.push("/search");
 				this.getEntities();
 				this.getArticles();
 			} else {
-				this.props.history.push("/search?taxonomy_value=" + this.state.taxonomyValue);
+				this.props.history.push("/search?taxonomy_values=" + this.state.taxonomyValues.join(","));
 			}
 		}
 
-		if (decodeURI(this.state.taxonomyValue) !== decodeURI(getUrlParameter("taxonomy_value"))) {
+		if (decodeURI(this.state.taxonomyValues) !== decodeURI(getUrlParameter("taxonomy_values"))) {
 			this.setState({
-				taxonomyValue: getUrlParameter("taxonomy_value") === null
-					? null : decodeURI(getUrlParameter("taxonomy_value")),
+				taxonomyValues: getUrlParameter("taxonomy_values") === null
+					? null : decodeURI(getUrlParameter("taxonomy_values").split(",")),
 			}, () => {
 				this.getEntities();
 				this.getArticles();
@@ -73,10 +78,10 @@ export default class PageSearch extends React.Component {
 
 	getEntities() {
 		if ((this.state.searchValue && this.state.searchValue.length > 2)
-			|| this.state.taxonomyValue) {
-			const filters = this.state.taxonomyValue === null
+			|| this.state.taxonomyValues) {
+			const filters = this.state.taxonomyValues === null
 				? { name: this.state.searchValue }
-				: { taxonomy_values: this.state.taxonomyValue };
+				: { taxonomy_values: this.state.taxonomyValues };
 
 			getRequest.call(this, "public/get_public_companies?"
 				+ dictToURI(filters), (data) => {
@@ -103,8 +108,8 @@ export default class PageSearch extends React.Component {
 
 	getArticlesByType(type, page) {
 		if ((this.state.searchValue && this.state.searchValue.length > 2)
-			|| this.state.taxonomyValue) {
-			const filters = this.state.taxonomyValue === null
+			|| this.state.taxonomyValues) {
+			const filters = this.state.taxonomyValues === null
 				? {
 					title: this.state.searchValue,
 					include_tags: "true",
@@ -113,7 +118,7 @@ export default class PageSearch extends React.Component {
 					per_page: 3,
 				}
 				: {
-					taxonomy_values: this.state.taxonomyValue,
+					taxonomy_values: this.state.taxonomyValues,
 					include_tags: "true",
 					type,
 					page,
@@ -161,42 +166,38 @@ export default class PageSearch extends React.Component {
 		return null;
 	}
 
-	getTaxonomyValueChip(id) {
-		if (this.props.analytics !== null) {
+	getTaxonomyValueChips() {
+		if (this.props.analytics && this.state.taxonomyValues) {
 			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.id === parseInt(id, 10));
+				.filter((v) => this.state.taxonomyValues.indexOf(v.id) >= 0);
 
 			if (values.length > 0) {
-				return <Chip
-					key={values[0].id}
-					label={values[0].name}
-					url={"/search?taxonomy_value=" + id}
-					onClick={() => {
-						this.setState({ taxonomyValue: null });
-						this.props.history.push("/search");
-					}}
-				/>;
+				return values.map((v) => (
+					<Chip
+						key={v.id}
+						label={v.name}
+						url={"/search?taxonomy_values=" + v.id}
+						onClick={() => {
+							this.setState({ taxonomyValues: null });
+							this.props.history.push("/search");
+						}}
+					/>
+				));
 			}
 		}
 
-		return <Chip
-			key={"Loading..."}
-			label={"Loading..."}
-			url={"/search?taxonomy_value=" + id}
-			onClick={() => {
-				this.setState({ taxonomyValue: null });
-				this.props.history.push("/search");
-			}}
+		return <Loading
+			height={100}
 		/>;
 	}
 
 	hasLoaded() {
-		return this.state.entities !== null
-			&& this.state.NEWS !== null
-			&& this.state.EVENT !== null
-			&& this.state.TOOL !== null
-			&& this.state.JOB_OFFER !== null
-			&& this.state.SERVICE !== null;
+		return this.state.entities
+			&& this.state.NEWS
+			&& this.state.EVENT
+			&& this.state.TOOL
+			&& this.state.JOB_OFFER
+			&& this.state.SERVICE;
 	}
 
 	render() {
@@ -211,7 +212,7 @@ export default class PageSearch extends React.Component {
 					</div>
 				</div>
 
-				{this.state.taxonomyValue === null
+				{!this.state.taxonomyValues || this.state.taxonomyValues.length === 0
 					? <div className="row row-spaced">
 						<div className="col-md-12">
 							<SearchField
@@ -224,12 +225,12 @@ export default class PageSearch extends React.Component {
 							<h3>Selected tag</h3>
 						</div>
 						<div className="col-md-12">
-							{this.getTaxonomyValueChip(this.state.taxonomyValue)}
+							{this.getTaxonomyValueChips()}
 						</div>
 					</div>
 				}
 
-				{this.state.taxonomyValue === null
+				{this.state.taxonomyValues === null
 					&& this.getTaxonomyValues() !== null
 					&& this.getTaxonomyValues().length > 0
 					&& <div className="row row-spaced">
@@ -240,14 +241,15 @@ export default class PageSearch extends React.Component {
 							{this.getTaxonomyValues().map((v) => <Chip
 								key={v.name}
 								label={v.name}
-								url={"/search?taxonomy_value=" + v.id}
+								url={"/search?taxonomy_values=" + v.id}
 							/>)}
 						</div>
 					</div>
 				}
 
 				{!this.hasLoaded()
-					&& this.state.searchValue !== null && this.state.searchValue.length >= 3
+					&& ((this.state.searchValue !== null && this.state.searchValue.length >= 3)
+						|| this.state.taxonomyValues !== null)
 					&& <div className="row">
 						<div className="col-md-12">
 							<Loading
@@ -269,8 +271,8 @@ export default class PageSearch extends React.Component {
 				}
 
 				{!this.state.searchValue
-					&& !this.state.taxonomyValue
-					&& <div className="row">
+					&& !this.state.taxonomyValues
+					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Message
 								text={"Please type your search query"}
@@ -280,13 +282,14 @@ export default class PageSearch extends React.Component {
 					</div>
 				}
 
-				{this.state.entities && this.state.entities.length === 0
-					&& this.state.NEWS && this.state.NEWS.items.length === 0
-					&& this.state.EVENT && this.state.EVENT.items.length === 0
-					&& this.state.TOOL && this.state.TOOL.items.length === 0
-					&& this.state.JOB_OFFER && this.state.JOB_OFFER.items.length === 0
-					&& this.state.SERVICE && this.state.SERVICE.items.length === 0
-					&& <div className="row">
+				{this.hasLoaded()
+					&& this.state.entities.length === 0
+					&& this.state.NEWS.pagination.total === 0
+					&& this.state.EVENT.pagination.total === 0
+					&& this.state.TOOL.pagination.total === 0
+					&& this.state.JOB_OFFER.pagination.total === 0
+					&& this.state.SERVICE.pagination.total === 0
+					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Message
 								text={"No item found"}
