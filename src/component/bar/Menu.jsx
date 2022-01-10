@@ -68,6 +68,13 @@ export default class Menu extends React.Component {
 						<div className="Menu-description">Cybersecurity marketplace</div>
 					</Link>
 				</NavDropdown.Item>
+				<NavDropdown.Divider />
+				<NavDropdown.Item>
+					<Link to="/breakfast">
+						<div className="Menu-title">Breakfast</div>
+						<div className="Menu-description">Take part to our monthly event</div>
+					</Link>
+				</NavDropdown.Item>
 			</NavDropdown>
 			<NavDropdown
 				title={
@@ -127,32 +134,16 @@ export default class Menu extends React.Component {
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
-			<NavDropdown
-				title={
-					<div className="Menu-item">
-						<div className="Menu-title">Our programs</div>
-						<div className="Menu-description">Forum, startup and co</div>
-						<i className="fas fa-sort-down"/>
-					</div>
-				}
-				id="basic-nav-dropdown">
-				<NavDropdown.Item>
-					<Link to="/cyber4growth">
-						<div className="Menu-title">Cyber4Growth</div>
-						<div className="Menu-description">Startup accelerator</div>
-					</Link>
-				</NavDropdown.Item>
-				<NavDropdown.Item>
-					<Link to="/cybersecurityweek">
-						<div className="Menu-title">CSWL 2022</div>
-						<div className="Menu-description">Cybersecurity Week Luxembourg</div>
-					</Link>
-				</NavDropdown.Item>
-			</NavDropdown>
+			{/* <Nav.Link>
+				<Link to="/cybersecurityweek">
+					<div className="Menu-title">CSWL 2022</div>
+					<div className="Menu-description">Cybersecurity Week</div>
+				</Link>
+			</Nav.Link> */}
 			<Nav.Link>
-				<Link to="/newsletter">
-					<div className="Menu-title"><i className="fas fa-envelope-open-text"/> Newsletter</div>
-					<div className="Menu-description">Our monthly selection</div>
+				<Link to="/cyber4growth">
+					<div className="Menu-title">Cyber4Growth</div>
+					<div className="Menu-description">Startup accelerator</div>
 				</Link>
 			</Nav.Link>
 			<a
