@@ -22,11 +22,6 @@ export default class PageSearch extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getEntities = this.getEntities.bind(this);
-		this.getArticles = this.getArticles.bind(this);
-		this.getArticlesByType = this.getArticlesByType.bind(this);
-		this.hasLoaded = this.hasLoaded.bind(this);
-
 		const taxonomyValues = getUrlParameter("taxonomy_values")
 			? getUrlParameter("taxonomy_values").split(",")
 				.map((v) => parseInt(v, 10))
@@ -35,7 +30,7 @@ export default class PageSearch extends React.Component {
 		this.state = {
 			articleTypes: ["NEWS", "EVENT", "TOOL", "JOB OFFER", "SERVICE"],
 			searchValue: getUrlParameter("r") ? decodeURI(getUrlParameter("r")) : null,
-			memberArticleOnly: getUrlParameter("memberArticlesOnly") === "true",
+			memberArticleOnly: getUrlParameter("member_articles_only") === "true",
 			taxonomyValues,
 			entities: null,
 		};
@@ -75,6 +70,15 @@ export default class PageSearch extends React.Component {
 				this.getArticles();
 			});
 		}
+
+		if (decodeURI(this.state.memberArticleOnly) !== (decodeURI(getUrlParameter("member_articles_only") === "true"))) {
+			this.setState({
+				memberArticleOnly: getUrlParameter("member_articles_only") === "true",
+			}, () => {
+				this.getEntities();
+				this.getArticles();
+			});
+		}
 	}
 
 	getEntities() {
@@ -109,7 +113,7 @@ export default class PageSearch extends React.Component {
 
 	getArticlesByType(type, page) {
 		if ((this.state.searchValue && this.state.searchValue.length > 2)
-			|| this.state.taxonomyValues) {
+			|| this.state.taxonomyValues || this.state.memberArticleOnly) {
 			const filters = this.state.taxonomyValues === null
 				? {
 					title: this.state.searchValue,
@@ -125,6 +129,10 @@ export default class PageSearch extends React.Component {
 					page,
 					per_page: 3,
 				};
+
+			if (this.state.memberArticleOnly) {
+				filters.is_created_by_admin = false;
+			}
 
 			getRequest.call(this, "public/get_public_articles?"
 				+ dictToURI(filters), (data) => {
@@ -192,6 +200,11 @@ export default class PageSearch extends React.Component {
 		/>;
 	}
 
+	// eslint-disable-next-line class-methods-use-this
+	removeMemberArticleOnly() {
+		this.props.history.push({ pathname: "/search" });
+	}
+
 	hasLoaded() {
 		return this.state.entities
 			&& this.state.NEWS
@@ -227,6 +240,19 @@ export default class PageSearch extends React.Component {
 						</div>
 						<div className="col-md-12">
 							{this.getTaxonomyValueChips()}
+						</div>
+					</div>
+				}
+
+				{this.state.memberArticleOnly
+					&& <div className="row row-spaced">
+						<div className="col-md-12">
+							<Chip
+								key={"memberArticleOnly"}
+								label={"Display article from members only"}
+								color={"#ffa8b0"}
+								onClick={() => this.removeMemberArticleOnly()}
+							/>
 						</div>
 					</div>
 				}
@@ -273,6 +299,7 @@ export default class PageSearch extends React.Component {
 
 				{!this.state.searchValue
 					&& !this.state.taxonomyValues
+					&& !this.state.memberArticleOnly
 					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<Message

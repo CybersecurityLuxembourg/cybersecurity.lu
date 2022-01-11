@@ -48,7 +48,7 @@ export default class PageCyber4Growth extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/cyber4growth">Cyber4Growth</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/cyber4growth">CYBER4GROWTH</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
