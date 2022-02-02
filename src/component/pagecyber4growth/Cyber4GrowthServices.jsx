@@ -108,7 +108,7 @@ export default class Cyber4GrowthServices extends React.Component {
 					&& <DynamicTable
 						items={this.state.objects.items}
 						pagination={this.state.objects.pagination}
-						changePage={(page) => this.getNationalLegalFrameworks(page)}
+						changePage={(page) => this.getFrameworks(page)}
 						buildElement={(t) => <div className="col-md-12">
 							<ServiceHorizontal
 								info={t}
