@@ -1,0 +1,58 @@
+
+.DocumentHorizontal {
+    margin: 5px 0px !important;
+    padding-bottom: 30px;
+    overflow: hidden;
+    line-height: 1 !important;
+}
+
+.DocumentHorizontal-link {
+    color: inherit;
+}
+
+.DocumentHorizontal-link:hover {
+    color: initial !important;
+    text-decoration: none;
+}
+
+.DocumentHorizontal:hover {
+    background-color: #f2fbff;
+}
+
+@media (min-width: 500px) {
+    .DocumentHorizontal .card-horizontal {
+        height: 100%;
+        display: flex;
+        flex: 1 1 auto;
+    }
+}
+
+.DocumentHorizontal .card-body {
+    padding: .9rem 1rem !important;
+}
+
+.DocumentHorizontal .card-body button {
+    display: block;
+    max-width: calc(100% - 30px);
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.DocumentHorizontal .card-body h5 {
+    font-weight: bold !important;
+    margin-bottom: 5px !important;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.DocumentHorizontal .card-body i {
+    margin: 0px 5px;
+}

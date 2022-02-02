@@ -6,6 +6,7 @@ import Tab from "./tab/Tab.jsx";
 import Cyber4GrowthPresentation from "./pagecyber4growth/Cyber4GrowthPresentation.jsx";
 import Cyber4GrowthServices from "./pagecyber4growth/Cyber4GrowthServices.jsx";
 import Cyber4GrowthLaureates2022 from "./pagecyber4growth/Cyber4GrowthLaureates2022.jsx";
+import Cyber4GrowthDocuments from "./pagecyber4growth/Cyber4GrowthDocuments.jsx";
 import { getUrlParameter } from "../utils/url.jsx";
 
 export default class PageCyber4Growth extends React.Component {
@@ -19,6 +20,7 @@ export default class PageCyber4Growth extends React.Component {
 				"presentation",
 				"services",
 				"participants",
+				"documents",
 			],
 			selectedMenu: null,
 		};
@@ -60,6 +62,7 @@ export default class PageCyber4Growth extends React.Component {
 						"Presentation",
 						"Services",
 						"Participants of 2022",
+						"Documents",
 					]}
 					keys={this.state.tabs}
 					content={[
@@ -73,6 +76,9 @@ export default class PageCyber4Growth extends React.Component {
 						/>,
 						<Cyber4GrowthLaureates2022
 							key={this.state.tabs[2]}
+						/>,
+						<Cyber4GrowthDocuments
+							key={this.state.tabs[3]}
 						/>,
 					]}
 				/>
