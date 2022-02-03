@@ -27,7 +27,7 @@ export default class Cyber4GrowthLaureates2022 extends React.Component {
 			<div id={"Cyber4GrowthLaureates2022"} className={"page max-sized-page"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h2>Laureates of 2022</h2>
+						<h2>Participants of 2022</h2>
 					</div>
 
 					<div className="col-md-3 order-1 order-md-2">
@@ -49,12 +49,6 @@ export default class Cyber4GrowthLaureates2022 extends React.Component {
 					</div>
 
 					<div className="col-md-9 order-2 order-md-1">
-						<div className="row">
-							<div className="col-md-12">
-								Congratulation to our laureats... blablabla
-							</div>
-						</div>
-
 						<div className="row Cyber4GrowthLaureates2022-images">
 							<div className="col-md-2">
 							</div>
@@ -87,12 +81,6 @@ export default class Cyber4GrowthLaureates2022 extends React.Component {
 								<a href="/search?r=devseis">
 									<i className="fas fa-search"/> Search for &quot;Devseis&quot;
 								</a>
-							</div>
-						</div>
-
-						<div className="row">
-							<div className="col-md-12">
-								Another piece of text would be cool here.
 							</div>
 						</div>
 

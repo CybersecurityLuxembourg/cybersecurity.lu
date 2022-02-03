@@ -18,7 +18,7 @@ export default class PageCyber4Growth extends React.Component {
 			tabs: [
 				"presentation",
 				"services",
-				"laureates",
+				"participants",
 			],
 			selectedMenu: null,
 		};
@@ -48,7 +48,7 @@ export default class PageCyber4Growth extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/cyber4growth">Cyber4Growth</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/cyber4growth">CYBER4GROWTH</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
@@ -59,7 +59,7 @@ export default class PageCyber4Growth extends React.Component {
 					labels={[
 						"Presentation",
 						"Services",
-						"Laureates 2022",
+						"Participants of 2022",
 					]}
 					keys={this.state.tabs}
 					content={[
