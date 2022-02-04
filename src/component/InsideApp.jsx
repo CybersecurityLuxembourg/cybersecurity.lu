@@ -18,7 +18,7 @@ import PageJobOffer from "./PageJobOffer.jsx";
 import PageService from "./PageService.jsx";
 import PageAbout from "./PageAbout.jsx";
 import PageCyber4Growth from "./PageCyber4Growth.jsx";
-/* import PageCyberWeek from "./PageCyberWeek.jsx"; */
+import PageCyberWeek from "./PageCyberWeek.jsx";
 import PageBreakfast from "./PageBreakfast.jsx";
 import PageSearch from "./PageSearch.jsx";
 import PageHelp from "./PageHelp.jsx";
@@ -120,7 +120,6 @@ export default class InsideApp extends React.Component {
 						<Route path="/tool/:handle" render={(props) => <PageTool {...props} />}/>
 						<Route path="/job_offer/:handle" render={(props) => <PageJobOffer {...props} />}/>
 						<Route path="/service/:handle" render={(props) => <PageService {...props} />}/>
-						<Route path="/company/:id" render={(props) => <PageCompany {...props} analytics={this.state.analytics} />}/>
 
 						<Route path="/help" render={(props) => <PageHelp {...props}/>}/>
 
@@ -152,13 +151,13 @@ export default class InsideApp extends React.Component {
 								{...props}
 							/>}
 						/>
-						{/* <Route
+						<Route
 							path="/cybersecurityweek"
 							render={(props) => <PageCyberWeek
 								analytics={this.state.analytics}
 								{...props}
 							/>}
-						/> */}
+						/>
 						<Route
 							path="/breakfast"
 							render={(props) => <PageBreakfast

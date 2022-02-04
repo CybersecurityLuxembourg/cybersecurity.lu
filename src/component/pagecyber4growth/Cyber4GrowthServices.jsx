@@ -93,42 +93,44 @@ export default class Cyber4GrowthServices extends React.Component {
 	render() {
 		return (
 			<div id={"Cyber4GrowthServices"} className={"page max-sized-page"}>
-				<h2>Services from the program</h2>
+				<div className="row">
+					<div className="col-md-12">
+						<h2>Services from the program</h2>
 
-				{this.state.objects && this.state.objects.pagination.total === 0
-					&& <div className="col-md-12">
-						<Message
-							text={"No object found"}
-							height={200}
-						/>
-					</div>
-				}
-
-				{this.state.objects && this.state.objects.pagination.total > 0
-					&& <DynamicTable
-						items={this.state.objects.items}
-						pagination={this.state.objects.pagination}
-						changePage={(page) => this.getFrameworks(page)}
-						buildElement={(t) => <div className="col-md-12">
-							<ServiceHorizontal
-								info={t}
-								companies={this.state.companies}
-								analytics={this.props.analytics}
-							/>
-						</div>
+						{this.state.objects && this.state.objects.pagination.total === 0
+							&& <div className="col-md-12">
+								<Message
+									text={"No object found"}
+									height={200}
+								/>
+							</div>
 						}
-					/>
-				}
 
-				{!this.state.objects
-					&& <div className="col-md-12">
-						<Loading
-							height={200}
-						/>
+						{this.state.objects && this.state.objects.pagination.total > 0
+							&& <DynamicTable
+								items={this.state.objects.items}
+								pagination={this.state.objects.pagination}
+								changePage={(page) => this.getFrameworks(page)}
+								buildElement={(t) => <div className="col-md-12">
+									<ServiceHorizontal
+										info={t}
+										companies={this.state.companies}
+										analytics={this.props.analytics}
+									/>
+								</div>
+								}
+							/>
+						}
+
+						{!this.state.objects
+							&& <div className="col-md-12">
+								<Loading
+									height={200}
+								/>
+							</div>
+						}
 					</div>
-				}
-
-				<p>&nbsp;</p>
+				</div>
 			</div>
 		);
 	}
