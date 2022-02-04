@@ -30,6 +30,7 @@ import PagePublicSector from "./PagePublicSector.jsx";
 import PageCivilSociety from "./PageCivilSociety.jsx";
 import PageEducation from "./PageEducation.jsx";
 import PageNewsletter from "./PageNewsletter.jsx";
+import Page404 from "./Page404.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
 export default class InsideApp extends React.Component {
@@ -237,6 +238,7 @@ export default class InsideApp extends React.Component {
 						/>
 
 						<Route
+							exact
 							path="/"
 							render={(props) => <PageHome
 								ml_account={this.state.ml_account}
@@ -244,6 +246,12 @@ export default class InsideApp extends React.Component {
 								privateSectorCount={this.state.privateSectorCount}
 								publicSectorCount={this.state.publicSectorCount}
 								civilSocietyCount={this.state.civilSocietyCount}
+								{...props}
+							/>}
+						/>
+
+						<Route
+							render={(props) => <Page404
 								{...props}
 							/>}
 						/>
