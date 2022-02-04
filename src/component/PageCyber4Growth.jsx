@@ -77,11 +77,11 @@ export default class PageCyber4Growth extends React.Component {
 							analytics={this.props.analytics}
 							key={this.state.tabs[1]}
 						/>,
-						<Cyber4GrowthLaureates2022
+						<Cyber4GrowthServices
 							analytics={this.props.analytics}
 							key={this.state.tabs[2]}
 						/>,
-						<Cyber4GrowthServices
+						<Cyber4GrowthLaureates2022
 							analytics={this.props.analytics}
 							key={this.state.tabs[3]}
 						/>,

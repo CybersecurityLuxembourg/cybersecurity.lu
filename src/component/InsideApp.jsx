@@ -120,6 +120,7 @@ export default class InsideApp extends React.Component {
 						<Route path="/tool/:handle" render={(props) => <PageTool {...props} />}/>
 						<Route path="/job_offer/:handle" render={(props) => <PageJobOffer {...props} />}/>
 						<Route path="/service/:handle" render={(props) => <PageService {...props} />}/>
+						<Route path="/company/:id" render={(props) => <PageCompany {...props} analytics={this.state.analytics} />}/>
 
 						<Route path="/help" render={(props) => <PageHelp {...props}/>}/>
 
