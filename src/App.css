@@ -78,6 +78,15 @@ h4 {
     font-size: 16px;
 }
 
+h5 {
+	color: #010101;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    font-size: 12px;
+}
+
 a {
 	color: #009fe3;
 }

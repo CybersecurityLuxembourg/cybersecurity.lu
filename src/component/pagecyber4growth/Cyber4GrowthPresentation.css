@@ -10,6 +10,13 @@
 	text-align: center;
 }
 
+.Cyber4GrowthPresentation-program i.fa-arrow-down {
+	width: 100%;
+	color: black;
+	font-size: 25px;
+	padding: 40px 0px 20px 0px;
+}
+
 #Cyber4GrowthPresentation .Cyber4GrowthPresentation-images div {
 	display: flex;
 	justify-content: center;
@@ -80,7 +87,8 @@
     color: #fff !important;
 }
 
-#Cyber4GrowthPresentation .blue-shadow-section h4, .red-shadow-section h4, .grey-shadow-section h4 {
+#Cyber4GrowthPresentation .blue-shadow-section h4, .red-shadow-section h4, .grey-shadow-section h4,
+#Cyber4GrowthPresentation .blue-shadow-section h5, .red-shadow-section h5, .grey-shadow-section h5 {
     color: #fff !important;
 }
 

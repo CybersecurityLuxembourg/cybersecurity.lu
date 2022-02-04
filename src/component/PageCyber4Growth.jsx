@@ -4,6 +4,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Tab from "./tab/Tab.jsx";
 import Cyber4GrowthPresentation from "./pagecyber4growth/Cyber4GrowthPresentation.jsx";
+import Cyber4GrowthProgram from "./pagecyber4growth/Cyber4GrowthProgram.jsx";
 import Cyber4GrowthServices from "./pagecyber4growth/Cyber4GrowthServices.jsx";
 import Cyber4GrowthLaureates2022 from "./pagecyber4growth/Cyber4GrowthLaureates2022.jsx";
 import { getUrlParameter } from "../utils/url.jsx";
@@ -17,6 +18,7 @@ export default class PageCyber4Growth extends React.Component {
 		this.state = {
 			tabs: [
 				"presentation",
+				"programs",
 				"services",
 				"participants",
 			],
@@ -58,6 +60,7 @@ export default class PageCyber4Growth extends React.Component {
 					selectedMenu={this.state.selectedMenu}
 					labels={[
 						"Presentation",
+						"Programs",
 						"Services",
 						"Participants of 2022",
 					]}
@@ -67,12 +70,16 @@ export default class PageCyber4Growth extends React.Component {
 							analytics={this.props.analytics}
 							key={this.state.tabs[0]}
 						/>,
-						<Cyber4GrowthServices
+						<Cyber4GrowthProgram
 							analytics={this.props.analytics}
 							key={this.state.tabs[1]}
 						/>,
-						<Cyber4GrowthLaureates2022
+						<Cyber4GrowthServices
+							analytics={this.props.analytics}
 							key={this.state.tabs[2]}
+						/>,
+						<Cyber4GrowthLaureates2022
+							key={this.state.tabs[3]}
 						/>,
 					]}
 				/>

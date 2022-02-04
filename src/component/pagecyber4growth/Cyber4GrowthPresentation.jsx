@@ -166,9 +166,6 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							<h2 onClick={() => this.partPresentation.current.scrollIntoView({ behavior: "smooth" })}>
 								Presentation
 							</h2>
-							<h2 onClick={() => this.partWhy.current.scrollIntoView({ behavior: "smooth" })}>
-								Why Cyber4Growth?
-							</h2>
 							<h2 onClick={() => this.partPrograms.current.scrollIntoView({ behavior: "smooth" })}>
 								Two programs
 							</h2>
@@ -185,16 +182,14 @@ export default class Cyber4GrowthPresentation extends React.Component {
 					</div>
 
 					<div className="col-md-9 order-2 order-md-1">
-						<div className="row">
-							<div className="col-md-12">
-								<h2 ref={this.partPresentation}>Presentation</h2>
-							</div>
+						<h2 ref={this.partPresentation}>Presentation</h2>
 
+						<div className="row">
 							<div className="col-md-12">
 								<p>
 									CYBER4Growth is a collaborative platform for entrepreneurs to have
 									access to state of the art cybersecurity services. The partners of the
-									program are experts with extensive knoweledge of start-ups needs in terms
+									program are experts with extensive knowledge of start-ups needs in terms
 									of financing, innovation, access to market and growth.
 								</p>
 							</div>
