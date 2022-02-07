@@ -11,7 +11,6 @@ import SearchField from "./form/SearchField.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
 import Event from "./item/Event.jsx";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { dictToURI } from "../utils/url.jsx";
 
 export default class PageNews extends React.Component {

@@ -78,15 +78,6 @@ h4 {
     font-size: 16px;
 }
 
-h5 {
-	color: #010101;
-    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
-    padding: 0px 10px;
-    margin: 10px 0px;
-    font-size: 12px;
-}
-
 a {
 	color: #009fe3;
 }
@@ -173,6 +164,7 @@ blockquote:after {
 }
 
 .max-sized-page {
+	width: 100%;
 	max-width: 1200px;
 	margin: auto;
 }
@@ -561,7 +553,7 @@ canvas {
     align-items: center;
 }
 
-.blue-shadow-section, .red-shadow-section {
+.blue-shadow-section, .red-shadow-section, .black-shadow-section {
 	padding: 30px 15px !important;
 }
 
@@ -575,12 +567,17 @@ canvas {
     color: #fff !important;
 }
 
+.black-shadow-section, .black-shadow-section a {
+	background-color: #000;
+    color: #FFF !important;
+}
+
 .red-shadow-section, .red-shadow-section a {
 	background-color: #e40613;
     color: #fff !important;
 }
 
-.red-shadow-section h3, .blue-shadow-section h3 {
+.red-shadow-section h3, .blue-shadow-section h3, .black-shadow-section h3 {
 	color: white;
 	font-size: 35px !important;
 	-webkit-transition: .3s ease;
@@ -589,13 +586,13 @@ canvas {
 	transition: .3s ease;
 }
 
-.red-shadow-section:hover h3, .blue-shadow-section:hover h3 {
+.red-shadow-section:hover h3, .blue-shadow-section:hover h3, .black-shadow-section:hover h3 {
 	font-size: 40px !important;
 	margin-bottom: 0px !important;
 }
 
 
-.red-shadow-section div i, .blue-shadow-section div i {
+.red-shadow-section div i, .blue-shadow-section div i, .black-shadow-section div i {
 	margin: 8px 0px;
 	font-size: 100px;
 	-webkit-transition: font-size .5s ease;
@@ -604,17 +601,17 @@ canvas {
 	transition: font-size .5s ease;
 }
 
-.red-shadow-section:hover i, .blue-shadow-section:hover i {
+.red-shadow-section:hover i, .blue-shadow-section:hover i, .black-shadow-section:hover i {
 	font-size: 140px;
 }
 
-.red-shadow-section div div, .blue-shadow-section div div {
+.red-shadow-section div div, .blue-shadow-section div div, .black-shadow-section div div {
 	-webkit-transition: opacity .5s ease;
 	-moz-transition: opacity .5s ease;
 	-o-transition: opacity .5s ease;
 	transition: opacity .5s ease;
 }
 
-.red-shadow-section:hover div div, .blue-shadow-section:hover div div {
+.red-shadow-section:hover div div, .blue-shadow-section:hover div div, .black-shadow-section:hover div div {
 	opacity: 0;
 }

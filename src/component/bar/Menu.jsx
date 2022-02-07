@@ -1,13 +1,11 @@
 import React from "react";
 import "./Menu.css";
-import { Carousel } from "react-responsive-carousel";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getPrivateAppURL } from "../../utils/env.jsx";
 import SearchField from "../form/SearchField.jsx";
-import Analytic from "../box/Analytic.jsx";
 
 export default class Menu extends React.Component {
 	constructor(props) {
@@ -35,12 +33,6 @@ export default class Menu extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	getNavBar() {
 		return <Nav className="mr-sm-2 ml-auto">
-			<Nav.Link>
-				<Link to="/strategy">
-					<div className="Menu-title">Strategy</div>
-					<div className="Menu-description">National commitment</div>
-				</Link>
-			</Nav.Link>
 			<NavDropdown
 				title={
 					<div className="Menu-item">
@@ -53,29 +45,43 @@ export default class Menu extends React.Component {
 				<NavDropdown.Item>
 					<Link to="/news">
 						<div className="Menu-title">News</div>
-						<div className="Menu-description">Latest headlines</div>
+					</Link>
+				</NavDropdown.Item>
+				<a
+					className="nav-link"
+					disabled={true}
+				>
+					<div className="Menu-title">Events</div>
+				</a>
+				<NavDropdown.Item>
+					<Link to="/breakfast">
+						<div className="Menu-title">CSB</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
-					<Link to="/calendar">
-						<div className="Menu-title">Events</div>
-						<div className="Menu-description">Check out the calendar</div>
-					</Link>
-				</NavDropdown.Item>
-				<NavDropdown.Item>
-					<Link to="/marketplace">
-						<div className="Menu-title">Jobs</div>
-						<div className="Menu-description">Cybersecurity marketplace</div>
+					<Link to="/events">
+						<div className="Menu-title">Upcoming events</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
 				<NavDropdown.Item>
-					<Link to="/breakfast">
-						<div className="Menu-title">Breakfast</div>
-						<div className="Menu-description">Take part to our monthly event</div>
+					<Link to="/ltac">
+						<div className="Menu-title">Lëtz talk about cyber</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
+					<Link to="/topics">
+						<div className="Menu-title">Topics of the month</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Divider />
+				<NavDropdown.Item>
+					<Link to="/newsletter">
+						<div className="Menu-title">Newsletter</div>
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
+
 			<NavDropdown
 				title={
 					<div className="Menu-item">
@@ -88,26 +94,22 @@ export default class Menu extends React.Component {
 				<NavDropdown.Item>
 					<Link to="/privatesector">
 						<div className="Menu-title">Private sector</div>
-						<div className="Menu-description">Solution and service providers</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/publicsector">
 						<div className="Menu-title">Public sector</div>
-						<div className="Menu-description">Authorities and regulators</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/civilsociety">
 						<div className="Menu-title">Civil society</div>
-						<div className="Menu-description">Collective strengths</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
 				<NavDropdown.Item>
 					<Link to="/education">
 						<div className="Menu-title">Education</div>
-						<div className="Menu-description">Program and courses</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
@@ -134,180 +136,85 @@ export default class Menu extends React.Component {
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
-			{/* <Nav.Link>
+
+			<NavDropdown
+				title={
+					<div className="Menu-item">
+						<div className="Menu-title">Get involved</div>
+						<div className="Menu-description">Enter the adventure</div>
+						<i className="fas fa-sort-down"/>
+					</div>
+				}
+				id="basic-nav-dropdown">
+				<a
+					className="nav-link"
+					disabled={true}
+				>
+					<div className="Menu-title">Youth</div>
+				</a>
+				<NavDropdown.Item>
+					<Link to="/ecsc">
+						<div className="Menu-title">ECSC</div>
+					</Link>
+				</NavDropdown.Item>
+				<a
+					className="nav-link"
+					disabled={true}
+				>
+					<div className="Menu-title">Start-up</div>
+				</a>
+				<NavDropdown.Item>
+					<Link to="/cyber4growth">
+						<div className="Menu-title">Cyber4Growth</div>
+					</Link>
+				</NavDropdown.Item>
+			</NavDropdown>
+
+			<NavDropdown
+				title={
+					<div className="Menu-item">
+						<div className="Menu-title">Resources</div>
+						<div className="Menu-description">Cybersecurity materials</div>
+						<i className="fas fa-sort-down"/>
+					</div>
+				}
+				id="basic-nav-dropdown">
+				<NavDropdown.Item>
+					<Link to="/practices">
+						<div className="Menu-title">Cyber awareness & best practices</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
+					<Link to="/cve">
+						<div className="Menu-title">Common Vulnerabilities & Exposures</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
+					<Link to="/podcasts">
+						<div className="Menu-title">Podcasts</div>
+					</Link>
+				</NavDropdown.Item>
+			</NavDropdown>
+
+			<Nav.Link>
 				<Link to="/cybersecurityweek">
-					<div className="Menu-title">CSWL 2022</div>
+					<div className="Menu-title">CSWL</div>
 					<div className="Menu-description">Cybersecurity Week</div>
 				</Link>
-			</Nav.Link> */}
+			</Nav.Link>
+
 			<Nav.Link>
-				<Link to="/cyber4growth">
-					<div className="Menu-title">Cyber4Growth</div>
-					<div className="Menu-description">Startup accelerator</div>
+				<Link to="/jobs">
+					<div className="Menu-title">Cybersecurity jobs</div>
+					<div className="Menu-description">Marketplace in Luxembourg</div>
 				</Link>
 			</Nav.Link>
-			<a
-				className="nav-link"
-				href={getPrivateAppURL()}
-				rel="noreferrer"
-			>
-				<div className="Menu-title">My CYBERLUX</div>
-				<div className="Menu-description">Login or register</div>
-			</a>
 		</Nav>;
-	}
-
-	getArticleCategoryId(value) {
-		if (this.props.analytics !== null
-			&& this.props.analytics !== undefined
-			&& this.props.analytics.taxonomy_values !== undefined) {
-			const taxonomyValues = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ARTICLE CATEGORY")
-				.filter((v) => v.name === value);
-
-			if (taxonomyValues.length === 0) {
-				return "";
-			}
-
-			return taxonomyValues[0].id;
-		}
-
-		return "";
 	}
 
 	render() {
 		return (
-			<div className={"Menu page max-sized-page "
-				+ (this.props.match.params.path === undefined ? "Menu-big" : "")}>
-				{this.props.match.params.path === undefined
-					? <div className="row">
-						<Carousel
-							dynamicHeight={false}
-							showStatus={false}
-							showThumbs={false}
-							infiniteLoop={true}
-							autoPlay={true}
-							interval={5000}
-						>
-							<div>
-								<img src="/img/Slide_STRAT_1920x1080.jpg"/>
-								<Link to="/strategy">
-									<div className="row legend black-legend">
-										<div className="col-md-12 Menu-hide-on-mobile">
-											<div className="legend-title">
-												National Cybersecurity Strategy IV
-											</div>
-										</div>
-										<div className="col-md-12">
-											The National Cybersecurity Strategy IV
-											outlines how an integrated and
-											comprehensive information security approach
-											enables the government, private enterprises
-											and citizens to fully seize the opportunities
-											offered by the digital revolution. Discover it.
-										</div>
-									</div>
-								</Link>
-							</div>
-							<div>
-								<img src="/img/Slide_CYBERLUX_1920x1080.jpg"/>
-								<Link to="/privatesector">
-									<div className="row legend red-legend">
-										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
-											<Analytic
-												value={this.props.privateSectorCount ? this.props.privateSectorCount : 0}
-												desc={"Private companies"}
-											/>
-										</div>
-										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
-											<Analytic
-												value={this.props.publicSectorCount ? this.props.publicSectorCount : 0}
-												desc={"Public entities"}
-											/>
-										</div>
-										<div className="col-xs-6 col-md-4 Menu-hide-on-mobile">
-											<Analytic
-												value={this.props.civilSocietyCount ? this.props.civilSocietyCount : 0}
-												desc={"Civil society organisations"}
-											/>
-										</div>
-										<div className="col-md-12">
-											Discover this community with outstanding skills and
-											knowledge offering an extensive expertise
-											in cybersecurity.
-										</div>
-									</div>
-								</Link>
-							</div>
-							<div>
-								<img src="/img/Slide_October_1920x1080.jpg"/>
-
-								<div className="row legend">
-									<a
-										href="https://cybersecuritymonth.eu/"
-										target="_blank"
-										rel="noreferrer">
-										<div className="blue-legend">
-											<div className="col-md-12">
-												October stands for the European Cyber Security Month, the EU’s
-												annual campaign dedicated to promoting cybersecurity.
-											</div>
-										</div>
-									</a>
-
-									<Link to="/cybersecurityweek">
-										<div className="row blue-legend">
-											<div className="col-md-9 Menu-hide-on-mobile">
-												<img src="/img/logo_cswl_white.png"/>
-											</div>
-
-											<div className="col-md-3 legend-date Menu-hide-on-mobile">
-												17-21 OCT 22
-											</div>
-
-											<div className="col-md-12">
-												Cybersecurity Week Luxembourg is the unmissable Digital Security &
-												Trust advocacy campaign bringing together Cybersecurity Experts, IT
-												players & Tech enthusiasts.
-											</div>
-										</div>
-									</Link>
-								</div>
-							</div>
-							<div>
-								<img src="/img/Slide_CSB_1920x1080.jpg" />
-								<Link to={"/search?taxonomy_values=" + this.getArticleCategoryId("CYBERSECURITY BREAKFAST")}>
-									<div className="row legend black-legend">
-										<div className="col-md-12 Menu-hide-on-mobile">
-											<img src="/img/logo_cyberbreakfast_white.png"/>
-										</div>
-										<div className="col-md-12">
-											CYBERSECURITY Breakfast is a monthly
-											series that addresses a new trendy topic each time.
-											Join the next one!
-										</div>
-									</div>
-								</Link>
-							</div>
-							<div>
-								<img src="/img/Slide_ITV_1920x1080.jpg" />
-								<Link to={"/search?taxonomy_values=" + this.getArticleCategoryId("LËTZ TALK ABOUT CYBER")}>
-									<div className="row legend black-legend">
-										<div className="col-md-12 Menu-hide-on-mobile">
-											<img src="/img/logo_ltac_white.png"/>
-										</div>
-										<div className="col-md-12">
-											Learn about Cybersecurity Professionals who stand out
-											with their personal stories and journeys.
-										</div>
-									</div>
-								</Link>
-							</div>
-						</Carousel>
-					</div>
-					: ""
-				}
-
+			<div className={"Menu page max-sized-page"}>
 				<Navbar expand="lg">
 					<Navbar.Brand>
 						<Link to="/">
@@ -325,17 +232,39 @@ export default class Menu extends React.Component {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="Menu-top-right-about mr-sm-2 ml-auto">
 							<SearchField/>
-							<Nav.Link eventKey="about">
-								<Link to="/about">
-									<div className="Menu-title">About</div>
-									<div className="Menu-description">What is CYBERLUX?</div>
-								</Link>
-							</Nav.Link>
-							{/* <Nav.Link className="Menu-help">
-								<Link to="/help">
-									<div className="Menu-title">Help!</div>
-								</Link>
-							</Nav.Link> */}
+							<NavDropdown
+								title={
+									<div className="Menu-item">
+										<div className="Menu-title">About</div>
+										<div className="Menu-description">What is CYBERLUX?</div>
+										<i className="fas fa-sort-down"/>
+									</div>
+								}
+								id="basic-nav-dropdown">
+								<NavDropdown.Item>
+									<Link to="/initiative">
+										<div className="Menu-title">The initiative</div>
+									</Link>
+								</NavDropdown.Item>
+								<NavDropdown.Item>
+									<Link to="/whatsinit">
+										<div className="Menu-title">What&apos;s in it?</div>
+									</Link>
+								</NavDropdown.Item>
+								<NavDropdown.Item>
+									<Link to="/strategy">
+										<div className="Menu-title">The national strategy</div>
+									</Link>
+								</NavDropdown.Item>
+							</NavDropdown>
+							<a
+								className="nav-link"
+								href={getPrivateAppURL()}
+								rel="noreferrer"
+							>
+								<div className="Menu-title">Private space</div>
+								<div className="Menu-description">Login or register</div>
+							</a>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>

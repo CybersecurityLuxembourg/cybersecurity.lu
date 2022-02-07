@@ -30,6 +30,13 @@ import PagePublicSector from "./PagePublicSector.jsx";
 import PageCivilSociety from "./PageCivilSociety.jsx";
 import PageEducation from "./PageEducation.jsx";
 import PageNewsletter from "./PageNewsletter.jsx";
+import PageCSB from "./PageCSB.jsx";
+import PageLTAC from "./PageLTAC.jsx";
+import PageTOTM from "./PageTOTM.jsx";
+import PageECSC from "./PageECSC.jsx";
+import PageCVE from "./PageCVE.jsx";
+import PageBestPractices from "./PageBestPractices.jsx";
+import PagePodcasts from "./PagePodcasts.jsx";
 import Page404 from "./Page404.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
@@ -133,8 +140,29 @@ export default class InsideApp extends React.Component {
 							/>}
 						/>
 						<Route
-							path="/calendar"
+							path="/breakfast"
+							render={(props) => <PageCSB
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/events"
 							render={(props) => <PageCalendar
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/ltac"
+							render={(props) => <PageLTAC
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/topics"
+							render={(props) => <PageTOTM
 								analytics={this.state.analytics}
 								{...props}
 							/>}
@@ -168,7 +196,7 @@ export default class InsideApp extends React.Component {
 							/>}
 						/>
 						<Route
-							path="/marketplace"
+							path="/jobs"
 							render={(props) => <PageMarketplace
 								analytics={this.state.analytics}
 								{...props}
@@ -232,7 +260,32 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/newsletter"
 							render={(props) => <PageNewsletter
+								analytics={this.state.analytics}
 								ml_account={this.state.ml_account}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/ecsc"
+							render={(props) => <PageECSC
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/practices"
+							render={(props) => <PageBestPractices
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/cve"
+							render={(props) => <PageCVE
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/podcasts"
+							render={(props) => <PagePodcasts
 								{...props}
 							/>}
 						/>

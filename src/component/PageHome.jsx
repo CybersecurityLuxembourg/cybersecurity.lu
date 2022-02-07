@@ -1,17 +1,17 @@
 import React from "react";
 import "./PageHome.css";
 import { NotificationManager as nm } from "react-notifications";
-import SearchField from "./form/SearchField.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
-import Analytic from "./box/Analytic.jsx";
 import ShadowBoxPcDoctor from "./box/ShadowBoxPcDoctor.jsx";
 import ShadowBoxPureStartup from "./box/ShadowBoxPureStartup.jsx";
-import ShadowBoxMyCyberlux from "./box/ShadowBoxMyCyberlux.jsx";
-import ShadowBoxSubscribeNewsletter from "./box/ShadowBoxSubscribeNewsletter.jsx";
+import ShadowBoxEducation from "./box/ShadowBoxEducation.jsx";
+import ShadowBoxCyber4Growth from "./box/ShadowBoxCyber4Growth.jsx";
+import ShadowBoxECSC from "./box/ShadowBoxECSC.jsx";
+import ShadowBoxJobs from "./box/ShadowBoxJobs.jsx";
+import PageHomeLatestNews from "./pagehome/PageHomeLatestNews.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Article from "./item/Article.jsx";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { dictToURI } from "../utils/url.jsx";
 
 export default class PageHome extends React.Component {
@@ -147,6 +147,23 @@ export default class PageHome extends React.Component {
 	render() {
 		return (
 			<div id={"PageHome"}>
+				<div className="PageHome-banner">
+					<div className="max-sized-page">
+						<div className="row row-spaced">
+							<div className="col-md-6">
+								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									ddddddddddddddddd
+								</div>
+							</div>
+							<div className="col-md-6">
+								<div className="shadow-section blue-shadow-section centered-shadow-section">
+									gggddddddddddddddddddddddddddd
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div className="blue-bordered">
 					{this.getBackgroundPetal()}
 					{this.getBackgroundPetalBottom()}
@@ -154,10 +171,12 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>Call to action</h1>
+								<h1>Latest news</h1>
 							</div>
 
-							{this.getNewsContent(this.state.callToActionNews)}
+							<div className="col-md-12">
+								<PageHomeLatestNews/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -169,12 +188,14 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row row-spaced">
 							<div className="col-md-12">
-								<h1>Search over the portal</h1>
+								<h1>View on our programmes & challenges</h1>
 							</div>
 
-							<div className="col-md-2"/>
-							<div className="col-md-8">
-								<SearchField/>
+							<div className="col-md-6">
+								<ShadowBoxCyber4Growth/>
+							</div>
+							<div className="col-md-6">
+								<ShadowBoxECSC/>
 							</div>
 						</div>
 					</div>
@@ -187,24 +208,45 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>CYBERSECURITY Luxembourg company selection</h1>
+								<h1>Ecosystem highlights</h1>
 							</div>
 						</div>
 
 						<div className="row row-spaced">
-							<div className="col-md-4">
+							<div className="col-md-6">
 								<ShadowBoxPcDoctor
 									analytics={this.props.analytics}
 									color={"red"}
 								/>
 							</div>
-							<div className="col-md-4">
+							<div className="col-md-6">
 								<ShadowBoxPureStartup
 									color={"red"}
 								/>
 							</div>
-							<div className="col-md-4">
-								<ShadowBoxMyCyberlux/>
+						</div>
+					</div>
+				</div>
+
+				<div className="black-bordered">
+					{this.getBackgroundPetal()}
+					{this.getBackgroundPetalBottom()}
+
+					<div className="max-sized-page">
+						<div className="row">
+							<div className="col-md-12">
+								<h1>Education & jobs</h1>
+							</div>
+
+							<div className="col-md-6">
+								<ShadowBoxEducation
+									{...this.props}
+								/>
+							</div>
+							<div className="col-md-6">
+								<ShadowBoxJobs
+									{...this.props}
+								/>
 							</div>
 						</div>
 					</div>
@@ -217,73 +259,12 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>Subscribe to the newsletter</h1>
+								<h1>Be visible & take part in the initiatives</h1>
 							</div>
 
 							<div className="col-md-3"/>
 							<div className="col-md-6">
-								<ShadowBoxSubscribeNewsletter
-									{...this.props}
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="red-bordered">
-					{this.getBackgroundPetal()}
-					{this.getBackgroundPetalBottom()}
-
-					<div className="max-sized-page">
-						<div className="row row-spaced">
-							<div className="col-md-12">
-								<h1>Ecosystem overview</h1>
-							</div>
-
-							<div className="col-md-12">
-								{this.state.analytics !== null
-									? <div className={"row"}>
-										<div className="col-md-4">
-											<a
-												className={"PageHome-link"}
-												href={"/privatesector"}
-											>
-												<Analytic
-													value={this.props.privateSectorCount
-														? this.props.privateSectorCount : 0}
-													desc={"Private companies"}
-												/>
-											</a>
-										</div>
-										<div className="col-md-4">
-											<a
-												className={"PageHome-link"}
-												href={"/publicsector"}
-											>
-												<Analytic
-													value={this.props.publicSectorCount
-														? this.props.publicSectorCount : 0}
-													desc={"Public entities"}
-												/>
-											</a>
-										</div>
-										<div className="col-md-4">
-											<a
-												className={"PageHome-link"}
-												href={"/civilsociety"}
-											>
-												<Analytic
-													value={this.props.civilSocietyCount
-														? this.props.civilSocietyCount : 0}
-													desc={"Civil society organisations"}
-												/>
-											</a>
-										</div>
-									</div>
-									: <Loading
-										height={200}
-									/>
-								}
+								d
 							</div>
 						</div>
 					</div>

@@ -111,7 +111,7 @@ export default class PageCalendar extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/calendar">WHERE TO MEET?</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/events">UPCOMING EVENTS</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
@@ -129,7 +129,7 @@ export default class PageCalendar extends React.Component {
 
 				<div className="row">
 					<div className="col-md-12">
-						<h1>Coming events</h1>
+						<h1>Upcoming events</h1>
 					</div>
 				</div>
 
