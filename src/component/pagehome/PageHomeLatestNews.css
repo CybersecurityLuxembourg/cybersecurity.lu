@@ -61,3 +61,17 @@
 	0% { left: 30px; }
     100% { left: 0%; }
 }
+
+#PageHomeLatestNews .NoImage {
+    background: repeating-linear-gradient(
+      135deg,
+      #bcebff,
+      #bcebff 10px,
+      rgba(0, 0, 0, 0) 10px,
+      rgba(0, 0, 0, 0) 20px
+    ) !important;
+}
+
+#PageHomeLatestNews .NoImage-logo i {
+    color: #bcebff !important;
+}

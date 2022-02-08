@@ -9,6 +9,14 @@
     background-clip: border-box;
 }
 
+.PageHome-banner .shadow-section {
+    margin-bottom: 15px;
+}
+
+.PageHome-banner .max-sized-page {
+    width: calc(100% - 40px);
+}
+
 .PageHome-cybersecurity-luxembourg {
 	background-color: #f8f9fa;
 }
