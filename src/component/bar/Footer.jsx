@@ -58,56 +58,58 @@ export default class Footer extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className="col-md-4">
+						<div className="col-md-5">
 							<div className="Footer-title">MENU</div>
 
 							<div className="row">
-								<div className="col-md-6">
+								<div className="col-md-4">
 									<div>
 										<Link to="/">
 											Home
 										</Link>
 									</div>
 									<div>
-										<Link to="/strategy">
-											Strategy
-										</Link>
-									</div>
-									<div>
 										<Link to="/news">
 											News
 										</Link>
-										&nbsp;-&nbsp;
-										<Link to="/calendar">
-											Events
-										</Link>
-										&nbsp;-&nbsp;
-										<Link to="/marketplace">
-											Jobs
+									</div>
+									<br/>
+									<div>
+										<Link to="/breakfast">
+											CSB
 										</Link>
 									</div>
 									<div>
-										<Link to="/cyber4growth">
-											Cyber4Growth
+										<Link to="/cswl">
+											CSWL
+										</Link>
+									</div>
+									<div>
+										<Link to="/events">
+											Upcoming events
 										</Link>
 									</div>
 									<br/>
 									<div>
-										<a href={getPrivateAppURL()}>
-											My CYBERLUX
-										</a>
+										<Link to="/ltac">
+											Lëtz talk about cyber
+										</Link>
+									</div>
+									<div>
+										<Link to="/topics">
+											Topics of the month
+										</Link>
 									</div>
 									<br/>
 									<div>
-										<Link to="/about">
-											About
+										<Link to="/newsletter">
+											Newsletter
 										</Link>
 									</div>
 								</div>
 
-								<div className="col-md-6">
+								<div className="col-md-4">
 									<div><b>Ecosystem</b></div>
-									<br/>
 									<div className="Footer-alinea">
 										<Link to="/privatesector">
 											Private sector
@@ -123,7 +125,11 @@ export default class Footer extends React.Component {
 											Civil society
 										</Link>
 									</div>
-									<br/>
+									<div className="Footer-alinea">
+										<Link to="/education">
+											Education
+										</Link>
+									</div>
 									<div className="Footer-alinea">
 										<Link to="/dashboard">
 											Dashboard
@@ -134,10 +140,63 @@ export default class Footer extends React.Component {
 											Map
 										</Link>
 									</div>
+									<br/>
+									<div><b>Get involved</b></div>
+									<div className="Footer-alinea">
+										<Link to="/ecsc">
+											ECSC
+										</Link>
+									</div>
+									<div className="Footer-alinea">
+										<Link to="/cyber4growth">
+											Cyber4Growth
+										</Link>
+									</div>
+								</div>
+								<div className="col-md-4">
+									<div><b>Resources</b></div>
+									<div className="Footer-alinea">
+										<Link to="/cyber4growth">
+											Best practices
+										</Link>
+									</div>
+									<div className="Footer-alinea">
+										<Link to="/cyber4growth">
+											CVE
+										</Link>
+									</div>
+									<div className="Footer-alinea">
+										<a href={getPrivateAppURL()}>
+											Podcast
+										</a>
+									</div>
+									<br/>
+									<div><b>About</b></div>
+									<div className="Footer-alinea">
+										<Link to="/initiative">
+											The initiative
+										</Link>
+									</div>
+									<div className="Footer-alinea">
+										<Link to="/whatsinit">
+											What&apos;s in it?
+										</Link>
+									</div>
+									<div className="Footer-alinea">
+										<Link to="/strategy">
+											The national strategy
+										</Link>
+									</div>
+									<br/>
+									<div>
+										<a href={getPrivateAppURL()}>
+											Private space
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div className="col-md-3 Footer-contact">
+						<div className="col-md-2 Footer-contact">
 							<div className="Footer-title">CONTACT</div>
 							<br/>
 							<div>SECURITYMADEIN.LU g.i.e.</div>
