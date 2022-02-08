@@ -65,13 +65,13 @@
 #PageHomeLatestNews .NoImage {
     background: repeating-linear-gradient(
       135deg,
-      #bcebff,
-      #bcebff 10px,
+      rgba(0, 159, 227, 0.1),
+      rgba(0, 159, 227, 0.1) 10px,
       rgba(0, 0, 0, 0) 10px,
       rgba(0, 0, 0, 0) 20px
     ) !important;
 }
 
 #PageHomeLatestNews .NoImage-logo i {
-    color: #bcebff !important;
+    color: rgba(0, 159, 227, 0.1) !important;
 }

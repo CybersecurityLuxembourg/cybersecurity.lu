@@ -1,0 +1,98 @@
+
+#PageStrategy img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+#PageStrategy .PageStrategy-quote {
+	position: relative;
+	font-style: italic;
+}
+
+.PageStrategy-stat-box {
+	border: solid 2px #e40613;
+	box-shadow: rgba(0, 0, 0, 0.19) -20px 20px 20px, rgba(0, 0, 0, 0.23) -6px 6px 6px;
+	padding: 15px 20px;
+}
+
+.PageStrategy-stat-box div {
+	line-height: 1;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.PageStrategy-stat-item:hover {
+	background-color: rgba(228, 6, 19, 0.05) !important;
+}
+
+.PageStrategy-shortcut-item:hover {
+	background-color: rgba(0, 159, 227, 0.05);
+}
+
+#PageStrategy .Collapsible {
+	border: 0px !important;
+	margin: 0px 0px 15px 0px !important;
+}
+
+#PageStrategy .Collapsible {
+	border: 0px !important;
+	color: white;
+	background-color: black;
+}
+
+#PageStrategy .Collapsible:has(.is-open) {
+	border: solid 3px black !important;
+	color: black;
+	background-color: white;
+}
+
+#PageStrategy .Collapsible h3 {
+	color: white;
+}
+
+#PageStrategy .Collapsible .fas {
+	color: white;
+	font-size: 40px;
+	padding: 10px 0px 15px 0px;
+}
+
+#PageStrategy .is-closed:after {
+    content: none !important;
+}
+
+#PageStrategy .is-open:after {
+    content: none !important;
+}
+
+#PageStrategy .PageStrategy-Collapsible-header {
+	cursor: pointer;
+	padding: 20px 5px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#PageStrategy .PageStrategy-Collapsible-content {
+	cursor: default !important;
+	color: white;
+	padding: 10px 20px;
+}
+
+#PageStrategy .Collapsible__trigger p {
+    position: relative;
+    padding: 0px;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.PageStrategy-pm-picture {
+	width: 50% !important;
+	max-width: 250px !important;
+	vertical-align: top !important;
+    display: inline !important;
+    margin-left: unset !important;
+	margin-right: unset !important;
+	float: left;
+	padding: 0px 5px 0px 0px;
+}

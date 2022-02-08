@@ -190,6 +190,11 @@ export default class Menu extends React.Component {
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
+					<Link to="/frameworks">
+						<div className="Menu-title">Legal frameworks</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
 					<Link to="/podcasts">
 						<div className="Menu-title">Podcasts</div>
 					</Link>

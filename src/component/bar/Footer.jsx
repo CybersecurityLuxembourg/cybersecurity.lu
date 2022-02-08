@@ -166,6 +166,11 @@ export default class Footer extends React.Component {
 										</Link>
 									</div>
 									<div className="Footer-alinea">
+										<Link to="/frameworks">
+											Legal frameworks
+										</Link>
+									</div>
+									<div className="Footer-alinea">
 										<a href={getPrivateAppURL()}>
 											Podcast
 										</a>

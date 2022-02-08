@@ -104,7 +104,7 @@ export default class PageMarketplace extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/marketplace">Job marketplace</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/jobs">CYBERSECURITY JOBS</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>

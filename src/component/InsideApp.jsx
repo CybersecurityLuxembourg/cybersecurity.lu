@@ -37,6 +37,9 @@ import PageECSC from "./PageECSC.jsx";
 import PageCVE from "./PageCVE.jsx";
 import PageBestPractices from "./PageBestPractices.jsx";
 import PagePodcasts from "./PagePodcasts.jsx";
+import PageFrameworks from "./PageFrameworks.jsx";
+import PageInitiative from "./PageInitiative.jsx";
+import PageWhatsinit from "./PageWhatsinit.jsx";
 import Page404 from "./Page404.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
@@ -286,6 +289,25 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/podcasts"
 							render={(props) => <PagePodcasts
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/frameworks"
+							render={(props) => <PageFrameworks
+								analytics={this.state.analytics}
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/whatsinit"
+							render={(props) => <PageWhatsinit
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/initiative"
+							render={(props) => <PageInitiative
 								{...props}
 							/>}
 						/>
