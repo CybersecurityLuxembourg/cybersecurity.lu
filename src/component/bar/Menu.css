@@ -200,6 +200,11 @@
 
     .Menu-top-right-about .SearchField {
         margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .Menu-title, .Menu-description {
+        text-align: center;
     }
 }
 
@@ -214,6 +219,10 @@
     .Menu-top-right-about .SearchField {
         margin-top: 10px;
         margin-right: 20px;
+    }
+
+    .Menu-title, .Menu-description {
+        text-align: left;
     }
 }
 

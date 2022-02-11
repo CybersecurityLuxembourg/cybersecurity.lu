@@ -41,7 +41,6 @@
         display: flex;
         margin: auto;
         flex: 0 0 220px;
-        padding: 12px 15px !important;
         overflow: hidden;
     }
 }
