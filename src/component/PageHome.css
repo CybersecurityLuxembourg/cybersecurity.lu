@@ -35,6 +35,10 @@
     padding: 40px 0px 60px 0px;
 }
 
+#PageHome .shadow-section {
+    margin-bottom: 20px;
+}
+
 #PageHome .blue-bordered {
 	position: relative;
     background-color: rgba(188, 235, 255, 0.2) !important;
@@ -65,46 +69,6 @@
 
 #PageHome .black-bordered h1 {
     background-image: url("../img/polygon-black-bold.svg") !important;
-}
-
-#PageHome .shadow-section {
-	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-	border-radius: .25rem;
-}
-
-/* ANALYTICS */
-
-#PageHome .Analytic:hover {
-	background: 
-        linear-gradient( 135deg,transparent 10px,#e40613 0) left /50.5% 100%,
-        linear-gradient( 315deg,transparent 10px,#e40613 0) right /50.5% 100% !important;
-    background-repeat: no-repeat !important;
-	cursor: pointer;
-	border-radius: 0;
-}
-
-#PageHome .Analytic .Analytic-value {
-	-webkit-transition: margin-left .5s;
-    transition: margin-left .5s;
-	margin-left: 0px;
-	color: black !important;
-}
-
-#PageHome .Analytic .Analytic-desc {
-	-webkit-transition: margin-left .5s;
-    transition: margin-left .5s;
-	margin-left: 0px;
-	color: black !important;
-}
-
-#PageHome .Analytic:hover .Analytic-value {
-	margin-left: -20px;
-    color: white !important;
-}
-
-#PageHome .Analytic:hover .Analytic-desc {
-	margin-left: 20px;
-    color: white !important;
 }
 
 /* TITLE */
