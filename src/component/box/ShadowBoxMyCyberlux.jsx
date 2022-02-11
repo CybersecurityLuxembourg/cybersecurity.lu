@@ -13,7 +13,7 @@ export default class ShadowBoxMyCyberlux extends React.Component {
 					target="_blank"
 					rel="noreferrer">
 					<div>
-						<h3>My CYBERLUX</h3>
+						<h3>Private space</h3>
 						<i className="fas fa-plug"/>
 						<div className="PageHome-newsletter-content-desc">
 							Register or update your company and show the best
