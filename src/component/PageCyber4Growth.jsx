@@ -1,5 +1,5 @@
 import React from "react";
-import "./PageStrategy.css";
+import "./PageCyber4Growth.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Tab from "./tab/Tab.jsx";
