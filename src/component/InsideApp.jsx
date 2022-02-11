@@ -10,13 +10,12 @@ import PageHome from "./PageHome.jsx";
 import PageNews from "./PageNews.jsx";
 import PageMarketplace from "./PageMarketplace.jsx";
 import PageCalendar from "./PageCalendar.jsx";
-import PageStrategy from "./PageStrategy.jsx";
+import PageStrategy from "./pageabout/PageStrategy.jsx";
 import PageArticle from "./PageArticle.jsx";
 import PageEvent from "./PageEvent.jsx";
 import PageTool from "./PageTool.jsx";
 import PageJobOffer from "./PageJobOffer.jsx";
 import PageService from "./PageService.jsx";
-import PageAbout from "./PageAbout.jsx";
 import PageCyber4Growth from "./PageCyber4Growth.jsx";
 import PageCyberWeek from "./PageCyberWeek.jsx";
 import PageBreakfast from "./PageBreakfast.jsx";
@@ -38,8 +37,8 @@ import PageCVE from "./PageCVE.jsx";
 import PageBestPractices from "./PageBestPractices.jsx";
 import PagePodcasts from "./PagePodcasts.jsx";
 import PageFrameworks from "./PageFrameworks.jsx";
-import PageInitiative from "./PageInitiative.jsx";
-import PageWhatsinit from "./PageWhatsinit.jsx";
+import PageInitiative from "./pageabout/PageInitiative.jsx";
+import PageWhatsinit from "./pageabout/PageWhatsinit.jsx";
 import Page404 from "./Page404.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
@@ -209,12 +208,6 @@ export default class InsideApp extends React.Component {
 							path="/search"
 							render={(props) => <PageSearch
 								analytics={this.state.analytics}
-								{...props}
-							/>}
-						/>
-						<Route
-							path="/about"
-							render={(props) => <PageAbout
 								{...props}
 							/>}
 						/>

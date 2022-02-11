@@ -1,15 +1,12 @@
 import React from "react";
-import "./PageAbout.css";
+import "./PageInitiative.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
-import ButtonRegister from "./form/ButtonRegister.jsx";
 
-export default class PageAbout extends React.Component {
+export default class PageInitiative extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.render = this.render.bind(this);
 
 		this.state = {
 		};
@@ -18,12 +15,12 @@ export default class PageAbout extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
-			<div className={"PageAbout page max-sized-page"}>
+			<div className={"PageInitiative page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/about">ABOUT</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/initiative">THE INITIATIVE</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
@@ -37,7 +34,7 @@ export default class PageAbout extends React.Component {
 				<div className="row">
 					<div className="col-md-2"/>
 					<div className="col-md-8">
-						<div className="PageAbout-quote">
+						<div className="PageInitiative-quote">
 							{// eslint-disable-next-line
 							}<p>In order to achieve an inclusive, flourishing and trusted digital economy, the Ministry of the Economy especially promotes best practices among businesses and the implementation of informed governance via a collaborative risk management approach.</p>
 							<p>- Mr Franz Fayot, Minister of the Economy</p>
@@ -47,7 +44,7 @@ export default class PageAbout extends React.Component {
 
 				<div className="row">
 					<div className="col-md-12">
-						<img className="PageAbout-pm-picture" src="/img/franz-fayot-500.jpg" align="left"/>
+						<img className="PageInitiative-pm-picture" src="/img/franz-fayot-500.jpg" align="left"/>
 						{// eslint-disable-next-line
 						}<p>We are on the eve of creating ultra-connected human societies, based increasingly on mobile technologies, the growing use of cloud computing solutions and the continued development of the Internet of Things. While welcoming new opportunities, we also expose ourselves to multiple new risks, with an augmented dependency on the availability and reliability of data.</p>
 						{// eslint-disable-next-line
@@ -206,7 +203,7 @@ export default class PageAbout extends React.Component {
 					</div>
 
 					<div className="col-md-2"/>
-					<div className="col-md-8">
+					<div className="col-md-8 row-spaced">
 						{// eslint-disable-next-line
 						}<Collapsible trigger={<p>Read more about the methodology used for the ecosystem mapping</p>}>
 							<div className="row">
@@ -254,56 +251,6 @@ export default class PageAbout extends React.Component {
 								</div>
 							</div>
 						</Collapsible>
-					</div>
-				</div>
-
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h1>Join the CYBERSECURITY Luxembourg ecosystem!</h1>
-
-						<p>
-							Are you a Luxembourg-based company with cybersecurity services?
-						</p>
-
-						<p>
-							Join the CYBERSECURITY Luxembourg ecosystem! Benefit
-							from business and visibility opportunities throughout
-							the country, and abroad – and boost the national ecosystem!
-						</p>
-
-						<ButtonRegister/>
-					</div>
-
-					<div className="col-md-12">
-						<h1>Endorse the CYBERSECURITY Luxembourg branding</h1>
-
-						<p>
-							The standard logo CYBERSECURITY Luxembourg may be used,
-							in respect with the rules of the <a
-								href="/pdf/Charte-CYBERSECURITY_2021.pdf"
-								rel="noreferrer"
-								target="_blank">
-								logo guidelines
-							</a>
-							, by anyone to brand any publication,
-							event, or any other activity in relation with cybersecurity
-							and related to Luxembourg, either in Luxembourg or abroad.
-						</p>
-
-						<p>
-							Only members of the ecosystem may create a derivate of
-							the logo to brand their own event(s) or publication(s).
-							In order to do so, they must
-							contact <a href="mailto:info@cybersecurity-luxembourg.com">
-								info@cybersecurity-luxembourg.com
-							</a>.
-						</p>
-
-						<p>
-							The Guidelines of CYBERSECURITY Luxembourg, the usage of the
-							logo and all its derivates are managed by SECURITYMADEIN.LU and
-							validated by the CYBERSECURITY Luxembourg Committee.
-						</p>
 					</div>
 				</div>
 			</div>

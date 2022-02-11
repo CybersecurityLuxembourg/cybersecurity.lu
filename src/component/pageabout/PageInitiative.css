@@ -1,15 +1,15 @@
 
-.PageAbout {
+.PageInitiative {
 	background-color: white;
 }
 
-.PageAbout-our-teams img {
+.PageInitiative-our-teams img {
 	max-height: 130px;
 	margin: 5px 0px 20px 0px;
 	max-width: 100%;
 }
 
-.PageAbout img {
+.PageInitiative img {
 	margin: 10px 0px 20px 0px;
 	display: block;
 	margin-left: auto;
@@ -17,7 +17,7 @@
 	max-width: 100%;
 }
 
-.PageAbout .PageAbout-quote {
+.PageInitiative .PageInitiative-quote {
 	position: relative;
 	margin: 30px 20px 40px 20px;
 	padding: 30px 20px;
@@ -26,7 +26,7 @@
     border-bottom: solid 1px;
 }
 
-.PageAbout .PageAbout-quote:after {
+.PageInitiative .PageInitiative-quote:after {
     position: absolute;
     content: "”";
     color: grey;
@@ -36,12 +36,12 @@
     right: 30px;
 }
 
-.PageAbout h1 {
+.PageInitiative h1 {
 	white-space: initial;
 	overflow: initial;
 }
 
-.PageAbout-pm-picture {
+.PageInitiative-pm-picture {
 	padding: 0px 20px !important;
 	max-height: 500px;
 	max-width: 100% !important;
