@@ -7,6 +7,7 @@ import ShadowBoxCyber4Growth from "./box/ShadowBoxCyber4Growth.jsx";
 import ShadowBoxECSC from "./box/ShadowBoxECSC.jsx";
 import ShadowBoxJobs from "./box/ShadowBoxJobs.jsx";
 import PageHomeLatestNews from "./pagehome/PageHomeLatestNews.jsx";
+import FlashNews from "./bar/FlashNews.jsx";
 
 export default class PageHome extends React.Component {
 	constructor(props) {
@@ -49,17 +50,19 @@ export default class PageHome extends React.Component {
 	render() {
 		return (
 			<div id={"PageHome"}>
+				<FlashNews analytics={this.props.analytics}/>
+
 				<div className="PageHome-banner">
 					<div className="max-sized-page">
 						<div className="row row-spaced">
 							<div className="col-md-6">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
-									ddddddddddddddddd
+									content
 								</div>
 							</div>
 							<div className="col-md-6">
 								<div className="shadow-section blue-shadow-section centered-shadow-section">
-									gggddddddddddddddddddddddddddd
+									content
 								</div>
 							</div>
 						</div>
@@ -164,9 +167,8 @@ export default class PageHome extends React.Component {
 								<h1>Be visible & take part in the initiatives</h1>
 							</div>
 
-							<div className="col-md-3"/>
-							<div className="col-md-6">
-								d
+							<div className="col-md-12">
+								content
 							</div>
 						</div>
 					</div>
