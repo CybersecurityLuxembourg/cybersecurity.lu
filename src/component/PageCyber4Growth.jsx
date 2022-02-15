@@ -1,9 +1,10 @@
 import React from "react";
-import "./PageStrategy.css";
+import "./PageCyber4Growth.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Tab from "./tab/Tab.jsx";
 import Cyber4GrowthPresentation from "./pagecyber4growth/Cyber4GrowthPresentation.jsx";
+import Cyber4GrowthProgram from "./pagecyber4growth/Cyber4GrowthProgram.jsx";
 import Cyber4GrowthServices from "./pagecyber4growth/Cyber4GrowthServices.jsx";
 import Cyber4GrowthLaureates2022 from "./pagecyber4growth/Cyber4GrowthLaureates2022.jsx";
 import { getUrlParameter } from "../utils/url.jsx";
@@ -17,8 +18,9 @@ export default class PageCyber4Growth extends React.Component {
 		this.state = {
 			tabs: [
 				"presentation",
+				"programs",
 				"services",
-				"laureates",
+				"participants",
 			],
 			selectedMenu: null,
 		};
@@ -48,7 +50,7 @@ export default class PageCyber4Growth extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/cyber4growth">Cyber4Growth</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/cyber4growth">CYBER4GROWTH</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
@@ -58,8 +60,9 @@ export default class PageCyber4Growth extends React.Component {
 					selectedMenu={this.state.selectedMenu}
 					labels={[
 						"Presentation",
+						"Programs",
 						"Services",
-						"Laureates 2022",
+						"Participants of 2022",
 					]}
 					keys={this.state.tabs}
 					content={[
@@ -67,12 +70,17 @@ export default class PageCyber4Growth extends React.Component {
 							analytics={this.props.analytics}
 							key={this.state.tabs[0]}
 						/>,
-						<Cyber4GrowthServices
+						<Cyber4GrowthProgram
 							analytics={this.props.analytics}
 							key={this.state.tabs[1]}
 						/>,
-						<Cyber4GrowthLaureates2022
+						<Cyber4GrowthServices
+							analytics={this.props.analytics}
 							key={this.state.tabs[2]}
+						/>,
+						<Cyber4GrowthLaureates2022
+							analytics={this.props.analytics}
+							key={this.state.tabs[3]}
 						/>,
 					]}
 				/>
