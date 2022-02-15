@@ -203,7 +203,7 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							<div className="col-md-3"/>
 
 							<div className="col-md-12">
-								CYBER4Groth target both cybersecurity entrepreneurs who are looking for
+								CYBER4Growth targets both cybersecurity entrepreneurs who are looking for
 								tailor-made support and tech entrepreneurs needing to secure their
 								solution. The ambition of the platform is to position Luxembourg as THE
 								platform to grow, accelerate and scale in cybersecurity.
