@@ -42,7 +42,7 @@ export default class PageBestPractices extends React.Component {
 		if (this.props.analytics
 			&& this.props.analytics.taxonomy_values) {
 			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "BEST PRACTICE");
+				.filter((v) => v.category === "BEST PRACTICE PAGE");
 
 			this.setState({
 				tabs: values.map((v) => v.name.toLowerCase().replace(" ", "_")),
