@@ -1,0 +1,53 @@
+
+.Service {
+    margin: 5px 0px 15px 0px !important;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+}
+
+.Service-link {
+    color: inherit;
+}
+
+.Service-link:hover {
+    color: initial !important;
+    text-decoration: none;
+}
+
+.Service:hover {
+    background-color: #f2fbff;
+}
+
+.Service .card-img-wrapper {
+    min-height: 150px;
+    position: relative;
+}
+
+.Service .card-date {
+    position: absolute;
+    background: #009fe3;
+    text-align: center;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    color: #fff;
+    bottom: 0;
+    right: 10px;
+    text-transform: uppercase;
+}
+
+.Service .card-type {
+    position: absolute;
+    background: #e40613;
+    text-align: center;
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    color: #fff;
+    top: 0;
+    left: 10px;
+    text-transform: uppercase;
+}
+
+.Service .card-text {
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
