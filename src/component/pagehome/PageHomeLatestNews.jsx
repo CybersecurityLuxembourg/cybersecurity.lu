@@ -4,6 +4,7 @@ import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Loading from "../box/Loading.jsx";
 import NoImage from "../box/NoImage.jsx";
+import Message from "../box/Message.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 
 export default class PageHomeLatestNews extends React.Component {
@@ -55,9 +56,18 @@ export default class PageHomeLatestNews extends React.Component {
 	}
 
 	render() {
-		if (!this.state.news || !this.state.selectedNews === null) {
+		if (!this.state.news) {
 			return <div className={"col-md-12"}>
 				<Loading
+					height={300}
+				/>
+			</div>;
+		}
+
+		if (this.state.news.pagination.total === 0) {
+			return <div className={"col-md-12"}>
+				<Message
+					text={"No call to action found"}
 					height={300}
 				/>
 			</div>;

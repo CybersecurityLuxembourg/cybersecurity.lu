@@ -7,6 +7,7 @@ import ShadowBoxCyber4Growth from "./box/ShadowBoxCyber4Growth.jsx";
 import ShadowBoxECSC from "./box/ShadowBoxECSC.jsx";
 import ShadowBoxJobs from "./box/ShadowBoxJobs.jsx";
 import PageHomeLatestNews from "./pagehome/PageHomeLatestNews.jsx";
+import PageHomeCallToAction from "./pagehome/PageHomeCallToAction.jsx";
 import FlashNews from "./bar/FlashNews.jsx";
 
 export default class PageHome extends React.Component {
@@ -113,44 +114,12 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>Ecosystem highlights</h1>
+								<h1>Call to action</h1>
 							</div>
-						</div>
 
-						<div className="row row-spaced">
-							<div className="col-md-6">
-								<ShadowBoxPcDoctor
-									analytics={this.props.analytics}
-									color={"red"}
-								/>
-							</div>
-							<div className="col-md-6">
-								<ShadowBoxPureStartup
-									color={"red"}
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="black-bordered">
-					{this.getBackgroundPetal()}
-					{this.getBackgroundPetalBottom()}
-
-					<div className="max-sized-page">
-						<div className="row">
 							<div className="col-md-12">
-								<h1>Education & jobs</h1>
-							</div>
-
-							<div className="col-md-6">
-								<ShadowBoxEducation
-									{...this.props}
-								/>
-							</div>
-							<div className="col-md-6">
-								<ShadowBoxJobs
-									{...this.props}
+								<PageHomeCallToAction
+									analytics={this.props.analytics}
 								/>
 							</div>
 						</div>
@@ -164,11 +133,64 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
+								<h1>Ecosystem highlights</h1>
+							</div>
+						</div>
+
+						<div className="row row-spaced">
+							<div className="col-md-6">
+								<ShadowBoxPcDoctor
+									analytics={this.props.analytics}
+									color={"blue"}
+								/>
+							</div>
+							<div className="col-md-6">
+								<ShadowBoxPureStartup
+									color={"blue"}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="black-bordered">
+					{this.getBackgroundPetal()}
+					{this.getBackgroundPetalBottom()}
+
+					<div className="max-sized-page">
+						<div className="row">
+							<div className="col-md-12">
 								<h1>Be visible & take part in the initiatives</h1>
 							</div>
 
 							<div className="col-md-12">
 								content
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="red-bordered">
+					{this.getBackgroundPetal()}
+					{this.getBackgroundPetalBottom()}
+
+					<div className="max-sized-page">
+						<div className="row">
+							<div className="col-md-12">
+								<h1>Education & jobs</h1>
+							</div>
+
+							<div className="col-md-6">
+								<ShadowBoxEducation
+									color={"red"}
+									{...this.props}
+								/>
+							</div>
+							<div className="col-md-6">
+								<ShadowBoxJobs
+									color={"red"}
+									{...this.props}
+								/>
 							</div>
 						</div>
 					</div>

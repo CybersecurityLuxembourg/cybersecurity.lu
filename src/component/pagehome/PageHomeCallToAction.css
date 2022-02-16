@@ -1,16 +1,16 @@
 
-#PageHomeLatestNews .PageHomeLatestNews-date,
-#PageHomeLatestNews .PageHomeLatestNews-title {
+#PageHomeCallToAction .PageHomeCallToAction-date,
+#PageHomeCallToAction .PageHomeCallToAction-title {
 	display: inline;
 }
 
-#PageHomeLatestNews a {
+#PageHomeCallToAction a {
 	text-decoration: none;
 }
 
-#PageHomeLatestNews .PageHomeLatestNews-article {
+#PageHomeCallToAction .PageHomeCallToAction-article {
 	width: 100%;
-	color: #009fe3;
+	color: rgb(228, 6, 19);
 	padding: 1px 5px;
 	display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -20,24 +20,24 @@
     border: transparent 0.16em solid;
 }
 
-#PageHomeLatestNews .PageHomeLatestNews-article-selected {
-	background-color: rgb(0, 159, 227);
+#PageHomeCallToAction .PageHomeCallToAction-article-selected {
+	background-color: rgb(228, 6, 19);
     color: white;
 }
 
-#PageHomeLatestNews .PageHomeLatestNews-article:hover {
+#PageHomeCallToAction .PageHomeCallToAction-article:hover {
     border: black 0.16em solid;
 }
 
 @media (min-width: 0px) {
- 	#PageHomeLatestNews .PageHomeLatestNews-image {
+ 	#PageHomeCallToAction .PageHomeCallToAction-image {
         width: 100%;
         height: 180px;
     }
 }
 
 @media (min-width: 500px) {
-    #PageHomeLatestNews .PageHomeLatestNews-image {
+    #PageHomeCallToAction .PageHomeCallToAction-image {
     	height: 180px;
         object-fit: cover;
         display: flex;
@@ -47,8 +47,8 @@
     }
 }
 
-#PageHomeLatestNews .PageHomeLatestNews-image img,
-#PageHomeLatestNews .PageHomeLatestNews-image .NoImage {
+#PageHomeCallToAction .PageHomeCallToAction-image img,
+#PageHomeCallToAction .PageHomeCallToAction-image .NoImage {
 	position: absolute;
     object-fit: cover;
     width: 100%;
@@ -63,16 +63,16 @@
     100% { left: 0%; }
 }
 
-#PageHomeLatestNews .NoImage {
+#PageHomeCallToAction .NoImage {
     background: repeating-linear-gradient(
       135deg,
-      rgba(0, 159, 227, 0.1),
-      rgba(0, 159, 227, 0.1) 10px,
+      rgba(228, 6, 19, 0.1),
+      rgba(228, 6, 19, 0.1) 10px,
       rgba(0, 0, 0, 0) 10px,
       rgba(0, 0, 0, 0) 20px
     ) !important;
 }
 
-#PageHomeLatestNews .NoImage-logo i {
-    color: rgba(0, 159, 227, 0.1) !important;
+#PageHomeCallToAction .NoImage-logo i {
+    color: rgba(228, 6, 19, 0.1) !important;
 }
