@@ -174,31 +174,44 @@ export default class PageInitiative extends React.Component {
 
 						<p>
 							The market mapping gathers all 300+ entities (private,
-							public and civil sectors) involved in cybersecurity.
+								public and civil sectors) involved in cybersecurity.
 							Based on the <a
 								href="http://www.ecs-org.eu/documents/uploads/ecso-cybersecurity-market-radar-brochure.pdf"
 								rel="noreferrer"
 								target="_blank">
 								ECSO Cybersecurity Market Radar
-							</a>
-							&nbsp;classification,
+							</a> classification,
 							the directory unveils an almost exhaustive range of cybersecurity
-							solutions that cover the risk management supply chain,
-							highlighting the existing expertise and competence amongst
-							Luxembourg ecosystem and identifying the gaps and
-							opportunities for improvement.
+							solutions that cover the risk management supply chain, highlighting
+							the existing expertise and competence amongst Luxembourg ecosystem
+							and identifying the gaps and opportunities for improvement.
 						</p>
 
 						<p>
-							While the first mapping was introduced in October 2019,
-							there are currently one-quarter of the 300+ organisations
-							within the ecosystem that have cybersecurity as core business.
-							Other companies offer services and solutions beyond cybersecurity.
-							Thus, cybersecurity has been integrated as a focus area among
-							non-IT traditional businesses, which makes it the real strength
-							of the Luxembourg cybersecurity ecosystem. The many start-ups
-							included in the mapping show the great innovation potential
-							existing in the country.
+							The <a
+								href="https://www.luxinnovation.lu/wp-content/uploads/sites/3/2019/10/luxembourg-cybersecurity-ecosystem_mapping-2019-1.pdf"
+								rel="noreferrer"
+								target="_blank">
+								first mapping
+							</a> was introduced in October 2019,
+							a <a
+								href="https://www.luxinnovation.lu/wp-content/uploads/sites/3/2020/12/2020-10-key-insigights-cybersecurity_final.pdf"
+								rel="noreferrer"
+								target="_blank">
+								second mapping
+							</a> was published in 2020.
+						</p>
+
+						<p>
+							Currently, of the 300+ organisations in the ecosystem, a
+							quarter have cybersecurity as their core business and more
+							than 20% are start-ups, highlighting the country&apos;s great potential
+							for innovation in cybersecurity.
+						</p>
+
+						<p>
+							Cybersecurity has been integrated as a focus area among non-IT
+							traditional businesses, making it a real asset to the Luxembourg economy.
 						</p>
 					</div>
 
