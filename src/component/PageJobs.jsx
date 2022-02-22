@@ -8,7 +8,7 @@ import { getRequest } from "../utils/request.jsx";
 import JobOfferHorizontal from "./item/JobOfferHorizontal.jsx";
 import Message from "./box/Message.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
-import EventSearch from "./form/EventSearch.jsx";
+import SearchField from "./form/SearchField.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
 
 export default class PageJobs extends React.Component {
@@ -107,16 +107,13 @@ export default class PageJobs extends React.Component {
 							<Breadcrumb.Item><Link to="/jobs">CYBERSECURITY JOBS</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
-				</div>
 
-				<div className="row row-spaced">
 					<div className="col-md-12">
-						<EventSearch
-							analytics={this.props.analytics}
-							filters={this.state.filters}
-							onChange={this.modifyFilters}
-							onSearch={this.getArticles}
-						/>
+						<h4>Search over the portal</h4>
+					</div>
+
+					<div className="col-md-12 row-spaced">
+						<SearchField/>
 					</div>
 				</div>
 
