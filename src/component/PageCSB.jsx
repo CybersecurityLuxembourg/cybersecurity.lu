@@ -132,7 +132,7 @@ export default class PageCSB extends React.Component {
 
 						{this.state.events && this.state.events.pagination.total === 0
 							&& <Message
-								text={"No event found"}
+								text={"No CSB found"}
 								height={300}
 							/>
 						}
@@ -147,7 +147,7 @@ export default class PageCSB extends React.Component {
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Previous Cybersecurity Breakfasts</h1>
+						<h1>Recap of the previous CSB</h1>
 
 						{this.state.news && this.state.news.pagination.total > 0
 							&& <DynamicTable

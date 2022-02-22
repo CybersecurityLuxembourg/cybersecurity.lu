@@ -10,8 +10,8 @@ import { getRequest } from "../utils/request.jsx";
 import EventHorizontal from "./item/EventHorizontal.jsx";
 import Message from "./box/Message.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
-import EventSearch from "./form/EventSearch.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
+import SearchField from "./form/SearchField.jsx";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = momentLocalizer(moment);
@@ -114,16 +114,13 @@ export default class PageCalendar extends React.Component {
 							<Breadcrumb.Item><Link to="/events">UPCOMING EVENTS</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
-				</div>
 
-				<div className="row row-spaced">
 					<div className="col-md-12">
-						<EventSearch
-							analytics={this.props.analytics}
-							filters={this.state.filters}
-							onChange={this.modifyFilters}
-							onSearch={this.getArticles}
-						/>
+						<h4>Search over the portal</h4>
+					</div>
+
+					<div className="col-md-12 row-spaced">
+						<SearchField/>
 					</div>
 				</div>
 

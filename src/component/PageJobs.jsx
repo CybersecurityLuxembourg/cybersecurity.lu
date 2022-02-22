@@ -1,5 +1,5 @@
 import React from "react";
-import "./PageMarketplace.css";
+import "./PageJobs.css";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import { getUrlParameter, dictToURI } from "../utils/url.jsx";
 import EventSearch from "./form/EventSearch.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
 
-export default class PageMarketplace extends React.Component {
+export default class PageJobs extends React.Component {
 	constructor(props) {
 		super(props);
 

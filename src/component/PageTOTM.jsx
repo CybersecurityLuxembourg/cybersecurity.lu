@@ -6,7 +6,7 @@ import { NotificationManager as nm } from "react-notifications";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
-import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
+import Article from "./item/Article.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import { getRequest } from "../utils/request.jsx";
 
@@ -33,15 +33,15 @@ export default class PageTOTM extends React.Component {
 		if (this.props.analytics
 			&& this.props.analytics.taxonomy_values) {
 			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ARTICLE CATEGORY")
-				.filter((v) => v.name === "TOPICS OF THE MONTH");
+				.filter((v) => v.category === "TOOL CATEGORY")
+				.filter((v) => v.name === "TOPIC OF THE MONTH");
 
 			if (values.length > 0) {
 				const params = {
-					type: "NEWS",
+					type: "TOOL",
 					include_tags: "true",
 					taxonomy_values: values.map((v) => v.id).join(","),
-					per_page: 5,
+					per_page: 9,
 					page: page === undefined ? 1 : page,
 				};
 
@@ -69,14 +69,14 @@ export default class PageTOTM extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/topics">TOPICS OF THE MONTH</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/topic">TOPIC OF THE MONTH</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Topics of the month</h1>
+						<h1>Topic of the month</h1>
 
 						{this.state.news && this.state.news.pagination.total > 0
 							&& <DynamicTable
@@ -84,7 +84,7 @@ export default class PageTOTM extends React.Component {
 								pagination={this.state.news.pagination}
 								changePage={(page) => this.getNews(page)}
 								buildElement={(a) => <div className="col-md-12">
-									<ArticleHorizontal
+									<Article
 										info={a}
 										analytics={this.props.analytics}
 									/>

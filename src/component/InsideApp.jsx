@@ -8,14 +8,14 @@ import Menu from "./bar/Menu.jsx";
 import Footer from "./bar/Footer.jsx";
 import PageHome from "./PageHome.jsx";
 import PageNews from "./PageNews.jsx";
-import PageMarketplace from "./PageMarketplace.jsx";
+import PageJobs from "./PageJobs.jsx";
 import PageCalendar from "./PageCalendar.jsx";
 import PageStrategy from "./pageabout/PageStrategy.jsx";
-import PageArticle from "./PageArticle.jsx";
-import PageEvent from "./PageEvent.jsx";
-import PageTool from "./PageTool.jsx";
-import PageJobOffer from "./PageJobOffer.jsx";
-import PageService from "./PageService.jsx";
+import * as PageNewsArticle from "./pagearticle/PageNews.jsx";
+import PageEvent from "./pagearticle/PageEvent.jsx";
+import PageTool from "./pagearticle/PageTool.jsx";
+import PageJobOffer from "./pagearticle/PageJobOffer.jsx";
+import PageService from "./pagearticle/PageService.jsx";
 import PageCyber4Growth from "./PageCyber4Growth.jsx";
 import PageCyberWeek from "./PageCyberWeek.jsx";
 import PageBreakfast from "./PageBreakfast.jsx";
@@ -45,8 +45,6 @@ import getMailerliteFunction from "../utils/mailerlite.jsx";
 export default class InsideApp extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.getAnalytics = this.getAnalytics.bind(this);
 
 		this.state = {
 			analytics: null,
@@ -83,10 +81,10 @@ export default class InsideApp extends React.Component {
 
 				<div id="InsideApp-content">
 					<Switch>
-						<Route path="/news/:handle" render={(props) => <PageArticle {...props} />}/>
-						<Route path="/calendar/:handle" render={(props) => <PageEvent {...props} />}/>
+						<Route path="/news/:handle" render={(props) => <PageNewsArticle {...props} />}/>
+						<Route path="/event/:handle" render={(props) => <PageEvent {...props} />}/>
 						<Route path="/tool/:handle" render={(props) => <PageTool {...props} />}/>
-						<Route path="/job_offer/:handle" render={(props) => <PageJobOffer {...props} />}/>
+						<Route path="/job/:handle" render={(props) => <PageJobOffer {...props} />}/>
 						<Route path="/service/:handle" render={(props) => <PageService {...props} />}/>
 						<Route path="/company/:id" render={(props) => <PageCompany {...props} analytics={this.state.analytics} />}/>
 
@@ -121,7 +119,7 @@ export default class InsideApp extends React.Component {
 							/>}
 						/>
 						<Route
-							path="/topics"
+							path="/topic"
 							render={(props) => <PageTOTM
 								analytics={this.state.analytics}
 								{...props}
@@ -157,7 +155,7 @@ export default class InsideApp extends React.Component {
 						/>
 						<Route
 							path="/jobs"
-							render={(props) => <PageMarketplace
+							render={(props) => <PageJobs
 								analytics={this.state.analytics}
 								{...props}
 							/>}

@@ -1,18 +1,17 @@
 import React from "react";
-import "./PageEvent.css";
+import "./PageService.css";
 import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
-import { getRequest } from "../utils/request.jsx";
-import { getApiURL } from "../utils/env.jsx";
-import Loading from "./box/Loading.jsx";
-import Chip from "./form/Chip.jsx";
-import { getContentFromBlock, getNextTitle1Position } from "../utils/article.jsx";
-import { dateToString } from "../utils/date.jsx";
+import { getRequest } from "../../utils/request.jsx";
+import { getApiURL } from "../../utils/env.jsx";
+import Loading from "../box/Loading.jsx";
+import Chip from "../form/Chip.jsx";
+import { getContentFromBlock, getNextTitle1Position } from "../../utils/article.jsx";
 
-export default class PageEvent extends React.Component {
+export default class PageService extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -56,33 +55,27 @@ export default class PageEvent extends React.Component {
 		let positionToTreat = 0;
 
 		return (
-			<div className={"PageEvent page max-sized-page"}>
+			<div className={"PageService page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/calendar">WHERE TO MEET?</Link></Breadcrumb.Item>
-							{this.state.article !== null && !this.state.loading
-								? <Breadcrumb.Item><Link to={"/calendar/" + this.props.match.params.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
+							{this.state.article && !this.state.loading
+								? <Breadcrumb.Item><Link to={"/service/" + this.props.match.params.handle}>{this.state.article.title}</Link></Breadcrumb.Item>
 								: ""}
 						</Breadcrumb>
 					</div>
 				</div>
 
-				{this.state.article !== null && this.state.article.content !== undefined
+				{this.state.article && this.state.article.content
 					&& !this.state.articleLoading
 					? <div className="row row-spaced">
 						<div className="col-md-12">
 							<article>
-								<div className='PageEvent-content-cover'>
+								<div className='PageService-content-cover'>
 									{this.state.article.image !== null
 										? <img src={getApiURL() + "public/get_public_image/" + this.state.article.image}/>
 										: ""}
-									<div className='PageEvent-publication-date'>
-										{dateToString(this.state.article.start_date, "DD MMM YYYY HH:mm")}
-										<br/>
-										{dateToString(this.state.article.end_date, "DD MMM YYYY HH:mm")}
-									</div>
 								</div>
 
 								<div className="PageArticle-tags">
@@ -146,26 +139,17 @@ export default class PageEvent extends React.Component {
 									return null;
 								})}
 
-								<div className="PageArticle-tags">
-									{this.state.article.taxonomy_tags.map((t) => (
-										<Chip
-											key={t.name}
-											label={t.name}
-											url={"/search?taxonomy_values=" + t.id}
-										/>
-									))}
-								</div>
-
-								<div className="PageArticle-companies">
-									{this.state.article.company_tags.map((t) => (
-										<Chip
-											key={t.name}
-											label={t.name}
-											color={"#ffa8b0"}
-											url={"/company/" + t.id}
-										/>
-									))}
-								</div>
+								{this.state.article.link !== null
+									&& this.state.article.link !== undefined
+									&& this.state.article.link.length > 0
+									&& <div className="PageTool-external-link">
+										<button
+											onClick={() => window.open(this.state.article.link)}
+										>
+											<i className="fas fa-arrow-alt-circle-right"/> Open the source
+										</button>
+									</div>
+								}
 							</article>
 						</div>
 					</div>

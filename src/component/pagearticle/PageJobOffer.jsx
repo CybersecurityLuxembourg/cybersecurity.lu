@@ -6,16 +6,14 @@ import { Helmet } from "react-helmet";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
-import { getRequest } from "../utils/request.jsx";
-import { getApiURL } from "../utils/env.jsx";
-import Loading from "./box/Loading.jsx";
-import Chip from "./form/Chip.jsx";
-import Message from "./box/Message.jsx";
-import Article from "./item/Article.jsx";
-import { getContentFromBlock, getNextTitle1Position } from "../utils/article.jsx";
-import { dateToString } from "../utils/date.jsx";
-import TwitterLink from "./form/TwitterLink.jsx";
-import LinkedInLink from "./form/LinkedInLink.jsx";
+import { getRequest } from "../../utils/request.jsx";
+import { getApiURL } from "../../utils/env.jsx";
+import Loading from "../box/Loading.jsx";
+import Chip from "../form/Chip.jsx";
+import { getContentFromBlock, getNextTitle1Position } from "../../utils/article.jsx";
+import { dateToString } from "../../utils/date.jsx";
+import TwitterLink from "../form/TwitterLink.jsx";
+import LinkedInLink from "../form/LinkedInLink.jsx";
 
 export default class PageJobOffer extends React.Component {
 	constructor(props) {
@@ -76,38 +74,6 @@ export default class PageJobOffer extends React.Component {
 		this.setState({ [field]: value });
 	}
 
-	getOriginMenu() {
-		if (this.state.article === null) {
-			return "";
-		}
-
-		if (this.state.article.type === "NEWS") {
-			return "WHAT'S UP?";
-		}
-
-		if (this.state.article.type === "TOOL") {
-			return "NATIONAL STRATEGY";
-		}
-
-		return "";
-	}
-
-	getOriginMenuUrl() {
-		if (this.state.article === null) {
-			return "";
-		}
-
-		if (this.state.article.type === "NEWS") {
-			return "/news";
-		}
-
-		if (this.state.article.type === "TOOL") {
-			return "/strategy";
-		}
-
-		return "";
-	}
-
 	render() {
 		let positionToTreat = 0;
 
@@ -117,14 +83,10 @@ export default class PageJobOffer extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item>
-								<Link to={this.getOriginMenuUrl()}>
-									{this.getOriginMenu()}
-								</Link>
-							</Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/jobs">JOBS</Link></Breadcrumb.Item>
 							{this.state.article !== null && !this.state.loading
 								? <Breadcrumb.Item>
-									<Link to={this.getOriginMenuUrl() + "/" + this.props.match.params.handle}>
+									<Link to={"/job/" + this.props.match.params.handle}>
 										{this.state.article.title}
 									</Link>
 								</Breadcrumb.Item>
@@ -136,7 +98,7 @@ export default class PageJobOffer extends React.Component {
 				{this.state.article !== null && this.state.article.content !== undefined
 					&& !this.state.articleLoading
 					? <div className="row row-spaced">
-						<div className={this.state.article.type === "NEWS" ? "col-md-8" : "col-md-12"}>
+						<div className={"col-md-8"}>
 							<article>
 								<Helmet>
 									<meta prefix="og: http://ogp.me/ns#" property="og:title" content={this.state.article.title}/>
@@ -243,82 +205,41 @@ export default class PageJobOffer extends React.Component {
 								</div>
 							</article>
 						</div>
-						{this.state.article.type === "NEWS"
-							? <div className="col-md-4">
-								<div className="container">
-									<div className="row PageJobOffer-social-media">
-										<div className="col-md-12">
-											<h3>Share on social media</h3>
-										</div>
 
-										<div className="col-md-12">
-											<div className="PageJobOffer-social-media-links">
-												<TwitterLink
-													text={this.state.article.title}
-													url={this.state.article.link !== undefined
-														&& this.state.article.link !== null
-														&& this.state.article.link.length > 0
-														? this.state.article.link
-														: window.location.origin + "/news/"
-															+ this.props.match.params.handle
-													}
-												/>
-												<LinkedInLink
-													text={this.state.article.title}
-													url={this.state.article.link !== undefined
-														&& this.state.article.link !== null
-														&& this.state.article.link.length > 0
-														? this.state.article.link
-														: window.location.origin + "/news/"
-															+ this.props.match.params.handle
-													}
-												/>
-											</div>
-										</div>
+						<div className="col-md-4">
+							<div className="container">
+								<div className="row PageJobOffer-social-media">
+									<div className="col-md-12">
+										<h3>Share on social media</h3>
 									</div>
-								</div>
 
-								<div className="container">
-									<div className="row PageJobOffer-related-article">
-										<div className="col-md-12">
-											<h3>Related articles</h3>
+									<div className="col-md-12">
+										<div className="PageJobOffer-social-media-links">
+											<TwitterLink
+												text={this.state.article.title}
+												url={this.state.article.link !== undefined
+													&& this.state.article.link !== null
+													&& this.state.article.link.length > 0
+													? this.state.article.link
+													: window.location.origin + "/news/"
+														+ this.props.match.params.handle
+												}
+											/>
+											<LinkedInLink
+												text={this.state.article.title}
+												url={this.state.article.link !== undefined
+													&& this.state.article.link !== null
+													&& this.state.article.link.length > 0
+													? this.state.article.link
+													: window.location.origin + "/news/"
+														+ this.props.match.params.handle
+												}
+											/>
 										</div>
-
-										{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
-											&& this.state.relatedArticles.length > 0
-											&& this.state.relatedArticles.map((a) => (
-												<div
-													className="col-md-12"
-													key={a.id}>
-													<Article
-														key={a.id}
-														info={a}
-													/>
-												</div>
-											))
-										}
-
-										{this.state.relatedArticles !== null && !this.state.relatedArticleLoading
-											&& this.state.relatedArticles.length === 0
-											&& <div className="col-md-12">
-												<Message
-													text={"No related article found"}
-													height={150}
-												/>
-											</div>
-										}
-
-										{(this.state.relatedArticles === null || this.state.relatedArticleLoading)
-											&& <div className="col-md-12">
-												<Loading
-													height={150}
-												/>
-											</div>
-										}
 									</div>
 								</div>
 							</div>
-							: ""}
+						</div>
 					</div>
 					: 					<Loading
 						height={200}

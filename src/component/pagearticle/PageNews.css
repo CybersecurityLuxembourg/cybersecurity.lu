@@ -1,9 +1,9 @@
 
-.PageArticle article {
+.PageNews article {
 	margin-bottom: 20px;
 }
 
-.PageArticle article .PageArticle-content-cover {
+.PageNews article .PageNews-content-cover {
 	position: relative;
 	margin: auto;
 	background: repeating-linear-gradient(
@@ -17,56 +17,56 @@
 	min-height: 50px;
 }
 
-.PageArticle article .PageArticle-content-cover img {
+.PageNews article .PageNews-content-cover img {
 	max-width: 100%;
 	min-height: 50px;
 	max-height: 300px;
 }
 
-.PageArticle article .content-media {
+.PageNews article .content-media {
 	margin: 15px auto;
 	text-align: center;
 	display: flex;
   	justify-content: center;
 }
 
-.PageArticle article .content-media img {
+.PageNews article .content-media img {
 	max-width: 100%;
 	max-height: 300px;
 }
 
-.PageArticle article .content-media iframe {
+.PageNews article .content-media iframe {
 	max-width: 100%;
 }
 
-.PageArticle article .content-media p {
+.PageNews article .content-media p {
 	margin: 0 !important;
 }
 
-.PageArticle-related-article {
+.PageNews-related-article {
 	background-color: #f8f9fa;
 }
 
-.PageArticle-social-media {
+.PageNews-social-media {
 	background-color: #f8f9fa;
 	margin-bottom: 15px;
 }
 
-.PageArticle-social-media-links {
+.PageNews-social-media-links {
 	width: 100%;
 	text-align: center;
 }
 
-.PageArticle-social-media-links .TwitterLink, .PageArticle-social-media-links .LinkedInLink {
+.PageNews-social-media-links .TwitterLink, .PageNews-social-media-links .LinkedInLink {
 	display: inline-block;
 }
 
-.PageArticle-abstract {
+.PageNews-abstract {
 	font-size: 18px;
 	margin: 15px 0px;
 }
 
-.PageArticle-publication-date {
+.PageNews-publication-date {
 	position: absolute;
 	right: 30px;
 	bottom: 0px;
@@ -78,23 +78,23 @@
     text-transform: uppercase;
 }
 
-.PageArticle-tags {
+.PageNews-tags {
 	padding: 30px 10px 5px 10px;
 }
 
-.PageArticle-companies {
+.PageNews-companies {
 	padding: 5px 10px 5px 10px;
 }
 
 /* Collapsible */ 
 
-.PageArticle .Collapsible {
+.PageNews .Collapsible {
 	margin: 30px 0px 0px 0px !important;
 	border-top: solid 0px !important;
     border-bottom: solid 0px !important;
 }
 
-.PageArticle .Collapsible__trigger p {
+.PageNews .Collapsible__trigger p {
 	position: relative;
 	padding: 8px 70px 8px 20px;
 	font-style: italic;
@@ -102,12 +102,12 @@
 	margin-bottom: 0px;
 }
 
-.PageArticle .Collapsible .is-closed:after {
+.PageNews .Collapsible .is-closed:after {
     top: 45px !important;
     right: 10px;
 }
 
-.PageArticle .Collapsible .is-open:after {
+.PageNews .Collapsible .is-open:after {
     top: 45px !important;
     right: 10px;
 }
