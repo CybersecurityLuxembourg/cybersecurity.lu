@@ -6,7 +6,7 @@ import { NotificationManager as nm } from "react-notifications";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
-import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
+import ToolHorizontal from "./item/ToolHorizontal.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import { getRequest } from "../utils/request.jsx";
 
@@ -84,7 +84,7 @@ export default class PagePodcasts extends React.Component {
 								pagination={this.state.podcasts.pagination}
 								changePage={(page) => this.getNews(page)}
 								buildElement={(a) => <div className="col-md-12">
-									<Podcast
+									<ToolHorizontal
 										info={a}
 										analytics={this.props.analytics}
 									/>
