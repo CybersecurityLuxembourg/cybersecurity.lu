@@ -70,8 +70,8 @@ export default class Menu extends React.Component {
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
-					<Link to="/topics">
-						<div className="Menu-title">Topics of the month</div>
+					<Link to="/topic">
+						<div className="Menu-title">Topic of the month</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />

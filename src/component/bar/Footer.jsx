@@ -96,8 +96,8 @@ export default class Footer extends React.Component {
 										</Link>
 									</div>
 									<div>
-										<Link to="/topics">
-											Topics of the month
+										<Link to="/topic">
+											Topic of the month
 										</Link>
 									</div>
 									<br/>
