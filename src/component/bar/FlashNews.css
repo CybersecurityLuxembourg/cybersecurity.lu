@@ -30,6 +30,10 @@
    color: white;
 }
 
+.FlashNews-wrapper div:hover {
+   color: black !important;
+}
+
 .FlashNews-wrapper a {
    text-decoration: none;
 }
