@@ -11,7 +11,7 @@ import PageNews from "./PageNews.jsx";
 import PageJobs from "./PageJobs.jsx";
 import PageCalendar from "./PageCalendar.jsx";
 import PageStrategy from "./pageabout/PageStrategy.jsx";
-import * as PageNewsArticle from "./pagearticle/PageNews.jsx";
+import PageNewsArticle from "./pagearticle/PageNewsArticle.jsx";
 import PageEvent from "./pagearticle/PageEvent.jsx";
 import PageTool from "./pagearticle/PageTool.jsx";
 import PageJobOffer from "./pagearticle/PageJobOffer.jsx";
@@ -279,6 +279,7 @@ export default class InsideApp extends React.Component {
 						/>
 					</Switch>
 				</div>
+
 				<Footer/>
 			</div>
 		);

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Service.css";
 import dompurify from "dompurify";
+import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 
@@ -68,7 +69,9 @@ export default class Service extends Component {
 	}
 
 	render() {
-		return this.props.info.link
+		return this.props.info.link !== null
+			&& this.props.info.link !== undefined
+			&& this.props.info.link.length > 0
 			? <a
 				href={this.props.info.link}
 				target={"_blank"}
@@ -76,10 +79,10 @@ export default class Service extends Component {
 				className="Service-link">
 				{this.getBoxContent()}
 			</a>
-			: <a
-				href={"/news/" + this.props.info.handle}
+			: <Link
+				to={"/service/" + this.props.info.handle}
 				className="Service-link">
 				{this.getBoxContent()}
-			</a>;
+			</Link>;
 	}
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import "./PageHomeCallToAction.css";
 import { NotificationManager as nm } from "react-notifications";
+import { Link } from "react-router-dom";
 import { getRequest } from "../../utils/request.jsx";
 import Loading from "../box/Loading.jsx";
 import NoImage from "../box/NoImage.jsx";
@@ -107,14 +108,32 @@ export default class PageHomeCallToAction extends React.Component {
 					{this.state.callToAction.items.map((c, i) => <div
 						key={c.id}
 						className={"col-md-12"}>
-						<a href={c.link}>
-							<div className={"PageHomeCallToAction-article "
-								+ (this.state.selectedCallToAction === i && "PageHomeCallToAction-article-selected")}>
-								<div className={"PageHomeCallToAction-title"}>
-									{c.title}
+						{c.link !== null
+							&& c.link !== undefined
+							&& c.link.length > 0
+							? <a
+								href={c.link}
+								target={"_blank"}
+								rel="noreferrer"
+								className="Article-link">
+								<div className={"PageHomeCallToAction-article "
+									+ (this.state.selectedCallToAction === i && "PageHomeCallToAction-article-selected")}>
+									<div className={"PageHomeCallToAction-title"}>
+										{c.title}
+									</div>
 								</div>
-							</div>
-						</a>
+							</a>
+							: <Link
+								to={"/news/" + c.handle}
+								className="Article-link">
+								<div className={"PageHomeCallToAction-article "
+									+ (this.state.selectedCallToAction === i && "PageHomeCallToAction-article-selected")}>
+									<div className={"PageHomeCallToAction-title"}>
+										{c.title}
+									</div>
+								</div>
+							</Link>
+						}
 					</div>)}
 				</div>
 			</div>

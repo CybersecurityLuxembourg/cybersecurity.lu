@@ -1,5 +1,5 @@
 import React from "react";
-import "./PageNews.css";
+import "./PageNewsArticle.css";
 import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
 import { Helmet } from "react-helmet";
@@ -18,7 +18,7 @@ import { dateToString } from "../../utils/date.jsx";
 import TwitterLink from "../form/TwitterLink.jsx";
 import LinkedInLink from "../form/LinkedInLink.jsx";
 
-export default class PageNews extends React.Component {
+export default class PageNewsArticle extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -104,7 +104,7 @@ export default class PageNews extends React.Component {
 		let positionToTreat = 0;
 
 		return (
-			<div className={"PageNews page max-sized-page"}>
+			<div className={"PageNewsArticle page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
@@ -138,16 +138,16 @@ export default class PageNews extends React.Component {
 											+ this.props.match.params.handle}/>
 								</Helmet>
 
-								<div className='PageNews-content-cover'>
+								<div className='PageNewsArticle-content-cover'>
 									{this.state.article.image !== null
 										? <img src={getApiURL() + "public/get_public_image/" + this.state.article.image}/>
 										: ""}
-									<div className='PageNews-publication-date'>
+									<div className='PageNewsArticle-publication-date'>
 										{dateToString(this.state.article.publication_date, "DD MMM YYYY")}
 									</div>
 								</div>
 
-								<div className="PageNews-tags">
+								<div className="PageNewsArticle-tags">
 									{this.state.article.taxonomy_tags.map((t) => (
 										<Chip
 											key={t.name}
@@ -157,7 +157,7 @@ export default class PageNews extends React.Component {
 									))}
 								</div>
 
-								<div className="PageNews-companies">
+								<div className="PageNewsArticle-companies">
 									{this.state.article.company_tags.map((t) => (
 										<Chip
 											key={t.name}
@@ -174,7 +174,7 @@ export default class PageNews extends React.Component {
 
 								{this.state.article.abstract !== null
 									&& <div
-										className="PageNews-abstract"
+										className="PageNewsArticle-abstract"
 										dangerouslySetInnerHTML={{
 											__html:
 											dompurify.sanitize(this.state.article.abstract),
@@ -208,7 +208,7 @@ export default class PageNews extends React.Component {
 									return null;
 								})}
 
-								<div className="PageNews-tags">
+								<div className="PageNewsArticle-tags">
 									{this.state.article.taxonomy_tags.map((t) => (
 										<Chip
 											key={t.name}
@@ -218,7 +218,7 @@ export default class PageNews extends React.Component {
 									))}
 								</div>
 
-								<div className="PageNews-companies">
+								<div className="PageNewsArticle-companies">
 									{this.state.article.company_tags.map((t) => (
 										<Chip
 											key={t.name}
@@ -233,13 +233,13 @@ export default class PageNews extends React.Component {
 
 						<div className="col-md-4">
 							<div className="container">
-								<div className="row PageNews-social-media">
+								<div className="row PageNewsArticle-social-media">
 									<div className="col-md-12">
 										<h3>Share on social media</h3>
 									</div>
 
 									<div className="col-md-12">
-										<div className="PageNews-social-media-links">
+										<div className="PageNewsArticle-social-media-links">
 											<TwitterLink
 												text={this.state.article.title}
 												url={this.state.article.link !== undefined
@@ -266,7 +266,7 @@ export default class PageNews extends React.Component {
 							</div>
 
 							<div className="container">
-								<div className="row PageNews-related-article">
+								<div className="row PageNewsArticle-related-article">
 									<div className="col-md-12">
 										<h3>Related articles</h3>
 									</div>

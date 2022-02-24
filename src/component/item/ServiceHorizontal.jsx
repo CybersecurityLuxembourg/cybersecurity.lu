@@ -106,7 +106,9 @@ export default class ArticleHorizontal extends Component {
 				className="ServiceHorizontal-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/service/" + this.props.info.handle} className="ServiceHorizontal-link">
+			: <Link
+				to={"/service/" + this.props.info.handle}
+				className="ServiceHorizontal-link">
 				{this.getBoxContent()}
 			</Link>;
 	}

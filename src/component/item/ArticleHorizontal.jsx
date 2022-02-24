@@ -118,7 +118,9 @@ export default class ArticleHorizontal extends Component {
 				className="ArticleHorizontal-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/news/" + this.props.info.handle} className="ArticleHorizontal-link">
+			: <Link
+				to={"/news/" + this.props.info.handle}
+				className="ArticleHorizontal-link">
 				{this.getBoxContent()}
 			</Link>;
 	}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Article.css";
+import { Link } from "react-router-dom";
 import dompurify from "dompurify";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
@@ -75,7 +76,9 @@ export default class Article extends Component {
 	}
 
 	render() {
-		return this.props.info.link
+		return this.props.info.link !== null
+			&& this.props.info.link !== undefined
+			&& this.props.info.link.length > 0
 			? <a
 				href={this.props.info.link}
 				target={"_blank"}
@@ -83,10 +86,10 @@ export default class Article extends Component {
 				className="Article-link">
 				{this.getBoxContent()}
 			</a>
-			: <a
-				href={"/news/" + this.props.info.handle}
+			: <Link
+				to={"/news/" + this.props.info.handle}
 				className="Article-link">
 				{this.getBoxContent()}
-			</a>;
+			</Link>;
 	}
 }

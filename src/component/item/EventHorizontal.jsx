@@ -98,7 +98,9 @@ export default class ArticleHorizontal extends Component {
 				className="EventHorizontal-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/calendar/" + this.props.info.handle} className="EventHorizontal-link">
+			: <Link
+				to={"/event/" + this.props.info.handle}
+				className="EventHorizontal-link">
 				{this.getBoxContent()}
 			</Link>;
 	}

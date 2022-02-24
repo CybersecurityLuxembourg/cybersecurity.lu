@@ -1,5 +1,6 @@
 import React from "react";
 import "./PageHomeLatestNews.css";
+import { Link } from "react-router-dom";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Loading from "../box/Loading.jsx";
@@ -55,6 +56,18 @@ export default class PageHomeLatestNews extends React.Component {
 		}
 	}
 
+	getBoxContent(article, i) {
+		return <div className={"PageHomeLatestNews-article "
+			+ (this.state.selectedNews === i && "PageHomeLatestNews-article-selected")}>
+			<div className={"PageHomeLatestNews-date"}>
+				{article.publication_date}&nbsp;-&nbsp;
+			</div>
+			<div className={"PageHomeLatestNews-title"}>
+				{article.title}
+			</div>
+		</div>;
+	}
+
 	render() {
 		if (!this.state.news) {
 			return <div className={"col-md-12"}>
@@ -91,17 +104,22 @@ export default class PageHomeLatestNews extends React.Component {
 					{this.state.news.items.map((c, i) => <div
 						key={c.id}
 						className={"col-md-12"}>
-						<a href={c.link}>
-							<div className={"PageHomeLatestNews-article "
-								+ (this.state.selectedNews === i && "PageHomeLatestNews-article-selected")}>
-								<div className={"PageHomeLatestNews-date"}>
-									{c.publication_date}&nbsp;-&nbsp;
-								</div>
-								<div className={"PageHomeLatestNews-title"}>
-									{c.title}
-								</div>
-							</div>
-						</a>
+						{c.link !== null
+							&& c.link !== undefined
+							&& c.link.length > 0
+							? <a
+								href={c.link}
+								target={"_blank"}
+								rel="noreferrer"
+								className="Article-link">
+								{this.getBoxContent(c, i)}
+							</a>
+							: <Link
+								to={"/news/" + c.handle}
+								className="Article-link">
+								{this.getBoxContent(c, i)}
+							</Link>
+						}
 					</div>)}
 				</div>
 			</div>

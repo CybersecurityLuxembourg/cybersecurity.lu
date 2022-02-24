@@ -52,7 +52,7 @@ export default class JobOffer extends Component {
 				{this.getBoxContent()}
 			</a>
 			: <Link
-				to={"/news/" + this.props.info.handle}
+				to={"/job/" + this.props.info.handle}
 				className="JobOffer-link">
 				{this.getBoxContent()}
 			</Link>;

@@ -68,7 +68,9 @@ export default class JobOfferHorizontal extends Component {
 				className="JobOfferHorizontal-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/news/" + this.props.info.handle} className="JobOfferHorizontal-link">
+			: <Link
+				to={"/job/" + this.props.info.handle}
+				className="JobOfferHorizontal-link">
 				{this.getBoxContent()}
 			</Link>;
 	}
