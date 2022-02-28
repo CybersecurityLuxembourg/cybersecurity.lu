@@ -131,10 +131,6 @@
 	opacity: 0;
 }
 
-#Cyber4GrowthPresentation .Cyber4GrowthPresentation-program-mobile {
-
-}
-
 @media (min-width: 768px) {
     #Cyber4GrowthPresentation .Cyber4GrowthPresentation-program-mobile {
         display: none;

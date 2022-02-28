@@ -553,7 +553,7 @@ canvas {
     align-items: center;
 }
 
-.blue-shadow-section, .red-shadow-section, .black-shadow-section {
+.blue-shadow-section, .red-shadow-section, .black-shadow-section, .grey-shadow-section {
 	padding: 30px 15px !important;
 }
 
@@ -570,6 +570,11 @@ canvas {
 .black-shadow-section, .black-shadow-section a {
 	background-color: #000;
     color: #FFF !important;
+}
+
+.grey-shadow-section, .grey-shadow-section a {
+	background-color: #BBB;
+    color: #fff !important;
 }
 
 .red-shadow-section, .red-shadow-section a {

@@ -1,0 +1,43 @@
+
+#PageCSB .PageCSB-image {
+	width: 100%;
+}
+
+#PageCSB .PageCSB-description .ShadowBox {
+	padding: 5px 10px !important;
+	cursor: default !important;
+}
+
+#PageCSB .PageCSB-description .ShadowBox h3 {
+	font-size: 16px !important;
+	margin: 5px 0px !important;
+}
+
+#PageCSB .PageCSB-options .shadow-section {
+	margin: 10px 0px 4px 0px;
+}
+
+#PageCSB .PageCSB-options .PageCSB-options-criteria {
+	display: flex;
+	justify-content: center;
+	padding: 20px 0px 0px 20px;
+	text-align: center;
+}
+
+#PageCSB .PageCSB-options .shadow-section h4 {
+	color: white;
+}
+
+@media (min-width: 768px) {
+    #PageCSB .PageCSB-options-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 0px) {
+    #PageCSB .PageCSB-options-mobile {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+    }
+}

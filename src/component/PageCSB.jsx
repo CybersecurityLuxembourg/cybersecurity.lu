@@ -6,10 +6,12 @@ import { NotificationManager as nm } from "react-notifications";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
-import EventHorizontal from "./item/EventHorizontal.jsx";
-import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
+import Event from "./item/Event.jsx";
+import Article from "./item/Article.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import { getRequest } from "../utils/request.jsx";
+import { dateToString } from "../utils/date.jsx";
+import ShadowBox from "./box/ShadowBox.jsx";
 
 export default class PageCSB extends React.Component {
 	constructor(props) {
@@ -45,7 +47,7 @@ export default class PageCSB extends React.Component {
 					type: "NEWS",
 					include_tags: "true",
 					taxonomy_values: values.map((v) => v.id).join(","),
-					per_page: 5,
+					per_page: 6,
 					page: page === undefined ? 1 : page,
 				};
 
@@ -78,8 +80,11 @@ export default class PageCSB extends React.Component {
 					type: "EVENT",
 					include_tags: "true",
 					taxonomy_values: values.map((v) => v.id).join(","),
-					per_page: 5,
+					per_page: 6,
 					page: page === undefined ? 1 : page,
+					min_start_date: dateToString(new Date()),
+					order_by: "start_date",
+					order: "asc",
 				};
 
 				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
@@ -112,16 +117,79 @@ export default class PageCSB extends React.Component {
 				</div>
 
 				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h1>Cybersecurity Breakfast Events</h1>
+					<div className="col-md-6">
+						<img
+							className="PageCSB-image"
+							src={"img/csb_series.jpg"}
+							alt={"SECURITYMADEIN.LU"}
+						/>
+					</div>
 
+					<div className="col-md-6">
+						<div className="row PageCSB-description">
+							<div className="col-md-12">
+								<p>
+									CYBERSECURITY Breakfast series (CSB) is a 1-hour monthly
+									&quot;rendez-vous&quot; (breakfast time CET – 09.15-10.15).
+								</p>
+
+								<p>
+									Every month, CSB tackles another trending or pressing topic.
+									A panel of key experts is invited to discuss it.
+								</p>
+							</div>
+
+							<div className="col-md-5">
+								<ShadowBox
+									title="Keynote"
+									abstract="15 minutes"
+									color="black"
+								/>
+							</div>
+
+							<div className="col-md-7">
+								<ShadowBox
+									title="Round table discussion"
+									abstract="45 minutes"
+									color="black"
+								/>
+							</div>
+
+							<div className="col-md-12">
+								<p>
+									Each CSB episode is live streamed and made available in podcast
+									afterwards (access our podcast series <a
+										href="https://peertube.securitymadein.lu/c/podcasts/videos?s=1"
+										target="_blank"
+										rel="noreferrer"
+									>
+										here
+									</a> or on <a
+										href="https://podcasts.apple.com/lu/podcast/cybersecurity-breakfast-podcast/id1607508932"
+										target="_blank"
+										rel="noreferrer"
+									>
+										Apple podcast
+									</a>).
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="row row-spaced">
+					<div className="col-md-12">
+						<h1>Upcoming CSB</h1>
+					</div>
+
+					<div className="col-md-12">
 						{this.state.events && this.state.events.pagination.total > 0
 							&& <DynamicTable
 								items={this.state.events.items}
 								pagination={this.state.events.pagination}
 								changePage={(page) => this.getNews(page)}
-								buildElement={(a) => <div className="col-md-12">
-									<EventHorizontal
+								buildElement={(a) => <div className="col-md-4">
+									<Event
 										info={a}
 										analytics={this.props.analytics}
 									/>
@@ -132,7 +200,7 @@ export default class PageCSB extends React.Component {
 
 						{this.state.events && this.state.events.pagination.total === 0
 							&& <Message
-								text={"No CSB found"}
+								text={"No upcoming CSB found"}
 								height={300}
 							/>
 						}
@@ -147,15 +215,15 @@ export default class PageCSB extends React.Component {
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Recap of the previous CSB</h1>
+						<h1>Past CSB</h1>
 
 						{this.state.news && this.state.news.pagination.total > 0
 							&& <DynamicTable
 								items={this.state.news.items}
 								pagination={this.state.news.pagination}
 								changePage={(page) => this.getNews(page)}
-								buildElement={(a) => <div className="col-md-12">
-									<ArticleHorizontal
+								buildElement={(a) => <div className="col-md-4">
+									<Article
 										info={a}
 										analytics={this.props.analytics}
 									/>
@@ -166,7 +234,7 @@ export default class PageCSB extends React.Component {
 
 						{this.state.news && this.state.news.pagination.total === 0
 							&& <Message
-								text={"No article found"}
+								text={"No CSB recap found"}
 								height={300}
 							/>
 						}
@@ -176,6 +244,270 @@ export default class PageCSB extends React.Component {
 								height={300}
 							/>
 						}
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-md-12">
+						<h1>Get visible by sponsoring a CSB episode!</h1>
+
+						<p>
+							You want to become partner of a CSB episode? 2
+							options are available for you!
+						</p>
+					</div>
+				</div>
+
+				<div className="row row-spaced PageCSB-options">
+					<div className="col-md-4">
+					</div>
+					<div className="col-md-4 centered">
+						<h3>VISIBILITY Package</h3>
+					</div>
+					<div className="col-md-4 centered">
+						<h3>EXCLUSIVITY Package</h3>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+						<h4>Price</h4>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								500€ (+ VAT)
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								2000€ (+ VAT)
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+						<h4>Exclusive sponsoring</h4>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section grey-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								No
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								Yes
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+						<h4>Keynote speech</h4>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section grey-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								No
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								Yes
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+						<h4>Participation in the selection of round table speakers</h4>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section grey-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								No
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								Yes
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+						<h4>Logo appearance</h4>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								On promotion support created for the sponsored CSB
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								On promotion support created for the sponsored CSB
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								On the CSB visuals used for the live stream
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								On the CSB visuals used for the live stream
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								On the CSB invitation mailing
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								On the CSB invitation mailing
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+						<h4>
+							Mention of your organisation and your keynote
+							speaker in all social media posts related to the CSB
+						</h4>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								Yes
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								Yes
+							</h4>
+						</div>
+					</div>
+
+					<div className="col-md-4 PageCSB-options-criteria">
+						<h4>
+							Mention of your organisation in the RECAP article of
+							the CSB, published on cybersecurity.lu
+						</h4>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								VISIBILITY Package
+							</div>
+							<h4>
+								Yes
+							</h4>
+						</div>
+					</div>
+					<div className="col-md-4">
+						<div className="shadow-section blue-shadow-section centered-shadow-section">
+							<div className={"PageCSB-options-mobile"}>
+								EXCLUSIVITY Package
+							</div>
+							<h4>
+								Yes
+							</h4>
+						</div>
+					</div>
+				</div>
+
+				<div className="row row-spaced">
+					<div className="col-md-6">
+						<ShadowBox
+							link="img/01-CSB_sponsorship_packages_2022.pdf"
+							title="Download the brochure here"
+							icon="fas fa-file-pdf"
+						/>
+					</div>
+
+					<div className="col-md-6">
+						<p>
+							Interested? Get in touch with us
+							at <a
+								href="mailto:info@cybersecurity-luxembourg.com"
+								subject="Organisation of a Cybersecurity Breakfast">
+								info@cybersecurity-luxembourg.com
+							</a>
+						</p>
+
 					</div>
 				</div>
 			</div>
