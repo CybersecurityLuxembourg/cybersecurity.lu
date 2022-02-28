@@ -2,84 +2,74 @@ import React from "react";
 import "./PageWhatsinit.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import ShadowBoxMyCyberlux from "../box/ShadowBoxMyCyberlux.jsx";
+import Tab from "../tab/Tab.jsx";
+import WhatsinitEcosystemMember from "./pagewhatsinit/WhatsinitEcosystemMember.jsx";
+import WhatsinitUser from "./pagewhatsinit/WhatsinitUser.jsx";
+import { getUrlParameter } from "../../utils/url.jsx";
 
 export default class PageWhatsinit extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.render = this.render.bind(this);
+		this.onMenuClick = this.onMenuClick.bind(this);
 
 		this.state = {
+			tabs: [
+				"EcosystemMembers",
+				"Users",
+			],
+			selectedMenu: null,
 		};
 	}
 
-	// eslint-disable-next-line class-methods-use-this
+	componentDidMount() {
+		if (getUrlParameter("tab") !== null && this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
+			this.setState({ selectedMenu: getUrlParameter("tab") });
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.state.selectedMenu !== getUrlParameter("tab")
+			&& this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
+			this.setState({ selectedMenu: getUrlParameter("tab") });
+		}
+	}
+
+	onMenuClick(m) {
+		this.props.history.push("?tab=" + m);
+	}
+
 	render() {
 		return (
-			<div className={"PageWhatsinit page max-sized-page"}>
+			<div id="PageWhatsinit" className={"page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/whatsinit">WHAT&apos;S IN IT?</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/whatsinit">What&apos;s in it for you?</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
 
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h1>Join the CYBERSECURITY Luxembourg ecosystem!</h1>
-
-						<p>
-							Are you a Luxembourg-based company with cybersecurity services?
-						</p>
-
-						<p>
-							Join the CYBERSECURITY Luxembourg ecosystem! Benefit
-							from business and visibility opportunities throughout
-							the country, and abroad – and boost the national ecosystem!
-						</p>
-					</div>
-
-					<div className="col-md-4 offset-md-4">
-						<ShadowBoxMyCyberlux/>
-					</div>
-				</div>
-
-				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h1>Endorse the CYBERSECURITY Luxembourg branding</h1>
-
-						<p>
-							The standard logo CYBERSECURITY Luxembourg may be used,
-							in respect with the rules of the <a
-								href="/pdf/Charte-CYBERSECURITY_2021.pdf"
-								rel="noreferrer"
-								target="_blank">
-								logo guidelines
-							</a>
-							, by anyone to brand any publication,
-							event, or any other activity in relation with cybersecurity
-							and related to Luxembourg, either in Luxembourg or abroad.
-						</p>
-
-						<p>
-							Only members of the ecosystem may create a derivate of
-							the logo to brand their own event(s) or publication(s).
-							In order to do so, they must
-							contact <a href="mailto:info@cybersecurity-luxembourg.com">
-								info@cybersecurity-luxembourg.com
-							</a>.
-						</p>
-
-						<p>
-							The Guidelines of CYBERSECURITY Luxembourg, the usage of the
-							logo and all its derivates are managed by SECURITYMADEIN.LU and
-							validated by the CYBERSECURITY Luxembourg Committee.
-						</p>
-					</div>
-				</div>
+				<Tab
+					onMenuClick={this.onMenuClick}
+					selectedMenu={this.state.selectedMenu}
+					labels={[
+						"Ecosystem members",
+						"Users",
+					]}
+					keys={this.state.tabs}
+					content={[
+						<WhatsinitEcosystemMember
+							key={this.state.tabs[0]}
+							analytics={this.props.analytics}
+						/>,
+						<WhatsinitUser
+							key={this.state.tabs[1]}
+							analytics={this.props.analytics}
+						/>,
+					]}
+				/>
 			</div>
 		);
 	}
