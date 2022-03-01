@@ -3,6 +3,7 @@ import "./PageHomeCallToAction.css";
 import { NotificationManager as nm } from "react-notifications";
 import { Link } from "react-router-dom";
 import { getRequest } from "../../utils/request.jsx";
+import { dateToString } from "../../utils/date.jsx";
 import Loading from "../box/Loading.jsx";
 import NoImage from "../box/NoImage.jsx";
 import Message from "../box/Message.jsx";
@@ -51,6 +52,9 @@ export default class PageHomeCallToAction extends React.Component {
 					page: page || 1,
 					per_page: 6,
 					taxonomy_values: values.map((v) => v.id),
+					order_by: "start_date",
+					order: "asc",
+					min_end_date: dateToString(new Date()),
 				};
 
 				getRequest.call(this, "public/get_public_articles?"
