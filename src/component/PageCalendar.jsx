@@ -24,13 +24,6 @@ export default class PageCalendar extends React.Component {
 		this.state = {
 			events: null,
 			upcomingEvents: null,
-			filters: {
-				type: "EVENT",
-				include_tags: "true",
-				order_by: "start_date",
-				order: "asc",
-				min_start_date: dateToString(new Date()),
-			},
 		};
 	}
 
@@ -44,13 +37,6 @@ export default class PageCalendar extends React.Component {
 			events: null,
 		});
 
-		const urlParams = dictToURI({
-			taxonomy_values: this.state.filters.taxonomy_values,
-		});
-
-		// eslint-disable-next-line no-restricted-globals
-		history.replaceState(null, null, "?" + urlParams);
-
 		this.requestAllEvents(1);
 	}
 
@@ -62,7 +48,7 @@ export default class PageCalendar extends React.Component {
 			include_tags: "true",
 			order_by: "start_date",
 			order: "asc",
-			min_start_date: dateToString(new Date()),
+			min_end_date: dateToString(new Date()),
 			per_page: 6,
 			page,
 		});
@@ -116,13 +102,6 @@ export default class PageCalendar extends React.Component {
 		}, (error) => {
 			nm.error(error.message);
 		});
-	}
-
-	modifyFilters(field, value) {
-		const filters = { ...this.state.filters };
-		filters[field] = value;
-		filters.page = 1;
-		this.setState({ filters });
 	}
 
 	render() {

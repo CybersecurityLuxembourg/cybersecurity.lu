@@ -82,7 +82,7 @@ export default class PageCSB extends React.Component {
 					taxonomy_values: values.map((v) => v.id).join(","),
 					per_page: 6,
 					page: page === undefined ? 1 : page,
-					min_start_date: dateToString(new Date()),
+					min_end_date: dateToString(new Date()),
 					order_by: "start_date",
 					order: "asc",
 				};
