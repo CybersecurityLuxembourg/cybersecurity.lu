@@ -7,10 +7,11 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Loading from "./box/Loading.jsx";
 import { getRequest } from "../utils/request.jsx";
-import EventHorizontal from "./item/EventHorizontal.jsx";
+import Event from "./item/Event.jsx";
 import Message from "./box/Message.jsx";
-import { getUrlParameter, dictToURI } from "../utils/url.jsx";
-import SimpleTable from "./table/SimpleTable.jsx";
+import { dictToURI } from "../utils/url.jsx";
+import { dateToString } from "../utils/date.jsx";
+import DynamicTable from "./table/DynamicTable.jsx";
 import SearchField from "./form/SearchField.jsx";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
@@ -20,28 +21,27 @@ export default class PageCalendar extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getArticles = this.getArticles.bind(this);
-		this.modifyFilters = this.modifyFilters.bind(this);
-
 		this.state = {
-			articles: null,
+			events: null,
+			upcomingEvents: null,
 			filters: {
 				type: "EVENT",
-				taxonomy_values: getUrlParameter("taxonomy_values") !== null
-					? getUrlParameter("taxonomy_values").split(",").map((v) => parseInt(v, 10)) : [],
-				title: null,
 				include_tags: "true",
+				order_by: "start_date",
+				order: "asc",
+				min_start_date: dateToString(new Date()),
 			},
 		};
 	}
 
 	componentDidMount() {
 		this.getArticles();
+		this.requestUpcomingEvents();
 	}
 
 	getArticles() {
 		this.setState({
-			articles: null,
+			events: null,
 		});
 
 		const urlParams = dictToURI({
@@ -51,14 +51,44 @@ export default class PageCalendar extends React.Component {
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + urlParams);
 
-		this.requestArticles(1);
+		this.requestAllEvents(1);
 	}
 
-	requestArticles(p) {
+	requestUpcomingEvents(p) {
 		const page = Number.isInteger(p) ? p : 1;
 
 		const params = dictToURI({
-			...this.state.filters,
+			type: "EVENT",
+			include_tags: "true",
+			order_by: "start_date",
+			order: "asc",
+			min_start_date: dateToString(new Date()),
+			per_page: 6,
+			page,
+		});
+
+		getRequest.call(this, "public/get_public_articles?" + params, (data) => {
+			this.setState({
+				upcomingEvents: data,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
+	}
+
+	requestAllEvents(p) {
+		const page = Number.isInteger(p) ? p : 1;
+		const date = new Date();
+		date.setFullYear(date.getFullYear() - 1);
+
+		const params = dictToURI({
+			type: "EVENT",
+			include_tags: "true",
+			order_by: "start_date",
+			order: "asc",
+			min_start_date: dateToString(date),
 			page,
 		});
 
@@ -68,7 +98,7 @@ export default class PageCalendar extends React.Component {
 
 			if (pagesToQuery.length > 0) {
 				this.setState({
-					articles: (this.state.articles === null ? [] : this.state.articles).concat(data.items),
+					events: (this.state.events === null ? [] : this.state.events).concat(data.items),
 				}, () => {
 					if (data.pagination.page < data.pagination.pages) {
 						this.requestArticles(page + 1);
@@ -78,7 +108,7 @@ export default class PageCalendar extends React.Component {
 
 			if (pagesToQuery.length === 0 && page === 1) {
 				this.setState({
-					articles: data.items,
+					events: data.items,
 				});
 			}
 		}, (response) => {
@@ -130,8 +160,8 @@ export default class PageCalendar extends React.Component {
 					</div>
 				</div>
 
-				{this.state.articles !== null && this.state.articles !== undefined
-					&& this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length === 0
+				{this.state.upcomingEvents
+					&& this.state.upcomingEvents.pagination.total === 0
 					&& <div className="row">
 						<div className="col-md-12">
 							<Message
@@ -142,16 +172,14 @@ export default class PageCalendar extends React.Component {
 					</div>
 				}
 
-				{this.state.articles !== null && this.state.articles !== undefined
-					&& this.state.articles.filter((a) => new Date(a.end_date) > new Date()).length > 0
-					&& <SimpleTable
-						numberDisplayed={5}
-						elements={this.state.articles
-							.filter((a) => new Date(a.end_date) > new Date())
-							.sort((a, b) => (a.start_date > b.start_date ? 1 : -1))
-							.map((a, i) => [a, i])}
-						buildElement={(a) => <div className="col-md-12">
-							<EventHorizontal
+				{this.state.upcomingEvents
+					&& this.state.upcomingEvents.pagination.total > 0
+					&& <DynamicTable
+						items={this.state.upcomingEvents.items}
+						pagination={this.state.upcomingEvents.pagination}
+						changePage={(page) => this.requestUpcomingEvents(page)}
+						buildElement={(a) => <div className="col-md-4">
+							<Event
 								info={a}
 								analytics={this.props.analytics}
 							/>
@@ -160,7 +188,7 @@ export default class PageCalendar extends React.Component {
 					/>
 				}
 
-				{(this.state.articles === null || this.state.articles === undefined)
+				{!this.state.upcomingEvents
 					&& <div className="row">
 						<div className="col-md-12">
 							<Loading
@@ -175,10 +203,10 @@ export default class PageCalendar extends React.Component {
 						<h1>Calendar</h1>
 					</div>
 
-					{this.state.articles !== null && this.state.articles !== undefined
+					{this.state.events !== null && this.state.events !== undefined
 						? <div className="col-md-12">
 							<Calendar
-								events={this.state.articles.map((e) => (
+								events={this.state.events.map((e) => (
 									{
 										title: e.title,
 										start: new Date(e.start_date),
