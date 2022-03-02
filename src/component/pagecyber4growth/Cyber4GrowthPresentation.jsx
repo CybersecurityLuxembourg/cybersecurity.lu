@@ -113,7 +113,7 @@ export default class Cyber4GrowthPresentation extends React.Component {
 	getCyber4GrowthPartners() {
 		if (this.props.analytics && this.props.analytics.taxonomy_values) {
 			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "CYBER4GROWTH ROLE" && v.name === "PARTNER")
+				.filter((v) => v.category === "CYBER4GROWTH ROLE" && v.name === "ADVISORY BOARD")
 				.map((v) => v.id);
 
 			if (values.length > 0) {
@@ -369,7 +369,7 @@ export default class Cyber4GrowthPresentation extends React.Component {
 
 						<div className="row row-spaced">
 							<div className="col-md-12">
-								<h2 ref={this.partPartners}>Partners</h2>
+								<h2 ref={this.partPartners}>Advisory board</h2>
 							</div>
 
 							{this.state.partners && this.state.partners.length === 0
