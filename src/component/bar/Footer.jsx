@@ -234,7 +234,7 @@ export default class Footer extends React.Component {
 									<i className="fab fa-linkedin-in Footer-network"/>
 								</a>
 								<a
-									href="https://github.com/CybersecLux/"
+									href="https://github.com/CybersecurityLuxembourg/"
 									rel="noreferrer"
 									target="_blank"
 									title="GitHub CyberLux"
