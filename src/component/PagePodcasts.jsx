@@ -38,7 +38,7 @@ export default class PagePodcasts extends React.Component {
 
 			if (values.length > 0) {
 				const params = {
-					type: "NEWS",
+					type: "TOOL",
 					include_tags: "true",
 					taxonomy_values: values.map((v) => v.id).join(","),
 					per_page: 5,
