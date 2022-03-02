@@ -69,7 +69,7 @@ export default class PagePodcasts extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/podcasts">Podcasts</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/podcasts">PODCASTS</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>
