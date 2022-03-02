@@ -69,11 +69,11 @@ export default class Menu extends React.Component {
 						<div className="Menu-title">Lëtz talk about cyber</div>
 					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Item>
+				{/* <NavDropdown.Item>
 					<Link to="/topic">
 						<div className="Menu-title">Topic of the month</div>
 					</Link>
-				</NavDropdown.Item>
+				</NavDropdown.Item> */}
 				<NavDropdown.Divider />
 				<NavDropdown.Item>
 					<Link to="/newsletter">
@@ -107,12 +107,12 @@ export default class Menu extends React.Component {
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
-				<NavDropdown.Item>
+				{/* <NavDropdown.Item>
 					<Link to="/education">
 						<div className="Menu-title">Education</div>
 					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Divider />
+				<NavDropdown.Divider /> */}
 				<NavDropdown.Item>
 					<Link to="/dashboard">
 						<div className={"Menu-image"}>
@@ -184,11 +184,11 @@ export default class Menu extends React.Component {
 						<div className="Menu-title">Cyber awareness & best practices</div>
 					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Item>
+				{/* <NavDropdown.Item>
 					<Link to="/cve">
 						<div className="Menu-title">Common Vulnerabilities & Exposures</div>
 					</Link>
-				</NavDropdown.Item>
+				</NavDropdown.Item> */}
 				<NavDropdown.Item>
 					<Link to="/frameworks">
 						<div className="Menu-title">Legal frameworks</div>
