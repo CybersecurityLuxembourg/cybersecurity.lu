@@ -95,11 +95,11 @@ export default class Footer extends React.Component {
 											Lëtz talk about cyber
 										</Link>
 									</div>
-									<div>
+									{/* <div>
 										<Link to="/topic">
 											Topic of the month
 										</Link>
-									</div>
+									</div> */}
 									<br/>
 									<div>
 										<Link to="/newsletter">
@@ -125,11 +125,11 @@ export default class Footer extends React.Component {
 											Civil society
 										</Link>
 									</div>
-									<div className="Footer-alinea">
+									{/* <div className="Footer-alinea">
 										<Link to="/education">
 											Education
 										</Link>
-									</div>
+									</div> */}
 									<div className="Footer-alinea">
 										<Link to="/dashboard">
 											Dashboard
@@ -160,11 +160,11 @@ export default class Footer extends React.Component {
 											Best practices
 										</Link>
 									</div>
-									<div className="Footer-alinea">
+									{/* <div className="Footer-alinea">
 										<Link to="/cyber4growth">
 											CVE
 										</Link>
-									</div>
+									</div> */}
 									<div className="Footer-alinea">
 										<Link to="/frameworks">
 											Legal frameworks
