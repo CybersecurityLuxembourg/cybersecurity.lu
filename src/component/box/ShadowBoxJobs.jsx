@@ -19,7 +19,7 @@ export default class ShadowBoxJobs extends React.Component {
 						<h3>Jobs</h3>
 						<i className="fas fa-briefcase"/>
 						<div>
-							Check out the open jobs you can find in the cyber security space
+							Check out the open jobs you can find in the cybersecurity space
 						</div>
 					</div>
 				</Link>

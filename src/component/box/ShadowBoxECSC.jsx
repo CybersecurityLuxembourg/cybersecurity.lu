@@ -9,11 +9,11 @@ export default class ShadowBoxECSC extends React.Component {
 			<div className="shadow-section black-shadow-section centered-shadow-section">
 				<Link to="ecsc">
 					<div>
-						<h3>ECSC</h3>
+						<h3>LCSC</h3>
 						<i className="fas fa-trophy"/>
 						<div>
-							Check out the European Cyber Security Challenge happening on
-							from 13 to 16 of September!
+							Participate in the national challenge to join the Luxembourg team
+							at the European Cybersecurity Challenge 2022!
 						</div>
 					</div>
 				</Link>

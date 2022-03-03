@@ -39,7 +39,9 @@ export default class WhatsinitEcosystemMember extends React.Component {
 						<p>
 							Therefore, by joining CYBERSECURITY Luxembourg in the various actions
 							organised for and/or by the ecosystem, <b>you enhance your organisation&apos;s
-							visibility and contribute to the influence of our community</b>.
+							visibility and contribute to the influence of our community</b>. The main
+							objective is to provide means or platforms for the ecosystem members to get
+							visible and share their expertise, be it at local or international level.
 						</p>
 
 						<p>

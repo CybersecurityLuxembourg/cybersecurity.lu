@@ -76,8 +76,22 @@ export default class PageLTAC extends React.Component {
 
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>Previous talks</h1>
+						<h1>Lëtz talk about cyber</h1>
+					</div>
 
+					<div className="col-md-12 row-spaced">
+						Lëtz Talk About Cyber series invites key cybersecurity professionals, who
+						stand out with their achievements, experiences and personal stories, to share
+						their insightful journey. Hosted by Mélanie Delannoy, Communications & PR
+						Advisor; Cybersec enthusiast. It is a monthly release, disseminated via the
+						CYBERSECURITY Luxembourg <Link to="newsletter">Newsletter</Link>.
+					</div>
+
+					<div className="col-md-12">
+						<h2>Previous talks</h2>
+					</div>
+
+					<div className="col-md-12">
 						{this.state.news && this.state.news.pagination.total > 0
 							&& <DynamicTable
 								items={this.state.news.items}

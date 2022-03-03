@@ -6,6 +6,7 @@ import ShadowBoxEducation from "./box/ShadowBoxEducation.jsx";
 import ShadowBoxCyber4Growth from "./box/ShadowBoxCyber4Growth.jsx";
 import ShadowBoxECSC from "./box/ShadowBoxECSC.jsx";
 import ShadowBoxJobs from "./box/ShadowBoxJobs.jsx";
+import ShadowBox from "./box/ShadowBox.jsx";
 import PageHomeLatestNews from "./pagehome/PageHomeLatestNews.jsx";
 import PageHomeCallToAction from "./pagehome/PageHomeCallToAction.jsx";
 import FlashNews from "./bar/FlashNews.jsx";
@@ -94,7 +95,7 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row row-spaced">
 							<div className="col-md-12">
-								<h1>View on our programmes & challenges</h1>
+								<h1>Get involved</h1>
 							</div>
 
 							<div className="col-md-6">
@@ -160,11 +161,41 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>Be visible & take part in the initiatives</h1>
+								<h1>Get visible & take part in the initiatives</h1>
 							</div>
 
-							<div className="col-md-12">
-								content
+							<div className="col-md-8 offset-md-2 row-spaced PageHome-description">
+								Become an active member of the ecosystem and gain great visibility!
+								Throughout the year, a wide set of actions is organised by
+								the ecosystem for the ecosystem.
+							</div>
+
+							<div className="col-md-4">
+								<ShadowBox
+									link="breakfast"
+									title={"CYBERSECURITY Breakfast"}
+									icon={"fas fa-mug-hot"}
+									abstract={"Become partner of the month!"}
+									color={"black"}
+								/>
+							</div>
+							<div className="col-md-4">
+								<ShadowBox
+									link="events"
+									title={"Upcoming events"}
+									icon={"fas fa-calendar-alt"}
+									abstract={"Take a look at the calendar and get in touch if you want to join the Luxembourg delegation!"}
+									color={"black"}
+								/>
+							</div>
+							<div className="col-md-4">
+								<ShadowBox
+									link="cybersecurityweek"
+									title={"CYBERSECURITY Week Luxembourg"}
+									icon={"fas fa-plug"}
+									abstract={"happening in 17-21 Oct 2022. Watch out for a brand new concept!"}
+									color={"black"}
+								/>
 							</div>
 						</div>
 					</div>

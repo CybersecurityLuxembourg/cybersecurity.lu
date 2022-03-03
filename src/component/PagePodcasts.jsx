@@ -77,7 +77,15 @@ export default class PagePodcasts extends React.Component {
 				<div className="row row-spaced">
 					<div className="col-md-12">
 						<h1>Podcasts</h1>
+					</div>
 
+					<div className="col-md-12">
+						CYBERSECURITY Breakfast Podcast is a monthly series that tackles trending
+						or pressing cybersecurity topics. National and international experts from
+						various field of activities discuss their views and experiences.
+					</div>
+
+					<div className="col-md-12">
 						{this.state.podcasts && this.state.podcasts.pagination.total > 0
 							&& <DynamicTable
 								items={this.state.podcasts.items}

@@ -20,7 +20,8 @@ export default class ShadowBoxEducation extends React.Component {
 						<h3>Education</h3>
 						<i className="fas fa-graduation-cap"/>
 						<div>
-							Check out the educational programs and training available in Luxembourg
+							Check out the educational programmes and training in
+							the field of cybersecurity available in Luxembourg
 						</div>
 					</div>
 				</Link>

@@ -499,15 +499,14 @@ export default class PageCSB extends React.Component {
 					</div>
 
 					<div className="col-md-6">
-						<p>
-							Interested? Get in touch with us
-							at <a
-								href="mailto:info@cybersecurity-luxembourg.com"
-								subject="Organisation of a Cybersecurity Breakfast">
-								info@cybersecurity-luxembourg.com
-							</a>
-						</p>
-
+						<a
+							href="mailto:info@cybersecurity-luxembourg.com"
+							subject="Organisation of a Cybersecurity Breakfast">
+							<ShadowBox
+								title="Interested? Get in touch with us"
+								icon="fas fa-envelope-open-text"
+							/>
+						</a>
 					</div>
 				</div>
 			</div>

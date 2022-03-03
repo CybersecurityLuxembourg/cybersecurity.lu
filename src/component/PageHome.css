@@ -113,6 +113,11 @@
 	font-size: 28px;
 }
 
+#PageHome .PageHome-description {
+    text-align: center;
+    font-size: 25px;
+}
+
 /* BACKGROUND PETALS */
 
 @media (min-width: 0px) {

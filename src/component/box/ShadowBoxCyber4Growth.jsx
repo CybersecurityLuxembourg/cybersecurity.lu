@@ -12,8 +12,8 @@ export default class ShadowBoxBecomePartner extends React.Component {
 						<h3>Cyber4Growth</h3>
 						<i className="fas fa-rocket"/>
 						<div className="PageNews-newsletter-content-desc">
-							Get part to our program to improve your IT environment
-							and increase you visibility
+							targets both cybersecurity entrepreneurs who are looking for
+							tailor-made support and tech entrepreneurs needing to secure their solution.
 						</div>
 					</div>
 				</Link>
