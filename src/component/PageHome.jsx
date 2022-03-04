@@ -103,10 +103,19 @@ export default class PageHome extends React.Component {
 								<h1>Get involved</h1>
 							</div>
 
-							<div className="col-md-6">
+							<div className="col-md-4">
+								<ShadowBox
+									link="breakfast"
+									title={"CYBERSECURITY Breakfast"}
+									icon={"fas fa-mug-hot"}
+									abstract={"Become partner of the month!"}
+									color={"black"}
+								/>
+							</div>
+							<div className="col-md-4">
 								<ShadowBoxCyber4Growth/>
 							</div>
-							<div className="col-md-6">
+							<div className="col-md-4">
 								<ShadowBoxECSC/>
 							</div>
 						</div>
@@ -175,15 +184,6 @@ export default class PageHome extends React.Component {
 								the ecosystem for the ecosystem.
 							</div>
 
-							<div className="col-md-4">
-								<ShadowBox
-									link="breakfast"
-									title={"CYBERSECURITY Breakfast"}
-									icon={"fas fa-mug-hot"}
-									abstract={"Become partner of the month!"}
-									color={"black"}
-								/>
-							</div>
 							<div className="col-md-4">
 								<ShadowBox
 									link="events"
