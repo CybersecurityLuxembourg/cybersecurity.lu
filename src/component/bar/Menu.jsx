@@ -37,7 +37,7 @@ export default class Menu extends React.Component {
 				title={
 					<div className="Menu-item">
 						<div className="Menu-title">What&apos;s up?</div>
-						<div className="Menu-description">News, events and jobs</div>
+						<div className="Menu-description">News and events</div>
 						<i className="fas fa-sort-down"/>
 					</div>
 				}
@@ -47,23 +47,11 @@ export default class Menu extends React.Component {
 						<div className="Menu-title">News</div>
 					</Link>
 				</NavDropdown.Item>
-				<a
-					className="nav-link"
-					disabled={true}
-				>
-					<div className="Menu-title">Events</div>
-				</a>
-				<NavDropdown.Item>
-					<Link to="/breakfast">
-						<div className="Menu-title">CSB</div>
-					</Link>
-				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/events">
 						<div className="Menu-title">Upcoming events</div>
 					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Divider />
 				<NavDropdown.Item>
 					<Link to="/ltac">
 						<div className="Menu-title">Lëtz talk about cyber</div>
@@ -74,7 +62,6 @@ export default class Menu extends React.Component {
 						<div className="Menu-title">Topic of the month</div>
 					</Link>
 				</NavDropdown.Item> */}
-				<NavDropdown.Divider />
 				<NavDropdown.Item>
 					<Link to="/newsletter">
 						<div className="Menu-title">Newsletter</div>
@@ -146,26 +133,19 @@ export default class Menu extends React.Component {
 					</div>
 				}
 				id="basic-nav-dropdown">
-				<a
-					className="nav-link"
-					disabled={true}
-				>
-					<div className="Menu-title">Youth</div>
-				</a>
 				<NavDropdown.Item>
-					<Link to="/ecsc">
-						<div className="Menu-title">ECSC</div>
+					<Link to="/breakfast">
+						<div className="Menu-title">Cybersecurity breakfast</div>
 					</Link>
 				</NavDropdown.Item>
-				<a
-					className="nav-link"
-					disabled={true}
-				>
-					<div className="Menu-title">Start-up</div>
-				</a>
 				<NavDropdown.Item>
 					<Link to="/cyber4growth">
 						<div className="Menu-title">Cyber4Growth</div>
+					</Link>
+				</NavDropdown.Item>
+				<NavDropdown.Item>
+					<Link to="/challenge">
+						<div className="Menu-title">Luxembourg challenge</div>
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
@@ -225,7 +205,7 @@ export default class Menu extends React.Component {
 						<Link to="/">
 							<img
 								className={"Menu-logo"}
-								src="/img/National-platform-logo-subtitle.png"
+								src="/img/ecosystem-logo.jpg"
 								alt="CYBERLUX Logo"
 							/>
 						</Link>
@@ -241,7 +221,7 @@ export default class Menu extends React.Component {
 								title={
 									<div className="Menu-item">
 										<div className="Menu-title">About</div>
-										<div className="Menu-description">What is CYBERLUX?</div>
+										<div className="Menu-description">the national portal</div>
 										<i className="fas fa-sort-down"/>
 									</div>
 								}
