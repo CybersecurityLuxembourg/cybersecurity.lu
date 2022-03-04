@@ -1,9 +1,9 @@
 import React from "react";
-import "./PageECSC.css";
+import "./PageChallenge.css";
 import { Link } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-export default class PageECSC extends React.Component {
+export default class PageChallenge extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -14,12 +14,12 @@ export default class PageECSC extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
-			<div id="PageECSC" className={"page max-sized-page"}>
+			<div id="PageChallenge" className={"page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/ecsc">EUROPEAN CYBER SECURITY CHALLENGE</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/challenge">LËTZ CYBERSECURITY CHALLENGE</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>

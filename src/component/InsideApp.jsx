@@ -32,7 +32,7 @@ import PageNewsletter from "./PageNewsletter.jsx";
 import PageCSB from "./PageCSB.jsx";
 import PageLTAC from "./PageLTAC.jsx";
 /* import PageTOTM from "./PageTOTM.jsx"; */
-import PageECSC from "./PageECSC.jsx";
+import PageChallenge from "./PageChallenge.jsx";
 /* import PageCVE from "./PageCVE.jsx"; */
 import PageBestPractices from "./PageBestPractices.jsx";
 import PagePodcasts from "./PagePodcasts.jsx";
@@ -218,8 +218,8 @@ export default class InsideApp extends React.Component {
 							/>}
 						/>
 						<Route
-							path="/ecsc"
-							render={(props) => <PageECSC
+							path="/challenge"
+							render={(props) => <PageChallenge
 								{...props}
 							/>}
 						/>
