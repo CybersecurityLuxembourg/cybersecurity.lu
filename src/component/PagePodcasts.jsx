@@ -33,12 +33,12 @@ export default class PagePodcasts extends React.Component {
 		if (this.props.analytics
 			&& this.props.analytics.taxonomy_values) {
 			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "TOOL CATEGORY")
-				.filter((v) => v.name === "PODCAST");
+				.filter((v) => v.category === "ARTICLE CATEGORY")
+				.filter((v) => v.name === "LËTZ TALK ABOUT CYBER" || v.name === "CYBERSECURITY BREAKFAST");
 
 			if (values.length > 0) {
 				const params = {
-					type: "TOOL",
+					type: "NEWS",
 					include_tags: "true",
 					taxonomy_values: values.map((v) => v.id).join(","),
 					per_page: 5,
