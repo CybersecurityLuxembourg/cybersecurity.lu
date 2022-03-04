@@ -1,6 +1,5 @@
 
 .PageHome-banner {
-    display: flex;
     width: 100%;
     height: 1000px;
     max-height: calc(100vh - 300px);
@@ -11,6 +10,7 @@
 
 .PageHome-banner .shadow-section {
     margin-bottom: 15px;
+    margin-top: 50px;
 }
 
 .PageHome-banner .max-sized-page {
@@ -116,6 +116,7 @@
 #PageHome .PageHome-description {
     text-align: center;
     font-size: 25px;
+    line-height: 1;
 }
 
 /* BACKGROUND PETALS */

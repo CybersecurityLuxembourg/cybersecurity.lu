@@ -57,15 +57,20 @@ export default class PageHome extends React.Component {
 				<div className="PageHome-banner">
 					<div className="max-sized-page">
 						<div className="row row-spaced">
-							<div className="col-md-6">
-								<div className="shadow-section blue-shadow-section centered-shadow-section">
-									content
-								</div>
+							<div className="col-md-1"/>
+							<div className="col-md-5">
+								<ShadowBox
+									link="whatsinit?tab=EcosystemMembers"
+									title={"Ecosystem members"}
+									abstract={"Enhance your visibility, contribute to the influence of our community and take part in initiatives designed for you"}
+								/>
 							</div>
-							<div className="col-md-6">
-								<div className="shadow-section blue-shadow-section centered-shadow-section">
-									content
-								</div>
+							<div className="col-md-5">
+								<ShadowBox
+									link="whatsinit?tab=Users"
+									title={"Users"}
+									abstract={"All your cybersecurity needs in one place"}
+								/>
 							</div>
 						</div>
 					</div>
