@@ -54,7 +54,7 @@ export default class Menu extends React.Component {
 				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/ltac">
-						<div className="Menu-title">Lëtz talk about cyber</div>
+						<div className="Menu-title">Lëtz Talk About Cyber</div>
 					</Link>
 				</NavDropdown.Item>
 				{/* <NavDropdown.Item>
@@ -135,7 +135,7 @@ export default class Menu extends React.Component {
 				id="basic-nav-dropdown">
 				<NavDropdown.Item>
 					<Link to="/breakfast">
-						<div className="Menu-title">Cybersecurity breakfast</div>
+						<div className="Menu-title">CYBERSECURITY Breakfast</div>
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Item>
@@ -145,7 +145,7 @@ export default class Menu extends React.Component {
 				</NavDropdown.Item>
 				<NavDropdown.Item>
 					<Link to="/challenge">
-						<div className="Menu-title">Luxembourg challenge</div>
+						<div className="Menu-title">Luxembourg Challenge</div>
 					</Link>
 				</NavDropdown.Item>
 			</NavDropdown>
@@ -181,14 +181,14 @@ export default class Menu extends React.Component {
 				</NavDropdown.Item>
 			</NavDropdown>
 
-			<Nav.Link>
+			<Nav.Link className="Menu-link-grey">
 				<Link to="/cybersecurityweek">
 					<div className="Menu-title">CSWL</div>
 					<div className="Menu-description">Cybersecurity Week</div>
 				</Link>
 			</Nav.Link>
 
-			<Nav.Link>
+			<Nav.Link className="Menu-link-grey">
 				<Link to="/jobs">
 					<div className="Menu-title">Cybersecurity jobs</div>
 					<div className="Menu-description">Marketplace in Luxembourg</div>

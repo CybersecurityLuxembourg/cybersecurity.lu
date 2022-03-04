@@ -230,6 +230,10 @@
     }
 }
 
+.Menu-link-grey {
+    background-color: rgba(228, 6, 19, 0.05);
+}
+
 /* FLYING MENU */
 
 .Menu-flying-menu-wrapper {
