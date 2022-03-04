@@ -88,10 +88,6 @@ export default class PageLTAC extends React.Component {
 					</div>
 
 					<div className="col-md-12">
-						<h2>Previous talks</h2>
-					</div>
-
-					<div className="col-md-12">
 						{this.state.news && this.state.news.pagination.total > 0
 							&& <DynamicTable
 								items={this.state.news.items}

@@ -22,6 +22,10 @@
     text-decoration: none;
 }
 
+.navbar .navbar-brand a:hover {
+    background: none !important;
+}
+
 .navbar a:hover .Menu-title {
     color: #fff !important;
 }

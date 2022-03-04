@@ -178,12 +178,12 @@ export default class PageCalendar extends React.Component {
 				}
 
 				<div className="row row-spaced">
-					<div className="col-md-12 row-spaced">
+					<div className="col-md-12">
 						<h1>Calendar</h1>
 					</div>
 
 					{this.state.events !== null && this.state.events !== undefined
-						? <div className="col-md-12">
+						? <div className="col-md-12 row-spaced">
 							<Calendar
 								events={this.state.events.map((e) => (
 									{
