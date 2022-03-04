@@ -243,14 +243,14 @@ export default class Footer extends React.Component {
 								</a>
 							</div>
 							<div className="Footer-documentation-and-terms">
-								<a
+								{/* <a
 									href="/pdf/Documentation of the CYBERSECURITY Luxembourg website_release_v1.4.pdf"
 									rel="noreferrer"
 									target="_blank"
 									title="How to use the portal?"
 									className="text-capitalize">
 									<i className="fas fa-book"/> How to use the portal?
-								</a>
+								</a> */}
 								<a
 									href={"/pdf/2021-07-08 - Terms of Use CYBERLUX.pdf"}
 									rel="noreferrer"
