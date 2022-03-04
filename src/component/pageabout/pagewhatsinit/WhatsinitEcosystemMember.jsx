@@ -19,7 +19,7 @@ export default class WhatsinitEcosystemMember extends React.Component {
 			<div className={"WhatsinitEcosystemMember page max-sized-page"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h1>What&apos;s in it for you? – Ecosystem members</h1>
+						<h1>What&apos;s in it for you? – Cybersecurity actors</h1>
 					</div>
 
 					<div className="col-md-12 row-spaced">

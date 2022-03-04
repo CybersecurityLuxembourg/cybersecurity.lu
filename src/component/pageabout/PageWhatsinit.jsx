@@ -15,7 +15,7 @@ export default class PageWhatsinit extends React.Component {
 
 		this.state = {
 			tabs: [
-				"EcosystemMembers",
+				"CybersecurityActors",
 				"Users",
 			],
 			selectedMenu: null,
@@ -55,7 +55,7 @@ export default class PageWhatsinit extends React.Component {
 					onMenuClick={this.onMenuClick}
 					selectedMenu={this.state.selectedMenu}
 					labels={[
-						"Ecosystem members",
+						"Cybersecurity actors",
 						"Users",
 					]}
 					keys={this.state.tabs}
