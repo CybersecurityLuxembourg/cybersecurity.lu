@@ -25,7 +25,7 @@ export default class WhatsinitEcosystemMember extends React.Component {
 					<div className="col-md-12 row-spaced">
 						<img
 							className={"WhatsinitEcosystemMember-member-image"}
-							src="/img/ecosystem_member_page.jpg"
+							src="/img/cybersec_actors_banner.jpg"
 						/>
 					</div>
 
