@@ -233,7 +233,7 @@ export default class Menu extends React.Component {
 								</NavDropdown.Item>
 								<NavDropdown.Item>
 									<Link to="/whatsinit">
-										<div className="Menu-title">What&apos;s in it?</div>
+										<div className="Menu-title">What&apos;s in it for you?</div>
 									</Link>
 								</NavDropdown.Item>
 								<NavDropdown.Item>
