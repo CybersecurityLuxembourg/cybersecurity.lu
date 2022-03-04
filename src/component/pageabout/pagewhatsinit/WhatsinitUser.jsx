@@ -2,6 +2,7 @@ import React from "react";
 import "./WhatsinitUser.css";
 import { Link } from "react-router-dom";
 import ShadowBox from "../../box/ShadowBox.jsx";
+import ShadowBoxPcDoctor from "../../box/ShadowBoxPcDoctor.jsx";
 
 export default class WhatsinitUser extends React.Component {
 	constructor(props) {
@@ -80,6 +81,9 @@ export default class WhatsinitUser extends React.Component {
 							link="jobs"
 							title={"Jobs"}
 							icon={"fas fa-briefcase"}
+						/>
+						<ShadowBoxPcDoctor
+							analytics={this.props.analytics}
 						/>
 					</div>
 				</div>
