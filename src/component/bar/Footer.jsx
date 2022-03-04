@@ -68,29 +68,19 @@ export default class Footer extends React.Component {
 											Home
 										</Link>
 									</div>
-									<div>
+									<br/>
+									<div><b>What&apos;s up?</b></div>
+									<div className="Footer-alinea">
 										<Link to="/news">
 											News
 										</Link>
 									</div>
-									<br/>
-									<div>
-										<Link to="/breakfast">
-											CSB
-										</Link>
-									</div>
-									<div>
-										<Link to="/cswl">
-											CSWL
-										</Link>
-									</div>
-									<div>
+									<div className="Footer-alinea">
 										<Link to="/events">
 											Upcoming events
 										</Link>
 									</div>
-									<br/>
-									<div>
+									<div className="Footer-alinea">
 										<Link to="/ltac">
 											Lëtz talk about cyber
 										</Link>
@@ -100,10 +90,21 @@ export default class Footer extends React.Component {
 											Topic of the month
 										</Link>
 									</div> */}
-									<br/>
-									<div>
+									<div className="Footer-alinea">
 										<Link to="/newsletter">
 											Newsletter
+										</Link>
+									</div>
+									<br/>
+									<div>
+										<Link to="/cybersecurityweek">
+											<b>CSWL</b>
+										</Link>
+									</div>
+									<br/>
+									<div>
+										<Link to="/jobs">
+											<b>Cybersecurity jobs</b>
 										</Link>
 									</div>
 								</div>
@@ -143,8 +144,8 @@ export default class Footer extends React.Component {
 									<br/>
 									<div><b>Get involved</b></div>
 									<div className="Footer-alinea">
-										<Link to="/ecsc">
-											ECSC
+										<Link to="/breakfast">
+											Cybersecurity breakfast
 										</Link>
 									</div>
 									<div className="Footer-alinea">
@@ -152,11 +153,16 @@ export default class Footer extends React.Component {
 											Cyber4Growth
 										</Link>
 									</div>
+									<div className="Footer-alinea">
+										<Link to="/challenge">
+											Luxembourg challenge
+										</Link>
+									</div>
 								</div>
 								<div className="col-md-4">
 									<div><b>Resources</b></div>
 									<div className="Footer-alinea">
-										<Link to="/cyber4growth">
+										<Link to="/practices">
 											Best practices
 										</Link>
 									</div>
@@ -171,9 +177,9 @@ export default class Footer extends React.Component {
 										</Link>
 									</div>
 									<div className="Footer-alinea">
-										<a href={getPrivateAppURL()}>
-											Podcast
-										</a>
+										<Link to="/podcasts">
+											Podcasts
+										</Link>
 									</div>
 									<br/>
 									<div><b>About</b></div>
@@ -184,7 +190,7 @@ export default class Footer extends React.Component {
 									</div>
 									<div className="Footer-alinea">
 										<Link to="/whatsinit">
-											What&apos;s in it?
+											What&apos;s in it for you?
 										</Link>
 									</div>
 									<div className="Footer-alinea">
