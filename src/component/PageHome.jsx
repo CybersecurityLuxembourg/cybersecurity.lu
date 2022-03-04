@@ -2,10 +2,10 @@ import React from "react";
 import "./PageHome.css";
 import ShadowBoxPcDoctor from "./box/ShadowBoxPcDoctor.jsx";
 import ShadowBoxPureStartup from "./box/ShadowBoxPureStartup.jsx";
-import ShadowBoxEducation from "./box/ShadowBoxEducation.jsx";
+// import ShadowBoxEducation from "./box/ShadowBoxEducation.jsx";
 import ShadowBoxCyber4Growth from "./box/ShadowBoxCyber4Growth.jsx";
 import ShadowBoxECSC from "./box/ShadowBoxECSC.jsx";
-import ShadowBoxJobs from "./box/ShadowBoxJobs.jsx";
+// import ShadowBoxJobs from "./box/ShadowBoxJobs.jsx";
 import ShadowBox from "./box/ShadowBox.jsx";
 import PageHomeLatestNews from "./pagehome/PageHomeLatestNews.jsx";
 import PageHomeCallToAction from "./pagehome/PageHomeCallToAction.jsx";
@@ -60,16 +60,39 @@ export default class PageHome extends React.Component {
 							<div className="col-md-1"/>
 							<div className="col-md-5">
 								<ShadowBox
-									link="whatsinit?tab=EcosystemMembers"
-									title={"Ecosystem members"}
-									abstract={"Enhance your visibility, contribute to the influence of our community and take part in initiatives designed for you"}
+									link="whatsinit?tab=CybersecurityActors"
+									title={"Cybersecurity actors"}
+									abstract={<div>
+										<div>
+											Enhance your visibility, contribute to the influence of
+											our community and take part in initiatives designed for you
+										</div>
+										<br/>
+										<div>
+											<em>CSB – Private space</em>
+										</div>
+										<div className="PageHome-banner-more">
+											<em>Know more</em> <i className="fas fa-arrow-right"/>
+										</div>
+									</div>}
 								/>
 							</div>
 							<div className="col-md-5">
 								<ShadowBox
 									link="whatsinit?tab=Users"
 									title={"Users"}
-									abstract={"All your cybersecurity needs in one place"}
+									abstract={<div>
+										<div>
+											All your cybersecurity needs in one place
+										</div>
+										<br/>
+										<div>
+											<em>Best practices – PC Doctors – Jobs</em>
+										</div>
+										<div className="PageHome-banner-more">
+											<em>Know more</em> <i className="fas fa-arrow-right"/>
+										</div>
+									</div>}
 								/>
 							</div>
 						</div>
@@ -101,6 +124,12 @@ export default class PageHome extends React.Component {
 						<div className="row row-spaced">
 							<div className="col-md-12">
 								<h1>Get involved</h1>
+							</div>
+
+							<div className="col-md-8 offset-md-2 row-spaced PageHome-description">
+								Become an active member of the ecosystem and gain great visibility!
+								Throughout the year, a wide set of actions is organised by
+								the ecosystem for the ecosystem.
 							</div>
 
 							<div className="col-md-4">
@@ -168,45 +197,7 @@ export default class PageHome extends React.Component {
 					</div>
 				</div>
 
-				<div className="black-bordered">
-					{this.getBackgroundPetal()}
-					{this.getBackgroundPetalBottom()}
-
-					<div className="max-sized-page">
-						<div className="row">
-							<div className="col-md-12">
-								<h1>Get visible & take part in the initiatives</h1>
-							</div>
-
-							<div className="col-md-8 offset-md-2 row-spaced PageHome-description">
-								Become an active member of the ecosystem and gain great visibility!
-								Throughout the year, a wide set of actions is organised by
-								the ecosystem for the ecosystem.
-							</div>
-
-							<div className="col-md-4">
-								<ShadowBox
-									link="events"
-									title={"Upcoming events"}
-									icon={"fas fa-calendar-alt"}
-									abstract={"Take a look at the calendar and get in touch if you want to join the Luxembourg delegation!"}
-									color={"black"}
-								/>
-							</div>
-							<div className="col-md-4">
-								<ShadowBox
-									link="cybersecurityweek"
-									title={"CYBERSECURITY Week Luxembourg"}
-									icon={"fas fa-plug"}
-									abstract={"happening in 17-21 Oct 2022. Watch out for a brand new concept!"}
-									color={"black"}
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="red-bordered">
+				{/* <div className="red-bordered">
 					{this.getBackgroundPetal()}
 					{this.getBackgroundPetalBottom()}
 
@@ -230,7 +221,7 @@ export default class PageHome extends React.Component {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		);
 	}

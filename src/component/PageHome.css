@@ -119,6 +119,52 @@
     line-height: 1;
 }
 
+.PageHome-banner .shadow-section:hover div div {
+    opacity: 1 !important;
+}
+
+.PageHome-banner .shadow-section:hover div div {
+    opacity: 1 !important;
+}
+
+.PageHome-banner .shadow-section {
+    position: relative;
+}
+
+.PageHome-banner .shadow-section h3 {
+    font-size: 25px !important;
+}
+
+.PageHome-banner .shadow-section:hover h3 {
+    font-size: 28px !important;
+    margin: 15px 0px !important;
+}
+
+.PageHome-banner .shadow-section div {
+    line-height: 1.2;
+    font-size: 14px !important;
+}
+
+.PageHome-banner .shadow-section div {
+    line-height: 1.2;
+    font-size: 14px !important;
+}
+
+.PageHome-banner .PageHome-banner-more {
+    opacity: 0;
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+}
+
+.PageHome-banner .shadow-section:hover .PageHome-banner-more {
+     opacity: 1;
+}
+
+.PageHome-banner .PageHome-banner-more i {
+    font-size: 14px !important;
+}
+
 /* BACKGROUND PETALS */
 
 @media (min-width: 0px) {
