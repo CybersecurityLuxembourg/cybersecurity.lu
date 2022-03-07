@@ -140,13 +140,23 @@
     position: relative;
 }
 
+.PageHome-banner .shadow-section i {
+    font-size: 25px;
+    padding: 0px 10px 10px 10px;
+}
+
+.PageHome-banner .shadow-section i:hover {
+    color: #e40613;
+    font-size: 40px;
+}
+
 .PageHome-banner .shadow-section h3 {
     font-size: 25px !important;
+    margin: 10px 0px !important;
 }
 
 .PageHome-banner .shadow-section:hover h3 {
     font-size: 28px !important;
-    margin: 15px 0px !important;
 }
 
 .PageHome-banner .shadow-section div {
@@ -160,18 +170,22 @@
 }
 
 .PageHome-banner .PageHome-banner-more {
-    opacity: 0;
     position: absolute;
-    bottom: 0px;
+    font-weight: bold;
+    bottom: -10px;
     right: 10px;
 }
 
-.PageHome-banner .shadow-section:hover .PageHome-banner-more {
-     opacity: 1;
+.PageHome-banner .PageHome-banner-more:hover {
+    color: #e40613;
 }
 
-.PageHome-banner .PageHome-banner-more i {
-    font-size: 14px !important;
+.PageHome-banner .PageHome-banner-more i, .PageHome-banner .PageHome-banner-more em {
+    font-size: 18px !important;
+}
+
+.PageHome-banner .PageHome-banner-more i:hover {
+    color: #e40613 !important;
 }
 
 /* BACKGROUND PETALS */

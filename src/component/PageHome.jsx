@@ -1,5 +1,6 @@
 import React from "react";
 import "./PageHome.css";
+import { Link } from "react-router-dom";
 import ShadowBoxPcDoctor from "./box/ShadowBoxPcDoctor.jsx";
 import ShadowBoxPureStartup from "./box/ShadowBoxPureStartup.jsx";
 // import ShadowBoxEducation from "./box/ShadowBoxEducation.jsx";
@@ -10,6 +11,7 @@ import ShadowBox from "./box/ShadowBox.jsx";
 import PageHomeLatestNews from "./pagehome/PageHomeLatestNews.jsx";
 import PageHomeCallToAction from "./pagehome/PageHomeCallToAction.jsx";
 import FlashNews from "./bar/FlashNews.jsx";
+import { getPrivateAppURL } from "../utils/env.jsx";
 
 export default class PageHome extends React.Component {
 	constructor(props) {
@@ -67,7 +69,6 @@ export default class PageHome extends React.Component {
 							<div className="col-md-1"/>
 							<div className="col-md-5">
 								<ShadowBox
-									link="whatsinit?tab=CybersecurityActors"
 									title={"Cybersecurity actors"}
 									abstract={<div>
 										<div>
@@ -76,17 +77,27 @@ export default class PageHome extends React.Component {
 										</div>
 										<br/>
 										<div>
-											<em>CSB – Private space</em>
+											<Link to="challenge">
+												<i className="fas fa-trophy"/>
+											</Link>
+											<Link to="cyber4growth">
+												<i className="fas fa-rocket"/>
+											</Link>
+											<Link to="breakfast">
+												<i className="fas fa-mug-hot"/>
+											</Link>
+											<a href={getPrivateAppURL()}>
+												<i className="fas fa-key"/>
+											</a>
 										</div>
 										<div className="PageHome-banner-more">
-											<em>Know more</em> <i className="fas fa-arrow-right"/>
+											<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
 										</div>
 									</div>}
 								/>
 							</div>
 							<div className="col-md-5">
 								<ShadowBox
-									link="whatsinit?tab=Users"
 									title={"Users"}
 									abstract={<div>
 										<div>
@@ -94,10 +105,21 @@ export default class PageHome extends React.Component {
 										</div>
 										<br/>
 										<div>
-											<em>Best practices – PC Doctors – Jobs</em>
+											<Link to="practices">
+												<i className="fas fa-tasks"/>
+											</Link>
+											<Link to="">
+												<i className="fas fa-user-md"/>
+											</Link>
+											<Link to="jobs">
+												<i className="fas fa-briefcase"/>
+											</Link>
+											<Link to="cybersecurityweek">
+												<i className="fas fa-plug"/>
+											</Link>
 										</div>
 										<div className="PageHome-banner-more">
-											<em>Know more</em> <i className="fas fa-arrow-right"/>
+											<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
 										</div>
 									</div>}
 								/>
@@ -152,7 +174,9 @@ export default class PageHome extends React.Component {
 								<ShadowBoxCyber4Growth/>
 							</div>
 							<div className="col-md-4">
-								<ShadowBoxECSC/>
+								<ShadowBoxECSC
+									color="black"
+								/>
 							</div>
 						</div>
 					</div>

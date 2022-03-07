@@ -3,6 +3,7 @@ import "./WhatsinitUser.css";
 import { Link } from "react-router-dom";
 import ShadowBox from "../../box/ShadowBox.jsx";
 import ShadowBoxPcDoctor from "../../box/ShadowBoxPcDoctor.jsx";
+import ShadowBoxECSC from "../../box/ShadowBoxECSC.jsx";
 
 export default class WhatsinitUser extends React.Component {
 	constructor(props) {
@@ -123,10 +124,8 @@ export default class WhatsinitUser extends React.Component {
 					</div>
 
 					<div className="col-md-6">
-						<ShadowBox
-							link="ecsc"
-							title={"European Cyber Security Challenge"}
-							icon={"fas fa-trophy"}
+						<ShadowBoxECSC
+							color="blue"
 						/>
 					</div>
 					<div className="col-md-6">
