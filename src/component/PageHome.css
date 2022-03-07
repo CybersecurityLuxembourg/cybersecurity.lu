@@ -200,7 +200,7 @@
     font-size: 18px !important;
 }
 
-.PageHome-banner .PageHome-banner-more i:hover {
+.PageHome-banner .PageHome-banner-more a:hover {
     color: #e40613 !important;
 }
 

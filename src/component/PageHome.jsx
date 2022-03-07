@@ -95,7 +95,9 @@ export default class PageHome extends React.Component {
 											</a>
 										</div>
 										<div className="PageHome-banner-more">
-											<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
+											<Link to="whatsinit?tab=CybersecurityActors">
+												<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
+											</Link>
 										</div>
 									</div>}
 								/>
@@ -127,7 +129,9 @@ export default class PageHome extends React.Component {
 											</Link>
 										</div>
 										<div className="PageHome-banner-more">
-											<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
+											<Link to="whatsinit?tab=Users">
+												<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
+											</Link>
 										</div>
 									</div>}
 								/>
