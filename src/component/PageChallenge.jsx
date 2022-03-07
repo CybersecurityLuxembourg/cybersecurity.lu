@@ -44,7 +44,7 @@ export default class PageChallenge extends React.Component {
 						<img
 							className="PageChallenge-image"
 							src="img/letz-cyberchallenge.jpg"
-							alt="Lêtz Cybersecurity Challenge logo"
+							alt="Lëtz Cybersecurity Challenge logo"
 						/>
 					</div>
 

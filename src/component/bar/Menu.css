@@ -231,7 +231,8 @@
 }
 
 .Menu-link-grey {
-    background-color: rgba(228, 6, 19, 0.05);
+    background-image: radial-gradient(#8fddff 50%, white 50%);
+    background-size: 3px 3px;
 }
 
 /* FLYING MENU */

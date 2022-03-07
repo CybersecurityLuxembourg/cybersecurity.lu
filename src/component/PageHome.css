@@ -8,9 +8,18 @@
     background-clip: border-box;
 }
 
+.PageHome-banner-title {
+    margin-top: 25px;
+}
+
+.PageHome-banner-title h3 {
+    color: white !important;
+    font-weight: bold;
+}
+
 .PageHome-banner .shadow-section {
     margin-bottom: 15px;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .PageHome-banner .max-sized-page {

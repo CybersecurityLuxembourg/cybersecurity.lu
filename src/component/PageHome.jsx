@@ -58,6 +58,13 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row row-spaced">
 							<div className="col-md-1"/>
+							<div className="col-md-10">
+								<div className="PageHome-banner-title">
+									<h3>The national cybersecurity portal for:</h3>
+								</div>
+							</div>
+							<div className="col-md-1"/>
+							<div className="col-md-1"/>
 							<div className="col-md-5">
 								<ShadowBox
 									link="whatsinit?tab=CybersecurityActors"
