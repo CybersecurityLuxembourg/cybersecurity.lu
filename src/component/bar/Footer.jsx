@@ -82,7 +82,7 @@ export default class Footer extends React.Component {
 									</div>
 									<div className="Footer-alinea">
 										<Link to="/ltac">
-											Lëtz talk about cyber
+											Lëtz Talk About Cyber
 										</Link>
 									</div>
 									{/* <div>
@@ -145,17 +145,17 @@ export default class Footer extends React.Component {
 									<div><b>Get involved</b></div>
 									<div className="Footer-alinea">
 										<Link to="/breakfast">
-											Cybersecurity breakfast
+											CYBERSECURITY Breakfast
 										</Link>
 									</div>
 									<div className="Footer-alinea">
 										<Link to="/cyber4growth">
-											Cyber4Growth
+											CYBER4Growth
 										</Link>
 									</div>
 									<div className="Footer-alinea">
 										<Link to="/challenge">
-											Luxembourg challenge
+											Luxembourg Challenge
 										</Link>
 									</div>
 								</div>
