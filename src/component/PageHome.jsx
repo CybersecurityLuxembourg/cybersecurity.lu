@@ -79,15 +79,19 @@ export default class PageHome extends React.Component {
 										<div>
 											<Link to="challenge">
 												<i className="fas fa-trophy"/>
+												<span className="tooltiptext">National challenge</span>
 											</Link>
 											<Link to="cyber4growth">
 												<i className="fas fa-rocket"/>
+												<span className="tooltiptext">CYBER4Growth</span>
 											</Link>
 											<Link to="breakfast">
 												<i className="fas fa-mug-hot"/>
+												<span className="tooltiptext">Cybersecurity Breakfast</span>
 											</Link>
 											<a href={getPrivateAppURL()}>
 												<i className="fas fa-key"/>
+												<span className="tooltiptext">Private space</span>
 											</a>
 										</div>
 										<div className="PageHome-banner-more">
@@ -106,16 +110,20 @@ export default class PageHome extends React.Component {
 										<br/>
 										<div>
 											<Link to="practices">
-												<i className="fas fa-tasks"/>
+												<i className="fas fa-tasks" title=""/>
+												<span className="tooltiptext">Best practices</span>
 											</Link>
 											<Link to="">
 												<i className="fas fa-user-md"/>
+												<span className="tooltiptext">PC doctors</span>
 											</Link>
 											<Link to="jobs">
 												<i className="fas fa-briefcase"/>
+												<span className="tooltiptext">Cybersecurity jobs</span>
 											</Link>
 											<Link to="cybersecurityweek">
 												<i className="fas fa-plug"/>
+												<span className="tooltiptext">Cybersecurity Week</span>
 											</Link>
 										</div>
 										<div className="PageHome-banner-more">

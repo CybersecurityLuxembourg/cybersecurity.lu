@@ -150,6 +150,22 @@
     font-size: 40px;
 }
 
+.PageHome-banner .shadow-section a:hover > .tooltiptext {
+    visibility: visible !important;
+}
+
+.PageHome-banner .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
 .PageHome-banner .shadow-section h3 {
     font-size: 25px !important;
     margin: 10px 0px !important;
@@ -187,6 +203,7 @@
 .PageHome-banner .PageHome-banner-more i:hover {
     color: #e40613 !important;
 }
+
 
 /* BACKGROUND PETALS */
 
