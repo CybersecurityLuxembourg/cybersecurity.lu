@@ -87,7 +87,7 @@ export default class PageCalendar extends React.Component {
 					events: (this.state.events === null ? [] : this.state.events).concat(data.items),
 				}, () => {
 					if (data.pagination.page < data.pagination.pages) {
-						this.requestArticles(page + 1);
+						this.requestAllEvents(page + 1);
 					}
 				});
 			}
