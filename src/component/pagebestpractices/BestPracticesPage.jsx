@@ -81,7 +81,7 @@ export default class BestPracticesPage extends React.Component {
 
 	render() {
 		return (
-			<div id={"EducationTrainingAndCourses"} className={"page max-sized-page"}>
+			<div id={"BestPracticesPage"} className={"page max-sized-page"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
 						<h2>Tools</h2>
@@ -94,22 +94,22 @@ export default class BestPracticesPage extends React.Component {
 								className="col-md-12 row-spaced">
 								<h3>{c.name}</h3>
 
-								{this.getToolsFromCategory(c.id) && this.getToolsFromCategory(c.id).length > 0
-									? <div>
-										{this.getToolsFromCategory(c.id).map((t) => (
+								<div className="row">
+									{this.getToolsFromCategory(c.id) && this.getToolsFromCategory(c.id).length > 0
+										? this.getToolsFromCategory(c.id).map((t) => (
 											<div className="col-md-4" key={t.id}>
 												<Tool
 													info={t}
 													analytics={this.props.analytics}
 												/>
 											</div>
-										))}
-									</div>
-									: <Message
-										text={"No tool found"}
-										height={100}
-									/>
-								}
+										))
+										: <Message
+											text={"No tool found"}
+											height={100}
+										/>
+									}
+								</div>
 							</div>
 						))
 					}

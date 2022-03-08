@@ -11,6 +11,8 @@ export default class PageBestPractices extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.onMenuClick = this.onMenuClick.bind(this);
+
 		this.state = {
 			tabs: null,
 			taxonomyValues: null,
@@ -29,6 +31,7 @@ export default class PageBestPractices extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (this.state.selectedMenu !== getUrlParameter("tab")
+			&& this.state.tabs
 			&& this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
 			this.setState({ selectedMenu: getUrlParameter("tab") });
 		}
@@ -45,7 +48,7 @@ export default class PageBestPractices extends React.Component {
 				.filter((v) => v.category === "BEST PRACTICE PAGE");
 
 			this.setState({
-				tabs: values.map((v) => v.name.toLowerCase().replace(" ", "_")),
+				tabs: values.map((v) => v.name.toLowerCase().replaceAll(" ", "_")),
 				taxonomyValues: values,
 			});
 		}
@@ -69,7 +72,7 @@ export default class PageBestPractices extends React.Component {
 
 				{this.state.tabs && this.state.taxonomyValues
 					? <Tab
-						onMenuClick={() => this.onMenuClick()}
+						onMenuClick={this.onMenuClick}
 						selectedMenu={this.state.selectedMenu}
 						labels={this.state.taxonomyValues.map((v) => v.name)}
 						keys={this.state.tabs}
