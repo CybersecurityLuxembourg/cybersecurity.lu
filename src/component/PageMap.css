@@ -1,0 +1,27 @@
+
+#PageMap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#PageMap .GlobalMap {
+	z-index: 900;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+.PageMap-back-button {
+	z-index: 1000;
+	position: absolute;
+	bottom: 30px;
+	left: 26px;
+}
+
+.PageMap-back-button button {
+	opacity: 1;
+}

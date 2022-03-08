@@ -79,7 +79,7 @@ export default class ArticleHorizontal extends Component {
 				{taxonomyValues.map((v) => <Chip
 					key={v.name}
 					label={v.name}
-					url={"/search?taxonomy_value=" + v.id}
+					url={"/search?taxonomy_values=" + v.id}
 				/>)}
 			</div>;
 		}
@@ -98,7 +98,9 @@ export default class ArticleHorizontal extends Component {
 				className="EventHorizontal-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/calendar/" + this.props.info.handle} className="EventHorizontal-link">
+			: <Link
+				to={"/event/" + this.props.info.handle}
+				className="EventHorizontal-link">
 				{this.getBoxContent()}
 			</Link>;
 	}

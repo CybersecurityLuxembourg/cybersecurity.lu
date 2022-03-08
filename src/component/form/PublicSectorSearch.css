@@ -1,0 +1,20 @@
+
+.PublicSectorSearch div .FormLine .row {
+	padding: 3px 0px !important;
+}
+
+.PublicSectorSearch-taxonomy-link-container {
+	padding: 3px 0px 0px 0px;
+	text-align: center;
+}
+
+.PublicSectorSearch-taxonomy-link {
+	cursor: pointer;
+	color: #009fe3 !important;
+	width: 100%;
+	text-align: center;
+}
+
+.PublicSectorSearch-tree-taxonomy {
+	margin: 10px 0px;
+}

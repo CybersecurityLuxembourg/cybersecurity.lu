@@ -90,7 +90,9 @@ export default class Event extends Component {
 				className="Event-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/calendar/" + this.props.info.handle} className="Article-link">
+			: <Link
+				to={"/event/" + this.props.info.handle}
+				className="Event-link">
 				{this.getBoxContent()}
 			</Link>;
 	}

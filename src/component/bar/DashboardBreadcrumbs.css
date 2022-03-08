@@ -1,0 +1,68 @@
+
+.DashboardBreadcrumbs {
+  position: fixed;
+  right: 0px;
+  top: calc(-100px + 20px);
+  padding: 10px 10px 30px 10px !important;
+  margin: 0px 30px 0px 20px;
+  max-width: calc(100% - 50px);
+  background: linear-gradient(45deg, transparent 10px, #000 0) left /50.5% 100%, 
+    linear-gradient(225deg, transparent 10px, #000 0) right/50.5% 100%;
+  background-repeat:no-repeat;
+  z-index: 999;
+  transition: all 1s ease-out;
+}
+
+.DashboardBreadcrumbs-open {
+  top: 10px !important;
+}
+
+.DashboardBreadcrumbs-arrow {
+  color: white !important;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.DashboardBreadcrumbs-arrow:hover {
+  color: #009fe3 !important;
+}
+
+.DashboardBreadcrumbs-company i, .DashboardBreadcrumbs-strategy i, .DashboardBreadcrumbs-national i {
+  text-align: center;
+  width: 25px;
+}
+
+.DashboardBreadcrumbs-company {
+  color: #009fe3;
+  cursor: pointer;
+}
+
+.DashboardBreadcrumbs-strategy {
+  color: white;
+  cursor: pointer;
+}
+
+.DashboardBreadcrumbs-national {
+  color: #e40613;
+  cursor: pointer;
+}
+
+.DashboardBreadcrumbs-company:hover {
+  background-color: #009fe3;
+  color: white;
+}
+
+.DashboardBreadcrumbs-strategy:hover {
+  background-color: white;
+  color: black;
+}
+
+.DashboardBreadcrumbs-national:hover {
+  background-color: #e40613;
+  color: white;
+}

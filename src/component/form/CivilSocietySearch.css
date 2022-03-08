@@ -1,0 +1,20 @@
+
+.CivilSocietySearch div .FormLine .row {
+	padding: 3px 0px !important;
+}
+
+.CivilSocietySearch-taxonomy-link-container {
+	padding: 3px 0px 0px 0px;
+	text-align: center;
+}
+
+.CivilSocietySearch-taxonomy-link {
+	cursor: pointer;
+	color: #009fe3 !important;
+	width: 100%;
+	text-align: center;
+}
+
+.CivilSocietySearch-tree-taxonomy {
+	margin: 10px 0px;
+}

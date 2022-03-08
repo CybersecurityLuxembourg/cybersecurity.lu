@@ -1,0 +1,78 @@
+
+#PageHomeCallToAction .PageHomeCallToAction-date,
+#PageHomeCallToAction .PageHomeCallToAction-title {
+	display: inline;
+}
+
+#PageHomeCallToAction a {
+	text-decoration: none;
+}
+
+#PageHomeCallToAction .PageHomeCallToAction-article {
+	width: 100%;
+	color: rgb(228, 6, 19);
+	padding: 1px 5px;
+	display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: transparent 0.16em solid;
+}
+
+#PageHomeCallToAction .PageHomeCallToAction-article-selected {
+	background-color: rgb(228, 6, 19);
+    color: white;
+}
+
+#PageHomeCallToAction .PageHomeCallToAction-article:hover {
+    border: black 0.16em solid;
+}
+
+@media (min-width: 0px) {
+ 	#PageHomeCallToAction .PageHomeCallToAction-image {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+@media (min-width: 500px) {
+    #PageHomeCallToAction .PageHomeCallToAction-image {
+    	height: 180px;
+        object-fit: cover;
+        display: flex;
+        margin: auto;
+        flex: 0 0 220px;
+        overflow: hidden;
+    }
+}
+
+#PageHomeCallToAction .PageHomeCallToAction-image img,
+#PageHomeCallToAction .PageHomeCallToAction-image .NoImage {
+	position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: unset !important;
+    -webkit-animation: slide 0.5s forwards;
+    animation: slide 0.5s forwards;
+}
+
+@keyframes slide {
+	0% { left: 30px; }
+    100% { left: 0%; }
+}
+
+#PageHomeCallToAction .NoImage {
+    background: repeating-linear-gradient(
+      135deg,
+      rgba(228, 6, 19, 0.1),
+      rgba(228, 6, 19, 0.1) 10px,
+      rgba(0, 0, 0, 0) 10px,
+      rgba(0, 0, 0, 0) 20px
+    ) !important;
+}
+
+#PageHomeCallToAction .NoImage-logo i {
+    color: rgba(228, 6, 19, 0.1) !important;
+}

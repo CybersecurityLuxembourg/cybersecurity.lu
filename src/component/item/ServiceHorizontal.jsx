@@ -3,7 +3,7 @@ import "./ServiceHorizontal.css";
 import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
-import { getApiURL, getEcosystemAppURL } from "../../utils/env.jsx";
+import { getApiURL } from "../../utils/env.jsx";
 import Chip from "../form/Chip.jsx";
 
 export default class ArticleHorizontal extends Component {
@@ -69,7 +69,7 @@ export default class ArticleHorizontal extends Component {
 				{taxonomyValues.map((v) => <Chip
 					key={v.name}
 					label={v.name}
-					url={"/search?taxonomy_value=" + v.id}
+					url={"/search?taxonomy_values=" + v.id}
 				/>)}
 			</div>;
 		}
@@ -87,7 +87,7 @@ export default class ArticleHorizontal extends Component {
 						key={this.props.companies.filter((d) => d.id === v)[0].name}
 						label={this.props.companies.filter((d) => d.id === v)[0].name}
 						color={"#ffa8b0"}
-						url={getEcosystemAppURL() + "company/" + v}
+						url={"/company/" + v}
 					/>)}
 			</div>;
 		}
@@ -106,7 +106,9 @@ export default class ArticleHorizontal extends Component {
 				className="ServiceHorizontal-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/service/" + this.props.info.handle} className="ServiceHorizontal-link">
+			: <Link
+				to={"/service/" + this.props.info.handle}
+				className="ServiceHorizontal-link">
 				{this.getBoxContent()}
 			</Link>;
 	}

@@ -1,0 +1,40 @@
+
+.PageNews-link {
+	text-decoration: none !important;
+}
+
+.PageNews-title-link {
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+.PageNews-title {
+    padding: 5px;
+    -webkit-transition: padding-left .5s;
+    transition: padding-left .5s;
+}
+
+.PageNews-title:hover {
+	background: 
+        linear-gradient( 135deg,transparent 10px,#009fe3 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 10px,#009fe3 0) right /50.5% 100% !important;
+    background-repeat: no-repeat !important;
+    color: white !important;
+    padding-left: 20px !important;
+}
+
+.PageNews-title:hover h3 {
+    color: white !important;
+}
+
+.PageNews-title:hover span {
+    display: none
+}
+
+.PageNews-title-link span {
+	font-size: 12px;
+}
+
+#PageNews h3 {
+	font-size: 28px;
+}

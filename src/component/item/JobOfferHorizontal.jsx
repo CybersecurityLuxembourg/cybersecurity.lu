@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./JobOfferHorizontal.css";
 import { Link } from "react-router-dom";
-import { getEcosystemAppURL } from "../../utils/env.jsx";
 import Chip from "../form/Chip.jsx";
 import { dateToString } from "../../utils/date.jsx";
 
@@ -50,7 +49,7 @@ export default class JobOfferHorizontal extends Component {
 						key={this.props.companies.filter((d) => d.id === v)[0].name}
 						label={this.props.companies.filter((d) => d.id === v)[0].name}
 						color={"#ffa8b0"}
-						url={getEcosystemAppURL() + "company/" + v}
+						url={"/company/" + v}
 					/>)}
 			</div>;
 		}
@@ -69,7 +68,9 @@ export default class JobOfferHorizontal extends Component {
 				className="JobOfferHorizontal-link">
 				{this.getBoxContent()}
 			</a>
-			: <Link to={"/news/" + this.props.info.handle} className="JobOfferHorizontal-link">
+			: <Link
+				to={"/job/" + this.props.info.handle}
+				className="JobOfferHorizontal-link">
 				{this.getBoxContent()}
 			</Link>;
 	}

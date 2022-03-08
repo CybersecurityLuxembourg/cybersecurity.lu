@@ -11,40 +11,8 @@ export default class VennActorDistribution extends React.Component {
 		};
 	}
 
-	componentDidUpdate() {
-		const sets = [
-			{
-				sets: ["Actors"],
-				size: this.props.actors.length,
-				label: this.props.actors.length + " Actors",
-			},
-			{
-				sets: ["Startup"],
-				size: this.props.actors.filter((a) => a.is_startup).length,
-				label: this.props.actors.filter((a) => a.is_startup).length + " Startups",
-			},
-			{
-				sets: ["Actors", "Startup"],
-				size: this.props.actors.filter((a) => a.is_startup).length,
-			},
-			{
-				sets: ["Has cybersecurity as a core business"],
-				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length,
-				label: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length
-					+ " with cybersecurity as a core business",
-			},
-			{
-				sets: ["Actors", "Has cybersecurity as a core business"],
-				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length,
-			},
-			{
-				sets: ["Actors", "Has cybersecurity as a core business", "Startup"],
-				size: this.props.actors
-					.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
-				label: "" + this.props.actors
-					.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
-			},
-		];
+	componentDidMount() {
+		const sets = this.getData();
 
 		const div = d3.select("#venn");
 
@@ -70,6 +38,67 @@ export default class VennActorDistribution extends React.Component {
 				changedTargetWidth = changedTargetWidth < 600 ? 600 : changedTargetWidth;
 				vennSvg.setAttribute("viewBox", "0 0 " + changedTargetWidth + " " + changedTargetWidth);
 			});
+	}
+
+	componentDidUpdate(prevProps) {
+		if (JSON.stringify(this.props.actors) !== JSON.stringify(prevProps.actors)) {
+			const div = d3.select("#venn");
+			div.datum(this.getData());
+		}
+	}
+
+	getData() {
+		const onlyStartup = this.props.actors.length === this.props.actors
+			.filter((a) => a.is_startup).length;
+		const onlyCore = this.props.actors.length === this.props.actors
+			.filter((a) => a.is_cybersecurity_core_business).length;
+
+		const data = [
+			{
+				sets: ["Actors"],
+				size: this.props.actors.length,
+				label: this.props.actors.length
+					+ (onlyStartup ? " Startups" : " Actors")
+					+ (onlyCore ? " with cybersecurity as a core business" : ""),
+			},
+		];
+
+		if (!onlyStartup) {
+			data.push({
+				sets: ["Startup"],
+				size: this.props.actors.filter((a) => a.is_startup).length,
+				label: this.props.actors.filter((a) => a.is_startup).length + " Startups",
+			});
+			data.push({
+				sets: ["Actors", "Startup"],
+				size: this.props.actors.filter((a) => a.is_startup).length,
+			});
+		}
+
+		if (!onlyCore) {
+			data.push({
+				sets: ["Has cybersecurity as a core business"],
+				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length,
+				label: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length
+					+ " with cybersecurity as a core business",
+			});
+			data.push({
+				sets: ["Actors", "Has cybersecurity as a core business"],
+				size: this.props.actors.filter((a) => a.is_cybersecurity_core_business).length,
+			});
+		}
+
+		if (!onlyStartup && !onlyCore) {
+			data.push({
+				sets: ["Actors", "Has cybersecurity as a core business", "Startup"],
+				size: this.props.actors
+					.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
+				label: "" + this.props.actors
+					.filter((a) => a.is_cybersecurity_core_business && a.is_startup).length,
+			});
+		}
+
+		return data;
 	}
 
 	// eslint-disable-next-line class-methods-use-this
