@@ -66,7 +66,7 @@ export default class PageCyberWeek extends React.Component {
 					<div className="col-md-8 offset-md-2 row-spaced">
 						<img
 							className="PageCyberWeek-image"
-							src="img/cswl_2022.jpg"
+							src="img/cswl_2022.png"
 							alt="CSWL 2022"
 						/>
 					</div>
