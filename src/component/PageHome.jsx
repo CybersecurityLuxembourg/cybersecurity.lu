@@ -75,8 +75,8 @@ export default class PageHome extends React.Component {
 											Enhance your visibility, contribute to the influence of
 											our community and take part in initiatives designed for you
 										</div>
-										<br/>
-										<div>
+										<br className="hide-on-mobile"/>
+										<div className="hide-on-mobile">
 											<Link to="challenge">
 												<i className="fas fa-trophy"/>
 												<span className="tooltiptext">National challenge</span>
@@ -94,7 +94,7 @@ export default class PageHome extends React.Component {
 												<span className="tooltiptext">Private space</span>
 											</a>
 										</div>
-										<div className="PageHome-banner-more">
+										<div className="PageHome-banner-more hide-on-mobile">
 											<Link to="whatsinit?tab=CybersecurityActors">
 												<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
 											</Link>
@@ -109,8 +109,8 @@ export default class PageHome extends React.Component {
 										<div>
 											All your cybersecurity needs in one place
 										</div>
-										<br/>
-										<div>
+										<br className="hide-on-mobile"/>
+										<div className="hide-on-mobile">
 											<Link to="practices">
 												<i className="fas fa-tasks" title=""/>
 												<span className="tooltiptext">Best practices</span>
@@ -128,7 +128,7 @@ export default class PageHome extends React.Component {
 												<span className="tooltiptext">Cybersecurity Week</span>
 											</Link>
 										</div>
-										<div className="PageHome-banner-more">
+										<div className="PageHome-banner-more hide-on-mobile">
 											<Link to="whatsinit?tab=Users">
 												<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
 											</Link>

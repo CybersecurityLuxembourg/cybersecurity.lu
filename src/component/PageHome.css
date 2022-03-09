@@ -2,7 +2,8 @@
 .PageHome-banner {
     width: 100%;
     height: 1000px;
-    max-height: calc(100vh - 300px);
+    max-height: calc(100vh - 280px);
+    min-height: 300px;
     background: url("../img/Slide_CYBERLUX_1920x1080.jpg") no-repeat center;
     background-size: cover;
     background-clip: border-box;
@@ -20,6 +21,26 @@
 .PageHome-banner .shadow-section {
     margin-bottom: 15px;
     margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+    .PageHome-banner .shadow-section {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding: 10px 5px !important;
+    }
+
+    .PageHome-banner .shadow-section h3 {
+        font-size: 20px !important;
+    }
+
+    .PageHome-banner-title {
+        margin-top: 0px;
+    }
+
+    .PageHome-banner-title h3 {
+        font-size: 20px !important;
+    }
 }
 
 .PageHome-banner .max-sized-page {

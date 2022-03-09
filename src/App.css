@@ -169,6 +169,12 @@ blockquote:after {
 	margin: auto;
 }
 
+@media (max-width: 480px) {
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
 /* BUTTON */
 
 .bottom-right-buttons {
