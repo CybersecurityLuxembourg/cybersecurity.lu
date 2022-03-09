@@ -39,6 +39,11 @@ import PagePodcasts from "./PagePodcasts.jsx";
 import PageFrameworks from "./PageFrameworks.jsx";
 import PageInitiative from "./pageabout/PageInitiative.jsx";
 import PageWhatsinit from "./pageabout/PageWhatsinit.jsx";
+import PageResources from "./pagemenu/PageResources.jsx";
+import PageAbout from "./pagemenu/PageAbout.jsx";
+import PageEcosystem from "./pagemenu/PageEcosystem.jsx";
+import PageGetInvolved from "./pagemenu/PageGetInvolved.jsx";
+import PageWhatsup from "./pagemenu/PageWhatsup.jsx";
 import Page404 from "./Page404.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
@@ -87,6 +92,12 @@ export default class InsideApp extends React.Component {
 						<Route path="/job/:handle" render={(props) => <PageJobOffer {...props} />}/>
 						<Route path="/service/:handle" render={(props) => <PageService {...props} />}/>
 						<Route path="/company/:id" render={(props) => <PageCompany {...props} analytics={this.state.analytics} />}/>
+
+						<Route path="/resources" render={(props) => <PageResources {...props} />}/>
+						<Route path="/about" render={(props) => <PageAbout {...props} />}/>
+						<Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
+						<Route path="/get_involved" render={(props) => <PageGetInvolved {...props} />}/>
+						<Route path="/whatsup" render={(props) => <PageWhatsup {...props} />}/>
 
 						<Route path="/help" render={(props) => <PageHelp {...props}/>}/>
 

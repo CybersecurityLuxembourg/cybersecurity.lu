@@ -69,7 +69,11 @@ export default class Footer extends React.Component {
 										</Link>
 									</div>
 									<br/>
-									<div><b>What&apos;s up?</b></div>
+									<div>
+										<Link to="/whatsup">
+											<b>What&apos;s up?</b>
+										</Link>
+									</div>
 									<div className="Footer-alinea">
 										<Link to="/news">
 											News
@@ -110,7 +114,11 @@ export default class Footer extends React.Component {
 								</div>
 
 								<div className="col-md-4">
-									<div><b>Ecosystem</b></div>
+									<div>
+										<Link to="/ecosystem">
+											<b>Ecosystem</b>
+										</Link>
+									</div>
 									<div className="Footer-alinea">
 										<Link to="/privatesector">
 											Private sector
@@ -142,7 +150,11 @@ export default class Footer extends React.Component {
 										</Link>
 									</div>
 									<br/>
-									<div><b>Get involved</b></div>
+									<div>
+										<Link to="/get_involved">
+											<b>Get involved</b>
+										</Link>
+									</div>
 									<div className="Footer-alinea">
 										<Link to="/breakfast">
 											CYBERSECURITY Breakfast
@@ -160,7 +172,11 @@ export default class Footer extends React.Component {
 									</div>
 								</div>
 								<div className="col-md-4">
-									<div><b>Resources</b></div>
+									<div>
+										<Link to="/resources">
+											<b>Resources</b>
+										</Link>
+									</div>
 									<div className="Footer-alinea">
 										<Link to="/practices">
 											Best practices
@@ -182,7 +198,11 @@ export default class Footer extends React.Component {
 										</Link>
 									</div>
 									<br/>
-									<div><b>About</b></div>
+									<div>
+										<Link to="/about">
+											<b>About</b>
+										</Link>
+									</div>
 									<div className="Footer-alinea">
 										<Link to="/initiative">
 											The initiative
