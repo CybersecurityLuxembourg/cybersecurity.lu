@@ -492,7 +492,7 @@ export default class PageCSB extends React.Component {
 				<div className="row row-spaced">
 					<div className="col-md-6">
 						<ShadowBox
-							link="img/01-CSB_sponsorship_packages_2022.pdf"
+							link="pdf/01-CSB_sponsorship_packages_2022.pdf"
 							title="Download the brochure here"
 							icon="fas fa-file-pdf"
 						/>
