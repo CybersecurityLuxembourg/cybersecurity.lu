@@ -216,24 +216,10 @@ export default class PageJobOffer extends React.Component {
 									<div className="col-md-12">
 										<div className="PageJobOffer-social-media-links">
 											<TwitterLink
-												text={this.state.article.title}
-												url={this.state.article.link !== undefined
-													&& this.state.article.link !== null
-													&& this.state.article.link.length > 0
-													? this.state.article.link
-													: window.location.origin + "/news/"
-														+ this.props.match.params.handle
-												}
+												article={this.state.article}
 											/>
 											<LinkedInLink
-												text={this.state.article.title}
-												url={this.state.article.link !== undefined
-													&& this.state.article.link !== null
-													&& this.state.article.link.length > 0
-													? this.state.article.link
-													: window.location.origin + "/news/"
-														+ this.props.match.params.handle
-												}
+												article={this.state.article}
 											/>
 										</div>
 									</div>

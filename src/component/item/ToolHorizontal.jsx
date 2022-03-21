@@ -3,6 +3,7 @@ import "./ToolHorizontal.css";
 import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import Chip from "../form/Chip.jsx";
+import CardSocialMedia from "./CardSocialMedia.jsx";
 
 export default class ToolHorizontal extends Component {
 	constructor(props) {
@@ -29,6 +30,10 @@ export default class ToolHorizontal extends Component {
 						>
 							Know more
 						</button>
+
+						<CardSocialMedia
+							article={this.props.info}
+						/>
 					</div>
 				</div>
 				{this.props.info.abstract !== null && this.props.info.abstract.length > 0

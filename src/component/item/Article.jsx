@@ -5,6 +5,7 @@ import dompurify from "dompurify";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 import { dateToString } from "../../utils/date.jsx";
+import CardSocialMedia from "./CardSocialMedia.jsx";
 
 export default class Article extends Component {
 	constructor(props) {
@@ -71,13 +72,16 @@ export default class Article extends Component {
 				>
 					Know more
 				</button>
+
+				<CardSocialMedia
+					article={this.props.info}
+				/>
 			</div>
 		</div>;
 	}
 
 	render() {
-		return this.props.info.link !== null
-			&& this.props.info.link !== undefined
+		return this.props.info.link
 			&& this.props.info.link.length > 0
 			? <a
 				href={this.props.info.link}
