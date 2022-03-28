@@ -1,69 +1,82 @@
 import React from "react";
-import "./PageChallenge.css";
+import "./PageEducation.css";
 import { Link } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { getUrlParameter } from "../utils/url.jsx";
+import Tab from "./tab/Tab.jsx";
+import ChallengeECSC from "./pagechallenge/ChallengeECSC.jsx";
+import ChallengeLuxSkills from "./pagechallenge/ChallengeLuxSkills.jsx";
+import ChallengeLCSC from "./pagechallenge/ChallengeLCSC.jsx";
 
-export default class PageChallenge extends React.Component {
+export default class PageEducation extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.onMenuClick = this.onMenuClick.bind(this);
+
 		this.state = {
+			tabs: [
+				"ECSC",
+				"LuxSkills",
+				"LCSC",
+			],
+			selectedMenu: null,
 		};
 	}
 
-	// eslint-disable-next-line class-methods-use-this
+	componentDidMount() {
+		if (getUrlParameter("tab") !== null && this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
+			this.setState({ selectedMenu: getUrlParameter("tab") });
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.state.selectedMenu !== getUrlParameter("tab")
+			&& this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
+			this.setState({ selectedMenu: getUrlParameter("tab") });
+		}
+	}
+
+	onMenuClick(m) {
+		this.props.history.push("?tab=" + m);
+	}
+
 	render() {
 		return (
-			<div id="PageChallenge" className={"page max-sized-page"}>
+			<div className={"page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/challenge">LËTZ CYBERSECURITY CHALLENGE</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/challenge">LUXEMBOURG CHALLENGE</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
-				</div>
 
-				<div className="row">
 					<div className="col-md-12">
-						<h1>Lêtz Cybersecurity Challenge - The national challenge is back!</h1>
-					</div>
-
-					<div className="col-md-12 row-spaced">
-						<h3>
-							Save the date!
-						</h3>
-
-						<h3>
-							Lëtz Cybersecurity Challenge will take place during
-							LuxSkills competition from 04-06 May 2022.
-						</h3>
-					</div>
-
-					<div className="col-md-4 offset-md-4">
-						<img
-							className="PageChallenge-image"
-							src="img/letz-cyberchallenge.jpg"
-							alt="Lëtz Cybersecurity Challenge logo"
+						<Tab
+							onMenuClick={this.onMenuClick}
+							selectedMenu={this.state.selectedMenu}
+							labels={[
+								"ECSC",
+								"LuxSkills",
+								"LCSC",
+							]}
+							keys={this.state.tabs}
+							content={[
+								<ChallengeECSC
+									key={this.state.tabs[1]}
+									analytics={this.props.analytics}
+								/>,
+								<ChallengeLuxSkills
+									key={this.state.tabs[2]}
+									analytics={this.props.analytics}
+								/>,
+								<ChallengeLCSC
+									key={this.state.tabs[1]}
+									analytics={this.props.analytics}
+								/>,
+							]}
 						/>
-					</div>
-
-					<div className="col-md-12 row-spaced">
-						<p>
-							<h4>
-								Take your chance to join the national team that will represent
-								Luxembourg at the European Cybersecurity Challenge in Vienna,
-								13-16 September 2022.
-							</h4>
-						</p>
-
-						<p>
-							<h4>All details to be unveiled soon! Stay tuned…</h4>
-						</p>
-
-						<p>
-							<h4>Any questions so far? Contact <a href="mailto:info@cybersecurity-luxembourg.com">info@cybersecurity-luxembourg.com</a></h4>
-						</p>
 					</div>
 				</div>
 			</div>
