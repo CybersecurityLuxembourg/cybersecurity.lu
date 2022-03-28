@@ -15,7 +15,23 @@ export default class ChallengeECSC extends React.Component {
 		return (
 			<div id="ChallengeECSC" className="row">
 				<div className="col-md-12">
-					<h2>European Cyber Security Challenge</h2>
+					<h2>Luxembourg Challenge</h2>
+				</div>
+
+				<div className="col-md-12">
+					<h3>Lêtz Cybersecurity Challenge - The national challenge is back!</h3>
+				</div>
+
+				<div className="col-md-4 offset-md-4">
+					<img
+						className="ChallengeLCSC-image"
+						src="img/letz-cyberchallenge.jpg"
+						alt="Lëtz Cybersecurity Challenge logo"
+					/>
+				</div>
+
+				<div className="col-md-12">
+					<h3>Join the CTF team!</h3>
 				</div>
 
 				<div className="col-md-12">
@@ -76,200 +92,51 @@ export default class ChallengeECSC extends React.Component {
 
 				<div className="col-md-12">
 					<div className="row row-spaced ChallengeECSC-program">
-						<div className="col-md-4">
-						</div>
-						<div className="col-md-4 centered">
-							<h3>LuxSkills</h3>
-						</div>
-						<div className="col-md-4 centered">
-							<h3>LCSC</h3>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Venue</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>LuxExpo The Box</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
+						<div className="col-md-6">
 							<div className="shadow-section blue-shadow-section centered-shadow-section">
 								<div className={"ChallengeECSC-program-mobile"}>
 									LCSC
 								</div>
-								<h5>Remote</h5>
+								<h5><b>LCSC Qualifiers</b><br/>30th of April to 4th of May</h5>
 							</div>
 						</div>
 
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Date</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									2nd to 4th of May<br/>
-									Each day from 10am to 4pm
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
+						<div className="col-md-6">
 							<div className="shadow-section blue-shadow-section centered-shadow-section">
 								<div className={"ChallengeECSC-program-mobile"}>
 									LCSC
 								</div>
-								<h5>Until 4th of May<br/>(continuously)</h5>
+								<h5><b>LuxSkills Cybersecurity</b><br/>2nd to 4th of May</h5>
 							</div>
 						</div>
 
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Age</h4>
+						<div className="col-md-6 centered">
+							<i className="fas fa-arrow-down"/>
 						</div>
-						<div className="col-md-4">
+
+						<div className="col-md-6 centered">
+							<i className="fas fa-arrow-down"/>
+						</div>
+
+						<div className="col-md-12">
 							<div className="shadow-section blue-shadow-section centered-shadow-section">
 								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
+									LCSC finals
 								</div>
-								<h5>
-									Born after 1st of January 1998
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									Born after 1st of January 1997
-								</h5>
+								<h5><b>LCSC finals</b><br/>Mid-July</h5>
 							</div>
 						</div>
 
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Nationality</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									All
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									All
-								</h5>
-							</div>
+						<div className="col-md-12 centered">
+							<i className="fas fa-arrow-down"/>
 						</div>
 
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4># challenges</h4>
-						</div>
-						<div className="col-md-4">
+						<div className="col-md-12">
 							<div className="shadow-section blue-shadow-section centered-shadow-section">
 								<div className={"ChallengeECSC-program-mobile"}>
 									LuxSkills
 								</div>
-								<h5>
-									24-30
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									24-30
-								</h5>
-							</div>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Format</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									CTF - Jeopardy
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									CTF - Jeopardy
-								</h5>
-							</div>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Prize</h4>
-						</div>
-
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									Participation in the LCSC finals
-								</h5>
-							</div>
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									Eligible for the &quot;Most Promising Young Talent 2022&quot; Award
-								</h5>
-							</div>
-							<div className="shadow-section red-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									Participation in the EuroSkills in Lyon 2023
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									Participation in the LCSC finals
-								</h5>
-							</div>
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									Eligible for the &quot;Most Promising Young Talent 2022&quot; Award
-								</h5>
+								<h5><b>ECSC Vienna</b><br/>12th to 17th of September</h5>
 							</div>
 						</div>
 					</div>

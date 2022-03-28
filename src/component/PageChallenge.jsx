@@ -5,7 +5,6 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { getUrlParameter } from "../utils/url.jsx";
 import Tab from "./tab/Tab.jsx";
 import ChallengeECSC from "./pagechallenge/ChallengeECSC.jsx";
-import ChallengeLuxSkills from "./pagechallenge/ChallengeLuxSkills.jsx";
 import ChallengeLCSC from "./pagechallenge/ChallengeLCSC.jsx";
 
 export default class PageEducation extends React.Component {
@@ -16,9 +15,8 @@ export default class PageEducation extends React.Component {
 
 		this.state = {
 			tabs: [
-				"ECSC",
-				"LuxSkills",
-				"LCSC",
+				"Luxembourg_Challenge",
+				"How_to_participate",
 			],
 			selectedMenu: null,
 		};
@@ -57,18 +55,13 @@ export default class PageEducation extends React.Component {
 							onMenuClick={this.onMenuClick}
 							selectedMenu={this.state.selectedMenu}
 							labels={[
-								"ECSC",
-								"LuxSkills",
-								"LCSC",
+								"Luxembourg Challenge",
+								"How to participate",
 							]}
 							keys={this.state.tabs}
 							content={[
 								<ChallengeECSC
-									key={this.state.tabs[1]}
-									analytics={this.props.analytics}
-								/>,
-								<ChallengeLuxSkills
-									key={this.state.tabs[2]}
+									key={this.state.tabs[0]}
 									analytics={this.props.analytics}
 								/>,
 								<ChallengeLCSC
