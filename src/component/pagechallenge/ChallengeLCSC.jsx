@@ -66,7 +66,7 @@ export default class ChallengeLCSC extends React.Component {
 					<h3>LCSC Overview</h3>
 				</div>
 
-				<div className="col-md-12">
+				<div className="col-md-12 row-spaced">
 					<p>
 						The following overview shows the cycle of qualification and
 						competitions. In the LCSC  Qualification, <b>everyone</b> can
@@ -93,7 +93,71 @@ export default class ChallengeLCSC extends React.Component {
 						Training sessions with EU cybersecurity experts will
 						follow during summer.
 					</p>
+				</div>
 
+				<div className="col-md-12">
+					<div className="row">
+						<div className="col-md-2 offset-md-3">
+							<div className="shadow-section blue-shadow-section centered-shadow-section"/>
+						</div>
+
+						<div className="col-md-5">
+							<h4>On site event</h4>
+						</div>
+					</div>
+
+					<div className="row row-spaced">
+						<div className="col-md-2 offset-md-3">
+							<div className="shadow-section red-shadow-section centered-shadow-section"/>
+						</div>
+
+						<div className="col-md-5">
+							<h4>Remote event</h4>
+						</div>
+					</div>
+				</div>
+
+				<div className="col-md-12">
+					<div className="row row-spaced ChallengeLCSC-program">
+						<div className="col-md-6">
+							<div className="shadow-section red-shadow-section centered-shadow-section">
+								<h5><b>LCSC Qualifiers</b><br/>30th of April to 4th of May</h5>
+							</div>
+						</div>
+
+						<div className="col-md-6">
+							<div className="shadow-section blue-shadow-section centered-shadow-section">
+								<h5><b>LuxSkills Cybersecurity</b><br/>2nd to 4th of May</h5>
+							</div>
+						</div>
+
+						<div className="col-md-6 centered">
+							<i className="fas fa-arrow-down"/>
+						</div>
+
+						<div className="col-md-6 centered">
+							<i className="fas fa-arrow-down"/>
+						</div>
+
+						<div className="col-md-12">
+							<div className="shadow-section blue-shadow-section centered-shadow-section">
+								<h5><b>LCSC finals</b><br/>Mid-July</h5>
+							</div>
+						</div>
+
+						<div className="col-md-12 centered">
+							<i className="fas fa-arrow-down"/>
+						</div>
+
+						<div className="col-md-12">
+							<div className="shadow-section blue-shadow-section centered-shadow-section">
+								<h5><b>ECSC Vienna</b><br/>13th to 17th of September</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="col-md-12">
 					<p><span className="red">*Qualification requirements:</span></p>
 					<ul>
 						<li>Born between 01 January 1997 and 31 December 2005</li>

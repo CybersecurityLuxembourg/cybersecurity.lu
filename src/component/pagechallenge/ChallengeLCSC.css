@@ -6,3 +6,122 @@
 #ChallengeLCSC .red {
 	color: red;
 }
+
+
+.ChallengeLCSC-program .shadow-section {
+	margin: 10px 0px 4px 0px;
+}
+
+.ChallengeLCSC-program .ChallengeLCSC-program-criteria {
+	display: flex;
+	justify-content: center;
+	padding: 20px 0px 0px 20px;
+	text-align: center;
+}
+
+.ChallengeLCSC-program i.fa-arrow-down {
+	width: 100%;
+	color: black;
+	font-size: 25px;
+	padding: 20px 0px 10px 0px;
+}
+
+#ChallengeLCSC .shadow-section {
+	position: relative;
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	border-radius: .25rem;
+	padding: 30px 15px;
+}
+
+#ChallengeLCSC .shadow-section a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#ChallengeLCSC .centered-shadow-section {
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#ChallengeLCSC .blue-shadow-section, .blue-shadow-section a {
+	background-color: #009fe3;
+    color: #fff !important;
+}
+
+#ChallengeLCSC .red-shadow-section, .red-shadow-section a {
+	background-color: #e40613;
+    color: #fff !important;
+}
+
+#ChallengeLCSC .red-shadow-section, .red-shadow-section a {
+	background-color: #e40613;
+    color: #fff !important;
+}
+
+#ChallengeLCSC .grey-shadow-section, .grey-shadow-section a {
+	background-color: #BBB;
+    color: #fff !important;
+}
+
+#ChallengeLCSC .blue-shadow-section h4, .red-shadow-section h4, .grey-shadow-section h4,
+#ChallengeLCSC .blue-shadow-section h5, .red-shadow-section h5, .grey-shadow-section h5 {
+    color: #fff !important;
+}
+
+#ChallengeLCSC .shadow-section h3 {
+	color: white;
+	font-size: 35px !important;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	transition: .3s ease;
+}
+
+#ChallengeLCSC .shadow-section:hover h3 {
+	font-size: 40px !important;
+	margin-bottom: 0px !important;
+}
+
+
+#ChallengeLCSC .shadow-section div i {
+	margin: 8px 0px;
+	font-size: 100px;
+	-webkit-transition: font-size .5s ease;
+	-moz-transition: font-size .5s ease;
+	-o-transition: font-size .5s ease;
+	transition: font-size .5s ease;
+}
+
+#ChallengeLCSC .shadow-section:hover i {
+	font-size: 140px;
+}
+
+#ChallengeLCSC .shadow-section div div {
+	-webkit-transition: opacity .5s ease;
+	-moz-transition: opacity .5s ease;
+	-o-transition: opacity .5s ease;
+	transition: opacity .5s ease;
+}
+
+#ChallengeLCSC .shadow-section:hover div div {
+	opacity: 0;
+}
+
+@media (min-width: 768px) {
+    #ChallengeLCSC .ChallengeLCSC-program-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 0px) {
+    #ChallengeLCSC .ChallengeLCSC-program-mobile {
+        position: absolute;
+        top: 2px;
+        left: 8px;
+    }
+}
