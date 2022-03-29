@@ -1,4 +1,8 @@
 
-.ChallengeLCSC-image {
+#ChallengeLCSC img.ChallengeLCSC-image  {
 	width: 100%;
+}
+
+#ChallengeLCSC .red {
+	color: red;
 }

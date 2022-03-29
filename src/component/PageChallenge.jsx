@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { getUrlParameter } from "../utils/url.jsx";
 import Tab from "./tab/Tab.jsx";
-import ChallengeECSC from "./pagechallenge/ChallengeECSC.jsx";
 import ChallengeLCSC from "./pagechallenge/ChallengeLCSC.jsx";
+import ChallengeRegister from "./pagechallenge/ChallengeRegister.jsx";
 
 export default class PageEducation extends React.Component {
 	constructor(props) {
@@ -15,8 +15,8 @@ export default class PageEducation extends React.Component {
 
 		this.state = {
 			tabs: [
-				"Luxembourg_Challenge",
-				"How_to_participate",
+				"Letz_Cybersecurity_Challenge",
+				"How_to_register",
 			],
 			selectedMenu: null,
 		};
@@ -55,16 +55,16 @@ export default class PageEducation extends React.Component {
 							onMenuClick={this.onMenuClick}
 							selectedMenu={this.state.selectedMenu}
 							labels={[
-								"Luxembourg Challenge",
-								"How to participate",
+								"Lëtz Cybersecurity Challenge",
+								"How to register",
 							]}
 							keys={this.state.tabs}
 							content={[
-								<ChallengeECSC
+								<ChallengeLCSC
 									key={this.state.tabs[0]}
 									analytics={this.props.analytics}
 								/>,
-								<ChallengeLCSC
+								<ChallengeRegister
 									key={this.state.tabs[1]}
 									analytics={this.props.analytics}
 								/>,

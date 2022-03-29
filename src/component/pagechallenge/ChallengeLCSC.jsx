@@ -14,220 +14,92 @@ export default class ChallengeLCSC extends React.Component {
 		return (
 			<div id="ChallengeLCSC" className="row">
 				<div className="col-md-12">
-					<h2>How to participate</h2>
+					<h2>Lëtz Cybersecurity Challenge – Wann s de eppes kanns, weis et!</h2>
+				</div>
+
+				<div className="col-md-4 offset-md-4">
+					<img
+						className="ChallengeLCSC-image"
+						src="img/letz-cyberchallenge.jpg"
+						alt="Lëtz Cybersecurity Challenge logo"
+					/>
 				</div>
 
 				<div className="col-md-12">
-					<h3>Two ways to qualify to the finals!</h3>
-				</div>
+					<p>
+						The Lëtz Cybersecurity Challenge (LCSC), is
+						the annual National Hacking Championship of Luxembourg.
+					</p>
 
-				<div className="col-md-12">
-					<div className="row row-spaced ChallengeECSC-program">
-						<div className="col-md-4">
-						</div>
-						<div className="col-md-4 centered">
-							<h3>LuxSkills</h3>
-						</div>
-						<div className="col-md-4 centered">
-							<h3>LCSC</h3>
-						</div>
+					<p>
+						If you love to play Capture the Flag (CTF), love Hacking
+						and Cybersecurity, you are completely right here!
+					</p>
 
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Venue</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>LuxExpo The Box</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>Remote</h5>
-							</div>
-						</div>
+					<p>
+						<b>Important: EVERYONE</b> can join the qualifiers for fun!<br/>
+						But to get further, the&nbsp;
+						<span className="red">qualification requirements*</span> apply.
+					</p>
 
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Date</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									2nd to 4th of May<br/>
-									Each day from 10am to 4pm
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>Until 4th of May<br/>(continuously)</h5>
-							</div>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Age</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									Born after 1st of January 1998
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									Born after 1st of January 1997
-								</h5>
-							</div>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Nationality</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									All
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									All
-								</h5>
-							</div>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4># challenges</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									24-30
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									24-30
-								</h5>
-							</div>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Format</h4>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									CTF - Jeopardy
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									CTF - Jeopardy
-								</h5>
-							</div>
-						</div>
-
-						<div className="col-md-4 ChallengeECSC-program-criteria">
-							<h4>Prize</h4>
-						</div>
-
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									Participation in the LCSC finals
-								</h5>
-							</div>
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									Eligible for the &quot;Most Promising Young Talent 2022&quot; Award
-								</h5>
-							</div>
-							<div className="shadow-section red-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LuxSkills
-								</div>
-								<h5>
-									Participation in the EuroSkills in Lyon 2023
-								</h5>
-							</div>
-						</div>
-						<div className="col-md-4">
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									Participation in the LCSC finals
-								</h5>
-							</div>
-							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<div className={"ChallengeECSC-program-mobile"}>
-									LCSC
-								</div>
-								<h5>
-									Eligible for the &quot;Most Promising Young Talent 2022&quot; Award
-								</h5>
-							</div>
-						</div>
-
+					<div className="row">
 						<div className="col-md-12">
-							<h3>How to register to LCSC</h3>
-						</div>
-
-						<div className="col-md-12">
-							<h3>How to register to LuxSkill</h3>
+							<div className="centered">
+								<b>Join the national CTF Team and represent Luxembourg<br/>
+								at the European Cybersecurity Challenge (ECSC)
+								in Vienna – 13-17 September 2022</b>
+							</div>
 						</div>
 					</div>
+
+					<p>
+						The&nbsp;
+						<a href="https://www.ecsc2022.eu/about-ecsc/" target="_blank" rel="noreferrer">European Cyber Security Challenge</a>
+						&nbsp;is an initiative by the
+						European Union Agency for Cybersecurity (ENISA) and aims at
+						enhancing cybersecurity talent across Europe and connecting
+						high potentials with industry leading organizations.
+					</p>
+				</div>
+
+				<div className="col-md-12">
+					<h3>LCSC Overview</h3>
+				</div>
+
+				<div className="col-md-12">
+					<p>
+						The following overview shows the cycle of qualification and
+						competitions. In the LCSC  Qualification, <b>everyone</b> can
+						participate. However, only those eligible to participate
+						at the ECSC or LuxSkills can be accepted for the LCSC Final.
+					</p>
+
+					<p>
+						There are two ways to qualify for the LCSC Final: Either you
+						participate in the LuxSkills Cybersecurity Competition or in the
+						LCSC Qualifier. <b>You cannot participate in both!</b>
+					</p>
+
+					<p>
+						The best players of each competition fulfilling the&nbsp;
+						<span className="red">qualification requirements*</span> for the
+						ECSC will advance to
+						the next level: LCSC Final.
+					</p>
+
+					<p>
+						The 10 that made the cut will join the&nbsp;
+						<a href="https://letzpwn.com/" target="_blank" rel="noreferrer">national CTF Team LetzPwn</a>.<br/>
+						Training sessions with EU cybersecurity experts will
+						follow during summer.
+					</p>
+
+					<p><span className="red">*Qualification requirements:</span></p>
+					<ul>
+						<li>Born between 01 January 1997 and 31 December 2005</li>
+						<li>LU citizenship</li>
+						<li>student or non it professional</li>
+					</ul>
 				</div>
 			</div>
 		);
