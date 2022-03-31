@@ -175,6 +175,10 @@
     visibility: visible !important;
 }
 
+.PageHome-banner .PageHome-banner-icons a {
+    position: relative;
+}
+
 .PageHome-banner .tooltiptext {
     visibility: hidden;
     width: 120px;
@@ -184,6 +188,8 @@
     padding: 5px 5px;
     border-radius: 6px;
     position: absolute;
+    top: 30px;
+    left: 2px;
     z-index: 1;
 }
 

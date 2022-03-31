@@ -76,7 +76,7 @@ export default class PageHome extends React.Component {
 											our community and take part in initiatives designed for you
 										</div>
 										<br className="hide-on-mobile"/>
-										<div className="hide-on-mobile">
+										<div className="PageHome-banner-icons hide-on-mobile">
 											<Link to="challenge">
 												<i className="fas fa-trophy"/>
 												<span className="tooltiptext">National challenge</span>
@@ -110,7 +110,7 @@ export default class PageHome extends React.Component {
 											All your cybersecurity needs in one place
 										</div>
 										<br className="hide-on-mobile"/>
-										<div className="hide-on-mobile">
+										<div className="PageHome-banner-icons hide-on-mobile">
 											<Link to="practices">
 												<i className="fas fa-tasks" title=""/>
 												<span className="tooltiptext">Best practices</span>
