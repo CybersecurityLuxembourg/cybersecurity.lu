@@ -31,14 +31,22 @@
 
 @media (min-width: 0px) {
  	#PageHomeLatestNews .PageHomeLatestNews-image {
+        position:  relative;
         width: 100%;
-        height: 180px;
+        height: 214px;
+        background: repeating-linear-gradient(
+          135deg,
+          rgba(0, 159, 227, 0.1),
+          rgba(0, 159, 227, 0.1) 10px,
+          rgba(0, 0, 0, 0) 10px,
+          rgba(0, 0, 0, 0) 20px
+        ) !important;
     }
 }
 
 @media (min-width: 500px) {
     #PageHomeLatestNews .PageHomeLatestNews-image {
-    	height: 180px;
+    	height: 214px;
         object-fit: cover;
         display: flex;
         margin: auto;
@@ -50,7 +58,7 @@
 #PageHomeLatestNews .PageHomeLatestNews-image img,
 #PageHomeLatestNews .PageHomeLatestNews-image .NoImage {
 	position: absolute;
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
     border-radius: unset !important;
