@@ -28,7 +28,7 @@ export default class ChallengeLCSC extends React.Component {
 				<div className="col-md-12">
 					<p>
 						The Lëtz Cybersecurity Challenge (LCSC), is
-						the annual National Hacking Championship of Luxembourg.
+						the National Hacking Championship of Luxembourg.
 					</p>
 
 					<p>
