@@ -5,39 +5,55 @@ export default class CyberWeekGala extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
-			<div id={"CyberWeekGala"} className="row">
-				<div className="col-md-12">
-					<h2>A campaign made to highlight the ecosystem’s champions</h2>
-				</div>
+			<div id={"CyberWeekGala"}>
+				<div className="row row-spaced">
+					<div className="col-md-12">
+						<h2>Gala & Awards Night</h2>
+					</div>
 
-				<div className="col-md-12">
-					<p>
-						A key event of the campaign remains the Gala and Awards Night,
-						which brings together the participants of the various events,
-						decision-makers from the national ecosystem and abroad. In addition
-						to the keynote speakers, the ceremony focuses on awarding the best
-						cybersecurity and privacy professionals in 7 categories:
-					</p>
+					<div className="col-md-12">
+						<p>The Awards & Gala Night celebrates the most promising cybersecurity talents &
+						professionals in various categories. Applications will open soon.</p>
+					</div>
 
-					<h3>CISO of the Year 2021</h3>
+					<div className="col-md-12">
+						<ul>
+							<li>
+								CISO of the Year
+							</li>
+							<li>
+								DPO of the Year
+							</li>
+							<li>
+								Most Promising Young Talent
+							</li>
+						</ul>
+					</div>
 
-					<p>
-						A key event of the campaign remains the Gala and Awards Night,
-						which brings together the participants of the various events,
-						decision-makers from the national ecosystem and abroad. In addition
-						to the keynote speakers, the ceremony focuses on awarding the best
-						cybersecurity and privacy professionals in 7 categories:
-					</p>
+					<div className="col-md-12">
+						<h3>Why to apply?</h3>
+					</div>
 
-					<h3>DPO of the Year 2021</h3>
+					<div className="col-md-12">
+						Key points to come
+					</div>
 
-					<p>
-						A key event of the campaign remains the Gala and Awards Night,
-						which brings together the participants of the various events,
-						decision-makers from the national ecosystem and abroad. In addition
-						to the keynote speakers, the ceremony focuses on awarding the best
-						cybersecurity and privacy professionals in 7 categories:
-					</p>
+					<div className="col-md-12">
+						<h3>How to apply?</h3>
+					</div>
+
+					<div className="col-md-12">
+						Dedicated forms
+					</div>
+
+					<div className="col-md-12">
+						<h3>Attend the Gala & Awards Night</h3>
+					</div>
+
+					<div className="col-md-12">
+						Register for a seat<br/>
+						Register for a table
+					</div>
 				</div>
 			</div>
 		);

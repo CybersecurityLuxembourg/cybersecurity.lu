@@ -1,94 +1,38 @@
 import React from "react";
 import "./CyberWeekPartners.css";
-import { NotificationManager as nm } from "react-notifications";
-import { getRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
-import SimpleTable from "../table/SimpleTable.jsx";
-import Loading from "../box/Loading.jsx";
-import Message from "../box/Message.jsx";
 
 export default class CyberWeekPartners extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			educationEntities: null,
-		};
-	}
-
-	componentDidMount() {
-		this.getEducationEntities();
-	}
-
-	componentDidUpdate(prevProps) {
-		if (!prevProps.analytics && this.props.analytics) {
-			this.getEducationEntities();
-		}
-	}
-
-	getEducationEntities() {
-		if (this.props.analytics) {
-			const valueId = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "PROGRAMME" && v.name === "CSWL 2022")
-				.map((v) => v.id);
-
-			if (valueId.length > 0) {
-				this.setState({
-					educationEntities: null,
-				}, () => {
-					getRequest.call(this, "public/get_public_companies"
-						+ "?taxonomy_values=" + valueId.join(","), (data) => {
-						this.setState({
-							educationEntities: data,
-						});
-					}, (response) => {
-						nm.warning(response.statusText);
-					}, (error) => {
-						nm.error(error.message);
-					});
-				});
-			} else {
-				this.setState({
-					educationEntities: [],
-				});
-			}
-		}
-	}
-
+	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
-			<div id={"CyberWeekPartners"} className="row row-spaced">
-				<div className="col-md-12">
-					<h2>Sponsors</h2>
-				</div>
+			<div id={"CyberWeekPartners"}>
+				<div className="row row-spaced">
+					<div className="col-md-12">
+						<h2>Become a partner</h2>
+					</div>
 
-				<div className="col-md-12">
-					{this.state.educationEntities && this.state.educationEntities.length > 0
-						&& <SimpleTable
-							numberDisplayed={6}
-							elements={this.state.educationEntities.map((a, i) => [a, i])}
-							buildElement={(a) => (
-								<div className="col-md-6">
-									<Company
-										info={a}
-									/>
-								</div>
-							)}
-						/>
-					}
+					<div className="col-md-12">
+						<p>Take advantage of this new opportunity by expressing
+						your interest in any of the following options:</p>
+					</div>
 
-					{this.state.educationEntities && this.state.educationEntities.length === 0
-						&& <Message
-							text={"No entity found"}
-							height={300}
-						/>
-					}
+					<div className="col-md-12">
+						<ul>
+							<li>
+								Become sponsor of the event
+							</li>
+							<li>
+								Book a booth in the exhibition area
+							</li>
+							<li>
+								Suggest a speaking contribution (topics and speakers)
+							</li>
+						</ul>
+					</div>
 
-					{!this.state.educationEntities
-						&& <Loading
-							height={300}
-						/>
-					}
+					<div className="col-md-12">
+						Reach out to <a href="mailto:info@cybersecurityweek.lu">info@cybersecurityweek.lu</a>.
+					</div>
 				</div>
 			</div>
 		);

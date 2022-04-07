@@ -27,11 +27,25 @@ export default class ShadowBox extends React.Component {
 	render() {
 		return (
 			<div className={"ShadowBox shadow-section " + this.getColor() + "-shadow-section centered-shadow-section"}>
-				{this.props.link && !this.props.link.startsWith("http")
-					? <Link to={this.props.link}>
+				{this.props.link
+					&& (!this.props.link.startsWith("http")
+						? <Link to={this.props.link}>
+							{this.getBoxContent()}
+						</Link>
+						: <a href={this.props.link}>
+							{this.getBoxContent()}
+						</a>
+					)
+				}
+
+				{this.props.onClick
+					&& <a onClick={() => this.props.onClick()}>
 						{this.getBoxContent()}
-					</Link>
-					: <a href={this.props.link}>
+					</a>
+				}
+
+				{!this.props.onClick && !this.props.link
+					&& <a>
 						{this.getBoxContent()}
 					</a>
 				}
