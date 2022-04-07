@@ -1,5 +1,5 @@
 import React from "react";
-import "./CyberWeekEvents.css";
+import "./CyberWeekProgramme.css";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import EventHorizontal from "../item/EventHorizontal.jsx";
@@ -8,7 +8,7 @@ import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import { dictToURI } from "../../utils/url.jsx";
 
-export default class CyberWeekEvents extends React.Component {
+export default class CyberWeekProgramme extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -62,7 +62,7 @@ export default class CyberWeekEvents extends React.Component {
 
 	render() {
 		return (
-			<div id={"CyberWeekEvents"} className="row row-spaced">
+			<div id={"CyberWeekProgramme"} className="row row-spaced">
 				<div className="col-md-12">
 					<h2>Events</h2>
 				</div>

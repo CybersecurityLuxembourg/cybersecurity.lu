@@ -1,5 +1,5 @@
 import React from "react";
-import "./CyberWeekSponsors.css";
+import "./CyberWeekPartners.css";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Company from "../item/Company.jsx";
@@ -7,7 +7,7 @@ import SimpleTable from "../table/SimpleTable.jsx";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 
-export default class CyberWeekSponsors extends React.Component {
+export default class CyberWeekPartners extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -57,7 +57,7 @@ export default class CyberWeekSponsors extends React.Component {
 
 	render() {
 		return (
-			<div id={"CyberWeekSponsors"} className="row row-spaced">
+			<div id={"CyberWeekPartners"} className="row row-spaced">
 				<div className="col-md-12">
 					<h2>Sponsors</h2>
 				</div>

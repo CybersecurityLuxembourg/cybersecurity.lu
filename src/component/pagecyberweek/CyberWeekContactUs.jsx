@@ -1,5 +1,5 @@
 import React from "react";
-import "./CyberWeekNews.css";
+import "./CyberWeekContactUs.css";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import ArticleHorizontal from "../item/ArticleHorizontal.jsx";
@@ -8,7 +8,7 @@ import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import { dictToURI } from "../../utils/url.jsx";
 
-export default class CyberWeekNews extends React.Component {
+export default class CyberWeekContactUs extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -62,7 +62,7 @@ export default class CyberWeekNews extends React.Component {
 
 	render() {
 		return (
-			<div id={"CyberWeekNews"} className="row row-spaced">
+			<div id={"CyberWeekContactUs"} className="row row-spaced">
 				<div className="col-md-12">
 					<h2>News</h2>
 				</div>

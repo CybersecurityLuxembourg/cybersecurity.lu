@@ -2,13 +2,13 @@ import React from "react";
 import "./PageCyberWeek.css";
 import { Link } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-/* import { getUrlParameter } from "../utils/url.jsx";
+import { getUrlParameter } from "../utils/url.jsx";
 import Tab from "./tab/Tab.jsx";
 import CyberWeekPresentation from "./pagecyberweek/CyberWeekPresentation.jsx";
-import CyberWeekNews from "./pagecyberweek/CyberWeekNews.jsx";
-import CyberWeekEvents from "./pagecyberweek/CyberWeekEvents.jsx";
-import CyberWeekAwards from "./pagecyberweek/CyberWeekAwards.jsx";
-import CyberWeekSponsors from "./pagecyberweek/CyberWeekSponsors.jsx"; */
+import CyberWeekProgramme from "./pagecyberweek/CyberWeekProgramme.jsx";
+import CyberWeekPartners from "./pagecyberweek/CyberWeekPartners.jsx";
+import CyberWeekGala from "./pagecyberweek/CyberWeekGala.jsx";
+import CyberWeekContactUs from "./pagecyberweek/CyberWeekContactUs.jsx";
 
 export default class PageCyberWeek extends React.Component {
 	constructor(props) {
@@ -17,16 +17,16 @@ export default class PageCyberWeek extends React.Component {
 		this.state = {
 			tabs: [
 				"Presentation",
-				"News",
-				"Events",
-				"Sponsors",
-				"Awards",
+				"Programme",
+				"Partners",
+				"Gala_And_Awards_Night",
+				"Contact_us",
 			],
 			selectedMenu: null,
 		};
 	}
 
-	/* componentDidMount() {
+	componentDidMount() {
 		if (getUrlParameter("tab") !== null && this.state.tabs.indexOf(getUrlParameter("tab")) >= 0) {
 			this.setState({ selectedMenu: getUrlParameter("tab") });
 		}
@@ -41,9 +41,8 @@ export default class PageCyberWeek extends React.Component {
 
 	onMenuClick(m) {
 		this.props.history.push("?tab=" + m);
-	} */
+	}
 
-	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
 			<div id="PageCyberWeek" className={"page max-sized-page"}>
@@ -51,47 +50,20 @@ export default class PageCyberWeek extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/education">CYBERSECURITY WEEK LUXEMBOURG</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/cybersecurityweek">CYBERSECURITY WEEK LUXEMBOURG</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 
 					<div className="col-md-12">
-						<h1>CYBERSECURITY WEEK LUXEMBOURG</h1>
-					</div>
-
-					<div className="col-md-12 row-spaced">
-						<h3>Save the date!</h3>
-					</div>
-
-					<div className="col-md-8 offset-md-2 row-spaced">
-						<img
-							className="PageCyberWeek-image"
-							src="img/cswl_2022.png"
-							alt="CSWL 2022"
-						/>
-					</div>
-
-					<div className="col-md-12 row-spaced">
-						<p>
-							<h4>This year, CYBERSECURITY Week Luxembourg will be revamped and
-							will come up with a brand-new programme.</h4>
-						</p>
-
-						<p>
-							<h4>Keep posted, more information will be unveiled and shared with you very soon!</h4>
-						</p>
-					</div>
-
-					{/* <div className="col-md-12">
 						<Tab
-							onMenuClick={this.onMenuClick}
+							onMenuClick={(m) => this.onMenuClick(m)}
 							selectedMenu={this.state.selectedMenu}
 							labels={[
 								"Presentation",
-								"News",
-								"Events",
-								"Sponsors",
-								"Awards",
+								"Programme",
+								"Partners",
+								"Gala & Awards Night",
+								"Contact us",
 							]}
 							keys={this.state.tabs}
 							content={[
@@ -99,25 +71,25 @@ export default class PageCyberWeek extends React.Component {
 									key={this.state.tabs[0]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekNews
+								<CyberWeekProgramme
 									key={this.state.tabs[1]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekEvents
+								<CyberWeekPartners
 									key={this.state.tabs[2]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekSponsors
+								<CyberWeekGala
 									key={this.state.tabs[3]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekAwards
+								<CyberWeekContactUs
 									key={this.state.tabs[4]}
 									analytics={this.props.analytics}
 								/>,
 							]}
 						/>
-					</div> */}
+					</div>
 				</div>
 			</div>
 		);

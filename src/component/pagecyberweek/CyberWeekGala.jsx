@@ -1,11 +1,11 @@
 import React from "react";
-import "./CyberWeekAwards.css";
+import "./CyberWeekGala.css";
 
-export default class CyberWeekAwards extends React.Component {
+export default class CyberWeekGala extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
-			<div id={"CyberWeekAwards"} className="row">
+			<div id={"CyberWeekGala"} className="row">
 				<div className="col-md-12">
 					<h2>A campaign made to highlight the ecosystem’s champions</h2>
 				</div>
