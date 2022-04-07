@@ -1,6 +1,6 @@
 import React from "react";
 import "./ChallengeRegister.css";
-/* import ShadowBox from "../box/ShadowBox.jsx"; */
+import ShadowBox from "../box/ShadowBox.jsx";
 
 export default class ChallengeRegister extends React.Component {
 	constructor(props) {
@@ -254,26 +254,22 @@ export default class ChallengeRegister extends React.Component {
 							<h3>Ready to start hacking and capture the flags?</h3>
 						</div>
 
-						<div className="col-md-12 centered">
-							<h4>Registration will open soon!</h4>
-						</div>
-
-						<div className="col-md-12">
-							You can preregister on&nbsp;
-							<a href="mailto:info@cybersecurity-luxembourg.com">info@cybersecurity-luxembourg.com</a> with reference LuxSkills or
-							LCSC and by mentioning your name, year of birth and citizenship.
-						</div>
-					</div>
-
-					{/* <div className="row row-spaced">
-						<div className="col-md-6 offset-md-3">
+						<div className="col-md-6">
 							<ShadowBox
-								link="https://ecsc.hacking-lab.com/"
-								title={"Register here!"}
+								link="https://www.hacking-lab.com/events/13"
+								title={"Register for LCSC!"}
 								icon={"fas fa-flag"}
 							/>
 						</div>
-					</div> */}
+
+						<div className="col-md-6">
+							<ShadowBox
+								link="https://www.hacking-lab.com/events/13"
+								title={"Register for LuxSkills!"}
+								icon={"fas fa-flag"}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
