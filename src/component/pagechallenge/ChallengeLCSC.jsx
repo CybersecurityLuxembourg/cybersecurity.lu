@@ -141,7 +141,11 @@ export default class ChallengeLCSC extends React.Component {
 
 						<div className="col-md-12">
 							<div className="shadow-section blue-shadow-section centered-shadow-section">
-								<h5><b>LCSC finals</b><br/>Mid-July</h5>
+								<h5>
+									<b>LCSC finals with challenges on the CyberRange owned
+									by the Directorate of Defence of the Luxembourg Ministry
+									of Foreign and European Affairs</b><br/>9th of July
+								</h5>
 							</div>
 						</div>
 
