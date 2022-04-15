@@ -6,107 +6,27 @@ import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
 import Company from "../item/Company.jsx";
 import Message from "../box/Message.jsx";
-import SimpleTable from "../table/SimpleTable.jsx";
 
 export default class Cyber4GrowthPresentation extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getVCs = this.getVCs.bind(this);
-
 		this.state = {
-			vcEntities: null,
-			mediaEntities: null,
 			partners: null,
 		};
 
 		this.partPresentation = React.createRef();
-		this.partWhy = React.createRef();
 		this.partPrograms = React.createRef();
 		this.partPartners = React.createRef();
-		this.partVC = React.createRef();
-		this.partMedia = React.createRef();
 	}
 
 	componentDidMount() {
-		this.getVCs();
-		this.getMedia();
 		this.getCyber4GrowthPartners();
 	}
 
 	componentDidUpdate(prevProps) {
-		if (!prevProps.analytics && this.props.analytics && !this.state.vcEntities) {
-			this.getVCs();
-		}
-
-		if (!prevProps.analytics && this.props.analytics && !this.state.mediaEntities) {
-			this.getMedia();
-		}
-
 		if (!prevProps.analytics && this.props.analytics && !this.state.partners) {
 			this.getCyber4GrowthPartners();
-		}
-	}
-
-	getVCs() {
-		if (this.props.analytics && this.props.analytics.taxonomy_values) {
-			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ECOSYSTEM ROLE" && v.name === "VENTURE CAPITAL");
-
-			if (values.length > 0) {
-				this.setState({
-					vcEntities: null,
-				});
-
-				const params = dictToURI({
-					taxonomy_values: values[0].id,
-				});
-
-				getRequest.call(this, "public/get_public_companies?" + params, (data) => {
-					this.setState({
-						vcEntities: data,
-					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
-				});
-			} else {
-				this.setState({
-					vcEntities: [],
-				});
-			}
-		}
-	}
-
-	getMedia() {
-		if (this.props.analytics && this.props.analytics.taxonomy_values) {
-			const values = this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "ECOSYSTEM ROLE" && v.name === "MEDIA");
-
-			if (values.length > 0) {
-				this.setState({
-					mediaEntities: null,
-				});
-
-				const params = dictToURI({
-					taxonomy_values: values[0].id,
-				});
-
-				getRequest.call(this, "public/get_public_companies?" + params, (data) => {
-					this.setState({
-						mediaEntities: data,
-					});
-				}, (response) => {
-					nm.warning(response.statusText);
-				}, (error) => {
-					nm.error(error.message);
-				});
-			} else {
-				this.setState({
-					mediaEntities: [],
-				});
-			}
 		}
 	}
 
@@ -171,12 +91,6 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							</h2>
 							<h2 onClick={() => this.partPartners.current.scrollIntoView({ behavior: "smooth" })}>
 								Partners
-							</h2>
-							<h2 onClick={() => this.partVC.current.scrollIntoView({ behavior: "smooth" })}>
-								Venture capital
-							</h2>
-							<h2 onClick={() => this.partMedia.current.scrollIntoView({ behavior: "smooth" })}>
-								Media
 							</h2>
 						</div>
 					</div>
@@ -394,124 +308,6 @@ export default class Cyber4GrowthPresentation extends React.Component {
 							}
 
 							{!this.state.partners
-								&& <div className="col-md-12">
-									<Loading
-										height={200}
-									/>
-								</div>
-							}
-						</div>
-					</div>
-				</div>
-
-				<div className="row">
-					<div className="col-md-12">
-						<h2 ref={this.partVC}>Venture capital</h2>
-					</div>
-
-					<div className="col-md-3 order-1 order-md-2">
-						<div className="shortcut-box">
-							<h4>You want to stand in the VC list?</h4>
-
-							<h4>
-								Please contact:
-							</h4>
-
-							<h4>
-								<a
-									href={"#"}
-									onClick={() => Cyber4GrowthPresentation.copyToClipboard("team@cybersecurity-luxembourg.com")}>
-									team@cybersecurity-luxembourg.com
-								</a>
-							</h4>
-						</div>
-					</div>
-
-					<div className="col-md-9 order-2 order-md-1">
-						<div className="row">
-							{this.state.vcEntities && this.state.vcEntities.length === 0
-								&& <div className="col-md-12">
-									<Message
-										text={"No VC found"}
-										height={200}
-									/>
-								</div>
-							}
-
-							{this.state.vcEntities && this.state.vcEntities.length > 0
-								&& <div className="col-md-12">
-									<SimpleTable
-										elements={this.state.vcEntities.map((a, i) => [a, i])}
-										numberDisplayed={6}
-										buildElement={(a) => <div className="col-md-12">
-											<Company
-												info={a}
-											/>
-										</div>}
-									/>
-								</div>
-							}
-
-							{!this.state.vcEntities
-								&& <div className="col-md-12">
-									<Loading
-										height={200}
-									/>
-								</div>
-							}
-						</div>
-					</div>
-				</div>
-
-				<div className="row">
-					<div className="col-md-12">
-						<h2 ref={this.partMedia}>Media</h2>
-					</div>
-
-					<div className="col-md-3 order-1 order-md-2">
-						<div className="shortcut-box">
-							<h4>You want to stand in the media list?</h4>
-
-							<h4>
-								Please contact:
-							</h4>
-
-							<h4>
-								<a
-									href={"#"}
-									onClick={() => Cyber4GrowthPresentation.copyToClipboard("team@cybersecurity-luxembourg.com")}>
-									team@cybersecurity-luxembourg.com
-								</a>
-							</h4>
-						</div>
-					</div>
-
-					<div className="col-md-9 order-2 order-md-1">
-						<div className="row row-spaced">
-							{this.state.mediaEntities && this.state.mediaEntities.length === 0
-								&& <div className="col-md-12">
-									<Message
-										text={"No media found"}
-										height={200}
-									/>
-								</div>
-							}
-
-							{this.state.mediaEntities && this.state.mediaEntities.length > 0
-								&& <div className="col-md-12">
-									<SimpleTable
-										elements={this.state.mediaEntities.map((a, i) => [a, i])}
-										numberDisplayed={6}
-										buildElement={(a) => <div className="col-md-12">
-											<Company
-												info={a}
-											/>
-										</div>}
-									/>
-								</div>
-							}
-
-							{!this.state.mediaEntities
 								&& <div className="col-md-12">
 									<Loading
 										height={200}
