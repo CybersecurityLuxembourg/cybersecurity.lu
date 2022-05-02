@@ -24,11 +24,13 @@ export default class CyberWeekContactUs extends React.Component {
 						<h2>Contact us</h2>
 					</div>
 
-					<div className="col-md-12">
-						<h3>Contact the Cybersecurity Week Luxembourg team via:</h3>
+					<div className="col-md-12 row-spaced">
+						<h3>Contact the Cybersecurity Week organisation team via:</h3>
 					</div>
 
-					<div className="col-md-6">
+					<div className="col-md-2"/>
+
+					<div className="col-md-4">
 						<ShadowBox
 							onClick={() => CyberWeekContactUs.copyToClipboard("+352 274 00 98 601")}
 							title={"Phone"}
@@ -37,7 +39,7 @@ export default class CyberWeekContactUs extends React.Component {
 						/>
 					</div>
 
-					<div className="col-md-6">
+					<div className="col-md-4">
 						<ShadowBox
 							onClick={() => CyberWeekContactUs.copyToClipboard("info@cybersecurityweek.lu")}
 							title={"Email"}
