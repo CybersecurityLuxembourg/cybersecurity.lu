@@ -284,9 +284,13 @@ export default class InsideApp extends React.Component {
 							/>}
 						/>
 
+						{/* REDIRECTIONS */}
+
 						<Route exact path="/gala">
 							<Redirect to="/cybersecurityweek?tab=Gala_And_Awards_Night" />
 						</Route>
+
+						{/* 404 */}
 
 						<Route
 							render={(props) => <Page404
