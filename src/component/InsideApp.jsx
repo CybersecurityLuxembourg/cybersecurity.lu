@@ -1,6 +1,6 @@
 import React from "react";
 import "./InsideApp.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../utils/request.jsx";
 import GovBar from "./bar/GovBar.jsx";
@@ -283,6 +283,10 @@ export default class InsideApp extends React.Component {
 								{...props}
 							/>}
 						/>
+
+						<Route exact path="/gala">
+							<Redirect to="/cybersecurityweek?tab=Gala_And_Awards_Night" />
+						</Route>
 
 						<Route
 							render={(props) => <Page404
