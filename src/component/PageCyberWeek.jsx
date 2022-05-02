@@ -16,11 +16,11 @@ export default class PageCyberWeek extends React.Component {
 
 		this.state = {
 			tabs: [
-				"Presentation",
+				"About",
 				"Programme",
 				"Partners",
-				"Gala_And_Awards_Night",
-				"Contact_us",
+				"Gala",
+				"Contact",
 			],
 			selectedMenu: null,
 		};
@@ -59,7 +59,7 @@ export default class PageCyberWeek extends React.Component {
 							onMenuClick={(m) => this.onMenuClick(m)}
 							selectedMenu={this.state.selectedMenu}
 							labels={[
-								"Presentation",
+								"About CSWL 2022",
 								"Programme",
 								"Partners",
 								"Gala & Awards Night",
