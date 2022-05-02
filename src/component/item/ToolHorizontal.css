@@ -58,8 +58,8 @@
     .ToolHorizontal .card-body button {
         display: block;
         position: absolute;
-        bottom: 10px;
-        right: 15px;
+        bottom: 15px;
+        right: 100px;
     }
 }
 
@@ -72,21 +72,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-@media (min-width: 0px) {
-    .ToolHorizontal .card-body button {
-        display: none;
-    }
-}
-
-@media (min-width: 500px) {
-    .ToolHorizontal .card-body button {
-        display: block;
-        position: absolute;
-        bottom: 10px;
-        right: 15px;
-    }
 }
 
 .ToolHorizontal .card-text {

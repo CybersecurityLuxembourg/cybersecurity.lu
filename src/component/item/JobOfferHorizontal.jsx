@@ -3,6 +3,7 @@ import "./JobOfferHorizontal.css";
 import { Link } from "react-router-dom";
 import Chip from "../form/Chip.jsx";
 import { dateToString } from "../../utils/date.jsx";
+import CardSocialMedia from "./CardSocialMedia.jsx";
 
 export default class JobOfferHorizontal extends Component {
 	constructor(props) {
@@ -34,6 +35,10 @@ export default class JobOfferHorizontal extends Component {
 					<div className="card-date">
 						{dateToString(this.props.info.publication_date, "DD MMM YYYY")}
 					</div>
+
+					<CardSocialMedia
+						article={this.props.info}
+					/>
 				</div>
 			</div>
 		);

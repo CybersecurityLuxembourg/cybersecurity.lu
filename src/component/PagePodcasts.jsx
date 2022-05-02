@@ -15,39 +15,42 @@ export default class PagePodcasts extends React.Component {
 		super(props);
 
 		this.state = {
-			podcasts: null,
+			ltacPodcasts: null,
+			breakfastPodcasts: null,
 		};
 	}
 
 	componentDidMount() {
-		this.getPodcasts();
+		this.getLTACPodcasts();
+		this.getBreakfastPodcasts();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (!prevProps.analytics && this.props.analytics) {
-			this.getPodcasts();
+			this.getLTACPodcasts();
+			this.getBreakfastPodcasts();
 		}
 	}
 
-	getPodcasts(page) {
+	getLTACPodcasts(page) {
 		if (this.props.analytics
 			&& this.props.analytics.taxonomy_values) {
 			const values = this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "ARTICLE CATEGORY")
-				.filter((v) => v.name === "LËTZ TALK ABOUT CYBER" || v.name === "CYBERSECURITY BREAKFAST");
+				.filter((v) => v.name === "LËTZ TALK ABOUT CYBER");
 
 			if (values.length > 0) {
 				const params = {
 					type: "NEWS",
 					include_tags: "true",
 					taxonomy_values: values.map((v) => v.id).join(","),
-					per_page: 5,
+					per_page: 3,
 					page: page === undefined ? 1 : page,
 				};
 
 				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
 					this.setState({
-						podcasts: data,
+						ltacPodcasts: data,
 					});
 				}, (response) => {
 					nm.warning(response.statusText);
@@ -56,7 +59,40 @@ export default class PagePodcasts extends React.Component {
 				});
 			} else {
 				this.setState({
-					podcasts: { pagination: { total: 0 } },
+					ltacPodcasts: { pagination: { total: 0 } },
+				});
+			}
+		}
+	}
+
+	getBreakfastPodcasts(page) {
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ARTICLE CATEGORY")
+				.filter((v) => v.name === "CYBERSECURITY BREAKFAST");
+
+			if (values.length > 0) {
+				const params = {
+					type: "NEWS",
+					include_tags: "true",
+					taxonomy_values: values.map((v) => v.id).join(","),
+					per_page: 3,
+					page: page === undefined ? 1 : page,
+				};
+
+				getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
+					this.setState({
+						breakfastPodcasts: data,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
+			} else {
+				this.setState({
+					breakfastPodcasts: { pagination: { total: 0 } },
 				});
 			}
 		}
@@ -80,17 +116,23 @@ export default class PagePodcasts extends React.Component {
 					</div>
 
 					<div className="col-md-12">
-						CYBERSECURITY Breakfast Podcast is a monthly series that tackles trending
-						or pressing cybersecurity topics. National and international experts from
-						various field of activities discuss their views and experiences.
+						<h2>Lëtz Talk About Cyber</h2>
+					</div>
+
+					<div className="col-md-12 row-spaced">
+						Lëtz Talk About Cyber series invites key cybersecurity professionals, who
+						stand out with their achievements, experiences and personal stories, to share
+						their insightful journey. Hosted by Mélanie Delannoy, Communications & PR
+						Advisor; Cybersec enthusiast. It is a monthly release, disseminated via the
+						CYBERSECURITY Luxembourg <Link to="newsletter">Newsletter</Link>.
 					</div>
 
 					<div className="col-md-12">
-						{this.state.podcasts && this.state.podcasts.pagination.total > 0
+						{this.state.ltacPodcasts && this.state.ltacPodcasts.pagination.total > 0
 							&& <DynamicTable
-								items={this.state.podcasts.items}
-								pagination={this.state.podcasts.pagination}
-								changePage={(page) => this.getNews(page)}
+								items={this.state.ltacPodcasts.items}
+								pagination={this.state.ltacPodcasts.pagination}
+								changePage={(page) => this.getLTACPodcasts(page)}
 								buildElement={(a) => <div className="col-md-12">
 									<ToolHorizontal
 										info={a}
@@ -101,14 +143,54 @@ export default class PagePodcasts extends React.Component {
 							/>
 						}
 
-						{this.state.podcasts && this.state.podcasts.pagination.total === 0
+						{this.state.ltacPodcasts && this.state.ltacPodcasts.pagination.total === 0
 							&& <Message
 								text={"No podcast found"}
 								height={300}
 							/>
 						}
 
-						{!this.state.podcasts
+						{!this.state.ltacPodcasts
+							&& <Loading
+								height={300}
+							/>
+						}
+					</div>
+
+					<div className="col-md-12">
+						<h2>CYBERSECURITY Breakfast</h2>
+					</div>
+
+					<div className="col-md-12">
+						CYBERSECURITY Breakfast Podcast is a monthly series that tackles trending
+						or pressing cybersecurity topics. National and international experts from
+						various field of activities discuss their views and experiences.
+					</div>
+
+					<div className="col-md-12">
+						{this.state.breakfastPodcasts && this.state.breakfastPodcasts.pagination.total > 0
+							&& <DynamicTable
+								items={this.state.breakfastPodcasts.items}
+								pagination={this.state.breakfastPodcasts.pagination}
+								changePage={(page) => this.getBreakfastPodcasts(page)}
+								buildElement={(a) => <div className="col-md-12">
+									<ToolHorizontal
+										info={a}
+										analytics={this.props.analytics}
+									/>
+								</div>
+								}
+							/>
+						}
+
+						{this.state.breakfastPodcasts && this.state.breakfastPodcasts.pagination.total === 0
+							&& <Message
+								text={"No podcast found"}
+								height={300}
+							/>
+						}
+
+						{!this.state.breakfastPodcasts
 							&& <Loading
 								height={300}
 							/>

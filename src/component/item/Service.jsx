@@ -4,6 +4,7 @@ import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
+import CardSocialMedia from "./CardSocialMedia.jsx";
 
 export default class Service extends Component {
 	constructor(props) {
@@ -64,6 +65,10 @@ export default class Service extends Component {
 				>
 					Know more
 				</button>
+
+				<CardSocialMedia
+					article={this.props.info}
+				/>
 			</div>
 		</div>;
 	}

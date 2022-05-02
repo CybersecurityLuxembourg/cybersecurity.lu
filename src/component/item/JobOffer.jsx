@@ -3,6 +3,7 @@ import "./JobOffer.css";
 import { Link } from "react-router-dom";
 import dompurify from "dompurify";
 import { dateToString } from "../../utils/date.jsx";
+import CardSocialMedia from "./CardSocialMedia.jsx";
 
 export default class JobOffer extends Component {
 	constructor(props) {
@@ -29,6 +30,10 @@ export default class JobOffer extends Component {
 				>
 					Know more
 				</button>
+
+				<CardSocialMedia
+					article={this.props.info}
+				/>
 
 				{this.props.hidePublicationDate === undefined
 					|| this.props.hidePublicationDate === false
