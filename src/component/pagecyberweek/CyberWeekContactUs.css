@@ -9,4 +9,6 @@
 
 #CyberWeekContactUs .ShadowBox-content div {
 	opacity: 1 !important;
+	font-size: 20px;
+	font-weight: bold;
 }
