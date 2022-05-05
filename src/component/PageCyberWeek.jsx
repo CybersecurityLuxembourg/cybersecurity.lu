@@ -18,7 +18,7 @@ export default class PageCyberWeek extends React.Component {
 			tabs: [
 				"About",
 				"Programme",
-				"Partners",
+				"Sponsor",
 				"Gala",
 				"Contact",
 			],
@@ -61,7 +61,7 @@ export default class PageCyberWeek extends React.Component {
 							labels={[
 								"About CSWL 2022",
 								"Programme",
-								"Partners",
+								"Become a sponsor",
 								"Gala & Awards Night",
 								"Contact us",
 							]}

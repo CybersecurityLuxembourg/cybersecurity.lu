@@ -1,5 +1,7 @@
 import React from "react";
 import "./CyberWeekGala.css";
+import ShadowBox from "../box/ShadowBox.jsx";
+import { getPrivateAppURL } from "../../utils/env.jsx";
 
 export default class CyberWeekGala extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
@@ -68,13 +70,37 @@ export default class CyberWeekGala extends React.Component {
 					<div className="col-md-12">
 						<h3>How to apply?</h3>
 
-						<p>Dedicated forms</p>
+						<p>
+							Create an account or log in to our community app to reach
+							the questionnaire. The jury will determine if you are the professional
+							of the year.
+						</p>
+					</div>
+
+					<div className="col-md-2"/>
+
+					<div className="col-md-4">
+						<ShadowBox
+							onClick={() => window.open(getPrivateAppURL() + "form?tab=1", "_blank")}
+							title={"DPO award"}
+							icon={"fas fa-user-lock"}
+							abstract={"Connect and fill in the questionnaire"}
+						/>
+					</div>
+
+					<div className="col-md-4">
+						<ShadowBox
+							onClick={() => window.open(getPrivateAppURL() + "form?tab=2", "_blank")}
+							title={"CISO award"}
+							icon={"fas fa-user-shield"}
+							abstract={"Connect and fill in the questionnaire"}
+						/>
 					</div>
 
 					<div className="col-md-12">
 						<h3>Attend the Gala & Awards Night</h3>
 
-						<p>Register</p>
+						<p>Registration will open soon. Keep posted.</p>
 					</div>
 				</div>
 			</div>
