@@ -33,16 +33,16 @@ export default class CyberWeekGala extends React.Component {
 							</li>
 							<li>
 								Cybersecurity & Privacy Solution
-								of the Year (sponsored by PwC)
+								of the Year (sponsored by <a href="https://www.pwc.lu/" target="_blank" rel="noreferrer">PwC Luxembourg</a>)
 							</li>
 						</ul>
 					</div>
 
 					<div className="col-md-12">
-						<h4>
+						<h3>
 							Applications are now open for the CISO of the
 							Year & DPO of the Year Awards.
-						</h4>
+						</h3>
 					</div>
 
 					<div className="col-md-12">

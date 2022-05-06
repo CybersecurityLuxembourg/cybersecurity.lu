@@ -1,6 +1,7 @@
 import React from "react";
 import "./CyberWeekPresentation.css";
 import { Link } from "react-router-dom";
+import ShadowBox from "../box/ShadowBox.jsx";
 
 export default class CyberWeekPresentation extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
@@ -16,7 +17,7 @@ export default class CyberWeekPresentation extends React.Component {
 						/>
 					</div>
 
-					<div className="col-md-12">
+					<div className="col-md-12 row-spaced">
 						<p>
 							For the first time, CYBERSECURITY Luxembourg intends to
 							bring together the <b>entire cybersecurity ecosystem and key
@@ -38,6 +39,16 @@ export default class CyberWeekPresentation extends React.Component {
 							on the event website as we go. Keep an eye on
 							the <Link to="/cybersecurityweek?tab=Programme">Programme</Link> tab.
 						</p>
+					</div>
+
+					<div className="col-md-3"/>
+
+					<div className="col-md-6">
+						<ShadowBox
+							onClick={() => window.open("https://www.xing.com/events/cybersecurity-week-luxembourg-3940793", "_blank")}
+							title="Register to the CSWL"
+							icon="fas fa-marker"
+						/>
 					</div>
 				</div>
 			</div>

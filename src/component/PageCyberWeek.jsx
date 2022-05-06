@@ -9,6 +9,7 @@ import CyberWeekProgramme from "./pagecyberweek/CyberWeekProgramme.jsx";
 import CyberWeekPartners from "./pagecyberweek/CyberWeekPartners.jsx";
 import CyberWeekGala from "./pagecyberweek/CyberWeekGala.jsx";
 import CyberWeekContactUs from "./pagecyberweek/CyberWeekContactUs.jsx";
+import CyberWeekRegister from "./pagecyberweek/CyberWeekRegister.jsx";
 
 export default class PageCyberWeek extends React.Component {
 	constructor(props) {
@@ -21,6 +22,7 @@ export default class PageCyberWeek extends React.Component {
 				"Sponsor",
 				"Gala",
 				"Contact",
+				"Register",
 			],
 			selectedMenu: null,
 		};
@@ -64,6 +66,7 @@ export default class PageCyberWeek extends React.Component {
 								"Become a sponsor",
 								"Gala & Awards Night",
 								"Contact us",
+								"Register",
 							]}
 							keys={this.state.tabs}
 							content={[
@@ -85,6 +88,10 @@ export default class PageCyberWeek extends React.Component {
 								/>,
 								<CyberWeekContactUs
 									key={this.state.tabs[4]}
+									analytics={this.props.analytics}
+								/>,
+								<CyberWeekRegister
+									key={this.state.tabs[5]}
 									analytics={this.props.analytics}
 								/>,
 							]}
