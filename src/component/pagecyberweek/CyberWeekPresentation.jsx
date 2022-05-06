@@ -51,7 +51,7 @@ export default class CyberWeekPresentation extends React.Component {
 
 					<div className="col-md-6">
 						<ShadowBox
-							onClick={() => window.open("https://www.xing.com/events/cybersecurity-week-luxembourg-3940793", "_blank")}
+							onClick={() => window.open("https://www.xing.com/events/3949197", "_blank")}
 							title="Register to the CSWL"
 							icon="fas fa-marker"
 						/>
