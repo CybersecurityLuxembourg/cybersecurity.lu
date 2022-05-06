@@ -55,7 +55,7 @@ export default class CyberWeekGala extends React.Component {
 								and increase your credibility
 							</li>
 							<li>
-								Evaluation by peers
+								Evaluation by peers, expand your network
 							</li>
 							<li>
 								Become even more active in the cybersecurity

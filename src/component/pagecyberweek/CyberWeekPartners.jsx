@@ -40,7 +40,7 @@ export default class CyberWeekPartners extends React.Component {
 					<div className="col-md-6">
 						<ShadowBox
 							onClick={() => window.open("pdf/CSWL_2022_packages.pdf", "_blank")}
-							title="Download the package description"
+							title="Download the packages description"
 							icon="fas fa-file-pdf"
 						/>
 					</div>
