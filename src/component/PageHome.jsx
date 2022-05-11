@@ -246,7 +246,7 @@ export default class PageHome extends React.Component {
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>Coming events</h1>
+								<h1>Upcoming events</h1>
 							</div>
 
 							<div className="col-md-12">
