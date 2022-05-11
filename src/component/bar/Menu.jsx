@@ -94,12 +94,12 @@ export default class Menu extends React.Component {
 					</Link>
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
-				{/* <NavDropdown.Item>
+				<NavDropdown.Item>
 					<Link to="/education">
 						<div className="Menu-title">Education</div>
 					</Link>
 				</NavDropdown.Item>
-				<NavDropdown.Divider /> */}
+				<NavDropdown.Divider />
 				<NavDropdown.Item>
 					<Link to="/dashboard">
 						<div className={"Menu-image"}>

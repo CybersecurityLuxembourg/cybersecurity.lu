@@ -5,18 +5,16 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { getUrlParameter } from "../utils/url.jsx";
 import Tab from "./tab/Tab.jsx";
 import EducationEntities from "./pageeducation/EducationEntities.jsx";
-import EducationTrainingAndCourses from "./pageeducation/EducationTrainingAndCourses.jsx";
+import EducationTraining from "./pageeducation/EducationTraining.jsx";
 
 export default class PageEducation extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.onMenuClick = this.onMenuClick.bind(this);
-
 		this.state = {
 			tabs: [
-				"Entities",
-				"TrainingAndCourses",
+				"entities",
+				"trainings",
 			],
 			selectedMenu: null,
 		};
@@ -52,20 +50,20 @@ export default class PageEducation extends React.Component {
 
 					<div className="col-md-12">
 						<Tab
-							onMenuClick={this.onMenuClick}
+							onMenuClick={(m) => this.onMenuClick(m)}
 							selectedMenu={this.state.selectedMenu}
 							labels={[
 								"Entities",
-								"Training and courses",
+								"Trainings",
 							]}
 							keys={this.state.tabs}
 							content={[
 								<EducationEntities
-									key={this.state.tabs[1]}
+									key={this.state.tabs[0]}
 									analytics={this.props.analytics}
 								/>,
-								<EducationTrainingAndCourses
-									key={this.state.tabs[2]}
+								<EducationTraining
+									key={this.state.tabs[1]}
 									analytics={this.props.analytics}
 								/>,
 							]}
