@@ -1,0 +1,86 @@
+
+#PageHomeComingEvents .PageHomeComingEvents-date,
+#PageHomeComingEvents .PageHomeComingEvents-title {
+	display: inline;
+}
+
+#PageHomeComingEvents a {
+	text-decoration: none;
+}
+
+#PageHomeComingEvents .PageHomeComingEvents-article {
+	width: 100%;
+	color: black;
+	padding: 1px 5px;
+	display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: transparent 0.16em solid;
+}
+
+#PageHomeComingEvents .PageHomeComingEvents-article-selected {
+	background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#PageHomeComingEvents .PageHomeComingEvents-article:hover {
+    border: black 0.16em solid;
+}
+
+@media (min-width: 0px) {
+ 	#PageHomeComingEvents .PageHomeComingEvents-image {
+        position:  relative;
+        width: 100%;
+        height: 214px;
+        background: repeating-linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.1) 10px,
+          rgba(0, 0, 0, 0) 10px,
+          rgba(0, 0, 0, 0) 20px
+        ) !important;
+    }
+}
+
+@media (min-width: 500px) {
+    #PageHomeComingEvents .PageHomeComingEvents-image {
+    	height: 214px;
+        object-fit: cover;
+        display: flex;
+        margin: auto;
+        flex: 0 0 220px;
+        overflow: hidden;
+    }
+}
+
+#PageHomeComingEvents .PageHomeComingEvents-image img,
+#PageHomeComingEvents .PageHomeComingEvents-image .NoImage {
+	position: absolute;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    border-radius: unset !important;
+    -webkit-animation: slide 0.5s forwards;
+    animation: slide 0.5s forwards;
+}
+
+@keyframes slide {
+	0% { left: 30px; }
+    100% { left: 0%; }
+}
+
+#PageHomeComingEvents .NoImage {
+    background: repeating-linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1) 10px,
+      rgba(0, 0, 0, 0) 10px,
+      rgba(0, 0, 0, 0) 20px
+    ) !important;
+}
+
+#PageHomeComingEvents .NoImage-logo i {
+    color: rgba(0, 0, 0, 0.1) !important;
+}

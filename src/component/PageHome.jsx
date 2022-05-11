@@ -3,13 +3,12 @@ import "./PageHome.css";
 import { Link } from "react-router-dom";
 import ShadowBoxPcDoctor from "./box/ShadowBoxPcDoctor.jsx";
 import ShadowBoxPureStartup from "./box/ShadowBoxPureStartup.jsx";
-// import ShadowBoxEducation from "./box/ShadowBoxEducation.jsx";
 import ShadowBoxCyber4Growth from "./box/ShadowBoxCyber4Growth.jsx";
 import ShadowBoxECSC from "./box/ShadowBoxECSC.jsx";
-// import ShadowBoxJobs from "./box/ShadowBoxJobs.jsx";
 import ShadowBox from "./box/ShadowBox.jsx";
 import PageHomeLatestNews from "./pagehome/PageHomeLatestNews.jsx";
 import PageHomeCallToAction from "./pagehome/PageHomeCallToAction.jsx";
+import PageHomeComingEvents from "./pagehome/PageHomeComingEvents.jsx";
 import FlashNews from "./bar/FlashNews.jsx";
 import { getPrivateAppURL } from "../utils/env.jsx";
 
@@ -240,31 +239,24 @@ export default class PageHome extends React.Component {
 					</div>
 				</div>
 
-				{/* <div className="red-bordered">
+				<div className="black-bordered">
 					{this.getBackgroundPetal()}
 					{this.getBackgroundPetalBottom()}
 
 					<div className="max-sized-page">
 						<div className="row">
 							<div className="col-md-12">
-								<h1>Education & jobs</h1>
+								<h1>Coming events</h1>
 							</div>
 
-							<div className="col-md-6">
-								<ShadowBoxEducation
-									color={"red"}
-									{...this.props}
-								/>
-							</div>
-							<div className="col-md-6">
-								<ShadowBoxJobs
-									color={"red"}
-									{...this.props}
+							<div className="col-md-12">
+								<PageHomeComingEvents
+									analytics={this.props.analytics}
 								/>
 							</div>
 						</div>
 					</div>
-				</div> */}
+				</div>
 			</div>
 		);
 	}
