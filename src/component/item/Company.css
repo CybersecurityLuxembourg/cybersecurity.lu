@@ -14,7 +14,7 @@
 }
 
 .Company:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: #f2fbff;
 }
 
 .Company .card-horizontal {

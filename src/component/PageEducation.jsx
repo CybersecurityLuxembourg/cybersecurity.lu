@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { getUrlParameter } from "../utils/url.jsx";
 import Tab from "./tab/Tab.jsx";
-import EducationEntities from "./pageeducation/EducationEntities.jsx";
+import EducationScholarship from "./pageeducation/EducationScholarship.jsx";
 import EducationTraining from "./pageeducation/EducationTraining.jsx";
 
 export default class PageEducation extends React.Component {
@@ -13,8 +13,8 @@ export default class PageEducation extends React.Component {
 
 		this.state = {
 			tabs: [
+				"scholarship",
 				"entities",
-				"trainings",
 			],
 			selectedMenu: null,
 		};
@@ -53,16 +53,16 @@ export default class PageEducation extends React.Component {
 							onMenuClick={(m) => this.onMenuClick(m)}
 							selectedMenu={this.state.selectedMenu}
 							labels={[
-								"Entities",
 								"Trainings",
+								"Scholarship",
 							]}
 							keys={this.state.tabs}
 							content={[
-								<EducationEntities
+								<EducationTraining
 									key={this.state.tabs[0]}
 									analytics={this.props.analytics}
 								/>,
-								<EducationTraining
+								<EducationScholarship
 									key={this.state.tabs[1]}
 									analytics={this.props.analytics}
 								/>,
