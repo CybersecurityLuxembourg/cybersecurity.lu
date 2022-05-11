@@ -5,3 +5,8 @@
 #CyberWeekGala .ShadowBox h3 {
 	font-size: 25px !important;
 }
+
+#CyberWeekGala .CyberWeekGala-image {
+	width: 100%;
+	margin-bottom: 20px;
+}

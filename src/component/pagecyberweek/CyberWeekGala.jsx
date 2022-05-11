@@ -10,6 +10,14 @@ export default class CyberWeekGala extends React.Component {
 			<div id={"CyberWeekGala"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
+						<img
+							className="CyberWeekGala-image"
+							src="img/cswl_gala_banner_2022.jpg"
+							alt="CSWL 2022"
+						/>
+					</div>
+
+					<div className="col-md-12">
 						<h2>Gala & Awards Night</h2>
 					</div>
 
