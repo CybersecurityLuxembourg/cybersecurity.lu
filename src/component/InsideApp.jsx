@@ -27,7 +27,7 @@ import PageMap from "./PageMap.jsx";
 import PageCompany from "./PageCompany.jsx";
 import PagePublicSector from "./PagePublicSector.jsx";
 import PageCivilSociety from "./PageCivilSociety.jsx";
-/* import PageEducation from "./PageEducation.jsx"; */
+import PageEducation from "./PageEducation.jsx";
 import PageNewsletter from "./PageNewsletter.jsx";
 import PageCSB from "./PageCSB.jsx";
 import PageLTAC from "./PageLTAC.jsx";
@@ -192,13 +192,13 @@ export default class InsideApp extends React.Component {
 								{...props}
 							/>}
 						/>
-						{/* <Route
+						<Route
 							path="/education"
 							render={(props) => <PageEducation
 								analytics={this.state.analytics}
 								{...props}
 							/>}
-						/> */}
+						/>
 						<Route
 							path="/dashboard"
 							render={(props) => <PageDashboard
