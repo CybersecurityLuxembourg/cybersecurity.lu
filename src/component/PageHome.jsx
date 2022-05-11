@@ -150,7 +150,9 @@ export default class PageHome extends React.Component {
 							</div>
 
 							<div className="col-md-12">
-								<PageHomeLatestNews/>
+								<PageHomeLatestNews
+									analytics={this.props.analytics}
+								/>
 							</div>
 						</div>
 					</div>
