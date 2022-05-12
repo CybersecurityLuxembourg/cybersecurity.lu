@@ -1,5 +1,5 @@
 import React from "react";
-import "./PageHomeLatestNews.css";
+import "./PageHomeComingEvents.css";
 import { Link } from "react-router-dom";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
@@ -8,8 +8,9 @@ import NoImage from "../box/NoImage.jsx";
 import Message from "../box/Message.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 import { dictToURI } from "../../utils/url.jsx";
+import { dateToString } from "../../utils/date.jsx";
 
-export default class PageHomeLatestNews extends React.Component {
+export default class PageHomeComingEvents extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -29,42 +30,28 @@ export default class PageHomeLatestNews extends React.Component {
 		});
 	}
 
-	componentDidUpdate(prevProps) {
-		if (!prevProps.analytics && this.props.analytics) {
-			this.getNews();
-		}
-	}
-
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
 	}
 
 	getNews() {
-		if (this.props.analytics) {
-			const params = {
-				type: "NEWS",
-				per_page: 15,
-				include_tags: true,
-			};
+		const params = {
+			type: "EVENT",
+			per_page: 5,
+			order_by: "start_date",
+			order: "asc",
+			min_end_date: dateToString(new Date()),
+		};
 
-			getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
-				const values = this.props.analytics.taxonomy_values
-					.filter((v) => v.category === "ARTICLE CATEGORY")
-					.filter((v) => v.name === "CALL TO ACTION");
-
-				if (values.length > 0) {
-					this.setState({
-						news: data.items
-							.filter((a) => a.taxonomy_tags.indexOf(values[0].id) < 0)
-							.slice(0, 5),
-					});
-				}
-			}, (response) => {
-				nm.warning(response.statusText);
-			}, (error) => {
-				nm.error(error.message);
+		getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
+			this.setState({
+				news: data,
 			});
-		}
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
 	}
 
 	changeNews() {
@@ -80,12 +67,12 @@ export default class PageHomeLatestNews extends React.Component {
 	}
 
 	getBoxContent(article, i) {
-		return <div className={"PageHomeLatestNews-article "
-			+ (this.state.selectedNews === i && "PageHomeLatestNews-article-selected")}>
-			<div className={"PageHomeLatestNews-date"}>
-				{article.publication_date}&nbsp;-&nbsp;
+		return <div className={"PageHomeComingEvents-article "
+			+ (this.state.selectedNews === i && "PageHomeComingEvents-article-selected")}>
+			<div className={"PageHomeComingEvents-date"}>
+				{article.start_date.split("T")[0]}&nbsp;-&nbsp;
 			</div>
-			<div className={"PageHomeLatestNews-title"}>
+			<div className={"PageHomeComingEvents-title"}>
 				{article.title}
 			</div>
 		</div>;
@@ -100,22 +87,22 @@ export default class PageHomeLatestNews extends React.Component {
 			</div>;
 		}
 
-		if (this.state.news.length === 0) {
+		if (this.state.news.pagination.total === 0) {
 			return <div className={"col-md-12"}>
 				<Message
-					text={"No news found"}
+					text={"No call to action found"}
 					height={300}
 				/>
 			</div>;
 		}
 
-		return <div id="PageHomeLatestNews" className={"row"}>
+		return <div id="PageHomeComingEvents" className={"row"}>
 			<div className={"col-md-4"}>
-				<div className={"PageHomeLatestNews-image"}>
-					{this.state.news[this.state.selectedNews].image
+				<div className={"PageHomeComingEvents-image"}>
+					{this.state.news.items[this.state.selectedNews].image
 						? <img
 							src={getApiURL() + "public/get_public_image/"
-								+ this.state.news[this.state.selectedNews].image}
+								+ this.state.news.items[this.state.selectedNews].image}
 							alt="Article image"/>
 						: <NoImage/>
 					}
@@ -124,7 +111,7 @@ export default class PageHomeLatestNews extends React.Component {
 
 			<div className={"col-md-8"}>
 				<div className={"row"}>
-					{this.state.news.map((c, i) => <div
+					{this.state.news.items.map((c, i) => <div
 						key={c.id}
 						className={"col-md-12"}>
 						{c.link !== null

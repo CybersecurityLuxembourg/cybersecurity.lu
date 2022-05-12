@@ -50,7 +50,7 @@ export default class PageHomeCallToAction extends React.Component {
 				const params = {
 					type: "NEWS",
 					page: page || 1,
-					per_page: 6,
+					per_page: 5,
 					taxonomy_values: values.map((v) => v.id),
 					order_by: "start_date",
 					order: "asc",

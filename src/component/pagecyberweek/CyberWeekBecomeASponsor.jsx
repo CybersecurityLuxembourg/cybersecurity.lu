@@ -1,12 +1,12 @@
 import React from "react";
-import "./CyberWeekPartners.css";
+import "./CyberWeekBecomeASponsor.css";
 import ShadowBox from "../box/ShadowBox.jsx";
 
-export default class CyberWeekPartners extends React.Component {
+export default class CyberWeekBecomeASponsor extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
-			<div id={"CyberWeekPartners"}>
+			<div id={"CyberWeekBecomeASponsor"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
 						<h2>Become a sponsor</h2>
