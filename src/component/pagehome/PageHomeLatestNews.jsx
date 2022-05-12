@@ -83,7 +83,7 @@ export default class PageHomeLatestNews extends React.Component {
 		return <div className={"PageHomeLatestNews-article "
 			+ (this.state.selectedNews === i && "PageHomeLatestNews-article-selected")}>
 			<div className={"PageHomeLatestNews-date"}>
-				{article.publication_date}&nbsp;-&nbsp;
+				{article.publication_date.split("T")[0]}&nbsp;-&nbsp;
 			</div>
 			<div className={"PageHomeLatestNews-title"}>
 				{article.title}
