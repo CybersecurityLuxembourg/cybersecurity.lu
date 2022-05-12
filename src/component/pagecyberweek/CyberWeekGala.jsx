@@ -26,24 +26,39 @@ export default class CyberWeekGala extends React.Component {
 						cybersecurity talents & professionals in various categories:</p>
 					</div>
 
-					<div className="col-md-12">
-						<ul>
-							<li>
-								CISO of the Year
-							</li>
-							<li>
-								DPO of the Year
-							</li>
-							<li>
-								Most Promising Young Talent (selected from
-								the national team participating in the&nbsp;
-								<a href="https://ecsc.eu/" target="_blank" rel="noreferrer">European Cybersecurity Challenge</a>)
-							</li>
-							<li>
-								Cybersecurity & Privacy Solution
-								of the Year (sponsored by <a href="https://www.pwc.lu/" target="_blank" rel="noreferrer">PwC Luxembourg</a>)
-							</li>
-						</ul>
+					<div className="col-md-3">
+						<ShadowBox
+							onClick={() => window.open(getPrivateAppURL() + "form?tab=1", "_blank")}
+							title={"CISO of the Year"}
+						/>
+					</div>
+					<div className="col-md-3">
+						<ShadowBox
+							onClick={() => window.open(getPrivateAppURL() + "form?tab=1", "_blank")}
+							title={"DPO of the Year"}
+						/>
+					</div>
+					<div className="col-md-3">
+						<ShadowBox
+							onClick={() => window.open("https://ecsc.eu/", "_blank")}
+							title={"Most Promising Young Talent"}
+							abstract={<div>
+								selected from the national team participating in European Cybersecurity Challenge
+								<br/><br/>
+								<img src='/img/ecsc-badge-current.png'/>
+							</div>}
+						/>
+					</div>
+					<div className="col-md-3">
+						<ShadowBox
+							onClick={() => window.open("https://www.pwc.lu/", "_blank")}
+							title={"Cybersecurity & Privacy Solution of the Year"}
+							abstract={<div>
+								Sponsored by
+								<br/>
+								<img src='/img/pwc_logo.png'/>
+							</div>}
+						/>
 					</div>
 
 					<div className="col-md-12">
