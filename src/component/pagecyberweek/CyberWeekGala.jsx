@@ -28,18 +28,23 @@ export default class CyberWeekGala extends React.Component {
 
 					<div className="col-md-3">
 						<ShadowBox
-							onClick={() => window.open(getPrivateAppURL() + "form?tab=1", "_blank")}
+							className="CyberWeekGala-ShadowBox-award"
+							onClick={() => window.open(getPrivateAppURL() + "form?tab=2", "_blank")}
 							title={"CISO of the Year"}
+							abstract={<div>Applications are now open!*</div>}
 						/>
 					</div>
 					<div className="col-md-3">
 						<ShadowBox
+							className="CyberWeekGala-ShadowBox-award"
 							onClick={() => window.open(getPrivateAppURL() + "form?tab=1", "_blank")}
 							title={"DPO of the Year"}
+							abstract={<div>Applications are now open!*</div>}
 						/>
 					</div>
 					<div className="col-md-3">
 						<ShadowBox
+							className="CyberWeekGala-ShadowBox-award"
 							onClick={() => window.open("https://ecsc.eu/", "_blank")}
 							title={"Most Promising Young Talent"}
 							abstract={<div>
@@ -51,21 +56,24 @@ export default class CyberWeekGala extends React.Component {
 					</div>
 					<div className="col-md-3">
 						<ShadowBox
+							className="CyberWeekGala-ShadowBox-award"
 							onClick={() => window.open("https://www.pwc.lu/", "_blank")}
 							title={"Cybersecurity & Privacy Solution of the Year"}
 							abstract={<div>
 								Sponsored by
 								<br/>
 								<img src='/img/pwc_logo.png'/>
+								<div>Applications are now open!</div>
 							</div>}
 						/>
 					</div>
 
-					<div className="col-md-12">
-						<h3>
-							Applications are now open for the CISO of the
-							Year & DPO of the Year Awards.
-						</h3>
+					<div className="col-md-12 row-spaced"/>
+
+					<div className="col-md-8 offset-md-2 row-spaced centered">
+						<i>* Create an account or log in to our community app to
+						reach the questionnaire. The jury will determine if you
+						are the professional of the year</i>
 					</div>
 
 					<div className="col-md-12">
@@ -88,36 +96,6 @@ export default class CyberWeekGala extends React.Component {
 								mentorships, etc)
 							</li>
 						</ul>
-					</div>
-
-					<div className="col-md-12">
-						<h3>How to apply?</h3>
-
-						<p>
-							Create an account or log in to our community app to reach
-							the questionnaire. The jury will determine if you are the professional
-							of the year.
-						</p>
-					</div>
-
-					<div className="col-md-2"/>
-
-					<div className="col-md-4">
-						<ShadowBox
-							onClick={() => window.open(getPrivateAppURL() + "form?tab=1", "_blank")}
-							title={"DPO award"}
-							icon={"fas fa-user-lock"}
-							abstract={"Connect and fill in the questionnaire"}
-						/>
-					</div>
-
-					<div className="col-md-4">
-						<ShadowBox
-							onClick={() => window.open(getPrivateAppURL() + "form?tab=2", "_blank")}
-							title={"CISO award"}
-							icon={"fas fa-user-shield"}
-							abstract={"Connect and fill in the questionnaire"}
-						/>
 					</div>
 
 					<div className="col-md-12">

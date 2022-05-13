@@ -67,7 +67,7 @@ export default class PageCyberWeek extends React.Component {
 							labels={[
 								"About CSWL 2022",
 								"Programme",
-								"Sponsoring",
+								"Sponsors",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Become a sponsor</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Sponsors</div>",
 								"Gala & Awards Night",
