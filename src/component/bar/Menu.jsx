@@ -148,6 +148,13 @@ export default class Menu extends React.Component {
 						<div className="Menu-title">Lëtz Cybersecurity Challenge</div>
 					</Link>
 				</NavDropdown.Item>
+				<a
+					className="dropdown-item"
+					href="https://www.ecsc2022.eu/about-ecsc/open-ecsc-2022/"
+					target="_blank"
+					rel="noreferrer">
+					<div className="Menu-title">openECSC 2022</div>
+				</a>
 			</NavDropdown>
 
 			<NavDropdown
