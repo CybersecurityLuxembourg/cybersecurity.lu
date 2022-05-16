@@ -20,7 +20,8 @@
 }
 
 #CyberWeekGala .ShadowBox-content img {
-	max-height: 80px;
+	max-height: 120px;
+	max-width:  100%;
 }
 
 .CyberWeekGala-ShadowBox-award {
