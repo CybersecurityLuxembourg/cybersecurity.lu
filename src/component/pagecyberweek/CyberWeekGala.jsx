@@ -57,7 +57,7 @@ export default class CyberWeekGala extends React.Component {
 					<div className="col-md-3">
 						<ShadowBox
 							className="CyberWeekGala-ShadowBox-award"
-							onClick={() => window.open("https://www.pwc.lu/", "_blank")}
+							onClick={() => window.open("https://www.pwc.lu/en/advisory/digital-tech-impact/cyber-security/cybersecurityday.html", "_blank")}
 							title={"Cybersecurity & Privacy Solution of the Year"}
 							abstract={<div>
 								Sponsored by
