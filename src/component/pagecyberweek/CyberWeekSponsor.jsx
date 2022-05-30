@@ -9,7 +9,7 @@ export default class CyberWeekSponsor extends React.Component {
 			<div id={"CyberWeekSponsor"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h2>Sponsoring</h2>
+						<h2>Sponsors</h2>
 					</div>
 
 					<div className="col-md-6">

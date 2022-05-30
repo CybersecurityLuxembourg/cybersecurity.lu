@@ -9,16 +9,21 @@
 }
 
 #CyberWeekGala .ShadowBox h3 {
-	font-size: 18px !important;
+	font-size: 22px !important;
 }
 
 #CyberWeekGala .ShadowBox-content div {
 	opacity: 1 !important;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	line-height: 1.1;
 }
 
 #CyberWeekGala .ShadowBox-content img {
-	max-height: 80px;
+	max-height: 120px;
+	max-width:  100%;
+}
+
+.CyberWeekGala-ShadowBox-award {
+	height: 100%;
 }

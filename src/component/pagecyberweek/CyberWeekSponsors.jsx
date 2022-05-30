@@ -13,6 +13,8 @@ export default class CyberWeekSponsors extends React.Component {
 
 		this.state = {
 			entities: null,
+			// The shown order is reversed
+			awardOrder: ["WITH THE SUPPORT OF", "EXHIBITORS", "GOLD", "DIAMOND", "PLATINUM"],
 		};
 	}
 
@@ -90,30 +92,34 @@ export default class CyberWeekSponsors extends React.Component {
 						{this.getSponsorTaxonomyValues()
 							&& this.state.entities
 							&& this.state.entities.length > 0
-							&& this.getSponsorTaxonomyValues().map((v) => (
-								<div className="row" key={v.id}>
-									<div className="col-md-12">
-										<h3>{v.name}</h3>
-									</div>
-
-									{this.getEntitiesOfTaxonomyValue(v).length > 0
-										&& this.getEntitiesOfTaxonomyValue(v).map((c) => (
-											<div className="col-md-6" key={c.id}>
-												<Company
-													info={c}
-												/>
+							&& this.getSponsorTaxonomyValues()
+								.sort((a, b) => this.state.awardOrder.indexOf(b.name)
+									- this.state.awardOrder.indexOf(a.name))
+								.map((v) => (
+									this.getEntitiesOfTaxonomyValue(v).length > 0
+										&& <div className="row" key={v.id}>
+											<div className="col-md-12">
+												<h3>{v.name}</h3>
 											</div>
-										))}
 
-									{this.getEntitiesOfTaxonomyValue(v).length === 0
-										&& <div className="col-md-12">
-											<Message
-												text={"No entity for this sponsorship"}
-											/>
+											{this.getEntitiesOfTaxonomyValue(v).length > 0
+												&& this.getEntitiesOfTaxonomyValue(v).map((c) => (
+													<div className="col-md-6" key={c.id}>
+														<Company
+															info={c}
+														/>
+													</div>
+												))}
+
+											{this.getEntitiesOfTaxonomyValue(v).length === 0
+												&& <div className="col-md-12">
+													<Message
+														text={"No entity for this sponsorship"}
+													/>
+												</div>
+											}
 										</div>
-									}
-								</div>
-							))
+								))
 						}
 
 						{this.state.entities
