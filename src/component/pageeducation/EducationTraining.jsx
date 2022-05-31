@@ -116,7 +116,7 @@ export default class EducationTraining extends React.Component {
 
 						{this.state.educationServices && this.state.educationServices.pagination.total === 0
 							&& <Message
-								text={"No entity found"}
+								text={"No service found"}
 								height={300}
 							/>
 						}
