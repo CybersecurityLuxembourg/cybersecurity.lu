@@ -34,7 +34,7 @@ export default class PageEvent extends React.Component {
 			articleLoading: false,
 		});
 
-		getRequest.call(this, "public/get_article_content/" + this.props.match.params.handle, (data) => {
+		getRequest.call(this, "public/get_public_article_content/" + this.props.match.params.handle, (data) => {
 			this.setState({
 				article: data,
 				articleLoading: false,
