@@ -32,7 +32,7 @@ export default class BestPracticesPage extends React.Component {
 			const params = {
 				type: "TOOL",
 				page: page || 1,
-				per_page: 9,
+				per_page: 50,
 				taxonomy_values: this.props.taxonomyValue.id,
 				include_tags: true,
 			};
