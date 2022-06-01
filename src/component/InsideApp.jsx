@@ -287,7 +287,7 @@ export default class InsideApp extends React.Component {
 						{/* REDIRECTIONS */}
 
 						<Route exact path="/gala">
-							<Redirect to="/cybersecurityweek?tab=Gala" />
+							<Redirect to="/cybersecurityweek?tab=About_the_gala" />
 						</Route>
 
 						{/* 404 */}

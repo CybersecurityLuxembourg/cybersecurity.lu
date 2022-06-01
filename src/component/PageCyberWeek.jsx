@@ -10,6 +10,8 @@ import CyberWeekSponsor from "./pagecyberweek/CyberWeekSponsor.jsx";
 import CyberWeekSponsors from "./pagecyberweek/CyberWeekSponsors.jsx";
 import CyberWeekBecomeASponsor from "./pagecyberweek/CyberWeekBecomeASponsor.jsx";
 import CyberWeekGala from "./pagecyberweek/CyberWeekGala.jsx";
+import CyberWeekAboutTheGala from "./pagecyberweek/CyberWeekAboutTheGala.jsx";
+import CyberWeekTheAwards from "./pagecyberweek/CyberWeekTheAwards.jsx";
 import CyberWeekContactUs from "./pagecyberweek/CyberWeekContactUs.jsx";
 import CyberWeekRegister from "./pagecyberweek/CyberWeekRegister.jsx";
 
@@ -25,6 +27,8 @@ export default class PageCyberWeek extends React.Component {
 				"Become_a_sponsor",
 				"Sponsors",
 				"Gala",
+				"About_the_gala",
+				"The_awards",
 				"Contact",
 				"Register",
 			],
@@ -71,6 +75,8 @@ export default class PageCyberWeek extends React.Component {
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Become a sponsor</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Sponsors</div>",
 								"Gala & Awards Night",
+								"<div style='font-size:12px'>&nbsp;&nbsp;- About the Gala</div>",
+								"<div style='font-size:12px'>&nbsp;&nbsp;- The Awards</div>",
 								"Contact us",
 								"Register",
 							]}
@@ -100,12 +106,20 @@ export default class PageCyberWeek extends React.Component {
 									key={this.state.tabs[5]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekContactUs
+								<CyberWeekAboutTheGala
 									key={this.state.tabs[6]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekRegister
+								<CyberWeekTheAwards
 									key={this.state.tabs[7]}
+									analytics={this.props.analytics}
+								/>,
+								<CyberWeekContactUs
+									key={this.state.tabs[8]}
+									analytics={this.props.analytics}
+								/>,
+								<CyberWeekRegister
+									key={this.state.tabs[9]}
 									analytics={this.props.analytics}
 								/>,
 							]}

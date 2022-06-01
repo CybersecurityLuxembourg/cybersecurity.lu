@@ -1,0 +1,10 @@
+
+#CyberWeekAboutTheGala .CyberWeekAboutTheGala-image {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#CyberWeekAboutTheGala .CyberWeekAboutTheGala-billing iframe {
+	display:block;
+	margin: auto;
+}
