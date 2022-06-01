@@ -23,7 +23,7 @@ export default class CyberWeekGala extends React.Component {
 					<div className="col-md-6">
 						<ShadowBox
 							link="cybersecurityweek?tab=The_awards"
-							title={"View the Awards"}
+							title={"The Awards"}
 							icon={"fas fa-trophy"}
 							color={"blue"}
 						/>
