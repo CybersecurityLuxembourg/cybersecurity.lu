@@ -5,6 +5,7 @@
 }
 
 #CyberWeekAboutTheGala .CyberWeekAboutTheGala-billing iframe {
-	display:block;
+	display: block;
 	margin: auto;
+	height:  500px;
 }
