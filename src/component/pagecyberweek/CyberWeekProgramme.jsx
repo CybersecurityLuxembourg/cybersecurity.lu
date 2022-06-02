@@ -25,6 +25,9 @@ export default class CyberWeekPresentation extends React.Component {
 							please reach out to us at <a href="mailto:info@cybersecurityweek.lu">info@cybersecurityweek.lu</a>.
 						</p>
 					</div>
+
+					<div className="col-md-12 row-spaced"/>
+					<div className="col-md-12 row-spaced"/>
 				</div>
 			</div>
 		);
