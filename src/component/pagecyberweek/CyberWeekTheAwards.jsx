@@ -26,9 +26,11 @@ export default class CyberWeekTheAwards extends React.Component {
 							className={"Popup-small-size"}
 							trigger={
 								<ShadowBox
-									className="CyberWeekTheAwards-ShadowBox-award"
+									className="CyberWeekTheAwards-ShadowBox-award-inhouse"
 									title={"CISO of the Year"}
+									icon={"fas fa-user-shield"}
 									abstract={<div>
+										<br/>
 										<b style={{ fontSize: "22px" }}>It could be you!</b>
 										<br/>
 										<br/>
@@ -134,9 +136,11 @@ export default class CyberWeekTheAwards extends React.Component {
 							className={"Popup-small-size"}
 							trigger={
 								<ShadowBox
-									className="CyberWeekTheAwards-ShadowBox-award"
+									className="CyberWeekTheAwards-ShadowBox-award-inhouse"
 									title={"DPO of the Year"}
+									icon={"fas fa-user-lock"}
 									abstract={<div>
+										<br/>
 										<b style={{ fontSize: "22px" }}>It could be you!</b>
 										<br/>
 										<br/>
