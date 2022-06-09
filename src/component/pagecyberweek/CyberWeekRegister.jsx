@@ -21,6 +21,8 @@ export default class CyberWeekContactUs extends React.Component {
 							icon="fas fa-marker"
 						/>
 					</div>
+
+					<div className="col-md-12 row-spaced"/>
 				</div>
 			</div>
 		);

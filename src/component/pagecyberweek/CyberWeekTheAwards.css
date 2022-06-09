@@ -1,0 +1,37 @@
+
+#CyberWeekTheAwards .ShadowBox i {
+	font-size: 80px !important;
+}
+
+#CyberWeekTheAwards .ShadowBox-content div {
+	opacity: 1 !important;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.1;
+}
+
+#CyberWeekTheAwards .ShadowBox-content img {
+	max-height: 120px;
+	max-width:  100%;
+}
+
+.CyberWeekTheAwards-ShadowBox-award {
+	height: 100%;
+}
+
+.CyberWeekTheAwards-ShadowBox-award-inhouse {
+	height: 100%;
+}
+
+#CyberWeekTheAwards .CyberWeekTheAwards-experience iframe {
+	display:block;
+	margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+    #CyberWeekTheAwards .CyberWeekTheAwards-experience iframe {
+        max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
+    }
+}
