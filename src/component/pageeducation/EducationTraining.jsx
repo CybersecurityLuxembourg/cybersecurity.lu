@@ -14,19 +14,40 @@ export default class EducationTraining extends React.Component {
 		super(props);
 
 		this.state = {
+			company: null,
 			educationServices: null,
 			searchValue: "",
 		};
 	}
 
 	componentDidMount() {
-		this.getEducationServices();
+		this.getINFPC();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.analytics === null && this.props.analytics !== null) {
-			this.getEducationServices();
+			this.getINFPC();
 		}
+	}
+
+	getINFPC() {
+		getRequest.call(this, "public/get_public_companies?name=INFPC", (data) => {
+			if (data.length === 0) {
+				nm.warning("INFPC entity not found");
+			} else if (data.length > 1) {
+				nm.warning("Too much entities found for INFPC");
+			} else {
+				this.setState({
+					company: data[0],
+				}, () => {
+					this.getEducationServices();
+				});
+			}
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
 	}
 
 	getEducationServices(page) {
@@ -42,6 +63,7 @@ export default class EducationTraining extends React.Component {
 					page: page || 1,
 					per_page: 5,
 					taxonomy_values: valueIds,
+					companies: [this.state.company.id],
 					include_tags: true,
 				};
 
@@ -76,7 +98,7 @@ export default class EducationTraining extends React.Component {
 			<div id={"EducationTraining"} className={"page max-sized-page"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h2>Trainings</h2>
+						<h2>Lifelong Learning</h2>
 					</div>
 
 					<div className={"col-md-12"}>

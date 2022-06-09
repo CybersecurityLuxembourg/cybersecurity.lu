@@ -14,7 +14,7 @@ export default class PageEducation extends React.Component {
 		this.state = {
 			tabs: [
 				"scholarship",
-				"entities",
+				"lifelong_learning",
 			],
 			selectedMenu: null,
 		};
@@ -53,16 +53,16 @@ export default class PageEducation extends React.Component {
 							onMenuClick={(m) => this.onMenuClick(m)}
 							selectedMenu={this.state.selectedMenu}
 							labels={[
-								"Trainings",
 								"Scholarship",
+								"Lifelong Learning",
 							]}
 							keys={this.state.tabs}
 							content={[
-								<EducationTraining
+								<EducationScholarship
 									key={this.state.tabs[0]}
 									analytics={this.props.analytics}
 								/>,
-								<EducationScholarship
+								<EducationTraining
 									key={this.state.tabs[1]}
 									analytics={this.props.analytics}
 								/>,
