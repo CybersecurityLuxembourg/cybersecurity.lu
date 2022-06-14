@@ -45,7 +45,8 @@ export default class PageCompany extends React.Component {
 
 	getCompanyContent() {
 		getRequest.call(this, "public/get_public_company/"
-			+ this.props.match.params.id, (data) => {
+			+ this.props.match.params.id
+			+ "?include_assignments=true", (data) => {
 			this.setState({
 				company: data,
 			}, () => {
