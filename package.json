@@ -24,6 +24,7 @@
     "react-helmet": "^6.1.0",
     "react-leaflet": "^3.2.2",
     "react-notifications": "^1.6.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.2.0",
     "react-select": "^3.2.0",
     "reactjs-popup": "^2.0.4",

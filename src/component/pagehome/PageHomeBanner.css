@@ -1,0 +1,193 @@
+
+.PageHome-banner, .PageHome-banner .carousel-root, .PageHome-banner .carousel {
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    max-height: calc(100vh - 280px);
+    min-height: 300px;
+}
+
+.PageHome-banner .slider-wrapper, .PageHome-banner .slider {
+    height: 100%;
+}
+
+.PageHome-banner .carousel .slide > div {
+    height: 100%;
+    position: relative;
+}
+
+.PageHome-banner .carousel img {
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.PageHome-banner .PageHome-banner-slide {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+}
+
+.PageHome-banner .PageHome-banner-slide-cswl {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.PageHome-banner-title {
+    margin-top: 25px;
+}
+
+.PageHome-banner-title h3 {
+    color: white !important;
+    font-weight: bold;
+}
+
+.PageHome-banner .shadow-section {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+    .PageHome-banner .shadow-section {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding: 10px 5px !important;
+    }
+
+    .PageHome-banner .shadow-section h3 {
+        font-size: 20px !important;
+    }
+
+    .PageHome-banner-title {
+        margin-top: 0px;
+    }
+
+    .PageHome-banner-title h3 {
+        font-size: 20px !important;
+    }
+}
+
+.PageHome-banner .shadow-section:hover div div {
+    opacity: 1 !important;
+}
+
+.PageHome-banner .shadow-section:hover div div {
+    opacity: 1 !important;
+}
+
+.PageHome-banner .shadow-section {
+    position: relative;
+}
+
+.PageHome-banner .shadow-section i {
+    font-size: 25px;
+    padding: 0px 10px 10px 10px;
+}
+
+.PageHome-banner .shadow-section i:hover {
+    color: #e40613;
+    font-size: 40px;
+}
+
+.PageHome-banner .shadow-section a:hover > .tooltiptext {
+    visibility: visible !important;
+}
+
+.PageHome-banner .PageHome-banner-icons a {
+    position: relative;
+}
+
+.PageHome-banner .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+    position: absolute;
+    top: 30px;
+    left: 2px;
+    z-index: 1;
+}
+
+.PageHome-banner .shadow-section h3 {
+    font-size: 25px !important;
+    margin: 10px 0px !important;
+}
+
+.PageHome-banner .shadow-section:hover h3 {
+    font-size: 28px !important;
+}
+
+.PageHome-banner .shadow-section div {
+    line-height: 1.2;
+    font-size: 14px !important;
+}
+
+.PageHome-banner .shadow-section div {
+    line-height: 1.2;
+    font-size: 14px !important;
+}
+
+.PageHome-banner .PageHome-banner-more {
+    position: absolute;
+    font-weight: bold;
+    bottom: -10px;
+    right: 10px;
+}
+
+.PageHome-banner .PageHome-banner-more:hover {
+    color: #e40613;
+}
+
+.PageHome-banner .PageHome-banner-more i, .PageHome-banner .PageHome-banner-more em {
+    font-size: 18px !important;
+}
+
+.PageHome-banner .PageHome-banner-more a:hover {
+    color: #e40613 !important;
+}
+
+.PageHome-banner .carousel-slider .dot {
+    font-family: "Fjalla One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+}
+
+.PageHome-banner .carousel-slider .dot:nth-child(1) {
+    color: white;
+    padding: 1px 14px 0px 12px;
+    background: red !important;
+    transition: opacity .25s ease-in;
+    opacity: .3;
+    box-shadow: none !important;
+    background: 
+        linear-gradient( 135deg,transparent 8px,#009fe3 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 8px,#009fe3 0) right /50.5% 100% !important;
+    background-repeat:no-repeat !important;
+    border-radius: 0% !important;
+    width: 18px !important;
+    height: 23px !important;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 3px !important;
+}
+
+.PageHome-banner .carousel-slider .dot:nth-child(2) {
+    color: white;
+    padding: 1px 14px 0px 12px;
+    background: red !important;
+    transition: opacity .25s ease-in;
+    opacity: .3;
+    box-shadow: none !important;
+    background: 
+        linear-gradient( 135deg,transparent 8px,#e40613 0) left /50.5% 100%,
+        linear-gradient( 315deg,transparent 8px,#e40613 0) right /50.5% 100% !important;
+    background-repeat:no-repeat !important;
+    border-radius: 0% !important;
+    width: 18px !important;
+    height: 23px !important;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 3px !important;
+}
