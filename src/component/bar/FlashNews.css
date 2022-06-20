@@ -9,7 +9,7 @@
 }
 
 .FlashNews-wrapper {
-   position: fixed;
+   position: absolute;
    width: auto;
    animation: FlashNews-move linear 500s infinite;
 }
