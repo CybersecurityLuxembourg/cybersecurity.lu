@@ -1,16 +1,17 @@
 
 .FlashNews {
    position: relative;
-    padding: 5px 0px;
-    background-color: #e40613 !important;
-    width: 100%;
-    overflow-x: hidden;
+   padding: 5px 0px;
+   background-color: #e40613 !important;
+   width: 100%;
+   overflow-x: hidden;
+   height: 39px;
 }
 
 .FlashNews-wrapper {
+   position: fixed;
    width: auto;
-   display: table;
-   animation: FlashNews-move linear 30s infinite;
+   animation: FlashNews-move linear 500s infinite;
 }
 
 .FlashNews:hover .FlashNews-wrapper {
@@ -19,18 +20,18 @@
 
 .FlashNews-wrapper > div {
    display: table-cell;
-   white-space: nowrap;
    font-size: 19px;
    font-weight: bold;
-   margin-left: 50%;
-   padding-inline: 0px 100px;
+   padding-right: 25vw;
+   width: auto;
 }
 
-.FlashNews-wrapper div {
+.FlashNews-wrapper a {
    color: white;
+   white-space: nowrap;
 }
 
-.FlashNews-wrapper div:hover {
+.FlashNews-wrapper a:hover {
    color: black !important;
 }
 
@@ -40,7 +41,7 @@
 
 .FlashNews-separator {
    display: inline;
-   width: 50%;
+   width: 25%;
    height: 15px;
 }
 

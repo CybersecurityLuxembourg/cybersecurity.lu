@@ -62,21 +62,22 @@ export default class FlashNews extends React.Component {
 		return (
 			<div className="FlashNews">
 				<div className="FlashNews-wrapper">
-					{this.state.news.items.map((n) => (
-						<div key={n.id}>
-							{n.link
-								? <a
-									href={n.link}
-									target={"_blank"}
-									rel="noreferrer">
-									<div>{n.title}</div>
-								</a>
-								: <Link to={"/news/" + n.handle}>
-									<div>{n.title}</div>
-								</Link>
-							}
-							<div className="FlashNews-separator"/>
-						</div>
+					{[...Array(parseInt(50 / this.state.news.items.length, 10)).keys()].map(() => (
+						this.state.news.items.map((n) => (
+							<div key={n.id}>
+								{n.link
+									? <a
+										href={n.link}
+										target={"_blank"}
+										rel="noreferrer">
+										{n.title}
+									</a>
+									: <Link to={"/news/" + n.handle}>
+										{n.title}
+									</Link>
+								}
+							</div>
+						))
 					))}
 				</div>
 			</div>
