@@ -27,8 +27,14 @@ export default class PageGetInvolved extends React.Component {
 							color={"blue"}
 						/>
 						<ShadowBox
-							link="challenge"
-							title={"Luxembourg Challenge"}
+							link="cyberrange"
+							title={"Cyber Range"}
+							icon={"fas fa-shield-alt"}
+							color={"blue"}
+						/>
+						<ShadowBox
+							onClick={() => window.open("https://ecsc.eu/", "_blank")}
+							title={"openECSC 2022"}
 							icon={"fas fa-trophy"}
 							color={"blue"}
 						/>
@@ -38,6 +44,12 @@ export default class PageGetInvolved extends React.Component {
 							link="cyber4growth"
 							title={"CYBER4Growth"}
 							icon={"fas fa-rocket"}
+							color={"blue"}
+						/>
+						<ShadowBox
+							link="challenge"
+							title={"Lëtz Cybersecurity Challenge"}
+							icon={"fas fa-trophy"}
 							color={"blue"}
 						/>
 					</div>

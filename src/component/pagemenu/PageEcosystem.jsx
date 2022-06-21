@@ -33,9 +33,9 @@ export default class PageEcosystem extends React.Component {
 							color={"blue"}
 						/>
 						<ShadowBox
-							link="map"
-							title={"Map"}
-							icon={"fas fa-map-marked-alt"}
+							link="dashboard"
+							title={"Dashboard"}
+							icon={"fas fa-chart-pie"}
 							color={"blue"}
 						/>
 					</div>
@@ -47,9 +47,15 @@ export default class PageEcosystem extends React.Component {
 							color={"blue"}
 						/>
 						<ShadowBox
-							link="dashboard"
-							title={"Dashboard"}
-							icon={"fas fa-chart-pie"}
+							link="education"
+							title={"Education"}
+							icon={"fas fa-graduation-cap"}
+							color={"blue"}
+						/>
+						<ShadowBox
+							link="map"
+							title={"Map"}
+							icon={"fas fa-map-marked-alt"}
 							color={"blue"}
 						/>
 					</div>

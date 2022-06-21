@@ -101,20 +101,6 @@ export default class Footer extends React.Component {
 									</div>
 									<br/>
 									<div>
-										<Link to="/cybersecurityweek">
-											<b>CSWL</b>
-										</Link>
-									</div>
-									<br/>
-									<div>
-										<Link to="/jobs">
-											<b>Cybersecurity jobs</b>
-										</Link>
-									</div>
-								</div>
-
-								<div className="col-md-4">
-									<div>
 										<Link to="/ecosystem">
 											<b>Ecosystem</b>
 										</Link>
@@ -134,6 +120,11 @@ export default class Footer extends React.Component {
 											Civil society
 										</Link>
 									</div>
+									<div className="Footer-alinea">
+										<Link to="/education">
+											Education
+										</Link>
+									</div>
 									{/* <div className="Footer-alinea">
 										<Link to="/education">
 											Education
@@ -149,7 +140,9 @@ export default class Footer extends React.Component {
 											Map
 										</Link>
 									</div>
-									<br/>
+								</div>
+
+								<div className="col-md-4">
 									<div>
 										<Link to="/get_involved">
 											<b>Get involved</b>
@@ -166,12 +159,21 @@ export default class Footer extends React.Component {
 										</Link>
 									</div>
 									<div className="Footer-alinea">
-										<Link to="/challenge">
-											Luxembourg Challenge
+										<Link to="/cyberrange">
+											Cyber Range
 										</Link>
 									</div>
-								</div>
-								<div className="col-md-4">
+									<div className="Footer-alinea">
+										<Link to="/challenge">
+											Lëtz Cybersecurity Challenge
+										</Link>
+									</div>
+									<div className="Footer-alinea">
+										<a href="https://ecsc.eu/" target="_blank" rel="noreferrer">
+											openECSC 2022
+										</a>
+									</div>
+									<br/>
 									<div>
 										<Link to="/resources">
 											<b>Resources</b>
@@ -197,7 +199,8 @@ export default class Footer extends React.Component {
 											Podcasts
 										</Link>
 									</div>
-									<br/>
+								</div>
+								<div className="col-md-4">
 									<div>
 										<Link to="/about">
 											<b>About</b>
@@ -220,8 +223,20 @@ export default class Footer extends React.Component {
 									</div>
 									<br/>
 									<div>
+										<Link to="/cybersecurityweek">
+											<b>CSWL</b>
+										</Link>
+									</div>
+									<br/>
+									<div>
+										<Link to="/jobs">
+											<b>Cybersecurity jobs</b>
+										</Link>
+									</div>
+									<br/>
+									<div>
 										<a href={getPrivateAppURL()}>
-											Private space
+											<b>Private space</b>
 										</a>
 									</div>
 								</div>
