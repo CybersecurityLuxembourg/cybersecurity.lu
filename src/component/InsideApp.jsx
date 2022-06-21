@@ -36,6 +36,7 @@ import PageChallenge from "./PageChallenge.jsx";
 /* import PageCVE from "./PageCVE.jsx"; */
 import PageBestPractices from "./PageBestPractices.jsx";
 import PagePodcasts from "./PagePodcasts.jsx";
+import PageCyberRange from "./PageCyberRange.jsx";
 import PageFrameworks from "./PageFrameworks.jsx";
 import PageInitiative from "./pageabout/PageInitiative.jsx";
 import PageWhatsinit from "./pageabout/PageWhatsinit.jsx";
@@ -231,6 +232,12 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/challenge"
 							render={(props) => <PageChallenge
+								{...props}
+							/>}
+						/>
+						<Route
+							path="/cyberrange"
+							render={(props) => <PageCyberRange
 								{...props}
 							/>}
 						/>
