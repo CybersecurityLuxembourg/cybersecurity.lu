@@ -122,7 +122,8 @@ export default class PageHomeBanner extends React.Component {
 								<div className="col-md-4">
 									<ShadowBox
 										link="cybersecurityweek"
-										title={"Click to know more"}
+										title={"18-20 October 2022"}
+										abstract={"Click to know more"}
 										color={"blue"}
 									/>
 								</div>
