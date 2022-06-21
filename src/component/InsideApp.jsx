@@ -271,6 +271,7 @@ export default class InsideApp extends React.Component {
 						<Route
 							path="/whatsinit"
 							render={(props) => <PageWhatsinit
+								analytics={this.state.analytics}
 								{...props}
 							/>}
 						/>
