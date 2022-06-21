@@ -50,7 +50,7 @@ export default class CyberWeekAboutTheGala extends React.Component {
 					</div>
 
 					<div className="col-md-12">
-						<p>This year, the Awards Ceremony will take place during a prestigious sit-down
+						<p>This year, the Awards Ceremony will take place during a sit-down
 						dinner, with lively entertainment and the participation of key personalities.</p>
 						<p>This closing event will complement the intense and brand-new programme of
 						the Cybersecurity Week Luxembourg, offering great networking opportunities.</p>
