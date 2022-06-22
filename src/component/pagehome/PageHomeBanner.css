@@ -33,6 +33,10 @@
     bottom: 0px;
 }
 
+.PageHome-banner .PageHome-banner-slide-cswl h4 {
+    margin-top: 0px !important;
+}
+
 @media (max-width: 480px) {
     .PageHome-banner .PageHome-banner-slide-cswl {
         bottom: -30px;
@@ -43,7 +47,7 @@
     margin-top: 25px;
 }
 
-.PageHome-banner-title h3 {
+.PageHome-banner-title h3, .PageHome-banner-title h4 {
     color: white !important;
     font-weight: bold;
 }
@@ -119,7 +123,7 @@
 
 .PageHome-banner .shadow-section h3 {
     font-size: 25px !important;
-    margin: 10px 0px !important;
+    margin: 3px 0px !important;
 }
 
 .PageHome-banner .shadow-section:hover h3 {

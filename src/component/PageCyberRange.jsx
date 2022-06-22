@@ -54,7 +54,7 @@ export default class PageCyberRange extends React.Component {
 					<div className="col-md-2"/>
 					<div className="col-md-4 row-spaced">
 						<ShadowBox
-							onClick={() => window.open("https://cr.c3.lu")}
+							onClick={() => window.open("https://cyber-range.lu")}
 							title={"Go to Cyber Range Luxembourg website"}
 							icon={"fas fa-shield-alt"}
 						/>
@@ -74,11 +74,11 @@ export default class PageCyberRange extends React.Component {
 								operators of essential services;</li>
 							<li>NATO allies;</li>
 							<li>EU partner nations;</li>
-							<li>International institutions linked to the defence
+							<li>international institutions linked to the defence
 								sector (EU Agencies, NATO agencies, Centre of
-								excellences).
+								excellences);
 							</li>
-							<li>Humanitarian organisations</li>
+							<li>humanitarian organisations.</li>
 						</ul>
 					</div>
 
