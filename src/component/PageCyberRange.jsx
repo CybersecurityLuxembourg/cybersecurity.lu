@@ -61,11 +61,9 @@ export default class PageCyberRange extends React.Component {
 					</div>
 					<div className="col-md-1"/>
 
-					<div className="col-md-12">
+					<div className="col-md-6">
 						<h2>Target Audience</h2>
-					</div>
 
-					<div className="col-md-12">
 						<p> The main target audience of the Luxembourg Cyber Range includes:</p>
 						<ul>
 							<li>national authorities;</li>
@@ -80,7 +78,25 @@ export default class PageCyberRange extends React.Component {
 								sector (EU Agencies, NATO agencies, Centre of
 								excellences).
 							</li>
+							<li>Humanitarian organisations</li>
 						</ul>
+					</div>
+
+					<div className="col-md-6">
+						<h2>Contact</h2>
+
+						<div id="contact-box" className="centered">
+							<b>Direction de la défense</b>
+
+							<address>
+								6, rue de l&apos;ancien Athénée<br/>
+								L-1144 Luxembourg<br/>
+								Luxembourg
+							</address>
+
+							(+352) 247-82800<br/>
+							<a href="mailto:cyberrange@mae.etat.lu ">cyberrange@mae.etat.lu </a>
+						</div>
 					</div>
 				</div>
 			</div>
