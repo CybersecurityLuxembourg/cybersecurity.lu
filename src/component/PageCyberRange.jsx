@@ -55,7 +55,7 @@ export default class PageCyberRange extends React.Component {
 					<div className="col-md-4 row-spaced">
 						<ShadowBox
 							onClick={() => window.open("https://cr.c3.lu")}
-							title={"Go to the website"}
+							title={"Go to Cyber Range Luxembourg website"}
 							icon={"fas fa-shield-alt"}
 						/>
 					</div>
