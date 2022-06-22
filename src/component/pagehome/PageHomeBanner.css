@@ -33,6 +33,12 @@
     bottom: 0px;
 }
 
+@media (max-width: 480px) {
+    .PageHome-banner .PageHome-banner-slide-cswl {
+        bottom: -30px;
+    }
+}
+
 .PageHome-banner-title {
     margin-top: 25px;
 }
