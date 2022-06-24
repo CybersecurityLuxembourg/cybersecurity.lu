@@ -45,6 +45,7 @@ export default class CyberWeekPresentation extends React.Component {
 					include_tags: "true",
 					order_by: "start_date",
 					order: "asc",
+					taxonomy_values: values[0].id,
 				});
 
 				getRequest.call(this, "public/get_public_articles?" + params, (data) => {
