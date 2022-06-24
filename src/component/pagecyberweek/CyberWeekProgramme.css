@@ -1,0 +1,20 @@
+
+#CyberWeekProgramme .rbc-toolbar .rbc-btn-group:nth-of-type(1),
+#CyberWeekProgramme .rbc-toolbar-label {
+	pointer-events: none;
+	opacity: 0;
+}
+
+#CyberWeekProgramme .CyberWeekProgramme-dates {
+	text-align: center;
+}
+
+#CyberWeekProgramme .CheckBox {
+	width: fit-content;
+	display: inline-block;
+	margin: 25px 3px 5px 3px;
+}
+
+#CyberWeekProgramme ..rbc-agenda-view {
+	overflow: visible !important;
+}

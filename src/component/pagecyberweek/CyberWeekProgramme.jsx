@@ -1,12 +1,15 @@
 import React from "react";
 import "./CyberWeekProgramme.css";
 import { NotificationManager as nm } from "react-notifications";
-import { Calendar } from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
+import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
-import { dateToString } from "../../utils/date.jsx";
+
+const localizer = momentLocalizer(moment);
 
 export default class CyberWeekPresentation extends React.Component {
 	constructor(props) {
@@ -14,6 +17,9 @@ export default class CyberWeekPresentation extends React.Component {
 
 		this.state = {
 			events: null,
+			selectedDate: null,
+			dates: null,
+			view: window.screen.width > 480 ? "day" : "agenda",
 		};
 	}
 
@@ -34,18 +40,23 @@ export default class CyberWeekPresentation extends React.Component {
 				.filter((v) => v.name === "CSWL 2022");
 
 			if (values.length > 0) {
-
 				const params = dictToURI({
 					type: "EVENT",
 					include_tags: "true",
 					order_by: "start_date",
 					order: "asc",
-					min_end_date: dateToString(new Date()),
 				});
 
 				getRequest.call(this, "public/get_public_articles?" + params, (data) => {
 					this.setState({
-						upcomingEvents: data,
+						events: data,
+					}, () => {
+						const dates = this.getDates();
+
+						this.setState({
+							dates: this.getDates(),
+							selectedDate: dates ? dates[0] : dates,
+						});
 					});
 				}, (response) => {
 					nm.warning(response.statusText);
@@ -56,7 +67,31 @@ export default class CyberWeekPresentation extends React.Component {
 		}
 	}
 
+	getDates() {
+		if (this.state.events) {
+			return [...new Set(this.state.events.items
+				.filter((e) => e.start_date)
+				.map((e) => (e.start_date.substring(0, 10)))),
+			].sort();
+		}
+
+		return null;
+	}
+
+	changeState(field, value) {
+		this.setState({ [field]: value });
+	}
+
 	render() {
+		const ColoredDateCellWrapper = ({ children }) => React.cloneElement(
+			React.Children.only(children),
+			{
+				style: {
+					backgroundColor: "lightblue",
+				},
+			},
+		);
+
 		return (
 			<div id={"CyberWeekProgramme"}>
 				<div className="row row-spaced">
@@ -71,15 +106,25 @@ export default class CyberWeekPresentation extends React.Component {
 						</p>
 					</div>
 
-					<div className="col-md-12">
-						<h1>Calendar</h1>
+					<div className="col-md-12 CyberWeekProgramme-dates">
+						{this.state.dates
+							&& this.state.dates.map((d) => (
+								<CheckBox
+									key={d}
+									label={d}
+									value={d === this.state.selectedDate}
+									onClick={() => this.changeState("selectedDate", d)}
+								/>
+							))
+						}
 					</div>
 
 					{this.state.events !== null
-						&& this.state.upcomingEvents.pagination.total > 0
-						? <div className="col-md-12 row-spaced">
+						&& this.state.events.pagination.total > 0
+						&& this.state.dates
+						&& <div className="col-md-12 row-spaced">
 							<Calendar
-								events={this.state.events.map((e) => (
+								events={this.state.events.items.map((e) => (
 									{
 										title: e.title,
 										start: new Date(e.start_date),
@@ -90,7 +135,8 @@ export default class CyberWeekPresentation extends React.Component {
 								))}
 								step={60}
 								showMultiDayTimes
-								defaultDate={new Date()}
+								date={this.state.selectedDate}
+								defaultDate={this.state.dates[0] || new Date()}
 								components={{
 									timeSlotWrapper: ColoredDateCellWrapper,
 								}}
@@ -100,39 +146,34 @@ export default class CyberWeekPresentation extends React.Component {
 									backgroundColor: "white",
 								}}
 								onSelectEvent={(event) => {
-									if (event.link !== undefined && event.link !== null
-										&& event.link.length > 0) {
+									if (event.link && event.link.length > 0) {
 										window.open(event.link);
 									} else {
 										this.props.history.push("/calendar/" + event.handle);
 									}
 								}}
+								showAllEvents={true}
+								defaultView={"ontouchstart" in document.documentElement ? "agenda" : "day"}
+								views={["day", "agenda"]}
 							/>
 						</div>
-						: <Loading
-							height={200}
-						/>
 					}
 
 					{this.state.events
-						&& this.state.upcomingEvents.pagination.total === 0
-						&& <div className="row">
-							<div className="col-md-12">
-								<Message
-									text={"No event found"}
-									height={300}
-								/>
-							</div>
+						&& this.state.events.pagination.total === 0
+						&& <div className="col-md-12">
+							<Message
+								text={"No event found"}
+								height={300}
+							/>
 						</div>
 					}
 
 					{!this.state.events
-						&& <div className="row">
-							<div className="col-md-12">
-								<Loading
-									height={300}
-								/>
-							</div>
+						&& <div className="col-md-12">
+							<Loading
+								height={300}
+							/>
 						</div>
 					}
 				</div>
