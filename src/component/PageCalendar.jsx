@@ -210,7 +210,7 @@ export default class PageCalendar extends React.Component {
 										&& event.link.length > 0) {
 										window.open(event.link);
 									} else {
-										this.props.history.push("/calendar/" + event.handle);
+										this.props.history.push("/event/" + event.handle);
 									}
 								}}
 							/>
