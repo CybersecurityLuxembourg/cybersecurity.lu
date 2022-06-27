@@ -1,5 +1,6 @@
 import React from "react";
 import "./CyberWeekProgramme.css";
+import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -127,7 +128,12 @@ export default class CyberWeekPresentation extends React.Component {
 							<Calendar
 								events={this.state.events.items.map((e) => (
 									{
-										title: e.title,
+										title: <div dangerouslySetInnerHTML={{
+											__html:
+											dompurify.sanitize("<div class='event-title'><b>"
+												+ e.title + "</b></div><br/>"
+												+ (e.abstract ? e.abstract : "")),
+										}} />,
 										start: new Date(e.start_date),
 										end: new Date(e.end_date),
 										handle: e.handle,
@@ -150,7 +156,7 @@ export default class CyberWeekPresentation extends React.Component {
 									if (event.link && event.link.length > 0) {
 										window.open(event.link);
 									} else {
-										this.props.history.push("/calendar/" + event.handle);
+										this.props.history.push("/event/" + event.handle);
 									}
 								}}
 								showAllEvents={true}

@@ -89,6 +89,7 @@ export default class PageCyberWeek extends React.Component {
 								<CyberWeekProgramme
 									key={this.state.tabs[1]}
 									analytics={this.props.analytics}
+									{...this.props}
 								/>,
 								<CyberWeekSponsor
 									key={this.state.tabs[2]}
