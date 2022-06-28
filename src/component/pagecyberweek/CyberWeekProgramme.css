@@ -31,6 +31,14 @@
 	color: black !important;
 }
 
+#CyberWeekProgramme .rbc-event:hover, #CyberWeekProgramme .rbc-agenda-event-cell:hover {
+	border: 3px solid black;
+}
+
+#CyberWeekProgramme .rbc-agenda-event-cell {
+	cursor: pointer;
+}
+
 #CyberWeekProgramme .rbc-event-label {
 	color: #58595b !important;
 }

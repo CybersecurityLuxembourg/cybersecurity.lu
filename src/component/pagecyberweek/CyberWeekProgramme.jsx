@@ -95,6 +95,14 @@ export default class CyberWeekPresentation extends React.Component {
 		return false;
 	}
 
+	clickOnEvent(event) {
+		if (event.link && event.link.length > 0) {
+			window.open(event.link);
+		} else {
+			this.props.history.push("/event/" + event.handle);
+		}
+	}
+
 	changeRoomStatus(pos, value) {
 		const status = this.state.roomStatus.map((s) => s);
 		status[pos] = value;
@@ -170,8 +178,16 @@ export default class CyberWeekPresentation extends React.Component {
 										}
 									))
 								}
+								components={{
+									agenda: {
+										event: (event) => {
+											return <div onClick={() => this.clickOnEvent(event.event)}>
+												{event.title}
+											</div>;
+										},
+									},
+								}}
 								step={15}
-								showMultiDayTimes
 								date={this.state.view === "day" ? this.state.selectedDate : this.state.dates[0]}
 								defaultDate={this.state.dates[0] || new Date()}
 								localizer={localizer}
@@ -179,13 +195,7 @@ export default class CyberWeekPresentation extends React.Component {
 									height: "auto",
 									backgroundColor: "white",
 								}}
-								onSelectEvent={(event) => {
-									if (event.link && event.link.length > 0) {
-										window.open(event.link);
-									} else {
-										this.props.history.push("/event/" + event.handle);
-									}
-								}}
+								onSelectEvent={(event) => this.clickOnEvent(event)}
 								showAllEvents={true}
 								view={this.state.view}
 								views={["day", "agenda"]}
