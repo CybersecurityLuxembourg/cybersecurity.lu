@@ -9,6 +9,7 @@ import Message from "../box/Message.jsx";
 import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
+/* import { stringToDate } from "../../utils/date.jsx"; */
 
 const localizer = momentLocalizer(moment);
 
@@ -16,11 +17,15 @@ export default class CyberWeekPresentation extends React.Component {
 	constructor(props) {
 		super(props);
 
+		const defaultRooms = ["Conference Room 1", "Conference Room 2"];
+
 		this.state = {
 			events: null,
 			selectedDate: null,
 			dates: null,
-			view: window.screen.width > 480 ? "day" : "agenda",
+			rooms: defaultRooms,
+			roomStatus: defaultRooms.map(() => (true)),
+			view: "ontouchstart" in document.documentElement ? "agenda" : "day",
 		};
 	}
 
@@ -56,7 +61,7 @@ export default class CyberWeekPresentation extends React.Component {
 						const dates = this.getDates();
 
 						this.setState({
-							dates: this.getDates(),
+							dates,
 							selectedDate: dates ? dates[0] : dates,
 						});
 					});
@@ -80,20 +85,28 @@ export default class CyberWeekPresentation extends React.Component {
 		return null;
 	}
 
+	shouldEventBeDisplayed(e) {
+		for (let i = 0; i < this.state.roomStatus.length; i++) {
+			if (this.state.roomStatus[i] && e.abstract
+				&& e.abstract.toLowerCase().includes(this.state.rooms[i].toLowerCase())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	changeRoomStatus(pos, value) {
+		const status = this.state.roomStatus.map((s) => s);
+		status[pos] = value;
+		this.setState({ roomStatus: status });
+	}
+
 	changeState(field, value) {
 		this.setState({ [field]: value });
 	}
 
 	render() {
-		const ColoredDateCellWrapper = ({ children }) => React.cloneElement(
-			React.Children.only(children),
-			{
-				style: {
-					backgroundColor: "lightblue",
-				},
-			},
-		);
-
 		return (
 			<div id={"CyberWeekProgramme"}>
 				<div className="row row-spaced">
@@ -108,8 +121,9 @@ export default class CyberWeekPresentation extends React.Component {
 						</p>
 					</div>
 
-					<div className="col-md-12 CyberWeekProgramme-dates">
-						{this.state.dates
+					<div className="col-md-6 CyberWeekProgramme-dates">
+						{this.state.view === "day"
+							&& this.state.dates
 							&& this.state.dates.map((d) => (
 								<CheckBox
 									key={d}
@@ -121,35 +135,49 @@ export default class CyberWeekPresentation extends React.Component {
 						}
 					</div>
 
+					<div className="col-md-6 CyberWeekProgramme-rooms">
+						{this.state.rooms
+							&& this.state.rooms.map((d, i) => (
+								<CheckBox
+									className={"CyberWeekProgramme-rooms-" + i}
+									key={d}
+									label={d}
+									value={this.state.roomStatus[i]}
+									onClick={(v) => this.changeRoomStatus(i, v)}
+								/>
+							))
+						}
+					</div>
+
 					{this.state.events !== null
 						&& this.state.events.pagination.total > 0
 						&& this.state.dates
 						&& <div className="col-md-12 row-spaced">
 							<Calendar
-								events={this.state.events.items.map((e) => (
-									{
-										title: <div dangerouslySetInnerHTML={{
-											__html:
-											dompurify.sanitize("<div class='event-title'><b>"
-												+ e.title + "</b></div><br/>"
-												+ (e.abstract ? e.abstract : "")),
-										}} />,
-										start: new Date(e.start_date),
-										end: new Date(e.end_date),
-										handle: e.handle,
-										link: e.link,
-									}
-								))}
-								step={60}
+								events={this.state.events.items
+									.filter((e) => this.shouldEventBeDisplayed(e))
+									.map((e) => (
+										{
+											title: <div dangerouslySetInnerHTML={{
+												__html:
+												dompurify.sanitize("<div class='event-title'><b>"
+													+ e.title + "</b></div><br/>"
+													+ (e.abstract ? e.abstract : "")),
+											}} />,
+											start: new Date(e.start_date),
+											end: new Date(e.end_date),
+											handle: e.handle,
+											link: e.link,
+										}
+									))
+								}
+								step={15}
 								showMultiDayTimes
-								date={this.state.selectedDate}
+								date={this.state.view === "day" ? this.state.selectedDate : undefined}
 								defaultDate={this.state.dates[0] || new Date()}
-								components={{
-									timeSlotWrapper: ColoredDateCellWrapper,
-								}}
 								localizer={localizer}
 								style={{
-									height: 700,
+									height: "auto",
 									backgroundColor: "white",
 								}}
 								onSelectEvent={(event) => {
@@ -160,8 +188,39 @@ export default class CyberWeekPresentation extends React.Component {
 									}
 								}}
 								showAllEvents={true}
-								defaultView={"ontouchstart" in document.documentElement ? "agenda" : "day"}
+								view={this.state.view}
 								views={["day", "agenda"]}
+								onView={(v) => this.changeState("view", v)}
+								min={this.state.selectedDate
+									? new Date(this.state.selectedDate + "T08:00:00") : undefined}
+								max={this.state.selectedDate
+									? new Date(this.state.selectedDate + "T22:00:00") : undefined}
+								eventPropGetter={(event) => {
+									let color = "lightgrey";
+
+									if (event.title
+										&& event.title.props && event.title.props.dangerouslySetInnerHTML
+										// eslint-disable-next-line no-underscore-dangle
+										&& event.title.props.dangerouslySetInnerHTML.__html
+										// eslint-disable-next-line no-underscore-dangle
+										&& event.title.props.dangerouslySetInnerHTML.__html) {
+										// eslint-disable-next-line no-underscore-dangle
+										if (event.title.props.dangerouslySetInnerHTML.__html
+											.toLowerCase().includes("conference room 1")) {
+											color = "#8fddff";
+										// eslint-disable-next-line no-underscore-dangle
+										} else if (event.title.props.dangerouslySetInnerHTML.__html
+											.toLowerCase().includes("conference room 2")) {
+											color = "#ffa8b0";
+										}
+									}
+
+									return {
+										style: {
+											backgroundColor: color,
+										},
+									};
+								}}
 							/>
 						</div>
 					}

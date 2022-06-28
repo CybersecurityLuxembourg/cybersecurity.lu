@@ -6,7 +6,11 @@
 }
 
 #CyberWeekProgramme .CyberWeekProgramme-dates {
-	text-align: center;
+	text-align: left;
+}
+
+#CyberWeekProgramme .CyberWeekProgramme-rooms {
+	text-align: right;
 }
 
 #CyberWeekProgramme .CheckBox {
@@ -22,9 +26,26 @@
 #CyberWeekProgramme .rbc-event-content {
 	width: 55%;
 	font-size: 13px;
+	color: black !important;
+}
+
+#CyberWeekProgramme .rbc-event-label {
+	color: #58595b !important;
 }
 
 #CyberWeekProgramme .rbc-event-content .event-title {
 	font-size: 16px !important;
 	margin-bottom: 5px;
+}
+
+#CyberWeekProgramme .rbc-agenda-date-cell {
+	background-color: white;
+}
+
+#CyberWeekProgramme .CheckBox-off {
+	background-color: lightgrey !important;
+}
+
+#CyberWeekProgramme .CyberWeekProgramme-rooms-1 {
+	background-color: #ffa8b0 !important;
 }
