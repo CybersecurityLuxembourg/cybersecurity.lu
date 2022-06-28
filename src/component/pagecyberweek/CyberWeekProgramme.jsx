@@ -180,11 +180,11 @@ export default class CyberWeekPresentation extends React.Component {
 								}
 								components={{
 									agenda: {
-										event: (event) => {
-											return <div onClick={() => this.clickOnEvent(event.event)}>
+										event: (event) => (
+											<div onClick={() => this.clickOnEvent(event.event)}>
 												{event.title}
-											</div>;
-										},
+											</div>
+										),
 									},
 								}}
 								step={15}
