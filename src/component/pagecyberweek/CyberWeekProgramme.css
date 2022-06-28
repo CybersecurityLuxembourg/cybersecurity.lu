@@ -68,4 +68,18 @@
 	#CyberWeekProgramme .CyberWeekProgramme-rooms {
 		text-align: center;
 	}
+
+	#CyberWeekProgramme .rbc-agenda-table tr td,
+	#CyberWeekProgramme .rbc-agenda-table tr th {
+		white-space: normal;
+	}
+}
+
+.rbc-header {
+	display: none;
+}
+
+.rbc-agenda-empty {
+	margin: 100px 0px;
+	text-align: center;
 }
