@@ -9,7 +9,6 @@ import Message from "../box/Message.jsx";
 import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
-/* import { stringToDate } from "../../utils/date.jsx"; */
 
 const localizer = momentLocalizer(moment);
 
@@ -173,7 +172,7 @@ export default class CyberWeekPresentation extends React.Component {
 								}
 								step={15}
 								showMultiDayTimes
-								date={this.state.view === "day" ? this.state.selectedDate : undefined}
+								date={this.state.view === "day" ? this.state.selectedDate : this.state.dates[0]}
 								defaultDate={this.state.dates[0] || new Date()}
 								localizer={localizer}
 								style={{
