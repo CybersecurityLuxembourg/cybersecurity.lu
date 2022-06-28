@@ -46,6 +46,6 @@
 	background-color: lightgrey !important;
 }
 
-#CyberWeekProgramme .CyberWeekProgramme-rooms-1 {
+#CyberWeekProgramme .CyberWeekProgramme-rooms-1:not(.CheckBox-off) {
 	background-color: #ffa8b0 !important;
 }
