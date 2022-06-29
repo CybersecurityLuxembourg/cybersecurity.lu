@@ -12,7 +12,7 @@ import { dictToURI } from "../../utils/url.jsx";
 
 const localizer = momentLocalizer(moment);
 
-export default class CyberWeekPresentation extends React.Component {
+export default class CyberWeekProgramm extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -103,10 +103,12 @@ export default class CyberWeekPresentation extends React.Component {
 		}
 	}
 
-	changeRoomStatus(pos, value) {
-		const status = this.state.roomStatus.map((s) => s);
-		status[pos] = value;
-		this.setState({ roomStatus: status });
+	changeRoomStatus(pos) {
+		this.setState({ roomStatus: this.state.roomStatus.map((_, i) => pos === i) });
+	}
+
+	setAllRoomsAsSelected() {
+		this.setState({ roomStatus: this.state.rooms.map(() => true) });
 	}
 
 	changeState(field, value) {
@@ -143,6 +145,14 @@ export default class CyberWeekPresentation extends React.Component {
 					</div>
 
 					<div className="col-md-6 CyberWeekProgramme-rooms">
+						<CheckBox
+							className={"CyberWeekProgramme-rooms-all"}
+							key={"all"}
+							label={"All rooms"}
+							value={this.state.roomStatus.filter((s) => s).length
+								=== this.state.rooms.length}
+							onClick={() => this.setAllRoomsAsSelected()}
+						/>
 						{this.state.rooms
 							&& this.state.rooms.map((d, i) => (
 								<CheckBox
@@ -150,7 +160,7 @@ export default class CyberWeekPresentation extends React.Component {
 									key={d}
 									label={d}
 									value={this.state.roomStatus[i]}
-									onClick={(v) => this.changeRoomStatus(i, v)}
+									onClick={() => this.changeRoomStatus(i)}
 								/>
 							))
 						}
@@ -201,9 +211,9 @@ export default class CyberWeekPresentation extends React.Component {
 								views={["day", "agenda"]}
 								onView={(v) => this.changeState("view", v)}
 								min={this.state.selectedDate
-									? new Date(this.state.selectedDate + "T08:00:00") : undefined}
+									? new Date(this.state.selectedDate + "T09:00:00") : undefined}
 								max={this.state.selectedDate
-									? new Date(this.state.selectedDate + "T22:00:00") : undefined}
+									? new Date(this.state.selectedDate + "T23:59:00") : undefined}
 								eventPropGetter={(event) => {
 									let color = "lightgrey";
 
