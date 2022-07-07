@@ -1,6 +1,8 @@
 import React from "react";
 import "./InsideApp.css";
-import { Route, Switch, Redirect } from "react-router-dom";
+import {
+	Route, Switch, Redirect, withRouter,
+} from "react-router-dom";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../utils/request.jsx";
 import GovBar from "./bar/GovBar.jsx";
@@ -48,18 +50,20 @@ import PageWhatsup from "./pagemenu/PageWhatsup.jsx";
 import Page404 from "./Page404.jsx";
 import getMailerliteFunction from "../utils/mailerlite.jsx";
 
-export default class InsideApp extends React.Component {
+class InsideApp extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			analytics: null,
 			ml_account: getMailerliteFunction(),
+			unlisten: null,
 		};
 	}
 
 	// eslint-disable-next-line react/no-deprecated
 	componentWillMount() {
+		console.log(this.props.history);
 		this.setState({
 			unlisten: this.props.history.listen((location) => {
 				// eslint-disable-next-line no-multi-assign,no-underscore-dangle
@@ -329,3 +333,5 @@ export default class InsideApp extends React.Component {
 		);
 	}
 }
+
+export default withRouter(InsideApp);
