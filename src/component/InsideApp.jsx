@@ -48,7 +48,6 @@ import PageEcosystem from "./pagemenu/PageEcosystem.jsx";
 import PageGetInvolved from "./pagemenu/PageGetInvolved.jsx";
 import PageWhatsup from "./pagemenu/PageWhatsup.jsx";
 import Page404 from "./Page404.jsx";
-import getMailerliteFunction from "../utils/mailerlite.jsx";
 
 class InsideApp extends React.Component {
 	constructor(props) {
@@ -56,7 +55,6 @@ class InsideApp extends React.Component {
 
 		this.state = {
 			analytics: null,
-			ml_account: getMailerliteFunction(),
 			unlisten: null,
 		};
 	}
@@ -100,7 +98,6 @@ class InsideApp extends React.Component {
 
 				<Route path="/:path?" render={(props) => <Menu
 					analytics={this.state.analytics}
-					ml_account={this.state.ml_account}
 					{...props}
 				/>}/>
 
@@ -244,7 +241,6 @@ class InsideApp extends React.Component {
 							path="/newsletter"
 							render={(props) => <PageNewsletter
 								analytics={this.state.analytics}
-								ml_account={this.state.ml_account}
 								{...props}
 							/>}
 						/>
@@ -305,7 +301,6 @@ class InsideApp extends React.Component {
 							exact
 							path="/"
 							render={(props) => <PageHome
-								ml_account={this.state.ml_account}
 								analytics={this.state.analytics}
 								{...props}
 							/>}

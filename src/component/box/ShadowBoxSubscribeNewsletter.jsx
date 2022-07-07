@@ -7,7 +7,7 @@ export default class ShadowBoxSubscribeNewsletter extends React.Component {
 		return (
 			<div
 				className="shadow-section blue-shadow-section centered-shadow-section"
-				onClick={() => this.props.ml_account("webforms", "3328240", "r1e0z6", "show")}>
+				onClick={() => window.open("https://newsletter.cybersecurity-luxembourg.com/", "_blank")}>
 				<div>
 					<h3>Subscribe to the newsletter!</h3>
 
