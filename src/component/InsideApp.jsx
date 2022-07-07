@@ -63,7 +63,6 @@ class InsideApp extends React.Component {
 
 	// eslint-disable-next-line react/no-deprecated
 	componentWillMount() {
-		console.log(this.props.history);
 		this.setState({
 			unlisten: this.props.history.listen((location) => {
 				// eslint-disable-next-line no-multi-assign,no-underscore-dangle
