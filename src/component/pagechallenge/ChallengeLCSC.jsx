@@ -144,7 +144,7 @@ export default class ChallengeLCSC extends React.Component {
 								<h5>
 									<b>LCSC finals with challenges on the CyberRange<br/>owned
 									by the Directorate of Defence of the Luxembourg Ministry
-									of Foreign and European Affairs</b><br/>9th of July
+									of Foreign and European Affairs</b><br/>16th of July
 								</h5>
 							</div>
 						</div>
