@@ -55,7 +55,24 @@ class InsideApp extends React.Component {
 
 		this.state = {
 			analytics: null,
+			unlisten: null,
 		};
+	}
+
+	// eslint-disable-next-line react/no-deprecated
+	componentWillMount() {
+		this.setState({
+			unlisten: this.props.history.listen((location) => {
+				// eslint-disable-next-line no-multi-assign,no-underscore-dangle
+				const paq = window._paq = window._paq || [];
+				paq.push(["setCustomUrl", location.pathname + location.search]);
+				paq.push(["trackPageView"]);
+			}),
+		});
+	}
+
+	componentWillUnmount() {
+		this.state.unlisten();
 	}
 
 	componentDidMount() {
