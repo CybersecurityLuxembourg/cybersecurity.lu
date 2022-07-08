@@ -36,8 +36,8 @@
             _paq.push(['enableLinkTracking']);
 
             (function() {
-                window.addEventListener('hashchange', function() {
-                    _paq.push(['setCustomUrl', '/' + window.location.hash.substr(1)]);
+                window.addEventListener('popstate', function() {
+                    /* _paq.push(['setCustomUrl', window.location.pathname); */
                     _paq.push(['trackPageView']);
                 });
             })();
@@ -45,7 +45,7 @@
             (function() {
                 var u="//matomo.secin.lu/";
                 _paq.push(['setTrackerUrl', u+'matomo.php']);
-                _paq.push(['setSiteId', '3']);
+                _paq.push(['setSiteId', window.location.hostname.includes("test.") ? '3' : '4']);
                 var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
                 g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
             })();
@@ -58,7 +58,9 @@
 		/>
 
 		<script src="/js/leaflet.js"
-          integrity="sha256-yDc0eil8GjWFKqN1OSzHSVCiuGghTosZCcRje4tj7iQ="/>
+			type="text/javascript"
+          	integrity="sha256-yDc0eil8GjWFKqN1OSzHSVCiuGghTosZCcRje4tj7iQ="
+        />
 
 		<script src="js/main.js"></script>
 
