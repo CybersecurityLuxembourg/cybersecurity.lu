@@ -265,7 +265,6 @@ export default class CyberWeekTheAwards extends React.Component {
 								Sponsored & organised by
 								<br/>
 								<img src='/img/pwc_logo.png'/>
-								<div>Apply here to pitch!</div>
 							</div>}
 						/>
 					</div>
