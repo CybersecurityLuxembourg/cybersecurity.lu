@@ -110,16 +110,6 @@ export default class PageEvent extends React.Component {
 									{this.state.article.title}
 								</h1>
 
-								{this.state.article.abstract !== null
-									&& <div
-										className="PageArticle-abstract"
-										dangerouslySetInnerHTML={{
-											__html:
-											dompurify.sanitize(this.state.article.abstract),
-										}}>
-									</div>
-								}
-
 								{this.state.article.content.map((b, i) => {
 									if (positionToTreat <= i) {
 										if (b.type === "TITLE1") {
