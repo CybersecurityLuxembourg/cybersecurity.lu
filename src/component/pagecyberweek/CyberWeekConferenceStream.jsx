@@ -24,7 +24,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 			dates: null,
 			rooms: defaultRooms,
 			roomStatus: defaultRooms.map(() => (true)),
-			view: "ontouchstart" in document.documentElement ? "agenda" : "day",
+			view: "agenda",
 		};
 	}
 
