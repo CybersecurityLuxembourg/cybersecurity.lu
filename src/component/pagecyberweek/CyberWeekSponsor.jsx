@@ -29,6 +29,8 @@ export default class CyberWeekSponsor extends React.Component {
 						/>
 					</div>
 				</div>
+
+				<div className="row row-spaced"/>
 			</div>
 		);
 	}

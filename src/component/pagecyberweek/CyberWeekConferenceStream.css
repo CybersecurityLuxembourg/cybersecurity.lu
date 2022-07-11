@@ -1,0 +1,85 @@
+
+#CyberWeekConferenceStream .rbc-toolbar .rbc-btn-group:nth-of-type(1),
+#CyberWeekConferenceStream .rbc-toolbar-label {
+	pointer-events: none;
+	opacity: 0;
+}
+
+#CyberWeekConferenceStream .CyberWeekConferenceStream-dates {
+	text-align: left;
+	margin: 10px 0px;
+}
+
+#CyberWeekConferenceStream .CyberWeekConferenceStream-rooms {
+	text-align: right;
+	margin: 10px 0px;
+}
+
+#CyberWeekConferenceStream .CheckBox {
+	width: fit-content;
+	display: inline-block;
+	margin: 0px 3px 0px 3px;
+}
+
+#CyberWeekConferenceStream .rbc-agenda-view {
+	overflow: visible !important;
+}
+
+#CyberWeekConferenceStream .rbc-event-content {
+	width: 55%;
+	font-size: 13px;
+	color: black !important;
+}
+
+#CyberWeekConferenceStream .rbc-event:hover, #CyberWeekConferenceStream .rbc-agenda-event-cell:hover {
+	border: 3px solid black;
+}
+
+#CyberWeekConferenceStream .rbc-agenda-event-cell {
+	cursor: pointer;
+}
+
+#CyberWeekConferenceStream .rbc-event-label {
+	color: #58595b !important;
+}
+
+#CyberWeekConferenceStream .rbc-event-content .event-title {
+	font-size: 16px !important;
+	margin-bottom: 5px;
+}
+
+#CyberWeekConferenceStream .rbc-agenda-date-cell {
+	background-color: white;
+}
+
+#CyberWeekConferenceStream .CheckBox-off {
+	background-color: lightgrey !important;
+}
+
+#CyberWeekConferenceStream .CyberWeekConferenceStream-rooms-1:not(.CheckBox-off) {
+	background-color: #ffa8b0 !important;
+}
+
+@media (max-width: 768px) {
+	#CyberWeekConferenceStream .CyberWeekConferenceStream-dates {
+		text-align: center;
+	}
+
+	#CyberWeekConferenceStream .CyberWeekConferenceStream-rooms {
+		text-align: center;
+	}
+
+	#CyberWeekConferenceStream .rbc-agenda-table tr td,
+	#CyberWeekConferenceStream .rbc-agenda-table tr th {
+		white-space: normal;
+	}
+}
+
+.rbc-header {
+	display: none;
+}
+
+.rbc-agenda-empty {
+	margin: 100px 0px;
+	text-align: center;
+}

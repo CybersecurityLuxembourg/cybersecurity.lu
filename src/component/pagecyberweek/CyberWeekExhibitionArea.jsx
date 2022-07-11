@@ -1,5 +1,5 @@
 import React from "react";
-import "./CyberWeekSponsors.css";
+import "./CyberWeekExhibitionArea.css";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Company from "../item/Company.jsx";
@@ -7,28 +7,26 @@ import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import { dictToURI } from "../../utils/url.jsx";
 
-export default class CyberWeekSponsors extends React.Component {
+export default class CyberWeekExhibitionArea extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			entities: null,
-			// The shown order is reversed
-			awardOrder: ["WITH THE SUPPORT OF", "EXHIBITORS", "GOLD", "DIAMOND", "PLATINUM"],
 		};
 	}
 
 	componentDidMount() {
-		this.getSponsorEntities();
+		this.getExhibitorEntities();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (!prevProps.analytics && this.props.analytics) {
-			this.getSponsorEntities();
+			this.getExhibitorEntities();
 		}
 	}
 
-	getSponsorEntities() {
+	getExhibitorEntities() {
 		if (this.props.analytics) {
 			const valueId = this.getSponsorTaxonomyValues().map((v) => v.id);
 
@@ -61,7 +59,8 @@ export default class CyberWeekSponsors extends React.Component {
 	getSponsorTaxonomyValues() {
 		if (this.props.analytics) {
 			return this.props.analytics.taxonomy_values
-				.filter((v) => v.category === "CYBERSECURITY WEEK SPONSOR 2022");
+				.filter((v) => v.category === "CYBERSECURITY WEEK SPONSOR 2022")
+				.filter((v) => v.name === "EXHIBITORS");
 		}
 
 		return undefined;
@@ -82,62 +81,76 @@ export default class CyberWeekSponsors extends React.Component {
 
 	render() {
 		return (
-			<div id={"CyberWeekSponsors"}>
+			<div id={"CyberWeekExhibitionArea"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h2>Sponsors</h2>
+						<h2>Exhibition area</h2>
 					</div>
 
 					<div className="col-md-12">
 						{this.getSponsorTaxonomyValues()
 							&& this.state.entities
-							&& this.state.entities.length > 0
-							&& this.getSponsorTaxonomyValues()
-								.sort((a, b) => this.state.awardOrder.indexOf(b.name)
-									- this.state.awardOrder.indexOf(a.name))
-								.map((v) => (
-									this.getEntitiesOfTaxonomyValue(v).length > 0
-										&& <div className="row" key={v.id}>
-											<div className="col-md-12">
-												<h3>{v.name}</h3>
-											</div>
+							&& this.state.entities.filter((e) => e.is_startup !== 1).length > 0
+							&& <div className="row">
+								<div className="col-md-12">
+									<h3>Exhibitors</h3>
+								</div>
 
-											{this.getEntitiesOfTaxonomyValue(v).length > 0
-												&& this.getEntitiesOfTaxonomyValue(v).map((c) => (
-													<div className="col-md-6" key={c.id}>
-														<Company
-															info={c}
-														/>
-													</div>
-												))}
-
-											{this.getEntitiesOfTaxonomyValue(v).length === 0
-												&& <div className="col-md-12">
-													<Message
-														text={"No entity for this sponsorship"}
-													/>
-												</div>
-											}
+								{this.state.entities.filter((e) => e.is_startup !== 1)
+									.map((c) => (
+										<div className="col-md-6" key={c.id}>
+											<Company
+												info={c}
+											/>
 										</div>
-								))
+									))
+								}
+							</div>
+						}
+
+						{this.getSponsorTaxonomyValues()
+							&& this.state.entities
+							&& this.state.entities.filter((e) => e.is_startup === 1).length > 0
+							&& <div className="row">
+								<div className="col-md-12">
+									<h3>Exhibitors - Startup</h3>
+								</div>
+
+								{this.state.entities.filter((e) => e.is_startup === 1)
+									.map((c) => (
+										<div className="col-md-6" key={c.id}>
+											<Company
+												info={c}
+											/>
+										</div>
+									))
+								}
+							</div>
 						}
 
 						{this.state.entities
 							&& this.state.entities.length === 0
-							&& <Message
-								text={"No entity found"}
-								height={300}
-							/>
+							&& <div className="col-md-12">
+								<Message
+									text={"No entity found"}
+									height={300}
+								/>
+							</div>
 						}
 
 						{(!this.getSponsorTaxonomyValues()
 							|| !this.state.entities)
-							&& <Loading
-								height={300}
-							/>
+							&& <div className="col-md-12">
+								<Loading
+									height={300}
+								/>
+							</div>
 						}
 					</div>
 				</div>
+
+				<div className="row row-spaced"/>
+				<div className="row row-spaced"/>
 			</div>
 		);
 	}
