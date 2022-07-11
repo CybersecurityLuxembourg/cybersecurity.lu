@@ -1,6 +1,5 @@
 import React from "react";
 import "./PageEvent.css";
-import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";

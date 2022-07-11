@@ -6,6 +6,8 @@ import { getUrlParameter } from "../utils/url.jsx";
 import Tab from "./tab/Tab.jsx";
 import CyberWeekPresentation from "./pagecyberweek/CyberWeekPresentation.jsx";
 import CyberWeekProgramme from "./pagecyberweek/CyberWeekProgramme.jsx";
+import CyberWeekConferenceStream from "./pagecyberweek/CyberWeekConferenceStream.jsx";
+import CyberWeekExhibitionArea from "./pagecyberweek/CyberWeekExhibitionArea.jsx";
 import CyberWeekSponsor from "./pagecyberweek/CyberWeekSponsor.jsx";
 import CyberWeekSponsors from "./pagecyberweek/CyberWeekSponsors.jsx";
 import CyberWeekBecomeASponsor from "./pagecyberweek/CyberWeekBecomeASponsor.jsx";
@@ -23,6 +25,8 @@ export default class PageCyberWeek extends React.Component {
 			tabs: [
 				"About",
 				"Programme",
+				"Conference_stream",
+				"Exhibition_area",
 				"Sponsoring",
 				"Become_a_sponsor",
 				"Sponsors",
@@ -71,6 +75,8 @@ export default class PageCyberWeek extends React.Component {
 							labels={[
 								"About CSWL 2022",
 								"Programme",
+								"<div style='font-size:12px'>&nbsp;&nbsp;- Conference stream</div>",
+								"<div style='font-size:12px'>&nbsp;&nbsp;- Exhibition area</div>",
 								"Sponsors",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Become a sponsor</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Sponsors</div>",
@@ -89,38 +95,47 @@ export default class PageCyberWeek extends React.Component {
 								<CyberWeekProgramme
 									key={this.state.tabs[1]}
 									analytics={this.props.analytics}
+								/>,
+								<CyberWeekConferenceStream
+									key={this.state.tabs[2]}
+									analytics={this.props.analytics}
+									{...this.props}
+								/>,
+								<CyberWeekExhibitionArea
+									key={this.state.tabs[3]}
+									analytics={this.props.analytics}
 									{...this.props}
 								/>,
 								<CyberWeekSponsor
-									key={this.state.tabs[2]}
-									analytics={this.props.analytics}
-								/>,
-								<CyberWeekBecomeASponsor
-									key={this.state.tabs[3]}
-									analytics={this.props.analytics}
-								/>,
-								<CyberWeekSponsors
 									key={this.state.tabs[4]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekGala
+								<CyberWeekBecomeASponsor
 									key={this.state.tabs[5]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekAboutTheGala
+								<CyberWeekSponsors
 									key={this.state.tabs[6]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekTheAwards
+								<CyberWeekGala
 									key={this.state.tabs[7]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekContactUs
+								<CyberWeekAboutTheGala
 									key={this.state.tabs[8]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekRegister
+								<CyberWeekTheAwards
 									key={this.state.tabs[9]}
+									analytics={this.props.analytics}
+								/>,
+								<CyberWeekContactUs
+									key={this.state.tabs[10]}
+									analytics={this.props.analytics}
+								/>,
+								<CyberWeekRegister
+									key={this.state.tabs[11]}
 									analytics={this.props.analytics}
 								/>,
 							]}
