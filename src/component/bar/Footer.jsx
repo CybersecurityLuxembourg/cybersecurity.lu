@@ -278,7 +278,7 @@ export default class Footer extends React.Component {
 									href="https://github.com/CybersecurityLuxembourg/"
 									rel="noreferrer"
 									target="_blank"
-									title="GitHub CyberLux"
+									title="GitHub CYBERLUX"
 									className="text-capitalize">
 									<i className="fab fa-github-alt Footer-network"/>
 								</a>
