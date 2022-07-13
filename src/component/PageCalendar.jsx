@@ -45,6 +45,7 @@ export default class PageCalendar extends React.Component {
 
 		const params = dictToURI({
 			type: "EVENT",
+			ignored_taxonomy_values: "CSWL 2022",
 			include_tags: "true",
 			order_by: "start_date",
 			order: "asc",
@@ -71,6 +72,7 @@ export default class PageCalendar extends React.Component {
 
 		const params = dictToURI({
 			type: "EVENT",
+			ignored_taxonomy_values: "CSWL 2022",
 			include_tags: "true",
 			order_by: "start_date",
 			order: "asc",
