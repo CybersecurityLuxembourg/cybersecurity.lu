@@ -37,6 +37,7 @@ export default class PageHomeComingEvents extends React.Component {
 	getNews() {
 		const params = {
 			type: "EVENT",
+			ignored_taxonomy_values: "CSWL 2022",
 			per_page: 5,
 			order_by: "start_date",
 			order: "asc",
