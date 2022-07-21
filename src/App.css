@@ -291,6 +291,13 @@ button:disabled {
 	text-align: center;
 }
 
+.middled {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  	height: 100%;
+}
+
 .justified {
 	text-align: justify;  
 }

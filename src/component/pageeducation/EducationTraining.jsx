@@ -97,8 +97,28 @@ export default class EducationTraining extends React.Component {
 		return (
 			<div id={"EducationTraining"} className={"page max-sized-page"}>
 				<div className="row row-spaced">
-					<div className="col-md-12">
-						<h2>Lifelong Learning</h2>
+					<div className="col-md-6 row-spaced">
+						<div className="EducationTraining-phrase centered middled">
+							<h3>
+								In collaboration with the national portal <a
+									href="https://www.lifelong-learning.lu/"
+									target="_blank"
+									rel="noreferrer">lifelong-learning.lu</a>
+							</h3>
+						</div>
+					</div>
+
+					<div className="col-md-6 row-spaced centered">
+						<a
+							href="https://www.lifelong-learning.lu/"
+							target="_blank"
+							rel="noreferrer">
+							<img
+								className="EducationTraining-image"
+								src={"img/logo_lifelong-learning.png"}
+								alt={"Lifelong Learning"}
+							/>
+						</a>
 					</div>
 
 					<div className={"col-md-12"}>
