@@ -26,8 +26,8 @@ export default class CyberWeekPresentation extends React.Component {
 					<div className="col-md-12 row-spaced">
 						<p>
 							For the first time, CYBERSECURITY Luxembourg intends to
-							bring together, under one roof, the <b>entire cybersecurity
-							ecosystem and key international partners</b> during the 2022
+							bring together, under one roof, the <b>cybersecurity
+							community and key international partners</b> during the 2022
 							Cybersecurity Week Luxembourg edition, in the frame of
 							the <b>European Cyber Security Month</b>. This global event will
 							showcase <b>a conference stream and an exhibition area</b>, where each actor
