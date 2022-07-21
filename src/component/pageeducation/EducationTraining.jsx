@@ -124,6 +124,7 @@ export default class EducationTraining extends React.Component {
 					<div className={"col-md-12"}>
 						<FormLine
 							label={"Training name"}
+							labelWidth={3}
 							value={this.props.searchValue}
 							onChange={(v) => this.changeState("searchValue", v)}
 						/>
