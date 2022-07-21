@@ -1,6 +1,7 @@
 import React from "react";
 import "./CyberWeekBecomeASponsor.css";
 import ShadowBox from "../box/ShadowBox.jsx";
+import { getApiURL } from "../../utils/env.jsx";
 
 export default class CyberWeekBecomeASponsor extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
@@ -39,7 +40,7 @@ export default class CyberWeekBecomeASponsor extends React.Component {
 
 					<div className="col-md-6">
 						<ShadowBox
-							onClick={() => window.open("pdf/CSWL_2022_packages.pdf", "_blank")}
+							onClick={() => window.open(getApiURL() + "public/get_public_document/CSWL22_brochure_sponsors.pdf", "_blank")}
 							title="Download the packages description"
 							icon="fas fa-file-pdf"
 						/>
