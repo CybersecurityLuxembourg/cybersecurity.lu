@@ -16,21 +16,9 @@ export default class PageDashboard extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.fetchAnalytics = this.fetchAnalytics.bind(this);
-		this.fetchActors = this.fetchActors.bind(this);
-		this.fetchPublicSector = this.fetchPublicSector.bind(this);
-		this.fetchAllEntities = this.fetchAllEntities.bind(this);
-		this.getLegalFrameworks = this.getLegalFrameworks.bind(this);
-		this.getTopSolutions = this.getTopSolutions.bind(this);
-		this.getFrameworkNumbersOfRegulator = this.getFrameworkNumbersOfRegulator.bind(this);
-		this.getSecinDepartments = this.getSecinDepartments.bind(this);
-		this.getSecinId = this.getSecinId.bind(this);
-
 		this.state = {
 			analytics: null,
-			actors: null,
-			publicSector: null,
-			allEntities: null,
+			entities: null,
 
 			secinDepartments: [
 				"Computer Incident Response Center Luxembourg (CIRCL)",
@@ -42,36 +30,21 @@ export default class PageDashboard extends React.Component {
 				"CERT Gouvernemental du Luxembourg (GOVCERT.LU)",
 				"Centre des Technologies de l'Information de l'Etat - CTIE",
 			],
-			sectoralPPPs: [
-				"InCert GIE",
-				"Infrachain a.s.b.l",
-				"LU-CIX (Luxembourg Internet Exchange)",
-				"LUXITH",
-				"Agence eSanté G.I.E.",
-				"L-DIH",
-			],
-			additionalAuthorities: [
-				"Commissariat Aux Assurances",
+			interministerialCommitee: [
+				"Haut-Commissariat à la Protection Nationale",
+				"Directorate of Defence, Ministry of Foreign and European Affairs",
+				"Service de Renseignement de l'Etat",
+				"Ministry of the Economy",
+				"Institut Luxembourgeois de Régulation",
+				"Department of Media, Telecommunications and Digital Policy",
+				"Ministry of Foreign and European Affairs",
 			],
 		};
 	}
 
 	componentDidMount() {
-		if (this.props.analytics) {
-			this.fetchAnalytics();
-			this.fetchActors();
-			this.fetchPublicSector();
-			this.fetchAllEntities();
-		}
-	}
-
-	componentDidUpdate(prevProps) {
-		if (this.props.analytics !== prevProps.analytics) {
-			this.fetchAnalytics();
-			this.fetchActors();
-			this.fetchPublicSector();
-			this.fetchAllEntities();
-		}
+		this.fetchAnalytics();
+		this.fetchAllEntities();
 	}
 
 	fetchAnalytics() {
@@ -86,35 +59,10 @@ export default class PageDashboard extends React.Component {
 		});
 	}
 
-	fetchActors() {
-		getRequest.call(this, "public/get_public_companies"
-			+ "?ecosystem_role=ACTOR&entity_type=PRIVATE SECTOR", (data) => {
-			this.setState({
-				actors: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
-	}
-
-	fetchPublicSector() {
-		getRequest.call(this, "public/get_public_companies?entity_type=PUBLIC SECTOR", (data) => {
-			this.setState({
-				publicSector: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
-	}
-
 	fetchAllEntities() {
 		getRequest.call(this, "public/get_public_companies", (data) => {
 			this.setState({
-				allEntities: data,
+				entities: data,
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -123,12 +71,35 @@ export default class PageDashboard extends React.Component {
 		});
 	}
 
+	getActors() {
+		if (!this.state.entities
+			|| !this.state.analytics) {
+			return [];
+		}
+
+		const values = this.state.analytics.taxonomy_values
+			.filter((v) => v.category === "ECOSYSTEM ROLE")
+			.filter((v) => v.name === "ACTOR")
+			.map((v) => v.id);
+
+		if (values.length > 0) {
+			const assignedCompanies = this.state.analytics.taxonomy_assignments
+				.filter((a) => a.taxonomy_value === values[0])
+				.map((a) => a.company);
+
+			return this.state.entities
+				.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
+		}
+
+		return [];
+	}
+
 	getSecinId() {
-		if (this.state.allEntities === null) {
+		if (!this.state.entities) {
 			return null;
 		}
 
-		const entities = this.state.allEntities
+		const entities = this.state.entities
 			.filter((p) => p.name === "SECURITYMADEIN.LU");
 
 		if (entities.length > 0) {
@@ -138,38 +109,34 @@ export default class PageDashboard extends React.Component {
 	}
 
 	getAuthorities() {
-		if (this.getLegalFrameworks() === null
-			|| this.state.analytics === null
-			|| this.state.analytics.taxonomy_assignments === undefined
-			|| this.state.publicSector === null) {
+		if (!this.getLegalFrameworks()
+			|| !this.state.entities
+			|| !this.state.analytics) {
 			return null;
 		}
 
-		const tv = this.getLegalFrameworks()
-			.map((v) => v.id)
-			.join();
+		const values = this.state.analytics.taxonomy_values
+			.filter((v) => v.category === "ECOSYSTEM ROLE")
+			.filter((v) => v.name === "AUTHORITY AND REGULATOR")
+			.map((v) => v.id);
+		console.log("AAAA", values);
 
-		const assignedCompanies = this.state.analytics.taxonomy_assignments
-			.filter((a) => tv.indexOf(a.taxonomy_value) >= 0)
-			.map((a) => a.company);
+		if (values.length > 0) {
+			const assignedCompanies = this.state.analytics.taxonomy_assignments
+				.filter((a) => a.taxonomy_value === values[0])
+				.map((a) => a.company);
 
-		return this.state.publicSector
-			.filter((p) => assignedCompanies.indexOf(p.id) >= 0)
-			.filter((p) => this.state.secinDepartments.indexOf(p.name) < 0)
-			.filter((p) => p.id !== this.getSecinId())
-			.filter((p) => this.state.sectoralPPPs.indexOf(p.name) < 0)
-			.filter((p) => this.state.servingPublicSector.indexOf(p.name) < 0)
-			.concat(
-				this.state.publicSector
-					.filter((p) => this.state.additionalAuthorities.indexOf(p.name) >= 0),
-			);
+			return this.state.entities
+				.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
+		}
+
+		return null;
 	}
 
 	getFrameworkNumbersOfRegulator(regulatorId) {
 		if (regulatorId === null
-			|| this.getLegalFrameworks() === null
-			|| this.state.analytics === null
-			|| this.state.analytics.taxonomy_assignments === undefined) {
+			|| !this.getLegalFrameworks()
+			|| !this.state.analytics) {
 			return [];
 		}
 
@@ -185,11 +152,8 @@ export default class PageDashboard extends React.Component {
 	}
 
 	getEducation() {
-		if (this.state.actors === null
-			|| this.state.analytics === null
-			|| this.state.analytics.taxonomy_assignments === undefined
-			|| this.state.analytics.taxonomy_values === undefined
-			|| this.state.publicSector === null) {
+		if (!this.state.analytics
+			|| !this.state.entities) {
 			return null;
 		}
 
@@ -202,64 +166,56 @@ export default class PageDashboard extends React.Component {
 			.filter((a) => tv.indexOf(a.taxonomy_value) >= 0)
 			.map((a) => a.company);
 
-		return this.state.publicSector
+		return this.state.entities
 			.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
 	}
 
 	getCybersecurityCoreCount() {
-		if (this.state.actors === null) {
+		if (!this.state.entities
+			|| this.state.analytics === null) {
 			return null;
 		}
 
-		return this.state.actors
+		return this.getActors()
 			.filter((a) => a.is_cybersecurity_core_business === 1)
 			.length;
 	}
 
 	getCybersecurityCoreEmployeeCount() {
-		if (this.state.actors === null
-			|| this.state.analytics === null
-			|| this.state.analytics.workforces === undefined) {
+		if (!this.state.entities
+			|| !this.state.analytics) {
 			return null;
 		}
 
-		const actors = this.state.actors
-			.filter((a) => a.is_cybersecurity_core_business === 1)
-			.map((a) => a.id);
+		const actorIds = this.getActors().map((a) => a.id);
 
 		const workforces = this.state.analytics.workforces
-			.filter((w) => actors.indexOf(w.company) >= 0)
+			.filter((w) => actorIds.indexOf(w.company) >= 0)
 			.map((w) => w.workforce);
 
 		return workforces.reduce((a, b) => a + b, 0);
 	}
 
 	getStartupCount() {
-		if (this.state.actors === null) {
+		if (!this.state.entities
+			|| !this.state.analytics) {
 			return null;
 		}
 
-		return this.state.actors
-			.filter((a) => a.is_startup === 1)
-			.length;
+		return this.getActors().filter((a) => a.is_startup === 1).length;
 	}
 
 	getLegalFrameworks() {
-		if (this.props.analytics === null
-			|| this.props.analytics.taxonomy_values === undefined) {
+		if (!this.state.analytics) {
 			return null;
 		}
 
-		return this.props.analytics.taxonomy_values.filter((v) => v.category === "LEGAL FRAMEWORK");
+		return this.state.analytics.taxonomy_values.filter((v) => v.category === "LEGAL FRAMEWORK");
 	}
 
 	getValueChainDistribution() {
 		const getLeavesOfNode = (taxonomyValues) => {
-			if (this.state.analytics === null
-				|| this.state.analytics.taxonomy_values === undefined
-				|| this.state.analytics.taxonomy_categories === undefined
-				|| this.state.analytics.taxonomy_category_hierarchy === undefined
-				|| this.state.analytics.taxonomy_value_hierarchy === undefined) {
+			if (!this.state.analytics) {
 				return null;
 			}
 
@@ -278,9 +234,7 @@ export default class PageDashboard extends React.Component {
 			return taxonomyValues;
 		};
 
-		if (this.state.analytics === null
-			|| this.state.analytics.taxonomy_values === undefined
-			|| this.state.analytics.taxonomy_assignments === undefined) {
+		if (!this.state.analytics) {
 			return null;
 		}
 
@@ -302,45 +256,49 @@ export default class PageDashboard extends React.Component {
 	}
 
 	getInterMinisterialCommitee() {
-		if (this.state.publicSector === null) {
+		if (!this.state.entities) {
 			return null;
 		}
 
-		return this.state.publicSector
-			.filter((p) => [
-				"Haut-Commissariat à la Protection Nationale",
-				"Directorate of Defence, Ministry of Foreign and European Affairs",
-				"Service de Renseignement de l'Etat",
-				"Ministry of the Economy",
-				"Institut Luxembourgeois de Régulation",
-				"Department of Media, Telecommunications and Digital Policy",
-				"Ministry of Foreign and European Affairs",
-			].indexOf(p.name) >= 0);
+		return this.state.entities
+			.filter((p) => this.state.interministerialCommitee.indexOf(p.name) >= 0);
 	}
 
 	getServingThePublicSector() {
-		if (this.state.publicSector === null) {
+		if (!this.state.entities) {
 			return null;
 		}
 
-		return this.state.publicSector
+		return this.state.entities
 			.filter((p) => this.state.servingPublicSector.indexOf(p.name) >= 0);
 	}
 
 	getSectoralPPPs() {
-		if (this.state.allEntities === null) {
+		if (!this.getLegalFrameworks()
+			|| !this.state.entities
+			|| !this.state.analytics) {
 			return null;
 		}
 
-		return this.state.allEntities
-			.filter((p) => this.state.sectoralPPPs.indexOf(p.name) >= 0);
+		const values = this.state.analytics.taxonomy_values
+			.filter((v) => v.category === "ECOSYSTEM ROLE")
+			.filter((v) => v.name === "SECTORAL PPP")
+			.map((v) => v.id);
+
+		if (values.length > 0) {
+			const assignedCompanies = this.state.analytics.taxonomy_assignments
+				.filter((a) => a.taxonomy_value === values[0])
+				.map((a) => a.company);
+
+			return this.state.entities
+				.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
+		}
+
+		return null;
 	}
 
 	getTopSolutions() {
-		if (this.state.analytics === null
-			|| this.state.analytics.taxonomy_categories === undefined
-			|| this.state.analytics.taxonomy_values === undefined
-			|| this.state.analytics.taxonomy_assignments === undefined) {
+		if (!this.state.analytics) {
 			return null;
 		}
 
@@ -390,7 +348,7 @@ export default class PageDashboard extends React.Component {
 			return null;
 		}
 
-		const startupIDs = this.state.actors
+		const startupIDs = this.getActors()
 			.filter((a) => a.is_startup === 1)
 			.map((a) => a.id);
 
@@ -433,12 +391,13 @@ export default class PageDashboard extends React.Component {
 	}
 
 	getCoreBusinessPercentForStartup() {
-		if (this.state.actors === null) {
+		if (!this.state.entities) {
 			return null;
 		}
 
-		const startups = this.state.actors
-			.filter((a) => a.is_startup === 1);
+		const actors = this.getActors();
+
+		const startups = actors.filter((a) => a.is_startup === 1);
 
 		const numberOfStartup = startups.length;
 		const numberOfCB = startups.filter((a) => a.is_cybersecurity_core_business === 1).length;
@@ -447,33 +406,37 @@ export default class PageDashboard extends React.Component {
 	}
 
 	getLessThanFiveYearsCoreBusinessCompanyCount() {
-		if (this.state.actors === null) {
+		if (!this.state.entities) {
 			return null;
 		}
 
-		return this.state.actors
+		const actors = this.getActors();
+
+		return actors
 			.filter((a) => a.is_cybersecurity_core_business === 1)
 			.filter((a) => a.creation_date >= getPastDate(5))
 			.length;
 	}
 
 	getStartupWithCoreBusinessCompanyCount() {
-		if (this.state.actors === null) {
+		if (!this.state.entities) {
 			return null;
 		}
 
-		return this.state.actors
+		const actors = this.getActors();
+
+		return actors
 			.filter((a) => a.is_cybersecurity_core_business === 1)
 			.filter((a) => a.is_startup === 1)
 			.length;
 	}
 
 	getSecinDepartments() {
-		if (this.state.publicSector === null) {
+		if (!this.state.entities) {
 			return [];
 		}
 
-		return this.state.publicSector
+		return this.state.entities
 			.filter((a) => this.state.secinDepartments.indexOf(a.name) >= 0);
 	}
 
@@ -530,7 +493,7 @@ export default class PageDashboard extends React.Component {
 							<div className={"PageDashboard-actor-distribution"}>
 								{this.state.actors !== null
 									? <VennActorDistribution
-										actors={this.state.actors}
+										actors={this.getActors()}
 									/>
 									: <Loading
 										height={200}
@@ -642,42 +605,41 @@ export default class PageDashboard extends React.Component {
 							</div>
 						</div>
 
-						<div className={"col-md-6 col-lg-4 PageDashboard-national-strategy-serving"}>
-							<h2>Serving the public sector</h2>
-
-							{this.getServingThePublicSector() !== null
-								? this.getServingThePublicSector().map((m) => <div className={"row"} key={m.id}>
-									<div className={"col-12 col-md-3 col-lg-3"}/>
-									<div className={"col-12 col-md-6 col-lg-6 PageDashboard-national-strategy-actor"}>
-										<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
-											{this.getFrameworkNumbersOfRegulator(m.id).map((f) => <span
-												key={f}
-												className="PageDashboard-legal-bookmark"
-											>
-												{f}
-											</span>)}
-										</div>
-
-										<img
-											src={getApiURL() + "public/get_public_image/" + m.image}
-											alt={m.name}
-										/>
-									</div>
-								</div>)
-								: <Loading
-									height={100}
-								/>
-							}
-						</div>
-
-						<div className={"col-md-12 col-lg-4"}/>
-
-						<div className={"col-md-6 col-lg-4 PageDashboard-national-strategy-serving"}>
-							<h2>Serving the private sector</h2>
+						<div className={"col-md-12 col-lg-12 PageDashboard-national-strategy-serving"}>
+							<h3>Serving the public sector</h3>
 
 							<div className={"row"}>
-								<div className={"col-12 col-md-3 col-lg-3"}/>
-								<div className={"col-12 col-md-6 col-lg-6"}>
+								{this.getServingThePublicSector() !== null
+									? this.getServingThePublicSector().map((m) => (
+										<div className={"col-12 col-md-4 col-lg-4 PageDashboard-image-wrapper"}
+											key={m.id}>
+											<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
+												{this.getFrameworkNumbersOfRegulator(m.id).map((f) => <span
+													key={f}
+													className="PageDashboard-legal-bookmark"
+												>
+													{f}
+												</span>)}
+											</div>
+
+											<img
+												src={getApiURL() + "public/get_public_image/" + m.image}
+												alt={m.name}
+											/>
+										</div>
+									))
+									: <Loading
+										height={100}
+									/>
+								}
+							</div>
+						</div>
+
+						<div className={"col-md-12 col-lg-12 PageDashboard-national-strategy-serving"}>
+							<h3>Serving the private sector</h3>
+
+							<div className={"row"}>
+								<div className={"col-12 col-md-12 col-lg-12"}>
 									<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
 										{this.getFrameworkNumbersOfRegulator(this.getSecinId()).map((f) => <span
 											key={f}
@@ -692,12 +654,12 @@ export default class PageDashboard extends React.Component {
 										alt={"SECURITYMADEIN.LU"}
 									/>
 								</div>
-								<div className={"col-12 col-md-3 col-lg-3"}/>
+								<div className={"col-12 col-md-12 col-lg-12"}/>
 							</div>
 							<div className={"row"}>
 								{this.getSecinDepartments().map((d) => <div
 									key={d.id}
-									className={"col-12 col-md-6 col-lg-6 PageDashboard-image-wrapper"}>
+									className={"col-12 col-md-4 col-lg-4 PageDashboard-image-wrapper"}>
 									<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
 										{this.getFrameworkNumbersOfRegulator(d.id).map((f) => <span
 											key={f}
@@ -728,39 +690,39 @@ export default class PageDashboard extends React.Component {
 
 							<div className={"red-bordered PageDashboard-authorities-and-regulators"}>
 								<div className={"row"}>
-									{this.getAuthorities() !== null && this.getAuthorities().length > 0
-									&& this.getAuthorities().map((c) => <div
-										className={"col-md-6 col-lg-6 col-xl-4 PageDashboard-image-wrapper"}
-										key={c.id}>
-										<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
-											{this.getFrameworkNumbersOfRegulator(c.id).map((f) => <span
-												key={f}
-												className="PageDashboard-legal-bookmark"
-											>
-												{f}
-											</span>)}
-										</div>
+									{this.getAuthorities() && this.getAuthorities().length > 0
+										&& this.getAuthorities().map((c) => <div
+											className={"col-md-6 col-lg-6 col-xl-4 PageDashboard-image-wrapper"}
+											key={c.id}>
+											<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
+												{this.getFrameworkNumbersOfRegulator(c.id).map((f) => <span
+													key={f}
+													className="PageDashboard-legal-bookmark"
+												>
+													{f}
+												</span>)}
+											</div>
 
-										<img
-											src={getApiURL() + "public/get_public_image/" + c.image}
-											alt={c.name}
-										/>
-									</div>)}
+											<img
+												src={getApiURL() + "public/get_public_image/" + c.image}
+												alt={c.name}
+											/>
+										</div>)}
 
-									{this.getAuthorities() !== null && this.getAuthorities().length === 0
-									&& <div className={"col-md-12"}>
-										<Message
-											text={"No item found"}
-											height={200}
-										/>
-									</div>}
+									{this.getAuthorities() && this.getAuthorities().length === 0
+										&& <div className={"col-md-12"}>
+											<Message
+												text={"No item found"}
+												height={200}
+											/>
+										</div>}
 
-									{this.getAuthorities() === null
-									&& <div className={"col-md-12"}>
-										<Loading
-											height={200}
-										/>
-									</div>}
+									{!this.getAuthorities()
+										&& <div className={"col-md-12"}>
+											<Loading
+												height={200}
+											/>
+										</div>}
 								</div>
 							</div>
 						</div>

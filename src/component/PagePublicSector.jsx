@@ -35,22 +35,41 @@ export default class PagePublicSector extends React.Component {
 		this.getPublicCompany();
 	}
 
+	componentDidUpdate(prevProps) {
+		if (this.props.analytics !== prevProps.analytics) {
+			this.getPublicCompany();
+		}
+	}
+
 	getPublicCompany() {
-		this.setState({
-			publicEntities: null,
-		}, () => {
-			getRequest.call(this, "public/get_public_companies?entity_type=PUBLIC SECTOR&"
-				+ dictToURI(this.state.filters), (data) => {
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const entityTypes = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE")
+				.filter((v) => v.name === "PUBLIC SECTOR")
+				.map((v) => v.id);
+
+			if (entityTypes.length > 0) {
 				this.setState({
-					publicEntities: data
-						.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+					publicEntities: null,
+				}, () => {
+					const params = {
+						taxonomy_values: entityTypes,
+					};
+
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+						this.setState({
+							publicEntities: data
+								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+						});
+					}, (response) => {
+						nm.warning(response.statusText);
+					}, (error) => {
+						nm.error(error.message);
+					});
 				});
-			}, (response) => {
-				nm.warning(response.statusText);
-			}, (error) => {
-				nm.error(error.message);
-			});
-		});
+			}
+		}
 	}
 
 	onSearch() {

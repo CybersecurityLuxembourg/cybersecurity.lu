@@ -11,8 +11,8 @@ class SearchField extends Component {
 		this.onKeyDown = this.onKeyDown.bind(this);
 
 		this.state = {
-			originalValue: props.value === undefined ? null : props.value,
-			value: props.value === undefined ? null : props.value,
+			originalValue: props.value === undefined ? "" : props.value,
+			value: props.value === undefined ? "" : props.value,
 		};
 	}
 

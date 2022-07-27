@@ -5,6 +5,7 @@ import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Company from "../item/Company.jsx";
 import Loading from "./Loading.jsx";
+import { dictToURI } from "../../utils/url.jsx";
 
 export default class ShadowBoxPcDoctor extends React.Component {
 	constructor(props) {
@@ -16,27 +17,40 @@ export default class ShadowBoxPcDoctor extends React.Component {
 	}
 
 	getPCDoctors() {
-		if (this.props.analytics) {
-			this.setState({
-				pcDoctors: null,
-			}, () => {
-				const individualValues = this.props.analytics.taxonomy_values
-					.filter((v) => v.category === "ENTITY TARGET" && v.name === "INDIVIDUAL");
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const individualValues = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TARGET" && v.name === "INDIVIDUAL")
+				.map((v) => v.id);
 
-				if (individualValues.length === 1) {
-					getRequest.call(this, "public/get_public_companies?"
-						+ "ecosystem_role=ACTOR&entity_type=PRIVATE%20SECTOR"
-						+ "&taxonomy_values=" + individualValues[0].id, (data) => {
+			const entityTypes = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE" && v.name === "PRIVATE SECTOR")
+				.map((v) => v.id);
+
+			const exosystemRoles = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ECOSYSTEM ROLE" && v.name === "ACTOR")
+				.map((v) => v.id);
+
+			if (individualValues.length > 0 && entityTypes.length > 0 && exosystemRoles.length > 0) {
+				this.setState({
+					pcDoctors: null,
+				}, () => {
+					const params = {
+						taxonomy_values: entityTypes.concat(exosystemRoles).concat(individualValues),
+					};
+
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
 						this.setState({
-							pcDoctors: data,
+							pcDoctors: data
+								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
 						});
 					}, (response) => {
 						nm.warning(response.statusText);
 					}, (error) => {
 						nm.error(error.message);
 					});
-				}
-			});
+				});
+			}
 		}
 	}
 
