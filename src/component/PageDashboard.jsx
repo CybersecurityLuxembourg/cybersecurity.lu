@@ -87,28 +87,68 @@ export default class PageDashboard extends React.Component {
 	}
 
 	fetchActors() {
-		getRequest.call(this, "public/get_public_companies"
-			+ "?ecosystem_role=ACTOR&entity_type=PRIVATE SECTOR", (data) => {
-			this.setState({
-				actors: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const entityTypes = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE")
+				.filter((v) => v.name === "CIVIL SOCIETY")
+				.map((v) => v.id);
+
+			const exosystemRoles = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ECOSYSTEM ROLE")
+				.filter((v) => v.name === "ACTOR")
+				.map((v) => v.id);
+
+			if (entityTypes.length > 0 && exosystemRoles.length > 0) {
+				this.setState({
+					actors: null,
+				}, () => {
+					const params = {
+						taxonomy_values: entityTypes.concat(exosystemRoles),
+					};
+
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+						this.setState({
+							actors: data,
+						});
+					}, (response) => {
+						nm.warning(response.statusText);
+					}, (error) => {
+						nm.error(error.message);
+					});
+				});
+			}
+		}
 	}
 
 	fetchPublicSector() {
-		getRequest.call(this, "public/get_public_companies?entity_type=PUBLIC SECTOR", (data) => {
-			this.setState({
-				publicSector: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const entityTypes = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE")
+				.filter((v) => v.name === "PUBLIC SECTOR")
+				.map((v) => v.id);
+
+			if (entityTypes.length > 0) {
+				this.setState({
+					publicSector: null,
+				}, () => {
+					const params = {
+						taxonomy_values: entityTypes,
+					};
+
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+						this.setState({
+							publicSector: data,
+						});
+					}, (response) => {
+						nm.warning(response.statusText);
+					}, (error) => {
+						nm.error(error.message);
+					});
+				});
+			}
+		}
 	}
 
 	fetchAllEntities() {

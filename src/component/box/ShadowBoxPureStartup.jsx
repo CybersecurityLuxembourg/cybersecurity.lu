@@ -16,17 +16,38 @@ export default class ShadowBoxPureStartup extends React.Component {
 	}
 
 	getCoreStartups() {
-		getRequest.call(this, "public/get_public_companies?"
-			+ "ecosystem_role=ACTOR&entity_type=PRIVATE%20SECTOR"
-			+ "&corebusiness_only=true&startup_only=true", (data) => {
-			this.setState({
-				coreStartups: data,
-			});
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const entityTypes = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE" && v.name === "PRIVATE SECTOR")
+				.map((v) => v.id);
+
+			const exosystemRoles = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ECOSYSTEM ROLE" && v.name === "ACTOR")
+				.map((v) => v.id);
+
+			if (entityTypes.length > 0 && exosystemRoles.length > 0) {
+				this.setState({
+					coreStartups: null,
+				}, () => {
+					const params = {
+						taxonomy_values: entityTypes.concat(exosystemRoles),
+						startup_only: true,
+						corebusiness_only: true,
+					};
+
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+						this.setState({
+							coreStartups: data,
+						});
+					}, (response) => {
+						nm.warning(response.statusText);
+					}, (error) => {
+						nm.error(error.message);
+					});
+				});
+			}
+		}
 	}
 
 	getColor() {
