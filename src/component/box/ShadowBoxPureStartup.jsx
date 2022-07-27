@@ -5,6 +5,7 @@ import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Company from "../item/Company.jsx";
 import Loading from "./Loading.jsx";
+import { dictToURI } from "../../utils/url.jsx";
 
 export default class ShadowBoxPureStartup extends React.Component {
 	constructor(props) {
@@ -36,7 +37,7 @@ export default class ShadowBoxPureStartup extends React.Component {
 						corebusiness_only: true,
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
 						this.setState({
 							coreStartups: data,
 						});

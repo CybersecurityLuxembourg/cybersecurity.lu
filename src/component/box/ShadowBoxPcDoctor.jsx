@@ -5,6 +5,7 @@ import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
 import Company from "../item/Company.jsx";
 import Loading from "./Loading.jsx";
+import { dictToURI } from "../../utils/url.jsx";
 
 export default class ShadowBoxPcDoctor extends React.Component {
 	constructor(props) {
@@ -38,9 +39,10 @@ export default class ShadowBoxPcDoctor extends React.Component {
 						taxonomy_values: entityTypes.concat(exosystemRoles).concat(individualValues),
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
 						this.setState({
-							pcDoctors: data.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+							pcDoctors: data
+								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
 						});
 					}, (response) => {
 						nm.warning(response.statusText);

@@ -75,7 +75,7 @@ export default class PagePrivateSector extends React.Component {
 						taxonomy_values: entityTypes.concat(exosystemRoles),
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
 						this.setState({
 							actors: data.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
 						});

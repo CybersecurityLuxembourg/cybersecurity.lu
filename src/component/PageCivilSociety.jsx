@@ -54,12 +54,13 @@ export default class PageCivilSociety extends React.Component {
 				}, () => {
 					const params = {
 						taxonomy_values: values.map((v) => v.id).join(","),
-						...this.state.filters
+						...this.state.filters,
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
 						this.setState({
-							civilSociety: data.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+							civilSociety: data
+								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
 						});
 					}, (response) => {
 						nm.warning(response.statusText);

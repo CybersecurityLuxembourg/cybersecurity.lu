@@ -57,7 +57,7 @@ export default class PagePublicSector extends React.Component {
 						taxonomy_values: entityTypes,
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(this.state.params), (data) => {
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
 						this.setState({
 							publicEntities: data
 								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
