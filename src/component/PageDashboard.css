@@ -68,12 +68,14 @@
 }
 
 #PageDashboard img {
-	width: 100%;
+    width: 100%;
+    max-height: 150px;
+    max-width: 200px;
 }
 
 .PageDashboard-image-wrapper {
-	margin: 0px 0px 25px 0px !important;
-	display: flex;
+   margin: 0px 0px 25px 0px !important;
+    display: flex;
     margin: auto;
     height: 120px;
 }
