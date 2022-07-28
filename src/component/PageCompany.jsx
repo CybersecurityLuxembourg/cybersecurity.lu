@@ -218,7 +218,7 @@ export default class PageCompany extends React.Component {
 							</div>
 
 							<div className="row">
-								<div className={"col-md-" + (this.hasWebsite() || this.hasGeolocation() ? "8" : "12")}>
+								<div className={"col-md-8"}>
 									<div className="row">
 										<div className={"col-md-12"}>
 											<h3>About</h3>
