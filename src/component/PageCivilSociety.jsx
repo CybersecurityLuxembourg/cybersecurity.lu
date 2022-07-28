@@ -36,8 +36,7 @@ export default class PageCivilSociety extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (!prevProps.analytics && this.props.analytics) {
-			this.getLTACPodcasts();
-			this.getBreakfastPodcasts();
+			this.getCivilSociety();
 		}
 	}
 
@@ -46,15 +45,16 @@ export default class PageCivilSociety extends React.Component {
 			&& this.props.analytics.taxonomy_values) {
 			const values = this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "ENTITY TYPE")
-				.filter((v) => v.name === "CIVIL SOCIETY");
+				.filter((v) => v.name === "CIVIL SOCIETY")
+				.map((v) => v.id);
 
 			if (values.length > 0) {
 				this.setState({
 					civilSociety: null,
 				}, () => {
 					const params = {
-						taxonomy_values: values.map((v) => v.id).join(","),
 						...this.state.filters,
+						taxonomy_values: values.concat(this.state.filters.taxonomy_values),
 					};
 
 					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
@@ -80,7 +80,7 @@ export default class PageCivilSociety extends React.Component {
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + dictToURI(this.state.filters));
 
-		this.getPublicCompany();
+		this.getCivilSociety();
 	}
 
 	modifyFilters(field, value) {
@@ -108,7 +108,7 @@ export default class PageCivilSociety extends React.Component {
 				</div>
 
 				<CivilSocietySearch
-					taxonomy={this.props.taxonomy}
+					analytics={this.props.analytics}
 					filters={this.state.filters}
 					onChange={this.modifyFilters}
 					onSearch={this.onSearch}

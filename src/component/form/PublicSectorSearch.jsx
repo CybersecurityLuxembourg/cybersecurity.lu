@@ -7,7 +7,6 @@ export default class PublicSectorSearch extends React.Component {
 		super(props);
 
 		this.state = {
-			isTaxonomyDetailOpen: false,
 		};
 	}
 
@@ -27,11 +26,11 @@ export default class PublicSectorSearch extends React.Component {
 					<FormLine
 						label={"Legal framework"}
 						type={"multiselect"}
-						value={this.props.filters.taxonomy_values === undefined || this.props.taxonomy === null
+						value={this.props.filters.taxonomy_values === undefined || this.props.analytics === null
 							? [] : this.props.filters.taxonomy_values}
-						options={this.props.taxonomy !== null && this.props.taxonomy !== undefined
-							&& this.props.taxonomy.values !== undefined
-							? this.props.taxonomy.values
+						options={this.props.analytics
+							&& this.props.analytics.taxonomy_values
+							? this.props.analytics.taxonomy_values
 								.filter((v) => v.category === "LEGAL FRAMEWORK")
 								.map((v) => ({ label: v.name, value: v.id }))
 							: []}

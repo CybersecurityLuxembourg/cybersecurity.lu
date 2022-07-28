@@ -59,7 +59,7 @@ export default class PagePrivateSector extends React.Component {
 			&& this.props.analytics.taxonomy_values) {
 			const entityTypes = this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "ENTITY TYPE")
-				.filter((v) => v.name === "CIVIL SOCIETY")
+				.filter((v) => v.name === "PRIVATE SECTOR")
 				.map((v) => v.id);
 
 			const exosystemRoles = this.props.analytics.taxonomy_values
@@ -72,7 +72,10 @@ export default class PagePrivateSector extends React.Component {
 					actors: null,
 				}, () => {
 					const params = {
-						taxonomy_values: entityTypes.concat(exosystemRoles),
+						...this.state.filters,
+						taxonomy_values: entityTypes
+							.concat(exosystemRoles)
+							.concat(this.state.filters.taxonomy_values),
 					};
 
 					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
@@ -241,7 +244,7 @@ export default class PagePrivateSector extends React.Component {
 								addRangeFilter={(v) => this.manageFilter("age_range", v, "true")}
 								selected={this.state.filters.age_range}
 							/>
-							:							<Loading
+							: <Loading
 								height={300}
 							/>
 						}
@@ -257,7 +260,7 @@ export default class PagePrivateSector extends React.Component {
 								addRangeFilter={(v) => this.manageFilter("size_range", v, "true")}
 								selected={this.state.filters.size_range}
 							/>
-							:							<Loading
+							: <Loading
 								height={300}
 							/>
 						}

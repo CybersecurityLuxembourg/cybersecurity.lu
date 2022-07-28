@@ -54,7 +54,9 @@ export default class PagePublicSector extends React.Component {
 					publicEntities: null,
 				}, () => {
 					const params = {
-						taxonomy_values: entityTypes,
+						...this.state.filters,
+						taxonomy_values: entityTypes
+							.concat(this.state.filters.taxonomy_values),
 					};
 
 					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
@@ -98,7 +100,7 @@ export default class PagePublicSector extends React.Component {
 				</div>
 
 				<PublicSectorSearch
-					taxonomy={this.props.taxonomy}
+					analytics={this.props.analytics}
 					filters={this.state.filters}
 					onChange={this.modifyFilters}
 					onSearch={this.onSearch}
