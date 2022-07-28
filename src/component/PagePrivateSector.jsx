@@ -204,7 +204,9 @@ export default class PagePrivateSector extends React.Component {
 						/>
 					</div>
 					<div className="col-md-4">
-						<ShadowBoxPureStartup/>
+						<ShadowBoxPureStartup
+							analytics={this.props.analytics}
+						/>
 					</div>
 					<div className="col-md-4">
 						<ShadowBoxMyCyberlux/>
