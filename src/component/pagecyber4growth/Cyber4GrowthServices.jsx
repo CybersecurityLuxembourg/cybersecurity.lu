@@ -114,6 +114,7 @@ export default class Cyber4GrowthServices extends React.Component {
 								buildElement={(t) => <div className="col-md-12">
 									<ServiceHorizontal
 										info={t}
+										showImage={true}
 										companies={this.state.companies}
 										analytics={this.props.analytics}
 									/>

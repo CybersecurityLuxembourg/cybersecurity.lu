@@ -129,6 +129,7 @@ export default class PageCompany extends React.Component {
 							{type === "SERVICE"
 								&& <ServiceHorizontal
 									info={a}
+									showImage={true}
 									analytics={this.props.analytics}
 								/>
 							}

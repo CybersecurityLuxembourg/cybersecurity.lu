@@ -23,15 +23,17 @@ export default class ArticleHorizontal extends Component {
 		return (
 			<div className="ServiceHorizontal card">
 				<div className="card-horizontal">
-					<div className="img-square-wrapper">
-						{this.props.info.image !== null && this.props.info.image !== undefined
-							? <img
-								className="card-img-top"
-								src={getApiURL() + "public/get_public_image/" + this.props.info.image}
-								alt="Card image cap"/>
-							: <NoImage/>
-						}
-					</div>
+					{this.props.showImage
+						&& <div className="img-square-wrapper">
+							{this.props.info.image !== null && this.props.info.image !== undefined
+								? <img
+									className="card-img-top"
+									src={getApiURL() + "public/get_public_image/" + this.props.info.image}
+									alt="Card image cap"/>
+								: <NoImage/>
+							}
+						</div>
+					}
 					<div className="card-body">
 						<h5 className="card-title">{this.props.info.title}</h5>
 
