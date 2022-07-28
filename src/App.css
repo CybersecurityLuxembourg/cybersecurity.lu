@@ -609,6 +609,19 @@ canvas {
 	margin-bottom: 0px !important;
 }
 
+.red-shadow-section h4, .blue-shadow-section h4, .black-shadow-section h4 {
+	color: white;
+	font-size: 16px !important;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.red-shadow-section:hover h4, .blue-shadow-section:hover h4, .black-shadow-section:hover h4 {
+	font-size: 18px !important;
+}
+
 
 .red-shadow-section div i, .blue-shadow-section div i, .black-shadow-section div i {
 	margin: 8px 0px;

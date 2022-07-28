@@ -38,7 +38,7 @@
 
 .PageCompany-CompanyMap {
     padding: 0 !important;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .PageCompany-CompanyMap .CompanyMap .leaflet-container {
@@ -56,4 +56,8 @@
 .PageCompany-taxonomy-category .shadow-section {
     width: 100%;
     height: 100%;
+}
+
+.PageCompany .shadow-section {
+    margin-bottom: 20px;
 }

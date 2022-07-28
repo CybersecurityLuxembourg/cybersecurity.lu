@@ -7,7 +7,7 @@ import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import NoImage from "./box/NoImage.jsx";
-import { getApiURL } from "../utils/env.jsx";
+import { getApiURL, getPrivateAppURL } from "../utils/env.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
 import CompanyMap from "./map/CompanyMap.jsx";
@@ -280,35 +280,45 @@ export default class PageCompany extends React.Component {
 									</div>
 								</div>
 
-								{this.hasWebsite() || this.hasGeolocation()
-									? <div className="col-md-4">
-										{this.hasWebsite()
-											&& <div className="shadow-section blue-shadow-section centered-shadow-section">
-												{/* eslint-disable no-script-url */}
-												<a
-													href={!/^(?:f|ht)tps?:\/\//.test(this.state.company.website)
-														? "https://" + this.state.company.website
-														: this.state.company.website}
-													rel="noreferrer"
-													target="_blank">
-													<div>
-														<h3>Visit website</h3>
-														<i className="fas fa-globe-europe"/>
-													</div>
-												</a>
+								<div className="col-md-4">
+									<div className="shadow-section blue-shadow-section centered-shadow-section">
+										{/* eslint-disable no-script-url */}
+										<a
+											href={getPrivateAppURL()
+												+ "add_company?claim_entity=" + this.state.company.id}
+											rel="noreferrer"
+											target="_blank">
+											<div>
+												<h4>Claim access and request modifications</h4>
 											</div>
-										}
-
-										{this.hasGeolocation()
-											&& <div className={"PageCompany-CompanyMap shadow-section"}>
-												<CompanyMap
-													geolocations={this.state.geolocations}
-												/>
-											</div>
-										}
+										</a>
 									</div>
-									: ""
-								}
+
+									{this.hasWebsite()
+										&& <div className="shadow-section blue-shadow-section centered-shadow-section">
+											{/* eslint-disable no-script-url */}
+											<a
+												href={!/^(?:f|ht)tps?:\/\//.test(this.state.company.website)
+													? "https://" + this.state.company.website
+													: this.state.company.website}
+												rel="noreferrer"
+												target="_blank">
+												<div>
+													<h3>Visit website</h3>
+													<i className="fas fa-globe-europe"/>
+												</div>
+											</a>
+										</div>
+									}
+
+									{this.hasGeolocation()
+										&& <div className={"PageCompany-CompanyMap shadow-section"}>
+											<CompanyMap
+												geolocations={this.state.geolocations}
+											/>
+										</div>
+									}
+								</div>
 							</div>
 						</div>
 					</div>
