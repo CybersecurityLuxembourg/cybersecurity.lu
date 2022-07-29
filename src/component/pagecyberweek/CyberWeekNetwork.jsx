@@ -45,7 +45,7 @@ export default class CyberWeekNetwork extends React.Component {
 								Opportunity to build new sustainable partnerships;
 							</li>
 							<li>
-								Gain insights into the latest tech trends;
+								Gain insights into the latest cybersecurity trends;
 							</li>
 							<li>
 								Access to an international audience;

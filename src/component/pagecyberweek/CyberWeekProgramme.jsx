@@ -28,6 +28,14 @@ export default class CyberWeekProgramme extends React.Component {
 							color={"blue"}
 						/>
 					</div>
+					<div className="col-md-6">
+						<ShadowBox
+							link="cybersecurityweek?tab=Network"
+							title={"Network"}
+							icon={"fas fa-wifi"}
+							color={"blue"}
+						/>
+					</div>
 				</div>
 
 				<div className="row row-spaced"/>
