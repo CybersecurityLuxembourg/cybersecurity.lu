@@ -3,6 +3,8 @@ import "./ToolHorizontal.css";
 import dompurify from "dompurify";
 import { Link } from "react-router-dom";
 import Chip from "../form/Chip.jsx";
+import NoImage from "../box/NoImage.jsx";
+import { getApiURL } from "../../utils/env.jsx";
 import CardSocialMedia from "./CardSocialMedia.jsx";
 
 export default class ToolHorizontal extends Component {
@@ -16,10 +18,31 @@ export default class ToolHorizontal extends Component {
 		};
 	}
 
+	getImage() {
+		const baseUrl = getApiURL() + "public/get_public_image/";
+
+		if (this.props.info.image) {
+			return baseUrl + this.props.info.image;
+		}
+
+		return null;
+	}
+
 	getBoxContent() {
 		return (
 			<div className="ToolHorizontal card">
 				<div className="card-horizontal">
+					{this.props.showImage
+						&& <div className="img-square-wrapper">
+							{this.getImage()
+								? <img
+									className="card-img-top"
+									src={this.getImage()}
+									alt="Article image"/>
+								: <NoImage/>
+							}
+						</div>
+					}
 					<div className="card-body">
 						<h5 className="card-title">{this.props.info.title}</h5>
 

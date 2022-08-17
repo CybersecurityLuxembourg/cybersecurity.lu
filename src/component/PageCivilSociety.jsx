@@ -16,7 +16,7 @@ export default class PageCivilSociety extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getPublicCompany = this.getPublicCompany.bind(this);
+		this.getCivilSociety = this.getCivilSociety.bind(this);
 		this.onSearch = this.onSearch.bind(this);
 		this.modifyFilters = this.modifyFilters.bind(this);
 
@@ -31,31 +31,56 @@ export default class PageCivilSociety extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getPublicCompany();
+		this.getCivilSociety();
 	}
 
-	getPublicCompany() {
-		this.setState({
-			civilSociety: null,
-		}, () => {
-			getRequest.call(this, "public/get_public_companies?entity_type=CIVIL SOCIETY&"
-				+ dictToURI(this.state.filters), (data) => {
+	componentDidUpdate(prevProps) {
+		if (!prevProps.analytics && this.props.analytics) {
+			this.getCivilSociety();
+		}
+	}
+
+	getCivilSociety() {
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE")
+				.filter((v) => v.name === "CIVIL SOCIETY")
+				.map((v) => v.id);
+
+			if (values.length > 0) {
 				this.setState({
-					civilSociety: data.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+					civilSociety: null,
+				}, () => {
+					const params = {
+						...this.state.filters,
+						taxonomy_values: values.concat(this.state.filters.taxonomy_values),
+					};
+
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+						this.setState({
+							civilSociety: data
+								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+						});
+					}, (response) => {
+						nm.warning(response.statusText);
+					}, (error) => {
+						nm.error(error.message);
+					});
 				});
-			}, (response) => {
-				nm.warning(response.statusText);
-			}, (error) => {
-				nm.error(error.message);
-			});
-		});
+			} else {
+				this.setState({
+					civilSociety: { pagination: { total: 0 } },
+				});
+			}
+		}
 	}
 
 	onSearch() {
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + dictToURI(this.state.filters));
 
-		this.getPublicCompany();
+		this.getCivilSociety();
 	}
 
 	modifyFilters(field, value) {
@@ -83,7 +108,7 @@ export default class PageCivilSociety extends React.Component {
 				</div>
 
 				<CivilSocietySearch
-					taxonomy={this.props.taxonomy}
+					analytics={this.props.analytics}
 					filters={this.state.filters}
 					onChange={this.modifyFilters}
 					onSearch={this.onSearch}

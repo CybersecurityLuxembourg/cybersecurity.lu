@@ -47,21 +47,49 @@ export default class PagePrivateSector extends React.Component {
 		this.getAnalytics();
 	}
 
+	componentDidUpdate(prevProps) {
+		if (this.props.analytics !== prevProps.analytics) {
+			this.getCompanies();
+			this.getAnalytics();
+		}
+	}
+
 	getCompanies() {
-		this.setState({
-			actors: null,
-		}, () => {
-			getRequest.call(this, "public/get_public_companies?ecosystem_role=ACTOR&entity_type=PRIVATE%20SECTOR&"
-				+ dictToURI(this.state.filters), (data) => {
+		if (this.props.analytics
+			&& this.props.analytics.taxonomy_values) {
+			const entityTypes = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE")
+				.filter((v) => v.name === "PRIVATE SECTOR")
+				.map((v) => v.id);
+
+			const exosystemRoles = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ECOSYSTEM ROLE")
+				.filter((v) => v.name === "ACTOR")
+				.map((v) => v.id);
+
+			if (entityTypes.length > 0 && exosystemRoles.length > 0) {
 				this.setState({
-					actors: data.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+					actors: null,
+				}, () => {
+					const params = {
+						...this.state.filters,
+						taxonomy_values: entityTypes
+							.concat(exosystemRoles)
+							.concat(this.state.filters.taxonomy_values),
+					};
+
+					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+						this.setState({
+							actors: data.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
+						});
+					}, (response) => {
+						nm.warning(response.statusText);
+					}, (error) => {
+						nm.error(error.message);
+					});
 				});
-			}, (response) => {
-				nm.warning(response.statusText);
-			}, (error) => {
-				nm.error(error.message);
-			});
-		});
+			}
+		}
 	}
 
 	getAnalytics() {
@@ -176,7 +204,9 @@ export default class PagePrivateSector extends React.Component {
 						/>
 					</div>
 					<div className="col-md-4">
-						<ShadowBoxPureStartup/>
+						<ShadowBoxPureStartup
+							analytics={this.props.analytics}
+						/>
 					</div>
 					<div className="col-md-4">
 						<ShadowBoxMyCyberlux/>
@@ -216,7 +246,7 @@ export default class PagePrivateSector extends React.Component {
 								addRangeFilter={(v) => this.manageFilter("age_range", v, "true")}
 								selected={this.state.filters.age_range}
 							/>
-							:							<Loading
+							: <Loading
 								height={300}
 							/>
 						}
@@ -232,7 +262,7 @@ export default class PagePrivateSector extends React.Component {
 								addRangeFilter={(v) => this.manageFilter("size_range", v, "true")}
 								selected={this.state.filters.size_range}
 							/>
-							:							<Loading
+							: <Loading
 								height={300}
 							/>
 						}

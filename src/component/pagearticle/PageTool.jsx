@@ -20,9 +20,7 @@ export default class PageTool extends React.Component {
 
 		this.state = {
 			article: null,
-			relatedArticles: null,
 			articleLoading: false,
-			relatedArticleLoading: false,
 		};
 	}
 
@@ -33,26 +31,13 @@ export default class PageTool extends React.Component {
 	getArticleContent() {
 		this.setState({
 			article: null,
-			relatedArticles: null,
 			articleLoading: true,
-			relatedArticleLoading: true,
 		});
 
 		getRequest.call(this, "public/get_public_article_content/" + this.props.match.params.handle, (data) => {
 			this.setState({
 				article: data,
 				articleLoading: false,
-			});
-
-			getRequest.call(this, "public/get_public_related_articles/" + this.props.match.params.handle, (data2) => {
-				this.setState({
-					relatedArticles: data2,
-					relatedArticleLoading: false,
-				});
-			}, (response) => {
-				nm.warning(response.statusText);
-			}, (error) => {
-				nm.error(error.message);
 			});
 		}, (response) => {
 			nm.warning(response.statusText);

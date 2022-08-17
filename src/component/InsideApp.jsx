@@ -33,7 +33,7 @@ import PageEducation from "./PageEducation.jsx";
 import PageNewsletter from "./PageNewsletter.jsx";
 import PageCSB from "./PageCSB.jsx";
 import PageLTAC from "./PageLTAC.jsx";
-/* import PageTOTM from "./PageTOTM.jsx"; */
+import PageTOTM from "./PageTOTM.jsx";
 import PageChallenge from "./PageChallenge.jsx";
 /* import PageCVE from "./PageCVE.jsx"; */
 import PageBestPractices from "./PageBestPractices.jsx";
@@ -146,13 +146,13 @@ class InsideApp extends React.Component {
 								{...props}
 							/>}
 						/>
-						{/* <Route
+						<Route
 							path="/topic"
 							render={(props) => <PageTOTM
 								analytics={this.state.analytics}
 								{...props}
 							/>}
-						/> */}
+						/>
 						<Route
 							path="/strategy"
 							render={(props) => <PageStrategy

@@ -6,7 +6,7 @@ import { NotificationManager as nm } from "react-notifications";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
-import Article from "./item/Article.jsx";
+import ToolHorizontal from "./item/ToolHorizontal.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import { getRequest } from "../utils/request.jsx";
 
@@ -84,8 +84,9 @@ export default class PageTOTM extends React.Component {
 								pagination={this.state.news.pagination}
 								changePage={(page) => this.getNews(page)}
 								buildElement={(a) => <div className="col-md-12">
-									<Article
+									<ToolHorizontal
 										info={a}
+										showImage={true}
 										analytics={this.props.analytics}
 									/>
 								</div>

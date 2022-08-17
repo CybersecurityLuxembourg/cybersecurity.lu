@@ -151,6 +151,7 @@ export default class PageHome extends React.Component {
 							</div>
 							<div className="col-md-6">
 								<ShadowBoxPureStartup
+									analytics={this.props.analytics}
 									color={"blue"}
 								/>
 							</div>
