@@ -37,7 +37,9 @@ export default class CyberWeekSponsors extends React.Component {
 					entities: null,
 				}, () => {
 					const params = {
-						taxonomy_values: valueId,
+						ids: this.props.analytics.taxonomy_assignments
+							.filter((a) => valueId.indexOf(a.taxonomy_value) >= 0)
+							.map((a) => a.company),
 					};
 
 					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
