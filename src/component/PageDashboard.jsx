@@ -119,7 +119,6 @@ export default class PageDashboard extends React.Component {
 			.filter((v) => v.category === "ECOSYSTEM ROLE")
 			.filter((v) => v.name === "AUTHORITY AND REGULATOR")
 			.map((v) => v.id);
-		console.log("AAAA", values);
 
 		if (values.length > 0) {
 			const assignedCompanies = this.state.analytics.taxonomy_assignments
