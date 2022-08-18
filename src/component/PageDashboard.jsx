@@ -158,13 +158,22 @@ export default class PageDashboard extends React.Component {
 		}
 
 		const tv = this.state.analytics.taxonomy_values
-			.filter((v) => ["Education", "Academic and Research"].indexOf(v.name) >= 0)
-			.map((v) => v.id)
-			.join();
+			.filter((v) => v.category === "ENTITY TYPE")
+			.filter((v) => v.name === "PUBLIC SECTOR")
+			.map((v) => v.id);
 
-		const assignedCompanies = this.state.analytics.taxonomy_assignments
-			.filter((a) => tv.indexOf(a.taxonomy_value) >= 0)
-			.map((a) => a.company);
+		const tv2 = this.state.analytics.taxonomy_values
+			.filter((v) => ["Education", "Academic and Research"].indexOf(v.name) >= 0)
+			.map((v) => v.id);
+
+		const companies = [...new Set(this.state.analytics.taxonomy_assignments
+			.map((a) => a.company))];
+
+		const assignedCompanies = companies
+			.filter((c) => this.state.analytics.taxonomy_assignments
+				.filter((a) => a.company === c && tv.indexOf(a.taxonomy_value) >= 0).length > 0)
+			.filter((c) => this.state.analytics.taxonomy_assignments
+				.filter((a) => a.company === c && tv2.indexOf(a.taxonomy_value) >= 0).length > 0);
 
 		return this.state.entities
 			.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
