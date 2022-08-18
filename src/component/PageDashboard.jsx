@@ -180,7 +180,7 @@ export default class PageDashboard extends React.Component {
 
 	getCybersecurityCoreCount() {
 		if (!this.state.entities
-			|| this.state.analytics === null) {
+			|| !this.state.analytics) {
 			return null;
 		}
 
@@ -348,8 +348,7 @@ export default class PageDashboard extends React.Component {
 	}
 
 	getTopSolutionsForStartup() {
-		if (this.state.actors === null
-			|| this.state.analytics === null
+		if (this.state.analytics === null
 			|| this.state.analytics.taxonomy_categories === undefined
 			|| this.state.analytics.taxonomy_values === undefined
 			|| this.state.analytics.taxonomy_assignments === undefined) {
@@ -499,7 +498,7 @@ export default class PageDashboard extends React.Component {
 
 						<div className={"col-md-6 col-xl-6"}>
 							<div className={"PageDashboard-actor-distribution"}>
-								{this.state.actors !== null
+								{this.state.entities !== null
 									? <VennActorDistribution
 										actors={this.getActors()}
 									/>
