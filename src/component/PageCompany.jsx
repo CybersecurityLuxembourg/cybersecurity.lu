@@ -214,6 +214,16 @@ export default class PageCompany extends React.Component {
 								</div>
 								<div className="col-md-8 PageCompany-name">
 									<h3>{this.state.company.name}</h3>
+
+									<button
+										className="small-button"
+										href={() => window.open(
+											getPrivateAppURL()
+											+ "add_company?claim_entity="
+											+ this.state.company.id,
+										)}>
+										Claim access and request modifications
+									</button>
 								</div>
 							</div>
 
@@ -281,19 +291,6 @@ export default class PageCompany extends React.Component {
 								</div>
 
 								<div className="col-md-4">
-									<div className="shadow-section blue-shadow-section centered-shadow-section">
-										{/* eslint-disable no-script-url */}
-										<a
-											href={getPrivateAppURL()
-												+ "add_company?claim_entity=" + this.state.company.id}
-											rel="noreferrer"
-											target="_blank">
-											<div>
-												<h4>Claim access and request modifications</h4>
-											</div>
-										</a>
-									</div>
-
 									{this.hasWebsite()
 										&& <div className="shadow-section blue-shadow-section centered-shadow-section">
 											{/* eslint-disable no-script-url */}
