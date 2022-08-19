@@ -61,3 +61,24 @@
 .PageCompany .shadow-section {
     margin-bottom: 20px;
 }
+
+.PageCompany .claim-link {
+    position: relative;
+    display: inline-block;
+    background-color: #e9ecef;
+    border: none;
+    height: 26px;
+    padding: 0;
+    margin: 3px 2px 1px 2px;
+    padding: 7px 10px 1px 10px;
+    font-size: 14px;
+    font-family:"Open Sans", sans-serif;
+    border-radius: 16px;
+    text-decoration: none;
+    max-width: 100%;
+    line-height: 1;
+}
+
+.PageCompany .claim-link:hover {
+    color: #e40613;
+}

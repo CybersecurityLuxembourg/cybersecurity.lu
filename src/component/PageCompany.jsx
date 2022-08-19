@@ -215,15 +215,18 @@ export default class PageCompany extends React.Component {
 								<div className="col-md-8 PageCompany-name">
 									<h3>{this.state.company.name}</h3>
 
-									<button
-										className="small-button"
-										onClick={() => window.open(
+									<a
+										className="claim-link"
+										href={
 											getPrivateAppURL()
 											+ "add_company?claim_entity="
-											+ this.state.company.id,
-										)}>
-										Claim access and request modifications
-									</button>
+											+ this.state.company.id
+										}
+										rel="noreferrer"
+										target="_blank">
+										<i className="far fa-edit"/>
+										&nbsp;Claim access and request modifications
+									</a>
 								</div>
 							</div>
 
