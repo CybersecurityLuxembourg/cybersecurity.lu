@@ -217,7 +217,7 @@ export default class PageCompany extends React.Component {
 
 									<button
 										className="small-button"
-										href={() => window.open(
+										onClick={() => window.open(
 											getPrivateAppURL()
 											+ "add_company?claim_entity="
 											+ this.state.company.id,
