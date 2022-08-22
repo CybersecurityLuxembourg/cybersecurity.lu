@@ -46,6 +46,40 @@ export default class CyberWeekBecomeASponsor extends React.Component {
 						/>
 					</div>
 				</div>
+
+				<div className="row row-spaced">
+					<div className="col-md-12">
+						<h2>Exclusive media visibility opportunities</h2>
+					</div>
+
+					<div className="col-md-12 row-spaced">
+						<p>Get visible in the digital report, ‘Insights – Cybersecurity’ that
+						will be published by <a
+							href="https://www.farvest.com/"
+							target="_blank"
+							rel="noreferrer">FARVEST</a> after the Cybersecurity Week and IT One
+						Gala, to echo these intense cybersecurity-focused events.</p>
+
+						<p>This special edition of ‘Insights’ will gather the highlights
+						of the Cybersecurity Week Luxembourg, exclusive interviews and
+						articles of event partners and industry leaders.</p>
+
+						<p>You want to appear in this edition? Get exclusive discounts in
+						the framework of the Cybersecurity Week Luxembourg!</p>
+
+						<p>Discover the options here!</p>
+					</div>
+
+					<div className="col-md-3"/>
+
+					<div className="col-md-6">
+						<ShadowBox
+							onClick={() => window.open(getApiURL() + "public/get_public_document/Insights_brochure_2022.pdf", "_blank")}
+							title="Download the Insights brochure"
+							icon="fas fa-file-pdf"
+						/>
+					</div>
+				</div>
 			</div>
 		);
 	}
