@@ -485,6 +485,10 @@ canvas {
     border-bottom: solid 1px;
 }
 
+.Collapsible__trigger {
+	width: 100%;
+}
+
 .Collapsible__trigger p {
 	position: relative;
 	padding: 8px 70px 8px 20px;
@@ -495,22 +499,30 @@ canvas {
 
 .Collapsible .is-closed:after {
     position: absolute;
+    display: grid;
+    align-items: center;
+    justify-content: center;
     content: "▼";
+    height: 100%;
     color: grey;
     font-size: 20px;
     line-height: 0;
-    top: 22px;
-    right: 30px;
+    top: 2px;
+    right: 25px;
 }
 
 .Collapsible .is-open:after {
     position: absolute;
+    display: grid;
+    align-items: center;
+    justify-content: center;
     content: "▲";
+    height: 100%;
     color: grey;
     font-size: 20px;
     line-height: 0;
-    top: 22px;
-    right: 30px;
+    top: 2px;
+    right: 25px;
 }
 
 /* NEWSLETTER FORM */
