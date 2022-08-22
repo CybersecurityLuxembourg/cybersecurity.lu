@@ -66,8 +66,6 @@ export default class CyberWeekBecomeASponsor extends React.Component {
 
 						<p>You want to appear in this edition? Get exclusive discounts in
 						the framework of the Cybersecurity Week Luxembourg!</p>
-
-						<p>Discover the options here!</p>
 					</div>
 
 					<div className="col-md-3"/>
