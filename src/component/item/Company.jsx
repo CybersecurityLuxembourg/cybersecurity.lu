@@ -11,28 +11,36 @@ export default class Company extends Component {
 		};
 	}
 
+	getContent() {
+		return <div className="Company card">
+			<div className="card-horizontal">
+				<div className="img-square-wrapper">
+					{this.props.info.image !== null && this.props.info.image !== undefined
+						? <img
+							className="card-img-top"
+							src={getApiURL() + "public/get_public_image/" + this.props.info.image}
+							alt="Card image cap"/>
+
+						: <NoImage/>
+					}
+				</div>
+				<div className="card-body">
+					<h5 className="card-title">{this.props.info.name}</h5>
+				</div>
+			</div>
+		</div>;
+	}
+
 	render() {
+		if (this.props.disableLink) {
+			return this.getContent();
+		}
+
 		return (
 			<a
 				href={"/company/" + this.props.info.id}
 				className="Company-link">
-				<div className="Company card">
-					<div className="card-horizontal">
-						<div className="img-square-wrapper">
-							{this.props.info.image !== null && this.props.info.image !== undefined
-								? <img
-									className="card-img-top"
-									src={getApiURL() + "public/get_public_image/" + this.props.info.image}
-									alt="Card image cap"/>
-
-								: <NoImage/>
-							}
-						</div>
-						<div className="card-body">
-							<h5 className="card-title">{this.props.info.name}</h5>
-						</div>
-					</div>
-				</div>
+				{this.getContent()}
 			</a>
 		);
 	}

@@ -11,9 +11,6 @@
 .Company-link:hover {
     color: initial !important;
     text-decoration: none;
-}
-
-.Company:hover {
     background-color: #f2fbff;
 }
 
