@@ -1,11 +1,13 @@
 import React from "react";
 import "./CyberWeekConferenceStream.css";
+import { renderToString } from "react-dom/server";
 import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
+import Company from "../item/Company.jsx";
 import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
@@ -20,6 +22,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 
 		this.state = {
 			events: null,
+			entities: null,
 			selectedDate: null,
 			dates: null,
 			rooms: defaultRooms,
@@ -62,6 +65,23 @@ export default class CyberWeekConferenceStream extends React.Component {
 						this.setState({
 							dates,
 							selectedDate: dates ? dates[0] : dates,
+						}, () => {
+							const params2 = {
+								ids: [].concat(...data.items.map((e) => e.company_tags)),
+							};
+
+							if (params2.ids.length > 0) {
+								getRequest.call(this, "public/get_public_companies?"
+									+ dictToURI(params2), (data2) => {
+									this.setState({
+										entities: data2,
+									});
+								}, (response) => {
+									nm.warning(response.statusText);
+								}, (error) => {
+									nm.error(error.message);
+								});
+							}
 						});
 					});
 				}, (response) => {
@@ -109,6 +129,50 @@ export default class CyberWeekConferenceStream extends React.Component {
 
 	setAllRoomsAsSelected() {
 		this.setState({ roomStatus: this.state.rooms.map(() => true) });
+	}
+
+	// eslint-disable-next-line class-methods-use-this
+	getEventContent(e) {
+		const content = <div>
+			<div className="col-md-12">
+				<div className='event-title'>
+					<b>{e.title}</b>
+				</div>
+				{e.abstract
+					&& <div className='event-abstract'>
+						<div dangerouslySetInnerHTML={{
+							__html: dompurify.sanitize(e.abstract),
+						}} />
+					</div>
+				}
+			</div>
+
+			{this.state.view === "agenda"
+				&& <div className="col-md-12 event-speakers">
+					{e.company_tags.map((c) => {
+						if (this.state.entities) {
+							const entities = this.state.entities.filter((u) => u.id === c);
+
+							if (entities.length > 0) {
+								return <div className="col-md-12">
+									<Company
+										info={entities[0]}
+										disableLink={true}
+									/>
+								</div>;
+							}
+						}
+
+						return "";
+					})}
+				</div>
+			}
+		</div>;
+
+		return <div dangerouslySetInnerHTML={{
+			__html:
+			dompurify.sanitize(renderToString(content)),
+		}} />;
 	}
 
 	changeState(field, value) {
@@ -175,12 +239,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 									.filter((e) => this.shouldEventBeDisplayed(e))
 									.map((e) => (
 										{
-											title: <div dangerouslySetInnerHTML={{
-												__html:
-												dompurify.sanitize("<div class='event-title'><b>"
-													+ e.title + "</b></div><br/>"
-													+ (e.abstract ? e.abstract : "")),
-											}} />,
+											title: this.getEventContent(e),
 											start: new Date(e.start_date),
 											end: new Date(e.end_date),
 											handle: e.handle,
