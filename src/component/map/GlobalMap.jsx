@@ -8,15 +8,10 @@ import _ from "lodash";
 import { NotificationManager as nm } from "react-notifications";
 import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
-import { dictToURI } from "../../utils/url.jsx";
 
 export default class GlobalMap extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.getTaxonomyValues = this.getTaxonomyValues.bind(this);
-		this.getCompanies = this.getCompanies.bind(this);
-		this.changeFilter = this.changeFilter.bind(this);
 
 		this.state = {
 			lat: 49.8116,
@@ -32,50 +27,23 @@ export default class GlobalMap extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getTaxonomyValues();
+		this.getCompanies();
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (this.state.filters !== prevState.filters) {
-			this.getCompanies();
-		}
-	}
-
-	getTaxonomyValues() {
-		getRequest.call(this, "public/get_public_taxonomy_values", (data) => {
+	componentDidUpdate(prevProps) {
+		if (this.props.analytics
+			&& (this.props.analytics !== prevProps.analytics
+				|| Object.keys(this.state.filters.entity_type).length === 0)) {
 			const filters = _.cloneDeep(this.state.filters);
-
-			data.filter((v) => v.category === "ENTITY TYPE").forEach((v) => {
+			this.props.analytics.taxonomy_values.filter((v) => v.category === "ENTITY TYPE").forEach((v) => {
 				filters.entity_type[v.name] = true;
 			});
-
 			this.setState({ filters });
-		}, (response) => {
-			nm.warning(response.statusText);
-		}, (error) => {
-			nm.error(error.message);
-		});
+		}
 	}
 
 	getCompanies() {
-		const filters = {
-			entity_type: Object.keys(this.state.filters.entity_type)
-				.filter((r) => this.state.filters.entity_type[r]),
-		};
-
-		if (filters.entity_type.length === 0) {
-			this.setState({
-				companies: [],
-				companyGeolocations: [],
-			});
-			return;
-		}
-
-		if (Object.keys(this.state.filters.entity_type).length === filters.entity_type.length) {
-			delete filters.entity_type;
-		}
-
-		getRequest.call(this, "public/get_public_companies?" + dictToURI(filters), (data) => {
+		getRequest.call(this, "public/get_public_companies", (data) => {
 			this.setState({
 				companies: data,
 			});
@@ -85,7 +53,7 @@ export default class GlobalMap extends React.Component {
 			nm.error(error.message);
 		});
 
-		getRequest.call(this, "public/get_public_company_geolocations?" + dictToURI(filters), (data) => {
+		getRequest.call(this, "public/get_public_company_geolocations", (data) => {
 			this.setState({
 				companyGeolocations: data,
 			});
@@ -94,6 +62,78 @@ export default class GlobalMap extends React.Component {
 		}, (error) => {
 			nm.error(error.message);
 		});
+	}
+
+	getCompaniesToShow() {
+		if (!this.state.companies
+			|| !this.state.companyGeolocations
+			|| !this.props.analytics) {
+			return undefined;
+		}
+
+		let companies = [];
+		let values = null;
+
+		if (Object.keys(this.state.filters.entity_type).indexOf("PRIVATE SECTOR") >= 0
+			&& this.state.filters.entity_type["PRIVATE SECTOR"]) {
+			values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE" && v.name === "PRIVATE SECTOR");
+
+			if (values.length > 0) {
+				let selectedIds = this.props.analytics.taxonomy_assignments
+					.filter((a) => a.taxonomy_value === values[0].id)
+					.map((a) => a.company);
+
+				values = this.props.analytics.taxonomy_values
+					.filter((v) => v.category === "ECOSYSTEM ROLE" && v.name === "ACTOR");
+
+				if (values.length > 0) {
+					const selectedIds2 = this.props.analytics.taxonomy_assignments
+						.filter((a) => a.taxonomy_value === values[0].id)
+						.map((a) => a.company);
+
+					selectedIds = selectedIds.filter((value) => selectedIds2.includes(value));
+
+					companies = companies.concat(
+						this.state.companyGeolocations.filter((c) => selectedIds.indexOf(c.company_id) >= 0),
+					);
+				}
+			}
+		}
+
+		if (Object.keys(this.state.filters.entity_type).indexOf("PUBLIC SECTOR") >= 0
+			&& this.state.filters.entity_type["PUBLIC SECTOR"]) {
+			values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE" && v.name === "PUBLIC SECTOR");
+
+			if (values.length > 0) {
+				const selectedIds = this.props.analytics.taxonomy_assignments
+					.filter((a) => a.taxonomy_value === values[0].id)
+					.map((a) => a.company);
+
+				companies = companies.concat(
+					this.state.companyGeolocations.filter((c) => selectedIds.indexOf(c.company_id) >= 0),
+				);
+			}
+		}
+
+		if (Object.keys(this.state.filters.entity_type).indexOf("CIVIL SOCIETY") >= 0
+			&& this.state.filters.entity_type["CIVIL SOCIETY"]) {
+			values = this.props.analytics.taxonomy_values
+				.filter((v) => v.category === "ENTITY TYPE" && v.name === "CIVIL SOCIETY");
+
+			if (values.length > 0) {
+				const selectedIds = this.props.analytics.taxonomy_assignments
+					.filter((a) => a.taxonomy_value === values[0].id)
+					.map((a) => a.company);
+
+				companies = companies.concat(
+					this.state.companyGeolocations.filter((c) => selectedIds.indexOf(c.company_id) >= 0),
+				);
+			}
+		}
+
+		return companies;
 	}
 
 	handlePopupOpen(companyId) {
@@ -115,15 +155,15 @@ export default class GlobalMap extends React.Component {
 		});
 
 		return (
-			<div className={"GlobalMap " + (this.props.fullpage ? "GlobalMap-fullpage" : "")}>
+			<div className={"GlobalMap GlobalMap-fullpage"}>
 				<MapContainer
 					center={[this.state.lat, this.state.lng]}
 					zoom={this.state.zoom}
 					style={{ width: "100%", height: "100%" }}
 				>
 
-					{Array.isArray(this.state.companyGeolocations)
-						? this.state.companyGeolocations
+					{Array.isArray(this.getCompaniesToShow())
+						? this.getCompaniesToShow()
 							.filter((a) => a.latitude !== null && a.longitude !== null)
 							.map((a) => (
 								<div key={a.company_id}>
