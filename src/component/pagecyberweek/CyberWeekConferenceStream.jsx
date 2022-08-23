@@ -7,7 +7,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
-import Company from "../item/Company.jsx";
+import Speaker from "../item/Speaker.jsx";
 import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
@@ -155,7 +155,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 
 							if (entities.length > 0) {
 								return <div className="col-md-12">
-									<Company
+									<Speaker
 										info={entities[0]}
 										disableLink={true}
 									/>
