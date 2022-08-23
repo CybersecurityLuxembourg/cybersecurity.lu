@@ -71,7 +71,7 @@ export default class PageHomeLatestNews extends React.Component {
 		if (this.state.news) {
 			if (this.state.selectedNews === null) {
 				this.setState({ selectedNews: 0 });
-			} else if (this.state.news.items.length <= this.state.selectedNews + 1) {
+			} else if (this.state.news.length <= this.state.selectedNews + 1) {
 				this.setState({ selectedNews: 0 });
 			} else {
 				this.setState({ selectedNews: this.state.selectedNews + 1 });
