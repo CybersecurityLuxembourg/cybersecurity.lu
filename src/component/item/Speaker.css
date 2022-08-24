@@ -45,7 +45,7 @@
 
 @media (min-width: 768px) {
     .Speaker .img-square-wrapper {
-        flex: 0 0 120px;
+        flex: 0 0 55px;
         height: 100%;
     }
 }
