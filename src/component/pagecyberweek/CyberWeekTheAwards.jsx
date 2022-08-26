@@ -250,7 +250,10 @@ export default class CyberWeekTheAwards extends React.Component {
 							onClick={() => window.open("https://ecsc.eu/", "_blank")}
 							title={"Most Promising Young Talent"}
 							abstract={<div>
-								selected from the national team participating in European Cybersecurity Challenge by
+								recognising the National Team members participating in the
+								European Cybersecurity Challenge
+								<br/><br/>
+								Sponsored by
 								<br/><br/>
 								<img src='/img/Acc_Logo_Black_Purple_RGB.png'/>
 							</div>}
