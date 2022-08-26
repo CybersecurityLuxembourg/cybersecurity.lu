@@ -63,9 +63,7 @@ export default class CyberWeekPresentation extends React.Component {
 						<p>
 							The event is open to everyone, free of charge.
 						</p>
-					</div>
 
-					<div className="col-md-12">
 						<h3>
 							Discover an exciting programme
 						</h3>
@@ -105,6 +103,8 @@ export default class CyberWeekPresentation extends React.Component {
 
 						<ul>
 							<li>Keep an eye on the <Link to="/cybersecurityweek?tab=Programme">Programme</Link> tab.</li>
+							<li>Get the latest <Link to="/public/get_public_document/CSWL22_brochure_sponsors.pdf">sponsoring opportunities</Link>.</li>
+							<li>Join the <Link to="/cybersecurityweek?tab=About_the_gala">Gala and Awards Night</Link>.</li>
 						</ul>
 					</div>
 
@@ -117,13 +117,6 @@ export default class CyberWeekPresentation extends React.Component {
 							abstract={"Take part as a visitor and register today"}
 							icon="fas fa-marker"
 						/>
-					</div>
-
-					<div className="col-md-12">
-						<ul>
-							<li>Get the latest <Link to="/public/get_public_document/CSWL22_brochure_sponsors.pdf">sponsoring opportunities</Link>.</li>
-							<li>Join the <Link to="/cybersecurityweek?tab=About_the_gala">Gala and Awards Night</Link>.</li>
-						</ul>
 					</div>
 				</div>
 			</div>
