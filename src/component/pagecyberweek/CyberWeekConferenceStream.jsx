@@ -107,7 +107,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 	shouldEventBeDisplayed(e) {
 		for (let i = 0; i < this.state.roomStatus.length; i++) {
 			if (this.state.roomStatus[i] && e.abstract
-				&& e.abstract.toLowerCase().includes(this.state.rooms[i].toLowerCase())) {
+				&& e.abstract.toLowerCase().includes(this.state.rooms[i].replace("&", "&amp;").toLowerCase())) {
 				return true;
 			}
 		}
@@ -288,7 +288,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 											color = "#8fddff";
 										// eslint-disable-next-line no-underscore-dangle
 										} else if (event.title.props.dangerouslySetInnerHTML.__html
-											.toLowerCase().includes("cyber & threat intelligence stage")) {
+											.toLowerCase().includes("cyber &amp; threat intelligence stage")) {
 											color = "#ffa8b0";
 										}
 									}
