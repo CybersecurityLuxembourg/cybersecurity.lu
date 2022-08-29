@@ -1,12 +1,12 @@
 
-.PageCompany-logo {
+.PageEntity-logo {
 	min-height: 160px;
 	display: flex;
     margin: auto;
     height: 100%;
 }
 
-.PageCompany-logo img {
+.PageEntity-logo img {
 	object-fit: contain;
     margin: auto;
     max-width: 100%;
@@ -15,37 +15,37 @@
     height: auto;
 }
 
-.PageCompany-no-logo {
+.PageEntity-no-logo {
     min-height: 160px;
 }
 
-.PageCompany-name {
+.PageEntity-name {
     padding-top: 15px;
 }
 
-.PageCompany-name h3 {
+.PageEntity-name h3 {
     font-size: 28px;
 }
 
-.PageCompany-stamp {
+.PageEntity-stamp {
 	font-size: 24px;
 }
 
-.PageCompany-stamp i {
+.PageEntity-stamp i {
 	color: #8fddff;
 	margin-right: 5px;
 }
 
-.PageCompany-CompanyMap {
+.PageEntity-CompanyMap {
     padding: 0 !important;
     margin-bottom: 20px;
 }
 
-.PageCompany-CompanyMap .CompanyMap .leaflet-container {
+.PageEntity-CompanyMap .CompanyMap .leaflet-container {
     min-height: 300px;
 }
 
-.PageCompany-taxonomy-category {
+.PageEntity-taxonomy-category {
     padding-bottom: 20px;
     margin-left: 5px;
     margin-right: 5px;
@@ -53,16 +53,16 @@
     width: 100%;
 }
 
-.PageCompany-taxonomy-category .shadow-section {
+.PageEntity-taxonomy-category .shadow-section {
     width: 100%;
     height: 100%;
 }
 
-.PageCompany .shadow-section {
+.PageEntity .shadow-section {
     margin-bottom: 20px;
 }
 
-.PageCompany .claim-link {
+.PageEntity .claim-link {
     position: relative;
     display: inline-block;
     background-color: #e9ecef;
@@ -79,6 +79,6 @@
     line-height: 1;
 }
 
-.PageCompany .claim-link:hover {
+.PageEntity .claim-link:hover {
     color: #e40613;
 }

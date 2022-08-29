@@ -17,9 +17,9 @@ export default class GlobalMap extends React.Component {
 			lat: 49.8116,
 			lng: 6.1319,
 			zoom: 9,
-			selectedCompanyId: null,
-			companies: null,
-			companyGeolocations: null,
+			selectedEntityId: null,
+			entities: null,
+			entityGeolocations: null,
 			filters: {
 				entity_type: {},
 			},
@@ -27,7 +27,7 @@ export default class GlobalMap extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getCompanies();
+		this.getEntities();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -42,10 +42,10 @@ export default class GlobalMap extends React.Component {
 		}
 	}
 
-	getCompanies() {
-		getRequest.call(this, "public/get_public_companies", (data) => {
+	getEntities() {
+		getRequest.call(this, "public/get_public_entities", (data) => {
 			this.setState({
-				companies: data,
+				entities: data,
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -53,9 +53,9 @@ export default class GlobalMap extends React.Component {
 			nm.error(error.message);
 		});
 
-		getRequest.call(this, "public/get_public_company_geolocations", (data) => {
+		getRequest.call(this, "public/get_public_entity_geolocations", (data) => {
 			this.setState({
-				companyGeolocations: data,
+				entityGeolocations: data,
 			});
 		}, (response) => {
 			nm.warning(response.statusText);
@@ -64,14 +64,14 @@ export default class GlobalMap extends React.Component {
 		});
 	}
 
-	getCompaniesToShow() {
-		if (!this.state.companies
-			|| !this.state.companyGeolocations
+	getEntitiesToShow() {
+		if (!this.state.entities
+			|| !this.state.entityGeolocations
 			|| !this.props.analytics) {
 			return undefined;
 		}
 
-		let companies = [];
+		let entities = [];
 		let values = null;
 
 		if (Object.keys(this.state.filters.entity_type).indexOf("PRIVATE SECTOR") >= 0
@@ -81,21 +81,21 @@ export default class GlobalMap extends React.Component {
 
 			if (values.length > 0) {
 				let selectedIds = this.props.analytics.taxonomy_assignments
-					.filter((a) => a.taxonomy_value === values[0].id)
-					.map((a) => a.company);
+					.filter((a) => a.taxonomy_value_id === values[0].id)
+					.map((a) => a.entity_id);
 
 				values = this.props.analytics.taxonomy_values
 					.filter((v) => v.category === "ECOSYSTEM ROLE" && v.name === "ACTOR");
 
 				if (values.length > 0) {
 					const selectedIds2 = this.props.analytics.taxonomy_assignments
-						.filter((a) => a.taxonomy_value === values[0].id)
-						.map((a) => a.company);
+						.filter((a) => a.taxonomy_value_id === values[0].id)
+						.map((a) => a.entity_id);
 
 					selectedIds = selectedIds.filter((value) => selectedIds2.includes(value));
 
-					companies = companies.concat(
-						this.state.companyGeolocations.filter((c) => selectedIds.indexOf(c.company_id) >= 0),
+					entities = entities.concat(
+						this.state.entityGeolocations.filter((c) => selectedIds.indexOf(c.entity_id) >= 0),
 					);
 				}
 			}
@@ -108,11 +108,11 @@ export default class GlobalMap extends React.Component {
 
 			if (values.length > 0) {
 				const selectedIds = this.props.analytics.taxonomy_assignments
-					.filter((a) => a.taxonomy_value === values[0].id)
-					.map((a) => a.company);
+					.filter((a) => a.taxonomy_value_id === values[0].id)
+					.map((a) => a.entity_id);
 
-				companies = companies.concat(
-					this.state.companyGeolocations.filter((c) => selectedIds.indexOf(c.company_id) >= 0),
+				entities = entities.concat(
+					this.state.entityGeolocations.filter((c) => selectedIds.indexOf(c.entity_id) >= 0),
 				);
 			}
 		}
@@ -124,20 +124,20 @@ export default class GlobalMap extends React.Component {
 
 			if (values.length > 0) {
 				const selectedIds = this.props.analytics.taxonomy_assignments
-					.filter((a) => a.taxonomy_value === values[0].id)
-					.map((a) => a.company);
+					.filter((a) => a.taxonomy_value_id === values[0].id)
+					.map((a) => a.entity_id);
 
-				companies = companies.concat(
-					this.state.companyGeolocations.filter((c) => selectedIds.indexOf(c.company_id) >= 0),
+				entities = entities.concat(
+					this.state.entityGeolocations.filter((c) => selectedIds.indexOf(c.entity_id) >= 0),
 				);
 			}
 		}
 
-		return companies;
+		return entities;
 	}
 
-	handlePopupOpen(companyId) {
-		this.setState({ selectedCompanyId: companyId });
+	handlePopupOpen(entityId) {
+		this.setState({ selectedEntityId: entityId });
 	}
 
 	changeFilter(category, value, v) {
@@ -162,24 +162,24 @@ export default class GlobalMap extends React.Component {
 					style={{ width: "100%", height: "100%" }}
 				>
 
-					{Array.isArray(this.getCompaniesToShow())
-						? this.getCompaniesToShow()
+					{Array.isArray(this.getEntitiesToShow())
+						? this.getEntitiesToShow()
 							.filter((a) => a.latitude !== null && a.longitude !== null)
 							.map((a) => (
-								<div key={a.company_id}>
+								<div key={a.entity_id}>
 									<Marker
 										position={[a.latitude, a.longitude]}
 										icon={thisIcon}
-										eventHandlers={{ click: () => { this.handlePopupOpen(a.company_id); } }}>
+										eventHandlers={{ click: () => { this.handlePopupOpen(a.entity_id); } }}>
 										<Popup
-											companyId={a.company_id}
+											entityId={a.entity_id}
 										>
-											{this.state.companies !== null && this.state.companies
-												.filter((c) => c.id === this.state.selectedCompanyId).length > 0
-												? this.state.companies
-													.filter((c) => c.id === this.state.selectedCompanyId)[0].name
-												: "Unfound company"}
-											<br/><a href={"/company/" + a.company_id}>More info</a>
+											{this.state.entities !== null && this.state.entities
+												.filter((c) => c.id === this.state.selectedEntityId).length > 0
+												? this.state.entities
+													.filter((c) => c.id === this.state.selectedEntityId)[0].name
+												: "Unfound entity"}
+											<br/><a href={"/entity/" + a.entity_id}>More info</a>
 										</Popup>
 									</Marker>
 								</div>

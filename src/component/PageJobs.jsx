@@ -59,19 +59,19 @@ export default class PageJobs extends React.Component {
 			this.setState({
 				articles: data,
 			}, () => {
-				let companyIds = data.items
-					? data.items.map((a) => (a.company_tags ? a.company_tags : []))
+				let entityIds = data.items
+					? data.items.map((a) => (a.entity_tags ? a.entity_tags : []))
 					: [];
-				companyIds = Array.prototype.concat.apply([], companyIds);
-				companyIds = [...new Set(companyIds)];
+				entityIds = Array.prototype.concat.apply([], entityIds);
+				entityIds = [...new Set(entityIds)];
 
 				const params2 = dictToURI({
-					ids: companyIds,
+					ids: entityIds,
 				});
 
-				getRequest.call(this, "public/get_public_companies?" + params2, (data2) => {
+				getRequest.call(this, "public/get_public_entities?" + params2, (data2) => {
 					this.setState({
-						companies: data2,
+						entities: data2,
 					});
 				}, (response) => {
 					nm.warning(response.statusText);
@@ -141,7 +141,7 @@ export default class PageJobs extends React.Component {
 							<JobOfferHorizontal
 								info={a}
 								analytics={this.props.analytics}
-								companies={this.state.companies}
+								entities={this.state.entities}
 							/>
 						</div>
 						}

@@ -7,13 +7,13 @@ import { getApiURL } from "../../utils/env.jsx";
 import Chip from "../form/Chip.jsx";
 import CardSocialMedia from "./CardSocialMedia.jsx";
 
-export default class ArticleHorizontal extends Component {
+export default class ServiceHorizontal extends Component {
 	constructor(props) {
 		super(props);
 
 		this.getBoxContent = this.getBoxContent.bind(this);
 		this.getTaxonomyTagsContent = this.getTaxonomyTagsContent.bind(this);
-		this.getCompanyTagsContent = this.getCompanyTagsContent.bind(this);
+		this.getEntityTagsContent = this.getEntityTagsContent.bind(this);
 
 		this.state = {
 		};
@@ -37,7 +37,7 @@ export default class ArticleHorizontal extends Component {
 					<div className="card-body">
 						<h5 className="card-title">{this.props.info.title}</h5>
 
-						{this.getCompanyTagsContent()}
+						{this.getEntityTagsContent()}
 						{this.getTaxonomyTagsContent()}
 
 						<button
@@ -84,17 +84,17 @@ export default class ArticleHorizontal extends Component {
 		return "";
 	}
 
-	getCompanyTagsContent() {
-		if (this.props.info.company_tags
-			&& this.props.companies) {
+	getEntityTagsContent() {
+		if (this.props.info.entity_tags
+			&& this.props.entities) {
 			return <div className="card-tags">
-				{this.props.info.company_tags
-					.filter((c) => this.props.companies.filter((d) => d.id === c).length > 0)
+				{this.props.info.entity_tags
+					.filter((c) => this.props.entities.filter((d) => d.id === c).length > 0)
 					.map((v) => <Chip
-						key={this.props.companies.filter((d) => d.id === v)[0].name}
-						label={this.props.companies.filter((d) => d.id === v)[0].name}
+						key={this.props.entities.filter((d) => d.id === v)[0].name}
+						label={this.props.entities.filter((d) => d.id === v)[0].name}
 						color={"#ffa8b0"}
-						url={"/company/" + v}
+						url={"/entity/" + v}
 					/>)}
 			</div>;
 		}

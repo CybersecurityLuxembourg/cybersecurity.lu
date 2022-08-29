@@ -16,7 +16,7 @@ export default class ShadowBoxMyCyberlux extends React.Component {
 						<h3>Private space</h3>
 						<i className="fas fa-plug"/>
 						<div className="PageHome-newsletter-content-desc">
-							Register or update your company and show the best
+							Register or update your entity and show the best
 							of your organisation
 						</div>
 					</div>
