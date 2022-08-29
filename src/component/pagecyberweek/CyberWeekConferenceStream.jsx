@@ -18,7 +18,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const defaultRooms = ["Conference Room 1", "Conference Room 2"];
+		const defaultRooms = ["Main Stage", "Cyber & Threat Intelligence Stage"];
 
 		this.state = {
 			events: null,
@@ -212,7 +212,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 						<CheckBox
 							className={"CyberWeekConferenceStream-rooms-all"}
 							key={"all"}
-							label={"All rooms"}
+							label={"All Stages"}
 							value={this.state.roomStatus.filter((s) => s).length
 								=== this.state.rooms.length}
 							onClick={() => this.setAllRoomsAsSelected()}
@@ -284,11 +284,11 @@ export default class CyberWeekConferenceStream extends React.Component {
 										&& event.title.props.dangerouslySetInnerHTML.__html) {
 										// eslint-disable-next-line no-underscore-dangle
 										if (event.title.props.dangerouslySetInnerHTML.__html
-											.toLowerCase().includes("conference room 1")) {
+											.toLowerCase().includes("main stage")) {
 											color = "#8fddff";
 										// eslint-disable-next-line no-underscore-dangle
 										} else if (event.title.props.dangerouslySetInnerHTML.__html
-											.toLowerCase().includes("conference room 2")) {
+											.toLowerCase().includes("cyber & threat intelligence stage")) {
 											color = "#ffa8b0";
 										}
 									}
