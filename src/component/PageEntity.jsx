@@ -215,6 +215,8 @@ export default class PageEntity extends React.Component {
 								<div className="col-md-8 PageEntity-name">
 									<h3>{this.state.entity.name}</h3>
 
+									<h4>{this.state.entity.headline}</h4>
+
 									<a
 										className="claim-link"
 										href={
