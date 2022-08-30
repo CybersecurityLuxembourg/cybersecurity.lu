@@ -374,7 +374,7 @@ export default class PageDashboard extends React.Component {
 			.filter((a) => serviceGroupValues.indexOf(a.taxonomy_value_id) >= 0);
 
 		serviceGroupAssignments.forEach((v) => {
-			occurences[v.taxonomy_value] += 1;
+			occurences[v.taxonomy_value_id] += 1;
 		});
 
 		const orderedOccurences = Object.values(occurences).sort((a, b) => b - a);
