@@ -60,8 +60,9 @@
 }
 
 .Speaker .card-body {
-    padding: .9rem 1.25rem !important;
+    padding: .6rem 1.25rem !important;
     border-left: 1px solid rgba(0,0,0,.125);
+    line-height: 1.1;
 }
 
 .Speaker .card-body h5 {

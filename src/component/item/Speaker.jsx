@@ -25,7 +25,8 @@ export default class Speaker extends Component {
 					}
 				</div>
 				<div className="card-body">
-					<h5 className="card-title">{this.props.info.name}</h5>
+					<div><b>{this.props.info.name}</b></div>
+					<div>{this.props.info.headline}</div>
 				</div>
 			</div>
 		</div>;
