@@ -60,7 +60,7 @@ export default class PageDashboard extends React.Component {
 	}
 
 	fetchAllEntities() {
-		getRequest.call(this, "public/get_public_companies", (data) => {
+		getRequest.call(this, "public/get_public_entities", (data) => {
 			this.setState({
 				entities: data,
 			});

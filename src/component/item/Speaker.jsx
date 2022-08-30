@@ -38,7 +38,7 @@ export default class Speaker extends Component {
 
 		return (
 			<a
-				href={"/company/" + this.props.info.id}
+				href={"/entity/" + this.props.info.id}
 				className="Speaker-link">
 				{this.getContent()}
 			</a>

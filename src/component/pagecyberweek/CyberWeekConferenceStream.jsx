@@ -67,11 +67,11 @@ export default class CyberWeekConferenceStream extends React.Component {
 							selectedDate: dates ? dates[0] : dates,
 						}, () => {
 							const params2 = {
-								ids: [].concat(...data.items.map((e) => e.company_tags)),
+								ids: [].concat(...data.items.map((e) => e.entity_tags)),
 							};
 
 							if (params2.ids.length > 0) {
-								getRequest.call(this, "public/get_public_companies?"
+								getRequest.call(this, "public/get_public_entities?"
 									+ dictToURI(params2), (data2) => {
 									this.setState({
 										entities: data2,
@@ -149,7 +149,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 
 			{this.state.view === "agenda"
 				&& <div className="col-md-12 event-speakers">
-					{e.company_tags.map((c) => {
+					{e.entity_tags.map((c) => {
 						if (this.state.entities) {
 							const entities = this.state.entities.filter((u) => u.id === c);
 

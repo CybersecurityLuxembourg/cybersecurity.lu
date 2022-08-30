@@ -45,16 +45,16 @@ export default class JobOfferHorizontal extends Component {
 	}
 
 	getTagsContent() {
-		if (this.props.info.company_tags
-			&& this.props.companies) {
+		if (this.props.info.entity_tags
+			&& this.props.entities) {
 			return <div className="card-tags">
-				{this.props.info.company_tags
-					.filter((c) => this.props.companies.filter((d) => d.id === c).length > 0)
+				{this.props.info.entity_tags
+					.filter((c) => this.props.entities.filter((d) => d.id === c).length > 0)
 					.map((v) => <Chip
-						key={this.props.companies.filter((d) => d.id === v)[0].name}
-						label={this.props.companies.filter((d) => d.id === v)[0].name}
+						key={this.props.entities.filter((d) => d.id === v)[0].name}
+						label={this.props.entities.filter((d) => d.id === v)[0].name}
 						color={"#ffa8b0"}
-						url={"/company/" + v}
+						url={"/entity/" + v}
 					/>)}
 			</div>;
 		}

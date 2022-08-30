@@ -4,7 +4,7 @@ import { NotificationManager as nm } from "react-notifications";
 import Loading from "../box/Loading.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
-import Company from "../item/Company.jsx";
+import Entity from "../item/Entity.jsx";
 import Message from "../box/Message.jsx";
 
 export default class Cyber4GrowthPresentation extends React.Component {
@@ -45,7 +45,7 @@ export default class Cyber4GrowthPresentation extends React.Component {
 					taxonomy_values: values,
 				});
 
-				getRequest.call(this, "public/get_public_companies?" + params, (data) => {
+				getRequest.call(this, "public/get_public_entities?" + params, (data) => {
 					this.setState({
 						partners: data,
 					});
@@ -300,7 +300,7 @@ export default class Cyber4GrowthPresentation extends React.Component {
 									<div
 										className="col-md-12"
 										key={a.id}>
-										<Company
+										<Entity
 											info={a}
 										/>
 									</div>

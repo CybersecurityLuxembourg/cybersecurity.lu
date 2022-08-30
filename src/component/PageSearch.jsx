@@ -7,7 +7,7 @@ import Chip from "./form/Chip.jsx";
 import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
-import Company from "./item/Company.jsx";
+import Entity from "./item/Entity.jsx";
 import ArticleHorizontal from "./item/ArticleHorizontal.jsx";
 import EventHorizontal from "./item/EventHorizontal.jsx";
 import ToolHorizontal from "./item/ToolHorizontal.jsx";
@@ -100,7 +100,7 @@ export default class PageSearch extends React.Component {
 				? { name: this.state.searchValue }
 				: { taxonomy_values: this.state.taxonomyValues };
 
-			getRequest.call(this, "public/get_public_companies?"
+			getRequest.call(this, "public/get_public_entities?"
 				+ dictToURI(filters), (data) => {
 				this.setState({
 					entities: data,
@@ -356,7 +356,7 @@ export default class PageSearch extends React.Component {
 								elements={this.state.entities.map((a, i) => [a, i])}
 								buildElement={(a) => (
 									<div className="col-md-6">
-										<Company
+										<Entity
 											info={a}
 										/>
 									</div>

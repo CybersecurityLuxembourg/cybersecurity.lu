@@ -6,7 +6,7 @@ import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
-import Company from "./item/Company.jsx";
+import Entity from "./item/Entity.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import CivilSocietySearch from "./form/CivilSocietySearch.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
@@ -57,7 +57,7 @@ export default class PageCivilSociety extends React.Component {
 						taxonomy_values: values.concat(this.state.filters.taxonomy_values),
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params), (data) => {
 						this.setState({
 							civilSociety: data
 								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
@@ -126,7 +126,7 @@ export default class PageCivilSociety extends React.Component {
 						elements={this.state.civilSociety.map((a, i) => [a, i])}
 						buildElement={(a) => (
 							<div className="col-md-6">
-								<Company
+								<Entity
 									info={a}
 								/>
 							</div>

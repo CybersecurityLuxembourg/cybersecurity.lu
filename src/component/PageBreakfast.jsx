@@ -17,9 +17,9 @@ export default class PageBreakfast extends React.Component {
 
 		this.state = {
 			news: null,
-			newsCompanies: null,
+			newsEntities: null,
 			events: null,
-			eventsCompanies: null,
+			eventsEntities: null,
 		};
 	}
 
@@ -131,7 +131,7 @@ export default class PageBreakfast extends React.Component {
 							<Article
 								info={a}
 								analytics={this.props.analytics}
-								companies={this.state.newsCompanies}
+								entities={this.state.newsEntities}
 							/>
 						</div>
 						}
@@ -178,7 +178,7 @@ export default class PageBreakfast extends React.Component {
 							<Event
 								info={a}
 								analytics={this.props.analytics}
-								companies={this.state.eventsCompanies}
+								entities={this.state.eventsEntities}
 							/>
 						</div>
 						}

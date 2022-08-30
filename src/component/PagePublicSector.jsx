@@ -6,7 +6,7 @@ import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
-import Company from "./item/Company.jsx";
+import Entity from "./item/Entity.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import PublicSectorSearch from "./form/PublicSectorSearch.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
@@ -118,7 +118,7 @@ export default class PagePublicSector extends React.Component {
 						elements={this.state.publicEntities.map((a, i) => [a, i])}
 						buildElement={(a) => (
 							<div className="col-md-6">
-								<Company
+								<Entity
 									info={a}
 								/>
 							</div>

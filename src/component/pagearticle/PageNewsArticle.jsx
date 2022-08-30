@@ -26,9 +26,9 @@ export default class PageNewsArticle extends React.Component {
 
 		this.state = {
 			article: null,
-			articleCompanies: null,
+			articleEntities: null,
 			relatedArticles: null,
-			relatedArticleCompanies: null,
+			relatedArticleEntities: null,
 			articleLoading: false,
 			relatedArticleLoading: false,
 		};
@@ -41,9 +41,9 @@ export default class PageNewsArticle extends React.Component {
 	getArticleContent() {
 		this.setState({
 			article: null,
-			articleCompanies: null,
+			articleEntities: null,
 			relatedArticles: null,
-			relatedArticleCompanies: null,
+			relatedArticleEntities: null,
 			articleLoading: false,
 			relatedArticleLoading: false,
 		});
@@ -63,15 +63,15 @@ export default class PageNewsArticle extends React.Component {
 						ids: Array.prototype.concat.apply(
 							[],
 							data2
-								.filter((i) => i.company_tags)
-								.map((i) => i.company_tags),
+								.filter((i) => i.entity_tags)
+								.map((i) => i.entity_tags),
 						),
 					};
 
 					if (params2.ids.length > 0) {
-						getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data3) => {
+						getRequest.call(this, "public/get_public_entities?" + dictToURI(params2), (data3) => {
 							this.setState({
-								relatedArticleCompanies: data3,
+								relatedArticleEntities: data3,
 							});
 						}, (response) => {
 							nm.warning(response.statusText);
@@ -157,13 +157,13 @@ export default class PageNewsArticle extends React.Component {
 									))}
 								</div>
 
-								<div className="PageNewsArticle-companies">
-									{this.state.article.company_tags.map((t) => (
+								<div className="PageNewsArticle-entities">
+									{this.state.article.entity_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
 											color={"#ffa8b0"}
-											url={"/company/" + t.id}
+											url={"/entity/" + t.id}
 										/>
 									))}
 								</div>
@@ -218,13 +218,13 @@ export default class PageNewsArticle extends React.Component {
 									))}
 								</div>
 
-								<div className="PageNewsArticle-companies">
-									{this.state.article.company_tags.map((t) => (
+								<div className="PageNewsArticle-entities">
+									{this.state.article.entity_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
 											color={"#ffa8b0"}
-											url={"/company/" + t.id}
+											url={"/entity/" + t.id}
 										/>
 									))}
 								</div>
@@ -266,7 +266,7 @@ export default class PageNewsArticle extends React.Component {
 												<Article
 													key={a.id}
 													info={a}
-													companies={this.state.relatedArticleCompanies}
+													entities={this.state.relatedArticleEntities}
 												/>
 											</div>
 										))

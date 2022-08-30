@@ -9,7 +9,7 @@ import Message from "./box/Message.jsx";
 import ShadowBoxPcDoctor from "./box/ShadowBoxPcDoctor.jsx";
 import ShadowBoxPureStartup from "./box/ShadowBoxPureStartup.jsx";
 import ShadowBoxMyCyberlux from "./box/ShadowBoxMyCyberlux.jsx";
-import Company from "./item/Company.jsx";
+import Entity from "./item/Entity.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import PrivateSectorSearch from "./form/PrivateSectorSearch.jsx";
 import BarWorkforceRange from "./chart/BarWorkforceRange.jsx";
@@ -166,7 +166,7 @@ export default class PagePrivateSector extends React.Component {
 						elements={this.state.actors.map((a, i) => [a, i])}
 						buildElement={(a) => (
 							<div className="col-md-6">
-								<Company
+								<Entity
 									info={a}
 								/>
 							</div>

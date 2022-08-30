@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "./Company.css";
+import "./Entity.css";
 import NoImage from "../box/NoImage.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 
-export default class Company extends Component {
+export default class Entity extends Component {
 	constructor(props) {
 		super(props);
 
@@ -12,7 +12,7 @@ export default class Company extends Component {
 	}
 
 	getContent() {
-		return <div className="Company card">
+		return <div className="Entity card">
 			<div className="card-horizontal">
 				<div className="img-square-wrapper">
 					{this.props.info.image !== null && this.props.info.image !== undefined
@@ -38,8 +38,8 @@ export default class Company extends Component {
 
 		return (
 			<a
-				href={"/company/" + this.props.info.id}
-				className="Company-link">
+				href={"/entity/" + this.props.info.id}
+				className="Entity-link">
 				{this.getContent()}
 			</a>
 		);

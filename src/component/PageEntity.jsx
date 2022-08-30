@@ -10,7 +10,7 @@ import NoImage from "./box/NoImage.jsx";
 import { getApiURL, getPrivateAppURL } from "../utils/env.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
-import CompanyMap from "./map/CompanyMap.jsx";
+import EntityMap from "./map/EntityMap.jsx";
 import Tab from "./tab/Tab.jsx";
 import Chip from "./form/Chip.jsx";
 import Article from "./item/Article.jsx";
@@ -312,8 +312,8 @@ export default class PageEntity extends React.Component {
 									}
 
 									{this.hasGeolocation()
-										&& <div className={"PageEntity-CompanyMap shadow-section"}>
-											<CompanyMap
+										&& <div className={"PageEntity-EntityMap shadow-section"}>
+											<EntityMap
 												geolocations={this.state.geolocations}
 											/>
 										</div>

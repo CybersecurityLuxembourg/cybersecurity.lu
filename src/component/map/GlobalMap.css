@@ -3,7 +3,7 @@
 	position: fixed;
 }
 
-.GlobalMap-company {
+.GlobalMap-entity {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -18,7 +18,7 @@
     font-size: 13px;
 }
 
-.GlobalMap-company .Company {
+.GlobalMap-entity .Entity {
 	z-index: 995;
 }
 

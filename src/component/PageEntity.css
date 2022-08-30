@@ -36,12 +36,12 @@
 	margin-right: 5px;
 }
 
-.PageEntity-CompanyMap {
+.PageEntity-EntityMap {
     padding: 0 !important;
     margin-bottom: 20px;
 }
 
-.PageEntity-CompanyMap .CompanyMap .leaflet-container {
+.PageEntity-EntityMap .EntityMap .leaflet-container {
     min-height: 300px;
 }
 

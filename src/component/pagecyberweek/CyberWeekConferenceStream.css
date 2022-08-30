@@ -64,11 +64,11 @@
 	background-color: lightgrey !important;
 }
 
-#CyberWeekConferenceStream .Company {
+#CyberWeekConferenceStream .Entity {
 	height: 55px;
 }
 
-#CyberWeekConferenceStream .Company .img-square-wrapper {
+#CyberWeekConferenceStream .Entity .img-square-wrapper {
 	flex: 0 0 100px;
 }
 

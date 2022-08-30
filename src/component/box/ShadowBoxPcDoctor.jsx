@@ -3,7 +3,7 @@ import "./ShadowBoxPcDoctor.css";
 import Popup from "reactjs-popup";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
+import Entity from "../item/Entity.jsx";
 import Loading from "./Loading.jsx";
 import { dictToURI } from "../../utils/url.jsx";
 
@@ -39,7 +39,7 @@ export default class ShadowBoxPcDoctor extends React.Component {
 						taxonomy_values: entityTypes.concat(exosystemRoles).concat(individualValues),
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params), (data) => {
 						this.setState({
 							pcDoctors: data
 								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
@@ -74,7 +74,7 @@ export default class ShadowBoxPcDoctor extends React.Component {
 								<h3>PC Doctors</h3>
 								<i className="fas fa-user-md"/>
 								<div className="PageHome-newsletter-content-desc">
-									See the list of companies providing services in order
+									See the list of entities providing services in order
 									to support the individuals
 								</div>
 							</div>
@@ -104,7 +104,7 @@ export default class ShadowBoxPcDoctor extends React.Component {
 									{this.state.pcDoctors.map((c) => <div
 										key={c.id}
 										className={"col-md-6"}>
-										<Company
+										<Entity
 											info={c}
 										/>
 									</div>)}
