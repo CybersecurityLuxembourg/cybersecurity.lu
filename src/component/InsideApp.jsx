@@ -312,9 +312,7 @@ class InsideApp extends React.Component {
 							<Redirect to="/cybersecurityweek?tab=About_the_gala" />
 						</Route>
 
-						<Route exact path="/company/:id">
-							<Redirect to="/entity/:id" />
-						</Route>
+						<Redirect from="/company/:id" to="/entity/:id" />
 
 						{/* 404 */}
 

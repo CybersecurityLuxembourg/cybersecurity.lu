@@ -186,7 +186,7 @@ export default class PageEntity extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/">COMPANY</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/">ENTITY</Link></Breadcrumb.Item>
 							{this.state.entity !== null && !this.state.loading
 								? <Breadcrumb.Item>
 									<Link to={"/entity/" + this.state.entity.id}>{this.state.entity.name}</Link>
