@@ -252,10 +252,6 @@ export default class CyberWeekTheAwards extends React.Component {
 							abstract={<div>
 								recognising the National Team members participating in the
 								European Cybersecurity Challenge
-								<br/><br/>
-								Sponsored by
-								<br/><br/>
-								<img src='/img/Acc_Logo_Black_Purple_RGB.png'/>
 							</div>}
 						/>
 					</div>
