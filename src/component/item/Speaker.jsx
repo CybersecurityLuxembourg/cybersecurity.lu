@@ -25,8 +25,19 @@ export default class Speaker extends Component {
 					}
 				</div>
 				<div className="card-body">
-					<div><b>{this.props.info.name}</b></div>
-					<div>{this.props.info.headline}</div>
+					<div>
+						<b>{this.props.info.name}</b>
+					</div>
+					<div className="card-body-headline">
+						{this.props.info.headline}
+					</div>
+					<div className="card-body-company">
+						{this.props.entities
+							&& this.props.entities.map((e, i) => (
+								<span key={e.id}><i>{e.name}</i>{i + 1 < this.props.entities.length && ", "}</span>
+							))
+						}
+					</div>
 				</div>
 			</div>
 		</div>;
