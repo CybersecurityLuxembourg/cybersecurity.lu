@@ -17,9 +17,9 @@ export default class PageBreakfast extends React.Component {
 
 		this.state = {
 			news: null,
-			newsCompanies: null,
+			newsEntities: null,
 			events: null,
-			eventsCompanies: null,
+			eventsEntities: null,
 		};
 	}
 
@@ -52,17 +52,17 @@ export default class PageBreakfast extends React.Component {
 					this.setState({
 						[variable]: data,
 					}, () => {
-						let companyIds = data.items
-							? data.items.map((a) => (a.company_tags ? a.company_tags : []))
+						let entityIds = data.items
+							? data.items.map((a) => (a.entity_tags ? a.entity_tags : []))
 							: [];
-						companyIds = Array.prototype.concat.apply([], companyIds);
-						companyIds = [...new Set(companyIds)];
+						entityIds = Array.prototype.concat.apply([], entityIds);
+						entityIds = [...new Set(entityIds)];
 
 						const params2 = dictToURI({
-							ids: companyIds,
+							ids: entityIds,
 						});
 
-						getRequest.call(this, "public/get_public_companies?" + params2, (data2) => {
+						getRequest.call(this, "public/get_public_entities?" + params2, (data2) => {
 							this.setState({
 								[variable + "Companies"]: data2,
 							});
@@ -131,7 +131,7 @@ export default class PageBreakfast extends React.Component {
 							<Article
 								info={a}
 								analytics={this.props.analytics}
-								companies={this.state.newsCompanies}
+								entities={this.state.newsEntities}
 							/>
 						</div>
 						}
@@ -178,7 +178,7 @@ export default class PageBreakfast extends React.Component {
 							<Event
 								info={a}
 								analytics={this.props.analytics}
-								companies={this.state.eventsCompanies}
+								entities={this.state.eventsEntities}
 							/>
 						</div>
 						}

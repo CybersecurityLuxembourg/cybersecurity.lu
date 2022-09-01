@@ -132,13 +132,13 @@ export default class PageJobOffer extends React.Component {
 									))}
 								</div>
 
-								<div className="PageJobOffer-companies">
-									{this.state.article.company_tags.map((t) => (
+								<div className="PageJobOffer-entities">
+									{this.state.article.entity_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
 											color={"#ffa8b0"}
-											url={"/company/" + t.id}
+											url={"/entity/" + t.id}
 										/>
 									))}
 								</div>
@@ -193,13 +193,13 @@ export default class PageJobOffer extends React.Component {
 									))}
 								</div>
 
-								<div className="PageJobOffer-companies">
-									{this.state.article.company_tags.map((t) => (
+								<div className="PageJobOffer-entities">
+									{this.state.article.entity_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
 											color={"#ffa8b0"}
-											url={"/company/" + t.id}
+											url={"/entity/" + t.id}
 										/>
 									))}
 								</div>

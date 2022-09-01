@@ -2,7 +2,7 @@ import React from "react";
 import "./PageHelp.css";
 import { Wizard, Step, Controls } from "react-decision-tree-flow";
 import { ProgressBar } from "react-bootstrap";
-import Companies from "./item/Companies.jsx";
+import Entities from "./item/Entities.jsx";
 import Info from "./box/Info.jsx";
 
 export default class PageHelp extends React.Component {
@@ -178,7 +178,7 @@ export default class PageHelp extends React.Component {
 											BEE SECURE
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"bee secure"}
 									/>
 									{this.getPreviousButton(60)}
@@ -193,7 +193,7 @@ export default class PageHelp extends React.Component {
 											CASES Knowledgebase
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"cases"}
 									/>
 									{this.getPreviousButton(60)}
@@ -208,7 +208,7 @@ export default class PageHelp extends React.Component {
 											CIRCL’s Digital First Aid Kit
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"circle"}
 									/>
 									{this.getPreviousButton(60)}
@@ -233,7 +233,7 @@ export default class PageHelp extends React.Component {
 											Bee Secure
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"bee secure"}
 									/>
 									{this.getPreviousButton(60)}
@@ -248,7 +248,7 @@ export default class PageHelp extends React.Component {
 											help@cases.lu
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"cases"}
 									/>
 									{this.getPreviousButton(60)}
@@ -338,7 +338,7 @@ export default class PageHelp extends React.Component {
 											CIRCL URLabuse
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"circl"}
 									/>
 									{this.getPreviousButton(70)}
@@ -371,7 +371,7 @@ export default class PageHelp extends React.Component {
 										</a>
 									</h3>
 									<h3>
-										You will find a section called &quot;PC Doctors&quot; with companies that
+										You will find a section called &quot;PC Doctors&quot; with entities that
 										can support you
 									</h3>
 									{this.getPreviousButton(70)}
@@ -386,7 +386,7 @@ export default class PageHelp extends React.Component {
 											BEE SECURE Stopline
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"bee secure"}
 									/>
 									{this.getPreviousButton(70)}
@@ -401,7 +401,7 @@ export default class PageHelp extends React.Component {
 											CNPD
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"cnpd"}
 									/>
 									{this.getPreviousButton(70)}
@@ -416,7 +416,7 @@ export default class PageHelp extends React.Component {
 											ILR mediation service (FR)
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"ilr"}
 									/>
 									{this.getPreviousButton(70)}
@@ -431,7 +431,7 @@ export default class PageHelp extends React.Component {
 											CIRCL
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"circl"}
 									/>
 									{this.getPreviousButton(70)}
@@ -446,7 +446,7 @@ export default class PageHelp extends React.Component {
 											CIRCL
 										</a>
 									</h3>
-									<Companies
+									<Entities
 										name={"circl"}
 									/>
 									{this.getPreviousButton(70)}

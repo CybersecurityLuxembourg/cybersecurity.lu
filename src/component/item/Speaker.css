@@ -5,7 +5,7 @@
 
 @media (min-width: 768px) {
     .Speaker {
-        height: 55px;
+        height: 75px;
     }
 }
 
@@ -38,14 +38,14 @@
 
 @media (max-width: 768px) {
     .Speaker .img-square-wrapper {
-        height: 50px;
+        height: 75px;
         width: 100%;
     }
 }
 
 @media (min-width: 768px) {
     .Speaker .img-square-wrapper {
-        flex: 0 0 55px;
+        flex: 0 0 75px;
         height: 100%;
     }
 }
@@ -60,16 +60,18 @@
 }
 
 .Speaker .card-body {
-    padding: .9rem 1.25rem !important;
+    padding: .6rem 1.25rem !important;
     border-left: 1px solid rgba(0,0,0,.125);
+    line-height: 1.1;
 }
 
-.Speaker .card-body h5 {
-    font-size: 15px;
-    max-width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+@media (min-width: 768px) {
+    .Speaker .card-body div {
+        max-width: 100%;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

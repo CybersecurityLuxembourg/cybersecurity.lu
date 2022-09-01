@@ -78,7 +78,7 @@ export default class PageService extends React.Component {
 										: ""}
 								</div>
 
-								<div className="PageArticle-tags">
+								<div className="PageService-tags">
 									{this.state.article.taxonomy_tags.map((t) => (
 										<Chip
 											key={t.name}
@@ -88,13 +88,13 @@ export default class PageService extends React.Component {
 									))}
 								</div>
 
-								<div className="PageArticle-companies">
-									{this.state.article.company_tags.map((t) => (
+								<div className="PageService-entities">
+									{this.state.article.entity_tags.map((t) => (
 										<Chip
 											key={t.name}
 											label={t.name}
 											color={"#ffa8b0"}
-											url={"/company/" + t.id}
+											url={"/entity/" + t.id}
 										/>
 									))}
 								</div>
@@ -105,7 +105,7 @@ export default class PageService extends React.Component {
 
 								{this.state.article.abstract !== null
 									&& <div
-										className="PageArticle-abstract"
+										className="PageService-abstract"
 										dangerouslySetInnerHTML={{
 											__html:
 											dompurify.sanitize(this.state.article.abstract),
@@ -142,7 +142,7 @@ export default class PageService extends React.Component {
 								{this.state.article.link !== null
 									&& this.state.article.link !== undefined
 									&& this.state.article.link.length > 0
-									&& <div className="PageTool-external-link">
+									&& <div className="PageService-external-link">
 										<button
 											onClick={() => window.open(this.state.article.link)}
 										>

@@ -1,5 +1,5 @@
 import React from "react";
-import "./PageCompany.css";
+import "./PageEntity.css";
 import { NotificationManager as nm } from "react-notifications";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import NoImage from "./box/NoImage.jsx";
 import { getApiURL, getPrivateAppURL } from "../utils/env.jsx";
 import { dictToURI } from "../utils/url.jsx";
 import DynamicTable from "./table/DynamicTable.jsx";
-import CompanyMap from "./map/CompanyMap.jsx";
+import EntityMap from "./map/EntityMap.jsx";
 import Tab from "./tab/Tab.jsx";
 import Chip from "./form/Chip.jsx";
 import Article from "./item/Article.jsx";
@@ -19,12 +19,12 @@ import JobOffer from "./item/JobOffer.jsx";
 import ServiceHorizontal from "./item/ServiceHorizontal.jsx";
 import ToolHorizontal from "./item/ToolHorizontal.jsx";
 
-export default class PageCompany extends React.Component {
+export default class PageEntity extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			company: null,
+			entity: null,
 			geolocations: null,
 			news: null,
 			events: null,
@@ -35,22 +35,22 @@ export default class PageCompany extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getCompanyContent();
-		this.getCompanyArticle("NEWS", "news");
-		this.getCompanyArticle("EVENT", "events");
-		this.getCompanyArticle("JOB OFFER", "jobOffers");
-		this.getCompanyArticle("SERVICE", "services");
-		this.getCompanyArticle("TOOL", "tools");
+		this.getEntityContent();
+		this.getEntityArticle("NEWS", "news");
+		this.getEntityArticle("EVENT", "events");
+		this.getEntityArticle("JOB OFFER", "jobOffers");
+		this.getEntityArticle("SERVICE", "services");
+		this.getEntityArticle("TOOL", "tools");
 	}
 
-	getCompanyContent() {
-		getRequest.call(this, "public/get_public_company/"
+	getEntityContent() {
+		getRequest.call(this, "public/get_public_entity/"
 			+ this.props.match.params.id
 			+ "?include_assignments=true", (data) => {
 			this.setState({
-				company: data,
+				entity: data,
 			}, () => {
-				getRequest.call(this, "public/get_public_company_geolocations?ids="
+				getRequest.call(this, "public/get_public_entity_geolocations?ids="
 					+ this.props.match.params.id, (data2) => {
 					this.setState({
 						geolocations: data2,
@@ -68,10 +68,10 @@ export default class PageCompany extends React.Component {
 		});
 	}
 
-	getCompanyArticle(type, variable, page) {
+	getEntityArticle(type, variable, page) {
 		const params = {
 			type,
-			companies: this.props.match.params.id,
+			entities: this.props.match.params.id,
 			page: page || 1,
 			per_page: 4,
 		};
@@ -89,9 +89,9 @@ export default class PageCompany extends React.Component {
 	}
 
 	hasWebsite() {
-		return this.state.company
-			&& this.state.company.website
-			&& this.state.company.website.length > 0;
+		return this.state.entity
+			&& this.state.entity.website
+			&& this.state.entity.website.length > 0;
 	}
 
 	hasGeolocation() {
@@ -106,7 +106,7 @@ export default class PageCompany extends React.Component {
 					<DynamicTable
 						items={this.state[variable].items}
 						pagination={this.state[variable].pagination}
-						changePage={(page) => this.getCompanyArticle(type, variable, page)}
+						changePage={(page) => this.getEntityArticle(type, variable, page)}
 						buildElement={(a) => <div className="col-md-6">
 							{type === "NEWS"
 								&& <Article
@@ -162,10 +162,10 @@ export default class PageCompany extends React.Component {
 
 	getTaxonomyCategories() {
 		if (this.props.analytics
-			&& this.state.company
-			&& this.state.company.taxonomy_assignment.length > 0) {
+			&& this.state.entity
+			&& this.state.entity.taxonomy_assignment.length > 0) {
 			const values = this.props.analytics.taxonomy_values
-				.filter((v) => this.state.company.taxonomy_assignment.indexOf(v.id) >= 0);
+				.filter((v) => this.state.entity.taxonomy_assignment.indexOf(v.id) >= 0);
 			let categories = [...new Set(values.map((v) => v.category))];
 			categories.sort((a, b) => (a < b ? 1 : -1));
 			categories = categories.map((c) => [c, values.filter((v) => v.category === c)]);
@@ -181,46 +181,48 @@ export default class PageCompany extends React.Component {
 
 	render() {
 		return (
-			<div className={"PageCompany page max-sized-page"}>
+			<div className={"PageEntity page max-sized-page"}>
 				<div className="row">
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/">COMPANY</Link></Breadcrumb.Item>
-							{this.state.company !== null && !this.state.loading
+							<Breadcrumb.Item><Link to="/">ENTITY</Link></Breadcrumb.Item>
+							{this.state.entity !== null && !this.state.loading
 								? <Breadcrumb.Item>
-									<Link to={"/company/" + this.state.company.id}>{this.state.company.name}</Link>
+									<Link to={"/entity/" + this.state.entity.id}>{this.state.entity.name}</Link>
 								</Breadcrumb.Item>
 								: ""}
 						</Breadcrumb>
 					</div>
 				</div>
 
-				{this.state.company !== null
+				{this.state.entity !== null
 					? <div className="row row-spaced">
 						<div className="col-md-12">
 							<div className="row">
 								<div className={"col-md-4 "
-									+ (this.state.company.image
-										&& this.state.company.image
-										? "PageCompany-logo" : "PageCompany-no-logo")}>
-									{this.state.company.image
+									+ (this.state.entity.image
+										&& this.state.entity.image
+										? "PageEntity-logo" : "PageEntity-no-logo")}>
+									{this.state.entity.image
 										? <img
-											src={getApiURL() + "public/get_public_image/" + this.state.company.image}
+											src={getApiURL() + "public/get_public_image/" + this.state.entity.image}
 											alt="Card image cap"
 										/>
 										: <NoImage/>
 									}
 								</div>
-								<div className="col-md-8 PageCompany-name">
-									<h3>{this.state.company.name}</h3>
+								<div className="col-md-8 PageEntity-name">
+									<h3>{this.state.entity.name}</h3>
+
+									<h4>{this.state.entity.headline}</h4>
 
 									<a
 										className="claim-link"
 										href={
 											getPrivateAppURL()
-											+ "add_company?claim_entity="
-											+ this.state.company.id
+											+ "add_entity?claim_entity="
+											+ this.state.entity.id
 										}
 										rel="noreferrer"
 										target="_blank">
@@ -238,11 +240,11 @@ export default class PageCompany extends React.Component {
 										</div>
 									</div>
 
-									{!this.state.company.description
-										&& !this.state.company.trade_register_number
-										&& !this.state.company.creation_date
-										&& !this.state.company.is_cybersecurity_core_business
-										&& !this.state.company.is_startup
+									{!this.state.entity.description
+										&& !this.state.entity.trade_register_number
+										&& !this.state.entity.creation_date
+										&& !this.state.entity.is_cybersecurity_core_business
+										&& !this.state.entity.is_startup
 										&& <div className="row">
 											<div className={"col-md-12"}>
 												<Message
@@ -255,37 +257,37 @@ export default class PageCompany extends React.Component {
 
 									<div className="row">
 										<div className={"col-md-12"} style={{ whiteSpace: "pre-line" }}>
-											{this.state.company.description}
+											{this.state.entity.description}
 										</div>
 									</div>
 
 									<div className="row">
-										{this.state.company.trade_register_number
+										{this.state.entity.trade_register_number
 											? <div className={"col-md-12"}>
-												<b>Trade register number:</b> {this.state.company.trade_register_number}
+												<b>Trade register number:</b> {this.state.entity.trade_register_number}
 											</div>
 											: ""
 										}
 
-										{this.state.company.creation_date
+										{this.state.entity.creation_date
 											? <div className={"col-md-12"}>
-												<b>Creation date:</b> {this.state.company.creation_date}
+												<b>Creation date:</b> {this.state.entity.creation_date}
 											</div>
 											: ""
 										}
 									</div>
 
 									<div className="row">
-										{this.state.company.is_cybersecurity_core_business
-											&& this.state.company.is_cybersecurity_core_business
-											? <div className="col-md-12 PageCompany-stamp">
+										{this.state.entity.is_cybersecurity_core_business
+											&& this.state.entity.is_cybersecurity_core_business
+											? <div className="col-md-12 PageEntity-stamp">
 												<i className="fas fa-check-circle"/> Cybersecurity as a core business
 											</div>
 											: ""
 										}
 
-										{this.state.company.is_startup
-											? <div className="col-md-12 PageCompany-stamp">
+										{this.state.entity.is_startup
+											? <div className="col-md-12 PageEntity-stamp">
 												<i className="fas fa-check-circle"/> Start-up
 											</div>
 											: ""
@@ -298,9 +300,9 @@ export default class PageCompany extends React.Component {
 										&& <div className="shadow-section blue-shadow-section centered-shadow-section">
 											{/* eslint-disable no-script-url */}
 											<a
-												href={!/^(?:f|ht)tps?:\/\//.test(this.state.company.website)
-													? "https://" + this.state.company.website
-													: this.state.company.website}
+												href={!/^(?:f|ht)tps?:\/\//.test(this.state.entity.website)
+													? "https://" + this.state.entity.website
+													: this.state.entity.website}
 												rel="noreferrer"
 												target="_blank">
 												<div>
@@ -312,8 +314,8 @@ export default class PageCompany extends React.Component {
 									}
 
 									{this.hasGeolocation()
-										&& <div className={"PageCompany-CompanyMap shadow-section"}>
-											<CompanyMap
+										&& <div className={"PageEntity-EntityMap shadow-section"}>
+											<EntityMap
 												geolocations={this.state.geolocations}
 											/>
 										</div>
@@ -328,8 +330,8 @@ export default class PageCompany extends React.Component {
 				}
 
 				{this.props.analytics
-					&& this.state.company
-					&& this.state.company.taxonomy_assignment.length > 0
+					&& this.state.entity
+					&& this.state.entity.taxonomy_assignment.length > 0
 					&& <div className="row row-spaced">
 						<div className="col-md-12 row-spaced">
 							<h3>Taxonomy</h3>
@@ -339,7 +341,7 @@ export default class PageCompany extends React.Component {
 							<div
 								key={category}
 								className="col-md-4">
-								<div className="PageCompany-taxonomy-category">
+								<div className="PageEntity-taxonomy-category">
 									<div className="shadow-section">
 										<h4>{category}</h4>
 
@@ -358,7 +360,7 @@ export default class PageCompany extends React.Component {
 				}
 
 				{this.props.analytics
-					&& this.state.company
+					&& this.state.entity
 					&& <div className="row row-spaced">
 						<div className="col-md-12">
 							<h3>Articles</h3>

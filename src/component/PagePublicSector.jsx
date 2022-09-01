@@ -6,7 +6,7 @@ import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../utils/request.jsx";
 import Loading from "./box/Loading.jsx";
 import Message from "./box/Message.jsx";
-import Company from "./item/Company.jsx";
+import Entity from "./item/Entity.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import PublicSectorSearch from "./form/PublicSectorSearch.jsx";
 import { getUrlParameter, dictToURI } from "../utils/url.jsx";
@@ -15,7 +15,7 @@ export default class PagePublicSector extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getPublicCompany = this.getPublicCompany.bind(this);
+		this.getPublicEntity = this.getPublicEntity.bind(this);
 		this.onSearch = this.onSearch.bind(this);
 		this.modifyFilters = this.modifyFilters.bind(this);
 
@@ -32,16 +32,16 @@ export default class PagePublicSector extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getPublicCompany();
+		this.getPublicEntity();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (this.props.analytics !== prevProps.analytics) {
-			this.getPublicCompany();
+			this.getPublicEntity();
 		}
 	}
 
-	getPublicCompany() {
+	getPublicEntity() {
 		if (this.props.analytics
 			&& this.props.analytics.taxonomy_values) {
 			const entityTypes = this.props.analytics.taxonomy_values
@@ -59,7 +59,7 @@ export default class PagePublicSector extends React.Component {
 							.concat(this.state.filters.taxonomy_values),
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params), (data) => {
 						this.setState({
 							publicEntities: data
 								.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
@@ -78,7 +78,7 @@ export default class PagePublicSector extends React.Component {
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + dictToURI(this.state.filters));
 
-		this.getPublicCompany();
+		this.getPublicEntity();
 	}
 
 	modifyFilters(field, value) {
@@ -118,7 +118,7 @@ export default class PagePublicSector extends React.Component {
 						elements={this.state.publicEntities.map((a, i) => [a, i])}
 						buildElement={(a) => (
 							<div className="col-md-6">
-								<Company
+								<Entity
 									info={a}
 								/>
 							</div>

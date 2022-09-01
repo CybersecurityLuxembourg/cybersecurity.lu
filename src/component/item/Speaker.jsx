@@ -25,7 +25,19 @@ export default class Speaker extends Component {
 					}
 				</div>
 				<div className="card-body">
-					<h5 className="card-title">{this.props.info.name}</h5>
+					<div>
+						<b>{this.props.info.name}</b>
+					</div>
+					<div className="card-body-headline">
+						{this.props.info.headline}
+					</div>
+					<div className="card-body-company">
+						{this.props.entities
+							&& this.props.entities.map((e, i) => (
+								<span key={e.id}><i>{e.name}</i>{i + 1 < this.props.entities.length && ", "}</span>
+							))
+						}
+					</div>
 				</div>
 			</div>
 		</div>;
@@ -38,7 +50,7 @@ export default class Speaker extends Component {
 
 		return (
 			<a
-				href={"/company/" + this.props.info.id}
+				href={"/entity/" + this.props.info.id}
 				className="Speaker-link">
 				{this.getContent()}
 			</a>

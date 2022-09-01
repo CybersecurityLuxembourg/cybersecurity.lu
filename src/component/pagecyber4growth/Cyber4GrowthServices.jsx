@@ -16,7 +16,7 @@ export default class Cyber4GrowthServices extends React.Component {
 
 		this.state = {
 			objects: null,
-			companies: null,
+			entities: null,
 		};
 	}
 
@@ -35,7 +35,7 @@ export default class Cyber4GrowthServices extends React.Component {
 			&& this.props.analytics.taxonomy_values !== undefined) {
 			this.setState({
 				objects: null,
-				companies: null,
+				entities: null,
 			});
 
 			const taxonomyValues = this.props.analytics.taxonomy_values
@@ -61,15 +61,15 @@ export default class Cyber4GrowthServices extends React.Component {
 								Array.prototype.concat.apply(
 									[],
 									data.items
-										.filter((i) => i.company_tags)
-										.map((i) => i.company_tags),
+										.filter((i) => i.entity_tags)
+										.map((i) => i.entity_tags),
 								),
 							],
 						};
 
-						getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
+						getRequest.call(this, "public/get_public_entities?" + dictToURI(params2), (data2) => {
 							this.setState({
-								companies: data2,
+								entities: data2,
 							});
 						}, (response) => {
 							nm.warning(response.statusText);
@@ -115,7 +115,7 @@ export default class Cyber4GrowthServices extends React.Component {
 									<ServiceHorizontal
 										info={t}
 										showImage={true}
-										companies={this.state.companies}
+										entities={this.state.entities}
 										analytics={this.props.analytics}
 									/>
 								</div>

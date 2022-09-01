@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import { NotificationManager as nm } from "react-notifications";
-import "./Companies.css";
+import "./Entities.css";
 import { getRequest } from "../../utils/request.jsx";
 import Loading from "../box/Loading.jsx";
-import Company from "./Company.jsx";
+import Entity from "./Entity.jsx";
 
-export default class Companies extends Component {
+export default class Entities extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			companies: null,
+			entities: null,
 		};
 	}
 
 	componentDidMount() {
-		getRequest.call(this, "public/get_public_companies?name=" + this.props.name, (data) => {
+		getRequest.call(this, "public/get_public_entities?name=" + this.props.name, (data) => {
 			this.setState({
-				companies: data,
+				entities: data,
 			});
 		}, (response) => {
 			this.setState({ loading: false });
@@ -29,15 +29,15 @@ export default class Companies extends Component {
 	}
 
 	render() {
-		if (!this.state.companies) {
+		if (!this.state.entities) {
 			return <Loading
 				height={150}
 			/>;
 		}
 
-		return <div className={"Companies"}>
-			{this.state.companies.map((c) => (
-				<Company
+		return <div className={"Entities"}>
+			{this.state.entities.map((c) => (
+				<Entity
 					info={c}
 					key={c.id}
 				/>

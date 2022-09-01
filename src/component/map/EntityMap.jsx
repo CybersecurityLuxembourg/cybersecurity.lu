@@ -25,7 +25,7 @@ export default class GlobalMap extends React.Component {
 		});
 
 		return (
-			<div className={"CompanyMap"}>
+			<div className={"EntityMap"}>
 				<MapContainer
 					center={[this.state.lat, this.state.lng]}
 					zoom={this.state.zoom}
@@ -36,7 +36,7 @@ export default class GlobalMap extends React.Component {
 						? this.props.geolocations
 							.filter((a) => a.latitude !== null && a.longitude !== null)
 							.map((a) => (
-								<div key={a.company_id}>
+								<div key={a.entity_id}>
 									<Marker
 										position={[a.latitude, a.longitude]}
 										icon={thisIcon}

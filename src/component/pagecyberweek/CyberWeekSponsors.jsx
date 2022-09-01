@@ -2,7 +2,7 @@ import React from "react";
 import "./CyberWeekSponsors.css";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
+import Entity from "../item/Entity.jsx";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import { dictToURI } from "../../utils/url.jsx";
@@ -38,11 +38,11 @@ export default class CyberWeekSponsors extends React.Component {
 				}, () => {
 					const params = {
 						ids: this.props.analytics.taxonomy_assignments
-							.filter((a) => valueId.indexOf(a.taxonomy_value) >= 0)
-							.map((a) => a.company),
+							.filter((a) => valueId.indexOf(a.taxonomy_value_id) >= 0)
+							.map((a) => a.entity_id),
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params), (data) => {
 						this.setState({
 							entities: data,
 						});
@@ -72,8 +72,8 @@ export default class CyberWeekSponsors extends React.Component {
 	getEntitiesOfTaxonomyValue(v) {
 		if (this.props.analytics && this.state.entities) {
 			const assignedEntities = this.props.analytics.taxonomy_assignments
-				.filter((a) => a.taxonomy_value === v.id)
-				.map((a) => (a.company));
+				.filter((a) => a.taxonomy_value_id === v.id)
+				.map((a) => (a.entity_id));
 
 			return this.state.entities
 				.filter((e) => assignedEntities.indexOf(e.id) >= 0);
@@ -107,7 +107,7 @@ export default class CyberWeekSponsors extends React.Component {
 											{this.getEntitiesOfTaxonomyValue(v).length > 0
 												&& this.getEntitiesOfTaxonomyValue(v).map((c) => (
 													<div className="col-md-6" key={c.id}>
-														<Company
+														<Entity
 															info={c}
 														/>
 													</div>

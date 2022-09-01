@@ -14,7 +14,7 @@ export default class EducationTraining extends React.Component {
 		super(props);
 
 		this.state = {
-			company: null,
+			entity: null,
 			educationServices: null,
 			searchValue: "",
 		};
@@ -31,14 +31,14 @@ export default class EducationTraining extends React.Component {
 	}
 
 	getINFPC() {
-		getRequest.call(this, "public/get_public_companies?name=INFPC", (data) => {
+		getRequest.call(this, "public/get_public_entities?name=INFPC", (data) => {
 			if (data.length === 0) {
 				nm.warning("INFPC entity not found");
 			} else if (data.length > 1) {
 				nm.warning("Too much entities found for INFPC");
 			} else {
 				this.setState({
-					company: data[0],
+					entity: data[0],
 				}, () => {
 					this.getEducationServices();
 				});
@@ -63,7 +63,7 @@ export default class EducationTraining extends React.Component {
 					page: page || 1,
 					per_page: 5,
 					taxonomy_values: valueIds,
-					companies: [this.state.company.id],
+					entities: [this.state.entity.id],
 					include_tags: true,
 				};
 

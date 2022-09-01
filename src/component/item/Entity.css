@@ -1,33 +1,33 @@
 
-.Company {
+.Entity {
     margin: 5px 0px !important;
     height: 100px;
 }
 
-.Company-link {
+.Entity-link {
     color: inherit;
 }
 
-.Company-link:hover {
+.Entity-link:hover {
     color: initial !important;
     text-decoration: none;
     background-color: #f2fbff;
 }
 
-.Company .card-horizontal {
+.Entity .card-horizontal {
     height: 100%;
     display: flex;
     flex: 1 1 auto;
 }
 
-.Company .img-square-wrapper {
+.Entity .img-square-wrapper {
     display: flex;
     margin: auto;
     height: 100%;
     flex: 0 0 140px;
 }
 
-.Company .img-square-wrapper img {
+.Entity .img-square-wrapper img {
     object-fit: contain;
     margin: auto;
     max-width: 100%;
@@ -36,12 +36,12 @@
     height: auto;
 }
 
-.Company .card-body {
+.Entity .card-body {
     padding: .9rem 1.25rem !important;
     border-left: 1px solid rgba(0,0,0,.125);
 }
 
-.Company .card-body h5 {
+.Entity .card-body h5 {
     max-width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 3;

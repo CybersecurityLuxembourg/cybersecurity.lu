@@ -19,7 +19,7 @@ export default class PageNews extends React.Component {
 
 		this.state = {
 			memberNews: null,
-			memberNewsCompanies: null,
+			memberNewsEntities: null,
 			newsLTAC: null,
 			newsTC: null,
 			newsCTA: null,
@@ -113,15 +113,15 @@ export default class PageNews extends React.Component {
 					ids: Array.prototype.concat.apply(
 						[],
 						data.items
-							.filter((i) => i.company_tags)
-							.map((i) => i.company_tags),
+							.filter((i) => i.entity_tags)
+							.map((i) => i.entity_tags),
 					),
 				};
 
 				if (params2.ids.length > 0) {
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params2), (data2) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params2), (data2) => {
 						this.setState({
-							memberNewsCompanies: data2,
+							memberNewsEntities: data2,
 						});
 					}, (response) => {
 						nm.warning(response.statusText);
@@ -218,7 +218,7 @@ export default class PageNews extends React.Component {
 				key={a.id}>
 				<Article
 					info={a}
-					companies={this.state.memberNewsCompanies}
+					entities={this.state.memberNewsEntities}
 				/>
 			</div>);
 		}

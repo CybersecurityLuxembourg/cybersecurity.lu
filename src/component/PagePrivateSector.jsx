@@ -9,7 +9,7 @@ import Message from "./box/Message.jsx";
 import ShadowBoxPcDoctor from "./box/ShadowBoxPcDoctor.jsx";
 import ShadowBoxPureStartup from "./box/ShadowBoxPureStartup.jsx";
 import ShadowBoxMyCyberlux from "./box/ShadowBoxMyCyberlux.jsx";
-import Company from "./item/Company.jsx";
+import Entity from "./item/Entity.jsx";
 import SimpleTable from "./table/SimpleTable.jsx";
 import PrivateSectorSearch from "./form/PrivateSectorSearch.jsx";
 import BarWorkforceRange from "./chart/BarWorkforceRange.jsx";
@@ -21,7 +21,7 @@ export default class PagePrivateSector extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.getCompanies = this.getCompanies.bind(this);
+		this.getEntities = this.getEntities.bind(this);
 		this.getAnalytics = this.getAnalytics.bind(this);
 		this.getTotalEmployees = this.getTotalEmployees.bind(this);
 		this.onSearch = this.onSearch.bind(this);
@@ -43,18 +43,18 @@ export default class PagePrivateSector extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getCompanies();
+		this.getEntities();
 		this.getAnalytics();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (this.props.analytics !== prevProps.analytics) {
-			this.getCompanies();
+			this.getEntities();
 			this.getAnalytics();
 		}
 	}
 
-	getCompanies() {
+	getEntities() {
 		if (this.props.analytics
 			&& this.props.analytics.taxonomy_values) {
 			const entityTypes = this.props.analytics.taxonomy_values
@@ -78,7 +78,7 @@ export default class PagePrivateSector extends React.Component {
 							.concat(this.state.filters.taxonomy_values),
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params), (data) => {
 						this.setState({
 							actors: data.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)),
 						});
@@ -108,7 +108,7 @@ export default class PagePrivateSector extends React.Component {
 		// eslint-disable-next-line no-restricted-globals
 		history.replaceState(null, null, "?" + dictToURI(this.state.filters));
 
-		this.getCompanies();
+		this.getEntities();
 	}
 
 	modifyFilters(field, value) {
@@ -124,7 +124,7 @@ export default class PagePrivateSector extends React.Component {
 		const acceptedIDs = this.state.actors.map((a) => a.id);
 
 		for (let i = 0; i < this.state.analytics.workforces.length; i++) {
-			if (acceptedIDs.indexOf(this.state.analytics.workforces[i].company) >= 0) {
+			if (acceptedIDs.indexOf(this.state.analytics.workforces[i].entity_id) >= 0) {
 				total += this.state.analytics.workforces[i].workforce;
 			}
 		}
@@ -166,7 +166,7 @@ export default class PagePrivateSector extends React.Component {
 						elements={this.state.actors.map((a, i) => [a, i])}
 						buildElement={(a) => (
 							<div className="col-md-6">
-								<Company
+								<Entity
 									info={a}
 								/>
 							</div>

@@ -2,7 +2,7 @@ import React from "react";
 import "./CyberWeekExhibitionArea.css";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
+import Entity from "../item/Entity.jsx";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import { dictToURI } from "../../utils/url.jsx";
@@ -38,7 +38,7 @@ export default class CyberWeekExhibitionArea extends React.Component {
 						taxonomy_values: valueId,
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params), (data) => {
 						this.setState({
 							entities: data,
 						});
@@ -69,8 +69,8 @@ export default class CyberWeekExhibitionArea extends React.Component {
 	getEntitiesOfTaxonomyValue(v) {
 		if (this.props.analytics && this.state.entities) {
 			const assignedEntities = this.props.analytics.taxonomy_assignments
-				.filter((a) => a.taxonomy_value === v.id)
-				.map((a) => (a.company));
+				.filter((a) => a.taxonomy_value_id === v.id)
+				.map((a) => (a.entity_id));
 
 			return this.state.entities
 				.filter((e) => assignedEntities.indexOf(e.id) >= 0);
@@ -99,7 +99,7 @@ export default class CyberWeekExhibitionArea extends React.Component {
 								{this.state.entities.filter((e) => e.is_startup !== 1)
 									.map((c) => (
 										<div className="col-md-6" key={c.id}>
-											<Company
+											<Entity
 												info={c}
 											/>
 										</div>
@@ -119,7 +119,7 @@ export default class CyberWeekExhibitionArea extends React.Component {
 								{this.state.entities.filter((e) => e.is_startup === 1)
 									.map((c) => (
 										<div className="col-md-6" key={c.id}>
-											<Company
+											<Entity
 												info={c}
 											/>
 										</div>

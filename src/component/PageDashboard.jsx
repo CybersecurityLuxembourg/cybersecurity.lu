@@ -60,7 +60,7 @@ export default class PageDashboard extends React.Component {
 	}
 
 	fetchAllEntities() {
-		getRequest.call(this, "public/get_public_companies", (data) => {
+		getRequest.call(this, "public/get_public_entities", (data) => {
 			this.setState({
 				entities: data,
 			});
@@ -84,8 +84,8 @@ export default class PageDashboard extends React.Component {
 
 		if (values.length > 0) {
 			const assignedCompanies = this.state.analytics.taxonomy_assignments
-				.filter((a) => a.taxonomy_value === values[0])
-				.map((a) => a.company);
+				.filter((a) => a.taxonomy_value_id === values[0])
+				.map((a) => a.entity_id);
 
 			return this.state.entities
 				.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
@@ -122,8 +122,8 @@ export default class PageDashboard extends React.Component {
 
 		if (values.length > 0) {
 			const assignedCompanies = this.state.analytics.taxonomy_assignments
-				.filter((a) => a.taxonomy_value === values[0])
-				.map((a) => a.company);
+				.filter((a) => a.taxonomy_value_id === values[0])
+				.map((a) => a.entity_id);
 
 			return this.state.entities
 				.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
@@ -143,9 +143,9 @@ export default class PageDashboard extends React.Component {
 			.map((v) => v.id);
 
 		const assignFrameworkNumbers = this.state.analytics.taxonomy_assignments
-			.filter((a) => a.company === regulatorId)
-			.filter((a) => frameworksID.indexOf(a.taxonomy_value) >= 0)
-			.map((a) => frameworksID.indexOf(a.taxonomy_value) + 1);
+			.filter((a) => a.entity_id === regulatorId)
+			.filter((a) => frameworksID.indexOf(a.taxonomy_value_id) >= 0)
+			.map((a) => frameworksID.indexOf(a.taxonomy_value_id) + 1);
 
 		return assignFrameworkNumbers;
 	}
@@ -166,13 +166,13 @@ export default class PageDashboard extends React.Component {
 			.map((v) => v.id);
 
 		const companies = [...new Set(this.state.analytics.taxonomy_assignments
-			.map((a) => a.company))];
+			.map((a) => a.entity_id))];
 
 		const assignedCompanies = companies
 			.filter((c) => this.state.analytics.taxonomy_assignments
-				.filter((a) => a.company === c && tv.indexOf(a.taxonomy_value) >= 0).length > 0)
+				.filter((a) => a.entity_id === c && tv.indexOf(a.taxonomy_value_id) >= 0).length > 0)
 			.filter((c) => this.state.analytics.taxonomy_assignments
-				.filter((a) => a.company === c && tv2.indexOf(a.taxonomy_value) >= 0).length > 0);
+				.filter((a) => a.entity_id === c && tv2.indexOf(a.taxonomy_value_id) >= 0).length > 0);
 
 		return this.state.entities
 			.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
@@ -198,7 +198,7 @@ export default class PageDashboard extends React.Component {
 		const actorIds = this.getActors().map((a) => a.id);
 
 		const workforces = this.state.analytics.workforces
-			.filter((w) => actorIds.indexOf(w.company) >= 0)
+			.filter((w) => actorIds.indexOf(w.entity_id) >= 0)
 			.map((w) => w.workforce);
 
 		return workforces.reduce((a, b) => a + b, 0);
@@ -254,8 +254,8 @@ export default class PageDashboard extends React.Component {
 		for (let i = 0; i < values.length; i++) {
 			const leaves = getLeavesOfNode([values[i]]).map((v) => v.id);
 			let concernedCompanies = this.state.analytics.taxonomy_assignments
-				.filter((a) => leaves.indexOf(a.taxonomy_value) >= 0)
-				.map((a) => a.company);
+				.filter((a) => leaves.indexOf(a.taxonomy_value_id) >= 0)
+				.map((a) => a.entity_id);
 			concernedCompanies = [...new Set(concernedCompanies)];
 			distribution[values[i].name] = concernedCompanies.length;
 		}
@@ -295,8 +295,8 @@ export default class PageDashboard extends React.Component {
 
 		if (values.length > 0) {
 			const assignedCompanies = this.state.analytics.taxonomy_assignments
-				.filter((a) => a.taxonomy_value === values[0])
-				.map((a) => a.company);
+				.filter((a) => a.taxonomy_value_id === values[0])
+				.map((a) => a.entity_id);
 
 			return this.state.entities
 				.filter((p) => assignedCompanies.indexOf(p.id) >= 0);
@@ -370,11 +370,11 @@ export default class PageDashboard extends React.Component {
 		});
 
 		const serviceGroupAssignments = this.state.analytics.taxonomy_assignments
-			.filter((a) => startupIDs.indexOf(a.company) >= 0)
-			.filter((a) => serviceGroupValues.indexOf(a.taxonomy_value) >= 0);
+			.filter((a) => startupIDs.indexOf(a.entity_id) >= 0)
+			.filter((a) => serviceGroupValues.indexOf(a.taxonomy_value_id) >= 0);
 
 		serviceGroupAssignments.forEach((v) => {
-			occurences[v.taxonomy_value] += 1;
+			occurences[v.taxonomy_value_id] += 1;
 		});
 
 		const orderedOccurences = Object.values(occurences).sort((a, b) => b - a);

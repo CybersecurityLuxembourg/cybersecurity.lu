@@ -2,7 +2,7 @@ import React from "react";
 import "./EducationScholarship.css";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
+import Entity from "../item/Entity.jsx";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import { dictToURI } from "../../utils/url.jsx";
@@ -38,7 +38,7 @@ export default class EducationScholarship extends React.Component {
 				this.setState({
 					educationEntities: null,
 				}, () => {
-					getRequest.call(this, "public/get_public_companies"
+					getRequest.call(this, "public/get_public_entities"
 						+ "?taxonomy_values=" + valueId.join(","), (data) => {
 						this.setState({
 							educationEntities: data,
@@ -64,7 +64,7 @@ export default class EducationScholarship extends React.Component {
 			const params = {
 				type: "SERVICE",
 				include_tags: true,
-				companies: this.state.educationEntities.map((e) => (e.id)),
+				entities: this.state.educationEntities.map((e) => (e.id)),
 			};
 
 			getRequest.call(this, "public/get_public_articles?"
@@ -97,14 +97,14 @@ export default class EducationScholarship extends React.Component {
 							&& this.state.educationEntities.map((e) => (
 								<div className="row row-spaced" key={e.id}>
 									<div className="col-md-12">
-										<Company
+										<Entity
 											info={e}
 										/>
 									</div>
 
 									{this.state.educationServices
 										&& this.state.educationServices.items
-											.filter((s) => s.company_tags.indexOf(e.id) >= 0)
+											.filter((s) => s.entity_tags.indexOf(e.id) >= 0)
 											.map((s) => (
 												<div className="col-md-10 offset-md-1" key={s.id}>
 													<ServiceHorizontal

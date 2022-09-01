@@ -22,7 +22,10 @@ export default class CyberWeekConferenceStream extends React.Component {
 
 		this.state = {
 			events: null,
-			entities: null,
+			speakers: null,
+			speakerRelationships: null,
+			speakerEntities: null,
+			entityRelationshipTypes: null,
 			selectedDate: null,
 			dates: null,
 			rooms: defaultRooms,
@@ -32,16 +35,21 @@ export default class CyberWeekConferenceStream extends React.Component {
 	}
 
 	componentDidMount() {
-		this.requestEvents();
+		this.requestEventsAndSpeakers();
+		this.requestEntityRelationshipTypes();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (!prevProps.analytics && this.props.analytics) {
-			this.requestEvents();
+			this.requestEventsAndSpeakers();
+		}
+
+		if (this.state.entityRelationshipTypes && this.state.speakers && !this.state.speakerEntities) {
+			this.requestEntitiesOfSpeakers(this.state.speakers.map((s) => s.id));
 		}
 	}
 
-	requestEvents() {
+	requestEventsAndSpeakers() {
 		if (this.props.analytics && this.props.analytics.taxonomy_values) {
 			const values = this.props.analytics.taxonomy_values
 				.filter((v) => v.category === "EVENT CATEGORY")
@@ -57,9 +65,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 				});
 
 				getRequest.call(this, "public/get_public_articles?" + params, (data) => {
-					this.setState({
-						events: data,
-					}, () => {
+					this.setState({ events: data }, () => {
 						const dates = this.getDates();
 
 						this.setState({
@@ -67,14 +73,13 @@ export default class CyberWeekConferenceStream extends React.Component {
 							selectedDate: dates ? dates[0] : dates,
 						}, () => {
 							const params2 = {
-								ids: [].concat(...data.items.map((e) => e.company_tags)),
+								ids: [].concat(...data.items.map((e) => e.entity_tags)),
 							};
 
 							if (params2.ids.length > 0) {
-								getRequest.call(this, "public/get_public_companies?"
-									+ dictToURI(params2), (data2) => {
+								getRequest.call(this, "public/get_public_entities?" + dictToURI(params2), (data2) => {
 									this.setState({
-										entities: data2,
+										speakers: data2,
 									});
 								}, (response) => {
 									nm.warning(response.statusText);
@@ -91,6 +96,42 @@ export default class CyberWeekConferenceStream extends React.Component {
 				});
 			}
 		}
+	}
+
+	requestEntitiesOfSpeakers(speakerIds) {
+		const params = dictToURI({ ids: speakerIds });
+
+		getRequest.call(this, "public/get_public_entity_relationships?" + params, (data) => {
+			this.setState({ speakerRelationships: data }, () => {
+				const params2 = dictToURI({ ids: data.map((e) => e.entity_id_2) });
+
+				getRequest.call(this, "public/get_public_entities?" + params2, (data2) => {
+					this.setState({
+						speakerEntities: data2,
+					});
+				}, (response) => {
+					nm.warning(response.statusText);
+				}, (error) => {
+					nm.error(error.message);
+				});
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
+	}
+
+	requestEntityRelationshipTypes() {
+		getRequest.call(this, "public/get_public_entity_relationship_types", (data) => {
+			this.setState({
+				entityRelationshipTypes: data,
+			});
+		}, (response) => {
+			nm.warning(response.statusText);
+		}, (error) => {
+			nm.error(error.message);
+		});
 	}
 
 	getDates() {
@@ -127,6 +168,39 @@ export default class CyberWeekConferenceStream extends React.Component {
 		this.setState({ roomStatus: this.state.roomStatus.map((_, i) => pos === i) });
 	}
 
+	getOperatorRelationshipTypeId() {
+		if (!this.state.entityRelationshipTypes) {
+			return null;
+		}
+
+		const type = this.state.entityRelationshipTypes
+			.filter((t) => t.name === "IS OPERATOR OF");
+
+		if (type.length > 0) {
+			return type[0].id;
+		}
+
+		return null;
+	}
+
+	getEntitiesOfSpeaker(speakerId) {
+		if (!this.state.speakerEntities
+			|| !this.state.entityRelationshipTypes
+			|| !this.state.speakerRelationships) {
+			return [];
+		}
+
+		const entityIds = this.state.speakerRelationships
+			.filter((r) => r.type === this.getOperatorRelationshipTypeId())
+			.filter((r) => r.entity_id_1 === speakerId)
+			.map((r) => (r.entity_id_2));
+
+		console.log(speakerId, entityIds);
+
+		return this.state.speakerEntities
+			.filter((e) => entityIds.includes(e.id));
+	}
+
 	setAllRoomsAsSelected() {
 		this.setState({ roomStatus: this.state.rooms.map(() => true) });
 	}
@@ -149,14 +223,15 @@ export default class CyberWeekConferenceStream extends React.Component {
 
 			{this.state.view === "agenda"
 				&& <div className="col-md-12 event-speakers">
-					{e.company_tags.map((c) => {
-						if (this.state.entities) {
-							const entities = this.state.entities.filter((u) => u.id === c);
+					{e.entity_tags.map((c) => {
+						if (this.state.speakers) {
+							const speakers = this.state.speakers.filter((u) => u.id === c);
 
-							if (entities.length > 0) {
+							if (speakers.length > 0) {
 								return <div className="col-md-12">
 									<Speaker
-										info={entities[0]}
+										info={speakers[0]}
+										entities={this.getEntitiesOfSpeaker(speakers[0].id)}
 										disableLink={true}
 									/>
 								</div>;

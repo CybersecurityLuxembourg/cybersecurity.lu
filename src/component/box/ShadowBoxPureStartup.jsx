@@ -3,7 +3,7 @@ import "./ShadowBoxPureStartup.css";
 import Popup from "reactjs-popup";
 import { NotificationManager as nm } from "react-notifications";
 import { getRequest } from "../../utils/request.jsx";
-import Company from "../item/Company.jsx";
+import Entity from "../item/Entity.jsx";
 import Loading from "./Loading.jsx";
 import { dictToURI } from "../../utils/url.jsx";
 
@@ -37,7 +37,7 @@ export default class ShadowBoxPureStartup extends React.Component {
 						corebusiness_only: true,
 					};
 
-					getRequest.call(this, "public/get_public_companies?" + dictToURI(params), (data) => {
+					getRequest.call(this, "public/get_public_entities?" + dictToURI(params), (data) => {
 						this.setState({
 							coreStartups: data,
 						});
@@ -101,7 +101,7 @@ export default class ShadowBoxPureStartup extends React.Component {
 									{this.state.coreStartups.map((c) => <div
 										key={c.id}
 										className={"col-md-6"}>
-										<Company
+										<Entity
 											info={c}
 										/>
 									</div>)}
