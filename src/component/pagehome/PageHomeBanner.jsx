@@ -123,7 +123,7 @@ export default class PageHomeBanner extends React.Component {
 									<ShadowBox
 										link="cybersecurityweek"
 										title={<div className="PageHome-banner-title">
-											<h3>18-20 October 2022</h3>
+											<h3>19-20 October 2022</h3>
 											<h4>LuxExpo The Box</h4>
 										</div>}
 										abstract={"Click to know more"}
