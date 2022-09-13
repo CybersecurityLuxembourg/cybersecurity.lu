@@ -111,7 +111,7 @@ export default class CyberWeekTheAwards extends React.Component {
 												A jury (to be announced soon) will select the participants
 												who will proceed to the next stage: the interview with the
 												jury. Selected candidates will be invited to present their
-												application to the jury on <b>13 OCTOBER 2022 (in-person)</b>.
+												application to the jury on <b>14 OCTOBER 2022 (in-person)</b>.
 											</li>
 											<li>
 												The winner will be announced at the Gala & Awards
@@ -221,7 +221,7 @@ export default class CyberWeekTheAwards extends React.Component {
 												A jury (to be announced soon) will select the participants
 												who will proceed to the next stage: the interview with the
 												jury. Selected candidates will be invited to present their
-												application to the jury on <b>13 OCTOBER 2022 (in-person)</b>.
+												application to the jury on <b>14 OCTOBER 2022 (in-person)</b>.
 											</li>
 											<li>
 												The winner will be announced at the Gala & Awards
