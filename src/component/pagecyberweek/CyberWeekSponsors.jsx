@@ -14,7 +14,7 @@ export default class CyberWeekSponsors extends React.Component {
 		this.state = {
 			entities: null,
 			// The shown order is reversed
-			awardOrder: ["WITH THE SUPPORT OF", "EXHIBITORS", "GOLD", "DIAMOND", "PLATINUM"],
+			awardOrder: ["WITH THE SUPPORT OF", "EXHIBITORS", "SILVER", "GOLD", "DIAMOND", "PLATINUM"],
 		};
 	}
 
