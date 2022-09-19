@@ -1,4 +1,5 @@
 import React from "react";
+import { Carousel } from "react-responsive-carousel";
 import dompurify from "dompurify";
 import { getApiURL } from "./env.jsx";
 
@@ -38,10 +39,35 @@ export function getContentFromBlock(b) {
 	return el;
 }
 
+export function buildCarousel(blocks) {
+	return <Carousel
+		dynamicHeight={false}
+		showStatus={false}
+		showThumbs={false}
+		autoPlay={false}
+	>
+		{blocks.map((b) => (
+			<div key={b.id}>
+				<img src={`${getApiURL()}public/get_public_image/${b.content}`}/>
+			</div>
+		))}
+	</Carousel>;
+}
+
 export function getNextTitle1Position(content, pos) {
 	for (let i = pos + 1; i < content.length; i++) {
 		if (content[i].type === "TITLE1") {
 			return i + 1;
+		}
+	}
+
+	return content.length;
+}
+
+export function getNextNonImagePosition(content, pos) {
+	for (let i = pos + 1; i < content.length; i++) {
+		if (content[i].type !== "IMAGE") {
+			return i;
 		}
 	}
 

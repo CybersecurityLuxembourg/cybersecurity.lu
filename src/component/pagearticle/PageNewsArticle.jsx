@@ -5,7 +5,6 @@ import { NotificationManager as nm } from "react-notifications";
 import { Helmet } from "react-helmet";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
-import Collapsible from "react-collapsible";
 import { getRequest } from "../../utils/request.jsx";
 import { getApiURL } from "../../utils/env.jsx";
 import { dictToURI } from "../../utils/url.jsx";
@@ -13,7 +12,11 @@ import Loading from "../box/Loading.jsx";
 import Chip from "../form/Chip.jsx";
 import Message from "../box/Message.jsx";
 import Article from "../item/Article.jsx";
-import { getContentFromBlock, getNextTitle1Position } from "../../utils/article.jsx";
+import {
+	getContentFromBlock,
+	buildCarousel,
+	getNextNonImagePosition,
+} from "../../utils/article.jsx";
 import { dateToString } from "../../utils/date.jsx";
 import TwitterLink from "../form/TwitterLink.jsx";
 import LinkedInLink from "../form/LinkedInLink.jsx";
@@ -184,24 +187,25 @@ export default class PageNewsArticle extends React.Component {
 
 								{this.state.article.content.map((b, i) => {
 									if (positionToTreat <= i) {
-										if (b.type === "TITLE1") {
-											const nextTitle1Position = getNextTitle1Position(
+										if (b.type === "IMAGE") {
+											const nextNonImagePosition = getNextNonImagePosition(
 												this.state.article.content,
 												i,
 											);
 
-											const el = <Collapsible
-												trigger={getContentFromBlock(b)}
-												open={true}>
-												{this.state.article.content
-													.slice(positionToTreat + 1, nextTitle1Position - 1)
-													.map((b2) => getContentFromBlock(b2))}
-											</Collapsible>;
+											const el = buildCarousel(
+												this.state.article.content
+													.slice(
+														i,
+														nextNonImagePosition,
+													),
+											);
 
-											positionToTreat = nextTitle1Position - 1;
+											positionToTreat = nextNonImagePosition;
 
 											return el;
 										}
+
 										positionToTreat += 1;
 										return getContentFromBlock(b);
 									}
