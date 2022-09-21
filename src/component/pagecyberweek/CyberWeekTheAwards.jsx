@@ -272,9 +272,9 @@ export default class CyberWeekTheAwards extends React.Component {
 							className="CyberWeekTheAwards-ShadowBox-award"
 							title={"Cybersecurity for SMBs"}
 							abstract={<div>
-								Sponsored by
-								<br/>
-								openfield
+								Sponsored & organised by
+								<br/><br/><br/><br/>
+								<img src='/img/openfield.png'/>
 							</div>}
 						/>
 					</div>
