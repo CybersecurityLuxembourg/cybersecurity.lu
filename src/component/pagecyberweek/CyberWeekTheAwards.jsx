@@ -21,7 +21,7 @@ export default class CyberWeekTheAwards extends React.Component {
 				</div>
 
 				<div className="row row-spaced">
-					<div className="col-md-4 offset-md-2">
+					<div className="col-md-4">
 						<Popup
 							className={"Popup-small-size"}
 							trigger={
@@ -241,10 +241,7 @@ export default class CyberWeekTheAwards extends React.Component {
 							)}
 						</Popup>
 					</div>
-				</div>
-
-				<div className="row row-spaced">
-					<div className="col-md-4 offset-md-2">
+					<div className="col-md-4">
 						<ShadowBox
 							className="CyberWeekTheAwards-ShadowBox-award"
 							onClick={() => window.open("https://ecsc.eu/", "_blank")}
@@ -255,7 +252,10 @@ export default class CyberWeekTheAwards extends React.Component {
 							</div>}
 						/>
 					</div>
-					<div className="col-md-4">
+				</div>
+
+				<div className="row row-spaced">
+					<div className="col-md-4 offset-md-2">
 						<ShadowBox
 							className="CyberWeekTheAwards-ShadowBox-award"
 							onClick={() => window.open("https://www.pwc.lu/en/advisory/digital-tech-impact/cyber-security/cybersecurityday.html", "_blank")}
@@ -264,6 +264,17 @@ export default class CyberWeekTheAwards extends React.Component {
 								Sponsored & organised by
 								<br/>
 								<img src='/img/pwc_logo.png'/>
+							</div>}
+						/>
+					</div>
+					<div className="col-md-4">
+						<ShadowBox
+							className="CyberWeekTheAwards-ShadowBox-award"
+							title={"Cybersecurity for SMBs"}
+							abstract={<div>
+								Sponsored by
+								<br/>
+								openfield
 							</div>}
 						/>
 					</div>
