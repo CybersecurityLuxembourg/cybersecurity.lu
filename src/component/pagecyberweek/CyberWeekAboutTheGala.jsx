@@ -46,6 +46,9 @@ export default class CyberWeekAboutTheGala extends React.Component {
 									PwC
 								</a>)
 							</li>
+							<li>
+								Cybersecurity for SMBs by openfield
+							</li>
 						</ul>
 					</div>
 
