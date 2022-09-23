@@ -11,6 +11,7 @@ import CyberWeekExhibitionArea from "./pagecyberweek/CyberWeekExhibitionArea.jsx
 import CyberWeekSponsors from "./pagecyberweek/CyberWeekSponsors.jsx";
 import CyberWeekSponsor from "./pagecyberweek/CyberWeekSponsor.jsx";
 import CyberWeekNetwork from "./pagecyberweek/CyberWeekNetwork.jsx";
+import CyberWeekPitching from "./pagecyberweek/CyberWeekPitching.jsx";
 import CyberWeekBecomeASponsor from "./pagecyberweek/CyberWeekBecomeASponsor.jsx";
 import CyberWeekGala from "./pagecyberweek/CyberWeekGala.jsx";
 import CyberWeekAboutTheGala from "./pagecyberweek/CyberWeekAboutTheGala.jsx";
@@ -29,6 +30,7 @@ export default class PageCyberWeek extends React.Component {
 				"Conference_stream",
 				"Exhibition_area",
 				"Network",
+				"Pitching_session",
 				"Sponsoring",
 				"Become_a_sponsor",
 				"Sponsors",
@@ -80,6 +82,7 @@ export default class PageCyberWeek extends React.Component {
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Conference stream</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Exhibition area</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Network</div>",
+								"<div style='font-size:12px'>&nbsp;&nbsp;- Pitching session</div>",
 								"Sponsors",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Become a sponsor</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Sponsors</div>",
@@ -113,36 +116,40 @@ export default class PageCyberWeek extends React.Component {
 									key={this.state.tabs[4]}
 									{...this.props}
 								/>,
-								<CyberWeekSponsor
+								<CyberWeekPitching
 									key={this.state.tabs[5]}
-									analytics={this.props.analytics}
+									{...this.props}
 								/>,
-								<CyberWeekBecomeASponsor
+								<CyberWeekSponsor
 									key={this.state.tabs[6]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekSponsors
+								<CyberWeekBecomeASponsor
 									key={this.state.tabs[7]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekGala
+								<CyberWeekSponsors
 									key={this.state.tabs[8]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekAboutTheGala
+								<CyberWeekGala
 									key={this.state.tabs[9]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekTheAwards
+								<CyberWeekAboutTheGala
 									key={this.state.tabs[10]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekContactUs
+								<CyberWeekTheAwards
 									key={this.state.tabs[11]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekRegister
+								<CyberWeekContactUs
 									key={this.state.tabs[12]}
+									analytics={this.props.analytics}
+								/>,
+								<CyberWeekRegister
+									key={this.state.tabs[13]}
 									analytics={this.props.analytics}
 								/>,
 							]}

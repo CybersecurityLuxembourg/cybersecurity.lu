@@ -31,6 +31,8 @@ export default class CyberWeekGala extends React.Component {
 				</div>
 
 				<div className="row row-spaced"/>
+				<div className="row row-spaced"/>
+				<div className="row row-spaced"/>
 			</div>
 		);
 	}
