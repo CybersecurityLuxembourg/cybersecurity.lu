@@ -3,13 +3,17 @@ import "./CyberWeekConferenceStream.css";
 import { renderToString } from "react-dom/server";
 import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
-import { Calendar } from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import Speaker from "../item/Speaker.jsx";
 import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
+
+// moment.locale("lu");
+const localizer = momentLocalizer(moment);
 
 export default class CyberWeekConferenceStream extends React.Component {
 	constructor(props) {
@@ -312,8 +316,8 @@ export default class CyberWeekConferenceStream extends React.Component {
 									.map((e) => (
 										{
 											title: this.getEventContent(e),
-											start: new Date(e.start_date),
-											end: new Date(e.end_date),
+											start: e.start_date,
+											end: e.end_date,
 											handle: e.handle,
 											link: e.link,
 										}
@@ -331,6 +335,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 								step={15}
 								date={this.state.view === "day" ? this.state.selectedDate : this.state.dates[0]}
 								defaultDate={this.state.dates[0] || new Date()}
+								localizer={localizer}
 								style={{
 									height: "auto",
 									backgroundColor: "white",
