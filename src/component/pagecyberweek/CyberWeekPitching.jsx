@@ -60,7 +60,7 @@ export default class CyberWeekPitching extends React.Component {
 						</p>
 
 						<p>
-							The <b>8 best decks</b> will get the opportunity to pitch on the main stage
+							Up to <b>8 best decks</b> will get the opportunity to pitch on the main stage
 							of the Cybersecurity Week Luxembourg.
 						</p>
 
