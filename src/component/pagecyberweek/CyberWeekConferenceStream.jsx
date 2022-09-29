@@ -3,16 +3,13 @@ import "./CyberWeekConferenceStream.css";
 import { renderToString } from "react-dom/server";
 import dompurify from "dompurify";
 import { NotificationManager as nm } from "react-notifications";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
+import { Calendar } from "react-big-calendar";
 import Loading from "../box/Loading.jsx";
 import Message from "../box/Message.jsx";
 import Speaker from "../item/Speaker.jsx";
 import CheckBox from "../form/CheckBox.jsx";
 import { getRequest } from "../../utils/request.jsx";
 import { dictToURI } from "../../utils/url.jsx";
-
-const localizer = momentLocalizer(moment);
 
 export default class CyberWeekConferenceStream extends React.Component {
 	constructor(props) {
@@ -334,7 +331,6 @@ export default class CyberWeekConferenceStream extends React.Component {
 								step={15}
 								date={this.state.view === "day" ? this.state.selectedDate : this.state.dates[0]}
 								defaultDate={this.state.dates[0] || new Date()}
-								localizer={localizer}
 								style={{
 									height: "auto",
 									backgroundColor: "white",
