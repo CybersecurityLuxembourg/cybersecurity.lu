@@ -60,7 +60,7 @@ class InsideApp extends React.Component {
 	}
 
 	// eslint-disable-next-line react/no-deprecated
-	/* componentWillMount() {
+	componentWillMount() {
 		this.setState({
 			unlisten: this.props.history.listen((location) => {
 				// eslint-disable-next-line no-multi-assign,no-underscore-dangle
@@ -73,7 +73,7 @@ class InsideApp extends React.Component {
 
 	componentWillUnmount() {
 		this.state.unlisten();
-	} */
+	}
 
 	componentDidMount() {
 		this.getAnalytics();
