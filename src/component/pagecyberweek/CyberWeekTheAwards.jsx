@@ -101,7 +101,7 @@ export default class CyberWeekTheAwards extends React.Component {
 													rel="noreferrer"
 												>questionnaire
 												</a> by
-												01 OCTOBER 2022</b>. The questionnaire invites you to share
+												05 OCTOBER 2022</b>. The questionnaire invites you to share
 												your vision and thoughts on information security in the
 												current context as well as to present your greatest
 												achievement(s) and/or challenging project(s) you have
@@ -211,7 +211,7 @@ export default class CyberWeekTheAwards extends React.Component {
 													rel="noreferrer"
 												>questionnaire
 												</a> by
-												01 OCTOBER 2022</b>. The questionnaire invites you to share
+												05 OCTOBER 2022</b>. The questionnaire invites you to share
 												your vision and thoughts on information security in the
 												current context as well as to present your greatest
 												achievement(s) and/or challenging project(s) you have
