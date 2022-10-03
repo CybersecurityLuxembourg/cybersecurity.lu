@@ -19,7 +19,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const defaultRooms = ["Main Stage", "Cyber & Threat Intelligence Stage"];
+		const defaultRooms = ["Main Stage", "Cyber & Threat Intelligence Stage", "Digital Innovation Hub"];
 
 		this.state = {
 			events: null,
@@ -270,7 +270,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 						</p>
 					</div>
 
-					<div className="col-md-6 CyberWeekConferenceStream-dates">
+					<div className="col-md-5 CyberWeekConferenceStream-dates">
 						{this.state.view === "day"
 							&& this.state.dates
 							&& this.state.dates.map((d) => (
@@ -284,7 +284,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 						}
 					</div>
 
-					<div className="col-md-6 CyberWeekConferenceStream-rooms">
+					<div className="col-md-7 CyberWeekConferenceStream-rooms">
 						<CheckBox
 							className={"CyberWeekConferenceStream-rooms-all"}
 							key={"all"}
@@ -293,6 +293,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 								=== this.state.rooms.length}
 							onClick={() => this.setAllRoomsAsSelected()}
 						/>
+						<br/>
 						{this.state.rooms
 							&& this.state.rooms.map((d, i) => (
 								<CheckBox
@@ -316,8 +317,12 @@ export default class CyberWeekConferenceStream extends React.Component {
 									.map((e) => (
 										{
 											title: this.getEventContent(e),
-											start: e.start_date,
-											end: e.end_date,
+											start: this.state.view === "day"
+												? new Date(e.start_date)
+												: e.start_date,
+											end: this.state.view === "day"
+												? new Date(e.end_date)
+												: e.end_date,
 											handle: e.handle,
 											link: e.link,
 										}
@@ -366,6 +371,10 @@ export default class CyberWeekConferenceStream extends React.Component {
 										} else if (event.title.props.dangerouslySetInnerHTML.__html
 											.toLowerCase().includes("cyber &amp; threat intelligence stage")) {
 											color = "#ffa8b0";
+										// eslint-disable-next-line no-underscore-dangle
+										} else if (event.title.props.dangerouslySetInnerHTML.__html
+											.toLowerCase().includes("digital innovation hub")) {
+											color = "#a8ffcc";
 										}
 									}
 

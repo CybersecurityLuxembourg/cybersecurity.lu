@@ -76,6 +76,10 @@
 	background-color: #ffa8b0 !important;
 }
 
+#CyberWeekConferenceStream .CyberWeekConferenceStream-rooms-2:not(.CheckBox-off) {
+	background-color: #a8ffcc !important;
+}
+
 @media (max-width: 768px) {
 	#CyberWeekConferenceStream .CyberWeekConferenceStream-dates {
 		text-align: center;
