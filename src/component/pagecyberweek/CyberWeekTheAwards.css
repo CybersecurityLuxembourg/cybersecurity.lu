@@ -35,3 +35,8 @@
         height: auto !important;
     }
 }
+
+#CyberWeekTheAwards .CyberWeekTheAwards-ShadowBox-img-white {
+	background-color: white;
+	max-width: 90% !important;
+}
