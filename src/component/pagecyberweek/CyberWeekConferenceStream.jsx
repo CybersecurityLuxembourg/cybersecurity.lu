@@ -19,7 +19,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const defaultRooms = ["Main Stage", "Cyber & Threat Intelligence Stage", "Digital Innovation Hub"];
+		const defaultRooms = ["Main Stage", "Cyber & Threat Intelligence Stage", "Digital Innovation Hub Bus"];
 
 		this.state = {
 			events: null,
