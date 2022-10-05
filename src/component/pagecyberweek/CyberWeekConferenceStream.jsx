@@ -152,6 +152,10 @@ export default class CyberWeekConferenceStream extends React.Component {
 				&& e.abstract.toLowerCase().includes(this.state.rooms[i].replace("&", "&amp;").toLowerCase())) {
 				return true;
 			}
+
+			if (this.state.roomStatus.filter((s) => s).length === this.state.rooms.length) {
+				return true;
+			}
 		}
 
 		return false;
@@ -365,16 +369,18 @@ export default class CyberWeekConferenceStream extends React.Component {
 										&& event.title.props.dangerouslySetInnerHTML.__html) {
 										// eslint-disable-next-line no-underscore-dangle
 										if (event.title.props.dangerouslySetInnerHTML.__html
-											.toLowerCase().includes("main stage")) {
+											.toLowerCase().includes(this.state.rooms[0].toLowerCase())) {
 											color = "#8fddff";
 										// eslint-disable-next-line no-underscore-dangle
 										} else if (event.title.props.dangerouslySetInnerHTML.__html
-											.toLowerCase().includes("cyber &amp; threat intelligence stage")) {
+											.toLowerCase().includes(this.state.rooms[1].toLowerCase().replace("&", "&amp;"))) {
 											color = "#ffa8b0";
 										// eslint-disable-next-line no-underscore-dangle
 										} else if (event.title.props.dangerouslySetInnerHTML.__html
-											.toLowerCase().includes("digital innovation hub")) {
+											.toLowerCase().includes(this.state.rooms[2].toLowerCase())) {
 											color = "#a8ffcc";
+										} else {
+											color = "white";
 										}
 									}
 
