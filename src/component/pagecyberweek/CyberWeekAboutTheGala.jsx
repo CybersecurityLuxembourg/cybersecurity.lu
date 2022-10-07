@@ -67,7 +67,6 @@ export default class CyberWeekAboutTheGala extends React.Component {
 						<img
 							className="CyberWeekAboutTheGala-image"
 							src="https://api.cybersecurity.lu/public/get_public_image/965"
-							alt="CSWL 2022"
 						/>
 					</div>
 
