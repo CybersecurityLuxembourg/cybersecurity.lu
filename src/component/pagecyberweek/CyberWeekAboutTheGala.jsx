@@ -60,7 +60,7 @@ export default class CyberWeekAboutTheGala extends React.Component {
 					</div>
 
 					<div className="col-md-12">
-						<h3>Host of the night: Chris Brow</h3>
+						<h3>Host of the night</h3>
 					</div>
 
 					<div className="offset-md-3 col-md-6">
@@ -68,6 +68,8 @@ export default class CyberWeekAboutTheGala extends React.Component {
 							className="CyberWeekAboutTheGala-image"
 							src="https://api.cybersecurity.lu/public/get_public_image/965"
 						/>
+
+						<h4>Chris Brow</h4>
 					</div>
 
 					<div className="col-md-12 row-spaced">

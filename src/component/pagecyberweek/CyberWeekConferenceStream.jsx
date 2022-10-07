@@ -278,7 +278,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 						<h3>Your hosts</h3>
 					</div>
 
-					<div className="offset-md-1 col-md-5">
+					<div className="offset-md-3 col-md-3">
 						<img
 							className="CyberWeekConferenceStream-image"
 							src="https://api.cybersecurity.lu/public/get_public_image/965"
@@ -287,7 +287,7 @@ export default class CyberWeekConferenceStream extends React.Component {
 						<h4>Chris Brow</h4>
 					</div>
 
-					<div className="col-md-5">
+					<div className="col-md-3">
 						<img
 							className="CyberWeekConferenceStream-image"
 							src="https://api.cybersecurity.lu/public/get_public_image/964"
