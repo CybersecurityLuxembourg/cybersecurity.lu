@@ -122,8 +122,9 @@ export default class CyberWeekTheAwards extends React.Component {
 										<div className="centered">
 											<button
 												onClick={() => window.open(getPrivateAppURL() + "form?tab=2", "_blank")}
+												disabled={true}
 											>
-												Apply here!
+												Application closed
 											</button>
 										</div>
 									</div>
@@ -232,8 +233,9 @@ export default class CyberWeekTheAwards extends React.Component {
 										<div className="centered">
 											<button
 												onClick={() => window.open(getPrivateAppURL() + "form?tab=1", "_blank")}
+												disabled={true}
 											>
-												Apply here!
+												Application closed
 											</button>
 										</div>
 									</div>

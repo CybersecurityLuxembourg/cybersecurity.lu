@@ -103,3 +103,11 @@
 	margin: 100px 0px;
 	text-align: center;
 }
+
+.CyberWeekConferenceStream-image {
+	width: 100%;
+}
+
+#CyberWeekConferenceStream h4 {
+	text-align: center;
+}

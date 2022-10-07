@@ -274,6 +274,32 @@ export default class CyberWeekConferenceStream extends React.Component {
 						</p>
 					</div>
 
+					<div className="col-md-12">
+						<h3>Your hosts</h3>
+					</div>
+
+					<div className="offset-md-1 col-md-5">
+						<img
+							className="CyberWeekConferenceStream-image"
+							src="https://api.cybersecurity.lu/public/get_public_image/965"
+						/>
+
+						<h4>Chris Brow</h4>
+					</div>
+
+					<div className="col-md-5">
+						<img
+							className="CyberWeekConferenceStream-image"
+							src="https://api.cybersecurity.lu/public/get_public_image/964"
+						/>
+
+						<h4>Mélanie Delannoy</h4>
+					</div>
+
+					<div className="col-md-12">
+						<h3>Calendar</h3>
+					</div>
+
 					<div className="col-md-5 CyberWeekConferenceStream-dates">
 						{this.state.view === "day"
 							&& this.state.dates

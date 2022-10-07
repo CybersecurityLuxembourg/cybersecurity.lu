@@ -59,6 +59,18 @@ export default class CyberWeekAboutTheGala extends React.Component {
 						the Cybersecurity Week Luxembourg, offering great networking opportunities.</p>
 					</div>
 
+					<div className="col-md-12">
+						<h3>Host of the night: Chris Brow</h3>
+					</div>
+
+					<div className="offset-md-3 col-md-6">
+						<img
+							className="CyberWeekAboutTheGala-image"
+							src="https://api.cybersecurity.lu/public/get_public_image/965"
+							alt="CSWL 2022"
+						/>
+					</div>
+
 					<div className="col-md-12 row-spaced">
 						<h3>Get your ticket now</h3>
 					</div>
