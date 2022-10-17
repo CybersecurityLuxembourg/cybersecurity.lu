@@ -37,7 +37,8 @@ export default class PageLHC extends React.Component {
 					</div>
 
 					<div className="col-md-10 offset-md-1 row-spaced">
-						<h3>We support, we foster, we serve the Luxembourg ecosystem together with our partners</h3>
+						<h3>We support, we foster, we serve the Luxembourg ecosystem
+						together with our partners</h3>
 					</div>
 
 					<div className="offset-md-3 col-md-6 row-spaced">
