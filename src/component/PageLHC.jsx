@@ -25,19 +25,19 @@ export default class PageLHC extends React.Component {
 				</div>
 
 				<div className="row">
-					<div className="offset-md-3 col-md-6">
+					<div className="offset-md-1 col-md-6 row-spaced">
 						<img
 							src={"img/logo_lhc.png"}
 							alt={"LOGO LHC"}
 						/>
 					</div>
 
-					<div className="col-md-10 offset-md-1 centered row-spaced">
-						<h3><i>Make Luxembourg a pioneer in the open cybersecurity data economy</i></h3>
+					<div className="col-md-10 offset-md-1">
+						<h2>Make Luxembourg a pioneer in the open cybersecurity data economy</h2>
 					</div>
 
 					<div className="col-md-10 offset-md-1">
-						<h3>We support, we foster, we serve the Luxembourg ecosystem & more</h3>
+						<h3>We support, foster, serve the Luxembourg ecosystem & more</h3>
 					</div>
 
 					<div className="offset-md-3 col-md-6 row-spaced">
