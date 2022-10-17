@@ -235,8 +235,8 @@
     background-size: 3px 3px;
 }
 
-.Menu-link-red .Menu-title, .Menu-link-red .Menu-description {
-    color: red !important;
+.Menu-link-red {
+    background-color: #ffa8b0;
 }
 
 /* FLYING MENU */

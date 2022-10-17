@@ -33,13 +33,6 @@ export default class Menu extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	getNavBar() {
 		return <Nav className="mr-sm-2 ml-auto">
-			<Nav.Link className="Menu-link Menu-link-red">
-				<Link to="/lhc">
-					<div className="Menu-title">LHC</div>
-					<div className="Menu-description">House of Cyber</div>
-				</Link>
-			</Nav.Link>
-
 			<NavDropdown
 				title={
 					<div className="Menu-item">
@@ -211,6 +204,13 @@ export default class Menu extends React.Component {
 				<Link to="/jobs">
 					<div className="Menu-title">Cybersecurity jobs</div>
 					<div className="Menu-description">Marketplace in Luxembourg</div>
+				</Link>
+			</Nav.Link>
+
+			<Nav.Link className="Menu-link Menu-link-red">
+				<Link to="/lhc">
+					<div className="Menu-title">LHC</div>
+					<div className="Menu-description">House of Cybersecurity</div>
 				</Link>
 			</Nav.Link>
 		</Nav>;
