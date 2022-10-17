@@ -36,7 +36,7 @@ export default class PageLHC extends React.Component {
 						<h2>Make Luxembourg a pioneer in the open cybersecurity data economy</h2>
 					</div>
 
-					<div className="col-md-10 offset-md-1">
+					<div className="col-md-10 offset-md-1 row-spaced">
 						<h3>We support, foster, serve the Luxembourg ecosystem & more</h3>
 					</div>
 
