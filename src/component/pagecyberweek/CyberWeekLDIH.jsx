@@ -16,7 +16,7 @@ export default class CyberWeekLDIH extends React.Component {
 						<ShadowBox
 							link="https://www.dih.lu/en-us/events/dih-on-tour-cybersecurity-week"
 							title={"Visit on L-DIH website"}
-							icon={"fas fa-handshake"}
+							icon={"fas fa-bus-alt"}
 							color={"blue"}
 						/>
 					</div>
