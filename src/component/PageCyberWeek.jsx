@@ -18,6 +18,7 @@ import CyberWeekAboutTheGala from "./pagecyberweek/CyberWeekAboutTheGala.jsx";
 import CyberWeekTheAwards from "./pagecyberweek/CyberWeekTheAwards.jsx";
 import CyberWeekContactUs from "./pagecyberweek/CyberWeekContactUs.jsx";
 import CyberWeekRegister from "./pagecyberweek/CyberWeekRegister.jsx";
+import CyberWeekLDIH from "./pagecyberweek/CyberWeekLDIH.jsx";
 
 export default class PageCyberWeek extends React.Component {
 	constructor(props) {
@@ -31,6 +32,7 @@ export default class PageCyberWeek extends React.Component {
 				"Exhibition_area",
 				"Network",
 				"Pitching_session",
+				"LDIH",
 				"Sponsoring",
 				"Become_a_sponsor",
 				"Sponsors",
@@ -83,6 +85,7 @@ export default class PageCyberWeek extends React.Component {
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Exhibition area</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Network</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Pitching session</div>",
+								"<div style='font-size:12px'>&nbsp;&nbsp;- L-DIH ON TOUR</div>",
 								"Sponsors",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Become a sponsor</div>",
 								"<div style='font-size:12px'>&nbsp;&nbsp;- Sponsors</div>",
@@ -120,36 +123,40 @@ export default class PageCyberWeek extends React.Component {
 									key={this.state.tabs[5]}
 									{...this.props}
 								/>,
-								<CyberWeekSponsor
+								<CyberWeekLDIH
 									key={this.state.tabs[6]}
-									analytics={this.props.analytics}
+									{...this.props}
 								/>,
-								<CyberWeekBecomeASponsor
+								<CyberWeekSponsor
 									key={this.state.tabs[7]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekSponsors
+								<CyberWeekBecomeASponsor
 									key={this.state.tabs[8]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekGala
+								<CyberWeekSponsors
 									key={this.state.tabs[9]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekAboutTheGala
+								<CyberWeekGala
 									key={this.state.tabs[10]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekTheAwards
+								<CyberWeekAboutTheGala
 									key={this.state.tabs[11]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekContactUs
+								<CyberWeekTheAwards
 									key={this.state.tabs[12]}
 									analytics={this.props.analytics}
 								/>,
-								<CyberWeekRegister
+								<CyberWeekContactUs
 									key={this.state.tabs[13]}
+									analytics={this.props.analytics}
+								/>,
+								<CyberWeekRegister
+									key={this.state.tabs[14]}
 									analytics={this.props.analytics}
 								/>,
 							]}
