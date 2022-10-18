@@ -27,7 +27,7 @@ export default class PageLHC extends React.Component {
 				<div className="row">
 					<div className="offset-md-1 col-md-6 row-spaced">
 						<img
-							src={"img/logo_lhc.png"}
+							src={"/img/logo_lhc.png"}
 							alt={"LOGO LHC"}
 						/>
 					</div>
@@ -43,7 +43,7 @@ export default class PageLHC extends React.Component {
 
 					<div className="offset-md-3 col-md-6 row-spaced">
 						<img
-							src={"img/lhc_audience.png"}
+							src={"/img/lhc_audience.png"}
 							alt={"LHC AUDIENCE"}
 						/>
 					</div>
