@@ -1,28 +1,27 @@
 import React from "react";
-import "./CyberWeekRegister.css";
+import "./CyberWeekPhotos.css";
 import ShadowBox from "../box/ShadowBox.jsx";
 
-export default class CyberWeekContactUs extends React.Component {
+export default class CyberWeekPhotos extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
 	render() {
 		return (
-			<div id={"CyberWeekRegister"}>
+			<div id={"CyberWeekPhotos"}>
 				<div className="row row-spaced">
 					<div className="col-md-12">
-						<h2>Register</h2>
+						<h2>Photos</h2>
 					</div>
 
-					<div className="col-md-3"/>
+					<div className="offset-md-3"/>
 
 					<div className="col-md-6">
 						<ShadowBox
-							onClick={() => window.open("https://www.xing.com/events/3949197", "_blank")}
-							title="Register to the CSWL"
-							icon="fas fa-marker"
+							onClick={() => window.open("https://www.flickr.com/photos/196854501@N08/albums/with/72177720303146523", "_blank")}
+							title={"Photos"}
+							icon={"fas fa-images"}
+							color={"blue"}
 						/>
 					</div>
-
-					<div className="col-md-12 row-spaced"/>
 				</div>
 
 				<div className="row row-spaced"/>

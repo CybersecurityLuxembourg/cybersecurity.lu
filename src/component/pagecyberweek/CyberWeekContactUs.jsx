@@ -47,6 +47,17 @@ export default class CyberWeekContactUs extends React.Component {
 							abstract={"info@cybersecurityweek.lu"}
 						/>
 					</div>
+
+					<div className="col-md-4"/>
+
+					<div className="col-md-4">
+						<ShadowBox
+							onClick={() => window.open("https://frontoffice.byemisys.com/auth/CibersecurityWeek2022/fr/login", "_blank")}
+							title={"To obtain a refund"}
+							icon={"fas fa-coins"}
+							abstract={"of the remaining balance on your bracelet, click here"}
+						/>
+					</div>
 				</div>
 
 				<div className="row row-spaced"/>
