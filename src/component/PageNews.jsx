@@ -87,7 +87,8 @@ export default class PageNews extends React.Component {
 			getRequest.call(this, "public/get_public_articles?" + dictToURI(params), (data) => {
 				this.setState({
 					[stateName]: data.items
-						.filter((a) => a.end_date && a.end_date > new Date().toISOString()),
+						.filter((a) => categoryValue !== "CALL TO ACTION"
+							|| (a.end_date && a.end_date > new Date().toISOString())),
 				});
 			}, (response) => {
 				nm.warning(response.statusText);
