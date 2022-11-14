@@ -1,7 +1,6 @@
 import React from "react";
 import "./CyberWeekPresentation.css";
 import { Link } from "react-router-dom";
-import ShadowBox from "../box/ShadowBox.jsx";
 
 export default class CyberWeekPresentation extends React.Component {
 	// eslint-disable-next-line class-methods-use-this
@@ -106,17 +105,6 @@ export default class CyberWeekPresentation extends React.Component {
 							<li>Get the latest <Link to="/public/get_public_document/CSWL22_brochure_sponsors.pdf">sponsoring opportunities</Link>.</li>
 							<li>Join the <Link to="/cybersecurityweek?tab=About_the_gala">Gala and Awards Night</Link>.</li>
 						</ul>
-					</div>
-
-					<div className="col-md-3"/>
-
-					<div className="col-md-6">
-						<ShadowBox
-							onClick={() => window.open("https://www.xing.com/events/cybersecurity-week-luxembourg-3949197", "_blank")}
-							title={"Free attendance, open to everyone looking for cybersecurity insights"}
-							abstract={"Take part as a visitor and register today"}
-							icon="fas fa-marker"
-						/>
 					</div>
 				</div>
 			</div>
