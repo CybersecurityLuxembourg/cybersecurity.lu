@@ -255,7 +255,7 @@ export default class Footer extends React.Component {
 								<a href="mailto:info@cybersecurity-luxembourg.com">info@cybersecurity-luxembourg.com</a>
 							</div>
 							<br/>
-							<div>Copyright © <br/>Luxembourg House of Cybersecurity <br/> 2021</div>
+							<div>Copyright © <br/>Security made in Lëtzebuerg g.i.e. <br/> 2021</div>
 						</div>
 						<div className="col-md-2">
 							<div className="Footer-network">
