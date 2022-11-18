@@ -100,7 +100,7 @@ export default class PageDashboard extends React.Component {
 		}
 
 		const entities = this.state.entities
-			.filter((p) => p.name === "SECURITYMADEIN.LU");
+			.filter((p) => p.name === "Luxembourg House of Cybersecurity");
 
 		if (entities.length > 0) {
 			return entities[0].id;
@@ -658,7 +658,6 @@ export default class PageDashboard extends React.Component {
 
 									<img
 										src={"img/secin-logo.png"}
-										alt={"SECURITYMADEIN.LU"}
 									/>
 								</div>
 								<div className={"col-12 col-md-12 col-lg-12"}/>

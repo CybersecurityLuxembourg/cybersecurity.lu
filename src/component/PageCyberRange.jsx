@@ -47,7 +47,6 @@ export default class PageCyberRange extends React.Component {
 						<div className="PageCyberRange-img-wrapper">
 							<img
 								src={"img/cyberrange.png"}
-								alt={"SECURITYMADEIN.LU"}
 							/>
 						</div>
 					</div>

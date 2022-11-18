@@ -37,12 +37,12 @@ export default class Footer extends React.Component {
 									</div>
 									<div className="Footer-alinea">
 										<a
-											href="https://securitymadein.lu/"
+											href="https://lhc.lu/"
 											rel="noreferrer"
 											target="_blank"
-											title="SECURITYMADEIN.LU GIE"
+											title="Luxembourg House of Cybersecurity"
 											className="text-capitalize">
-											SECURITYMADEIN.LU
+											Luxembourg House of Cybersecurity
 										</a>
 									</div>
 									<div className="Footer-alinea">
@@ -241,20 +241,21 @@ export default class Footer extends React.Component {
 									</div>
 								</div>
 							</div>
-						</div>
+						</div><br/>
+						<br/><br/>
 						<div className="col-md-2 Footer-contact">
 							<div className="Footer-title">CONTACT</div>
 							<br/>
-							<div>SECURITYMADEIN.LU g.i.e.</div>
-							<div>16, boulevard d&#39;Avranches</div>
-							<div>L-1160 Luxembourg</div>
+							<div>Luxembourg House of Cybersecurity</div>
+							<div>122 rue Adolphe Fischer</div>
+							<div>L-1521 Luxembourg</div>
 							<br/>
 							<div>(+352) 274 00 98 601</div>
 							<div>
 								<a href="mailto:info@cybersecurity-luxembourg.com">info@cybersecurity-luxembourg.com</a>
 							</div>
 							<br/>
-							<div>Copyright © SECURITYMADEIN.LU g.i.e 2021</div>
+							<div>Copyright © <br/>Luxembourg House of Cybersecurity <br/> 2021</div>
 						</div>
 						<div className="col-md-2">
 							<div className="Footer-network">

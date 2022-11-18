@@ -121,7 +121,6 @@ export default class PageCSB extends React.Component {
 						<img
 							className="PageCSB-image"
 							src={"img/csb_series.jpg"}
-							alt={"SECURITYMADEIN.LU"}
 						/>
 					</div>
 

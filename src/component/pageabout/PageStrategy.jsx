@@ -70,7 +70,7 @@ export default class PageStrategy extends React.Component {
 										up by a multidisciplinary working group chaired by the High
 										Commission for National Protection and consisting of representatives
 										of the Ministry of Foreign and European Affairs, the Ministry of
-										Economy, the EIG SECURITYMADEIN.LU, the Department of Media,
+										Economy, the EIG Luxembourg House of Cybersecurity, the Department of Media,
 										Telecommunications and Digital Policy (SMC), the State Intelligence
 										Service, the Luxembourg Regulatory Institute (ILR), the Directorate
 										of Defence, the Government IT Centre (CTIE), the governmental

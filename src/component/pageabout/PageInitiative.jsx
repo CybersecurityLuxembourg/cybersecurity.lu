@@ -154,10 +154,10 @@ export default class PageInitiative extends React.Component {
 							</a>
 							, High Commission for
 							National Protection and <a
-								href="https://securitymadein.lu/"
+								href="https://lhc.lu/"
 								rel="noreferrer"
 								target="_blank">
-								SECURITYMADEIN.LU
+								Luxembourg House of Cybersecurity
 							</a>, the Cybersecurity
 							Agency for the Luxembourg Economy and Municipalities, and
 							actively supported by <a
@@ -247,7 +247,7 @@ export default class PageInitiative extends React.Component {
 								</div>
 								<div className="col-md-12">
 									{// eslint-disable-next-line
-									}<b>2. Each company was then reviewed and categorised by SECURITYMADEIN.LU based on the <a target="_blank" rel="noreferrer" href="http://www.ecs-org.eu/documents/uploads/ecso-cybersecurity-market-radar-brochure.pdf">ECSO Cybersecurity Market Radar</a>.</b>
+									}<b>2. Each company was then reviewed and categorised by Luxembourg House of Cybersecurity based on the <a target="_blank" rel="noreferrer" href="http://www.ecs-org.eu/documents/uploads/ecso-cybersecurity-market-radar-brochure.pdf">ECSO Cybersecurity Market Radar</a>.</b>
 								</div>
 								<div className="col-md-12">
 									<img
@@ -256,11 +256,11 @@ export default class PageInitiative extends React.Component {
 								</div>
 								<div className="col-md-12">
 									{// eslint-disable-next-line
-									}As part of this step, SECURITYMADEIN.LU identified the members of the ecosystem whose core business is related to cybersecurity and categorised the solutions provided by each member of the ecosystem.
+									}As part of this step, Luxembourg House of Cybersecurity identified the members of the ecosystem whose core business is related to cybersecurity and categorised the solutions provided by each member of the ecosystem.
 								</div>
 								<div className="col-md-12">
 									{// eslint-disable-next-line
-									}<b>3. Finally, LXI-Market Intelligence and SECURITYMADEIN.LU analysed the ecosystem.</b>
+									}<b>3. Finally, LXI-Market Intelligence and Luxembourg House of Cybersecurity analysed the ecosystem.</b>
 								</div>
 							</div>
 						</Collapsible>
