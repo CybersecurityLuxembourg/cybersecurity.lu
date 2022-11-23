@@ -1,0 +1,7 @@
+#CyberWeekReplays div.col-md-12:has(iframe) {
+	text-align: center;
+}
+
+#CyberWeekReplays div.col-md-12:has(a) {
+	text-align: center;
+}
