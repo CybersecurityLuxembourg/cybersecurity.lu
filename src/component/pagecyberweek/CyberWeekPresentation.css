@@ -3,3 +3,7 @@
 	width: 100%;
 	margin-bottom: 20px;
 }
+
+#CyberWeekPresentation div.col-md-12:has(iframe) {
+	text-align: center;
+}

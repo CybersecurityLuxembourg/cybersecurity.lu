@@ -92,7 +92,7 @@ export default class CyberWeekReplays extends React.Component {
 
 					<div className="col-md-12">
 						<h4>DDoS Mitigation : Trends and Challenges in
-						Digital World - Seva Vayner, G-Core Labs</h4>
+						Digital World - Seva Vayner, Gcore</h4>
 					</div>
 
 					<div className="col-md-12">
