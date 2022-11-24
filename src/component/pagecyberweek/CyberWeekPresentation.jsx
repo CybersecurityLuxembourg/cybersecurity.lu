@@ -7,14 +7,6 @@ export default class CyberWeekPresentation extends React.Component {
 		return (
 			<div id={"CyberWeekPresentation"}>
 				<div className="row row-spaced">
-					<div className="col-md-12">
-						<img
-							className="CyberWeekPresentation-image"
-							src="img/cswl_banner_2022.png"
-							alt="CSWL 2022"
-						/>
-					</div>
-
 					<div className="col-md-12 row-spaced">
 						<h2>CSWL 2022 RECAP - Relieve the experience</h2>
 					</div>
