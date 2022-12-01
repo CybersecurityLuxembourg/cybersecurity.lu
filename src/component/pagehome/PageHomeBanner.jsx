@@ -112,28 +112,6 @@ export default class PageHomeBanner extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div>
-					<img src="/img/Slide_CSWL.png"/>
-
-					<div className="PageHome-banner-slide-cswl">
-						<div className="max-sized-page">
-							<div className="row row-spaced">
-								<div className="col-md-1"/>
-								<div className="col-md-4">
-									<ShadowBox
-										link="cybersecurityweek"
-										title={<div className="PageHome-banner-title">
-											<h3>19-20 October 2022</h3>
-											<h4>LuxExpo The Box</h4>
-										</div>}
-										abstract={"Click to know more"}
-										color={"blue"}
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 			</Carousel>
 		</div>;
 	}
