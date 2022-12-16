@@ -3,6 +3,7 @@ import "./PageInitiative.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
 import Collapsible from "react-collapsible";
+import { getApiURL } from "../../utils/env.jsx";
 
 export default class PageInitiative extends React.Component {
 	constructor(props) {
@@ -176,7 +177,7 @@ export default class PageInitiative extends React.Component {
 							The market mapping gathers all 300+ entities (private,
 								public and civil sectors) involved in cybersecurity.
 							Based on the <a
-								href="http://www.ecs-org.eu/documents/uploads/ecso-cybersecurity-market-radar-brochure.pdf"
+								href={getApiURL() + "public/get_public_document/ECSO-cybersecurity-market-radar-brochure_20190911.pdf"}
 								rel="noreferrer"
 								target="_blank">
 								ECSO Cybersecurity Market Radar
@@ -247,7 +248,7 @@ export default class PageInitiative extends React.Component {
 								</div>
 								<div className="col-md-12">
 									{// eslint-disable-next-line
-									}<b>2. Each company was then reviewed and categorised by Luxembourg House of Cybersecurity based on the <a target="_blank" rel="noreferrer" href="http://www.ecs-org.eu/documents/uploads/ecso-cybersecurity-market-radar-brochure.pdf">ECSO Cybersecurity Market Radar</a>.</b>
+									}<b>2. Each company was then reviewed and categorised by Luxembourg House of Cybersecurity based on the <a target="_blank" rel="noreferrer" href={getApiURL() + "public/get_public_document/ECSO-cybersecurity-market-radar-brochure_20190911.pdf"}>ECSO Cybersecurity Market Radar</a>.</b>
 								</div>
 								<div className="col-md-12">
 									<img

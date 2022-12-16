@@ -3,6 +3,7 @@ import "./PrivateSectorSearch.css";
 import Popup from "reactjs-popup";
 import FormLine from "./FormLine.jsx";
 import getLeavesOfNode from "../../utils/taxonomy.jsx";
+import { getApiURL } from "../../utils/env.jsx";
 
 export default class PrivateSectorSearch extends React.Component {
 	constructor(props) {
@@ -116,7 +117,7 @@ export default class PrivateSectorSearch extends React.Component {
 
 								<div className={"col-md-12"}>
 									{// eslint-disable-next-line
-									}<p>Private companies are classified according to the <a target="_blank" rel="noreferrer" href="http://www.ecs-org.eu/documents/uploads/ecso-cybersecurity-market-radar-brochure.pdf">ECSO Cybersecurity Market Radar</a>, which is based on the <a target="_blank" rel="noreferrer" href="https://www.nist.gov/cyberframework">NIST Cybersecurity Framework.</a></p>
+									}<p>Private companies are classified according to the <a target="_blank" rel="noreferrer" href={getApiURL() + "public/get_public_document/ECSO-cybersecurity-market-radar-brochure_20190911.pdf"}>ECSO Cybersecurity Market Radar</a>, which is based on the <a target="_blank" rel="noreferrer" href="https://www.nist.gov/cyberframework">NIST Cybersecurity Framework.</a></p>
 									{// eslint-disable-next-line
 									}<p>The ECSO Cybersecurity Market Radar serves as a comprehensive visualisation tool of the European cybersecurity market.</p>
 									{// eslint-disable-next-line
