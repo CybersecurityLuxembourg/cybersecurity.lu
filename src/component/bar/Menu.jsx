@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { getPrivateAppURL } from "../../utils/env.jsx";
+import { getPrivateAppURL, getLhcAppURL } from "../../utils/env.jsx";
 import SearchField from "../form/SearchField.jsx";
 
 export default class Menu extends React.Component {
@@ -208,10 +208,14 @@ export default class Menu extends React.Component {
 			</Nav.Link>
 
 			<Nav.Link className="Menu-link Menu-link-red">
-				<Link to="/lhc">
+				<a
+					className="nav-link"
+					href={getLhcAppURL()}
+					rel="noreferrer"
+				>
 					<div className="Menu-title">LHC</div>
 					<div className="Menu-description">House of Cybersecurity</div>
-				</Link>
+				</a>
 			</Nav.Link>
 		</Nav>;
 	}
