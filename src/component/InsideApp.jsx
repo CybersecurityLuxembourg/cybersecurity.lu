@@ -36,7 +36,6 @@ import PageLTAC from "./PageLTAC.jsx";
 import PageTOTM from "./PageTOTM.jsx";
 import PageChallenge from "./PageChallenge.jsx";
 /* import PageCVE from "./PageCVE.jsx"; */
-import PageLHC from "./PageLHC.jsx";
 import PageBestPractices from "./PageBestPractices.jsx";
 import PagePodcasts from "./PagePodcasts.jsx";
 import PageCyberRange from "./PageCyberRange.jsx";
@@ -116,7 +115,6 @@ class InsideApp extends React.Component {
 						<Route path="/ecosystem" render={(props) => <PageEcosystem {...props} />}/>
 						<Route path="/get_involved" render={(props) => <PageGetInvolved {...props} />}/>
 						<Route path="/whatsup" render={(props) => <PageWhatsup {...props} />}/>
-						<Route path="/lhc" render={(props) => <PageLHC {...props} />}/>
 
 						<Route path="/help" render={(props) => <PageHelp {...props}/>}/>
 
