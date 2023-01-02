@@ -207,16 +207,15 @@ export default class Menu extends React.Component {
 				</Link>
 			</Nav.Link>
 
-			<Nav.Link className="Menu-link Menu-link-red">
-				<a
-					href={getLhcAppURL()}
-					target="_blank"
-					rel="noreferrer"
-				>
-					<div className="Menu-title">LHC</div>
-					<div className="Menu-description">House of Cybersecurity</div>
-				</a>
-			</Nav.Link>
+			<a
+				className="Menu-link Menu-link-red nav-link"
+				href={getLhcAppURL()}
+				target="_blank"
+				rel="noreferrer"
+			>
+				<div className="Menu-title">LHC</div>
+				<div className="Menu-description">House of Cybersecurity</div>
+			</a>
 		</Nav>;
 	}
 
