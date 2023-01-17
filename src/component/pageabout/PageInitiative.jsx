@@ -104,36 +104,13 @@ export default class PageInitiative extends React.Component {
 						<h2>Empowering the cybersecurity ecosystem</h2>
 
 						<p>
-							By bringing together all cybersecurity actors, the
-							portal aims to strengthen the links between the actors
-							of the Luxembourg cybersecurity ecosystem in order to
-							reinforce its relevance and impact and to make it more
-							visible and available at national, <a
-								href="https://tools.bdi.fr/annu_craft/cybersecurity.html"
+							Cybersecurity is a key component in the country’s efforts
+							to promote all aspects of the digital transformation and
+							develop its data-driven economy. Therefore, the initiative is part
+							of the <a
+								href="https://www.cybersecurity.lu/strategy"
 								rel="noreferrer"
 								target="_blank">
-								European
-							</a> and
-							international level.
-						</p>
-
-						<p>
-							The promotion of the Luxembourg cybersecurity ecosystem
-							is made through the national brand <b>“CYBERSECURITY Luxembourg”</b>,
-							an integral part of
-							the <a
-								href="https://luxembourg.public.lu/en/toolbox.html"
-								rel="noreferrer"
-								target="_blank">
-								toolbox
-							</a>
-							&nbsp;intended to enhance and
-							structure the promotion of Luxembourg in the field of
-							cybersecurity. Cybersecurity is a key component in the
-							country’s efforts to promote all aspects of the digital
-							transformation and develop its data-driven economy. Therefore,
-							the initiative is part of the <a
-								href="/strategy">
 								national cybersecurity strategy
 							</a>.
 						</p>
@@ -169,6 +146,35 @@ export default class PageInitiative extends React.Component {
 							</a>, the national agency for
 							innovation and the promotion of Luxembourg’s expertise
 							internationally.
+						</p>
+
+						<p>
+							By bringing together all cybersecurity actors, the portal aims
+							to strengthen the links between the actors of the Luxembourg
+							cybersecurity ecosystem in order to reinforce its relevance and
+							impact and to make it more visible and available at
+							national, <a
+								href="https://tools.bdi.fr/annu_craft/cybersecurity.html"
+								rel="noreferrer"
+								target="_blank">
+								European
+							</a> and international level.
+						</p>
+
+						<p>
+							The promotion of the Luxembourg cybersecurity ecosystem
+							is made through the national brand <b>“CYBERSECURITY Luxembourg”</b>,
+							an integral part of
+							the toolbox intended to enhance and
+							structure the promotion of Luxembourg in the field of
+							cybersecurity. All actors from the CYBERSECURITY Luxembourg
+							ecosystem are invited to use the national branding, which
+							guidelines are available <a
+								href="https://api.cybersecurity.lu/public/get_public_document/Charte-CYBERSECURITYLuxembourg_2023.pdf"
+								rel="noreferrer"
+								target="_blank">
+								here
+							</a>.
 						</p>
 
 						<h2>What is the ecosystem like?</h2>
