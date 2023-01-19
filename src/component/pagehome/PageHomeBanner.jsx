@@ -66,7 +66,7 @@ export default class PageHomeBanner extends React.Component {
 													<span className="tooltiptext">Private space</span>
 												</a>
 											</div>
-											<div className="PageHome-banner-more hide-on-mobile">
+											<div className="PageHome-banner-more">
 												<Link to="whatsinit?tab=CybersecurityActors">
 													<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
 												</Link>
@@ -100,7 +100,7 @@ export default class PageHomeBanner extends React.Component {
 													<span className="tooltiptext">Cybersecurity Week</span>
 												</Link>
 											</div>
-											<div className="PageHome-banner-more hide-on-mobile">
+											<div className="PageHome-banner-more">
 												<Link to="whatsinit?tab=Users">
 													<em>What&apos;s more?</em> <i className="fas fa-arrow-right"/>
 												</Link>
