@@ -294,7 +294,7 @@ export default class Footer extends React.Component {
 									<i className="fas fa-book"/> How to use the portal?
 								</a> */}
 								<a
-									href={"/pdf/Terms of Use CYBERLUX.pdf"}
+									href={getApiURL() + "public/get_public_document/CYBERLUX_Legal_Notice.pdf"}
 									rel="noreferrer"
 									target="_blank"
 									title="Terms of use"
