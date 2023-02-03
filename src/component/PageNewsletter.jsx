@@ -81,7 +81,7 @@ export default class PageNewsletter extends React.Component {
 
 						<p>
 							Keep up to date with the latest cybersecurity news in and around Luxembourg:
-							rom institutional news, to the tech corner and upcoming events, find a review
+							from institutional news, to the tech corner and upcoming events, find a review
 							of all the newest developments in one place and remain a step ahead of
 							what&apos;s coming next.
 						</p>
