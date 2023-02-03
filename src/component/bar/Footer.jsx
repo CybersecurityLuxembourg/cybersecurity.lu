@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import { getPrivateAppURL } from "../../utils/env.jsx";
+import { getPrivateAppURL, getApiURL } from "../../utils/env.jsx";
 
 export default class Footer extends React.Component {
 	constructor(props) {
