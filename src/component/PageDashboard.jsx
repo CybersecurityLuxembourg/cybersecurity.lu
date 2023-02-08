@@ -320,10 +320,10 @@ export default class PageDashboard extends React.Component {
 		});
 
 		const serviceGroupAssignments = this.state.analytics.taxonomy_assignments
-			.filter((a) => serviceGroupValues.indexOf(a.taxonomy_value) >= 0);
+			.filter((a) => serviceGroupValues.indexOf(a.taxonomy_value_id) >= 0);
 
 		serviceGroupAssignments.forEach((v) => {
-			occurences[v.taxonomy_value] += 1;
+			occurences[v.taxonomy_value_id] += 1;
 		});
 
 		const orderedOccurences = Object.values(occurences).sort((a, b) => b - a);
@@ -664,7 +664,7 @@ export default class PageDashboard extends React.Component {
 							<div className={"row"}>
 								{this.getSecinDepartments().map((d) => <div
 									key={d.id}
-									className={"col-12 col-md-6 col-lg-6 PageDashboard-image-wrapper"}>
+									className={"offset-md-2 col-md-3 PageDashboard-image-wrapper"}>
 									<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
 										{this.getFrameworkNumbersOfRegulator(d.id).map((f) => <span
 											key={f}
