@@ -22,8 +22,7 @@ export default class PageDashboard extends React.Component {
 
 			secinDepartments: [
 				"Computer Incident Response Center Luxembourg (CIRCL)",
-				"Cybersecurity Competence Center C3",
-				"Cyberworld Awareness and Security Enhancement Services CASES",
+				"National Cybersecurity Competence Centre (NC3)",
 			],
 			servingPublicSector: [
 				"Agence Nationale de la Sécurité des systèmes d'Information ANSSI",
@@ -35,7 +34,7 @@ export default class PageDashboard extends React.Component {
 				"Directorate of Defence, Ministry of Foreign and European Affairs",
 				"Service de Renseignement de l'Etat",
 				"Ministry of the Economy",
-				"Institut Luxembourgeois de Régulation",
+				"Institut Luxembourgeois de Régulation (ILR)",
 				"Department of Media, Telecommunications and Digital Policy",
 				"Ministry of Foreign and European Affairs",
 			],
@@ -657,7 +656,7 @@ export default class PageDashboard extends React.Component {
 									</div>
 
 									<img
-										src={"img/secin-logo.png"}
+										src={"img/logo_lhc.png"}
 									/>
 								</div>
 								<div className={"col-12 col-md-12 col-lg-12"}/>
@@ -665,7 +664,7 @@ export default class PageDashboard extends React.Component {
 							<div className={"row"}>
 								{this.getSecinDepartments().map((d) => <div
 									key={d.id}
-									className={"col-12 col-md-4 col-lg-4 PageDashboard-image-wrapper"}>
+									className={"col-12 col-md-6 col-lg-6 PageDashboard-image-wrapper"}>
 									<div className={"PageDashboard-authorities-and-regulators-bookmarks"}>
 										{this.getFrameworkNumbersOfRegulator(d.id).map((f) => <span
 											key={f}
