@@ -6,20 +6,22 @@
 		<meta name="theme-color" content="#ffffff"/>
 		<meta data-react-helmet="true" name="title" property="og:title" content="CYBERSECURITY Luxembourg" />
 		<meta data-react-helmet="true" name="description" property="og:description" content=""/>
-		<meta data-react-helmet="true" name="url" property="og:url" content="https://cybersecurity-luxembourg.com/"/>
+		<meta data-react-helmet="true" name="url" property="og:url" content="https://cybersecurity.lu/"/>
 		<meta data-react-helmet="true" name="image" property="og:image" content="/img/open-graph-logo.png"/>
+
+		<script>
+			if (window.location.host.startsWith("test.")) {
+				document.write('<meta name="robots" content="noindex">');
+			}
+		</script>
 
 		<link id="favicon" rel="shortcut icon"/>
 		<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
 
-		<link rel="stylesheet" href="/css/bootstrap.min.css"
-          integrity="sha256-aAr2Zpq8MZ+YA/D6JtRD3xtrwpEz2IqOS+pWD/7XKIw="/>
-        <link rel="stylesheet" href="/css/fontawesome.css"
-          integrity="sha256-DLjMP+5CdeGCI2qxnDquVSdPQ6oP/enAUQ2NWfz45dw="/>
-        <link rel="stylesheet" href="/css/leaflet.css"
-          integrity="sha256-y4gDEU/pxJrmohmEZFiWzZiKDba4qNsDmUTkUJjIN5U="/>
-        <link rel="stylesheet" href="/css/react-phone-number-input.css"
-          integrity="sha256-bGN3x6YgCNsijnntZGKYM2B0TArtcuY/chzAkYEY3kg="/>
+		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/fontawesome.css"/>
+        <link rel="stylesheet" href="/css/leaflet.css"/>
+        <link rel="stylesheet" href="/css/react-phone-number-input.css"/>
 
 		<script>
 			if (!(window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "")) {
@@ -60,7 +62,6 @@
 		<script
 			src="/js/leaflet.js"
 			type="text/javascript"
-          	integrity="sha256-yDc0eil8GjWFKqN1OSzHSVCiuGghTosZCcRje4tj7iQ="
         />
 
 		<script src="js/main.js"></script>
