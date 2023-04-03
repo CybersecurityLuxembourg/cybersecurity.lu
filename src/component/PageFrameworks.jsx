@@ -48,7 +48,7 @@ export default class PageFrameworks extends React.Component {
 					<div className="col-md-12">
 						<Breadcrumb>
 							<Breadcrumb.Item><Link to="/">CYBERSECURITY LUXEMBOURG</Link></Breadcrumb.Item>
-							<Breadcrumb.Item><Link to="/frameworks">LEGAL FRAMEWORKS</Link></Breadcrumb.Item>
+							<Breadcrumb.Item><Link to="/frameworks">LEGAL FRAMEWORK</Link></Breadcrumb.Item>
 						</Breadcrumb>
 					</div>
 				</div>

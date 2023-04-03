@@ -36,7 +36,7 @@ export default class PageChallenge extends React.Component {
 					<div className="col-md-6">
 						<ShadowBox
 							link="frameworks"
-							title={"Legal frameworks"}
+							title={"Legal framework"}
 							icon={"fas fa-gavel"}
 							color={"blue"}
 						/>

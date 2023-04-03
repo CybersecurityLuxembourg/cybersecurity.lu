@@ -191,7 +191,7 @@ export default class Footer extends React.Component {
 									</div> */}
 									<div className="Footer-alinea">
 										<Link to="/frameworks">
-											Legal frameworks
+											Legal framework
 										</Link>
 									</div>
 									<div className="Footer-alinea">
