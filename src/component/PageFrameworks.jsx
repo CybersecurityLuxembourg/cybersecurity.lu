@@ -19,6 +19,7 @@ export default class PageFrameworks extends React.Component {
 				"EuropeanFrameworkForFinancialSector",
 				"EuropeanFrameworkUnderNegociation",
 				"InternationalFramework",
+				"InternationalFrameworkUnderNegociation",
 			],
 			selectedMenu: null,
 		};
@@ -62,6 +63,7 @@ export default class PageFrameworks extends React.Component {
 						"<div style='font-size:12px'>&nbsp;&nbsp;- For the financial sector</div>",
 						"<div style='font-size:12px'>&nbsp;&nbsp;- Upcoming/under negotiation</div>",
 						"International framework",
+						"<div style='font-size:12px'>&nbsp;&nbsp;- Upcoming/under negotiation</div>",
 					]}
 					keys={this.state.tabs}
 					content={[
@@ -87,6 +89,11 @@ export default class PageFrameworks extends React.Component {
 						/>,
 						<FrameworkPage
 							taxonomyValueName={"INTERNATIONAL FRAMEWORK"}
+							key={this.state.tabs[4]}
+							analytics={this.props.analytics}
+						/>,
+						<FrameworkPage
+							taxonomyValueName={"INTERNATIONAL FRAMEWORK - Upcoming/under negotiation"}
 							key={this.state.tabs[4]}
 							analytics={this.props.analytics}
 						/>,
