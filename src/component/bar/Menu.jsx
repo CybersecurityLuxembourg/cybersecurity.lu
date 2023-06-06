@@ -193,12 +193,13 @@ export default class Menu extends React.Component {
 				</NavDropdown.Item>
 			</NavDropdown>
 
-			<Nav.Link className="Menu-link-grey">
-				<Link to="/cybersecurityweek">
-					<div className="Menu-title">CSWL</div>
-					<div className="Menu-description">Cybersecurity Week</div>
-				</Link>
-			</Nav.Link>
+			<a
+				className="Menu-link Menu-link-grey nav-link"
+				href={"https://cswl.lu"}
+			>
+				<div className="Menu-title">CSWL</div>
+				<div className="Menu-description">Cybersecurity Week</div>
+			</a>
 
 			<Nav.Link className="Menu-link-grey">
 				<Link to="/jobs">
