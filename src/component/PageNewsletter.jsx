@@ -98,15 +98,6 @@ export default class PageNewsletter extends React.Component {
 					</div>
 				</div>
 
-				<div className="row">
-					<div className="col-md-12">
-						<p>
-							Sent every first Tuesday of the month, this monthly newsletter is a great
-							opportunity to get to know the entities that make up the ecosystem.
-						</p>
-					</div>
-				</div>
-
 				<div className="row row-spaced">
 					<div className="col-md-12">
 						<h1>Previous newsletters</h1>
